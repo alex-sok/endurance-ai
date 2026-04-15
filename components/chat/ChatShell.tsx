@@ -5,21 +5,25 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RotateCcw } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
-import { chatReducer, INITIAL_STATE, processRoute, processSupportAction } from "@/lib/conversation";
-import type { ChatMessage, FollowUp, RouteId } from "@/types/chat";
+import {
+  chatReducer,
+  INITIAL_STATE,
+  getNodeMessage,
+  getNodeFollowUps,
+  getNodeCaptureKey,
+  getNodeNextId,
+} from "@/lib/conversation";
+import type { ChatMessage, FollowUp, MissionData } from "@/types/chat";
 
 import { Message, TypingIndicator } from "./Message";
 import { PromptChips } from "./PromptChips";
 import { FollowUpButtons } from "./FollowUpButtons";
 import { ChatInput } from "./ChatInput";
 
-// Multi-step routes that advance through sequential prompts.
-// All other routes are single-response; free text always goes to the LLM.
-const MULTI_STEP_ROUTES = new Set<RouteId>(["mission-intake"]);
-
 const TYPING_DELAY = 520;
+const DEFAULT_PLACEHOLDER = "Type a message or choose an option above";
 
-// ── Streaming bubble — same visual style as assistant messages ────────────────
+// ── Streaming bubble ──────────────────────────────────────────────────────────
 function StreamingBubble({ text }: { text: string }) {
   return (
     <motion.div
@@ -73,7 +77,6 @@ function StreamingBubble({ text }: { text: string }) {
           >
             {text}
           </ReactMarkdown>
-          {/* blinking cursor */}
           <span className="inline-block w-0.5 h-3.5 bg-stone-400 ml-0.5 animate-pulse align-middle" />
         </div>
       </div>
@@ -87,16 +90,15 @@ export function ChatShell() {
   const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
-  // Streaming state — local, not in reducer
   const [streamingText, setStreamingText] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
 
-  // ── Scroll to bottom ──────────────────────────────────────────────────────
+  // ── Scroll to bottom ────────────────────────────────────────────────────
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [state.messages, state.isTyping, state.followUps, streamingText]);
 
-  // ── Cleanup on unmount ────────────────────────────────────────────────────
+  // ── Cleanup ─────────────────────────────────────────────────────────────
   useEffect(() => {
     return () => {
       if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
@@ -104,7 +106,21 @@ export function ChatShell() {
     };
   }, []);
 
-  // ── Notify (fire-and-forget) ──────────────────────────────────────────────
+  // ── Deliver deterministic response after typing delay ───────────────────
+  const deliverResponse = useCallback(
+    (message: string, followUps: FollowUp[]) => {
+      dispatch({ type: "SET_TYPING", payload: true });
+      typingTimerRef.current = setTimeout(() => {
+        dispatch({ type: "ASSISTANT_MESSAGE", payload: message });
+        dispatch({ type: "SET_FOLLOW_UPS", payload: followUps });
+        dispatch({ type: "SET_INPUT_PLACEHOLDER", payload: DEFAULT_PLACEHOLDER });
+        dispatch({ type: "SET_INPUT_DISABLED", payload: false });
+      }, TYPING_DELAY);
+    },
+    []
+  );
+
+  // ── Slack/notify (fire-and-forget) ──────────────────────────────────────
   const notify = useCallback((payload: Record<string, unknown>, messages: ChatMessage[]) => {
     fetch("/api/notify", {
       method: "POST",
@@ -113,24 +129,10 @@ export function ChatShell() {
         ...payload,
         messages: messages.map((m) => ({ role: m.role, content: m.content })),
       }),
-    }).catch(() => {/* silently ignore */});
+    }).catch(() => {});
   }, []);
 
-  // ── Deliver deterministic assistant response after typing delay ───────────
-  const deliverResponse = useCallback(
-    (message: string, followUps: FollowUp[], placeholder: string, inputDisabled: boolean) => {
-      dispatch({ type: "SET_TYPING", payload: true });
-      typingTimerRef.current = setTimeout(() => {
-        dispatch({ type: "ASSISTANT_MESSAGE", payload: message });
-        dispatch({ type: "SET_FOLLOW_UPS", payload: followUps });
-        dispatch({ type: "SET_INPUT_PLACEHOLDER", payload: placeholder });
-        dispatch({ type: "SET_INPUT_DISABLED", payload: inputDisabled });
-      }, TYPING_DELAY);
-    },
-    []
-  );
-
-  // ── LLM streaming call ────────────────────────────────────────────────────
+  // ── LLM streaming call ──────────────────────────────────────────────────
   const callLLM = useCallback(
     async (messages: ChatMessage[]) => {
       abortRef.current?.abort();
@@ -150,9 +152,7 @@ export function ChatShell() {
           signal: abortRef.current.signal,
         });
 
-        if (!res.ok) {
-          throw new Error(`API error ${res.status}`);
-        }
+        if (!res.ok) throw new Error(`API error ${res.status}`);
 
         const reader = res.body!.getReader();
         const decoder = new TextDecoder();
@@ -172,7 +172,7 @@ export function ChatShell() {
           dispatch({
             type: "ASSISTANT_MESSAGE",
             payload:
-              "I'm having trouble connecting right now. Please try again or reach us directly at [hello@endurancelabs.ai](mailto:hello@endurancelabs.ai).",
+              "I'm having trouble connecting right now. Please try again or reach us at [hello@endurancelabs.ai](mailto:hello@endurancelabs.ai).",
           });
         }
       } finally {
@@ -184,124 +184,105 @@ export function ChatShell() {
     []
   );
 
-  // ── Prompt chip selection (initial load) ──────────────────────────────────
-  const handlePromptSelect = useCallback(
-    (label: string, routeId: RouteId) => {
-      dispatch({ type: "HIDE_INITIAL_PROMPTS" });
-      dispatch({ type: "USER_MESSAGE", payload: label });
-      dispatch({ type: "SET_ROUTE", payload: routeId });
+  // ── Navigate to a node (shared by chips and text capture) ───────────────
+  const navigateToNode = useCallback(
+    (nodeId: string, userLabel: string, updatedMission: MissionData) => {
+      dispatch({ type: "SET_NODE", payload: nodeId });
 
-      const response = processRoute(routeId, 0, label, {});
-      if (response.missionField) {
-        dispatch({ type: "STORE_MISSION_FIELD", payload: response.missionField });
+      if (nodeId === "contact") {
+        const withUser: ChatMessage[] = [
+          ...state.messages,
+          { id: `u-${Date.now()}`, role: "user", content: userLabel, timestamp: new Date() },
+        ];
+        notify({ type: "talk-to-team" }, withUser);
       }
-      deliverResponse(response.message, response.followUps, response.nextPlaceholder, response.inputDisabled);
 
-      if (MULTI_STEP_ROUTES.has(routeId)) {
-        dispatch({ type: "ADVANCE_STEP" });
-      }
+      const message = getNodeMessage(nodeId, updatedMission);
+      const chips = getNodeFollowUps(nodeId);
+      deliverResponse(message, chips);
     },
-    [deliverResponse]
+    [deliverResponse, notify, state.messages]
   );
 
-  // ── Follow-up button press ────────────────────────────────────────────────
+  // ── Initial chip selection ──────────────────────────────────────────────
+  const handlePromptSelect = useCallback(
+    (label: string, nodeId: string) => {
+      dispatch({ type: "HIDE_INITIAL_PROMPTS" });
+      dispatch({ type: "USER_MESSAGE", payload: label });
+      navigateToNode(nodeId, label, state.missionData);
+    },
+    [navigateToNode, state.missionData]
+  );
+
+  // ── Follow-up / inline chip selection ──────────────────────────────────
   const handleFollowUp = useCallback(
     (followUp: FollowUp) => {
-      if (followUp.routeId) {
-        dispatch({ type: "USER_MESSAGE", payload: followUp.label });
-        dispatch({ type: "SET_ROUTE", payload: followUp.routeId });
-
-        const response = processRoute(followUp.routeId, 0, followUp.label, state.missionData);
-        if (response.missionField) {
-          dispatch({ type: "STORE_MISSION_FIELD", payload: response.missionField });
-        }
-        deliverResponse(response.message, response.followUps, response.nextPlaceholder, response.inputDisabled);
-
-        if (MULTI_STEP_ROUTES.has(followUp.routeId)) {
-          dispatch({ type: "ADVANCE_STEP" });
-        }
-
-        // High-intent signal — someone wants to talk
-        if (followUp.routeId === "talk-to-team") {
-          notify({ type: "talk-to-team" }, state.messages);
-        }
+      // External link — open and do nothing else
+      if (followUp.href) {
+        window.open(followUp.href, "_blank", "noopener,noreferrer");
         return;
       }
 
-      if (followUp.stepAction) {
+      if (followUp.nodeId) {
         dispatch({ type: "USER_MESSAGE", payload: followUp.label });
-        const response = processSupportAction(followUp.stepAction);
-        deliverResponse(response.message, response.followUps, response.nextPlaceholder, response.inputDisabled);
+        navigateToNode(followUp.nodeId, followUp.label, state.missionData);
+        return;
       }
+
+      // No nodeId — chip is a quick-select answer for the current capture step
+      handleTextInput(followUp.label);
     },
-    [deliverResponse, state.missionData]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [navigateToNode, state.missionData]
   );
 
-  // ── Free text input ───────────────────────────────────────────────────────
+  // ── Free text input ─────────────────────────────────────────────────────
   const handleTextInput = useCallback(
     (value: string) => {
       dispatch({ type: "USER_MESSAGE", payload: value });
+      dispatch({ type: "HIDE_INITIAL_PROMPTS" });
 
-      const { currentRoute, currentStep, missionData } = state;
+      const captureKey = getNodeCaptureKey(state.activeNodeId);
+      const nextNodeId = getNodeNextId(state.activeNodeId);
 
-      // Active multi-step route: advance through sequential prompts (deterministic)
-      if (currentRoute && MULTI_STEP_ROUTES.has(currentRoute)) {
-        let updatedMission = { ...missionData };
+      // Active capture step — store value and advance
+      if (captureKey && nextNodeId) {
+        const updatedMission: MissionData = { ...state.missionData, [captureKey]: value };
+        dispatch({ type: "STORE_MISSION_FIELD", payload: { field: captureKey, value } });
 
-        if (currentRoute === "mission-intake") {
-          const fieldMap: Record<number, keyof typeof missionData> = {
-            1: "goal",
-            2: "blocker",
-            3: "stakes",
-            4: "internalFriction",
-          };
-          const field = fieldMap[currentStep];
-          if (field) {
-            updatedMission = { ...updatedMission, [field]: value };
-            dispatch({ type: "STORE_MISSION_FIELD", payload: { field, value } });
-          }
-        }
-
-        const response = processRoute(currentRoute, currentStep, value, updatedMission);
-        if (response.missionField) {
-          dispatch({ type: "STORE_MISSION_FIELD", payload: response.missionField });
-        }
-        dispatch({ type: "ADVANCE_STEP" });
-        deliverResponse(response.message, response.followUps, response.nextPlaceholder, response.inputDisabled);
-
-        // Mission intake complete at step 4 — notify with full conversation
-        if (currentRoute === "mission-intake" && currentStep === 4) {
+        // Final capture step — fire Slack notification
+        if (captureKey === "internalChallenges") {
+          const withUser: ChatMessage[] = [
+            ...state.messages,
+            { id: `u-${Date.now()}`, role: "user", content: value, timestamp: new Date() },
+          ];
           notify(
             {
               type: "mission-intake",
-              goal: updatedMission.goal ?? "",
-              blocker: updatedMission.blocker ?? "",
+              mission: updatedMission.mission ?? "",
+              obstacle: updatedMission.obstacle ?? "",
               stakes: updatedMission.stakes ?? "",
-              internalFriction: value,
+              internalChallenges: value,
             },
-            state.messages
+            withUser
           );
         }
+
+        navigateToNode(nextNodeId, value, updatedMission);
         return;
       }
 
-      // All other cases → LLM streaming response
-      // Build the messages array including the new user message (state hasn't updated yet)
+      // Everything else → LLM
       const messagesWithUser: ChatMessage[] = [
         ...state.messages,
-        {
-          id: `user-${Date.now()}`,
-          role: "user",
-          content: value,
-          timestamp: new Date(),
-        },
+        { id: `u-${Date.now()}`, role: "user", content: value, timestamp: new Date() },
       ];
       callLLM(messagesWithUser);
     },
-    [state, deliverResponse, callLLM]
+    [state, navigateToNode, callLLM, notify]
   );
 
-  // ── Reset ─────────────────────────────────────────────────────────────────
+  // ── Reset ───────────────────────────────────────────────────────────────
   const handleReset = useCallback(() => {
     if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
     abortRef.current?.abort();
@@ -312,7 +293,7 @@ export function ChatShell() {
 
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto w-full">
-      {/* ── Header ─────────────────────────────────────── */}
+      {/* ── Header ───────────────────────────────────────── */}
       <motion.header
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -320,11 +301,7 @@ export function ChatShell() {
         className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0"
       >
         <div className="flex items-center">
-          <img
-            src="/endurance-logo.svg"
-            alt="Endurance AI Labs"
-            className="h-6 w-auto"
-          />
+          <img src="/endurance-logo.svg" alt="Endurance AI Labs" className="h-6 w-auto" />
         </div>
 
         <div className="flex items-center gap-4">
@@ -345,7 +322,7 @@ export function ChatShell() {
         </div>
       </motion.header>
 
-      {/* ── Message list ───────────────────────────────── */}
+      {/* ── Message list ─────────────────────────────────── */}
       <div className="flex-1 overflow-y-auto px-1 pb-4 space-y-5 scroll-smooth">
         <AnimatePresence initial={false}>
           {state.messages.map((msg, i) => (
@@ -353,12 +330,10 @@ export function ChatShell() {
           ))}
         </AnimatePresence>
 
-        {/* Deterministic typing indicator (for structured routes) */}
         <AnimatePresence>
           {state.isTyping && !isStreaming && <TypingIndicator key="typing" />}
         </AnimatePresence>
 
-        {/* LLM streaming bubble */}
         <AnimatePresence>
           {isStreaming && (
             <motion.div
@@ -367,16 +342,11 @@ export function ChatShell() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              {streamingText ? (
-                <StreamingBubble text={streamingText} />
-              ) : (
-                <TypingIndicator />
-              )}
+              {streamingText ? <StreamingBubble text={streamingText} /> : <TypingIndicator />}
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Follow-up buttons */}
         <AnimatePresence>
           {!state.isTyping && !isStreaming && state.followUps.length > 0 && (
             <motion.div
@@ -394,7 +364,7 @@ export function ChatShell() {
         <div ref={bottomRef} />
       </div>
 
-      {/* ── Input area ─────────────────────────────────── */}
+      {/* ── Input area ───────────────────────────────────── */}
       <div className="shrink-0 pb-8 pt-2 space-y-3">
         <AnimatePresence>
           {state.showInitialPrompts && (

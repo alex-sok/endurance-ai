@@ -10,10 +10,10 @@ interface ConversationMessage {
 export type NotifyPayload =
   | {
       type: "mission-intake";
-      goal: string;
-      blocker: string;
+      mission: string;
+      obstacle: string;
       stakes: string;
-      internalFriction: string;
+      internalChallenges: string;
       messages: ConversationMessage[];
     }
   | {
@@ -107,10 +107,10 @@ function buildSlackMessage(payload: NotifyPayload, score: ScoreResult) {
     blocks.push({
       type: "section",
       fields: [
-        { type: "mrkdwn", text: `*Mission*\n${payload.goal}` },
-        { type: "mrkdwn", text: `*Blocker*\n${payload.blocker}` },
+        { type: "mrkdwn", text: `*Mission*\n${payload.mission}` },
+        { type: "mrkdwn", text: `*Obstacle*\n${payload.obstacle}` },
         { type: "mrkdwn", text: `*Stakes*\n${payload.stakes}` },
-        { type: "mrkdwn", text: `*Friction*\n${payload.internalFriction}` },
+        { type: "mrkdwn", text: `*Internal Challenges*\n${payload.internalChallenges}` },
       ],
     });
   } else {
@@ -155,7 +155,7 @@ export async function POST(request: Request) {
 
   const context =
     payload.type === "mission-intake"
-      ? `Prospect completed the full mission intake. Goal: ${payload.goal}`
+      ? `Prospect completed the full mission intake. Mission: ${payload.mission}`
       : "Prospect clicked the Talk to Team CTA.";
 
   // Race scoring against a 6s timeout — Slack sends regardless
