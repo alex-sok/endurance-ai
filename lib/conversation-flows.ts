@@ -29,7 +29,10 @@ export type ChatNode = {
     | "mission"
     | "obstacle"
     | "stakes"
-    | "internalChallenges";
+    | "internalChallenges"
+    | "name"
+    | "email"
+    | "company";
   nextNodeId?: string;
   nextNodeResolver?: string;
   cta?: {
@@ -44,6 +47,9 @@ export type MissionIntakeData = {
   obstacle?: string;
   stakes?: string;
   internalChallenges?: string;
+  name?: string;
+  email?: string;
+  company?: string;
 };
 
 export const CALENDLY_URL = "https://calendar.notion.so/meet/alexsok/endurance-intro";
@@ -125,7 +131,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     message: "What makes this difficult inside your organization?",
     allowFreeText: true,
     captureKey: "internalChallenges",
-    nextNodeId: "mission-summary",
+    nextNodeId: "contact-name",
     promptChips: [
       { id: "mi-1", label: "Cross-functional complexity" },
       { id: "mi-2", label: "No clear owner" },
@@ -134,7 +140,33 @@ export const conversationFlows: Record<string, ChatNode> = {
       { id: "mi-5", label: "Too many stakeholders" },
       { id: "mi-6", label: "Uncertain ROI" },
     ],
-    nextNodeResolver: "generateMissionSummary",
+  },
+
+  "contact-name": {
+    id: "contact-name",
+    route: "mission_intake",
+    message: "Got it. Last few quick ones — what's your name?",
+    allowFreeText: true,
+    captureKey: "name",
+    nextNodeId: "contact-email",
+  },
+
+  "contact-email": {
+    id: "contact-email",
+    route: "mission_intake",
+    message: "And your email address?",
+    allowFreeText: true,
+    captureKey: "email",
+    nextNodeId: "contact-company",
+  },
+
+  "contact-company": {
+    id: "contact-company",
+    route: "mission_intake",
+    message: "What company or organization are you with?",
+    allowFreeText: true,
+    captureKey: "company",
+    nextNodeId: "mission-summary",
   },
 
   "mission-summary": {
@@ -497,6 +529,7 @@ export const topicKeywordRoutes: Record<string, string> = {
 };
 
 export function generateMissionSummary(data: MissionIntakeData): string {
+  const name = data.name?.trim();
   const mission = data.mission?.trim() || "an important initiative";
   const obstacle = data.obstacle?.trim() || "execution friction";
   const stakes = data.stakes?.trim() || "meaningful business consequences";
@@ -505,7 +538,9 @@ export function generateMissionSummary(data: MissionIntakeData): string {
       ? data.internalChallenges
       : "internal complexity";
 
-  return `Based on what you've shared, the mission is ${mission}. The main constraint appears to be ${obstacle}, with ${stakes} at stake if the work does not move. Internally, the effort seems complicated by ${internalChallenges}. This looks less like a simple tooling problem and more like an execution problem. The likely path is a focused diagnostic, sharp prioritization, and a deployment around the highest-friction constraint.`;
+  const greeting = name ? `${name}, based on what you've shared` : "Based on what you've shared";
+
+  return `${greeting}, the mission is ${mission}. The main constraint appears to be ${obstacle}, with ${stakes} at stake if the work does not move. Internally, the effort seems complicated by ${internalChallenges}. This looks less like a simple tooling problem and more like an execution problem. The likely path is a focused diagnostic, sharp prioritization, and a deployment around the highest-friction constraint.`;
 }
 
 export function getNextNodeForFreeText(input: string): string {

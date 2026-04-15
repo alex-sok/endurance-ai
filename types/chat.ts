@@ -18,6 +18,9 @@ export interface MissionData {
   obstacle?: string;
   stakes?: string;
   internalChallenges?: string;
+  name?: string;
+  email?: string;
+  company?: string;
 }
 
 export interface ChatState {

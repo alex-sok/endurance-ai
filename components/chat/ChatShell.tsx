@@ -251,7 +251,7 @@ export function ChatShell() {
         dispatch({ type: "STORE_MISSION_FIELD", payload: { field: captureKey, value } });
 
         // Final capture step — fire Slack notification
-        if (captureKey === "internalChallenges") {
+        if (captureKey === "company") {
           const withUser: ChatMessage[] = [
             ...state.messages,
             { id: `u-${Date.now()}`, role: "user", content: value, timestamp: new Date() },
@@ -259,10 +259,13 @@ export function ChatShell() {
           notify(
             {
               type: "mission-intake",
+              name: updatedMission.name ?? "",
+              email: updatedMission.email ?? "",
+              company: value,
               mission: updatedMission.mission ?? "",
               obstacle: updatedMission.obstacle ?? "",
               stakes: updatedMission.stakes ?? "",
-              internalChallenges: value,
+              internalChallenges: updatedMission.internalChallenges ?? "",
             },
             withUser
           );
