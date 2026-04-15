@@ -1,6 +1,9 @@
 import OpenAI from "openai";
 import { SYSTEM_PROMPT } from "@/lib/system-prompt";
 
+// Never statically pre-render — requires a live API key at runtime
+export const dynamic = "force-dynamic";
+
 const client = new OpenAI({
   apiKey: process.env.XAI_API_KEY,
   baseURL: "https://api.x.ai/v1",
