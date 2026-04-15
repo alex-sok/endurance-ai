@@ -4,17 +4,17 @@ import { SYSTEM_PROMPT } from "@/lib/system-prompt";
 // Never statically pre-render — requires a live API key at runtime
 export const dynamic = "force-dynamic";
 
-const client = new OpenAI({
-  apiKey: process.env.XAI_API_KEY,
-  baseURL: "https://api.x.ai/v1",
-});
-
 export interface ChatRequestMessage {
   role: "user" | "assistant";
   content: string;
 }
 
 export async function POST(request: Request) {
+  // Instantiate inside the handler so the SDK never runs at build time
+  const client = new OpenAI({
+    apiKey: process.env.XAI_API_KEY,
+    baseURL: "https://api.x.ai/v1",
+  });
   let messages: ChatRequestMessage[];
 
   try {

@@ -34,6 +34,7 @@ async function scoreConversation(
   const apiKey = process.env.XAI_API_KEY;
   if (!apiKey) return { score: 0, reasoning: "Scoring unavailable." };
 
+  // Instantiate inside the function so the SDK never runs at build time
   const client = new OpenAI({ apiKey, baseURL: "https://api.x.ai/v1" });
 
   const transcript = messages
