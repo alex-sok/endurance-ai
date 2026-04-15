@@ -95,7 +95,9 @@ function buildSlackMessage(payload: NotifyPayload, score: ScoreResult) {
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `*${label} lead — ${score.score}/100*\n${score.reasoning}`,
+        text: score.reasoning
+          ? `*${label} lead — ${score.score}/100*\n${score.reasoning}`
+          : `*${label} lead — ${score.score}/100*`,
       },
     },
     { type: "divider" },
@@ -146,20 +148,38 @@ export async function POST(request: Request) {
   }
 
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
-  if (!webhookUrl) return new Response("ok", { status: 200 });
+  if (!webhookUrl) {
+    console.error("[notify] SLACK_WEBHOOK_URL is not set");
+    return new Response("ok", { status: 200 });
+  }
 
   const context =
     payload.type === "mission-intake"
       ? `Prospect completed the full mission intake. Goal: ${payload.goal}`
       : "Prospect clicked the Talk to Team CTA.";
 
-  const score = await scoreConversation(payload.messages, context);
+  // Race scoring against a 6s timeout — Slack sends regardless
+  const timeout = new Promise<ScoreResult>((resolve) =>
+    setTimeout(() => resolve({ score: 0, reasoning: "" }), 6000)
+  );
+  const score = await Promise.race([
+    scoreConversation(payload.messages, context),
+    timeout,
+  ]);
 
-  await fetch(webhookUrl, {
+  const slackRes = await fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(buildSlackMessage(payload, score)),
-  }).catch(() => {});
+  }).catch((err) => {
+    console.error("[notify] Slack fetch failed:", err);
+    return null;
+  });
+
+  if (slackRes && !slackRes.ok) {
+    const body = await slackRes.text().catch(() => "");
+    console.error(`[notify] Slack returned ${slackRes.status}: ${body}`);
+  }
 
   return new Response("ok", { status: 200 });
 }
