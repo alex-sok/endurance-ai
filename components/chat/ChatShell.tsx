@@ -245,12 +245,27 @@ export function ChatShell() {
       const captureKey = getNodeCaptureKey(state.activeNodeId);
       const nextNodeId = getNodeNextId(state.activeNodeId);
 
-      // Active capture step — but let the user go off-script if they're asking something
-      const looksLikeQuestion =
-        value.includes("?") ||
-        /^(what|who|how|why|when|where|tell|can you|do you|are you|is there|i want|i'd|id like|actually|wait|never mind|skip|ignore)/i.test(value.trim());
+      // Smart field overrides — always capture if it clearly matches the field type
+      const isDefiniteEmail = captureKey === "email" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+      const isDefiniteName = captureKey === "name" && /^[A-Za-z\s''-]{2,40}$/.test(value.trim()) && value.trim().split(/\s+/).length <= 4;
 
-      if (captureKey && nextNodeId && !looksLikeQuestion) {
+      // Detect when the user is clearly going off-script
+      const words = value.trim().split(/\s+/);
+      const looksOffTopic =
+        !isDefiniteEmail &&
+        !isDefiniteName &&
+        (
+          value.includes("?") ||
+          // Question / navigation starters
+          /^(what|who|how|why|when|where|tell|can you|do you|are you|is there|i want|i'?d|id like|actually|wait|never mind|skip|ignore|let'?s|let me|i'?m|stop|go back|schedule|book)/i.test(value.trim()) ||
+          // Scheduling intent anywhere in message
+          /(schedule|book).{0,25}(call|meeting|briefing|time)/i.test(value) ||
+          /(ready to|want to|like to).{0,20}(talk|chat|connect|meet|call|schedule|book)/i.test(value) ||
+          // Short emotional outbursts (≤5 words + exclamation)
+          (words.length <= 5 && /[!]/.test(value))
+        );
+
+      if (captureKey && nextNodeId && !looksOffTopic) {
         const updatedMission: MissionData = { ...state.missionData, [captureKey]: value };
         dispatch({ type: "STORE_MISSION_FIELD", payload: { field: captureKey, value } });
 
