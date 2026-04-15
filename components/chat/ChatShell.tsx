@@ -160,7 +160,7 @@ export function ChatShell() {
           dispatch({
             type: "ASSISTANT_MESSAGE",
             payload:
-              "I'm having trouble connecting right now. Please try again or reach us directly at [hello@enduranceailabs.com](mailto:hello@enduranceailabs.com).",
+              "I'm having trouble connecting right now. Please try again or reach us directly at [hello@endurancelabs.ai](mailto:hello@endurancelabs.ai).",
           });
         }
       } finally {
@@ -288,23 +288,20 @@ export function ChatShell() {
         transition={{ duration: 0.5 }}
         className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0"
       >
-        <div className="flex items-center gap-3">
-          <div className="w-7 h-7 rounded-lg bg-stone-900 flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M7 1L12.5 4.25V10.75L7 14L1.5 10.75V4.25L7 1Z" fill="white" fillOpacity="0.9" />
-            </svg>
-          </div>
-          <span className="text-sm font-medium tracking-tight text-stone-900">
-            Endurance AI Labs
-          </span>
+        <div className="flex items-center">
+          <img
+            src="/endurance-logo.svg"
+            alt="Endurance AI Labs"
+            className="h-8 w-auto"
+          />
         </div>
 
         <div className="flex items-center gap-4">
           <a
-            href="mailto:hello@enduranceailabs.com"
+            href="mailto:hello@endurancelabs.ai"
             className="hidden sm:inline-flex text-xs text-stone-400 hover:text-stone-700 transition-colors duration-150 font-light tracking-wide"
           >
-            hello@enduranceailabs.com
+            hello@endurancelabs.ai
           </a>
           <button
             onClick={handleReset}

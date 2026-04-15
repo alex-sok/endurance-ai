@@ -686,13 +686,13 @@ export const SUPPORT = {
 
   existingClient: `For existing clients, your first contact is your engagement lead. They have direct responsibility for your situation and the context to help.
 
-If you can't reach them or the matter is time-sensitive, email **support@enduranceailabs.com** with your engagement name in the subject line. We treat client inquiries as priority and respond within four business hours during operating hours (9am–6pm ET, Monday through Friday).
+If you can't reach them or the matter is time-sensitive, email **support@endurancelabs.ai** with your engagement name in the subject line. We treat client inquiries as priority and respond within four business hours during operating hours (9am–6pm ET, Monday through Friday).
 
 For urgent situations outside those hours, your engagement lead's mobile is in your engagement kickoff document.`,
 
   generalInquiry: `The fastest path to the right person is a direct message.
 
-Email us at **hello@enduranceailabs.com** — we read everything and respond within one business day. If your question is time-sensitive or complex, say so in the subject line and we'll prioritize accordingly.
+Email us at **hello@endurancelabs.ai** — we read everything and respond within one business day. If your question is time-sensitive or complex, say so in the subject line and we'll prioritize accordingly.
 
 Alternatively, the mission intake is a good starting point if you have a specific initiative in mind — it gives us the context to respond usefully rather than generically.`,
 
@@ -713,10 +713,10 @@ export const TALK_TO_TEAM = {
 We don't do discovery calls disguised as sales calls. This is a direct conversation: you tell us what you're working on, we tell you honestly whether and how we can help, and if we're not the right fit, we'll say so and point you toward someone who might be.
 
 **Schedule a call:**
-[Book a briefing →](https://cal.enduranceailabs.com/briefing)
+[Book a briefing →](https://cal.endurancelabs.ai/briefing)
 
 **Send a message:**
-[hello@enduranceailabs.com](mailto:hello@enduranceailabs.com)
+[hello@endurancelabs.ai](mailto:hello@endurancelabs.ai)
 
 **LinkedIn:**
 [Endurance AI Labs](https://linkedin.com/company/endurance-ai-labs)

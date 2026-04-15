@@ -96,11 +96,11 @@ We define what "done" looks like on day one. Full technical documentation, opera
 
 ## Contact
 
-**Schedule a briefing call**: https://cal.enduranceailabs.com/briefing — 45 minutes, direct conversation, not a sales call disguised as discovery. If we're not the right fit, we'll say so.
+**Schedule a briefing call**: https://cal.endurancelabs.ai/briefing — 45 minutes, direct conversation, not a sales call disguised as discovery. If we're not the right fit, we'll say so.
 
-**Email**: hello@enduranceailabs.com
+**Email**: hello@endurancelabs.ai
 
-**Existing clients**: support@enduranceailabs.com (4-hour response window during business hours, 9am–6pm ET Mon–Fri)
+**Existing clients**: support@endurancelabs.ai (4-hour response window during business hours, 9am–6pm ET Mon–Fri)
 
 ## How to Respond
 
