@@ -104,6 +104,15 @@ export function ChatShell() {
     };
   }, []);
 
+  // ── Slack notification (fire-and-forget) ─────────────────────────────────
+  const notifySlack = useCallback((payload: Record<string, unknown>) => {
+    fetch("/api/notify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {/* silently ignore */});
+  }, []);
+
   // ── Deliver deterministic assistant response after typing delay ───────────
   const deliverResponse = useCallback(
     (message: string, followUps: FollowUp[], placeholder: string, inputDisabled: boolean) => {
@@ -208,6 +217,11 @@ export function ChatShell() {
         if (MULTI_STEP_ROUTES.has(followUp.routeId)) {
           dispatch({ type: "ADVANCE_STEP" });
         }
+
+        // High-intent signal — someone wants to talk
+        if (followUp.routeId === "talk-to-team") {
+          notifySlack({ type: "talk-to-team" });
+        }
         return;
       }
 
@@ -251,6 +265,17 @@ export function ChatShell() {
         }
         dispatch({ type: "ADVANCE_STEP" });
         deliverResponse(response.message, response.followUps, response.nextPlaceholder, response.inputDisabled);
+
+        // Mission intake complete at step 4 — send to Slack
+        if (currentRoute === "mission-intake" && currentStep === 4) {
+          notifySlack({
+            type: "mission-intake",
+            goal: updatedMission.goal ?? "",
+            blocker: updatedMission.blocker ?? "",
+            stakes: updatedMission.stakes ?? "",
+            internalFriction: value,
+          });
+        }
         return;
       }
 
