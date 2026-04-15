@@ -104,12 +104,15 @@ export function ChatShell() {
     };
   }, []);
 
-  // ── Slack notification (fire-and-forget) ─────────────────────────────────
-  const notifySlack = useCallback((payload: Record<string, unknown>) => {
+  // ── Notify (fire-and-forget) ──────────────────────────────────────────────
+  const notify = useCallback((payload: Record<string, unknown>, messages: ChatMessage[]) => {
     fetch("/api/notify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({
+        ...payload,
+        messages: messages.map((m) => ({ role: m.role, content: m.content })),
+      }),
     }).catch(() => {/* silently ignore */});
   }, []);
 
@@ -220,7 +223,7 @@ export function ChatShell() {
 
         // High-intent signal — someone wants to talk
         if (followUp.routeId === "talk-to-team") {
-          notifySlack({ type: "talk-to-team" });
+          notify({ type: "talk-to-team" }, state.messages);
         }
         return;
       }
@@ -266,15 +269,18 @@ export function ChatShell() {
         dispatch({ type: "ADVANCE_STEP" });
         deliverResponse(response.message, response.followUps, response.nextPlaceholder, response.inputDisabled);
 
-        // Mission intake complete at step 4 — send to Slack
+        // Mission intake complete at step 4 — notify with full conversation
         if (currentRoute === "mission-intake" && currentStep === 4) {
-          notifySlack({
-            type: "mission-intake",
-            goal: updatedMission.goal ?? "",
-            blocker: updatedMission.blocker ?? "",
-            stakes: updatedMission.stakes ?? "",
-            internalFriction: value,
-          });
+          notify(
+            {
+              type: "mission-intake",
+              goal: updatedMission.goal ?? "",
+              blocker: updatedMission.blocker ?? "",
+              stakes: updatedMission.stakes ?? "",
+              internalFriction: value,
+            },
+            state.messages
+          );
         }
         return;
       }
