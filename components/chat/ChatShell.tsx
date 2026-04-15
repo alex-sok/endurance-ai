@@ -245,8 +245,12 @@ export function ChatShell() {
       const captureKey = getNodeCaptureKey(state.activeNodeId);
       const nextNodeId = getNodeNextId(state.activeNodeId);
 
-      // Active capture step — store value and advance
-      if (captureKey && nextNodeId) {
+      // Active capture step — but let the user go off-script if they're asking something
+      const looksLikeQuestion =
+        value.includes("?") ||
+        /^(what|who|how|why|when|where|tell|can you|do you|are you|is there|i want|i'd|id like|actually|wait|never mind|skip|ignore)/i.test(value.trim());
+
+      if (captureKey && nextNodeId && !looksLikeQuestion) {
         const updatedMission: MissionData = { ...state.missionData, [captureKey]: value };
         dispatch({ type: "STORE_MISSION_FIELD", payload: { field: captureKey, value } });
 
