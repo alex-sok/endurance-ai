@@ -46,7 +46,7 @@ export type MissionIntakeData = {
   internalChallenges?: string;
 };
 
-export const CALENDLY_URL = "https://cal.endurancelabs.ai/briefing";
+export const CALENDLY_URL = "https://calendar.notion.so/meet/alexsok/endurance-intro";
 export const CONTACT_EMAIL = "hello@endurancelabs.ai";
 
 export const conversationFlows: Record<string, ChatNode> = {
