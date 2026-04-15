@@ -292,7 +292,7 @@ export function ChatShell() {
           <img
             src="/endurance-logo.svg"
             alt="Endurance AI Labs"
-            className="h-8 w-auto"
+            className="h-6 w-auto"
           />
         </div>
 
