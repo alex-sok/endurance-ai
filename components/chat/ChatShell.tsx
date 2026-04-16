@@ -5,23 +5,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { RotateCcw } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
-import {
-  chatReducer,
-  INITIAL_STATE,
-  getNodeMessage,
-  getNodeFollowUps,
-  getNodeCaptureKey,
-  getNodeNextId,
-} from "@/lib/conversation";
-import type { ChatMessage, FollowUp, MissionData } from "@/types/chat";
+import { chatReducer, INITIAL_STATE } from "@/lib/conversation";
+import { CALENDLY_URL } from "@/lib/conversation-flows";
+import type { ChatMessage } from "@/types/chat";
 
 import { Message, TypingIndicator } from "./Message";
 import { PromptChips } from "./PromptChips";
-import { FollowUpButtons } from "./FollowUpButtons";
 import { ChatInput } from "./ChatInput";
 
-const TYPING_DELAY = 520;
-const DEFAULT_PLACEHOLDER = "Type a message or choose an option above";
+const TALK_TO_TEAM_NODE = "contact";
 
 // ── Streaming bubble ──────────────────────────────────────────────────────────
 function StreamingBubble({ text }: { text: string }) {
@@ -87,38 +79,23 @@ function StreamingBubble({ text }: { text: string }) {
 export function ChatShell() {
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const typingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const abortRef = useRef<AbortController | null>(null);
 
   const [streamingText, setStreamingText] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
 
+  // Has the conversation started (beyond the initial welcome)?
+  const hasStarted = state.messages.length > 1;
+
   // ── Scroll to bottom ────────────────────────────────────────────────────
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [state.messages, state.isTyping, state.followUps, streamingText]);
+  }, [state.messages, state.isTyping, streamingText]);
 
   // ── Cleanup ─────────────────────────────────────────────────────────────
   useEffect(() => {
-    return () => {
-      if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
-      abortRef.current?.abort();
-    };
+    return () => { abortRef.current?.abort(); };
   }, []);
-
-  // ── Deliver deterministic response after typing delay ───────────────────
-  const deliverResponse = useCallback(
-    (message: string, followUps: FollowUp[]) => {
-      dispatch({ type: "SET_TYPING", payload: true });
-      typingTimerRef.current = setTimeout(() => {
-        dispatch({ type: "ASSISTANT_MESSAGE", payload: message });
-        dispatch({ type: "SET_FOLLOW_UPS", payload: followUps });
-        dispatch({ type: "SET_INPUT_PLACEHOLDER", payload: DEFAULT_PLACEHOLDER });
-        dispatch({ type: "SET_INPUT_DISABLED", payload: false });
-      }, TYPING_DELAY);
-    },
-    []
-  );
 
   // ── Slack/notify (fire-and-forget) ──────────────────────────────────────
   const notify = useCallback((payload: Record<string, unknown>, messages: ChatMessage[]) => {
@@ -166,7 +143,6 @@ export function ChatShell() {
         }
 
         dispatch({ type: "ASSISTANT_MESSAGE", payload: fullText });
-        dispatch({ type: "SET_FOLLOW_UPS", payload: [] });
       } catch (err) {
         if ((err as Error).name !== "AbortError") {
           dispatch({
@@ -184,148 +160,42 @@ export function ChatShell() {
     []
   );
 
-  // ── Navigate to a node (shared by chips and text capture) ───────────────
-  const navigateToNode = useCallback(
-    (nodeId: string, userLabel: string, updatedMission: MissionData) => {
-      dispatch({ type: "SET_NODE", payload: nodeId });
+  // ── Send a user message and call the LLM ────────────────────────────────
+  const sendMessage = useCallback(
+    (text: string, isContactRequest = false) => {
+      dispatch({ type: "USER_MESSAGE", payload: text });
+      dispatch({ type: "HIDE_INITIAL_PROMPTS" });
 
-      if (nodeId === "contact") {
-        const withUser: ChatMessage[] = [
-          ...state.messages,
-          { id: `u-${Date.now()}`, role: "user", content: userLabel, timestamp: new Date() },
-        ];
-        notify({ type: "talk-to-team" }, withUser);
+      const messagesWithUser: ChatMessage[] = [
+        ...state.messages,
+        { id: `u-${Date.now()}`, role: "user", content: text, timestamp: new Date() },
+      ];
+
+      if (isContactRequest) {
+        notify({ type: "talk-to-team" }, messagesWithUser);
       }
 
-      const message = getNodeMessage(nodeId, updatedMission);
-      const chips = getNodeFollowUps(nodeId);
-      deliverResponse(message, chips);
+      callLLM(messagesWithUser);
     },
-    [deliverResponse, notify, state.messages]
+    [state.messages, callLLM, notify]
   );
 
   // ── Initial chip selection ──────────────────────────────────────────────
   const handlePromptSelect = useCallback(
     (label: string, nodeId: string) => {
-      dispatch({ type: "HIDE_INITIAL_PROMPTS" });
-      dispatch({ type: "USER_MESSAGE", payload: label });
-      navigateToNode(nodeId, label, state.missionData);
+      sendMessage(label, nodeId === TALK_TO_TEAM_NODE);
     },
-    [navigateToNode, state.missionData]
-  );
-
-  // ── Follow-up / inline chip selection ──────────────────────────────────
-  const handleFollowUp = useCallback(
-    (followUp: FollowUp) => {
-      // External link — open and do nothing else
-      if (followUp.href) {
-        window.open(followUp.href, "_blank", "noopener,noreferrer");
-        return;
-      }
-
-      if (followUp.nodeId) {
-        dispatch({ type: "USER_MESSAGE", payload: followUp.label });
-        navigateToNode(followUp.nodeId, followUp.label, state.missionData);
-        return;
-      }
-
-      // No nodeId — chip is a quick-select answer for the current capture step
-      // Handle capture directly here so typed text is never forced through capture logic
-      const captureKey = getNodeCaptureKey(state.activeNodeId);
-      const nextNodeId = getNodeNextId(state.activeNodeId);
-      if (captureKey && nextNodeId) {
-        dispatch({ type: "USER_MESSAGE", payload: followUp.label });
-        dispatch({ type: "HIDE_INITIAL_PROMPTS" });
-        const updatedMission: MissionData = { ...state.missionData, [captureKey]: followUp.label };
-        dispatch({ type: "STORE_MISSION_FIELD", payload: { field: captureKey, value: followUp.label } });
-        if (captureKey === "company") {
-          const withUser: ChatMessage[] = [
-            ...state.messages,
-            { id: `u-${Date.now()}`, role: "user", content: followUp.label, timestamp: new Date() },
-          ];
-          notify(
-            {
-              type: "mission-intake",
-              name: updatedMission.name ?? "",
-              email: updatedMission.email ?? "",
-              company: followUp.label,
-              mission: updatedMission.mission ?? "",
-              obstacle: updatedMission.obstacle ?? "",
-              stakes: updatedMission.stakes ?? "",
-              internalChallenges: updatedMission.internalChallenges ?? "",
-            },
-            withUser
-          );
-        }
-        navigateToNode(nextNodeId, followUp.label, updatedMission);
-        return;
-      }
-
-      // Not a capture chip — treat as plain text
-      handleTextInput(followUp.label);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [navigateToNode, state.missionData, state.messages, notify]
+    [sendMessage]
   );
 
   // ── Free text input ─────────────────────────────────────────────────────
   const handleTextInput = useCallback(
-    (value: string) => {
-      dispatch({ type: "USER_MESSAGE", payload: value });
-      dispatch({ type: "HIDE_INITIAL_PROMPTS" });
-
-      const captureKey = getNodeCaptureKey(state.activeNodeId);
-      const nextNodeId = getNodeNextId(state.activeNodeId);
-
-      // Contact fields have no chips — capture typed input with light pattern validation.
-      // All other capture nodes (mission/obstacle/stakes/etc.) route to the LLM so the
-      // user is never trapped in a scripted intake path by their own typing.
-      if (captureKey && nextNodeId) {
-        const isEmail = captureKey === "email" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-        const isName  = captureKey === "name"  && !value.includes("?") && value.trim().split(/\s+/).length <= 5;
-        const isCompany = captureKey === "company" && !value.includes("?") && value.trim().split(/\s+/).length <= 6;
-
-        if (isEmail || isName || isCompany) {
-          const updatedMission: MissionData = { ...state.missionData, [captureKey]: value };
-          dispatch({ type: "STORE_MISSION_FIELD", payload: { field: captureKey, value } });
-          if (captureKey === "company") {
-            const withUser: ChatMessage[] = [
-              ...state.messages,
-              { id: `u-${Date.now()}`, role: "user", content: value, timestamp: new Date() },
-            ];
-            notify(
-              {
-                type: "mission-intake",
-                name: updatedMission.name ?? "",
-                email: updatedMission.email ?? "",
-                company: value,
-                mission: updatedMission.mission ?? "",
-                obstacle: updatedMission.obstacle ?? "",
-                stakes: updatedMission.stakes ?? "",
-                internalChallenges: updatedMission.internalChallenges ?? "",
-              },
-              withUser
-            );
-          }
-          navigateToNode(nextNodeId, value, updatedMission);
-          return;
-        }
-        // Falls through to LLM — mission-field free text is always conversational
-      }
-
-      // Everything else → LLM
-      const messagesWithUser: ChatMessage[] = [
-        ...state.messages,
-        { id: `u-${Date.now()}`, role: "user", content: value, timestamp: new Date() },
-      ];
-      callLLM(messagesWithUser);
-    },
-    [state, navigateToNode, callLLM, notify]
+    (value: string) => { sendMessage(value); },
+    [sendMessage]
   );
 
   // ── Reset ───────────────────────────────────────────────────────────────
   const handleReset = useCallback(() => {
-    if (typingTimerRef.current) clearTimeout(typingTimerRef.current);
     abortRef.current?.abort();
     setIsStreaming(false);
     setStreamingText("");
@@ -388,20 +258,6 @@ export function ChatShell() {
           )}
         </AnimatePresence>
 
-        <AnimatePresence>
-          {!state.isTyping && !isStreaming && state.followUps.length > 0 && (
-            <motion.div
-              key="followups"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <FollowUpButtons followUps={state.followUps} onSelect={handleFollowUp} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         <div ref={bottomRef} />
       </div>
 
@@ -421,9 +277,38 @@ export function ChatShell() {
           )}
         </AnimatePresence>
 
+        {/* ── Persistent CTA after first exchange ── */}
+        <AnimatePresence>
+          {hasStarted && !isStreaming && (
+            <motion.div
+              key="cta"
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex gap-2"
+            >
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3.5 py-2 text-sm font-light text-stone-600 border border-stone-200 rounded-full hover:border-stone-400 hover:text-stone-900 hover:bg-stone-50 transition-all duration-150"
+              >
+                Book a briefing →
+              </a>
+              <button
+                onClick={() => sendMessage("I'd like to talk to the team.", true)}
+                className="px-3.5 py-2 text-sm font-light text-stone-600 border border-stone-200 rounded-full hover:border-stone-400 hover:text-stone-900 hover:bg-stone-50 transition-all duration-150"
+              >
+                Talk to the team
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <ChatInput
           onSubmit={handleTextInput}
-          placeholder={state.inputPlaceholder}
+          placeholder="Type a message or choose an option above"
           disabled={state.inputDisabled || state.isTyping || isStreaming}
         />
 
