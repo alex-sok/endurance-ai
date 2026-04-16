@@ -10,13 +10,13 @@ export interface ChatRequestMessage {
 }
 
 export async function POST(request: Request) {
-  // Instantiate inside the handler so the SDK never runs at build time
-  const client = new OpenAI({
-    apiKey: process.env.XAI_API_KEY,
-    baseURL: "https://api.x.ai/v1",
-  });
-  let messages: ChatRequestMessage[];
+  const apiKey = process.env.XAI_API_KEY;
+  if (!apiKey) {
+    console.error("[chat] XAI_API_KEY is not set");
+    return new Response("API key not configured", { status: 500 });
+  }
 
+  let messages: ChatRequestMessage[];
   try {
     const body = await request.json();
     messages = body.messages;
@@ -26,6 +26,12 @@ export async function POST(request: Request) {
   } catch {
     return new Response("Invalid JSON body", { status: 400 });
   }
+
+  // Instantiate inside the handler so the SDK never runs at build time
+  const client = new OpenAI({
+    apiKey,
+    baseURL: "https://api.x.ai/v1",
+  });
 
   const encoder = new TextEncoder();
 
