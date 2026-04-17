@@ -27,13 +27,13 @@ const markdownComponents: Components = {
   ),
   li: ({ children }) => (
     <li className="flex gap-2 text-white text-base leading-[1.7] font-medium">
-      <span className="text-[#c0392b] mt-1 shrink-0">▸</span>
+      <span className="text-[#a78bfa] mt-1 shrink-0">▸</span>
       <span>{children}</span>
     </li>
   ),
   a: ({ href, children }) => (
     <a href={href} target="_blank" rel="noopener noreferrer"
-      className="text-[#c9a84c] underline underline-offset-2 decoration-[#c9a84c]/30 hover:decoration-[#c9a84c] transition-colors">
+      className="text-[#5b8dee] underline underline-offset-2 decoration-[#5b8dee]/30 hover:decoration-[#5b8dee] transition-colors">
       {children}
     </a>
   ),
@@ -41,7 +41,7 @@ const markdownComponents: Components = {
     <h1 className="text-base font-semibold text-[#e8e4d8] mb-2 mt-4 first:mt-0 tracking-wide uppercase">{children}</h1>
   ),
   h2: ({ children }) => (
-    <h2 className="text-xs font-semibold text-[#c9a84c] mb-1.5 mt-3 first:mt-0 uppercase tracking-widest">{children}</h2>
+    <h2 className="text-xs font-semibold text-[#5b8dee] mb-1.5 mt-3 first:mt-0 uppercase tracking-widest">{children}</h2>
   ),
 };
 
@@ -71,7 +71,7 @@ function TypewriterText({ text }: { text: string }) {
     <p className="text-white text-lg leading-[1.75] font-medium tracking-wide">
       {displayed}
       {!done && (
-        <span className="inline-block w-0.5 h-[1.1em] bg-[#c9a84c] ml-0.5 animate-pulse align-middle" />
+        <span className="inline-block w-0.5 h-[1.1em] bg-[#5b8dee] ml-0.5 animate-pulse align-middle" />
       )}
     </p>
   );
@@ -91,7 +91,7 @@ export function Message({ message, typewriter = false }: MessageProps) {
         className={cn(
           "max-w-[85%] sm:max-w-[75%]",
           !isAssistant &&
-            "bg-[#111a2e] border border-[#c9a84c]/20 text-[#e8e4d8] rounded-2xl rounded-br-sm px-4 py-3"
+            "bg-[#111a2e] border border-[#5b8dee]/20 text-[#5b8dee] rounded-2xl rounded-br-sm px-4 py-3"
         )}
       >
         {isAssistant ? (
@@ -126,7 +126,7 @@ export function TypingIndicator() {
           <motion.span
             key={i}
             className="w-1.5 h-1.5 rounded-full"
-            style={{ background: i === 0 ? "#c0392b" : "#c9a84c" }}
+            style={{ background: i === 0 ? "#a78bfa" : "#5b8dee" }}
             animate={{ opacity: [0.2, 1, 0.2] }}
             transition={{
               duration: 1.2,

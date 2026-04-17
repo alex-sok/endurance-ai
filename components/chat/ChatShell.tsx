@@ -10,6 +10,7 @@ import type { ChatMessage } from "@/types/chat";
 import { Message, TypingIndicator } from "./Message";
 import { PromptChips } from "./PromptChips";
 import { ChatInput } from "./ChatInput";
+import { LeadCaptureCard } from "./LeadCaptureCard";
 
 const TALK_TO_TEAM_NODE = "contact";
 
@@ -27,7 +28,7 @@ function StreamingBubble({ text }: { text: string }) {
       <div className="max-w-[85%] sm:max-w-[75%]">
         <p className="text-white text-base leading-[1.7] font-medium tracking-wide whitespace-pre-wrap">
           {text}
-          <span className="inline-block w-0.5 h-[1em] bg-[#c9a84c] ml-0.5 animate-pulse align-middle" />
+          <span className="inline-block w-0.5 h-[1em] bg-[#5b8dee] ml-0.5 animate-pulse align-middle" />
         </p>
       </div>
     </motion.div>
@@ -42,9 +43,17 @@ export function ChatShell() {
   const [streamingText, setStreamingText] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showLeadForm, setShowLeadForm] = useState(false);
+  const [leadDismissed, setLeadDismissed] = useState(false);
 
   // Has the conversation started (beyond the initial welcome)?
   const hasStarted = state.messages.length > 1;
+
+  // Show lead form after 3rd user message
+  const userMessageCount = state.messages.filter((m) => m.role === "user").length;
+  useEffect(() => {
+    if (userMessageCount >= 3 && !leadDismissed) setShowLeadForm(true);
+  }, [userMessageCount, leadDismissed]);
 
   // ── Scroll to bottom ────────────────────────────────────────────────────
   // Smooth scroll when a message is added or typing indicator changes
@@ -189,6 +198,20 @@ export function ChatShell() {
     [sendMessage]
   );
 
+  // ── Lead form submission ─────────────────────────────────────────────────
+  const handleLeadSubmit = useCallback(
+    async (name: string, email: string, company: string) => {
+      const messages = state.messages.map((m) => ({ role: m.role, content: m.content }));
+      await fetch("/api/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "lead-capture", name, email, company, messages }),
+      }).catch(console.error);
+      setLeadDismissed(true);
+    },
+    [state.messages]
+  );
+
 
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto w-full">
@@ -205,7 +228,7 @@ export function ChatShell() {
 
         <a
           href="mailto:hello@endurancelabs.ai"
-          className="hidden sm:inline-flex text-xs text-white hover:text-[#c9a84c] transition-colors duration-150 tracking-widest uppercase"
+          className="hidden sm:inline-flex text-xs text-white hover:text-[#5b8dee] transition-colors duration-150 tracking-widest uppercase"
         >
           hello@endurancelabs.ai
         </a>
@@ -237,6 +260,17 @@ export function ChatShell() {
               exit={{ opacity: 0, transition: { duration: 0 } }}
             >
               {streamingText ? <StreamingBubble text={streamingText} /> : <TypingIndicator />}
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {showLeadForm && (
+            <motion.div key="lead-form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <LeadCaptureCard
+                onSubmit={handleLeadSubmit}
+                onSkip={() => { setShowLeadForm(false); setLeadDismissed(true); }}
+              />
             </motion.div>
           )}
         </AnimatePresence>
@@ -275,13 +309,13 @@ export function ChatShell() {
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 text-xs tracking-widest uppercase border border-[#c9a84c]/40 text-[#c9a84c] rounded-full hover:bg-[#c9a84c]/10 hover:border-[#c9a84c] hover:shadow-[0_0_14px_rgba(201,168,76,0.2)] transition-all duration-150"
+                className="px-4 py-2 text-xs tracking-widest uppercase border border-[#5b8dee]/40 text-[#5b8dee] rounded-full hover:bg-[#5b8dee]/10 hover:border-[#5b8dee] hover:shadow-[0_0_14px_rgba(91,141,238,0.2)] transition-all duration-150"
               >
                 Book a briefing →
               </a>
               <button
                 onClick={() => sendMessage("I'd like to talk to the team.", true)}
-                className="px-4 py-2 text-xs tracking-widest uppercase border border-[#c0392b]/40 text-[#c0392b] rounded-full hover:bg-[#c0392b]/10 hover:border-[#c0392b] hover:shadow-[0_0_14px_rgba(192,57,43,0.2)] transition-all duration-150"
+                className="px-4 py-2 text-xs tracking-widest uppercase border border-[#a78bfa]/40 text-[#a78bfa] rounded-full hover:bg-[#a78bfa]/10 hover:border-[#a78bfa] hover:shadow-[0_0_14px_rgba(167,139,250,0.2)] transition-all duration-150"
               >
                 Talk to the team
               </button>
