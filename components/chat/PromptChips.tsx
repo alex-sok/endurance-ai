@@ -23,7 +23,7 @@ export function PromptChips({ onSelect }: PromptChipsProps) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.25, delay: 0.1 + i * 0.04 }}
           onClick={() => onSelect(prompt.label, prompt.nodeId)}
-          className="px-3.5 py-2 text-sm font-light text-stone-600 border border-stone-200 rounded-full hover:border-stone-400 hover:text-stone-900 hover:bg-stone-50 transition-all duration-150 cursor-pointer select-none"
+          className="px-4 py-2 text-xs tracking-widest uppercase text-white border border-[#2a3855] rounded-full hover:border-[#c9a84c]/60 hover:text-[#c9a84c] hover:bg-[#c9a84c]/5 hover:shadow-[0_0_12px_rgba(201,168,76,0.15)] transition-all duration-150 cursor-pointer select-none"
         >
           {prompt.label}
         </motion.button>

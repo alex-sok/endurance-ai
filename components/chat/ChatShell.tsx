@@ -2,7 +2,6 @@
 
 import { useReducer, useRef, useEffect, useCallback, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { RotateCcw } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
 import { chatReducer, INITIAL_STATE } from "@/lib/conversation";
@@ -24,24 +23,24 @@ function StreamingBubble({ text }: { text: string }) {
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       className="w-full flex justify-start"
     >
-      <div className="max-w-[85%] sm:max-w-[75%] text-stone-800">
-        <div className="prose prose-stone prose-sm max-w-none leading-relaxed">
+      <div className="max-w-[85%] sm:max-w-[75%]">
+        <div className="prose prose-sm max-w-none leading-relaxed">
           <ReactMarkdown
             components={{
               p: ({ children }) => (
-                <p className="mb-3 last:mb-0 text-stone-700 text-[0.9375rem] leading-[1.65] font-light">
+                <p className="mb-3 last:mb-0 text-white text-base leading-[1.7] font-medium tracking-wide">
                   {children}
                 </p>
               ),
               strong: ({ children }) => (
-                <strong className="font-semibold text-stone-900">{children}</strong>
+                <strong className="font-semibold text-[#e8e4d8]">{children}</strong>
               ),
               ul: ({ children }) => (
                 <ul className="mb-3 space-y-1.5 pl-0 list-none">{children}</ul>
               ),
               li: ({ children }) => (
-                <li className="flex gap-2 text-stone-700 text-[0.9375rem] leading-[1.65] font-light">
-                  <span className="text-stone-400 mt-0.5 shrink-0">—</span>
+                <li className="flex gap-2 text-white text-base leading-[1.7] font-medium tracking-wide">
+                  <span className="text-[#c0392b] mt-0.5 shrink-0">▸</span>
                   <span>{children}</span>
                 </li>
               ),
@@ -50,18 +49,18 @@ function StreamingBubble({ text }: { text: string }) {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-stone-900 underline underline-offset-2 decoration-stone-300 hover:decoration-stone-600 transition-colors"
+                  className="text-[#c9a84c] underline underline-offset-2 decoration-[#c9a84c]/30 hover:decoration-[#c9a84c] transition-colors"
                 >
                   {children}
                 </a>
               ),
               h1: ({ children }) => (
-                <h1 className="text-base font-semibold text-stone-900 mb-2 mt-4 first:mt-0">
+                <h1 className="text-base font-semibold text-[#e8e4d8] mb-2 mt-4 first:mt-0 tracking-wide uppercase">
                   {children}
                 </h1>
               ),
               h2: ({ children }) => (
-                <h2 className="text-sm font-semibold text-stone-900 mb-1.5 mt-3 first:mt-0 uppercase tracking-wide">
+                <h2 className="text-xs font-semibold text-[#c9a84c] mb-1.5 mt-3 first:mt-0 uppercase tracking-widest">
                   {children}
                 </h2>
               ),
@@ -69,7 +68,7 @@ function StreamingBubble({ text }: { text: string }) {
           >
             {text}
           </ReactMarkdown>
-          <span className="inline-block w-0.5 h-3.5 bg-stone-400 ml-0.5 animate-pulse align-middle" />
+          <span className="inline-block w-0.5 h-3.5 bg-[#c9a84c] ml-0.5 animate-pulse align-middle" />
         </div>
       </div>
     </motion.div>
@@ -194,13 +193,6 @@ export function ChatShell() {
     [sendMessage]
   );
 
-  // ── Reset ───────────────────────────────────────────────────────────────
-  const handleReset = useCallback(() => {
-    abortRef.current?.abort();
-    setIsStreaming(false);
-    setStreamingText("");
-    dispatch({ type: "RESET" });
-  }, []);
 
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto w-full">
@@ -209,35 +201,30 @@ export function ChatShell() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0"
+        className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0 border-b border-[#2a3a55]"
       >
         <div className="flex items-center">
-          <img src="/endurance-logo.svg" alt="Endurance AI Labs" className="h-6 w-auto" />
+          <img src="/endurance-logo.svg" alt="Endurance AI Labs" className="h-[18px] w-auto brightness-0 invert" />
         </div>
 
-        <div className="flex items-center gap-4">
-          <a
-            href="mailto:hello@endurancelabs.ai"
-            className="hidden sm:inline-flex text-xs text-stone-400 hover:text-stone-700 transition-colors duration-150 font-light tracking-wide"
-          >
-            hello@endurancelabs.ai
-          </a>
-          <button
-            onClick={handleReset}
-            className="flex items-center gap-1.5 text-xs text-stone-400 hover:text-stone-600 transition-colors duration-150 font-light"
-            aria-label="Start over"
-          >
-            <RotateCcw size={12} />
-            <span className="hidden sm:inline">Start over</span>
-          </button>
-        </div>
+        <a
+          href="mailto:hello@endurancelabs.ai"
+          className="hidden sm:inline-flex text-xs text-white hover:text-[#c9a84c] transition-colors duration-150 tracking-widest uppercase"
+        >
+          hello@endurancelabs.ai
+        </a>
       </motion.header>
 
       {/* ── Message list ─────────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto px-1 pb-4 space-y-5 scroll-smooth">
+      <div className="flex-1 overflow-y-auto px-1 pt-6 pb-4 space-y-5 scroll-smooth">
         <AnimatePresence initial={false}>
           {state.messages.map((msg, i) => (
-            <Message key={msg.id} message={msg} isLast={i === state.messages.length - 1} />
+            <Message
+              key={msg.id}
+              message={msg}
+              isLast={i === state.messages.length - 1}
+              typewriter={i === 0 && msg.role === "assistant"}
+            />
           ))}
         </AnimatePresence>
 
@@ -292,13 +279,13 @@ export function ChatShell() {
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-3.5 py-2 text-sm font-light text-stone-600 border border-stone-200 rounded-full hover:border-stone-400 hover:text-stone-900 hover:bg-stone-50 transition-all duration-150"
+                className="px-4 py-2 text-xs tracking-widest uppercase border border-[#c9a84c]/40 text-[#c9a84c] rounded-full hover:bg-[#c9a84c]/10 hover:border-[#c9a84c] hover:shadow-[0_0_14px_rgba(201,168,76,0.2)] transition-all duration-150"
               >
                 Book a briefing →
               </a>
               <button
                 onClick={() => sendMessage("I'd like to talk to the team.", true)}
-                className="px-3.5 py-2 text-sm font-light text-stone-600 border border-stone-200 rounded-full hover:border-stone-400 hover:text-stone-900 hover:bg-stone-50 transition-all duration-150"
+                className="px-4 py-2 text-xs tracking-widest uppercase border border-[#c0392b]/40 text-[#c0392b] rounded-full hover:bg-[#c0392b]/10 hover:border-[#c0392b] hover:shadow-[0_0_14px_rgba(192,57,43,0.2)] transition-all duration-150"
               >
                 Talk to the team
               </button>
@@ -312,8 +299,8 @@ export function ChatShell() {
           disabled={state.inputDisabled || state.isTyping || isStreaming}
         />
 
-        <p className="text-center text-[11px] text-stone-300 font-light tracking-wide">
-          Endurance AI Labs · Strategic AI advisory for high-stakes initiatives
+        <p className="text-center text-[11px] text-[#e8e4d8] tracking-widest uppercase">
+          Endurance AI Labs · Mission Critical AI Deployment & Initiatives
         </p>
       </div>
     </div>

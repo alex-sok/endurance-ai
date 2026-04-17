@@ -43,7 +43,7 @@ export function ChatInput({ onSubmit, placeholder, disabled }: ChatInputProps) {
   const canSubmit = value.trim().length > 0 && !disabled;
 
   return (
-    <div className="relative flex items-end gap-2 bg-white border border-stone-200 rounded-2xl px-4 py-3 shadow-sm focus-within:border-stone-400 transition-colors duration-150">
+    <div className="relative flex items-center gap-3 bg-[#0d1525] border border-[#2a3a55] rounded-xl px-4 py-3 focus-within:border-[#c9a84c]/60 focus-within:shadow-[0_0_20px_rgba(201,168,76,0.12)] transition-all duration-200">
       <textarea
         ref={textareaRef}
         value={value}
@@ -52,9 +52,10 @@ export function ChatInput({ onSubmit, placeholder, disabled }: ChatInputProps) {
         placeholder={placeholder ?? "Type a message…"}
         disabled={disabled}
         rows={1}
+        style={{ caretColor: "#c9a84c" }}
         className={cn(
-          "flex-1 resize-none bg-transparent text-[0.9375rem] font-light text-stone-800 placeholder:text-stone-400 focus:outline-none leading-relaxed min-h-[1.5rem] max-h-40",
-          disabled && "opacity-50 cursor-not-allowed"
+          "flex-1 resize-none overflow-hidden bg-transparent text-[0.9375rem] font-medium text-white placeholder:text-white/50 focus:outline-none leading-relaxed min-h-[1.5rem] max-h-40 tracking-wide",
+          disabled && "opacity-40 cursor-not-allowed"
         )}
       />
       <motion.button
@@ -62,10 +63,10 @@ export function ChatInput({ onSubmit, placeholder, disabled }: ChatInputProps) {
         disabled={!canSubmit}
         whileTap={{ scale: 0.9 }}
         className={cn(
-          "shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-colors duration-150",
+          "shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-150",
           canSubmit
-            ? "bg-stone-900 text-white hover:bg-stone-700"
-            : "bg-stone-100 text-stone-300 cursor-not-allowed"
+            ? "bg-[#c9a84c] text-[#0f1115] hover:bg-[#d4b866] shadow-[0_0_16px_rgba(201,168,76,0.5)]"
+            : "bg-transparent border border-[#2a3a55] text-white/20 cursor-not-allowed"
         )}
       >
         <ArrowUp size={15} strokeWidth={2.5} />

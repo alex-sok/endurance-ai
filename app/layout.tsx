@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rajdhani } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const rajdhani = Rajdhani({
   subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["300", "400", "500", "600"],
+  variable: "--font-rajdhani",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -26,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
-      <body className="h-full bg-[#fafaf9] antialiased font-sans">{children}</body>
+    <html lang="en" className={`${rajdhani.variable} h-full`}>
+      <body className="h-full bg-[#0F1115] antialiased" style={{ fontFamily: "var(--font-rajdhani), sans-serif" }}>{children}</body>
     </html>
   );
 }
