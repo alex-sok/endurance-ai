@@ -106,10 +106,38 @@ export function ChatShell() {
           const { done, value } = await reader.read();
           if (done) break;
           fullText += decoder.decode(value, { stream: true });
-          setStreamingText(fullText);
+          // Strip any partial/complete lead signal from the displayed text
+          setStreamingText(fullText.replace(/\n?\[LEAD:[\s\S]*$/, ""));
         }
 
-        dispatch({ type: "ASSISTANT_MESSAGE", payload: fullText });
+        // Extract lead capture signal before dispatching to UI
+        const leadMatch = fullText.match(/\[LEAD:(\{[\s\S]*?\})\]/);
+        const cleanText = fullText.replace(/\n?\[LEAD:[\s\S]*$/, "").trim();
+
+        if (leadMatch) {
+          try {
+            const lead = JSON.parse(leadMatch[1]);
+            const messagesForNotify = [
+              ...messages.map((m) => ({ role: m.role, content: m.content })),
+              { role: "assistant" as const, content: cleanText },
+            ];
+            fetch("/api/notify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                type: "lead-capture",
+                name: lead.name ?? "",
+                email: lead.email ?? "",
+                company: lead.company ?? "",
+                messages: messagesForNotify,
+              }),
+            }).catch(console.error);
+          } catch (e) {
+            console.error("[lead-capture] Failed to parse signal:", e);
+          }
+        }
+
+        dispatch({ type: "ASSISTANT_MESSAGE", payload: cleanText });
       } catch (err) {
         if ((err as Error).name !== "AbortError") {
           dispatch({

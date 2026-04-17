@@ -22,6 +22,13 @@ export type NotifyPayload =
   | {
       type: "talk-to-team";
       messages: ConversationMessage[];
+    }
+  | {
+      type: "lead-capture";
+      name: string;
+      email: string;
+      company: string;
+      messages: ConversationMessage[];
     };
 
 interface ScoreResult {
@@ -83,16 +90,16 @@ Scoring criteria:
 function buildSlackMessage(payload: NotifyPayload, score: ScoreResult) {
   const emoji = score.score >= 75 ? "🔥" : score.score >= 50 ? "⚡" : "💬";
   const label = score.score >= 75 ? "Hot" : score.score >= 50 ? "Warm" : "Cool";
-  const isMission = payload.type === "mission-intake";
+
+  const headerText =
+    payload.type === "mission-intake" ? `${emoji} New Mission Intake`
+    : payload.type === "lead-capture"  ? `${emoji} New Lead Captured`
+    : `${emoji} Talk-to-Team Request`;
 
   const blocks: object[] = [
     {
       type: "header",
-      text: {
-        type: "plain_text",
-        text: isMission ? `${emoji} New Mission Intake` : `${emoji} Talk-to-Team Request`,
-        emoji: true,
-      },
+      text: { type: "plain_text", text: headerText, emoji: true },
     },
     {
       type: "section",
@@ -106,7 +113,7 @@ function buildSlackMessage(payload: NotifyPayload, score: ScoreResult) {
     { type: "divider" },
   ];
 
-  if (isMission) {
+  if (payload.type === "mission-intake") {
     blocks.push({
       type: "section",
       fields: [
@@ -125,13 +132,19 @@ function buildSlackMessage(payload: NotifyPayload, score: ScoreResult) {
         { type: "mrkdwn", text: `*Internal Challenges*\n${payload.internalChallenges}` },
       ],
     });
+  } else if (payload.type === "lead-capture") {
+    blocks.push({
+      type: "section",
+      fields: [
+        { type: "mrkdwn", text: `*Name*\n${payload.name || "—"}` },
+        { type: "mrkdwn", text: `*Email*\n${payload.email ? `<mailto:${payload.email}|${payload.email}>` : "—"}` },
+        { type: "mrkdwn", text: `*Company*\n${payload.company || "—"}` },
+      ],
+    });
   } else {
     blocks.push({
       type: "section",
-      text: {
-        type: "mrkdwn",
-        text: "Someone clicked the briefing CTA.",
-      },
+      text: { type: "mrkdwn", text: "Someone clicked the briefing CTA." },
     });
   }
 
@@ -168,6 +181,8 @@ export async function POST(request: Request) {
   const context =
     payload.type === "mission-intake"
       ? `Prospect completed the full mission intake. Name: ${payload.name || "unknown"}. Company: ${payload.company || "unknown"}. Mission: ${payload.mission}`
+      : payload.type === "lead-capture"
+      ? `Prospect provided contact info through chat. Name: ${payload.name || "unknown"}. Company: ${payload.company || "unknown"}.`
       : "Prospect clicked the Talk to Team CTA.";
 
   // Race scoring against a 6s timeout — Slack sends regardless
