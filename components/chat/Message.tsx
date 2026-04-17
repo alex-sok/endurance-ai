@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import type { ChatMessage } from "@/types/chat";
 import { cn } from "@/lib/utils";
 import type { Components } from "react-markdown";
@@ -98,7 +99,7 @@ export function Message({ message, typewriter = false }: MessageProps) {
             <TypewriterText text={message.content} />
           ) : (
             <div className="prose prose-sm max-w-none leading-relaxed">
-              <ReactMarkdown components={markdownComponents}>
+              <ReactMarkdown components={markdownComponents} remarkPlugins={[remarkGfm]}>
                 {message.content}
               </ReactMarkdown>
             </div>

@@ -133,7 +133,7 @@ This tag is invisible to the visitor. Only include it once you have all three co
 Mission briefing call: ${CALENDLY_URL}
 Email: ${CONTACT_EMAIL}
 
-For serious prospects, recommend booking a briefing call.
+For serious prospects, recommend booking a briefing call. Always format the calendar link as a markdown hyperlink, never as a raw URL. Example: [Book a mission briefing](${CALENDLY_URL})
 
 ## Tone and Style
 
