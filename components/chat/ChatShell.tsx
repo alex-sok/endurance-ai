@@ -2,7 +2,6 @@
 
 import { useReducer, useRef, useEffect, useCallback, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import ReactMarkdown from "react-markdown";
 
 import { chatReducer, INITIAL_STATE } from "@/lib/conversation";
 import { CALENDLY_URL } from "@/lib/conversation-flows";
@@ -15,61 +14,21 @@ import { ChatInput } from "./ChatInput";
 const TALK_TO_TEAM_NODE = "contact";
 
 // ── Streaming bubble ──────────────────────────────────────────────────────────
+// Renders plain text during streaming to avoid markdown re-parse jitter.
+// The final message is rendered as markdown once streaming completes.
 function StreamingBubble({ text }: { text: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       className="w-full flex justify-start"
     >
       <div className="max-w-[85%] sm:max-w-[75%]">
-        <div className="prose prose-sm max-w-none leading-relaxed">
-          <ReactMarkdown
-            components={{
-              p: ({ children }) => (
-                <p className="mb-3 last:mb-0 text-white text-base leading-[1.7] font-medium tracking-wide">
-                  {children}
-                </p>
-              ),
-              strong: ({ children }) => (
-                <strong className="font-semibold text-[#e8e4d8]">{children}</strong>
-              ),
-              ul: ({ children }) => (
-                <ul className="mb-3 space-y-1.5 pl-0 list-none">{children}</ul>
-              ),
-              li: ({ children }) => (
-                <li className="flex gap-2 text-white text-base leading-[1.7] font-medium tracking-wide">
-                  <span className="text-[#c0392b] mt-0.5 shrink-0">▸</span>
-                  <span>{children}</span>
-                </li>
-              ),
-              a: ({ href, children }) => (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#c9a84c] underline underline-offset-2 decoration-[#c9a84c]/30 hover:decoration-[#c9a84c] transition-colors"
-                >
-                  {children}
-                </a>
-              ),
-              h1: ({ children }) => (
-                <h1 className="text-base font-semibold text-[#e8e4d8] mb-2 mt-4 first:mt-0 tracking-wide uppercase">
-                  {children}
-                </h1>
-              ),
-              h2: ({ children }) => (
-                <h2 className="text-xs font-semibold text-[#c9a84c] mb-1.5 mt-3 first:mt-0 uppercase tracking-widest">
-                  {children}
-                </h2>
-              ),
-            }}
-          >
-            {text}
-          </ReactMarkdown>
-          <span className="inline-block w-0.5 h-3.5 bg-[#c9a84c] ml-0.5 animate-pulse align-middle" />
-        </div>
+        <p className="text-white text-base leading-[1.7] font-medium tracking-wide whitespace-pre-wrap">
+          {text}
+          <span className="inline-block w-0.5 h-[1em] bg-[#c9a84c] ml-0.5 animate-pulse align-middle" />
+        </p>
       </div>
     </motion.div>
   );
@@ -82,14 +41,23 @@ export function ChatShell() {
 
   const [streamingText, setStreamingText] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Has the conversation started (beyond the initial welcome)?
   const hasStarted = state.messages.length > 1;
 
   // ── Scroll to bottom ────────────────────────────────────────────────────
+  // Smooth scroll when a message is added or typing indicator changes
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [state.messages, state.isTyping, streamingText]);
+  }, [state.messages, state.isTyping]);
+
+  // Instant scroll while streaming — avoids competing scroll animations
+  useEffect(() => {
+    if (!isStreaming) return;
+    const el = scrollContainerRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [streamingText, isStreaming]);
 
   // ── Cleanup ─────────────────────────────────────────────────────────────
   useEffect(() => {
@@ -216,7 +184,7 @@ export function ChatShell() {
       </motion.header>
 
       {/* ── Message list ─────────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto px-1 pt-6 pb-4 space-y-5 scroll-smooth">
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto px-1 pt-6 pb-4 space-y-5 scroll-smooth">
         <AnimatePresence initial={false}>
           {state.messages.map((msg, i) => (
             <Message
@@ -238,7 +206,7 @@ export function ChatShell() {
               key="streaming"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              exit={{ opacity: 0, transition: { duration: 0 } }}
             >
               {streamingText ? <StreamingBubble text={streamingText} /> : <TypingIndicator />}
             </motion.div>
