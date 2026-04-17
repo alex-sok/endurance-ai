@@ -42,6 +42,17 @@ We have worked across complex and regulated environments and high-growth setting
 
 Endurance was built by operators, not consultants. We focus on execution.
 
+## Founding Team
+
+**Alex Sok — Founder & CEO**
+Alex founded Endurance AI Labs to bring operator-grade AI execution to leadership teams navigating high-stakes initiatives.
+
+**Sid Bhambhani — Co-Founder & CTO**
+Sid leads our AI and development teams. He previously co-founded Summatti, an AI-powered sentiment analysis startup that was acquired by PartnerHero. Sid brings over 20 years of technology leadership experience across startups and enterprise environments.
+
+**Nick Maxwell — Co-Founder & Chief AI Officer**
+Nick leads our AI initiatives and client projects. He was a founding engineer at TALA, which was acquired by Intuit. Nick holds a degree in Computer Science from Cornell University.
+
 ## Firm Philosophy
 
 Most AI transformations fail for predictable reasons: organizational inertia, weak data foundations, unclear ownership, tool-first thinking, poor change management, and lack of internal capability.
