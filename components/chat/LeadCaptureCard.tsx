@@ -33,8 +33,8 @@ export function LeadCaptureCard({ onSubmit, onSkip }: LeadCaptureCardProps) {
         className="w-full flex justify-start"
       >
         <div className="max-w-[85%] sm:max-w-[75%] bg-[#0d1525] border border-[#5b8dee]/30 rounded-xl px-5 py-4">
-          <p className="text-[#5b8dee] text-sm font-medium tracking-wide">
-            Got it — we'll be in touch.
+          <p className="text-white text-sm font-medium tracking-wide">
+            Got it. Now, how can we help?
           </p>
         </div>
       </motion.div>
@@ -49,8 +49,11 @@ export function LeadCaptureCard({ onSubmit, onSkip }: LeadCaptureCardProps) {
       className="w-full flex justify-start"
     >
       <div className="w-full max-w-[85%] sm:max-w-[75%] bg-[#0d1525] border border-[#5b8dee]/30 rounded-xl px-5 py-4">
-        <p className="text-white text-sm font-medium tracking-wide mb-4">
-          Want us to follow up? Leave your details.
+        <p className="text-white text-sm font-medium tracking-wide mb-1">
+          Before we begin — who are we speaking with?
+        </p>
+        <p className="text-white/40 text-xs tracking-wide mb-4">
+          We'll use this to follow up if it's a fit.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-2.5">

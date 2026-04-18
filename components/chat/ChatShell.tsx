@@ -43,17 +43,12 @@ export function ChatShell() {
   const [streamingText, setStreamingText] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [showLeadForm, setShowLeadForm] = useState(false);
+  const [showLeadForm, setShowLeadForm] = useState(true);
   const [leadDismissed, setLeadDismissed] = useState(false);
 
   // Has the conversation started (beyond the initial welcome)?
   const hasStarted = state.messages.length > 1;
 
-  // Show lead form after 3rd user message
-  const userMessageCount = state.messages.filter((m) => m.role === "user").length;
-  useEffect(() => {
-    if (userMessageCount >= 3 && !leadDismissed) setShowLeadForm(true);
-  }, [userMessageCount, leadDismissed]);
 
   // ── Scroll to bottom ────────────────────────────────────────────────────
   // Smooth scroll when a message is added or typing indicator changes
