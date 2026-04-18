@@ -45,6 +45,10 @@ export function ChatShell() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showLeadForm, setShowLeadForm] = useState(true);
   const [leadDismissed, setLeadDismissed] = useState(false);
+  const [leadInfo, setLeadInfo] = useState<{ name: string; email: string; company: string } | null>(null);
+  const [leadSent, setLeadSent] = useState(false);
+  const leadInfoRef = useRef<{ name: string; email: string; company: string } | null>(null);
+  const leadSentRef = useRef(false);
 
   // Has the conversation started (beyond the initial welcome)?
   const hasStarted = state.messages.length > 1;
@@ -193,19 +197,60 @@ export function ChatShell() {
     [sendMessage]
   );
 
-  // ── Lead form submission ─────────────────────────────────────────────────
+  // ── Lead form: store info, don't send yet ───────────────────────────────
   const handleLeadSubmit = useCallback(
     async (name: string, email: string, company: string) => {
-      const messages = state.messages.map((m) => ({ role: m.role, content: m.content }));
-      await fetch("/api/notify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "lead-capture", name, email, company, messages }),
-      }).catch(console.error);
+      const info = { name, email, company };
+      setLeadInfo(info);
+      leadInfoRef.current = info;
       setLeadDismissed(true);
     },
-    [state.messages]
+    []
   );
+
+  // ── Fire lead to Slack (once only) ──────────────────────────────────────
+  const fireLeadNotify = useCallback(
+    (messages: ChatMessage[]) => {
+      if (!leadInfoRef.current || leadSentRef.current) return;
+      leadSentRef.current = true;
+      setLeadSent(true);
+      fetch("/api/notify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "lead-capture",
+          ...leadInfoRef.current,
+          messages: messages.map((m) => ({ role: m.role, content: m.content })),
+        }),
+      }).catch(console.error);
+    },
+    []
+  );
+
+  // Trigger 1: after 4th user message — enough context for a rich score
+  const userMessageCount = state.messages.filter((m) => m.role === "user").length;
+  useEffect(() => {
+    if (userMessageCount >= 4 && leadInfo && !leadSent) {
+      fireLeadNotify(state.messages);
+    }
+  }, [userMessageCount, leadInfo, leadSent, fireLeadNotify, state.messages]);
+
+  // Trigger 2: page unload — sendBeacon as safety net for early leavers
+  useEffect(() => {
+    const handleUnload = () => {
+      if (!leadInfoRef.current || leadSentRef.current) return;
+      const messages = state.messages.map((m) => ({ role: m.role, content: m.content }));
+      navigator.sendBeacon(
+        "/api/notify",
+        new Blob(
+          [JSON.stringify({ type: "lead-capture", ...leadInfoRef.current, messages })],
+          { type: "application/json" }
+        )
+      );
+    };
+    window.addEventListener("beforeunload", handleUnload);
+    return () => window.removeEventListener("beforeunload", handleUnload);
+  }, [state.messages]);
 
 
   return (
@@ -304,12 +349,13 @@ export function ChatShell() {
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => fireLeadNotify(state.messages)}
                 className="px-4 py-2 text-xs tracking-widest uppercase border border-[#5b8dee]/40 text-[#5b8dee] rounded-full hover:bg-[#5b8dee]/10 hover:border-[#5b8dee] hover:shadow-[0_0_14px_rgba(91,141,238,0.2)] transition-all duration-150"
               >
                 Book a briefing →
               </a>
               <button
-                onClick={() => sendMessage("I'd like to talk to the team.", true)}
+                onClick={() => { fireLeadNotify(state.messages); sendMessage("I'd like to talk to the team.", true); }}
                 className="px-4 py-2 text-xs tracking-widest uppercase border border-[#a78bfa]/40 text-[#a78bfa] rounded-full hover:bg-[#a78bfa]/10 hover:border-[#a78bfa] hover:shadow-[0_0_14px_rgba(167,139,250,0.2)] transition-all duration-150"
               >
                 Talk to the team
