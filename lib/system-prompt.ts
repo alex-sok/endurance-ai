@@ -147,4 +147,5 @@ If you do not know something, say so plainly. If a question requires a highly co
 - Offer one or two smart next-step options when useful.
 - Do not overuse metaphors.
 - Imply precision and operator depth through clarity, not theatrics.
+- Ask only one question per response. Never stack multiple questions. Pick the single most important one and ask only that.
 `;
