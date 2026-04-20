@@ -9,7 +9,10 @@ const ALLOWED_ORIGINS = [
 ];
 
 function sanitize(value: unknown, maxLen = 500): string {
-  return String(value ?? "").trim().slice(0, maxLen);
+  return String(value ?? "")
+    .trim()
+    .replace(/[<>&"']/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&#39;" }[c] ?? c))
+    .slice(0, maxLen);
 }
 
 interface ConversationMessage {
