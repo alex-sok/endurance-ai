@@ -1,36 +1,14 @@
-import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 
 /**
  * Server-side Supabase client (for Server Components and API routes).
  * Uses the anon key by default; pass serviceRole=true for admin operations.
  */
 export async function createClient(serviceRole = false) {
-  const cookieStore = await cookies();
-
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const apiKey = serviceRole
     ? process.env.SUPABASE_SERVICE_ROLE_KEY!
     : process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    apiKey,
-    {
-      cookies: {
-        getAll() {
-          return cookieStore.getAll();
-        },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
-          } catch {
-            // Server Component — cookies can't be set (read-only context).
-            // Ignored intentionally.
-          }
-        },
-      },
-    }
-  );
+  return createSupabaseClient(url, apiKey);
 }
