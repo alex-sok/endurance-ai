@@ -68,6 +68,10 @@ Single-page conversational website for Endurance AI Labs. A premium chat interfa
 |----------|-------|---------|
 | `XAI_API_KEY` | `.env.local` + Vercel | xAI Grok API key (expires — replace when broken) |
 | `SLACK_WEBHOOK_URL` | `.env.local` + Vercel | Slack Incoming Webhook for lead notifications |
+| `NEXT_PUBLIC_SUPABASE_URL` | `.env.local` + Vercel | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | `.env.local` + Vercel | Supabase anon/public key (safe to expose) |
+| `SUPABASE_SERVICE_ROLE_KEY` | `.env.local` + Vercel | Supabase service role key — **server only, never expose** |
+| `OPENAI_API_KEY` | `.env.local` + Vercel | OpenAI key for RAG embeddings (text-embedding-3-small) |
 
 **Critical:** Vercel env vars require a manual redeploy to take effect. Go to Deployments → Redeploy after any env var change.
 
@@ -80,6 +84,35 @@ Single-page conversational website for Endurance AI Labs. A premium chat interfa
 
 ---
 
+## Mission Portal
+Private, prospect-specific web experiences at `/mission/[slug]`. Each portal has:
+- Hero section with engagement context
+- 6 visual canvas sections (Overview, Problem, Solution, Roadmap, Team, Metrics)
+- RAG-powered AI chat scoped to that client's documents
+- All data in Supabase
+
+**Key files:**
+| File | Purpose |
+|------|---------|
+| `app/mission/[slug]/page.tsx` | Portal SSR page — fetches portal + sections from Supabase |
+| `app/mission/[slug]/layout.tsx` | 404s unpublished slugs, sets metadata |
+| `components/portal/PortalShell.tsx` | Client shell — nav, hero, canvas, chat drawer |
+| `components/portal/PortalCanvas.tsx` | Scrollable section panels |
+| `components/portal/SectionContent.tsx` | Per-section content renderers (dispatches by slug) |
+| `components/portal/PortalChat.tsx` | RAG chat drawer |
+| `app/api/portal/[slug]/chat/route.ts` | Portal chat API — RAG retrieval + Grok streaming |
+| `lib/supabase/client.ts` | Browser Supabase client |
+| `lib/supabase/server.ts` | Server Supabase client (SSR-compatible) |
+| `types/portal.ts` | TypeScript types for all portal entities |
+| `supabase/migrations/001_mission_portal.sql` | Full schema — run in Supabase SQL Editor |
+| `supabase/migrations/002_seed_capfund1.sql` | CapFund1 seed data |
+
+**RAG pipeline:** User message → OpenAI `text-embedding-3-small` → pgvector similarity search → top 5 chunks injected into system prompt → Grok `grok-3` response.
+
+**Supabase project:** https://tjcphinjowcjmtrzptnj.supabase.co
+
+---
+
 ## Common Gotchas
 - **xAI API keys expire.** If chat returns the error message, the key is dead. Get a new one from console.x.ai and update both `.env.local` and Vercel.
 - **Vercel won't pick up env var changes** until you manually redeploy the latest deployment.
@@ -87,3 +120,5 @@ Single-page conversational website for Endurance AI Labs. A premium chat interfa
 - **Tailwind v4** uses CSS-based config — don't create `tailwind.config.ts`.
 - **API routes** use `export const dynamic = "force-dynamic"` to prevent static pre-rendering.
 - **OpenAI SDK** is kept for the Slack scoring route (`/api/notify`) — don't remove it.
+- **Supabase RLS:** portals/sections/chunks are publicly readable only when `is_published = true`. Sessions, messages, leads, and documents are service-role only.
+- **pgvector must be enabled** before running the migration (Settings → Database → Extensions → vector).

@@ -22,8 +22,8 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob:",
-      // Allow calls to our own API and xAI (streaming)
-      "connect-src 'self' https://api.x.ai https://hooks.slack.com",
+      // Allow calls to our own API, xAI (streaming), and OpenAI (embeddings)
+      "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com",
       // No iframes anywhere
       "frame-ancestors 'none'",
       "base-uri 'self'",
