@@ -1,7 +1,11 @@
 import { SYSTEM_PROMPT } from "@/lib/system-prompt";
+import { rateLimit, getIP } from "@/lib/rate-limit";
 
 // Never statically pre-render — requires a live API key at runtime
 export const dynamic = "force-dynamic";
+
+const MAX_MESSAGES = 50;
+const MAX_MESSAGE_LENGTH = 4_000; // characters per message
 
 export interface ChatRequestMessage {
   role: "user" | "assistant";
@@ -9,6 +13,12 @@ export interface ChatRequestMessage {
 }
 
 export async function POST(request: Request) {
+  // ── Rate limiting ────────────────────────────────────────────────────────
+  const ip = getIP(request);
+  if (!rateLimit(ip, 20, 60_000)) {
+    return new Response("Too many requests", { status: 429 });
+  }
+
   const apiKey = process.env.XAI_API_KEY;
   if (!apiKey) {
     console.error("[chat] XAI_API_KEY is not set");
@@ -21,6 +31,14 @@ export async function POST(request: Request) {
     messages = body.messages;
     if (!Array.isArray(messages) || messages.length === 0) {
       return new Response("messages array is required", { status: 400 });
+    }
+    if (messages.length > MAX_MESSAGES) {
+      return new Response("Too many messages", { status: 400 });
+    }
+    for (const msg of messages) {
+      if (typeof msg.content !== "string" || msg.content.length > MAX_MESSAGE_LENGTH) {
+        return new Response("Message too long", { status: 400 });
+      }
     }
   } catch {
     return new Response("Invalid JSON body", { status: 400 });

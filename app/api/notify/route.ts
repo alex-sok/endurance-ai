@@ -1,6 +1,16 @@
 import OpenAI from "openai";
+import { rateLimit, getIP } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
+
+const ALLOWED_ORIGINS = [
+  "https://endurancelabs.ai",
+  "https://www.endurancelabs.ai",
+];
+
+function sanitize(value: unknown, maxLen = 500): string {
+  return String(value ?? "").trim().slice(0, maxLen);
+}
 
 interface ConversationMessage {
   role: "user" | "assistant";
@@ -165,9 +175,32 @@ function buildSlackMessage(payload: NotifyPayload, score: ScoreResult) {
 
 // ── Handler ───────────────────────────────────────────────────────────────────
 export async function POST(request: Request) {
+  // ── Rate limiting ──────────────────────────────────────────────────────────
+  const ip = getIP(request);
+  if (!rateLimit(ip, 10, 60_000)) {
+    return new Response("Too many requests", { status: 429 });
+  }
+
+  // ── Origin check (production only) ────────────────────────────────────────
+  if (process.env.NODE_ENV === "production") {
+    const origin = request.headers.get("origin") ?? request.headers.get("referer") ?? "";
+    if (!ALLOWED_ORIGINS.some((o) => origin.startsWith(o))) {
+      return new Response("Forbidden", { status: 403 });
+    }
+  }
+
   let payload: NotifyPayload;
   try {
-    payload = await request.json();
+    const raw = await request.json();
+    // Sanitize all user-supplied string fields
+    if (raw.name)               raw.name               = sanitize(raw.name);
+    if (raw.email)              raw.email              = sanitize(raw.email, 254);
+    if (raw.company)            raw.company            = sanitize(raw.company);
+    if (raw.mission)            raw.mission            = sanitize(raw.mission);
+    if (raw.obstacle)           raw.obstacle           = sanitize(raw.obstacle);
+    if (raw.stakes)             raw.stakes             = sanitize(raw.stakes);
+    if (raw.internalChallenges) raw.internalChallenges = sanitize(raw.internalChallenges);
+    payload = raw as NotifyPayload;
   } catch {
     return new Response("Invalid JSON", { status: 400 });
   }
