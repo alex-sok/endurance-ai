@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Portal, PortalSection } from "@/types/portal";
 import { PortalNav } from "./PortalNav";
@@ -17,13 +17,6 @@ export function PortalShell({ portal, sections }: Props) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
-
-  // Scroll to canvas when a section is selected
-  useEffect(() => {
-    if (activeSection && canvasRef.current) {
-      canvasRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [activeSection]);
 
   return (
     <div className="min-h-screen bg-[#0F1115] text-white" style={{ fontFamily: "var(--font-rajdhani), sans-serif" }}>
