@@ -12,83 +12,91 @@ interface Props {
 
 export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Props) {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-14 overflow-hidden">
+    <section className="relative flex flex-col px-6 pt-20 pb-0 overflow-hidden" style={{ height: "100svh", minHeight: "700px" }}>
 
-      {/* Background glow */}
+      {/* Deep glow — top center, more visible */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] pointer-events-none"
+        style={{
+          background: `radial-gradient(ellipse at 50% 0%, ${portal.accent_color}22 0%, ${portal.accent_color}08 35%, transparent 70%)`,
+          filter: "blur(1px)",
+        }}
+      />
+
+      {/* Dot grid */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(ellipse 80% 60% at 50% 30%, ${portal.accent_color}08 0%, transparent 70%)`,
+          backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
+          maskImage: "radial-gradient(ellipse 80% 80% at 50% 0%, black 0%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 0%, black 0%, transparent 100%)",
         }}
       />
 
-      {/* Subtle grid */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)`,
-          backgroundSize: "80px 80px",
-        }}
-      />
+      {/* ── Main content ───────────────────────────────────────────── */}
+      <div className="relative z-10 max-w-6xl mx-auto w-full flex flex-col items-center text-center flex-1 justify-center pb-8">
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
-
-        {/* Eyebrow */}
+        {/* Eyebrow pill */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center gap-3 mb-8"
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center gap-2 px-4 py-1.5 rounded-full mb-6"
+          style={{
+            border: `1px solid ${portal.accent_color}30`,
+            background: `${portal.accent_color}08`,
+          }}
         >
-          <div className="h-px w-12 bg-white/10" />
-          <span
-            className="text-xs tracking-[0.3em] uppercase font-medium"
-            style={{ color: portal.accent_color }}
-          >
+          <span className="w-1.5 h-1.5 rounded-full" style={{ background: portal.accent_color }} />
+          <span className="text-xs tracking-[0.3em] uppercase font-medium" style={{ color: portal.accent_color }}>
             Mission Briefing
           </span>
-          <div className="h-px w-12 bg-white/10" />
         </motion.div>
 
         {/* Client name */}
         <motion.p
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-white/40 text-sm tracking-[0.2em] uppercase mb-3"
+          transition={{ duration: 0.5, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
+          className="text-white/30 text-xs tracking-[0.3em] uppercase mb-4"
         >
           {portal.client_name}
         </motion.p>
 
-        {/* Hero title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 12 }}
+        {/* Hero title — split treatment */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white mb-6 leading-[1.1]"
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-6"
         >
-          {portal.hero_title ?? "Your Mission Briefing"}
-        </motion.h1>
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[96px] font-semibold tracking-tight leading-[0.95] text-white">
+            {portal.hero_title ?? "Your Mission Briefing"}
+          </h1>
+        </motion.div>
 
-        {/* Tagline */}
+        {/* Tagline + divider */}
         {portal.tagline && (
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-base text-white/50 tracking-wide mb-4"
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center gap-4 mb-5"
           >
-            {portal.tagline}
-          </motion.p>
+            <div className="h-px w-8 bg-white/10" />
+            <p className="text-white/45 text-sm tracking-[0.15em] uppercase">{portal.tagline}</p>
+            <div className="h-px w-8 bg-white/10" />
+          </motion.div>
         )}
 
-        {/* Hero body */}
+        {/* Body */}
         {portal.hero_body && (
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl mx-auto text-sm text-white/40 leading-relaxed tracking-wide mb-12"
+            transition={{ duration: 0.5, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-2xl text-sm text-white/35 leading-relaxed tracking-wide mb-8"
           >
             {portal.hero_body}
           </motion.p>
@@ -96,80 +104,85 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3"
+          transition={{ duration: 0.5, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col sm:flex-row items-center gap-3"
         >
           <button
             onClick={() => sections[0] && onSelectSection(sections[0].slug)}
-            className="px-7 py-3 rounded-full text-sm font-medium tracking-widest uppercase text-[#0f1115] transition-all duration-200"
+            className="px-8 py-3.5 rounded-full text-sm font-medium tracking-widest uppercase text-[#0f1115] transition-all duration-200"
             style={{ background: portal.accent_color }}
             onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 40px ${portal.accent_color}55`;
               (e.currentTarget as HTMLButtonElement).style.opacity = "0.88";
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 32px ${portal.accent_color}50`;
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.opacity = "1";
               (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
+              (e.currentTarget as HTMLButtonElement).style.opacity = "1";
             }}
           >
             Explore the Briefing →
           </button>
           <button
             onClick={onOpenChat}
-            className="px-7 py-3 rounded-full text-sm font-medium tracking-widest uppercase text-white/70 transition-all duration-200"
-            style={{ border: "1px solid rgba(255,255,255,0.12)" }}
+            className="px-8 py-3.5 rounded-full text-sm font-medium tracking-widest uppercase transition-all duration-200"
+            style={{ border: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.55)" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLButtonElement).style.color = "white";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.3)";
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.25)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.7)";
-              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.12)";
+              (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.55)";
+              (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.1)";
             }}
           >
             Ask our AI
           </button>
         </motion.div>
+      </div>
 
-        {/* Section nav grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-20 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-2xl mx-auto"
-        >
+      {/* ── Section grid — flush to bottom ────────────────────────── */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 max-w-6xl mx-auto w-full"
+      >
+        {/* Top border line */}
+        <div className="h-px bg-white/[0.08] mb-0" />
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
           {sections.map((section, i) => (
             <button
               key={section.slug}
               onClick={() => onSelectSection(section.slug)}
-              className="group relative text-left px-4 py-4 rounded-xl border border-white/[0.07] bg-white/[0.02] transition-all duration-200 hover:border-white/[0.14] hover:bg-white/[0.04]"
+              className="group relative text-left px-5 py-8 transition-all duration-200"
+              style={{ borderRight: i < sections.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none" }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.background = `${portal.accent_color}08`;
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+              }}
             >
-              <span className="block text-xs tracking-[0.2em] uppercase text-white/25 mb-1.5">
+              {/* Hover top accent line */}
+              <div
+                className="absolute top-0 inset-x-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                style={{ background: portal.accent_color }}
+              />
+              <span
+                className="block text-[10px] tracking-[0.25em] uppercase mb-3 transition-colors duration-200"
+                style={{ color: `${portal.accent_color}60` }}
+              >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="block text-sm font-medium text-white/70 group-hover:text-white transition-colors duration-150">
+              <span className="block text-sm font-medium tracking-wide leading-snug text-white/45 group-hover:text-white/85 transition-colors duration-200">
                 {section.title}
               </span>
             </button>
           ))}
-        </motion.div>
-      </div>
-
-      {/* Scroll hint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-white/20 text-xs tracking-[0.2em] uppercase">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-          className="w-px h-6 bg-gradient-to-b from-white/20 to-transparent"
-        />
+        </div>
       </motion.div>
     </section>
   );
