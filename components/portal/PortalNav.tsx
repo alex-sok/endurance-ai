@@ -40,10 +40,10 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
 
           {/* Left: Endurance wordmark + client name */}
           <div className="flex items-center gap-3">
-            <span className="text-white/40 text-xs tracking-[0.2em] uppercase">
+            <span className="text-white text-xs tracking-[0.2em] uppercase">
               Endurance AI Labs
             </span>
-            <span className="text-white/20 text-xs">×</span>
+            <span className="text-white text-xs">×</span>
             <span className="text-white text-sm font-medium tracking-wide">
               {portal.client_name}
             </span>

@@ -59,7 +59,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-          className="text-white/30 text-xs tracking-[0.3em] uppercase mb-4"
+          className="text-white text-xs tracking-[0.3em] uppercase mb-4"
         >
           {portal.client_name}
         </motion.p>
@@ -85,7 +85,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
             className="flex items-center gap-4 mb-5"
           >
             <div className="h-px w-8 bg-white/10" />
-            <p className="text-white/45 text-sm tracking-[0.15em] uppercase">{portal.tagline}</p>
+            <p className="text-white text-sm tracking-[0.15em] uppercase">{portal.tagline}</p>
             <div className="h-px w-8 bg-white/10" />
           </motion.div>
         )}
@@ -96,7 +96,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl text-sm text-white/35 leading-relaxed tracking-wide mb-8"
+            className="max-w-2xl text-sm text-white leading-relaxed tracking-wide mb-8"
           >
             {portal.hero_body}
           </motion.p>
@@ -177,7 +177,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="block text-sm font-medium tracking-wide leading-snug text-white/45 group-hover:text-white/85 transition-colors duration-200">
+              <span className="block text-sm font-medium tracking-wide leading-snug text-white group-hover:text-white transition-colors duration-200">
                 {section.title}
               </span>
             </button>

@@ -147,12 +147,12 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
             {/* Mobile-only close */}
             <button
               onClick={onMobileClose}
-              className="lg:hidden w-7 h-7 flex items-center justify-center text-white/30 hover:text-white/70 transition-colors"
+              className="lg:hidden w-7 h-7 flex items-center justify-center text-white hover:text-white transition-colors"
             >
               ✕
             </button>
           </div>
-          <p className="text-xs text-white/35 tracking-[0.15em] uppercase pl-[18px]">
+          <p className="text-xs text-white tracking-[0.15em] uppercase pl-[18px]">
             {portal.client_name} // Tactical Briefing
           </p>
         </div>
@@ -177,7 +177,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
                 AI
               </span>
               <div
-                className="text-sm leading-relaxed text-white/80 pl-3"
+                className="text-sm leading-relaxed text-white pl-3"
                 style={{ borderLeft: `2px solid ${portal.accent_color}40` }}
               >
                 {streamingContent || (
@@ -225,7 +225,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
               placeholder="Enter your query…"
               rows={1}
               disabled={streaming}
-              className="flex-1 bg-transparent text-sm text-white/85 placeholder:text-white/20 resize-none outline-none leading-relaxed tracking-wide overflow-hidden pt-2"
+              className="flex-1 bg-transparent text-sm text-white placeholder:text-white resize-none outline-none leading-relaxed tracking-wide overflow-hidden pt-2"
               style={{ caretColor: portal.accent_color }}
             />
             <button
@@ -246,7 +246,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
             className="mt-3 h-px"
             style={{ background: `${portal.accent_color}25` }}
           />
-          <p className="mt-2 text-[10px] text-white/15 tracking-[0.15em] uppercase">
+          <p className="mt-2 text-[10px] text-white tracking-[0.15em] uppercase">
             Responses scoped to this engagement
           </p>
         </div>
@@ -288,7 +288,7 @@ function MessageBubble({ message, portal }: { message: Message; portal: Portal }
         AI
       </span>
       <div
-        className="text-sm leading-relaxed text-white/80 pl-3"
+        className="text-sm leading-relaxed text-white pl-3"
         style={{ borderLeft: `2px solid ${portal.accent_color}40` }}
       >
         <ReactMarkdown
