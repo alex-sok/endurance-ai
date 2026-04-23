@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { rateLimit, getIP } from "@/lib/rate-limit";
 import { createClient } from "@/lib/supabase/server";
 import { computeAuthToken } from "@/app/api/portal/[slug]/auth/route";
+import { embedText } from "@/lib/embed";
 
 export const dynamic = "force-dynamic";
 
@@ -45,30 +46,6 @@ Contact: hello@endurancelabs.ai
 Book a call: [Schedule a briefing](https://calendar.notion.so/meet/alexsok/endurance-intro)`;
 }
 
-// ── Embed a query using OpenAI text-embedding-3-small ─────────────────────────
-async function embedQuery(text: string): Promise<number[] | null> {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) return null;
-
-  try {
-    const res = await fetch("https://api.openai.com/v1/embeddings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: "text-embedding-3-small",
-        input: text,
-      }),
-    });
-    if (!res.ok) return null;
-    const json = await res.json();
-    return json.data?.[0]?.embedding ?? null;
-  } catch {
-    return null;
-  }
-}
 
 // ── Handler ───────────────────────────────────────────────────────────────────
 export async function POST(
@@ -131,13 +108,13 @@ export async function POST(
   let retrievedContext = "";
 
   if (lastUserMessage) {
-    const embedding = await embedQuery(lastUserMessage.content);
+    const embedding = await embedText(lastUserMessage.content);
     if (embedding) {
       const { data: chunks } = await supabase.rpc("match_chunks", {
         query_embedding: embedding,
         match_portal_id: portal.id,
         match_count: 5,
-        match_threshold: 0.7,
+        match_threshold: 0.5,
       });
       if (chunks && chunks.length > 0) {
         retrievedContext = chunks
