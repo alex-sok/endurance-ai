@@ -1,6 +1,7 @@
 /**
- * Text embeddings via xAI's OpenAI-compatible API.
- * Uses text-embedding-3-small (1536 dimensions) to match the pgvector schema.
+ * Text embeddings via OpenAI text-embedding-3-small (1536 dimensions).
+ * Used for both sync (storing chunks) and query (RAG retrieval) so vectors match.
+ * xAI is used for chat (Grok); OpenAI is used only for embeddings.
  */
 
 import OpenAI from "openai";
@@ -8,9 +9,9 @@ import OpenAI from "openai";
 const EMBEDDING_MODEL = "text-embedding-3-small";
 
 function client(): OpenAI {
-  const apiKey = process.env.XAI_API_KEY;
-  if (!apiKey) throw new Error("XAI_API_KEY is not set");
-  return new OpenAI({ baseURL: "https://api.x.ai/v1", apiKey });
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) throw new Error("OPENAI_API_KEY is not set");
+  return new OpenAI({ apiKey });
 }
 
 /** Embed a single string. Returns null on failure. */

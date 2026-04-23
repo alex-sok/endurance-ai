@@ -16,75 +16,6 @@ import { createClient } from "@/lib/supabase/server";
 import { fetchAndChunkPage } from "@/lib/notion-sync";
 import { embedBatch } from "@/lib/embed";
 
-// ── GET /api/portal/[slug]/sync — debug: show raw Notion block types ──────────
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ slug: string }> }
-) {
-  const { slug } = await params;
-
-  const secret = process.env.SUPABASE_WEBHOOK_SECRET;
-  if (secret && request.headers.get("x-sync-secret") !== secret) {
-    return Response.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const notionToken = process.env.NOTION_API_TOKEN;
-  if (!notionToken) return Response.json({ error: "NOTION_API_TOKEN not set" }, { status: 500 });
-
-  const supabase = await createClient(true);
-  const { data: portal } = await supabase
-    .from("portals").select("config").eq("slug", slug).single();
-
-  const pageIds: string[] = portal?.config?.notion_pages ?? [];
-  if (pageIds.length === 0) return Response.json({ error: "No notion_pages configured" }, { status: 400 });
-
-  // Recursively inspect blocks for a page and its child pages
-  async function inspectPage(pageId: string, title: string): Promise<Record<string, unknown>> {
-    let cursor: string | undefined;
-    const blockTypes: Record<string, number> = {};
-    const fileBlocks: unknown[] = [];
-    const childPages: unknown[] = [];
-
-    do {
-      const url = `https://api.notion.com/v1/blocks/${pageId}/children?page_size=100${cursor ? `&start_cursor=${cursor}` : ""}`;
-      const res = await fetch(url, {
-        headers: { Authorization: `Bearer ${notionToken}`, "Notion-Version": "2022-06-28" },
-      });
-      const data = await res.json();
-      for (const block of data.results ?? []) {
-        blockTypes[block.type] = (blockTypes[block.type] ?? 0) + 1;
-        if (block.type === "file" || block.type === "pdf") {
-          fileBlocks.push({
-            id: block.id,
-            type: block.type,
-            name: block[block.type]?.name,
-            url: block[block.type]?.file?.url ?? block[block.type]?.external?.url,
-          });
-        }
-        if (block.type === "child_page") {
-          childPages.push({ id: block.id, title: block.child_page?.title });
-        }
-      }
-      cursor = data.has_more ? data.next_cursor : undefined;
-    } while (cursor);
-
-    // Recurse into child pages
-    const children = [];
-    for (const child of childPages as { id: string; title: string }[]) {
-      children.push(await inspectPage(child.id, child.title));
-    }
-
-    return { pageId, title, blockTypes, fileBlocks, children };
-  }
-
-  const report = [];
-  for (const pageId of pageIds) {
-    report.push(await inspectPage(pageId, "root"));
-  }
-
-  return Response.json({ report });
-}
-
 export const dynamic = "force-dynamic";
 // Notion fetches + embedding can take a while for large workspaces
 export const maxDuration = 300;
@@ -155,8 +86,24 @@ export async function POST(
   for (let i = 0; i < allChunks.length; i += BATCH_SIZE) {
     const batch = allChunks.slice(i, i + BATCH_SIZE);
     const batchEmbeddings = await embedBatch(batch.map((c) => c.content));
+    const nullCount = batchEmbeddings.filter((e) => e === null).length;
+    if (nullCount > 0) {
+      console.error(`[sync] ${nullCount}/${batchEmbeddings.length} embeddings returned null — check OPENAI_API_KEY`);
+    }
     embeddings.push(...batchEmbeddings);
     console.log(`[sync] Embedded batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(allChunks.length / BATCH_SIZE)}`);
+  }
+
+  const nullEmbeddings = embeddings.filter((e) => e === null).length;
+  const firstEmbeddingDim = embeddings.find((e) => e !== null)?.length ?? 0;
+  console.log(`[sync] Embeddings: ${embeddings.length - nullEmbeddings} succeeded, ${nullEmbeddings} null, first dim=${firstEmbeddingDim}`);
+
+  if (nullEmbeddings === embeddings.length) {
+    return Response.json({
+      error: "All embeddings failed — OPENAI_API_KEY is missing or invalid on this server",
+      chunks_found: allChunks.length,
+      chunks_embedded: 0,
+    }, { status: 500 });
   }
 
   // ── Clear old chunks from Notion sources, then insert new ones ────────────
@@ -197,6 +144,12 @@ export async function POST(
     chunks_found: allChunks.length,
     chunks_embedded: rows.length,
     skipped: allChunks.length - rows.length,
+    embedding_stats: {
+      total: embeddings.length,
+      succeeded: embeddings.length - nullEmbeddings,
+      failed: nullEmbeddings,
+      first_dim: firstEmbeddingDim,
+    },
   };
 
   console.log("[sync] Complete:", result);
