@@ -1,20 +1,4 @@
-import { createHash } from "crypto";
-
 export const dynamic = "force-dynamic";
-
-// Derive initials from a client name: "Capital Funding Partners" → "CFP"
-function getInitials(clientName: string): string {
-  return clientName
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((word) => word[0].toUpperCase())
-    .join("");
-}
-
-// Derive the portal password from the client name
-function derivePassword(clientName: string): string {
-  return `${getInitials(clientName)}2Infinity`;
-}
 
 export async function POST(request: Request) {
   // ── Verify shared secret ────────────────────────────────────────────────
@@ -39,7 +23,9 @@ export async function POST(request: Request) {
   const slug = String(record.slug ?? "");
   const tagline = record.tagline ? String(record.tagline) : null;
   const isPublished = Boolean(record.is_published);
-  const password = derivePassword(clientName);
+  // Masked hint set at portal creation time (e.g. "GT****").
+  // Never derived algorithmically here — keeps the formula out of source code.
+  const passwordHint = record.password_hint ? String(record.password_hint) : null;
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://endurancelabs.ai";
   const portalUrl = `${baseUrl}/mission/${slug}`;
@@ -71,7 +57,9 @@ export async function POST(request: Request) {
           type: "mrkdwn",
           text: `*Portal URL*\n<${portalUrl}|${portalUrl}>`,
         },
-        { type: "mrkdwn", text: `*Access Code*\n\`${password}\`` },
+        ...(passwordHint
+          ? [{ type: "mrkdwn", text: `*Access Code*\n\`${passwordHint}\`` }]
+          : []),
         ...(tagline ? [{ type: "mrkdwn", text: `*Tagline*\n${tagline}` }] : []),
       ],
     },
