@@ -1,7 +1,10 @@
 /**
  * Fetches Notion pages via the REST API and splits them into text chunks
  * ready for embedding and storage in portal_chunks.
+ * Handles page text, child pages (recursive), and file attachments (PDF, DOCX).
  */
+
+import { parseFileFromUrl } from "./parse-file";
 
 const NOTION_API = "https://api.notion.com/v1";
 const NOTION_VERSION = "2022-06-28";
@@ -113,6 +116,20 @@ async function blocksToText(blockId: string, token: string, depth = 0): Promise<
       case "code":
         text = richTextToString(block.code?.rich_text);
         break;
+      case "file":
+      case "pdf": {
+        // Notion uploaded file or embedded PDF — download and parse
+        const fileObj = block[block.type];
+        const fileUrl: string | undefined =
+          fileObj?.file?.url ?? fileObj?.external?.url;
+        const fileName: string =
+          fileObj?.name ?? block.type === "pdf" ? "attachment.pdf" : "attachment";
+        if (fileUrl) {
+          const parsed = await parseFileFromUrl(fileUrl, fileName);
+          if (parsed) text = `[File: ${fileName}]\n${parsed}`;
+        }
+        break;
+      }
       case "child_page":
         // Skip — handled separately as its own document
         break;
