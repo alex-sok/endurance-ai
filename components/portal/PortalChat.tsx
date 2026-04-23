@@ -13,10 +13,13 @@ interface Message {
 
 interface Props {
   portal: Portal;
-  onClose: () => void;
+  // mobileOpen controls visibility on mobile only.
+  // On desktop (lg+) the panel is always visible via CSS.
+  mobileOpen: boolean;
+  onMobileClose: () => void;
 }
 
-export function PortalChat({ portal, onClose }: Props) {
+export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
@@ -28,9 +31,9 @@ export function PortalChat({ portal, onClose }: Props) {
   useEffect(() => {
     setMessages([{
       role: "assistant",
-      content: `Welcome to the ${portal.client_name} mission briefing. I have full context on this engagement — ask me anything about the strategy, approach, timeline, or team.`,
+      content: `I have full context on the ${portal.client_name} engagement — strategy, approach, timeline, and team. What do you need to know?`,
     }]);
-    setTimeout(() => inputRef.current?.focus(), 300);
+    setTimeout(() => inputRef.current?.focus(), 400);
   }, [portal.client_name]);
 
   // Auto-scroll during streaming
@@ -91,120 +94,164 @@ export function PortalChat({ portal, onClose }: Props) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: "100%" }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: "100%" }}
-      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-y-0 right-0 z-50 w-full sm:w-[420px] flex flex-col"
-      style={{
-        background: "rgba(13,17,26,0.97)",
-        backdropFilter: "blur(20px)",
-        borderLeft: "1px solid rgba(255,255,255,0.07)",
-      }}
-    >
-      {/* Header */}
-      <div
-        className="flex items-center justify-between px-5 py-4"
-        style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
-      >
-        <div>
-          <p className="text-sm font-medium text-white tracking-wide">
-            Mission AI
-          </p>
-          <p className="text-xs text-white/35 tracking-wide">
-            {portal.client_name} context
-          </p>
-        </div>
-        <button
-          onClick={onClose}
-          className="w-8 h-8 flex items-center justify-center rounded-full text-white/40 hover:text-white hover:bg-white/05 transition-all duration-150"
-        >
-          ✕
-        </button>
-      </div>
-
-      {/* Messages */}
-      <div
-        ref={scrollRef}
-        className="flex-1 overflow-y-auto px-5 py-5 space-y-5"
-        style={{ scrollbarWidth: "none" }}
-      >
-        {messages.map((msg, i) => (
-          <MessageBubble key={i} message={msg} portal={portal} />
-        ))}
-
-        {/* Streaming bubble */}
-        {streaming && (
-          <div className="flex justify-start">
-            <div
-              className="max-w-[85%] px-4 py-3 rounded-2xl rounded-bl-sm text-sm leading-relaxed tracking-wide text-white/80"
-              style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
-            >
-              {streamingContent || (
-                <span className="flex gap-1">
-                  {[0, 1, 2].map((i) => (
-                    <motion.span
-                      key={i}
-                      className="w-1 h-1 rounded-full bg-white/30"
-                      animate={{ opacity: [0.3, 1, 0.3] }}
-                      transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
-                    />
-                  ))}
-                </span>
-              )}
-              {streamingContent && (
-                <span
-                  className="inline-block w-[2px] h-[14px] ml-0.5 align-middle animate-pulse"
-                  style={{ background: portal.accent_color }}
-                />
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Input */}
-      <div
-        className="px-5 py-4"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}
-      >
+    <>
+      {/* ── Mobile backdrop ──────────────────────────────────────────────────── */}
+      {mobileOpen && (
         <div
-          className="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200"
-          style={{
-            background: "rgba(255,255,255,0.03)",
-            border: "1px solid rgba(255,255,255,0.08)",
-          }}
+          className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+          onClick={onMobileClose}
+        />
+      )}
+
+      {/* ── Chat panel ───────────────────────────────────────────────────────── */}
+      {/*
+        Mobile:  hidden by default, slides in as full-screen when mobileOpen
+        Desktop: always visible as a fixed right rail (lg:flex)
+      */}
+      <div
+        className={[
+          "fixed z-50 flex flex-col",
+          // Mobile geometry
+          "inset-0",
+          // Mobile open/closed
+          mobileOpen ? "flex" : "hidden",
+          // Desktop: override to always-visible right rail
+          "lg:flex lg:inset-auto lg:top-14 lg:right-0 lg:bottom-0 lg:w-[380px]",
+        ].join(" ")}
+        style={{
+          background: "#07080c",
+          borderLeft: `2px solid ${portal.accent_color}50`,
+        }}
+      >
+        {/* ── Header ─────────────────────────────────────────────────────────── */}
+        <div
+          className="flex-shrink-0 px-5 py-4"
+          style={{ borderBottom: `1px solid rgba(255,255,255,0.08)` }}
         >
-          <textarea
-            ref={inputRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={onKeyDown}
-            placeholder="Ask anything about this engagement…"
-            rows={1}
-            disabled={streaming}
-            className="flex-1 bg-transparent text-sm text-white placeholder:text-white/25 resize-none outline-none leading-relaxed tracking-wide overflow-hidden"
-            style={{ caretColor: portal.accent_color }}
-          />
-          <button
-            onClick={send}
-            disabled={!input.trim() || streaming}
-            className="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full text-xs font-medium transition-all duration-150 disabled:opacity-30"
-            style={{
-              background: input.trim() && !streaming ? portal.accent_color : "transparent",
-              border: input.trim() && !streaming ? "none" : "1px solid rgba(255,255,255,0.15)",
-              color: input.trim() && !streaming ? "#0f1115" : "rgba(255,255,255,0.3)",
-            }}
-          >
-            ↑
-          </button>
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-2.5">
+              {/* Blinking active dot */}
+              <motion.span
+                className="w-2 h-2 rounded-full flex-shrink-0"
+                style={{ background: portal.accent_color }}
+                animate={{ opacity: [1, 0.3, 1] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <span
+                className="text-xs font-semibold tracking-[0.25em] uppercase"
+                style={{ color: portal.accent_color }}
+              >
+                Mission AI
+              </span>
+            </div>
+            {/* Mobile-only close */}
+            <button
+              onClick={onMobileClose}
+              className="lg:hidden w-7 h-7 flex items-center justify-center text-white/30 hover:text-white/70 transition-colors"
+            >
+              ✕
+            </button>
+          </div>
+          <p className="text-xs text-white/35 tracking-[0.15em] uppercase pl-[18px]">
+            {portal.client_name} // Tactical Briefing
+          </p>
         </div>
-        <p className="mt-2 text-center text-xs text-white/15 tracking-wide">
-          AI responses are scoped to this engagement.
-        </p>
+
+        {/* ── Messages ───────────────────────────────────────────────────────── */}
+        <div
+          ref={scrollRef}
+          className="flex-1 overflow-y-auto px-5 py-5 space-y-5"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {messages.map((msg, i) => (
+            <MessageBubble key={i} message={msg} portal={portal} />
+          ))}
+
+          {/* Streaming bubble */}
+          {streaming && (
+            <div className="flex flex-col gap-1">
+              <span
+                className="text-[10px] tracking-[0.2em] uppercase mb-1"
+                style={{ color: `${portal.accent_color}70` }}
+              >
+                AI
+              </span>
+              <div
+                className="text-sm leading-relaxed text-white/80 pl-3"
+                style={{ borderLeft: `2px solid ${portal.accent_color}40` }}
+              >
+                {streamingContent || (
+                  <span className="flex gap-1 items-center h-5">
+                    {[0, 1, 2].map((i) => (
+                      <motion.span
+                        key={i}
+                        className="w-1 h-1 rounded-full"
+                        style={{ background: portal.accent_color }}
+                        animate={{ opacity: [0.2, 1, 0.2] }}
+                        transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
+                      />
+                    ))}
+                  </span>
+                )}
+                {streamingContent && (
+                  <span
+                    className="inline-block w-[2px] h-[13px] ml-0.5 align-middle animate-pulse"
+                    style={{ background: portal.accent_color }}
+                  />
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* ── Input ──────────────────────────────────────────────────────────── */}
+        <div
+          className="flex-shrink-0 px-5 pt-4 pb-5"
+          style={{ borderTop: `1px solid rgba(255,255,255,0.08)` }}
+        >
+          <div className="flex items-start gap-2">
+            {/* Terminal prompt character */}
+            <span
+              className="mt-[11px] text-sm font-semibold flex-shrink-0 select-none"
+              style={{ color: `${portal.accent_color}80` }}
+            >
+              &gt;
+            </span>
+            <textarea
+              ref={inputRef}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={onKeyDown}
+              placeholder="Enter your query…"
+              rows={1}
+              disabled={streaming}
+              className="flex-1 bg-transparent text-sm text-white/85 placeholder:text-white/20 resize-none outline-none leading-relaxed tracking-wide overflow-hidden pt-2"
+              style={{ caretColor: portal.accent_color }}
+            />
+            <button
+              onClick={send}
+              disabled={!input.trim() || streaming}
+              className="flex-shrink-0 mt-1.5 w-7 h-7 flex items-center justify-center rounded text-xs font-semibold transition-all duration-150 disabled:opacity-25"
+              style={{
+                background: input.trim() && !streaming ? portal.accent_color : "transparent",
+                border: input.trim() && !streaming ? "none" : `1px solid rgba(255,255,255,0.12)`,
+                color: input.trim() && !streaming ? "#07080c" : "rgba(255,255,255,0.25)",
+              }}
+            >
+              ↑
+            </button>
+          </div>
+          {/* Hard underline beneath input */}
+          <div
+            className="mt-3 h-px"
+            style={{ background: `${portal.accent_color}25` }}
+          />
+          <p className="mt-2 text-[10px] text-white/15 tracking-[0.15em] uppercase">
+            Responses scoped to this engagement
+          </p>
+        </div>
       </div>
-    </motion.div>
+    </>
   );
 }
 
@@ -215,22 +262,34 @@ function MessageBubble({ message, portal }: { message: Message; portal: Portal }
 
   if (isUser) {
     return (
-      <div className="flex justify-end">
-        <div
-          className="max-w-[85%] px-4 py-3 rounded-2xl rounded-br-sm text-sm tracking-wide leading-relaxed"
-          style={{ color: portal.accent_color, background: `${portal.accent_color}12`, border: `1px solid ${portal.accent_color}20` }}
+      <div className="flex flex-col items-end gap-1">
+        <span
+          className="text-[10px] tracking-[0.2em] uppercase"
+          style={{ color: "rgba(255,255,255,0.25)" }}
+        >
+          You
+        </span>
+        <p
+          className="text-sm tracking-wide leading-relaxed text-right"
+          style={{ color: `${portal.accent_color}CC` }}
         >
           {message.content}
-        </div>
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="flex justify-start">
+    <div className="flex flex-col gap-1">
+      <span
+        className="text-[10px] tracking-[0.2em] uppercase"
+        style={{ color: `${portal.accent_color}70` }}
+      >
+        AI
+      </span>
       <div
-        className="max-w-[85%] px-4 py-3 rounded-2xl rounded-bl-sm text-sm leading-relaxed text-white/80"
-        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
+        className="text-sm leading-relaxed text-white/80 pl-3"
+        style={{ borderLeft: `2px solid ${portal.accent_color}40` }}
       >
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
@@ -244,11 +303,11 @@ function MessageBubble({ message, portal }: { message: Message; portal: Portal }
             ul: ({ children }) => <ul className="mb-2 space-y-1">{children}</ul>,
             li: ({ children }) => (
               <li className="flex items-start gap-2">
-                <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ background: portal.accent_color }} />
+                <span className="mt-2 w-1 h-1 rounded-full flex-shrink-0" style={{ background: portal.accent_color }} />
                 <span>{children}</span>
               </li>
             ),
-            strong: ({ children }) => <strong className="text-white font-medium">{children}</strong>,
+            strong: ({ children }) => <strong className="text-white font-semibold">{children}</strong>,
           }}
         >
           {message.content}
