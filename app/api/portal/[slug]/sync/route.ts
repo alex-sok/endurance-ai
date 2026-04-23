@@ -38,32 +38,48 @@ export async function GET(
   const pageIds: string[] = portal?.config?.notion_pages ?? [];
   if (pageIds.length === 0) return Response.json({ error: "No notion_pages configured" }, { status: 400 });
 
-  // Fetch raw blocks for each root page and report what types we see
-  const report: Record<string, unknown>[] = [];
-  for (const pageId of pageIds) {
+  // Recursively inspect blocks for a page and its child pages
+  async function inspectPage(pageId: string, title: string): Promise<Record<string, unknown>> {
     let cursor: string | undefined;
     const blockTypes: Record<string, number> = {};
     const fileBlocks: unknown[] = [];
+    const childPages: unknown[] = [];
 
     do {
       const url = `https://api.notion.com/v1/blocks/${pageId}/children?page_size=100${cursor ? `&start_cursor=${cursor}` : ""}`;
       const res = await fetch(url, {
-        headers: {
-          Authorization: `Bearer ${notionToken}`,
-          "Notion-Version": "2022-06-28",
-        },
+        headers: { Authorization: `Bearer ${notionToken}`, "Notion-Version": "2022-06-28" },
       });
       const data = await res.json();
       for (const block of data.results ?? []) {
         blockTypes[block.type] = (blockTypes[block.type] ?? 0) + 1;
         if (block.type === "file" || block.type === "pdf") {
-          fileBlocks.push({ id: block.id, type: block.type, data: block[block.type] });
+          fileBlocks.push({
+            id: block.id,
+            type: block.type,
+            name: block[block.type]?.name,
+            url: block[block.type]?.file?.url ?? block[block.type]?.external?.url,
+          });
+        }
+        if (block.type === "child_page") {
+          childPages.push({ id: block.id, title: block.child_page?.title });
         }
       }
       cursor = data.has_more ? data.next_cursor : undefined;
     } while (cursor);
 
-    report.push({ pageId, blockTypes, fileBlocks });
+    // Recurse into child pages
+    const children = [];
+    for (const child of childPages as { id: string; title: string }[]) {
+      children.push(await inspectPage(child.id, child.title));
+    }
+
+    return { pageId, title, blockTypes, fileBlocks, children };
+  }
+
+  const report = [];
+  for (const pageId of pageIds) {
+    report.push(await inspectPage(pageId, "root"));
   }
 
   return Response.json({ report });
