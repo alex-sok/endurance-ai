@@ -1,5 +1,7 @@
+import { cookies } from "next/headers";
 import { rateLimit, getIP } from "@/lib/rate-limit";
 import { createClient } from "@/lib/supabase/server";
+import { computeAuthToken } from "@/app/api/portal/[slug]/auth/route";
 
 export const dynamic = "force-dynamic";
 
@@ -81,17 +83,27 @@ export async function POST(
     return new Response("Too many requests", { status: 429 });
   }
 
-  // Fetch portal
-  const supabase = await createClient();
+  // Fetch portal (service role to access password_hash for auth check)
+  const supabase = await createClient(true);
   const { data: portal, error } = await supabase
     .from("portals")
-    .select("id, client_name, hero_title, hero_body, is_published")
+    .select("id, client_name, hero_title, hero_body, is_published, password_hash")
     .eq("slug", slug)
     .eq("is_published", true)
     .single();
 
   if (error || !portal) {
     return new Response("Portal not found", { status: 404 });
+  }
+
+  // ── Auth gate: require valid portal cookie if portal is password-protected ──
+  if (portal.password_hash) {
+    const cookieStore = await cookies();
+    const authCookie = cookieStore.get(`portal_auth_${slug}`)?.value;
+    const expectedToken = computeAuthToken(slug, portal.password_hash);
+    if (authCookie !== expectedToken) {
+      return new Response("Unauthorized", { status: 401 });
+    }
   }
 
   // Parse messages

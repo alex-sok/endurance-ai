@@ -1,5 +1,7 @@
-import { createHash, createHmac } from "crypto";
+import { createHmac } from "crypto";
+import bcrypt from "bcryptjs";
 import { createClient } from "@/lib/supabase/server";
+import { rateLimit, getIP } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
@@ -15,6 +17,12 @@ export async function POST(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
+
+  // ── Rate limit: 10 attempts per minute per IP ─────────────────────────────
+  const ip = getIP(request);
+  if (!rateLimit(`auth:${ip}`, 10, 60_000)) {
+    return new Response("Too many requests", { status: 429 });
+  }
 
   let password: string;
   try {
@@ -34,15 +42,22 @@ export async function POST(
     .eq("is_published", true)
     .single();
 
-  if (error || !portal) return new Response("Not found", { status: 404 });
+  // ── Uniform 401 for both "not found" and "wrong password" ────────────────
+  // Returning different errors for each case lets attackers enumerate valid slugs.
+  if (error || !portal) {
+    // Small delay to match bcrypt timing and prevent timing-based enumeration
+    await new Promise((r) => setTimeout(r, 200));
+    return new Response("Unauthorized", { status: 401 });
+  }
+
   if (!portal.password_hash) {
     // No password set — allow through
     return new Response("ok", { status: 200 });
   }
 
-  // Hash the submitted password and compare
-  const submittedHash = createHash("sha256").update(password).digest("hex");
-  if (submittedHash !== portal.password_hash) {
+  // ── bcrypt compare ────────────────────────────────────────────────────────
+  const valid = await bcrypt.compare(password, portal.password_hash);
+  if (!valid) {
     return new Response("Unauthorized", { status: 401 });
   }
 
