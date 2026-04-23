@@ -54,8 +54,10 @@ export async function parseFileFromUrl(
 
 async function parsePdf(buffer: Buffer, filename: string): Promise<string | null> {
   try {
-    // Dynamic import avoids the test-file loading issue pdf-parse has at static import time
-    const pdfParse = (await import("pdf-parse/lib/pdf-parse.js")).default;
+    // require() avoids the bundler static-analysis issue pdf-parse triggers
+    // when imported at the module level (it tries to load test files)
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const pdfParse = require("pdf-parse");
     const data = await pdfParse(buffer);
     const text = data.text?.trim();
     if (!text) {

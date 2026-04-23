@@ -33,6 +33,9 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Keep pdf-parse and mammoth out of the webpack bundle — they're CJS
+  // modules with file-system side effects that break when bundled
+  serverExternalPackages: ["pdf-parse", "mammoth"],
   async headers() {
     return [
       {
