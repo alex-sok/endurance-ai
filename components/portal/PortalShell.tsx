@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import type { Portal, PortalSection } from "@/types/portal";
 import { PortalNav } from "./PortalNav";
 import { PortalHero } from "./PortalHero";
@@ -15,7 +14,9 @@ interface Props {
 
 export function PortalShell({ portal, sections }: Props) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const [chatOpen, setChatOpen] = useState(false);
+  // mobileOpen controls the chat on small screens only.
+  // On desktop (lg+) the chat panel is always visible via CSS.
+  const [mobileOpen, setMobileOpen] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -27,65 +28,39 @@ export function PortalShell({ portal, sections }: Props) {
         sections={sections}
         activeSection={activeSection}
         onSelectSection={setActiveSection}
-        onOpenChat={() => setChatOpen(true)}
+        onOpenChat={() => setMobileOpen(true)}
       />
 
-      {/* ── Hero ───────────────────────────────────────────────────────────── */}
-      <PortalHero
-        portal={portal}
-        sections={sections}
-        onSelectSection={(slug) => {
-          setActiveSection(slug);
-        }}
-        onOpenChat={() => setChatOpen(true)}
-      />
+      {/* ── Main content — right-padded on desktop to clear the chat rail ──── */}
+      <div className="lg:pr-[380px]">
 
-      {/* ── Visual Canvas ──────────────────────────────────────────────────── */}
-      <div ref={canvasRef}>
-        <PortalCanvas
+        {/* ── Hero ─────────────────────────────────────────────────────────── */}
+        <PortalHero
           portal={portal}
           sections={sections}
-          activeSection={activeSection}
-          onSelectSection={setActiveSection}
+          onSelectSection={(slug) => setActiveSection(slug)}
+          onOpenChat={() => setMobileOpen(true)}
         />
+
+        {/* ── Visual Canvas ────────────────────────────────────────────────── */}
+        <div ref={canvasRef}>
+          <PortalCanvas
+            portal={portal}
+            sections={sections}
+            activeSection={activeSection}
+            onSelectSection={setActiveSection}
+          />
+        </div>
+
       </div>
 
-      {/* ── Chat Drawer ────────────────────────────────────────────────────── */}
-      <AnimatePresence>
-        {chatOpen && (
-          <PortalChat
-            portal={portal}
-            onClose={() => setChatOpen(false)}
-          />
-        )}
-      </AnimatePresence>
+      {/* ── Chat — always visible on desktop, toggled on mobile ────────────── */}
+      <PortalChat
+        portal={portal}
+        mobileOpen={mobileOpen}
+        onMobileClose={() => setMobileOpen(false)}
+      />
 
-      {/* ── Floating chat button ───────────────────────────────────────────── */}
-      {!chatOpen && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          onClick={() => setChatOpen(true)}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-medium tracking-wide text-white transition-all duration-200"
-          style={{
-            background: `linear-gradient(135deg, ${portal.accent_color}22, ${portal.accent_color}11)`,
-            border: `1px solid ${portal.accent_color}40`,
-            boxShadow: `0 0 24px ${portal.accent_color}20`,
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 32px ${portal.accent_color}40`;
-            (e.currentTarget as HTMLButtonElement).style.borderColor = `${portal.accent_color}80`;
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = `0 0 24px ${portal.accent_color}20`;
-            (e.currentTarget as HTMLButtonElement).style.borderColor = `${portal.accent_color}40`;
-          }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: portal.accent_color }} />
-          Ask our AI
-        </motion.button>
-      )}
     </div>
   );
 }
