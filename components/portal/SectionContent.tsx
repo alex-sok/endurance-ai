@@ -49,14 +49,14 @@ function OverviewContent({ content, portal }: ContentProps) {
   return (
     <div className="space-y-6">
       {body && (
-        <p className="text-base text-white/80 leading-relaxed tracking-wide">{body}</p>
+        <p className="text-base text-white leading-relaxed tracking-wide">{body}</p>
       )}
       {bullets.length > 0 && (
         <ul className="space-y-3">
           {bullets.map((b, i) => (
             <li key={i} className="flex items-start gap-3">
               <span className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: portal.accent_color }} />
-              <span className="text-sm text-white/75 leading-relaxed tracking-wide">{b}</span>
+              <span className="text-sm text-white leading-relaxed tracking-wide">{b}</span>
             </li>
           ))}
         </ul>
@@ -75,7 +75,7 @@ function ProblemContent({ content, portal }: ContentProps) {
   return (
     <div className="space-y-6">
       {body && (
-        <p className="text-base text-white/80 leading-relaxed tracking-wide">{body}</p>
+        <p className="text-base text-white leading-relaxed tracking-wide">{body}</p>
       )}
       {challenges.length > 0 && (
         <div className="grid sm:grid-cols-2 gap-4">
@@ -86,9 +86,9 @@ function ProblemContent({ content, portal }: ContentProps) {
             >
               <div className="flex items-center gap-2 mb-2.5">
                 <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: portal.accent_color }} />
-                <span className="text-sm font-semibold text-white/90 tracking-wide">{c.title}</span>
+                <span className="text-sm font-semibold text-white tracking-wide">{c.title}</span>
               </div>
-              <p className="text-sm text-white/65 leading-relaxed tracking-wide">{c.description}</p>
+              <p className="text-sm text-white leading-relaxed tracking-wide">{c.description}</p>
             </div>
           ))}
         </div>
@@ -107,7 +107,7 @@ function SolutionContent({ content, portal }: ContentProps) {
   return (
     <div className="space-y-6">
       {body && (
-        <p className="text-base text-white/80 leading-relaxed tracking-wide">{body}</p>
+        <p className="text-base text-white leading-relaxed tracking-wide">{body}</p>
       )}
       {pillars.length > 0 && (
         <div className="space-y-4">
@@ -124,7 +124,7 @@ function SolutionContent({ content, portal }: ContentProps) {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-sm font-semibold text-white/90 tracking-wide">{p.title}</span>
+                  <span className="text-sm font-semibold text-white tracking-wide">{p.title}</span>
                   {p.tag && (
                     <span
                       className="px-2 py-0.5 text-xs rounded-full"
@@ -134,7 +134,7 @@ function SolutionContent({ content, portal }: ContentProps) {
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-white/65 leading-relaxed tracking-wide">{p.description}</p>
+                <p className="text-sm text-white leading-relaxed tracking-wide">{p.description}</p>
               </div>
             </div>
           ))}
@@ -168,15 +168,15 @@ function RoadmapContent({ content, portal }: ContentProps) {
             </div>
             <div className="pb-8">
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="text-sm font-semibold text-white/90 tracking-wide">{p.title}</span>
-                <span className="text-xs text-white/45 tracking-wide">{p.duration}</span>
+                <span className="text-sm font-semibold text-white tracking-wide">{p.title}</span>
+                <span className="text-xs text-white tracking-wide">{p.duration}</span>
               </div>
               {p.milestones?.length > 0 && (
                 <ul className="space-y-2 mt-2">
                   {p.milestones.map((m, j) => (
                     <li key={j} className="flex items-start gap-2">
                       <span className="mt-2 w-1 h-1 rounded-full flex-shrink-0 bg-white/30" />
-                      <span className="text-sm text-white/65 leading-relaxed tracking-wide">{m}</span>
+                      <span className="text-sm text-white leading-relaxed tracking-wide">{m}</span>
                     </li>
                   ))}
                 </ul>
@@ -211,9 +211,9 @@ function TeamContent({ content, portal }: ContentProps) {
               {m.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
             </div>
             <div>
-              <p className="text-sm font-semibold text-white/90 tracking-wide">{m.name}</p>
-              <p className="text-sm text-white/55 tracking-wide mb-2">{m.role}</p>
-              {m.bio && <p className="text-sm text-white/60 leading-relaxed">{m.bio}</p>}
+              <p className="text-sm font-semibold text-white tracking-wide">{m.name}</p>
+              <p className="text-sm text-white tracking-wide mb-2">{m.role}</p>
+              {m.bio && <p className="text-sm text-white leading-relaxed">{m.bio}</p>}
             </div>
           </div>
         ))
@@ -233,7 +233,7 @@ function MetricsContent({ content, portal }: ContentProps) {
   return (
     <div className="space-y-6">
       {body && (
-        <p className="text-base text-white/80 leading-relaxed tracking-wide">{body}</p>
+        <p className="text-base text-white leading-relaxed tracking-wide">{body}</p>
       )}
       {kpis.length > 0 && (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -248,9 +248,9 @@ function MetricsContent({ content, portal }: ContentProps) {
               >
                 {k.value}
               </p>
-              <p className="text-sm font-medium text-white/75 tracking-wide mb-1.5">{k.label}</p>
+              <p className="text-sm font-medium text-white tracking-wide mb-1.5">{k.label}</p>
               {k.description && (
-                <p className="text-sm text-white/55 leading-relaxed">{k.description}</p>
+                <p className="text-sm text-white leading-relaxed">{k.description}</p>
               )}
             </div>
           ))}
@@ -266,7 +266,7 @@ function MetricsContent({ content, portal }: ContentProps) {
 function GenericContent({ content }: ContentProps) {
   const body = content.body as string | undefined;
   return body ? (
-    <p className="text-base text-white/75 leading-relaxed tracking-wide">{body}</p>
+    <p className="text-base text-white leading-relaxed tracking-wide">{body}</p>
   ) : (
     <EmptyState />
   );
@@ -278,7 +278,7 @@ function EmptyState() {
   return (
     <div className="flex items-center gap-3 py-8">
       <div className="h-px flex-1 bg-white/[0.05]" />
-      <span className="text-xs text-white/20 tracking-[0.2em] uppercase">Content coming soon</span>
+      <span className="text-xs text-white tracking-[0.2em] uppercase">Content coming soon</span>
       <div className="h-px flex-1 bg-white/[0.05]" />
     </div>
   );
