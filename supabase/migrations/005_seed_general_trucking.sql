@@ -1,6 +1,6 @@
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Seed: General Trucking Portal
--- AI Recruiting Initiative — password: GT2Infinity
+-- AI Recruiting Initiative
 -- ─────────────────────────────────────────────────────────────────────────────
 
 insert into portals (

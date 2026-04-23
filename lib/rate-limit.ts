@@ -40,11 +40,18 @@ export function rateLimit(key: string, limit = 20, windowMs = 60_000): boolean {
   return true;
 }
 
-/** Extract the real client IP from Vercel/Next.js request headers. */
+/** Extract the real client IP from Vercel/Next.js request headers.
+ *
+ * Priority order:
+ * 1. x-real-ip — set by Vercel's infrastructure, not spoofable by the client
+ * 2. Last entry of x-forwarded-for — Vercel appends the real IP at the end,
+ *    so the last entry is infrastructure-controlled. Taking [0] is wrong because
+ *    the client controls the first entry and can set it to any value.
+ */
 export function getIP(request: Request): string {
   return (
-    request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
-    request.headers.get("x-real-ip") ||
+    request.headers.get("x-real-ip")?.trim() ||
+    request.headers.get("x-forwarded-for")?.split(",").at(-1)?.trim() ||
     "unknown"
   );
 }
