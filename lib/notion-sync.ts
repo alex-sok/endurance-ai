@@ -123,7 +123,7 @@ async function blocksToText(blockId: string, token: string, depth = 0): Promise<
         const fileUrl: string | undefined =
           fileObj?.file?.url ?? fileObj?.external?.url;
         const fileName: string =
-          fileObj?.name ?? block.type === "pdf" ? "attachment.pdf" : "attachment";
+          fileObj?.name ?? (block.type === "pdf" ? "attachment.pdf" : "attachment");
         if (fileUrl) {
           const parsed = await parseFileFromUrl(fileUrl, fileName);
           if (parsed) text = `[File: ${fileName}]\n${parsed}`;

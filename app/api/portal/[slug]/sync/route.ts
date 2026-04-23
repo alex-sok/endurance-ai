@@ -16,6 +16,59 @@ import { createClient } from "@/lib/supabase/server";
 import { fetchAndChunkPage } from "@/lib/notion-sync";
 import { embedBatch } from "@/lib/embed";
 
+// ── GET /api/portal/[slug]/sync — debug: show raw Notion block types ──────────
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const { slug } = await params;
+
+  const secret = process.env.SUPABASE_WEBHOOK_SECRET;
+  if (secret && request.headers.get("x-sync-secret") !== secret) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const notionToken = process.env.NOTION_API_TOKEN;
+  if (!notionToken) return Response.json({ error: "NOTION_API_TOKEN not set" }, { status: 500 });
+
+  const supabase = await createClient(true);
+  const { data: portal } = await supabase
+    .from("portals").select("config").eq("slug", slug).single();
+
+  const pageIds: string[] = portal?.config?.notion_pages ?? [];
+  if (pageIds.length === 0) return Response.json({ error: "No notion_pages configured" }, { status: 400 });
+
+  // Fetch raw blocks for each root page and report what types we see
+  const report: Record<string, unknown>[] = [];
+  for (const pageId of pageIds) {
+    let cursor: string | undefined;
+    const blockTypes: Record<string, number> = {};
+    const fileBlocks: unknown[] = [];
+
+    do {
+      const url = `https://api.notion.com/v1/blocks/${pageId}/children?page_size=100${cursor ? `&start_cursor=${cursor}` : ""}`;
+      const res = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${notionToken}`,
+          "Notion-Version": "2022-06-28",
+        },
+      });
+      const data = await res.json();
+      for (const block of data.results ?? []) {
+        blockTypes[block.type] = (blockTypes[block.type] ?? 0) + 1;
+        if (block.type === "file" || block.type === "pdf") {
+          fileBlocks.push({ id: block.id, type: block.type, data: block[block.type] });
+        }
+      }
+      cursor = data.has_more ? data.next_cursor : undefined;
+    } while (cursor);
+
+    report.push({ pageId, blockTypes, fileBlocks });
+  }
+
+  return Response.json({ report });
+}
+
 export const dynamic = "force-dynamic";
 // Notion fetches + embedding can take a while for large workspaces
 export const maxDuration = 300;
