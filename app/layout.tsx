@@ -1,21 +1,28 @@
 import type { Metadata } from "next";
-import { Rajdhani } from "next/font/google";
+import { Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const rajdhani = Rajdhani({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-rajdhani",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-instrument",
+  weight: "400",
+  style: ["normal", "italic"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
   title: "Endurance AI Labs",
   description:
-    "Strategic AI advisory and implementation for leaders navigating high-stakes initiatives.",
+    "AI transformation, delivered under contract. Small units. Senior operators. Shipped systems.",
   openGraph: {
     title: "Endurance AI Labs",
     description:
-      "Strategic AI advisory and implementation for leaders navigating high-stakes initiatives.",
+      "AI transformation, delivered under contract. Small units. Senior operators. Shipped systems.",
     type: "website",
   },
 };
@@ -26,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${rajdhani.variable} h-full`}>
-      <body className="h-full bg-[#0F1115] antialiased" style={{ fontFamily: "var(--font-rajdhani), sans-serif" }}>{children}</body>
+    <html lang="en" className={`${instrumentSerif.variable} ${jetbrainsMono.variable} h-full`}>
+      <body className="h-full antialiased">{children}</body>
     </html>
   );
 }

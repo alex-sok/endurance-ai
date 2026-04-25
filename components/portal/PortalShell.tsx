@@ -20,7 +20,7 @@ export function PortalShell({ portal, sections }: Props) {
   const canvasRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="min-h-screen bg-[#0F1115] text-white" style={{ fontFamily: "var(--font-rajdhani), sans-serif" }}>
+    <div className="min-h-screen text-[var(--bone)]" style={{ background: "var(--ink)", fontFamily: "var(--font-figtree)" }}>
 
       {/* ── Top navigation bar ─────────────────────────────────────────────── */}
       <PortalNav
