@@ -28,7 +28,7 @@ function StreamingBubble({ text }: { text: string }) {
       <div className="max-w-[85%] sm:max-w-[75%]">
         <p className="text-white text-base leading-[1.7] font-medium tracking-wide whitespace-pre-wrap">
           {text}
-          <span className="inline-block w-0.5 h-[1em] bg-[#5b8dee] ml-0.5 animate-pulse align-middle" />
+          <span className="inline-block w-0.5 h-[1em] bg-[var(--signal)] ml-0.5 animate-pulse align-middle" />
         </p>
       </div>
     </motion.div>
@@ -260,15 +260,16 @@ export function ChatShell() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0 border-b border-[#2a3a55]"
+        className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0 border-b border-[var(--steel-700)]"
       >
         <div className="flex items-center">
-          <img src="/endurance-logo.svg" alt="Endurance AI Labs" className="h-[18px] w-auto brightness-0 invert" />
+          <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="h-5 w-auto" />
         </div>
 
         <a
           href="mailto:hello@endurancelabs.ai"
-          className="hidden sm:inline-flex text-xs text-white hover:text-[#5b8dee] transition-colors duration-150 tracking-widest uppercase"
+          className="hidden sm:inline-flex text-xs text-[var(--steel-400)] hover:text-[var(--signal)] transition-colors duration-150 tracking-widest uppercase"
+          style={{ fontFamily: "var(--font-jetbrains)" }}
         >
           hello@endurancelabs.ai
         </a>
@@ -350,13 +351,29 @@ export function ChatShell() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => fireLeadNotify(state.messages)}
-                className="px-4 py-2 text-xs tracking-widest uppercase border border-[#5b8dee]/40 text-[#5b8dee] rounded-full hover:bg-[#5b8dee]/10 hover:border-[#5b8dee] hover:shadow-[0_0_14px_rgba(91,141,238,0.2)] transition-all duration-150"
+                className="px-4 py-2 text-xs tracking-widest uppercase transition-colors duration-150"
+                style={{
+                  fontFamily: "var(--font-jetbrains)",
+                  border: "1px solid var(--signal)",
+                  color: "var(--signal)",
+                  borderRadius: "2px",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = "rgba(199,167,108,0.08)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
               >
-                Book a briefing →
+                Brief us →
               </a>
               <button
                 onClick={() => { fireLeadNotify(state.messages); sendMessage("I'd like to talk to the team.", true); }}
-                className="px-4 py-2 text-xs tracking-widest uppercase border border-[#a78bfa]/40 text-[#a78bfa] rounded-full hover:bg-[#a78bfa]/10 hover:border-[#a78bfa] hover:shadow-[0_0_14px_rgba(167,139,250,0.2)] transition-all duration-150"
+                className="px-4 py-2 text-xs tracking-widest uppercase transition-colors duration-150"
+                style={{
+                  fontFamily: "var(--font-jetbrains)",
+                  border: "1px solid var(--steel-600)",
+                  color: "var(--steel-300)",
+                  borderRadius: "2px",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--steel-400)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--steel-600)")}
               >
                 Talk to the team
               </button>
@@ -370,8 +387,8 @@ export function ChatShell() {
           disabled={state.inputDisabled || state.isTyping || isStreaming}
         />
 
-        <p className="text-center text-[11px] text-[#e8e4d8] tracking-widest uppercase">
-          Endurance AI Labs · Mission Critical AI Deployment & Initiatives
+        <p className="text-center text-[11px] tracking-widest uppercase" style={{ fontFamily: "var(--font-jetbrains)", color: "var(--steel-500)" }}>
+          Endurance AI Labs · AI transformation, delivered under contract
         </p>
       </div>
     </div>
