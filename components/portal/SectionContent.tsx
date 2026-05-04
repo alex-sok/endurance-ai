@@ -1,6 +1,7 @@
 "use client";
 
 import type { Portal, PortalSection } from "@/types/portal";
+import { GTProjectPlan } from "./GTProjectPlan";
 
 interface Props {
   section: PortalSection;
@@ -28,6 +29,8 @@ export function SectionContent({ section, portal }: Props) {
       return <TeamContent content={c} portal={portal} />;
     case "metrics":
       return <MetricsContent content={c} portal={portal} />;
+    case "project-plan":
+      return <GTProjectPlan />;
     default:
       return <GenericContent content={c} portal={portal} />;
   }
