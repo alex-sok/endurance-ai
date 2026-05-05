@@ -226,7 +226,7 @@ function Section({ children }: { children: React.ReactNode }) {
 
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`border border-white/10 rounded-sm bg-white/[0.03] p-5 ${className}`}>
+    <div className={`border border-white/10 rounded-none bg-white/[0.03] p-5 ${className}`}>
       {children}
     </div>
   );
@@ -262,7 +262,7 @@ function Badge({ children, variant = "default" }: { children: React.ReactNode; v
   };
   return (
     <span
-      className={`px-2 py-0.5 text-xs rounded-sm whitespace-nowrap ${styles[variant]}`}
+      className={`px-2 py-0.5 text-xs rounded-none whitespace-nowrap ${styles[variant]}`}
       style={{ fontFamily: "var(--font-jetbrains)" }}
     >
       {children}
@@ -275,8 +275,8 @@ function HBar({ label, value, max }: { label: string; value: number; max: number
   return (
     <div className="flex items-center gap-3">
       <span className="text-xs w-48 shrink-0 text-right" style={{ color: "var(--steel-400)", fontFamily: "var(--font-jetbrains)" }}>{label}</span>
-      <div className="flex-1 h-1.5 bg-white/5 rounded-sm overflow-hidden">
-        <div className="h-full rounded-sm" style={{ width: `${pct}%`, background: "var(--signal)" }} />
+      <div className="flex-1 h-1.5 bg-white/5 rounded-none overflow-hidden">
+        <div className="h-full rounded-none" style={{ width: `${pct}%`, background: "var(--signal)" }} />
       </div>
       <span className="text-xs w-8 shrink-0" style={{ color: "var(--steel-400)", fontFamily: "var(--font-jetbrains)" }}>{value}h</span>
     </div>
@@ -294,7 +294,7 @@ export function GTProjectPlan() {
     <div className="flex flex-col gap-5">
 
       {/* Header */}
-      <div className="border border-white/10 rounded-sm bg-white/[0.03] p-5">
+      <div className="border border-white/10 rounded-none bg-white/[0.03] p-5">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
             <p className="text-xs mb-1 uppercase tracking-widest" style={{ color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}>
@@ -321,7 +321,7 @@ export function GTProjectPlan() {
           <button
             key={t.id}
             onClick={() => setActiveTab(t.id)}
-            className="px-3 py-1.5 text-xs whitespace-nowrap transition-colors duration-150 rounded-sm"
+            className="px-3 py-1.5 text-xs whitespace-nowrap transition-colors duration-150 rounded-none"
             style={{
               fontFamily: "var(--font-jetbrains)",
               border: activeTab === t.id ? "1px solid var(--signal)" : "1px solid rgba(255,255,255,0.1)",
@@ -346,7 +346,7 @@ export function GTProjectPlan() {
               { label: "Full Project Fee", value: "$27,000" },
               { label: "Entry Scope Fee", value: "< $12,000" },
             ].map(m => (
-              <div key={m.label} className="border border-white/10 rounded-sm bg-white/[0.03] p-4">
+              <div key={m.label} className="border border-white/10 rounded-none bg-white/[0.03] p-4">
                 <p className="text-xs mb-1" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{m.label}</p>
                 <p className="text-lg font-semibold text-white">{m.value}</p>
               </div>
@@ -457,7 +457,7 @@ export function GTProjectPlan() {
                   <p className="text-xs mb-0.5 uppercase tracking-widest" style={{ color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}>{w.week}</p>
                   <p className="font-semibold text-white">{w.label}</p>
                 </div>
-                <div className="flex items-center gap-2 border border-white/10 rounded-sm px-3 py-1">
+                <div className="flex items-center gap-2 border border-white/10 rounded-none px-3 py-1">
                   <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--signal)" }} />
                   <span className="text-xs" style={{ color: "var(--steel-300)", fontFamily: "var(--font-jetbrains)" }}>{w.milestone}</span>
                 </div>
@@ -495,8 +495,8 @@ export function GTProjectPlan() {
               ].map((step, i) => (
                 <div key={step} className="flex gap-3 items-start">
                   <span
-                    className="shrink-0 w-5 h-5 rounded-sm flex items-center justify-center text-xs font-medium"
-                    style={{ background: "rgba(199,167,108,0.15)", color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}
+                    className="shrink-0 w-5 h-5 rounded-none flex items-center justify-center text-xs font-medium"
+                    style={{ background: "rgba(37,99,235,0.12)", color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}
                   >
                     {i + 1}
                   </span>
@@ -517,7 +517,7 @@ export function GTProjectPlan() {
               <div className="flex flex-col gap-1.5 mb-3">
                 {item.details.map(d => <Bullet key={d}>{d}</Bullet>)}
               </div>
-              <div className="border border-white/5 rounded-sm bg-white/5 px-3 py-2">
+              <div className="border border-white/5 rounded-none bg-white/5 px-3 py-2">
                 <span className="text-xs font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>Risk: </span>
                 <span className="text-xs" style={{ color: "var(--steel-300)" }}>{item.risk}</span>
               </div>
@@ -533,10 +533,10 @@ export function GTProjectPlan() {
             <CardHead title="Deployment Checklist" sub="7 steps from kickoff to first live driver conversation" />
             <div className="flex flex-col gap-3">
               {DEPLOYMENT.map(s => (
-                <div key={s.step} className="flex gap-4 items-start p-3 rounded-sm bg-white/5">
+                <div key={s.step} className="flex gap-4 items-start p-3 rounded-none bg-white/5">
                   <span
-                    className="shrink-0 w-8 h-8 rounded-sm flex items-center justify-center text-sm font-semibold"
-                    style={{ background: "rgba(199,167,108,0.12)", color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}
+                    className="shrink-0 w-8 h-8 rounded-none flex items-center justify-center text-sm font-semibold"
+                    style={{ background: "rgba(37,99,235,0.10)", color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}
                   >
                     {s.step}
                   </span>

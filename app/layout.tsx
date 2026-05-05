@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 
-const instrumentSerif = Instrument_Serif({
+// universalSans substitute — Inter with negative tracking applied via CSS
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-instrument",
-  weight: "400",
-  style: ["normal", "italic"],
+  variable: "--font-figtree",
+  weight: ["400", "500", "600", "700"],
 });
 
-const jetbrainsMono = JetBrains_Mono({
+// GeistMono substitute — Space Mono with positive tracking applied via CSS
+const spaceMono = Space_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
-  weight: ["400", "500"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -33,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${jetbrainsMono.variable} h-full`}>
+    <html lang="en" className={`${inter.variable} ${spaceMono.variable} h-full`}>
       <body className="h-full antialiased">{children}</body>
     </html>
   );

@@ -29,7 +29,7 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
       style={{
         left: 0,
         right: 0,
-        background: scrolled ? "rgba(18,24,41,0.92)" : "transparent",
+        background: scrolled ? "rgba(12,12,11,0.95)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid var(--steel-700)" : "1px solid transparent",
       }}

@@ -24,12 +24,14 @@ export function LeadCaptureCard({ onSubmit, onSkip }: LeadCaptureCardProps) {
     setLoading(false);
   }
 
-  // Auto-dismiss after showing the confirmation briefly
+  // Auto-dismiss after confirmation
   useEffect(() => {
     if (!submitted) return;
     const t = setTimeout(() => onSkip(), 1800);
     return () => clearTimeout(t);
   }, [submitted, onSkip]);
+
+  const inputClass = "w-full bg-[#0c0c0b] border border-[#1f2228] rounded-[24px] px-4 py-2.5 text-sm text-white placeholder:text-[#7d8187] focus:outline-none focus:shadow-[rgb(113,113,122)_0px_0px_0px_2px] transition-all duration-150";
 
   if (submitted) {
     return (
@@ -40,8 +42,11 @@ export function LeadCaptureCard({ onSubmit, onSkip }: LeadCaptureCardProps) {
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
         className="w-full flex justify-start"
       >
-        <div className="max-w-[85%] sm:max-w-[75%] bg-[#0d1525] border border-[#5b8dee]/30 rounded-xl px-5 py-4">
-          <p className="text-white text-sm font-medium tracking-wide">
+        <div
+          className="max-w-[85%] sm:max-w-[75%] px-5 py-4"
+          style={{ background: "#1f2228", border: "1px solid #474747" }}
+        >
+          <p className="text-white text-sm font-normal" style={{ letterSpacing: "-0.025em" }}>
             Got it. Now, how can we help?
           </p>
         </div>
@@ -56,12 +61,15 @@ export function LeadCaptureCard({ onSubmit, onSkip }: LeadCaptureCardProps) {
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       className="w-full flex justify-start"
     >
-      <div className="w-full max-w-[85%] sm:max-w-[75%] bg-[#0d1525] border border-[#5b8dee]/30 rounded-xl px-5 py-4">
-        <p className="text-white text-sm font-medium tracking-wide mb-1">
+      <div
+        className="w-full max-w-[85%] sm:max-w-[75%] px-5 py-4"
+        style={{ background: "#1f2228", border: "1px solid #474747" }}
+      >
+        <p className="text-white text-sm font-normal mb-1" style={{ letterSpacing: "-0.025em" }}>
           Before we begin — who are we speaking with?
         </p>
-        <p className="text-white/40 text-xs tracking-wide mb-4">
-          We'll use this to follow up if it's a fit.
+        <p className="text-[#7d8187] text-xs tracking-wide mb-4">
+          We&apos;ll use this to follow up if it&apos;s a fit.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-2.5">
@@ -71,7 +79,7 @@ export function LeadCaptureCard({ onSubmit, onSkip }: LeadCaptureCardProps) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full bg-[#111a2e] border border-[#2a3a55] rounded-lg px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#5b8dee]/60 transition-colors duration-150"
+            className={inputClass}
           />
           <input
             type="email"
@@ -79,28 +87,29 @@ export function LeadCaptureCard({ onSubmit, onSkip }: LeadCaptureCardProps) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full bg-[#111a2e] border border-[#2a3a55] rounded-lg px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#5b8dee]/60 transition-colors duration-150"
+            className={inputClass}
           />
           <input
             type="text"
             placeholder="Company"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
-            className="w-full bg-[#111a2e] border border-[#2a3a55] rounded-lg px-3 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[#5b8dee]/60 transition-colors duration-150"
+            className={inputClass}
           />
 
           <div className="flex items-center gap-3 pt-1">
             <button
               type="submit"
               disabled={loading || !name.trim() || !email.trim()}
-              className="px-4 py-2 text-xs tracking-widest uppercase bg-[#5b8dee] text-[#0f1115] font-medium rounded-full hover:bg-[#7aa9f5] transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="px-5 py-2 text-xs tracking-widest uppercase font-medium text-[#0c0c0b] bg-white hover:bg-[#e5e7eb] transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ borderRadius: "9999px", fontFamily: "var(--font-jetbrains)" }}
             >
               {loading ? "Sending…" : "Send →"}
             </button>
             <button
               type="button"
               onClick={onSkip}
-              className="text-xs text-white/30 hover:text-white/60 tracking-wide transition-colors duration-150"
+              className="text-xs text-[#7d8187] hover:text-white tracking-wide transition-colors duration-150"
             >
               Skip
             </button>
