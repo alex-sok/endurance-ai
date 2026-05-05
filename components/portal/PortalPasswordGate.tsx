@@ -8,49 +8,56 @@ interface Props {
 }
 
 export function PortalPasswordGate({ slug }: Props) {
+  const [name,     setName]     = useState("");
+  const [email,    setEmail]    = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [error,    setError]    = useState<string | null>(null);
+  const [loading,  setLoading]  = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!password.trim() || loading) return;
+    if (!email.trim() || !password.trim() || loading) return;
 
     setLoading(true);
-    setError(false);
+    setError(null);
 
     try {
       const res = await fetch(`/api/portal/${slug}/auth`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ name: name.trim(), email: email.trim(), password }),
       });
 
       if (res.ok) {
-        // Cookie is set — reload to show the portal
         window.location.reload();
-      } else {
-        setError(true);
+      } else if (res.status === 401) {
+        setError("Incorrect access code. Try again.");
         setPassword("");
+      } else {
+        setError("Something went wrong. Please try again.");
       }
     } catch {
-      setError(true);
+      setError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }
   }
 
+  const inputStyle = {
+    background: "#0c0c0b",
+    border: "1px solid #1f2228",
+    borderRadius: "24px",
+    color: "#ffffff",
+    caretColor: "#2563eb",
+  } as const;
+
+  const inputFocusStyle = { border: "1px solid #2563eb" };
+
   return (
-    <div className="min-h-screen bg-[#0F1115] flex flex-col items-center justify-center px-6" style={{ fontFamily: "var(--font-rajdhani), sans-serif" }}>
-
-      {/* Background glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse 60% 40% at 50% 40%, rgba(91,141,238,0.07) 0%, transparent 70%)",
-        }}
-      />
-
+    <div
+      className="min-h-screen flex flex-col items-center justify-center px-6"
+      style={{ background: "#0c0c0b", fontFamily: "var(--font-figtree)" }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,75 +65,88 @@ export function PortalPasswordGate({ slug }: Props) {
         className="relative z-10 w-full max-w-sm"
       >
         {/* Wordmark */}
-        <p className="text-white/25 text-xs tracking-[0.3em] uppercase text-center mb-10">
-          Endurance AI Labs
-        </p>
+        <div className="flex justify-center mb-10">
+          <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="h-4 w-auto opacity-40" />
+        </div>
 
         {/* Card */}
-        <div
-          className="rounded-2xl px-8 py-10"
-          style={{
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.07)",
-          }}
-        >
-          <h1 className="text-xl font-semibold text-white tracking-tight mb-1">
+        <div style={{ background: "#1f2228", border: "1px solid #474747" }} className="px-8 py-10">
+          <h1
+            className="text-xl font-semibold text-white mb-1"
+            style={{ letterSpacing: "-0.025em" }}
+          >
             Private Briefing
           </h1>
-          <p className="text-sm text-white/35 tracking-wide mb-8">
-            Enter your access code to continue.
+          <p className="text-sm mb-8" style={{ color: "#7d8187" }}>
+            Identify yourself and enter your access code to continue.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => { setPassword(e.target.value); setError(false); }}
-                placeholder="Access code"
-                autoFocus
-                className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder:text-white/25 outline-none transition-all duration-150"
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: error
-                    ? "1px solid rgba(239,68,68,0.5)"
-                    : "1px solid rgba(255,255,255,0.08)",
-                  caretColor: "#5b8dee",
-                }}
-                onFocus={(e) => {
-                  if (!error) e.currentTarget.style.borderColor = "rgba(91,141,238,0.5)";
-                }}
-                onBlur={(e) => {
-                  if (!error) e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
-                }}
-              />
-              {error && (
-                <motion.p
-                  initial={{ opacity: 0, y: -4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mt-2 text-xs text-red-400/80 tracking-wide"
-                >
-                  Incorrect access code. Try again.
-                </motion.p>
-              )}
-            </div>
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name (optional)"
+              className="w-full px-4 py-3 text-sm placeholder:text-[#474747] outline-none transition-all duration-150"
+              style={inputStyle}
+              onFocus={(e) => Object.assign(e.currentTarget.style, inputFocusStyle)}
+              onBlur={(e)  => Object.assign(e.currentTarget.style, { border: "1px solid #1f2228" })}
+            />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); setError(null); }}
+              placeholder="Your email"
+              required
+              autoFocus
+              className="w-full px-4 py-3 text-sm placeholder:text-[#474747] outline-none transition-all duration-150"
+              style={inputStyle}
+              onFocus={(e) => Object.assign(e.currentTarget.style, inputFocusStyle)}
+              onBlur={(e)  => Object.assign(e.currentTarget.style, { border: "1px solid #1f2228" })}
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => { setPassword(e.target.value); setError(null); }}
+              placeholder="Access code"
+              required
+              className="w-full px-4 py-3 text-sm placeholder:text-[#474747] outline-none transition-all duration-150"
+              style={error ? { ...inputStyle, border: "1px solid rgba(239,68,68,0.6)" } : inputStyle}
+              onFocus={(e) => { if (!error) Object.assign(e.currentTarget.style, inputFocusStyle); }}
+              onBlur={(e)  => { if (!error) Object.assign(e.currentTarget.style, { border: "1px solid #1f2228" }); }}
+            />
 
-            <button
-              type="submit"
-              disabled={!password.trim() || loading}
-              className="w-full py-3 rounded-xl text-sm font-medium tracking-widest uppercase transition-all duration-150 disabled:opacity-30"
-              style={{
-                background: "#5b8dee",
-                color: "#0f1115",
-              }}
-            >
-              {loading ? "Verifying…" : "Enter →"}
-            </button>
+            {error && (
+              <motion.p
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-xs text-red-400/80"
+              >
+                {error}
+              </motion.p>
+            )}
+
+            <div className="pt-2">
+              <button
+                type="submit"
+                disabled={!email.trim() || !password.trim() || loading}
+                className="w-full py-3 text-sm font-medium text-[#0c0c0b] bg-white hover:bg-[#e5e7eb] transition-colors duration-150 disabled:opacity-30"
+                style={{ borderRadius: "9999px", letterSpacing: "-0.025em" }}
+              >
+                {loading ? "Verifying…" : "Enter →"}
+              </button>
+            </div>
           </form>
         </div>
 
-        <p className="text-white/15 text-xs tracking-wide text-center mt-6">
-          Contact <a href="mailto:hello@endurancelabs.ai" className="hover:text-white/40 transition-colors">hello@endurancelabs.ai</a> for access.
+        <p className="text-xs text-center mt-6" style={{ color: "#474747" }}>
+          Need access?{" "}
+          <a
+            href="mailto:hello@endurancelabs.ai"
+            className="hover:text-white transition-colors"
+          >
+            hello@endurancelabs.ai
+          </a>
         </p>
       </motion.div>
     </div>

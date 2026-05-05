@@ -107,6 +107,20 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-8">
+
+      {/* Analytics link */}
+      <a
+        href="/admin/analytics"
+        className="flex items-center justify-between px-5 py-3 transition-colors hover:bg-white/5"
+        style={{ border: "1px solid #1f2228" }}
+      >
+        <div>
+          <p className="text-sm text-white font-medium" style={{ letterSpacing: "-0.025em" }}>Portal Analytics</p>
+          <p className="text-xs mt-0.5" style={{ color: "#7d8187" }}>Visitor sessions, time on portal, sections viewed</p>
+        </div>
+        <span className="text-xs" style={{ color: "#7d8187", fontFamily: "var(--font-jetbrains)" }}>→</span>
+      </a>
+
       {/* Success result */}
       {result && (
         <div className="border border-[#5b8dee]/40 bg-[#5b8dee]/5 rounded-lg p-6 space-y-4">
