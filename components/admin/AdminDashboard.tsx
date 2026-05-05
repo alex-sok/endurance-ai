@@ -26,10 +26,13 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-xs font-bold tracking-widest uppercase text-white/40 mb-1">
+      <label
+        className="block text-xs font-semibold tracking-[0.25em] uppercase mb-1"
+        style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}
+      >
         {label}
       </label>
-      {hint && <p className="text-white/25 text-xs mb-2">{hint}</p>}
+      {hint && <p className="text-xs mb-2" style={{ color: "#cdcdc9" }}>{hint}</p>}
       {children}
     </div>
   );
@@ -44,7 +47,8 @@ function CopyButton({ value }: { value: string }) {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       }}
-      className="text-xs text-[#5b8dee] hover:text-white transition-colors ml-3"
+      className="text-xs transition-colors ml-3"
+      style={{ color: copied ? "#262510" : "#7a7974" }}
     >
       {copied ? "Copied!" : "Copy"}
     </button>
@@ -103,7 +107,21 @@ export default function AdminDashboard() {
   }
 
   const inputClass =
-    "w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-[#5b8dee] transition-colors";
+    "w-full bg-transparent px-0 py-2.5 text-sm text-[#262510] placeholder:text-[#cdcdc9] focus:outline-none transition-colors duration-150";
+
+  const inputStyle = {
+    borderBottom: "1px solid #cdcdc9",
+    borderTop: "none",
+    borderLeft: "none",
+    borderRight: "none",
+  };
+
+  const focusHandler = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    e.currentTarget.style.borderBottomColor = "#262510";
+  };
+  const blurHandler = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    e.currentTarget.style.borderBottomColor = "#cdcdc9";
+  };
 
   return (
     <div className="space-y-8">
@@ -111,51 +129,85 @@ export default function AdminDashboard() {
       {/* Analytics link */}
       <a
         href="/admin/analytics"
-        className="flex items-center justify-between px-5 py-3 transition-colors hover:bg-white/5"
-        style={{ border: "1px solid #1f2228" }}
+        className="flex items-center justify-between px-5 py-3 transition-colors hover:bg-[#e6e5e0]/50"
+        style={{ border: "1px solid #e6e5e0", borderRadius: "4px" }}
       >
         <div>
-          <p className="text-sm text-white font-medium" style={{ letterSpacing: "-0.025em" }}>Portal Analytics</p>
-          <p className="text-xs mt-0.5" style={{ color: "#7d8187" }}>Visitor sessions, time on portal, sections viewed</p>
+          <p className="text-sm font-medium text-[#262510]" style={{ letterSpacing: "-0.025em" }}>Portal Analytics</p>
+          <p className="text-xs mt-0.5" style={{ color: "#7a7974" }}>Visitor sessions, time on portal, sections viewed</p>
         </div>
-        <span className="text-xs" style={{ color: "#7d8187", fontFamily: "var(--font-jetbrains)" }}>→</span>
+        <span className="text-xs" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>→</span>
       </a>
 
       {/* Success result */}
       {result && (
-        <div className="border border-[#5b8dee]/40 bg-[#5b8dee]/5 rounded-lg p-6 space-y-4">
+        <div
+          className="p-6 space-y-4"
+          style={{ border: "1px solid #cdcdc9", borderRadius: "4px", background: "#f7f7f4" }}
+        >
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-[#5b8dee] animate-pulse" />
-            <span className="text-[#5b8dee] text-sm font-bold tracking-widest uppercase">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#262510] animate-pulse" />
+            <span
+              className="text-xs font-semibold tracking-[0.25em] uppercase text-[#262510]"
+              style={{ fontFamily: "var(--font-jetbrains)" }}
+            >
               Portal Live
             </span>
           </div>
 
           <div className="space-y-3">
-            <div className="flex items-center justify-between bg-white/5 rounded px-4 py-3">
+            <div
+              className="flex items-center justify-between px-4 py-3"
+              style={{ background: "#e6e5e0", borderRadius: "4px" }}
+            >
               <div>
-                <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Portal URL</p>
-                <p className="text-white text-sm font-mono">{result.portal_url}</p>
+                <p
+                  className="text-[10px] uppercase tracking-[0.2em] mb-1"
+                  style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  Portal URL
+                </p>
+                <p className="text-sm text-[#262510]" style={{ fontFamily: "var(--font-jetbrains)" }}>
+                  {result.portal_url}
+                </p>
               </div>
               <CopyButton value={result.portal_url} />
             </div>
 
-            <div className="flex items-center justify-between bg-white/5 rounded px-4 py-3">
+            <div
+              className="flex items-center justify-between px-4 py-3"
+              style={{ background: "#e6e5e0", borderRadius: "4px" }}
+            >
               <div>
-                <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Password</p>
-                <p className="text-white text-sm font-mono">{result.password}</p>
+                <p
+                  className="text-[10px] uppercase tracking-[0.2em] mb-1"
+                  style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}
+                >
+                  Password
+                </p>
+                <p className="text-sm text-[#262510]" style={{ fontFamily: "var(--font-jetbrains)" }}>
+                  {result.password}
+                </p>
               </div>
               <CopyButton value={result.password} />
             </div>
           </div>
 
           {result.sync && (
-            <div className="bg-white/5 rounded px-4 py-3">
-              <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Notion Sync</p>
+            <div
+              className="px-4 py-3"
+              style={{ background: "#e6e5e0", borderRadius: "4px" }}
+            >
+              <p
+                className="text-[10px] uppercase tracking-[0.2em] mb-2"
+                style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}
+              >
+                Notion Sync
+              </p>
               {result.sync.error ? (
-                <p className="text-yellow-400 text-sm">{result.sync.error}</p>
+                <p className="text-yellow-600 text-sm">{result.sync.error}</p>
               ) : (
-                <p className="text-white/70 text-sm">
+                <p className="text-sm text-[#262510]">
                   {result.sync.chunks_embedded} / {result.sync.chunks_found} chunks embedded
                   {result.sync.note && ` — ${result.sync.note}`}
                 </p>
@@ -163,7 +215,7 @@ export default function AdminDashboard() {
             </div>
           )}
 
-          <p className="text-white/30 text-xs">
+          <p className="text-xs" style={{ color: "#cdcdc9" }}>
             Add section content in Supabase → portal_sections. Re-sync anytime via the curl command.
           </p>
         </div>
@@ -171,10 +223,13 @@ export default function AdminDashboard() {
 
       {/* Creation form */}
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           <Field label="Client Name" hint="Full display name">
             <input
               className={inputClass}
+              style={inputStyle}
+              onFocus={focusHandler}
+              onBlur={blurHandler}
               placeholder="Capital Funding Partners"
               value={form.client_name}
               onChange={(e) => {
@@ -188,6 +243,9 @@ export default function AdminDashboard() {
           <Field label="Slug" hint="URL-safe identifier">
             <input
               className={inputClass}
+              style={inputStyle}
+              onFocus={focusHandler}
+              onBlur={blurHandler}
               placeholder="capfund1"
               value={form.slug}
               onChange={(e) => set("slug", e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ""))}
@@ -199,6 +257,9 @@ export default function AdminDashboard() {
         <Field label="Password" hint="Client login password">
           <input
             className={inputClass}
+            style={inputStyle}
+            onFocus={focusHandler}
+            onBlur={blurHandler}
             placeholder="GT2024"
             value={form.password}
             onChange={(e) => set("password", e.target.value)}
@@ -209,6 +270,9 @@ export default function AdminDashboard() {
         <Field label="Engagement Title" hint="Shown in the portal hero">
           <input
             className={inputClass}
+            style={inputStyle}
+            onFocus={focusHandler}
+            onBlur={blurHandler}
             placeholder="AI Underwriting Acceleration"
             value={form.hero_title}
             onChange={(e) => set("hero_title", e.target.value)}
@@ -216,9 +280,12 @@ export default function AdminDashboard() {
           />
         </Field>
 
-        <Field label="Engagement Overview" hint="1-2 sentences shown in the hero">
+        <Field label="Engagement Overview" hint="1–2 sentences shown in the hero">
           <textarea
             className={`${inputClass} resize-none h-20`}
+            style={inputStyle}
+            onFocus={focusHandler}
+            onBlur={blurHandler}
             placeholder="A strategic assessment of how AI can streamline your underwriting process..."
             value={form.hero_body}
             onChange={(e) => set("hero_body", e.target.value)}
@@ -228,6 +295,9 @@ export default function AdminDashboard() {
         <Field label="Notion Page URL" hint="Optional — paste the page URL to sync on creation">
           <input
             className={inputClass}
+            style={inputStyle}
+            onFocus={focusHandler}
+            onBlur={blurHandler}
             placeholder="https://www.notion.so/Client-Name-34cd4df250ad..."
             value={form.notion_url}
             onChange={(e) => set("notion_url", e.target.value)}
@@ -235,17 +305,21 @@ export default function AdminDashboard() {
         </Field>
 
         {error && (
-          <div className="bg-red-500/10 border border-red-500/30 rounded px-4 py-3">
-            <p className="text-red-400 text-sm">{error}</p>
+          <div
+            className="px-4 py-3"
+            style={{ background: "#fef2f2", border: "1px solid #fecaca", borderRadius: "4px" }}
+          >
+            <p className="text-red-600 text-sm">{error}</p>
           </div>
         )}
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#5b8dee] hover:bg-[#4a7de0] disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold py-3 rounded transition-colors"
+          className="w-full py-2.5 text-sm font-medium text-[#f7f7f4] bg-[#262510] hover:bg-[#141414] transition-colors duration-150 disabled:opacity-30"
+          style={{ borderRadius: "4px" }}
         >
-          {loading ? "Creating Portal..." : "Launch Portal"}
+          {loading ? "Creating Portal…" : "Launch Portal →"}
         </button>
       </form>
     </div>

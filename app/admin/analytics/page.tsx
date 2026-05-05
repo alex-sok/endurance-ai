@@ -115,8 +115,8 @@ export default async function AnalyticsPage({ searchParams }: Props) {
 
   return (
     <div
-      className="min-h-screen text-white"
-      style={{ background: "#0c0c0b", fontFamily: "var(--font-figtree)" }}
+      className="min-h-screen"
+      style={{ background: "#f7f7f4", color: "#262510", fontFamily: "var(--font-figtree)" }}
     >
       <div className="max-w-6xl mx-auto px-6 py-16">
 
@@ -125,21 +125,21 @@ export default async function AnalyticsPage({ searchParams }: Props) {
           <div>
             <p
               className="text-xs mb-1 uppercase"
-              style={{ color: "#7d8187", letterSpacing: "0.1em", fontFamily: "var(--font-jetbrains)" }}
+              style={{ color: "#7a7974", letterSpacing: "0.25em", fontFamily: "var(--font-jetbrains)" }}
             >
               Endurance AI Labs
             </p>
             <h1 className="text-2xl font-semibold" style={{ letterSpacing: "-0.025em" }}>
               Portal Analytics
               {activePortal && (
-                <span style={{ color: "#7d8187" }}> · {activePortal.client_name}</span>
+                <span style={{ color: "#7a7974" }}> · {activePortal.client_name}</span>
               )}
             </h1>
           </div>
           <a
             href="/admin"
-            className="text-xs px-4 py-2 transition-colors text-[#7d8187] hover:text-white"
-            style={{ border: "1px solid #474747", borderRadius: "9999px", fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em" }}
+            className="text-xs px-4 py-2 transition-colors text-[#7a7974] hover:text-[#262510]"
+            style={{ border: "1px solid #cdcdc9", borderRadius: "4px", fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em" }}
           >
             ← Mission Control
           </a>
@@ -154,10 +154,10 @@ export default async function AnalyticsPage({ searchParams }: Props) {
               style={{
                 fontFamily: "var(--font-jetbrains)",
                 letterSpacing: "0.1em",
-                borderRadius: "9999px",
-                border: !activePortalSlug ? "1px solid #ffffff" : "1px solid #474747",
-                color:  !activePortalSlug ? "#ffffff"           : "#7d8187",
-                background: !activePortalSlug ? "rgba(255,255,255,0.06)" : "transparent",
+                borderRadius: "4px",
+                border: !activePortalSlug ? "1px solid #262510" : "1px solid #cdcdc9",
+                color:  !activePortalSlug ? "#262510"           : "#7a7974",
+                background: !activePortalSlug ? "#e6e5e0" : "transparent",
               }}
             >
               All
@@ -170,10 +170,10 @@ export default async function AnalyticsPage({ searchParams }: Props) {
                 style={{
                   fontFamily: "var(--font-jetbrains)",
                   letterSpacing: "0.1em",
-                  borderRadius: "9999px",
-                  border: activePortalSlug === p.slug ? "1px solid #ffffff" : "1px solid #474747",
-                  color:  activePortalSlug === p.slug ? "#ffffff"           : "#7d8187",
-                  background: activePortalSlug === p.slug ? "rgba(255,255,255,0.06)" : "transparent",
+                  borderRadius: "4px",
+                  border: activePortalSlug === p.slug ? "1px solid #262510" : "1px solid #cdcdc9",
+                  color:  activePortalSlug === p.slug ? "#262510"           : "#7a7974",
+                  background: activePortalSlug === p.slug ? "#e6e5e0" : "transparent",
                 }}
               >
                 {p.client_name}
@@ -185,19 +185,22 @@ export default async function AnalyticsPage({ searchParams }: Props) {
         {/* Summary cards */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           {[
-            { label: "Sessions",       value: totalSessions },
+            { label: "Sessions",        value: totalSessions },
             { label: "Unique Visitors", value: uniqueEmails },
             { label: "Avg Time",        value: fmtDuration(avgDuration) },
           ].map((stat) => (
             <div
               key={stat.label}
               className="px-6 py-5"
-              style={{ background: "#1f2228", border: "1px solid #474747" }}
+              style={{ background: "#f7f7f4", border: "1px solid #e6e5e0", borderRadius: "4px" }}
             >
-              <p className="text-xs mb-2 uppercase" style={{ color: "#7d8187", letterSpacing: "0.1em", fontFamily: "var(--font-jetbrains)" }}>
+              <p
+                className="text-xs mb-2 uppercase"
+                style={{ color: "#7a7974", letterSpacing: "0.2em", fontFamily: "var(--font-jetbrains)" }}
+              >
                 {stat.label}
               </p>
-              <p className="text-3xl font-semibold" style={{ letterSpacing: "-0.025em" }}>
+              <p className="text-3xl font-semibold text-[#262510]" style={{ letterSpacing: "-0.025em" }}>
                 {stat.value}
               </p>
             </div>
@@ -207,23 +210,23 @@ export default async function AnalyticsPage({ searchParams }: Props) {
         {/* Sessions table */}
         {rows.length === 0 ? (
           <div
-            className="text-center py-20"
-            style={{ border: "1px solid #1f2228", color: "#474747" }}
+            className="text-center py-20 text-sm"
+            style={{ border: "1px solid #e6e5e0", color: "#cdcdc9", borderRadius: "4px" }}
           >
             No sessions yet{activePortal ? ` for ${activePortal.client_name}` : ""}.
           </div>
         ) : (
-          <div style={{ border: "1px solid #1f2228" }}>
+          <div style={{ border: "1px solid #e6e5e0", borderRadius: "4px", overflow: "hidden" }}>
             {/* Table header */}
             <div
               className="grid gap-4 px-5 py-3 text-xs uppercase"
               style={{
                 gridTemplateColumns: activePortalSlug ? "1fr 1fr 160px 80px 100px" : "1fr 1fr 1fr 160px 80px 100px",
-                background: "#1f2228",
-                color: "#7d8187",
-                letterSpacing: "0.1em",
+                background: "#e6e5e0",
+                color: "#7a7974",
+                letterSpacing: "0.2em",
                 fontFamily: "var(--font-jetbrains)",
-                borderBottom: "1px solid #474747",
+                borderBottom: "1px solid #cdcdc9",
               }}
             >
               <span>Visitor</span>
@@ -238,27 +241,27 @@ export default async function AnalyticsPage({ searchParams }: Props) {
             {rows.map((row) => (
               <div
                 key={row.id}
-                className="grid gap-4 px-5 py-4 items-start transition-colors hover:bg-white/[0.02]"
+                className="grid gap-4 px-5 py-4 items-start transition-colors hover:bg-[#e6e5e0]/30"
                 style={{
                   gridTemplateColumns: activePortalSlug ? "1fr 1fr 160px 80px 100px" : "1fr 1fr 1fr 160px 80px 100px",
-                  borderBottom: "1px solid #1f2228",
+                  borderBottom: "1px solid #e6e5e0",
                 }}
               >
                 {/* Visitor */}
                 <div>
-                  <p className="text-sm text-white font-medium" style={{ letterSpacing: "-0.025em" }}>
-                    {row.name || <span style={{ color: "#474747" }}>—</span>}
+                  <p className="text-sm font-medium text-[#262510]" style={{ letterSpacing: "-0.025em" }}>
+                    {row.name || <span style={{ color: "#cdcdc9" }}>—</span>}
                   </p>
-                  <p className="text-xs mt-0.5" style={{ color: "#7d8187" }}>
-                    {row.email || <span style={{ color: "#474747" }}>—</span>}
+                  <p className="text-xs mt-0.5" style={{ color: "#7a7974" }}>
+                    {row.email || <span style={{ color: "#cdcdc9" }}>—</span>}
                   </p>
                 </div>
 
                 {/* Portal — hidden when filtered */}
                 {!activePortalSlug && (
                   <div>
-                    <p className="text-sm text-white">{row.portals?.client_name ?? "—"}</p>
-                    <p className="text-xs mt-0.5" style={{ color: "#474747", fontFamily: "var(--font-jetbrains)" }}>
+                    <p className="text-sm text-[#262510]">{row.portals?.client_name ?? "—"}</p>
+                    <p className="text-xs mt-0.5" style={{ color: "#cdcdc9", fontFamily: "var(--font-jetbrains)" }}>
                       /mission/{row.portals?.slug ?? "—"}
                     </p>
                   </div>
@@ -266,9 +269,9 @@ export default async function AnalyticsPage({ searchParams }: Props) {
 
                 {/* Accessed */}
                 <div>
-                  <p className="text-xs" style={{ color: "#7d8187" }}>{fmt(row.started_at)}</p>
+                  <p className="text-xs" style={{ color: "#7a7974" }}>{fmt(row.started_at)}</p>
                   {row.last_seen_at !== row.started_at && (
-                    <p className="text-xs mt-0.5" style={{ color: "#474747" }}>
+                    <p className="text-xs mt-0.5" style={{ color: "#cdcdc9" }}>
                       Last seen {fmt(row.last_seen_at)}
                     </p>
                   )}
@@ -277,18 +280,19 @@ export default async function AnalyticsPage({ searchParams }: Props) {
                 {/* Sections */}
                 <div className="flex flex-wrap gap-1">
                   {row.section_views.length === 0 ? (
-                    <span style={{ color: "#474747", fontSize: "12px" }}>—</span>
+                    <span style={{ color: "#cdcdc9", fontSize: "12px" }}>—</span>
                   ) : (
                     [...new Map(row.section_views.map((v) => [v.section_slug, v])).values()].map((v) => (
                       <span
                         key={v.section_slug}
                         className="px-1.5 py-0.5 text-[10px] uppercase"
                         style={{
-                          background: "#0c0c0b",
-                          border: "1px solid #1f2228",
-                          color: "#7d8187",
+                          background: "#e6e5e0",
+                          border: "1px solid #cdcdc9",
+                          color: "#7a7974",
                           letterSpacing: "0.05em",
                           fontFamily: "var(--font-jetbrains)",
+                          borderRadius: "4px",
                         }}
                       >
                         {v.section_slug}
@@ -301,7 +305,7 @@ export default async function AnalyticsPage({ searchParams }: Props) {
                 {/* Duration */}
                 <p
                   className="text-sm"
-                  style={{ color: row.duration_seconds ? "#ffffff" : "#474747", fontFamily: "var(--font-jetbrains)" }}
+                  style={{ color: row.duration_seconds ? "#262510" : "#cdcdc9", fontFamily: "var(--font-jetbrains)" }}
                 >
                   {fmtDuration(row.duration_seconds)}
                 </p>
@@ -309,7 +313,7 @@ export default async function AnalyticsPage({ searchParams }: Props) {
                 {/* Chat turns */}
                 <p
                   className="text-sm"
-                  style={{ color: row.chat_turns > 0 ? "#2563eb" : "#474747", fontFamily: "var(--font-jetbrains)" }}
+                  style={{ color: row.chat_turns > 0 ? "#f54e00" : "#cdcdc9", fontFamily: "var(--font-jetbrains)" }}
                 >
                   {row.chat_turns > 0 ? `${row.chat_turns} turns` : "—"}
                 </p>
@@ -318,7 +322,7 @@ export default async function AnalyticsPage({ searchParams }: Props) {
           </div>
         )}
 
-        <p className="text-xs mt-4" style={{ color: "#474747", fontFamily: "var(--font-jetbrains)" }}>
+        <p className="text-xs mt-4" style={{ color: "#cdcdc9", fontFamily: "var(--font-jetbrains)" }}>
           Showing last 200 sessions{activePortal ? ` for ${activePortal.client_name}` : " across all portals"}
         </p>
 

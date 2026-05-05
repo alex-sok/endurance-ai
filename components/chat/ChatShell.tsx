@@ -28,7 +28,7 @@ function StreamingBubble({ text }: { text: string }) {
       <div className="max-w-[85%] sm:max-w-[75%]">
         <p className="text-white text-base leading-[1.7] font-medium tracking-wide whitespace-pre-wrap">
           {text}
-          <span className="inline-block w-0.5 h-[1em] bg-[#2563eb] ml-0.5 animate-pulse align-middle" />
+          <span className="inline-block w-0.5 h-[1em] ml-0.5 animate-pulse align-middle" style={{ background: "#f54e00" }} />
         </p>
       </div>
     </motion.div>
@@ -260,7 +260,7 @@ export function ChatShell() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0 border-b border-[#1f2228]"
+        className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0 border-b border-[#e6e5e0]"
       >
         <div className="flex items-center">
           <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="h-5 w-auto" />
@@ -268,7 +268,7 @@ export function ChatShell() {
 
         <a
           href="mailto:hello@endurancelabs.ai"
-          className="hidden sm:inline-flex text-xs text-[#7d8187] hover:text-white transition-colors duration-150 tracking-widest uppercase"
+          className="hidden sm:inline-flex text-xs text-[#7a7974] hover:text-[#262510] transition-colors duration-150 tracking-widest uppercase"
           style={{ fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em" }}
         >
           hello@endurancelabs.ai
@@ -351,24 +351,23 @@ export function ChatShell() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => fireLeadNotify(state.messages)}
-                className="px-5 py-2 text-xs uppercase transition-all duration-150 text-white hover:bg-white hover:text-[#0c0c0b]"
+                className="px-4 py-2 text-xs uppercase transition-all duration-150 text-[#f7f7f4] bg-[#262510] hover:bg-[#141414]"
                 style={{
                   fontFamily: "var(--font-jetbrains)",
                   letterSpacing: "0.1em",
-                  border: "1px solid rgba(255,255,255,0.25)",
-                  borderRadius: "9999px",
+                  borderRadius: "4px",
                 }}
               >
                 Brief us →
               </a>
               <button
                 onClick={() => { fireLeadNotify(state.messages); sendMessage("I'd like to talk to the team.", true); }}
-                className="px-5 py-2 text-xs uppercase transition-all duration-150 text-[#7d8187] hover:text-white hover:border-white/25"
+                className="px-4 py-2 text-xs uppercase transition-all duration-150 text-[#f54e00] hover:bg-[#f54e00]/5"
                 style={{
                   fontFamily: "var(--font-jetbrains)",
                   letterSpacing: "0.1em",
-                  border: "1px solid #474747",
-                  borderRadius: "9999px",
+                  border: "1px solid #f54e00",
+                  borderRadius: "4px",
                 }}
               >
                 Talk to the team
@@ -383,7 +382,7 @@ export function ChatShell() {
           disabled={state.inputDisabled || state.isTyping || isStreaming}
         />
 
-        <p className="text-center text-[11px] uppercase" style={{ fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em", color: "#7d8187" }}>
+        <p className="text-center text-[11px] uppercase" style={{ fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em", color: "#7a7974" }}>
           Endurance AI Labs · AI transformation, delivered under contract
         </p>
       </div>

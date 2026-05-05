@@ -21,9 +21,8 @@ export function PortalShell({ portal, sections }: Props) {
   usePortalAnalytics(portal.slug, activeSection);
 
   return (
-    <div className="min-h-screen text-[var(--bone)]" style={{ background: "var(--ink)", fontFamily: "var(--font-figtree)" }}>
+    <div className="min-h-screen" style={{ background: "#f7f7f4", fontFamily: "var(--font-figtree)", color: "#262510" }}>
 
-      {/* ── Top navigation bar ─────────────────────────────────────────────── */}
       <PortalNav
         portal={portal}
         sections={sections}
@@ -32,18 +31,13 @@ export function PortalShell({ portal, sections }: Props) {
         onOpenChat={() => setMobileOpen(true)}
       />
 
-      {/* ── Main content — right-padded on desktop to clear the chat rail ──── */}
       <div className="lg:pr-[380px]">
-
-        {/* ── Hero ─────────────────────────────────────────────────────────── */}
         <PortalHero
           portal={portal}
           sections={sections}
           onSelectSection={(slug) => setActiveSection(slug)}
           onOpenChat={() => setMobileOpen(true)}
         />
-
-        {/* ── Visual Canvas ────────────────────────────────────────────────── */}
         <div ref={canvasRef}>
           <PortalCanvas
             portal={portal}
@@ -52,16 +46,13 @@ export function PortalShell({ portal, sections }: Props) {
             onSelectSection={setActiveSection}
           />
         </div>
-
       </div>
 
-      {/* ── Chat — always visible on desktop, toggled on mobile ────────────── */}
       <PortalChat
         portal={portal}
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
       />
-
     </div>
   );
 }

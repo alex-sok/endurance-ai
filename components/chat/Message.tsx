@@ -8,59 +8,48 @@ import type { ChatMessage } from "@/types/chat";
 import { cn } from "@/lib/utils";
 import type { Components } from "react-markdown";
 
-interface MessageProps {
-  message: ChatMessage;
-  isLast?: boolean;
-  typewriter?: boolean;
-}
-
-// Shared markdown components for consistent rendering
 const markdownComponents: Components = {
   p: ({ children }) => (
-    <p className="mb-3 last:mb-0 text-white text-base leading-[1.7] font-medium tracking-wide">{children}</p>
+    <p className="mb-3 last:mb-0 text-sm leading-[1.6]" style={{ color: "#262510" }}>{children}</p>
   ),
   strong: ({ children }) => (
-    <strong className="font-semibold text-[#e8e4d8]">{children}</strong>
+    <strong className="font-semibold" style={{ color: "#141414" }}>{children}</strong>
   ),
   ul: ({ children }) => (
-    <ul className="mb-3 space-y-1.5 pl-0 list-none">{children}</ul>
+    <ul className="mb-3 space-y-1 pl-0 list-none">{children}</ul>
   ),
   li: ({ children }) => (
-    <li className="flex gap-2 text-white text-base leading-[1.7] font-medium">
-      <span className="text-[#a78bfa] mt-1 shrink-0">▸</span>
+    <li className="flex gap-2 text-sm leading-[1.6]" style={{ color: "#262510" }}>
+      <span className="mt-[6px] shrink-0 w-1 h-1 rounded-full" style={{ background: "#7a7974" }} />
       <span>{children}</span>
     </li>
   ),
   a: ({ href, children }) => (
     <a href={href} target="_blank" rel="noopener noreferrer"
-      className="text-[#5b8dee] underline underline-offset-2 decoration-[#5b8dee]/30 hover:decoration-[#5b8dee] transition-colors">
+      className="underline underline-offset-2 transition-colors hover:opacity-70"
+      style={{ color: "#f54e00" }}>
       {children}
     </a>
   ),
   h1: ({ children }) => (
-    <h1 className="text-base font-semibold text-[#e8e4d8] mb-2 mt-4 first:mt-0 tracking-wide uppercase">{children}</h1>
+    <h1 className="text-sm font-semibold mb-2 mt-4 first:mt-0 uppercase tracking-wide" style={{ color: "#141414" }}>{children}</h1>
   ),
   h2: ({ children }) => (
-    <h2 className="text-xs font-semibold text-[#5b8dee] mb-1.5 mt-3 first:mt-0 uppercase tracking-widest">{children}</h2>
+    <h2 className="text-xs font-semibold mb-1.5 mt-3 first:mt-0 uppercase tracking-widest" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{children}</h2>
   ),
 };
 
-// Typewriter reveal for the welcome message
 function TypewriterText({ text }: { text: string }) {
   const [displayed, setDisplayed] = useState("");
   const [done, setDone] = useState(false);
 
   useEffect(() => {
     let i = 0;
-    // Brief pause before starting so the page settles
     const start = setTimeout(() => {
       const interval = setInterval(() => {
         i++;
         setDisplayed(text.slice(0, i));
-        if (i >= text.length) {
-          setDone(true);
-          clearInterval(interval);
-        }
+        if (i >= text.length) { setDone(true); clearInterval(interval); }
       }, 22);
       return () => clearInterval(interval);
     }, 400);
@@ -68,16 +57,18 @@ function TypewriterText({ text }: { text: string }) {
   }, [text]);
 
   return (
-    <p className="text-white text-lg leading-[1.75] font-medium tracking-wide">
+    <p className="text-sm leading-[1.6]" style={{ color: "#262510" }}>
       {displayed}
       {!done && (
-        <span className="inline-block w-0.5 h-[1.1em] bg-[#5b8dee] ml-0.5 animate-pulse align-middle" />
+        <span className="inline-block w-0.5 h-[1.1em] ml-0.5 animate-pulse align-middle" style={{ background: "#f54e00" }} />
       )}
     </p>
   );
 }
 
-export function Message({ message, typewriter = false }: MessageProps) {
+export function Message({ message, typewriter = false }: {
+  message: ChatMessage; isLast?: boolean; typewriter?: boolean;
+}) {
   const isAssistant = message.role === "assistant";
 
   return (
@@ -88,11 +79,13 @@ export function Message({ message, typewriter = false }: MessageProps) {
       className={cn("w-full flex", isAssistant ? "justify-start" : "justify-end")}
     >
       <div
-        className={cn(
-          "max-w-[85%] sm:max-w-[75%]",
-          !isAssistant &&
-            "bg-[#111a2e] border border-[#5b8dee]/20 text-[#5b8dee] rounded-2xl rounded-br-sm px-4 py-3"
-        )}
+        className={cn("max-w-[85%] sm:max-w-[75%]")}
+        style={!isAssistant ? {
+          background: "#e6e5e0",
+          border: "1px solid #cdcdc9",
+          borderRadius: "4px",
+          padding: "8px 14px",
+        } : undefined}
       >
         {isAssistant ? (
           typewriter ? (
@@ -105,7 +98,7 @@ export function Message({ message, typewriter = false }: MessageProps) {
             </div>
           )
         ) : (
-          <p className="text-base leading-relaxed font-medium tracking-wide">{message.content}</p>
+          <p className="text-sm leading-relaxed" style={{ color: "#262510" }}>{message.content}</p>
         )}
       </div>
     </motion.div>
@@ -126,14 +119,9 @@ export function TypingIndicator() {
           <motion.span
             key={i}
             className="w-1.5 h-1.5 rounded-full"
-            style={{ background: i === 0 ? "#a78bfa" : "#5b8dee" }}
-            animate={{ opacity: [0.2, 1, 0.2] }}
-            transition={{
-              duration: 1.2,
-              repeat: Infinity,
-              delay: i * 0.2,
-              ease: "easeInOut",
-            }}
+            style={{ background: "#cdcdc9" }}
+            animate={{ opacity: [0.3, 1, 0.3] }}
+            transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
           />
         ))}
       </div>

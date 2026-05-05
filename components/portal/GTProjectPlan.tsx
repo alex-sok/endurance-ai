@@ -226,7 +226,7 @@ function Section({ children }: { children: React.ReactNode }) {
 
 function Card({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`border border-white/10 rounded-none bg-white/[0.03] p-5 ${className}`}>
+    <div className={`border border-[#e6e5e0] rounded-none bg-[#f7f7f4] p-5 ${className}`}>
       {children}
     </div>
   );
@@ -235,7 +235,7 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 function CardHead({ title, sub }: { title: string; sub?: string }) {
   return (
     <div className="mb-4">
-      <p className="text-base font-semibold text-white">{title}</p>
+      <p className="text-base font-semibold text-[#262510]">{title}</p>
       {sub && <p className="text-xs mt-0.5" style={{ color: "var(--steel-400)", fontFamily: "var(--font-jetbrains)" }}>{sub}</p>}
     </div>
   );
@@ -255,8 +255,8 @@ function Bullet({ children, color = "signal" }: { children: React.ReactNode; col
 
 function Badge({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "outline" | "green" | "yellow" }) {
   const styles: Record<string, string> = {
-    default: "border border-white/10 text-white/60",
-    outline: "border border-white/20 text-white/50",
+    default: "border border-[#e6e5e0] text-[#262510]/60",
+    outline: "border border-white/20 text-[#262510]/50",
     green: "border border-green-500/30 text-green-400 bg-green-500/10",
     yellow: "border border-yellow-500/30 text-yellow-400 bg-yellow-500/10",
   };
@@ -275,7 +275,7 @@ function HBar({ label, value, max }: { label: string; value: number; max: number
   return (
     <div className="flex items-center gap-3">
       <span className="text-xs w-48 shrink-0 text-right" style={{ color: "var(--steel-400)", fontFamily: "var(--font-jetbrains)" }}>{label}</span>
-      <div className="flex-1 h-1.5 bg-white/5 rounded-none overflow-hidden">
+      <div className="flex-1 h-1.5 bg-[#e6e5e0]/50 rounded-none overflow-hidden">
         <div className="h-full rounded-none" style={{ width: `${pct}%`, background: "var(--signal)" }} />
       </div>
       <span className="text-xs w-8 shrink-0" style={{ color: "var(--steel-400)", fontFamily: "var(--font-jetbrains)" }}>{value}h</span>
@@ -294,13 +294,13 @@ export function GTProjectPlan() {
     <div className="flex flex-col gap-5">
 
       {/* Header */}
-      <div className="border border-white/10 rounded-none bg-white/[0.03] p-5">
+      <div className="border border-[#e6e5e0] rounded-none bg-[#f7f7f4] p-5">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div>
             <p className="text-xs mb-1 uppercase tracking-widest" style={{ color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}>
               Detailed Project Plan
             </p>
-            <p className="text-lg font-semibold text-white">General Trucking AI Recruiting System</p>
+            <p className="text-lg font-semibold text-[#262510]">General Trucking AI Recruiting System</p>
             <p className="text-xs mt-0.5" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>
               Endurance AI Labs · May 2026 · Confidential
             </p>
@@ -346,9 +346,9 @@ export function GTProjectPlan() {
               { label: "Full Project Fee", value: "$27,000" },
               { label: "Entry Scope Fee", value: "< $12,000" },
             ].map(m => (
-              <div key={m.label} className="border border-white/10 rounded-none bg-white/[0.03] p-4">
+              <div key={m.label} className="border border-[#e6e5e0] rounded-none bg-[#f7f7f4] p-4">
                 <p className="text-xs mb-1" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{m.label}</p>
-                <p className="text-lg font-semibold text-white">{m.value}</p>
+                <p className="text-lg font-semibold text-[#262510]">{m.value}</p>
               </div>
             ))}
           </div>
@@ -358,13 +358,13 @@ export function GTProjectPlan() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
+                  <tr className="border-b border-[#e6e5e0]">
                     {["Phase", "Deliverable", "Timeline", "Fee"].map(h => (
                       <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5">
+                <tbody className="divide-y divide-[#e6e5e0]">
                   {[
                     { phase: "1", del: "Job Description Optimization", timeline: "Week 1", fee: "Free" },
                     { phase: "2", del: "AI Voice Agent + TenStreet Integration", timeline: "Weeks 1–3", fee: "Sub-$12K entry / $27K full" },
@@ -373,7 +373,7 @@ export function GTProjectPlan() {
                   ].map(r => (
                     <tr key={r.phase}>
                       <td className="py-3 pr-6 text-xs font-medium" style={{ color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}>{r.phase}</td>
-                      <td className="py-3 pr-6 text-white">{r.del}</td>
+                      <td className="py-3 pr-6 text-[#262510]">{r.del}</td>
                       <td className="py-3 pr-6 whitespace-nowrap" style={{ color: "var(--steel-400)" }}>{r.timeline}</td>
                       <td className="py-3" style={{ color: "var(--steel-400)" }}>{r.fee}</td>
                     </tr>
@@ -388,13 +388,13 @@ export function GTProjectPlan() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
+                  <tr className="border-b border-[#e6e5e0]">
                     {["Name", "Role", "Org", "Involvement"].map(h => (
                       <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5">
+                <tbody className="divide-y divide-[#e6e5e0]">
                   {[
                     { name: "Chris Meers", role: "CEO", org: "General Trucking", inv: "Executive sponsor — final decisions, monthly reviews" },
                     { name: "Desher Guthrie", role: "Director of Recruiting", org: "General Trucking", inv: "Day-to-day champion — conversation flows, TenStreet, acceptance testing" },
@@ -406,7 +406,7 @@ export function GTProjectPlan() {
                     { name: "James Collins", role: "Connector / Advisor", org: "External", inv: "Relationship bridge — kept informed of milestones" },
                   ].map(r => (
                     <tr key={r.name}>
-                      <td className="py-3 pr-6 whitespace-nowrap font-medium text-white">{r.name}</td>
+                      <td className="py-3 pr-6 whitespace-nowrap font-medium text-[#262510]">{r.name}</td>
                       <td className="py-3 pr-6 whitespace-nowrap" style={{ color: "var(--steel-400)" }}>{r.role}</td>
                       <td className="py-3 pr-6 whitespace-nowrap" style={{ color: "var(--steel-400)" }}>{r.org}</td>
                       <td className="py-3" style={{ color: "var(--steel-300)" }}>{r.inv}</td>
@@ -433,7 +433,7 @@ export function GTProjectPlan() {
           {ENGINEERING.map(r => (
             <Card key={r.role}>
               <div className="flex items-start justify-between gap-3 flex-wrap mb-3">
-                <p className="font-semibold text-white">{r.role}</p>
+                <p className="font-semibold text-[#262510]">{r.role}</p>
                 <div className="flex gap-2">
                   <Badge variant="outline">{r.allocation}</Badge>
                   <Badge variant="outline">{r.weeks}</Badge>
@@ -455,9 +455,9 @@ export function GTProjectPlan() {
               <div className="flex items-start justify-between gap-3 flex-wrap mb-4">
                 <div>
                   <p className="text-xs mb-0.5 uppercase tracking-widest" style={{ color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}>{w.week}</p>
-                  <p className="font-semibold text-white">{w.label}</p>
+                  <p className="font-semibold text-[#262510]">{w.label}</p>
                 </div>
-                <div className="flex items-center gap-2 border border-white/10 rounded-none px-3 py-1">
+                <div className="flex items-center gap-2 border border-[#e6e5e0] rounded-none px-3 py-1">
                   <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--signal)" }} />
                   <span className="text-xs" style={{ color: "var(--steel-300)", fontFamily: "var(--font-jetbrains)" }}>{w.milestone}</span>
                 </div>
@@ -508,7 +508,7 @@ export function GTProjectPlan() {
           {INTEGRATIONS.map(item => (
             <Card key={item.system}>
               <div className="flex items-start justify-between gap-3 flex-wrap mb-3">
-                <p className="font-semibold text-white">{item.system}</p>
+                <p className="font-semibold text-[#262510]">{item.system}</p>
                 <div className="flex gap-2">
                   <Badge variant={item.type === "Core" ? "default" : "outline"}>{item.type}</Badge>
                   <Badge variant="outline">{item.method}</Badge>
@@ -517,7 +517,7 @@ export function GTProjectPlan() {
               <div className="flex flex-col gap-1.5 mb-3">
                 {item.details.map(d => <Bullet key={d}>{d}</Bullet>)}
               </div>
-              <div className="border border-white/5 rounded-none bg-white/5 px-3 py-2">
+              <div className="border border-white/5 rounded-none bg-[#e6e5e0]/50 px-3 py-2">
                 <span className="text-xs font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>Risk: </span>
                 <span className="text-xs" style={{ color: "var(--steel-300)" }}>{item.risk}</span>
               </div>
@@ -533,7 +533,7 @@ export function GTProjectPlan() {
             <CardHead title="Deployment Checklist" sub="7 steps from kickoff to first live driver conversation" />
             <div className="flex flex-col gap-3">
               {DEPLOYMENT.map(s => (
-                <div key={s.step} className="flex gap-4 items-start p-3 rounded-none bg-white/5">
+                <div key={s.step} className="flex gap-4 items-start p-3 rounded-none bg-[#e6e5e0]/50">
                   <span
                     className="shrink-0 w-8 h-8 rounded-none flex items-center justify-center text-sm font-semibold"
                     style={{ background: "rgba(37,99,235,0.10)", color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}
@@ -542,7 +542,7 @@ export function GTProjectPlan() {
                   </span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2 flex-wrap mb-1">
-                      <p className="font-semibold text-white text-sm">{s.title}</p>
+                      <p className="font-semibold text-[#262510] text-sm">{s.title}</p>
                       <Badge variant="outline">{s.when}</Badge>
                     </div>
                     <p className="text-xs mb-1" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>Owner: {s.who}</p>
@@ -578,7 +578,7 @@ export function GTProjectPlan() {
           {SUPPORT.map(t => (
             <Card key={t.tier}>
               <div className="flex items-center justify-between gap-2 flex-wrap mb-3">
-                <p className="font-semibold text-white">{t.tier}</p>
+                <p className="font-semibold text-[#262510]">{t.tier}</p>
                 <Badge variant="outline">{t.cadence}</Badge>
               </div>
               <div className="flex flex-col gap-1.5">
@@ -592,13 +592,13 @@ export function GTProjectPlan() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
+                  <tr className="border-b border-[#e6e5e0]">
                     {["Issue Type", "Response Time", "Resolution Target"].map(h => (
                       <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5">
+                <tbody className="divide-y divide-[#e6e5e0]">
                   {[
                     { type: "System outage / voice agent down", response: "Immediate (auto-alert)", resolution: "2 hours" },
                     { type: "TenStreet integration failure", response: "Same business day", resolution: "4 hours" },
@@ -607,7 +607,7 @@ export function GTProjectPlan() {
                     { type: "General question / change request", response: "24 hours", resolution: "48 hours" },
                   ].map(r => (
                     <tr key={r.type}>
-                      <td className="py-3 pr-6 text-white">{r.type}</td>
+                      <td className="py-3 pr-6 text-[#262510]">{r.type}</td>
                       <td className="py-3 pr-6 whitespace-nowrap" style={{ color: "var(--signal)" }}>{r.response}</td>
                       <td className="py-3 whitespace-nowrap" style={{ color: "var(--steel-400)" }}>{r.resolution}</td>
                     </tr>
@@ -625,7 +625,7 @@ export function GTProjectPlan() {
           {RISKS.map(r => (
             <Card key={r.risk}>
               <div className="flex items-start justify-between gap-3 flex-wrap mb-2">
-                <p className="font-semibold text-white">{r.risk}</p>
+                <p className="font-semibold text-[#262510]">{r.risk}</p>
                 <Badge variant={r.likelihood === "Low" ? "green" : "yellow"}>{r.likelihood} likelihood</Badge>
               </div>
               <p className="text-sm leading-relaxed" style={{ color: "var(--steel-300)" }}>{r.mitigation}</p>
@@ -637,13 +637,13 @@ export function GTProjectPlan() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-white/10">
+                  <tr className="border-b border-[#e6e5e0]">
                     {["Metric", "Baseline (Today)", "Target (Week 4)"].map(h => (
                       <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/5">
+                <tbody className="divide-y divide-[#e6e5e0]">
                   {[
                     { metric: "Lead-to-application conversion rate", baseline: "~10% (3–5 of 20–40 daily leads)", target: "25–40%" },
                     { metric: "Time from lead to qualified application", baseline: "3–5 days", target: "< 1 hour" },
@@ -653,7 +653,7 @@ export function GTProjectPlan() {
                     { metric: "Monthly compute cost", baseline: "N/A", target: "$300–$500 pass-through (no markup)" },
                   ].map(r => (
                     <tr key={r.metric}>
-                      <td className="py-3 pr-6 text-white">{r.metric}</td>
+                      <td className="py-3 pr-6 text-[#262510]">{r.metric}</td>
                       <td className="py-3 pr-6" style={{ color: "var(--steel-400)" }}>{r.baseline}</td>
                       <td className="py-3 font-medium" style={{ color: "var(--signal)" }}>{r.target}</td>
                     </tr>
