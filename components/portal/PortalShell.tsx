@@ -6,6 +6,7 @@ import { PortalNav } from "./PortalNav";
 import { PortalHero } from "./PortalHero";
 import { PortalCanvas } from "./PortalCanvas";
 import { PortalChat } from "./PortalChat";
+import { usePortalAnalytics } from "@/hooks/usePortalAnalytics";
 
 interface Props {
   portal: Portal;
@@ -14,10 +15,10 @@ interface Props {
 
 export function PortalShell({ portal, sections }: Props) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  // mobileOpen controls the chat on small screens only.
-  // On desktop (lg+) the chat panel is always visible via CSS.
   const [mobileOpen, setMobileOpen] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
+
+  usePortalAnalytics(portal.slug, activeSection);
 
   return (
     <div className="min-h-screen text-[var(--bone)]" style={{ background: "var(--ink)", fontFamily: "var(--font-figtree)" }}>

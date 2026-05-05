@@ -25,56 +25,76 @@ export async function POST(
   }
 
   let password: string;
+  let email: string;
+  let name: string;
   try {
     const body = await request.json();
     password = typeof body.password === "string" ? body.password.trim() : "";
+    email    = typeof body.email    === "string" ? body.email.trim().toLowerCase() : "";
+    name     = typeof body.name     === "string" ? body.name.trim() : "";
     if (!password) return new Response("Password required", { status: 400 });
+    if (!email)    return new Response("Email required",    { status: 400 });
   } catch {
     return new Response("Invalid JSON", { status: 400 });
   }
 
-  // Fetch the stored hash using service role (bypasses RLS — password_hash never hits the client)
   const supabase = await createClient(true);
   const { data: portal, error } = await supabase
     .from("portals")
-    .select("password_hash")
+    .select("id, password_hash")
     .eq("slug", slug)
     .eq("is_published", true)
     .single();
 
-  // ── Uniform 401 for both "not found" and "wrong password" ────────────────
-  // Returning different errors for each case lets attackers enumerate valid slugs.
   if (error || !portal) {
-    // Small delay to match bcrypt timing and prevent timing-based enumeration
     await new Promise((r) => setTimeout(r, 200));
     return new Response("Unauthorized", { status: 401 });
   }
 
-  if (!portal.password_hash) {
-    // No password set — allow through
-    return new Response("ok", { status: 200 });
+  if (portal.password_hash) {
+    const valid = await bcrypt.compare(password, portal.password_hash);
+    if (!valid) return new Response("Unauthorized", { status: 401 });
   }
 
-  // ── bcrypt compare ────────────────────────────────────────────────────────
-  const valid = await bcrypt.compare(password, portal.password_hash);
-  if (!valid) {
-    return new Response("Unauthorized", { status: 401 });
-  }
+  // ── Create analytics session ──────────────────────────────────────────────
+  const userAgent = request.headers.get("user-agent") ?? undefined;
+  const { data: session } = await supabase
+    .from("portal_sessions")
+    .insert({
+      portal_id:  portal.id,
+      email,
+      name:       name || null,
+      referrer:   request.headers.get("referer") ?? null,
+      user_agent: userAgent,
+      ip_hash:    ip ? createHmac("sha256", "ip-salt").update(ip).digest("hex").slice(0, 16) : null,
+    })
+    .select("id")
+    .single();
 
-  // Issue the session cookie
-  const token = computeAuthToken(slug, portal.password_hash);
-  const cookieName = `portal_auth_${slug}`;
-  const cookieOptions = [
-    `${cookieName}=${token}`,
-    "Path=/",
-    "HttpOnly",
-    "SameSite=Strict",
-    `Max-Age=${60 * 60 * 24 * 30}`, // 30 days
-    ...(process.env.NODE_ENV === "production" ? ["Secure"] : []),
+  // ── Set cookies ───────────────────────────────────────────────────────────
+  const authToken  = computeAuthToken(slug, portal.password_hash ?? "");
+  const sessionId  = session?.id ?? "";
+  const isProd     = process.env.NODE_ENV === "production";
+  const maxAge     = 60 * 60 * 24 * 30; // 30 days
+
+  const authCookie = [
+    `portal_auth_${slug}=${authToken}`,
+    "Path=/", "HttpOnly", "SameSite=Strict",
+    `Max-Age=${maxAge}`,
+    ...(isProd ? ["Secure"] : []),
   ].join("; ");
 
-  return new Response("ok", {
-    status: 200,
-    headers: { "Set-Cookie": cookieOptions },
-  });
+  // sid is NOT HttpOnly — the analytics hook reads it via document.cookie
+  const sidCookie = [
+    `portal_sid_${slug}=${sessionId}`,
+    "Path=/", "SameSite=Strict",
+    `Max-Age=${maxAge}`,
+    ...(isProd ? ["Secure"] : []),
+  ].join("; ");
+
+  const headers = new Headers();
+  headers.append("Set-Cookie", authCookie);
+  headers.append("Set-Cookie", sidCookie);
+
+  return new Response("ok", { status: 200, headers });
 }
