@@ -114,7 +114,7 @@ export function LandingHowWeWork({ onOpenChat }: Props) {
                     <span
                       className="text-xs mt-1 sm:mt-0"
                       style={{
-                        color: "#f54e00",
+                        color: "#7c3aed",
                         fontFamily: "var(--font-jetbrains)",
                         letterSpacing: "0.08em",
                       }}
