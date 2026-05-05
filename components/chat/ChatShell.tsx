@@ -35,7 +35,12 @@ function StreamingBubble({ text }: { text: string }) {
   );
 }
 
-export function ChatShell() {
+interface ChatShellProps {
+  /** Pass true inside the landing-page overlay — the overlay renders its own header */
+  hideHeader?: boolean;
+}
+
+export function ChatShell({ hideHeader = false }: ChatShellProps) {
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
   const bottomRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -256,24 +261,25 @@ export function ChatShell() {
   return (
     <div className="flex flex-col h-full max-w-2xl mx-auto w-full">
       {/* ── Header ───────────────────────────────────────── */}
-      <motion.header
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0 border-b border-[#e6e5e0]"
-      >
-        <div className="flex items-center">
-          <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="h-5 w-auto" />
-        </div>
-
-        <a
-          href="mailto:hello@endurancelabs.ai"
-          className="hidden sm:inline-flex text-xs text-[#7a7974] hover:text-[#262510] transition-colors duration-150 tracking-widest uppercase"
-          style={{ fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em" }}
+      {!hideHeader && (
+        <motion.header
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0 border-b border-[#e6e5e0]"
         >
-          hello@endurancelabs.ai
-        </a>
-      </motion.header>
+          <div className="flex items-center">
+            <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="h-5 w-auto" />
+          </div>
+          <a
+            href="mailto:hello@endurancelabs.ai"
+            className="hidden sm:inline-flex text-xs text-[#7a7974] hover:text-[#262510] transition-colors duration-150 tracking-widest uppercase"
+            style={{ fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em" }}
+          >
+            hello@endurancelabs.ai
+          </a>
+        </motion.header>
+      )}
 
       {/* ── Message list ─────────────────────────────────── */}
       <div ref={scrollContainerRef} className="flex-1 overflow-y-auto px-1 pt-6 pb-4 space-y-5 scroll-smooth">

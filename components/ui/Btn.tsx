@@ -14,10 +14,14 @@ import { cn } from "@/lib/utils";
  */
 
 const variants = {
-  primary: "bg-ink text-bone hover:bg-[#141414] border-transparent",
-  signal:  "text-signal border border-signal hover:bg-signal/5 bg-transparent",
-  outline: "text-ink border border-surface hover:bg-surface bg-transparent",
-  ghost:   "text-muted-ash hover:text-ink hover:bg-surface border-transparent bg-transparent",
+  primary:     "bg-ink text-bone hover:bg-[#141414] border-transparent",
+  signal:      "text-signal border border-signal hover:bg-signal/5 bg-transparent",
+  outline:     "text-ink border border-surface hover:bg-surface bg-transparent",
+  ghost:       "text-muted-ash hover:text-ink hover:bg-surface border-transparent bg-transparent",
+  /** For use on dark backgrounds — bone fill, inkwell text */
+  light:       "bg-bone text-ink hover:bg-white border-transparent",
+  /** For use on dark backgrounds — bone outline */
+  "ghost-light": "text-bone/60 border border-bone/20 hover:text-bone/90 hover:border-bone/40 bg-transparent",
 } as const;
 
 type Variant = keyof typeof variants;
