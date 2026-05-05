@@ -3,24 +3,6 @@
 @import "shadcn/tailwind.css";
 @plugin "@tailwindcss/typography";
 
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
-
-/* ── Figtree — brand sans, variable font (self-hosted) ─────────────────────── */
-@font-face {
-  font-family: 'Figtree';
-  src: url('/fonts/Figtree-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 300 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Figtree';
-  src: url('/fonts/Figtree-Italic-VariableFont_wght.ttf') format('truetype-variations');
-  font-weight: 300 900;
-  font-style: italic;
-  font-display: swap;
-}
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -28,7 +10,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-figtree);
   --font-mono: var(--font-jetbrains);
-  --font-display: var(--font-instrument);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -41,63 +22,63 @@
   --color-primary: var(--primary);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: 2px;
-  --radius-md: 2px;
-  --radius-lg: 4px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
 }
 
 :root {
-  /* ── Endurance AI Labs design tokens ─────────────────────────────────────── */
+  /* ── xAI-inspired design tokens ─────────────────────────────────────────── */
 
   /* Core palette */
-  --ink:        #121829;
-  --ink-950:    #0A0F1C;
-  --ink-900:    #171E33;
-  --bone:       #F4F2ED;
-  --bone-100:   #EAE7DF;
-  --signal:     #C7A76C;
-  --signal-100: #E8DEC4;
-  --rust:       #8F3A2E;
+  --ink:        #0c0c0b;
+  --surface:    #1f2228;
+  --bone:       #ffffff;
+  --muted-ash:  #7d8187;
+  --signal:     #2563eb;
+  --rust:       #dc2626;
 
-  /* Steel scale */
-  --steel-50:   #F7F7F5;
-  --steel-100:  #ECECE8;
-  --steel-200:  #D9D9D3;
-  --steel-300:  #B8B8B0;
-  --steel-400:  #8E8E85;
-  --steel-500:  #6B6B62;
-  --steel-600:  #4D4D47;
-  --steel-700:  #343430;
-  --steel-800:  #23231F;
+  /* Legacy steel scale — mapped to xAI equivalents */
+  --steel-50:   #f9fafb;
+  --steel-100:  #f3f4f6;
+  --steel-200:  #e5e7eb;
+  --steel-300:  #9ca3af;
+  --steel-400:  #7d8187;
+  --steel-500:  #6b7280;
+  --steel-600:  #474747;
+  --steel-700:  #1f2228;
+  --steel-800:  #111318;
 
-  /* Semantic (dark surfaces — site is ink-dominant) */
+  /* Semantic */
   --background: var(--ink);
   --foreground: var(--bone);
   --fg-muted:   var(--steel-300);
-  --fg-subtle:  var(--steel-400);
-  --border-color: var(--steel-700);
+  --fg-subtle:  var(--muted-ash);
+  --border-color: var(--surface);
 
   /* Component tokens (Tailwind compat) */
-  --card:               var(--ink-900);
+  --card:               var(--surface);
   --card-foreground:    var(--bone);
   --primary:            var(--bone);
   --primary-foreground: var(--ink);
-  --secondary:          var(--ink-900);
+  --secondary:          var(--surface);
   --secondary-foreground: var(--bone);
   --muted:              var(--steel-800);
-  --muted-foreground:   var(--steel-400);
+  --muted-foreground:   var(--muted-ash);
   --accent:             var(--signal);
-  --accent-foreground:  var(--ink);
+  --accent-foreground:  var(--bone);
   --destructive:        var(--rust);
-  --border:             var(--steel-700);
-  --input:              var(--steel-700);
+  --border:             var(--surface);
+  --input:              var(--surface);
   --ring:               var(--signal);
-  --radius:             2px;
+  --radius:             0px;
 
   /* Typography */
-  --font-figtree:     'Figtree', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  --font-instrument:  'Instrument Serif', 'Times New Roman', Georgia, serif;
-  --font-jetbrains:   'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-figtree:   'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  --font-jetbrains: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-instrument: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
   /* Motion */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
@@ -117,15 +98,15 @@
     color: var(--bone);
     font-family: var(--font-figtree);
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.5;
+    letter-spacing: -0.025em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "ss01", "cv11";
   }
 }
 
 /* ── Scrollbar ─────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--steel-700); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: var(--signal); }
+::-webkit-scrollbar-thumb { background: var(--surface); border-radius: 0px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted-ash); }
