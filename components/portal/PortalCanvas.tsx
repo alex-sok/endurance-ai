@@ -60,14 +60,14 @@ function SectionPanel({ section, portal, index, isActive, onSelect }: PanelProps
       <div className="mb-12">
         <span
           className="block text-xs tracking-[0.3em] uppercase font-medium mb-3"
-          style={{ color: `${portal.accent_color}70` }}
+          style={{ color: "color-mix(in srgb, var(--portal-accent) 44%, transparent)" }}
         >
           {String(index + 1).padStart(2, "0")}
         </span>
         <div className="flex items-end gap-6">
           <h2
             className="text-3xl md:text-4xl font-semibold tracking-tight cursor-pointer transition-colors duration-200 leading-none"
-            style={{ color: isActive ? portal.accent_color : "#262510" }}
+            style={{ color: isActive ? "var(--portal-accent)" : "#262510" }}
             onClick={onSelect}
           >
             {section.title}

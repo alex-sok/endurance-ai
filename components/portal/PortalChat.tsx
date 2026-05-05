@@ -120,7 +120,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
         ].join(" ")}
         style={{
           background: "#07080c",
-          borderLeft: `2px solid ${portal.accent_color}50`,
+          borderLeft: "2px solid color-mix(in srgb, var(--portal-accent) 31%, transparent)",
         }}
       >
         {/* ── Header ─────────────────────────────────────────────────────────── */}
@@ -133,13 +133,13 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
               {/* Blinking active dot */}
               <motion.span
                 className="w-2 h-2 rounded-full flex-shrink-0"
-                style={{ background: portal.accent_color }}
+                style={{ background: "var(--portal-accent)" }}
                 animate={{ opacity: [1, 0.3, 1] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
               <span
                 className="text-xs font-semibold tracking-[0.25em] uppercase"
-                style={{ color: portal.accent_color }}
+                style={{ color: "var(--portal-accent)" }}
               >
                 Mission AI
               </span>
@@ -172,13 +172,13 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
             <div className="flex flex-col gap-1">
               <span
                 className="text-[10px] tracking-[0.2em] uppercase mb-1"
-                style={{ color: `${portal.accent_color}70` }}
+                style={{ color: "color-mix(in srgb, var(--portal-accent) 44%, transparent)" }}
               >
                 AI
               </span>
               <div
                 className="text-sm leading-relaxed text-white pl-3"
-                style={{ borderLeft: `2px solid ${portal.accent_color}40` }}
+                style={{ borderLeft: "2px solid color-mix(in srgb, var(--portal-accent) 25%, transparent)" }}
               >
                 {streamingContent || (
                   <span className="flex gap-1 items-center h-5">
@@ -186,7 +186,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
                       <motion.span
                         key={i}
                         className="w-1 h-1 rounded-full"
-                        style={{ background: portal.accent_color }}
+                        style={{ background: "var(--portal-accent)" }}
                         animate={{ opacity: [0.2, 1, 0.2] }}
                         transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.2 }}
                       />
@@ -196,7 +196,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
                 {streamingContent && (
                   <span
                     className="inline-block w-[2px] h-[13px] ml-0.5 align-middle animate-pulse"
-                    style={{ background: portal.accent_color }}
+                    style={{ background: "var(--portal-accent)" }}
                   />
                 )}
               </div>
@@ -213,7 +213,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
             {/* Terminal prompt character */}
             <span
               className="mt-[11px] text-sm font-semibold flex-shrink-0 select-none"
-              style={{ color: `${portal.accent_color}80` }}
+              style={{ color: "color-mix(in srgb, var(--portal-accent) 50%, transparent)" }}
             >
               &gt;
             </span>
@@ -226,14 +226,14 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
               rows={1}
               disabled={streaming}
               className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 resize-none outline-none leading-relaxed tracking-wide overflow-hidden pt-2"
-              style={{ caretColor: portal.accent_color }}
+              style={{ caretColor: "var(--portal-accent)" }}
             />
             <button
               onClick={send}
               disabled={!input.trim() || streaming}
               className="flex-shrink-0 mt-1.5 w-7 h-7 flex items-center justify-center rounded text-xs font-semibold transition-all duration-150 disabled:opacity-25"
               style={{
-                background: input.trim() && !streaming ? portal.accent_color : "transparent",
+                background: input.trim() && !streaming ? "var(--portal-accent)" : "transparent",
                 border: input.trim() && !streaming ? "none" : `1px solid rgba(255,255,255,0.12)`,
                 color: input.trim() && !streaming ? "#07080c" : "rgba(255,255,255,0.25)",
               }}
@@ -244,7 +244,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
           {/* Hard underline beneath input */}
           <div
             className="mt-3 h-px"
-            style={{ background: `${portal.accent_color}25` }}
+            style={{ background: "color-mix(in srgb, var(--portal-accent) 15%, transparent)" }}
           />
           <p className="mt-2 text-[10px] tracking-[0.15em] uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
             Responses scoped to this engagement
@@ -271,7 +271,7 @@ function MessageBubble({ message, portal }: { message: Message; portal: Portal }
         </span>
         <p
           className="text-sm tracking-wide leading-relaxed text-right"
-          style={{ color: `${portal.accent_color}CC` }}
+          style={{ color: "color-mix(in srgb, var(--portal-accent) 80%, transparent)" }}
         >
           {message.content}
         </p>
@@ -283,27 +283,27 @@ function MessageBubble({ message, portal }: { message: Message; portal: Portal }
     <div className="flex flex-col gap-1">
       <span
         className="text-[10px] tracking-[0.2em] uppercase"
-        style={{ color: `${portal.accent_color}70` }}
+        style={{ color: "color-mix(in srgb, var(--portal-accent) 44%, transparent)" }}
       >
         AI
       </span>
       <div
         className="text-sm leading-relaxed text-white pl-3"
-        style={{ borderLeft: `2px solid ${portal.accent_color}40` }}
+        style={{ borderLeft: "2px solid color-mix(in srgb, var(--portal-accent) 25%, transparent)" }}
       >
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
             p: ({ children }) => <p className="mb-2 last:mb-0 tracking-wide">{children}</p>,
             a: ({ href, children }) => (
-              <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: portal.accent_color }} className="hover:opacity-80 underline underline-offset-2">
+              <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: "var(--portal-accent)" }} className="hover:opacity-80 underline underline-offset-2">
                 {children}
               </a>
             ),
             ul: ({ children }) => <ul className="mb-2 space-y-1">{children}</ul>,
             li: ({ children }) => (
               <li className="flex items-start gap-2">
-                <span className="mt-2 w-1 h-1 rounded-full flex-shrink-0" style={{ background: portal.accent_color }} />
+                <span className="mt-2 w-1 h-1 rounded-full flex-shrink-0" style={{ background: "var(--portal-accent)" }} />
                 <span>{children}</span>
               </li>
             ),

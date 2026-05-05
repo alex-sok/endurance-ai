@@ -27,6 +27,17 @@
   --radius-lg:   8px;
   --radius-xl:   8px;
   --radius-full: 9999px;
+
+  /* ── Named palette utilities ──────────────────────────────────────────────
+     Maps core tokens → Tailwind color classes:
+     text-ink, bg-bone, border-surface, text-muted-ash, text-signal, etc.
+     Change a color once in :root; every class updates automatically.      */
+  --color-ink:       var(--ink);
+  --color-bone:      var(--bone);
+  --color-surface:   var(--surface);
+  --color-muted-ash: var(--muted-ash);
+  --color-signal:    var(--signal);
+  --color-subtle:    var(--steel-300);   /* #cdcdc9 — placeholder, faint borders */
 }
 
 :root {
