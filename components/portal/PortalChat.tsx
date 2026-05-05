@@ -152,7 +152,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
               ✕
             </button>
           </div>
-          <p className="text-xs text-white tracking-[0.15em] uppercase pl-[18px]">
+          <p className="text-xs tracking-[0.15em] uppercase pl-[18px]" style={{ color: "rgba(255,255,255,0.4)" }}>
             {portal.client_name} // Tactical Briefing
           </p>
         </div>
@@ -225,7 +225,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
               placeholder="Enter your query…"
               rows={1}
               disabled={streaming}
-              className="flex-1 bg-transparent text-sm text-white placeholder:text-white resize-none outline-none leading-relaxed tracking-wide overflow-hidden pt-2"
+              className="flex-1 bg-transparent text-sm text-white placeholder:text-white/30 resize-none outline-none leading-relaxed tracking-wide overflow-hidden pt-2"
               style={{ caretColor: portal.accent_color }}
             />
             <button
@@ -246,7 +246,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
             className="mt-3 h-px"
             style={{ background: `${portal.accent_color}25` }}
           />
-          <p className="mt-2 text-[10px] text-white tracking-[0.15em] uppercase">
+          <p className="mt-2 text-[10px] tracking-[0.15em] uppercase" style={{ color: "rgba(255,255,255,0.3)" }}>
             Responses scoped to this engagement
           </p>
         </div>

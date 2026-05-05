@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, Space_Mono } from "next/font/google";
+import { Lato, Space_Mono } from "next/font/google";
 import "./globals.css";
 
-// universalSans substitute — Inter with negative tracking applied via CSS
-const inter = Inter({
+// Lato — Cursor Lato substitute for body and utility text
+const lato = Lato({
   subsets: ["latin"],
   variable: "--font-figtree",
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "700"],
 });
 
-// GeistMono substitute — Space Mono with positive tracking applied via CSS
+// Space Mono — berkeleyMono substitute for code, labels, input text
 const spaceMono = Space_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
@@ -34,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceMono.variable} h-full`}>
+    <html lang="en" className={`${lato.variable} ${spaceMono.variable} h-full`}>
       <body className="h-full antialiased">{children}</body>
     </html>
   );

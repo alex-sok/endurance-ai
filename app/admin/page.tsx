@@ -12,14 +12,17 @@ export default async function AdminPage() {
   const isAuthenticated = !!expectedToken && authCookie === expectedToken;
 
   return (
-    <div className="min-h-screen bg-[#0F1115] text-white">
+    <div className="min-h-screen" style={{ background: "#f7f7f4", color: "#262510", fontFamily: "var(--font-figtree)" }}>
       <div className="max-w-2xl mx-auto px-6 py-16">
         <div className="mb-10">
-          <div className="text-[#5b8dee] text-xs font-bold tracking-widest uppercase mb-2">
+          <div
+            className="text-xs font-semibold tracking-[0.25em] uppercase mb-2"
+            style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}
+          >
             Endurance AI Labs
           </div>
-          <h1 className="text-2xl font-bold tracking-tight">Mission Control</h1>
-          <p className="text-white/40 text-sm mt-1">Portal Administration</p>
+          <h1 className="text-2xl font-semibold" style={{ letterSpacing: "-0.025em" }}>Mission Control</h1>
+          <p className="text-sm mt-1" style={{ color: "#7a7974" }}>Portal Administration</p>
         </div>
         {isAuthenticated ? <AdminDashboard /> : <AdminLogin />}
       </div>

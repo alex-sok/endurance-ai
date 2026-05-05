@@ -24,41 +24,35 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
   return (
     <header
       className="fixed top-0 z-50 transition-all duration-300"
-      // On desktop, nav spans only the main content area (left of chat rail).
-      // On mobile, nav spans full width.
       style={{
-        left: 0,
-        right: 0,
-        background: scrolled ? "rgba(12,12,11,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--steel-700)" : "1px solid transparent",
+        left: 0, right: 0,
+        background: scrolled ? "rgba(247,247,244,0.95)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid #e6e5e0" : "1px solid transparent",
       }}
     >
-      {/* Inner container — on desktop, inset from the right by the chat width */}
       <div className="lg:pr-[380px]">
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
 
-          {/* Left: Endurance wordmark + client name */}
+          {/* Left: wordmark + client */}
           <div className="flex items-center gap-3">
-            <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="h-4 w-auto" />
-            <span style={{ color: "var(--steel-700)" }}>×</span>
-            <span className="text-sm font-medium" style={{ color: "var(--bone)", fontFamily: "var(--font-figtree)" }}>
+            <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="h-4 w-auto" />
+            <span style={{ color: "#cdcdc9" }}>×</span>
+            <span className="text-sm font-medium text-[#262510]">
               {portal.client_name}
             </span>
           </div>
 
-          {/* Center: Section tabs (hidden on mobile) */}
+          {/* Center: section tabs */}
           <nav className="hidden md:flex items-center gap-1">
             {sections.map((section) => (
               <button
                 key={section.slug}
                 onClick={() => onSelectSection(section.slug)}
-                className="relative px-3 py-1.5 text-xs tracking-widest uppercase transition-colors duration-150"
+                className="relative px-3 py-1.5 text-xs uppercase tracking-widest transition-colors duration-150"
                 style={{
                   fontFamily: "var(--font-jetbrains)",
-                  color: activeSection === section.slug
-                    ? "var(--signal)"
-                    : "var(--steel-400)",
+                  color: activeSection === section.slug ? "#262510" : "#7a7974",
                 }}
               >
                 {section.title}
@@ -66,7 +60,7 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
                   <motion.div
                     layoutId="nav-indicator"
                     className="absolute bottom-0 inset-x-3 h-px"
-                    style={{ background: "var(--signal)" }}
+                    style={{ background: "#262510" }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   />
                 )}
@@ -74,21 +68,14 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
             ))}
           </nav>
 
-          {/* Right: Mobile-only chat toggle. Desktop chat is always visible. */}
+          {/* Right: mobile chat toggle */}
           <button
             onClick={onOpenChat}
-            className="lg:hidden flex items-center gap-2 px-4 py-1.5 text-xs tracking-widest uppercase font-medium transition-all duration-150"
+            className="lg:hidden flex items-center gap-2 px-4 py-1.5 text-xs uppercase tracking-widest font-medium transition-all duration-150 text-[#262510] hover:bg-[#e6e5e0]"
             style={{
               fontFamily: "var(--font-jetbrains)",
-              border: "1px solid var(--signal)",
-              color: "var(--signal)",
-              borderRadius: "2px",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "rgba(199,167,108,0.08)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+              border: "1px solid #cdcdc9",
+              borderRadius: "4px",
             }}
           >
             Mission AI

@@ -67,12 +67,12 @@ function SectionPanel({ section, portal, index, isActive, onSelect }: PanelProps
         <div className="flex items-end gap-6">
           <h2
             className="text-3xl md:text-4xl font-semibold tracking-tight cursor-pointer transition-colors duration-200 leading-none"
-            style={{ color: isActive ? portal.accent_color : "rgba(255,255,255,0.92)" }}
+            style={{ color: isActive ? portal.accent_color : "#262510" }}
             onClick={onSelect}
           >
             {section.title}
           </h2>
-          <div className="h-px flex-1 mb-1.5 bg-white/[0.06]" />
+          <div className="h-px flex-1 mb-1.5 bg-[#e6e5e0]" />
         </div>
       </div>
 
@@ -82,7 +82,7 @@ function SectionPanel({ section, portal, index, isActive, onSelect }: PanelProps
       </div>
 
       {/* Bottom divider */}
-      <div className="mt-20 md:mt-28 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="mt-20 md:mt-28 h-px bg-gradient-to-r from-transparent via-[#e6e5e0] to-transparent" />
     </div>
   );
 }

@@ -17,17 +17,14 @@ export function PortalPasswordGate({ slug }: Props) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email.trim() || !password.trim() || loading) return;
-
     setLoading(true);
     setError(null);
-
     try {
       const res = await fetch(`/api/portal/${slug}/auth`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: name.trim(), email: email.trim(), password }),
       });
-
       if (res.ok) {
         window.location.reload();
       } else if (res.status === 401) {
@@ -43,54 +40,43 @@ export function PortalPasswordGate({ slug }: Props) {
     }
   }
 
-  const inputStyle = {
-    background: "#0c0c0b",
-    border: "1px solid #1f2228",
-    borderRadius: "24px",
-    color: "#ffffff",
-    caretColor: "#2563eb",
-  } as const;
-
-  const inputFocusStyle = { border: "1px solid #2563eb" };
+  const inputClass = "w-full bg-transparent border-b border-[#cdcdc9] px-0 py-2.5 text-sm text-[#262510] placeholder:text-[#7a7974] focus:outline-none focus:border-[#262510] transition-colors duration-150";
 
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center px-6"
-      style={{ background: "#0c0c0b", fontFamily: "var(--font-figtree)" }}
+      style={{ background: "#f7f7f4", fontFamily: "var(--font-figtree)" }}
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-sm"
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full max-w-sm"
       >
         {/* Wordmark */}
         <div className="flex justify-center mb-10">
-          <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="h-4 w-auto opacity-40" />
+          <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="h-4 w-auto opacity-50" />
         </div>
 
         {/* Card */}
-        <div style={{ background: "#1f2228", border: "1px solid #474747" }} className="px-8 py-10">
-          <h1
-            className="text-xl font-semibold text-white mb-1"
-            style={{ letterSpacing: "-0.025em" }}
-          >
+        <div
+          className="px-8 py-10"
+          style={{ background: "#f7f7f4", border: "1px solid #e6e5e0", borderRadius: "4px", boxShadow: "rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.06) 0px 4px 16px -4px" }}
+        >
+          <h1 className="text-xl font-semibold text-[#262510] mb-1" style={{ letterSpacing: "-0.35px" }}>
             Private Briefing
           </h1>
-          <p className="text-sm mb-8" style={{ color: "#7d8187" }}>
-            Identify yourself and enter your access code to continue.
+          <p className="text-sm mb-8 text-[#7a7974]">
+            Identify yourself and enter your access code.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-3">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your name (optional)"
-              className="w-full px-4 py-3 text-sm placeholder:text-[#474747] outline-none transition-all duration-150"
-              style={inputStyle}
-              onFocus={(e) => Object.assign(e.currentTarget.style, inputFocusStyle)}
-              onBlur={(e)  => Object.assign(e.currentTarget.style, { border: "1px solid #1f2228" })}
+              className={inputClass}
             />
             <input
               type="email"
@@ -99,10 +85,7 @@ export function PortalPasswordGate({ slug }: Props) {
               placeholder="Your email"
               required
               autoFocus
-              className="w-full px-4 py-3 text-sm placeholder:text-[#474747] outline-none transition-all duration-150"
-              style={inputStyle}
-              onFocus={(e) => Object.assign(e.currentTarget.style, inputFocusStyle)}
-              onBlur={(e)  => Object.assign(e.currentTarget.style, { border: "1px solid #1f2228" })}
+              className={inputClass}
             />
             <input
               type="password"
@@ -110,17 +93,14 @@ export function PortalPasswordGate({ slug }: Props) {
               onChange={(e) => { setPassword(e.target.value); setError(null); }}
               placeholder="Access code"
               required
-              className="w-full px-4 py-3 text-sm placeholder:text-[#474747] outline-none transition-all duration-150"
-              style={error ? { ...inputStyle, border: "1px solid rgba(239,68,68,0.6)" } : inputStyle}
-              onFocus={(e) => { if (!error) Object.assign(e.currentTarget.style, inputFocusStyle); }}
-              onBlur={(e)  => { if (!error) Object.assign(e.currentTarget.style, { border: "1px solid #1f2228" }); }}
+              className={error ? inputClass.replace("border-[#cdcdc9]", "border-red-400") : inputClass}
             />
 
             {error && (
               <motion.p
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-xs text-red-400/80"
+                className="text-xs text-red-500"
               >
                 {error}
               </motion.p>
@@ -130,8 +110,8 @@ export function PortalPasswordGate({ slug }: Props) {
               <button
                 type="submit"
                 disabled={!email.trim() || !password.trim() || loading}
-                className="w-full py-3 text-sm font-medium text-[#0c0c0b] bg-white hover:bg-[#e5e7eb] transition-colors duration-150 disabled:opacity-30"
-                style={{ borderRadius: "9999px", letterSpacing: "-0.025em" }}
+                className="w-full py-2.5 text-sm font-medium text-[#f7f7f4] bg-[#262510] hover:bg-[#141414] transition-colors duration-150 disabled:opacity-30"
+                style={{ borderRadius: "4px" }}
               >
                 {loading ? "Verifying…" : "Enter →"}
               </button>
@@ -139,12 +119,9 @@ export function PortalPasswordGate({ slug }: Props) {
           </form>
         </div>
 
-        <p className="text-xs text-center mt-6" style={{ color: "#474747" }}>
+        <p className="text-xs text-center mt-6 text-[#cdcdc9]">
           Need access?{" "}
-          <a
-            href="mailto:hello@endurancelabs.ai"
-            className="hover:text-white transition-colors"
-          >
+          <a href="mailto:hello@endurancelabs.ai" className="text-[#7a7974] hover:text-[#262510] transition-colors">
             hello@endurancelabs.ai
           </a>
         </p>

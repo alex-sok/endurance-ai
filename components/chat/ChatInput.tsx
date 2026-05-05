@@ -13,10 +13,8 @@ interface ChatInputProps {
 
 export function ChatInput({ onSubmit, placeholder, disabled }: ChatInputProps) {
   const [value, setValue] = useState("");
-  const [focused, setFocused] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-resize textarea
   useEffect(() => {
     const el = textareaRef.current;
     if (!el) return;
@@ -29,28 +27,22 @@ export function ChatInput({ onSubmit, placeholder, disabled }: ChatInputProps) {
     if (!trimmed || disabled) return;
     onSubmit(trimmed);
     setValue("");
-    if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-    }
+    if (textareaRef.current) textareaRef.current.style.height = "auto";
   }
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmit();
-    }
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSubmit(); }
   }
 
   const canSubmit = value.trim().length > 0 && !disabled;
 
   return (
     <div
-      className="relative flex items-center gap-3 px-4 py-3 transition-all duration-200"
+      className="relative flex items-center gap-3 px-3 py-2 transition-all duration-150"
       style={{
-        background: "#0c0c0b",
-        border: "1px solid #1f2228",
-        borderRadius: "24px",
-        boxShadow: focused ? "rgb(113, 113, 122) 0px 0px 0px 2px" : "none",
+        background: "transparent",
+        border: "1px solid #7a7974",
+        borderRadius: "0px",
       }}
     >
       <textarea
@@ -58,14 +50,12 @@ export function ChatInput({ onSubmit, placeholder, disabled }: ChatInputProps) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
-        placeholder={placeholder ?? "What do you want to know?"}
+        placeholder={placeholder ?? "Ask anything…"}
         disabled={disabled}
         rows={1}
-        style={{ caretColor: "#2563eb", letterSpacing: "-0.025em" }}
+        style={{ caretColor: "#262510", letterSpacing: "0.08px" }}
         className={cn(
-          "flex-1 resize-none overflow-hidden bg-transparent text-[0.9375rem] font-normal text-white placeholder:text-[#7d8187] focus:outline-none leading-relaxed min-h-[1.5rem] max-h-40",
+          "flex-1 resize-none overflow-hidden bg-transparent text-sm text-[#262510] placeholder:text-[#7a7974] focus:outline-none leading-relaxed min-h-[1.5rem] max-h-40",
           disabled && "opacity-40 cursor-not-allowed"
         )}
       />
@@ -74,14 +64,14 @@ export function ChatInput({ onSubmit, placeholder, disabled }: ChatInputProps) {
         disabled={!canSubmit}
         whileTap={{ scale: 0.9 }}
         className={cn(
-          "shrink-0 w-8 h-8 flex items-center justify-center transition-all duration-150",
+          "shrink-0 w-7 h-7 flex items-center justify-center transition-all duration-150",
           canSubmit
-            ? "bg-white text-[#0c0c0b] hover:bg-[#e5e7eb]"
-            : "border border-[#1f2228] text-[#474747] cursor-not-allowed"
+            ? "bg-[#262510] text-[#f7f7f4] hover:bg-[#141414]"
+            : "border border-[#e6e5e0] text-[#cdcdc9] cursor-not-allowed"
         )}
-        style={{ borderRadius: "9999px" }}
+        style={{ borderRadius: "4px" }}
       >
-        <ArrowUp size={15} strokeWidth={2.5} />
+        <ArrowUp size={13} strokeWidth={2} />
       </motion.button>
     </div>
   );
