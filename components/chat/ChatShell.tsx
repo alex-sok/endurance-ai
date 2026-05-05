@@ -263,7 +263,7 @@ export function ChatShell() {
         className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0 border-b border-[#e6e5e0]"
       >
         <div className="flex items-center">
-          <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="h-5 w-auto" />
+          <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="h-5 w-auto" />
         </div>
 
         <a

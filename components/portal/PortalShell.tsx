@@ -21,7 +21,18 @@ export function PortalShell({ portal, sections }: Props) {
   usePortalAnalytics(portal.slug, activeSection);
 
   return (
-    <div className="min-h-screen" style={{ background: "#f7f7f4", fontFamily: "var(--font-figtree)", color: "#262510" }}>
+    <div
+      className="min-h-screen"
+      style={{
+        background: "#f7f7f4",
+        fontFamily: "var(--font-figtree)",
+        color: "#262510",
+        // Portal accent is set once here and cascades to all children via CSS
+        // inheritance. Components reference var(--portal-accent) instead of
+        // receiving portal.accent_color as a prop.
+        "--portal-accent": portal.accent_color,
+      } as React.CSSProperties}
+    >
 
       <PortalNav
         portal={portal}

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Btn } from "@/components/ui/Btn";
+import { UnderlineField } from "@/components/ui/UnderlineField";
 
 interface Props {
   slug: string;
@@ -40,8 +42,6 @@ export function PortalPasswordGate({ slug }: Props) {
     }
   }
 
-  const inputClass = "w-full bg-transparent border-b border-[#cdcdc9] px-0 py-2.5 text-sm text-[#262510] placeholder:text-[#7a7974] focus:outline-none focus:border-[#262510] transition-colors duration-150";
-
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center px-6"
@@ -61,67 +61,59 @@ export function PortalPasswordGate({ slug }: Props) {
         {/* Card */}
         <div
           className="px-8 py-10"
-          style={{ background: "#f7f7f4", border: "1px solid #e6e5e0", borderRadius: "4px", boxShadow: "rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.06) 0px 4px 16px -4px" }}
+          style={{
+            background: "#f7f7f4",
+            border: "1px solid #e6e5e0",
+            borderRadius: "4px",
+            boxShadow: "rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.06) 0px 4px 16px -4px",
+          }}
         >
-          <h1 className="text-xl font-semibold text-[#262510] mb-1" style={{ letterSpacing: "-0.35px" }}>
+          <h1 className="text-xl font-semibold text-ink mb-1" style={{ letterSpacing: "-0.35px" }}>
             Private Briefing
           </h1>
-          <p className="text-sm mb-8 text-[#7a7974]">
+          <p className="text-sm mb-8 text-muted-ash">
             Identify yourself and enter your access code.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <input
+            <UnderlineField
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Your name (optional)"
-              className={inputClass}
             />
-            <input
+            <UnderlineField
               type="email"
               value={email}
               onChange={(e) => { setEmail(e.target.value); setError(null); }}
               placeholder="Your email"
               required
               autoFocus
-              className={inputClass}
             />
-            <input
+            <UnderlineField
               type="password"
               value={password}
               onChange={(e) => { setPassword(e.target.value); setError(null); }}
               placeholder="Access code"
               required
-              className={error ? inputClass.replace("border-[#cdcdc9]", "border-red-400") : inputClass}
+              error={error ?? undefined}
             />
 
-            {error && (
-              <motion.p
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-xs text-red-500"
-              >
-                {error}
-              </motion.p>
-            )}
-
             <div className="pt-2">
-              <button
+              <Btn
                 type="submit"
                 disabled={!email.trim() || !password.trim() || loading}
-                className="w-full py-2.5 text-sm font-medium text-[#f7f7f4] bg-[#262510] hover:bg-[#141414] transition-colors duration-150 disabled:opacity-30"
-                style={{ borderRadius: "4px" }}
+                className="w-full py-2.5"
               >
                 {loading ? "Verifying…" : "Enter →"}
-              </button>
+              </Btn>
             </div>
           </form>
         </div>
 
-        <p className="text-xs text-center mt-6 text-[#cdcdc9]">
+        <p className="text-xs text-center mt-6 text-subtle">
           Need access?{" "}
-          <a href="mailto:hello@endurancelabs.ai" className="text-[#7a7974] hover:text-[#262510] transition-colors">
+          <a href="mailto:hello@endurancelabs.ai" className="text-muted-ash hover:text-ink transition-colors">
             hello@endurancelabs.ai
           </a>
         </p>

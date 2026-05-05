@@ -31,7 +31,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
         style={{
-          background: `radial-gradient(ellipse at 50% 0%, ${portal.accent_color}14 0%, transparent 70%)`,
+          background: `radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--portal-accent) 8%, transparent) 0%, transparent 70%)`,
         }}
       />
 
@@ -46,7 +46,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
           className="flex items-center gap-2 px-4 py-1.5 mb-6"
           style={{ border: "1px solid #e6e5e0", borderRadius: "4px", background: "#f7f7f4" }}
         >
-          <span className="w-1.5 h-1.5 rounded-full" style={{ background: portal.accent_color }} />
+          <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--portal-accent)" }} />
           <span
             className="text-xs uppercase tracking-[0.25em]"
             style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}
@@ -149,7 +149,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
             >
               <div
                 className="absolute top-0 inset-x-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                style={{ background: portal.accent_color }}
+                style={{ background: "var(--portal-accent)" }}
               />
               <span
                 className="block text-[10px] tracking-[0.25em] uppercase mb-3 text-[#cdcdc9]"
