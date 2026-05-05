@@ -35,10 +35,10 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
         <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
 
           {/* Left: wordmark + client */}
-          <div className="flex items-center gap-3">
-            <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="h-4 w-auto" />
-            <span style={{ color: "#cdcdc9" }}>×</span>
-            <span className="text-sm font-medium text-[#262510]">
+          <div className="flex items-center gap-2.5">
+            <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="block h-[14px] w-auto" />
+            <span className="text-[#cdcdc9] text-xs leading-none" style={{ fontFamily: "var(--font-jetbrains)" }}>×</span>
+            <span className="text-sm font-medium text-[#262510] leading-none">
               {portal.client_name}
             </span>
           </div>
