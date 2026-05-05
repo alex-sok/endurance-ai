@@ -83,7 +83,7 @@ export function LandingServices({ onOpenChat }: Props) {
               {/* Accent top bar on hover */}
               <div
                 className="absolute top-0 inset-x-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                style={{ background: "#f54e00" }}
+                style={{ background: "#7c3aed" }}
               />
 
               <MonoLabel className="block mb-4">{s.n}</MonoLabel>
