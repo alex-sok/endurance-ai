@@ -13,8 +13,8 @@ interface Props {
 export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Props) {
   return (
     <section
-      className="relative flex flex-col px-6 pt-20 pb-0 overflow-hidden"
-      style={{ height: "100svh", minHeight: "700px", background: "#f7f7f4" }}
+      className="relative flex flex-col px-6 overflow-hidden"
+      style={{ paddingTop: "calc(56px + 48px)", paddingBottom: 0, background: "#f7f7f4" }}
     >
       {/* Subtle dot grid */}
       <div
@@ -27,16 +27,16 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
         }}
       />
 
-      {/* Accent color wash — very subtle */}
+      {/* Accent color wash */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[320px] pointer-events-none"
         style={{
           background: `radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--portal-accent) 8%, transparent) 0%, transparent 70%)`,
         }}
       />
 
       {/* Main content */}
-      <div className="relative z-10 max-w-6xl mx-auto w-full flex flex-col items-center text-center flex-1 justify-center pb-8">
+      <div className="relative z-10 max-w-6xl mx-auto w-full flex flex-col items-center text-center pb-10">
 
         {/* Eyebrow */}
         <motion.div
@@ -74,10 +74,10 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
           className="mb-6"
         >
           <h1
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-semibold leading-[1] text-[#262510]"
-            style={{ letterSpacing: "-2px" }}
+            className="text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.05] text-[#262510]"
+            style={{ letterSpacing: "-1.5px" }}
           >
-            {portal.hero_title ?? "Your Mission Briefing"}
+            {portal.hero_title ?? portal.client_name}
           </h1>
         </motion.div>
 
@@ -101,7 +101,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl text-sm leading-relaxed mb-8 text-[#7a7974]"
+            className="max-w-xl text-sm leading-relaxed mb-8 text-[#7a7974]"
           >
             {portal.hero_body}
           </motion.p>
@@ -116,22 +116,26 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
         >
           <button
             onClick={() => sections[0] && onSelectSection(sections[0].slug)}
-            className="px-6 py-3 text-sm font-medium text-[#f7f7f4] bg-[#262510] hover:bg-[#141414] transition-colors duration-150"
+            className="px-6 py-2.5 text-sm font-medium text-[#f7f7f4] bg-[#262510] hover:bg-[#141414] transition-colors duration-150"
             style={{ borderRadius: "4px" }}
           >
             Explore the Briefing →
           </button>
           <button
             onClick={onOpenChat}
-            className="px-6 py-3 text-sm font-medium text-[#f54e00] hover:bg-[#f54e00]/5 transition-all duration-150"
-            style={{ border: "1px solid #f54e00", borderRadius: "4px" }}
+            className="lg:hidden px-6 py-2.5 text-sm font-medium transition-all duration-150"
+            style={{
+              border: "1px solid color-mix(in srgb, var(--portal-accent) 60%, transparent)",
+              borderRadius: "4px",
+              color: "var(--portal-accent)",
+            }}
           >
             Ask our AI
           </button>
         </motion.div>
       </div>
 
-      {/* Section grid flush to bottom */}
+      {/* Section nav grid flush to bottom */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -144,7 +148,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
             <button
               key={section.slug}
               onClick={() => onSelectSection(section.slug)}
-              className="group relative text-left px-5 py-8 transition-all duration-200 hover:bg-[#e6e5e0]/50"
+              className="group relative text-left px-5 py-6 transition-all duration-200 hover:bg-[#e6e5e0]/50"
               style={{ borderRight: i < sections.length - 1 ? "1px solid #e6e5e0" : "none" }}
             >
               <div
@@ -152,7 +156,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
                 style={{ background: "var(--portal-accent)" }}
               />
               <span
-                className="block text-[10px] tracking-[0.25em] uppercase mb-3 text-[#cdcdc9]"
+                className="block text-[10px] tracking-[0.25em] uppercase mb-2 text-[#cdcdc9]"
                 style={{ fontFamily: "var(--font-jetbrains)" }}
               >
                 {String(i + 1).padStart(2, "0")}
