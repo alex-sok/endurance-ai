@@ -145,7 +145,7 @@ export const conversationFlows: Record<string, ChatNode> = {
   "contact-name": {
     id: "contact-name",
     route: "mission_intake",
-    message: "Got it. Last few quick ones — what's your name?",
+    message: "Got it. Last few quick ones. What's your name?",
     allowFreeText: true,
     captureKey: "name",
     nextNodeId: "contact-email",

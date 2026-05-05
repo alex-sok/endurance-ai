@@ -31,7 +31,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
   useEffect(() => {
     setMessages([{
       role: "assistant",
-      content: `I have full context on the ${portal.client_name} engagement — strategy, approach, timeline, and team. What do you need to know?`,
+      content: `I have full context on the ${portal.client_name} engagement: strategy, approach, timeline, and team. What do you need to know?`,
     }]);
     setTimeout(() => inputRef.current?.focus(), 400);
   }, [portal.client_name]);

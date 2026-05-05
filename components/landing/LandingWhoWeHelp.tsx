@@ -11,7 +11,7 @@ const segments = [
   },
   {
     title: "Mid-Market Operating Companies",
-    body: "Organizations modernizing operations, eliminating friction, and improving scalability — often with disconnected data and limited internal AI capability to draw from.",
+    body: "Organizations modernizing operations, eliminating friction, and improving scalability, often with disconnected data and limited internal AI capability to draw from.",
   },
   {
     title: "Venture-Backed Companies",
@@ -19,7 +19,7 @@ const segments = [
   },
   {
     title: "Large Enterprises",
-    body: "Complex transformation efforts that require focused outside execution capability — situations where stakeholder complexity and organizational pace make internal-only approaches fail.",
+    body: "Complex transformation efforts that require focused outside execution capability. Situations where stakeholder complexity and organizational pace make internal-only approaches fail.",
   },
 ];
 

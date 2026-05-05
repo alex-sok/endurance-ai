@@ -35,7 +35,7 @@ export function LandingCTA({ onOpenChat }: Props) {
 
           <p className="text-base leading-relaxed text-muted-ash mb-10 max-w-md">
             The first conversation is a mission briefing, not a sales call. Tell us what you're
-            trying to accomplish — we'll tell you if we're the right fit.
+            trying to accomplish. We'll tell you if we're the right fit.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3">

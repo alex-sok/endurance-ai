@@ -21,11 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .single();
 
   if (!portal) {
-    return { title: "Mission Briefing — Endurance AI Labs" };
+    return { title: "Mission Briefing | Endurance AI Labs" };
   }
 
   return {
-    title: `${portal.client_name} Mission Briefing — Endurance AI Labs`,
+    title: `${portal.client_name} Mission Briefing | Endurance AI Labs`,
     description: portal.tagline ?? "Your private strategic AI briefing from Endurance AI Labs.",
     robots: { index: false, follow: false }, // Never index mission portals
   };
