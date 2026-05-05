@@ -8,7 +8,7 @@ const cases = [
   {
     stat: "9 months",
     result: "→ 3 days",
-    body: "A software startup had been wrestling with a critical problem for nine months. We fixed it in three days — enabling them to go to market faster and secure more deals.",
+    body: "A software startup had been wrestling with a critical problem for nine months. We fixed it in three days, enabling them to go to market faster and secure more deals.",
   },
   {
     stat: "$5B",

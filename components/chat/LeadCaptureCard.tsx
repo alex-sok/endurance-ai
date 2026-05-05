@@ -63,7 +63,7 @@ export function LeadCaptureCard({ onSubmit, onSkip }: LeadCaptureCardProps) {
         style={{ background: "#e6e5e0", border: "1px solid #cdcdc9", borderRadius: "4px" }}
       >
         <p className="text-sm text-[#262510] font-medium mb-0.5">
-          Before we begin — who are we speaking with?
+          Before we begin. Who are we speaking with?
         </p>
         <p className="text-xs text-[#7a7974] mb-4">
           We&apos;ll follow up if it&apos;s a fit.

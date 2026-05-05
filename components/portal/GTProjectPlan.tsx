@@ -30,7 +30,7 @@ const ENGINEERING = [
     role: "Backend / Integration Engineer",
     allocation: "Full-time", weeks: "Weeks 1–3", hours: 100,
     responsibilities: [
-      "Build and test TenStreet API integration — map voice agent output to TenStreet application fields",
+      "Build and test TenStreet API integration: map voice agent output to TenStreet application fields",
       "Develop webhook infrastructure to receive Facebook lead events and trigger voice agent",
       "Stand up secure cloud hosting environment",
       "Build knockout logic engine and disqualification logging pipeline",
@@ -53,14 +53,14 @@ const ENGINEERING = [
     allocation: "Part-time", weeks: "Weeks 2–3", hours: 30,
     responsibilities: [
       "End-to-end testing of voice agent across all open lane flows",
-      "TenStreet integration validation — confirm all fields map and populate correctly",
+      "TenStreet integration validation: confirm all fields map and populate correctly",
       "Latency and cost benchmarking against baseline",
       "Edge case testing: bad audio, driver hang-ups, incomplete answers, system errors",
       "Compliance review pass before go-live",
     ],
   },
   {
-    role: "Alex Sok — CEO / Project Lead",
+    role: "Alex Sok, CEO / Project Lead",
     allocation: "Oversight", weeks: "Full engagement", hours: 20,
     responsibilities: [
       "Executive sponsor and primary point of contact for Chris Meers",
@@ -84,20 +84,20 @@ const TIMELINE = [
   {
     week: "Week 2", label: "Core Build",
     tracks: [
-      { track: "Voice Agent", tasks: ["Complete teacher policy agent training on GT domain", "Distill to student model — benchmark latency and cost", "Integrate multi-model routing (OpenAI / Anthropic / Grok)", "Build Facebook ad → voice agent redirect flow"] },
+      { track: "Voice Agent", tasks: ["Complete teacher policy agent training on GT domain", "Distill to student model: benchmark latency and cost", "Integrate multi-model routing (OpenAI / Anthropic / Grok)", "Build Facebook ad → voice agent redirect flow"] },
       { track: "Integration", tasks: ["Complete TenStreet field mapping and application submission logic", "Build knockout disqualification engine and logging", "Webhook infrastructure for Facebook lead events"] },
-      { track: "QA", tasks: ["Begin internal testing on all lane conversation flows", "Validate TenStreet application population end-to-end", "Latency benchmarking — target sub-500ms response"] },
+      { track: "QA", tasks: ["Begin internal testing on all lane conversation flows", "Validate TenStreet application population end-to-end", "Latency benchmarking: target sub-500ms response"] },
     ],
-    milestone: "Full voice agent build complete — internal testing begins",
+    milestone: "Full voice agent build complete: internal testing begins",
   },
   {
     week: "Week 3", label: "Testing, Tuning & Go-Live",
     tracks: [
-      { track: "Voice Agent", tasks: ["Incorporate QA feedback — refine conversation flows", "A/B test key knockout questions", "Final compliance review pass", "Deploy to staging for GT review"] },
-      { track: "Integration", tasks: ["GT acceptance testing with Desher — confirm TenStreet flow", "Facebook ad redirect go-live", "Website widget deployment (if desired)"] },
+      { track: "Voice Agent", tasks: ["Incorporate QA feedback: refine conversation flows", "A/B test key knockout questions", "Final compliance review pass", "Deploy to staging for GT review"] },
+      { track: "Integration", tasks: ["GT acceptance testing with Desher: confirm TenStreet flow", "Facebook ad redirect go-live", "Website widget deployment (if desired)"] },
       { track: "Reporting", tasks: ["Stand up source-to-hire analytics dashboard", "Configure weekly optimization email to Desher", "Set baseline KPIs: conversion rate, time-to-application, qualified lead %"] },
     ],
-    milestone: "System live — first real driver conversations flowing through",
+    milestone: "System live: first real driver conversations flowing through",
   },
   {
     week: "Week 4+", label: "Optimize & Expand",
@@ -115,21 +115,21 @@ const INTEGRATIONS = [
     system: "TenStreet (ATS)", type: "Core", method: "REST API",
     details: [
       "Voice agent maps all collected driver data directly to TenStreet application fields in real time",
-      "Knockout logic runs before any data is submitted — only qualified candidates enter TenStreet",
+      "Knockout logic runs before any data is submitted: only qualified candidates enter TenStreet",
       "Disqualified leads are logged separately with reason codes for Desher's review and retargeting",
       "Automated status updates as drivers progress through the funnel",
       "All existing TenStreet automations remain intact",
     ],
-    risk: "Low — TenStreet has a documented API; Desher confirmed existing automations must be preserved",
+    risk: "Low: TenStreet has a documented API; Desher confirmed existing automations must be preserved",
   },
   {
     system: "Facebook Ads", type: "Core", method: "Redirect / Lead Gen API",
     details: [
       "Replace static lead form destination with voice agent redirect URL",
       "Works across all 12 active campaigns without requiring ad creative changes",
-      "Source tagging per campaign — every lead tracked back to its originating ad",
+      "Source tagging per campaign: every lead tracked back to its originating ad",
     ],
-    risk: "Low — redirect approach requires no Facebook API permissions",
+    risk: "Low: redirect approach requires no Facebook API permissions",
   },
   {
     system: "Optimization Harness", type: "Core", method: "Internal (Endurance-built)",
@@ -138,26 +138,26 @@ const INTEGRATIONS = [
       "Self-learning loop records every conversation, runs sentiment analysis, surfaces improvement suggestions weekly",
       "Personality tuning engine stores GT's brand voice, conversation style, and compliance rules in structured system prompts",
     ],
-    risk: "None — fully Endurance-built and operated",
+    risk: "None: fully Endurance-built and operated",
   },
   {
     system: "General Trucking Website", type: "Optional", method: "JavaScript Widget",
     details: [
-      "Embeddable widget drops onto any page with a single script tag — no engineering required on GT's side",
+      "Embeddable widget drops onto any page with a single script tag: no engineering required on GT's side",
       "Driver can initiate voice or chat conversation directly from the GT careers page",
       "Branded with GT name and personality",
     ],
-    risk: "Low — optional add-on, requires only web access to deploy",
+    risk: "Low: optional add-on, requires only web access to deploy",
   },
   {
     system: "Cloud / On-Premise Hosting", type: "Infrastructure", method: "Hybrid",
     details: [
-      "Cloud hosting is appropriate — driver recruiting data is not PII-sensitive at the level requiring on-premise",
-      "All conversation data stored in a secure, GT-dedicated environment — not shared with other clients",
-      "On-premise option available if compliance posture changes — designed for this from day one",
-      "Monthly compute costs ($300–500) cover API usage only — no Endurance infrastructure markup",
+      "Cloud hosting is appropriate: driver recruiting data is not PII-sensitive at the level requiring on-premise",
+      "All conversation data stored in a secure, GT-dedicated environment: not shared with other clients",
+      "On-premise option available if compliance posture changes: designed for this from day one",
+      "Monthly compute costs ($300–500) cover API usage only: no Endurance infrastructure markup",
     ],
-    risk: "Low — cloud-hosted by default; on-premise option already architected",
+    risk: "Low: cloud-hosted by default; on-premise option already architected",
   },
 ];
 
@@ -168,14 +168,14 @@ const DEPLOYMENT = [
   { step: "04", title: "Voice Agent Staging", who: "Full Engineering Team", when: "End of Week 2", desc: "Complete voice agent deployed to staging. Endurance runs full internal test suite across all open lane flows." },
   { step: "05", title: "GT Acceptance Testing", who: "Desher + Endurance QA", when: "Week 3, Days 1–3", desc: "Desher and team walk through the agent as a driver would. Feedback incorporated in real time. Compliance review sign-off." },
   { step: "06", title: "Go-Live", who: "Alex + Backend Engineer", when: "Week 3, Days 4–5", desc: "Facebook ad redirects updated. Website widget deployed. Monitoring dashboards activated. First live driver conversations begin." },
-  { step: "07", title: "Week 1 ROI Check-In", who: "Alex + Chris", when: "End of Week 4", desc: "Review first week of live data — conversion rate vs. baseline, time-to-application, qualified lead %, any system issues." },
+  { step: "07", title: "Week 1 ROI Check-In", who: "Alex + Chris", when: "End of Week 4", desc: "Review first week of live data: conversion rate vs. baseline, time-to-application, qualified lead %, any system issues." },
 ];
 
 const SUPPORT = [
   {
     tier: "Ongoing Optimization", cadence: "Weekly",
     items: [
-      "Automated optimization email to Desher — A/B test results, suggested prompt changes, conversion trends",
+      "Automated optimization email to Desher: A/B test results, suggested prompt changes, conversion trends",
       "Human review and approval required before any system change is applied",
       "Endurance monitors system uptime, latency, and cost weekly",
       "System errors trigger immediate Endurance response (same business day)",
@@ -186,7 +186,7 @@ const SUPPORT = [
     items: [
       "30-minute call with Chris and/or Desher to review source-to-hire analytics",
       "ROI summary: qualified leads generated, applications submitted, hires attributed, cost per hire vs. baseline",
-      "Next-quarter roadmap discussion — retention module, operational efficiency, brokerage expansion",
+      "Next-quarter roadmap discussion: retention module, operational efficiency, brokerage expansion",
     ],
   },
   {
@@ -201,7 +201,7 @@ const SUPPORT = [
   {
     tier: "Phase Expansion Planning", cadence: "Quarterly",
     items: [
-      "Retention module scoping — driver sentiment analysis, burnout prediction, early-warning signals",
+      "Retention module scoping: driver sentiment analysis, burnout prediction, early-warning signals",
       "Operational efficiency discovery with Kevin (VP Operations)",
       "Brokerage division AI use case exploration",
       "Pricing and timeline for each new phase presented before any additional commitment is made",
@@ -210,12 +210,12 @@ const SUPPORT = [
 ];
 
 const RISKS = [
-  { risk: "TenStreet API limitations", likelihood: "Low", mitigation: "Desher confirmed TenStreet is a fully documented platform. If specific endpoints are unavailable, Endurance will build a screen-automation bridge — no delay to go-live." },
-  { risk: "Desher adoption / change resistance", likelihood: "Medium", mitigation: "Human always in the loop — Desher approves every optimization before it goes live. Voice agent pre-qualifies leads so she only talks to serious candidates." },
+  { risk: "TenStreet API limitations", likelihood: "Low", mitigation: "Desher confirmed TenStreet is a fully documented platform. If specific endpoints are unavailable, Endurance will build a screen-automation bridge: no delay to go-live." },
+  { risk: "Desher adoption / change resistance", likelihood: "Medium", mitigation: "Human always in the loop: Desher approves every optimization before it goes live. Voice agent pre-qualifies leads so she only talks to serious candidates." },
   { risk: "Driver reluctance to talk to AI", likelihood: "Low", mitigation: "Research shows drivers are often more candid with AI agents than human recruiters. Agent is named, branded, and personality-tuned to feel natural. Option to escalate to human at any point." },
   { risk: "Facebook ad redirect drop-off", likelihood: "Low", mitigation: "A/B test redirect vs. static form in Week 1. If redirect reduces top-of-funnel clicks, revert and use Facebook Lead Gen API outbound call approach instead." },
-  { risk: "Competitor wins before go-live", likelihood: "Medium", mitigation: "Job descriptions ship in Week 1 — GT sees improvement before the voice agent is live. Entry scope can be accelerated to 2 weeks if urgency demands it." },
-  { risk: "Scope creep delaying go-live", likelihood: "Low", mitigation: "Strict Phase 1 scope: speed-to-lead and job descriptions only. Retention, operational efficiency, and brokerage are Phase 2/3 — logged but not acted on until Phase 1 ROI is confirmed." },
+  { risk: "Competitor wins before go-live", likelihood: "Medium", mitigation: "Job descriptions ship in Week 1: GT sees improvement before the voice agent is live. Entry scope can be accelerated to 2 weeks if urgency demands it." },
+  { risk: "Scope creep delaying go-live", likelihood: "Low", mitigation: "Strict Phase 1 scope: speed-to-lead and job descriptions only. Retention, operational efficiency, and brokerage are Phase 2/3: logged but not acted on until Phase 1 ROI is confirmed." },
 ];
 
 // ── Sub-components ────────────────────────────────────────────────────────────
@@ -368,8 +368,8 @@ export function GTProjectPlan() {
                   {[
                     { phase: "1", del: "Job Description Optimization", timeline: "Week 1", fee: "Free" },
                     { phase: "2", del: "AI Voice Agent + TenStreet Integration", timeline: "Weeks 1–3", fee: "Sub-$12K entry / $27K full" },
-                    { phase: "3", del: "Retention Module", timeline: "Post go-live", fee: "TBD — scoped separately" },
-                    { phase: "4", del: "Operational Efficiency + Brokerage AI", timeline: "Q3 2026+", fee: "TBD — scoped separately" },
+                    { phase: "3", del: "Retention Module", timeline: "Post go-live", fee: "TBD, scoped separately" },
+                    { phase: "4", del: "Operational Efficiency + Brokerage AI", timeline: "Q3 2026+", fee: "TBD, scoped separately" },
                   ].map(r => (
                     <tr key={r.phase}>
                       <td className="py-3 pr-6 text-xs font-medium" style={{ color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}>{r.phase}</td>
@@ -396,14 +396,14 @@ export function GTProjectPlan() {
                 </thead>
                 <tbody className="divide-y divide-[#e6e5e0]">
                   {[
-                    { name: "Chris Meers", role: "CEO", org: "General Trucking", inv: "Executive sponsor — final decisions, monthly reviews" },
-                    { name: "Desher Guthrie", role: "Director of Recruiting", org: "General Trucking", inv: "Day-to-day champion — conversation flows, TenStreet, acceptance testing" },
-                    { name: "Thomas Guitar", role: "VP of Finance", org: "General Trucking", inv: "Cost approval — looped in on pricing and monthly compute" },
-                    { name: "Kevin", role: "VP of Operations", org: "General Trucking", inv: "Phase 3+ — operational efficiency use cases" },
-                    { name: "Ariel", role: "Recruiting Processor", org: "General Trucking", inv: "End-user of TenStreet integration — validates application flow" },
+                    { name: "Chris Meers", role: "CEO", org: "General Trucking", inv: "Executive sponsor: final decisions, monthly reviews" },
+                    { name: "Desher Guthrie", role: "Director of Recruiting", org: "General Trucking", inv: "Day-to-day champion: conversation flows, TenStreet, acceptance testing" },
+                    { name: "Thomas Guitar", role: "VP of Finance", org: "General Trucking", inv: "Cost approval: looped in on pricing and monthly compute" },
+                    { name: "Kevin", role: "VP of Operations", org: "General Trucking", inv: "Phase 3+: operational efficiency use cases" },
+                    { name: "Ariel", role: "Recruiting Processor", org: "General Trucking", inv: "End-user of TenStreet integration: validates application flow" },
                     { name: "Alex Sok", role: "CEO / Project Lead", org: "Endurance AI Labs", inv: "Executive sponsor, Chris relationship, final prompt approval" },
                     { name: "Sid Bhambhani", role: "Co-Founder / CTO", org: "Endurance AI Labs", inv: "Technical architecture, integration design" },
-                    { name: "James Collins", role: "Connector / Advisor", org: "External", inv: "Relationship bridge — kept informed of milestones" },
+                    { name: "James Collins", role: "Connector / Advisor", org: "External", inv: "Relationship bridge: kept informed of milestones" },
                   ].map(r => (
                     <tr key={r.name}>
                       <td className="py-3 pr-6 whitespace-nowrap font-medium text-[#262510]">{r.name}</td>
@@ -487,9 +487,9 @@ export function GTProjectPlan() {
                 "Facebook Ad clicked by driver",
                 "Redirected to Endurance voice agent (hosted on GT-dedicated cloud environment)",
                 "Voice agent conducts live pre-screening conversation (speech-to-text → LLM → text-to-speech)",
-                "Knockout logic runs in real time — disqualified leads logged with reason, never reach TenStreet",
+                "Knockout logic runs in real time: disqualified leads logged with reason, never reach TenStreet",
                 "Qualified driver data mapped to TenStreet application fields and submitted via API",
-                "Desher sees a fully completed TenStreet application — no manual data entry required",
+                "Desher sees a fully completed TenStreet application: no manual data entry required",
                 "Source-to-hire analytics tag the lead back to its originating Facebook campaign",
                 "Weekly optimization report emailed to Desher with improvement suggestions",
               ].map((step, i) => (
@@ -558,14 +558,14 @@ export function GTProjectPlan() {
             <div className="flex flex-col gap-1.5">
               {[
                 "All open lane conversation flows tested end-to-end with no critical errors",
-                "TenStreet integration validated — 5+ test applications submitted and confirmed in GT's TenStreet account",
-                "Knockout logic verified — disqualified test candidates do not appear in TenStreet",
+                "TenStreet integration validated: 5+ test applications submitted and confirmed in GT's TenStreet account",
+                "Knockout logic verified: disqualified test candidates do not appear in TenStreet",
                 "Desher has completed acceptance testing and signed off",
-                "Compliance review passed — no protected-class questions in any flow",
-                "Latency benchmarked — average agent response time under 600ms",
+                "Compliance review passed: no protected-class questions in any flow",
+                "Latency benchmarked: average agent response time under 600ms",
                 "Source-to-hire analytics dashboard live and confirmed receiving data",
-                "Monitoring and alerting configured — Endurance receives immediate notification of any system errors",
-                "Rollback plan in place — Facebook ads can revert to original lead form within 15 minutes if needed",
+                "Monitoring and alerting configured: Endurance receives immediate notification of any system errors",
+                "Rollback plan in place: Facebook ads can revert to original lead form within 15 minutes if needed",
               ].map(item => <Bullet key={item} color="green">{item}</Bullet>)}
             </div>
           </Card>
@@ -647,8 +647,8 @@ export function GTProjectPlan() {
                   {[
                     { metric: "Lead-to-application conversion rate", baseline: "~10% (3–5 of 20–40 daily leads)", target: "25–40%" },
                     { metric: "Time from lead to qualified application", baseline: "3–5 days", target: "< 1 hour" },
-                    { metric: "Recruiter time per qualified candidate", baseline: "High — manual calls, follow-up, nudging", target: "Desher reviews completed applications only" },
-                    { metric: "Disqualification rate (pre-TenStreet)", baseline: "Unknown — all leads enter funnel", target: "Unqualified leads filtered before TenStreet; rate tracked weekly" },
+                    { metric: "Recruiter time per qualified candidate", baseline: "High: manual calls, follow-up, nudging", target: "Desher reviews completed applications only" },
+                    { metric: "Disqualification rate (pre-TenStreet)", baseline: "Unknown: all leads enter funnel", target: "Unqualified leads filtered before TenStreet; rate tracked weekly" },
                     { metric: "Open dedicated lanes filled", baseline: "14 open (going into May)", target: "Measurable reduction within 30 days" },
                     { metric: "Monthly compute cost", baseline: "N/A", target: "$300–$500 pass-through (no markup)" },
                   ].map(r => (

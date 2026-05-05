@@ -44,13 +44,13 @@ Endurance was built by operators, not consultants. We focus on execution.
 
 ## Founding Team
 
-**Alex Sok — Founder & CEO**
+**Alex Sok, Founder & CEO**
 Alex founded Endurance AI Labs to bring operator-grade AI execution to leadership teams navigating high-stakes initiatives.
 
-**Sid Bhambhani — Co-Founder & CTO**
+**Sid Bhambhani, Co-Founder & CTO**
 Sid leads our AI and development teams. He previously co-founded Summatti, an AI-powered sentiment analysis startup that was acquired by PartnerHero. Sid brings over 20 years of technology leadership experience across startups and enterprise environments.
 
-**Nick Maxwell — Co-Founder & Chief AI Officer**
+**Nick Maxwell, Co-Founder & Chief AI Officer**
 Nick leads our AI initiatives and client projects. He was a founding engineer at TALA, which was acquired by Intuit. Nick holds a degree in Computer Science from Cornell University.
 
 ## Firm Philosophy
@@ -65,15 +65,15 @@ Endurance helps leadership close the gap between ambition and execution through 
 
 Our work generally falls into five areas:
 
-**AI Strategy and Leadership** — Helping executive teams define practical AI roadmaps tied directly to business outcomes: identifying leverage points, prioritizing high-impact opportunities, defining operating models, shaping architecture decisions, establishing governance.
+**AI Strategy and Leadership**: Helping executive teams define practical AI roadmaps tied directly to business outcomes: identifying leverage points, prioritizing high-impact opportunities, defining operating models, shaping architecture decisions, establishing governance.
 
-**AI Automation and Workflow Transformation** — Designing and deploying systems that eliminate bottlenecks and improve throughput, quality, and responsiveness. Typical examples: workflow automation, document-heavy processes, customer operations, internal knowledge systems, decision-support systems.
+**AI Automation and Workflow Transformation**: Designing and deploying systems that eliminate bottlenecks and improve throughput, quality, and responsiveness. Typical examples: workflow automation, document-heavy processes, customer operations, internal knowledge systems, decision-support systems.
 
-**AI Architecture and Operating Layer Design** — Designing the infrastructure required for AI systems to operate reliably inside a real organization: data integration, retrieval systems, orchestration, model selection, governance and safety, monitoring and iteration loops.
+**AI Architecture and Operating Layer Design**: Designing the infrastructure required for AI systems to operate reliably inside a real organization: data integration, retrieval systems, orchestration, model selection, governance and safety, monitoring and iteration loops.
 
-**Internal AI Capability Building** — Helping organizations build internal capability so they are not permanently dependent on outside firms: leadership education, team design, governance structures, internal playbooks, tooling and process design.
+**Internal AI Capability Building**: Helping organizations build internal capability so they are not permanently dependent on outside firms: leadership education, team design, governance structures, internal playbooks, tooling and process design.
 
-**Initiative Recovery** — Helping organizations recover stalled or failed AI efforts: diagnosing root causes, identifying salvageable assets, resetting scope, relaunching with a more realistic execution path.
+**Initiative Recovery**: Helping organizations recover stalled or failed AI efforts: diagnosing root causes, identifying salvageable assets, resetting scope, relaunching with a more realistic execution path.
 
 ## What Makes Us Different
 
@@ -87,27 +87,27 @@ We are usually not a fit for organizations that only want generic AI experimenta
 
 We work best with leaders who are serious about outcomes.
 
-## How We Work — Five Phases
+## How We Work: Five Phases
 
-**Phase 1: Strategic Recon** — Understanding the real situation: goals, friction points, technology stack, data landscape, constraints, previous attempts. Goal: identify where AI creates meaningful leverage.
+**Phase 1: Strategic Recon**: Understanding the real situation: goals, friction points, technology stack, data landscape, constraints, previous attempts. Goal: identify where AI creates meaningful leverage.
 
-**Phase 2: Mission Definition** — Selecting priority opportunities, defining success criteria, clarifying scope, sequencing work, identifying architecture needs. Goal: move from vague ambition to a clear, executable path.
+**Phase 2: Mission Definition**: Selecting priority opportunities, defining success criteria, clarifying scope, sequencing work, identifying architecture needs. Goal: move from vague ambition to a clear, executable path.
 
-**Phase 3: Rapid Deployment** — Building and deploying initial systems: prototypes, data pipelines, automations, AI-assisted workflows, orchestration logic, integrations. Goal: visible operational progress.
+**Phase 3: Rapid Deployment**: Building and deploying initial systems: prototypes, data pipelines, automations, AI-assisted workflows, orchestration logic, integrations. Goal: visible operational progress.
 
-**Phase 4: Embedding** — Making the system work inside the organization: workflow refinement, training, governance, monitoring, feedback loops, adoption support. Goal: durable execution, not a demo.
+**Phase 4: Embedding**: Making the system work inside the organization: workflow refinement, training, governance, monitoring, feedback loops, adoption support. Goal: durable execution, not a demo.
 
-**Phase 5: Capability Transfer** — Internal enablement, documentation, operating rhythms, ownership transition, roadmap extension. Goal: capability, not dependency.
+**Phase 5: Capability Transfer**: Internal enablement, documentation, operating rhythms, ownership transition, roadmap extension. Goal: capability, not dependency.
 
 ## Who We Help
 
-**Professional services firms** — law firms, wealth managers, accounting firms, consulting firms. Often need workflow automation, knowledge systems, AI-enabled service delivery, and operating leverage.
+**Professional services firms**: law firms, wealth managers, accounting firms, consulting firms. Often need workflow automation, knowledge systems, AI-enabled service delivery, and operating leverage.
 
-**Mid-market operating companies** — looking to modernize operations, eliminate friction, and improve scalability.
+**Mid-market operating companies**: looking to modernize operations, eliminate friction, and improve scalability.
 
-**Venture-backed companies** — founders and product teams building AI-enabled products or navigating build-versus-buy and architecture decisions.
+**Venture-backed companies**: founders and product teams building AI-enabled products or navigating build-versus-buy and architecture decisions.
 
-**Large enterprises** — pursuing complex transformation efforts that require focused outside execution capability.
+**Large enterprises**: pursuing complex transformation efforts that require focused outside execution capability.
 
 ## Topic Knowledge
 

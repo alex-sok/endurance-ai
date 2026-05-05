@@ -26,7 +26,7 @@ const phases = [
   {
     n: "04",
     name: "Embedding",
-    goal: "Durable execution — not a demo.",
+    goal: "Durable execution. Not a demo.",
     body: "Making the system work inside the organization: workflow refinement, training, governance, monitoring, feedback loops, and adoption support.",
   },
   {

@@ -45,7 +45,7 @@ export function LandingTeam() {
             TALA, acquired by Intuit, and holds a degree in Computer Science from Cornell.
           </p>
           <p className="text-base leading-relaxed text-muted-ash mt-4">
-            We are not a consulting firm. We are operators — built to execute in environments
+            We are not a consulting firm. We are operators, built to execute in environments
             where the initiative is too important to drift.
           </p>
         </motion.div>
