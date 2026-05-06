@@ -93,8 +93,8 @@ export function PortalHeroGeometry() {
         // Depth cue: edges closer to viewer are brighter and slightly thicker
         const avgZ = (z1 + z2) / 2;
         const t = (avgZ + PHI) / (PHI * 2); // 0 → back, 1 → front
-        line.setAttribute("stroke-opacity", (0.06 + t * 0.52).toFixed(3));
-        line.setAttribute("stroke-width",   (0.5  + t * 0.9).toFixed(2));
+        line.setAttribute("stroke-opacity", (0.2 + t * 0.6).toFixed(3));
+        line.setAttribute("stroke-width",   (0.6  + t * 1.2).toFixed(2));
       });
 
       animId = requestAnimationFrame(tick);
@@ -114,16 +114,16 @@ export function PortalHeroGeometry() {
       <svg
         ref={svgRef}
         viewBox="0 0 800 400"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMidYMid slice"
         className="w-full h-full"
-        style={{ opacity: 0.5 }}
+        style={{ opacity: 0.9 }}
       >
         {EDGES.map((_, i) => (
           <line
             key={i}
             data-e="1"
             x1="0" y1="0" x2="0" y2="0"
-            stroke="var(--portal-accent)"
+            stroke="var(--portal-accent, #7c3aed)"
             strokeLinecap="round"
           />
         ))}
