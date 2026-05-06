@@ -141,7 +141,7 @@ export function PortalChat({ portal, mobileOpen, onMobileClose }: Props) {
                 className="text-xs font-semibold tracking-[0.25em] uppercase"
                 style={{ color: "var(--portal-accent)" }}
               >
-                Mission AI
+                Grace
               </span>
             </div>
             {/* Mobile-only close */}
