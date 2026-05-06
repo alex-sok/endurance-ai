@@ -248,7 +248,7 @@ function Bullet({ children, color = "signal" }: { children: React.ReactNode; col
         className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full"
         style={{ background: color === "green" ? "#4ade80" : "var(--signal)" }}
       />
-      <span className="text-sm leading-relaxed" style={{ color: "var(--steel-300)" }}>{children}</span>
+      <span className="text-sm leading-relaxed" style={{ color: "#7a7974" }}>{children}</span>
     </div>
   );
 }
@@ -256,7 +256,7 @@ function Bullet({ children, color = "signal" }: { children: React.ReactNode; col
 function Badge({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "outline" | "green" | "yellow" }) {
   const styles: Record<string, string> = {
     default: "border border-[#e6e5e0] text-[#262510]/60",
-    outline: "border border-white/20 text-[#262510]/50",
+    outline: "border border-[#e6e5e0] text-[#7a7974]",
     green: "border border-green-500/30 text-green-400 bg-green-500/10",
     yellow: "border border-yellow-500/30 text-yellow-400 bg-yellow-500/10",
   };
@@ -301,7 +301,7 @@ export function GTProjectPlan() {
               Detailed Project Plan
             </p>
             <p className="text-lg font-semibold text-[#262510]">General Trucking AI Recruiting System</p>
-            <p className="text-xs mt-0.5" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>
+            <p className="text-xs mt-0.5" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>
               Endurance AI Labs · May 2026 · Confidential
             </p>
           </div>
@@ -310,7 +310,7 @@ export function GTProjectPlan() {
             <Badge variant="outline">$27K Full / Sub-$12K Entry</Badge>
           </div>
         </div>
-        <p className="text-sm mt-4 leading-relaxed" style={{ color: "var(--steel-300)" }}>
+        <p className="text-sm mt-4 leading-relaxed" style={{ color: "#7a7974" }}>
           Complete engagement plan covering engineering resources, week-by-week timeline, TenStreet and Facebook integration, deployment checklist, ongoing support model, and risk mitigation.
         </p>
       </div>
@@ -324,7 +324,7 @@ export function GTProjectPlan() {
             className="px-3 py-1.5 text-xs whitespace-nowrap transition-colors duration-150 rounded-none"
             style={{
               fontFamily: "var(--font-jetbrains)",
-              border: activeTab === t.id ? "1px solid var(--signal)" : "1px solid rgba(255,255,255,0.1)",
+              border: activeTab === t.id ? "1px solid var(--signal)" : "1px solid #e6e5e0",
               color: activeTab === t.id ? "var(--signal)" : "var(--steel-400)",
               background: activeTab === t.id ? "rgba(199,167,108,0.06)" : "transparent",
             }}
@@ -347,7 +347,7 @@ export function GTProjectPlan() {
               { label: "Entry Scope Fee", value: "< $12,000" },
             ].map(m => (
               <div key={m.label} className="border border-[#e6e5e0] rounded-none bg-[#f7f7f4] p-4">
-                <p className="text-xs mb-1" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{m.label}</p>
+                <p className="text-xs mb-1" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{m.label}</p>
                 <p className="text-lg font-semibold text-[#262510]">{m.value}</p>
               </div>
             ))}
@@ -360,7 +360,7 @@ export function GTProjectPlan() {
                 <thead>
                   <tr className="border-b border-[#e6e5e0]">
                     {["Phase", "Deliverable", "Timeline", "Fee"].map(h => (
-                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -390,7 +390,7 @@ export function GTProjectPlan() {
                 <thead>
                   <tr className="border-b border-[#e6e5e0]">
                     {["Name", "Role", "Org", "Involvement"].map(h => (
-                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -409,7 +409,7 @@ export function GTProjectPlan() {
                       <td className="py-3 pr-6 whitespace-nowrap font-medium text-[#262510]">{r.name}</td>
                       <td className="py-3 pr-6 whitespace-nowrap" style={{ color: "var(--steel-400)" }}>{r.role}</td>
                       <td className="py-3 pr-6 whitespace-nowrap" style={{ color: "var(--steel-400)" }}>{r.org}</td>
-                      <td className="py-3" style={{ color: "var(--steel-300)" }}>{r.inv}</td>
+                      <td className="py-3" style={{ color: "#7a7974" }}>{r.inv}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -459,13 +459,13 @@ export function GTProjectPlan() {
                 </div>
                 <div className="flex items-center gap-2 border border-[#e6e5e0] rounded-none px-3 py-1">
                   <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--signal)" }} />
-                  <span className="text-xs" style={{ color: "var(--steel-300)", fontFamily: "var(--font-jetbrains)" }}>{w.milestone}</span>
+                  <span className="text-xs" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{w.milestone}</span>
                 </div>
               </div>
               <div className="flex flex-col gap-4">
                 {w.tracks.map(t => (
                   <div key={t.track}>
-                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{t.track}</p>
+                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{t.track}</p>
                     <div className="flex flex-col gap-1.5">
                       {t.tasks.map(task => <Bullet key={task}>{task}</Bullet>)}
                     </div>
@@ -496,11 +496,11 @@ export function GTProjectPlan() {
                 <div key={step} className="flex gap-3 items-start">
                   <span
                     className="shrink-0 w-5 h-5 rounded-none flex items-center justify-center text-xs font-medium"
-                    style={{ background: "rgba(37,99,235,0.12)", color: "var(--signal)", fontFamily: "var(--font-jetbrains)" }}
+                    style={{ background: "color-mix(in srgb, var(--portal-accent) 12%, transparent)", color: "var(--portal-accent)", fontFamily: "var(--font-jetbrains)" }}
                   >
                     {i + 1}
                   </span>
-                  <span className="text-sm leading-relaxed" style={{ color: "var(--steel-300)" }}>{step}</span>
+                  <span className="text-sm leading-relaxed" style={{ color: "#7a7974" }}>{step}</span>
                 </div>
               ))}
             </div>
@@ -517,9 +517,9 @@ export function GTProjectPlan() {
               <div className="flex flex-col gap-1.5 mb-3">
                 {item.details.map(d => <Bullet key={d}>{d}</Bullet>)}
               </div>
-              <div className="border border-white/5 rounded-none bg-[#e6e5e0]/50 px-3 py-2">
-                <span className="text-xs font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>Risk: </span>
-                <span className="text-xs" style={{ color: "var(--steel-300)" }}>{item.risk}</span>
+              <div className="border border-[#e6e5e0] rounded-none bg-[#f0efe9] px-3 py-2">
+                <span className="text-xs font-medium" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>Risk: </span>
+                <span className="text-xs" style={{ color: "#7a7974" }}>{item.risk}</span>
               </div>
             </Card>
           ))}
@@ -545,8 +545,8 @@ export function GTProjectPlan() {
                       <p className="font-semibold text-[#262510] text-sm">{s.title}</p>
                       <Badge variant="outline">{s.when}</Badge>
                     </div>
-                    <p className="text-xs mb-1" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>Owner: {s.who}</p>
-                    <p className="text-sm" style={{ color: "var(--steel-300)" }}>{s.desc}</p>
+                    <p className="text-xs mb-1" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>Owner: {s.who}</p>
+                    <p className="text-sm" style={{ color: "#7a7974" }}>{s.desc}</p>
                   </div>
                 </div>
               ))}
@@ -594,7 +594,7 @@ export function GTProjectPlan() {
                 <thead>
                   <tr className="border-b border-[#e6e5e0]">
                     {["Issue Type", "Response Time", "Resolution Target"].map(h => (
-                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -628,7 +628,7 @@ export function GTProjectPlan() {
                 <p className="font-semibold text-[#262510]">{r.risk}</p>
                 <Badge variant={r.likelihood === "Low" ? "green" : "yellow"}>{r.likelihood} likelihood</Badge>
               </div>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--steel-300)" }}>{r.mitigation}</p>
+              <p className="text-sm leading-relaxed" style={{ color: "#7a7974" }}>{r.mitigation}</p>
             </Card>
           ))}
 
@@ -639,7 +639,7 @@ export function GTProjectPlan() {
                 <thead>
                   <tr className="border-b border-[#e6e5e0]">
                     {["Metric", "Baseline (Today)", "Target (Week 4)"].map(h => (
-                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "var(--steel-500)", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
