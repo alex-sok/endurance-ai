@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { rateLimit, getIP } from "@/lib/rate-limit";
+import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
 
@@ -242,6 +243,28 @@ export async function POST(request: Request) {
   if (slackRes && !slackRes.ok) {
     const body = await slackRes.text().catch(() => "");
     console.error(`[notify] Slack returned ${slackRes.status}: ${body}`);
+  }
+
+  // ── Persist lead to Supabase (independent of Slack — never lose a lead) ──
+  try {
+    const supabase = await createClient(true);
+    const row: Record<string, unknown> = {
+      type:  payload.type,
+      score: score.score || null,
+      score_reasoning: score.reasoning || null,
+    };
+    if ("name"               in payload) row.name                = payload.name;
+    if ("email"              in payload) row.email               = payload.email;
+    if ("company"            in payload) row.company             = payload.company;
+    if ("mission"            in payload) row.mission             = payload.mission;
+    if ("obstacle"           in payload) row.obstacle            = payload.obstacle;
+    if ("stakes"             in payload) row.stakes              = payload.stakes;
+    if ("internalChallenges" in payload) row.internal_challenges = payload.internalChallenges;
+
+    const { error: dbError } = await supabase.from("site_leads").insert(row);
+    if (dbError) console.error("[notify] DB insert failed:", dbError.message);
+  } catch (err) {
+    console.error("[notify] DB write threw:", err);
   }
 
   return new Response("ok", { status: 200 });
