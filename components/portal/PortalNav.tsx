@@ -42,8 +42,8 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
               className="block w-auto"
               style={{ height: "13px", position: "relative", top: "-1px" }}
             />
-            <span className="text-xs select-none" style={{ color: "#cdcdc9", lineHeight: 1 }}>×</span>
-            <span className="text-sm font-medium" style={{ color: "#262510", lineHeight: 1 }}>
+            <span className="text-xs select-none" style={{ color: "#cdcdc9", lineHeight: 1, position: "relative", top: "1px" }}>×</span>
+            <span className="text-sm font-medium" style={{ color: "#262510", lineHeight: 1, position: "relative", top: "1px" }}>
               {portal.client_name}
             </span>
           </div>
