@@ -3,11 +3,13 @@ export const dynamic = "force-dynamic";
 export async function POST(request: Request) {
   // ── Verify shared secret ────────────────────────────────────────────────
   const secret = process.env.SUPABASE_WEBHOOK_SECRET;
-  if (secret) {
-    const authHeader = request.headers.get("x-webhook-secret");
-    if (authHeader !== secret) {
-      return new Response("Unauthorized", { status: 401 });
-    }
+  if (!secret) {
+    console.error("[portal-created] SUPABASE_WEBHOOK_SECRET is not set — refusing all requests");
+    return new Response("Webhook not configured", { status: 503 });
+  }
+  const authHeader = request.headers.get("x-webhook-secret");
+  if (authHeader !== secret) {
+    return new Response("Unauthorized", { status: 401 });
   }
 
   let record: Record<string, unknown>;
