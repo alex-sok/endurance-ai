@@ -44,15 +44,13 @@ export async function PATCH(
     return Response.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const {
-    client_name,
-    hero_title,
-    hero_body,
-    accent_color,
-    is_published,
-    new_password,
-    notion_url,
-  } = body as Record<string, string>;
+  const client_name  = body.client_name  as string | undefined;
+  const hero_title   = body.hero_title   as string | undefined;
+  const hero_body    = body.hero_body    as string | undefined;
+  const accent_color = body.accent_color as string | undefined;
+  const new_password = body.new_password as string | undefined;
+  const notion_url   = body.notion_url   as string | undefined;
+  const is_published = body.is_published;
 
   const supabase = await createClient(true);
 
@@ -73,7 +71,7 @@ export async function PATCH(
   if (hero_title   !== undefined) updates.hero_title   = hero_title;
   if (hero_body    !== undefined) updates.hero_body    = hero_body?.trim() || null;
   if (accent_color !== undefined) updates.accent_color = accent_color;
-  if (is_published !== undefined) updates.is_published = is_published === "true" || is_published === true;
+  if (is_published !== undefined) updates.is_published = is_published === true || is_published === "true";
 
   if (new_password?.trim()) {
     updates.password_hash = await bcrypt.hash(new_password, 12);
