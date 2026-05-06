@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Btn } from "@/components/ui/Btn";
+import { PortalHeroGeometry } from "@/components/portal/PortalHeroGeometry";
 
 interface Props {
   onOpenChat: () => void;
@@ -31,6 +32,9 @@ export function LandingHero({ onOpenChat }: Props) {
           style={{ left: `${pct}%`, background: "rgba(255,255,255,0.022)" }}
         />
       ))}
+
+      {/* Rotating icosahedron wireframe */}
+      <PortalHeroGeometry color="rgba(148,163,184,0.9)" opacity={0.55} />
 
       {/* Blue light bloom — breathing, right-center (like the photo) */}
       <motion.div
