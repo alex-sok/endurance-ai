@@ -57,7 +57,13 @@ function project(
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
-export function PortalHeroGeometry() {
+interface GeometryProps {
+  color?: string;
+  /** 0–1 opacity for the <svg> element itself */
+  opacity?: number;
+}
+
+export function PortalHeroGeometry({ color = "var(--portal-accent, #7c3aed)", opacity = 0.9 }: GeometryProps) {
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
@@ -116,14 +122,14 @@ export function PortalHeroGeometry() {
         viewBox="0 0 800 400"
         preserveAspectRatio="xMidYMid slice"
         className="w-full h-full"
-        style={{ opacity: 0.9 }}
+        style={{ opacity }}
       >
         {EDGES.map((_, i) => (
           <line
             key={i}
             data-e="1"
             x1="0" y1="0" x2="0" y2="0"
-            stroke="var(--portal-accent, #7c3aed)"
+            stroke={color}
             strokeLinecap="round"
           />
         ))}
