@@ -18,7 +18,7 @@ export function SectionContent({ section, portal }: Props) {
   const c = section.content;
 
   // Portal-level custom components — override section rendering for specific portals
-  if (portal.slug.startsWith("rjs") && section.slug === "overview") {
+  if ((portal.slug === "rjs-briefing" || portal.slug.startsWith("rjs")) && section.slug === "overview") {
     return <RJSMissionBriefing />;
   }
 
