@@ -4,6 +4,7 @@ import type { Portal, PortalSection } from "@/types/portal";
 import { GTProjectPlan } from "./GTProjectPlan";
 import { RJSMissionBriefing } from "./RJSMissionBriefing";
 import { WaterMissionBriefing } from "./WaterMissionBriefing";
+import { DensoMissionBriefing } from "./DensoMissionBriefing";
 
 interface Props {
   section: PortalSection;
@@ -25,6 +26,10 @@ export function SectionContent({ section, portal }: Props) {
 
   if (portal.slug.startsWith("water-mission") && section.slug === "overview") {
     return <WaterMissionBriefing />;
+  }
+
+  if (portal.slug.startsWith("denso") && section.slug === "overview") {
+    return <DensoMissionBriefing />;
   }
 
   switch (section.slug) {
