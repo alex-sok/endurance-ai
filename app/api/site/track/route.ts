@@ -12,11 +12,17 @@
 
 import { createHmac } from "crypto";
 import { createClient } from "@/lib/supabase/server";
-import { getIP } from "@/lib/rate-limit";
+import { rateLimit, getIP } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  // ── Rate limiting — 60 events/min per IP ─────────────────────────────────────
+  const ip = getIP(request);
+  if (!rateLimit(ip, 60, 60_000)) {
+    return new Response("Too many requests", { status: 429 });
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -52,9 +58,17 @@ export async function POST(request: Request) {
     return Response.json({ session_id: session.id });
   }
 
-  // ── All other events require a session_id ─────────────────────────────────
+  // ── All other events require a valid session_id ────────────────────────────
   const session_id = typeof body.session_id === "string" ? body.session_id : null;
   if (!session_id) return new Response("session_id required", { status: 400 });
+
+  // Verify the session actually exists (prevents event injection against random UUIDs)
+  const { data: session } = await supabase
+    .from("site_sessions")
+    .select("id")
+    .eq("id", session_id)
+    .single();
+  if (!session) return new Response("Not found", { status: 404 });
 
   const now = new Date().toISOString();
 

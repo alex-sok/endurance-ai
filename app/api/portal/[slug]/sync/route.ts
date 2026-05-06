@@ -28,11 +28,13 @@ export async function POST(
 
   // ── Auth ───────────────────────────────────────────────────────────────────
   const secret = process.env.SUPABASE_WEBHOOK_SECRET;
-  if (secret) {
-    const header = request.headers.get("x-sync-secret");
-    if (header !== secret) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
-    }
+  if (!secret) {
+    console.error("[sync] SUPABASE_WEBHOOK_SECRET is not set — refusing all requests");
+    return Response.json({ error: "Sync endpoint not configured" }, { status: 503 });
+  }
+  const header = request.headers.get("x-sync-secret");
+  if (header !== secret) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   // ── Check env vars ─────────────────────────────────────────────────────────

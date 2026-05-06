@@ -10,6 +10,7 @@ import { computeAdminToken } from "@/lib/admin-auth";
 import { createClient } from "@/lib/supabase/server";
 import { fetchAndChunkPage } from "@/lib/notion-sync";
 import { embedBatch } from "@/lib/embed";
+import { rateLimit, getIP } from "@/lib/rate-limit";
 import bcrypt from "bcryptjs";
 
 export const dynamic = "force-dynamic";
@@ -26,6 +27,12 @@ export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  // ── Rate limiting ─────────────────────────────────────────────────────────────
+  const ip = getIP(request);
+  if (!rateLimit(ip, 30, 60_000)) {
+    return Response.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   // ── Auth ─────────────────────────────────────────────────────────────────────
   const cookieStore = await cookies();
   const authCookie = cookieStore.get("admin_auth")?.value;

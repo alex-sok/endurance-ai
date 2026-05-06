@@ -8,10 +8,17 @@
 import { cookies } from "next/headers";
 import { computeAdminToken } from "@/lib/admin-auth";
 import { createClient } from "@/lib/supabase/server";
+import { rateLimit, getIP } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request: Request) {
+  // ── Rate limiting ─────────────────────────────────────────────────────────────
+  const ip = getIP(request);
+  if (!rateLimit(ip, 30, 60_000)) {
+    return Response.json({ error: "Too many requests" }, { status: 429 });
+  }
+
   const cookieStore = await cookies();
   const authCookie = cookieStore.get("admin_auth")?.value;
   const expectedToken = computeAdminToken();

@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { rateLimit, getIP } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
@@ -8,6 +9,12 @@ export async function POST(
   request: Request,
   { params }: { params: Promise<{ slug: string }> }
 ) {
+  // ── Rate limiting — 60 events/min per IP ─────────────────────────────────────
+  const ip = getIP(request);
+  if (!rateLimit(ip, 60, 60_000)) {
+    return new Response("Too many requests", { status: 429 });
+  }
+
   const { slug } = await params;
 
   let body: Record<string, unknown>;
