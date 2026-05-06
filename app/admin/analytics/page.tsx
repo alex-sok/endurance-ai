@@ -37,7 +37,7 @@ function fmtDuration(s: number | null) {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 interface Props {
-  searchParams: Promise<{ portal?: string }>;
+  searchParams: Promise<{ portal?: string; view?: string }>;
 }
 
 export default async function AnalyticsPage({ searchParams }: Props) {
@@ -47,7 +47,8 @@ export default async function AnalyticsPage({ searchParams }: Props) {
   const expected    = computeAdminToken();
   if (!expected || authCookie !== expected) redirect("/admin");
 
-  const { portal: activePortalSlug } = await searchParams;
+  const { portal: activePortalSlug, view = "portals" } = await searchParams;
+  const isSiteView = view === "site";
 
   const supabase = await createClient(true);
 
@@ -113,6 +114,38 @@ export default async function AnalyticsPage({ searchParams }: Props) {
 
   const activePortal = allPortals?.find((p) => p.slug === activePortalSlug);
 
+  // ── Site analytics ────────────────────────────────────────────────────────
+  const { data: siteSessions } = await supabase
+    .from("site_sessions")
+    .select("id, duration_seconds, chat_opened, started_at")
+    .order("started_at", { ascending: false })
+    .limit(500);
+
+  const siteSessionIds = (siteSessions ?? []).map((s) => s.id);
+  const { data: siteEvents } = siteSessionIds.length
+    ? await supabase
+        .from("site_events")
+        .select("session_id, event_type, section_slug, duration_seconds")
+        .in("session_id", siteSessionIds)
+    : { data: [] };
+
+  // Section funnel: count unique sessions that saw each section
+  const SECTION_ORDER = ["hero","problem","services","proof","how-we-work","who-we-help","team","cta"];
+  const sectionHits: Record<string, Set<string>> = {};
+  for (const slug of SECTION_ORDER) sectionHits[slug] = new Set();
+  for (const ev of siteEvents ?? []) {
+    if (ev.event_type === "section_view" && ev.section_slug && sectionHits[ev.section_slug]) {
+      sectionHits[ev.section_slug].add(ev.session_id);
+    }
+  }
+
+  const totalSiteSessions = siteSessions?.length ?? 0;
+  const chatOpenedCount   = (siteSessions ?? []).filter((s) => s.chat_opened).length;
+  const siteWithDuration  = (siteSessions ?? []).filter((s) => s.duration_seconds);
+  const avgSiteDuration   = siteWithDuration.length
+    ? Math.round(siteWithDuration.reduce((a, s) => a + (s.duration_seconds ?? 0), 0) / siteWithDuration.length)
+    : null;
+
   return (
     <div
       className="min-h-screen"
@@ -145,8 +178,71 @@ export default async function AnalyticsPage({ searchParams }: Props) {
           </a>
         </div>
 
+        {/* View switcher */}
+        <div className="flex gap-2 mb-6">
+          {[{ label: "Client Portals", value: "portals" }, { label: "Landing Page", value: "site" }].map((tab) => (
+            <a
+              key={tab.value}
+              href={`/admin/analytics?view=${tab.value}`}
+              className="px-4 py-1.5 text-xs uppercase transition-colors"
+              style={{
+                fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em", borderRadius: "4px",
+                border: view === tab.value ? "1px solid #262510" : "1px solid #cdcdc9",
+                color:  view === tab.value ? "#262510" : "#7a7974",
+                background: view === tab.value ? "#e6e5e0" : "transparent",
+              }}
+            >
+              {tab.label}
+            </a>
+          ))}
+        </div>
+
+        {/* ── Site analytics view ── */}
+        {isSiteView && (
+          <div className="space-y-6">
+            <div className="grid grid-cols-3 gap-4">
+              {[
+                { label: "Total Visits",   value: totalSiteSessions },
+                { label: "Avg Time",       value: fmtDuration(avgSiteDuration) },
+                { label: "Chat Open Rate", value: totalSiteSessions ? `${Math.round((chatOpenedCount / totalSiteSessions) * 100)}%` : "—" },
+              ].map((stat) => (
+                <div key={stat.label} className="px-6 py-5" style={{ background: "#f7f7f4", border: "1px solid #e6e5e0", borderRadius: "4px" }}>
+                  <p className="text-xs mb-2 uppercase" style={{ color: "#7a7974", letterSpacing: "0.2em", fontFamily: "var(--font-jetbrains)" }}>{stat.label}</p>
+                  <p className="text-3xl font-semibold text-[#262510]" style={{ letterSpacing: "-0.025em" }}>{stat.value}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Section funnel */}
+            <div style={{ border: "1px solid #e6e5e0", borderRadius: "4px", overflow: "hidden" }}>
+              <div className="px-5 py-3 text-xs uppercase" style={{ background: "#e6e5e0", color: "#7a7974", letterSpacing: "0.2em", fontFamily: "var(--font-jetbrains)", borderBottom: "1px solid #cdcdc9" }}>
+                Section Engagement
+              </div>
+              {SECTION_ORDER.map((slug) => {
+                const count = sectionHits[slug]?.size ?? 0;
+                const pct   = totalSiteSessions ? Math.round((count / totalSiteSessions) * 100) : 0;
+                return (
+                  <div key={slug} className="flex items-center gap-4 px-5 py-3" style={{ borderBottom: "1px solid #e6e5e0" }}>
+                    <span className="text-xs font-mono w-28 flex-shrink-0 text-[#7a7974]">{slug}</span>
+                    <div className="flex-1 h-1.5 rounded-full" style={{ background: "#e6e5e0" }}>
+                      <div className="h-1.5 rounded-full" style={{ width: `${pct}%`, background: "#262510", transition: "width 0.3s" }} />
+                    </div>
+                    <span className="text-xs font-mono w-16 text-right text-[#7a7974]">{count} <span style={{ color: "#cdcdc9" }}>({pct}%)</span></span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {totalSiteSessions === 0 && (
+              <div className="text-center py-20 text-sm" style={{ border: "1px solid #e6e5e0", color: "#cdcdc9", borderRadius: "4px" }}>
+                No visits yet. Run the migration to enable tracking.
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Portal filter bar */}
-        {(allPortals?.length ?? 0) > 0 && (
+        {!isSiteView && (allPortals?.length ?? 0) > 0 && (
           <div className="flex flex-wrap gap-2 mb-8">
             <a
               href="/admin/analytics"
@@ -181,6 +277,9 @@ export default async function AnalyticsPage({ searchParams }: Props) {
             ))}
           </div>
         )}
+
+        {/* ── Portal analytics view ── */}
+        {!isSiteView && <div>
 
         {/* Summary cards */}
         <div className="grid grid-cols-3 gap-4 mb-8">
@@ -325,6 +424,8 @@ export default async function AnalyticsPage({ searchParams }: Props) {
         <p className="text-xs mt-4" style={{ color: "#cdcdc9", fontFamily: "var(--font-jetbrains)" }}>
           Showing last 200 sessions{activePortal ? ` for ${activePortal.client_name}` : " across all portals"}
         </p>
+
+        </div>} {/* end !isSiteView */}
 
       </div>
     </div>
