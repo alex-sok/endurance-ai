@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  const { slug, client_name, password, hero_title, hero_body, notion_url } = body;
+  const { slug, client_name, password, hero_title, hero_body, accent_color, notion_url } = body;
 
   if (!slug || !client_name || !password || !hero_title) {
     return Response.json(
@@ -101,6 +101,7 @@ export async function POST(request: Request) {
       client_name,
       hero_title,
       hero_body: hero_body?.trim() || null,
+      accent_color: accent_color?.trim() || "#7c3aed",
       is_published: true,
       password_hash: passwordHash,
       password_hint: passwordHint,

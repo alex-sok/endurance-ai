@@ -57,6 +57,7 @@ export default function AdminDashboard() {
     password: "",
     hero_title: "",
     hero_body: "",
+    accent_color: "#7c3aed",
     notion_url: "",
   });
   const [loading, setLoading] = useState(false);
@@ -98,7 +99,7 @@ export default function AdminDashboard() {
 
     setResult(data);
     setLoading(false);
-    setForm({ slug: "", client_name: "", password: "", hero_title: "", hero_body: "", notion_url: "" });
+    setForm({ slug: "", client_name: "", password: "", hero_title: "", hero_body: "", accent_color: "#7c3aed", notion_url: "" });
   }
 
   return (
@@ -209,6 +210,41 @@ export default function AdminDashboard() {
           onChange={(e) => set("hero_body", e.target.value)}
           className="h-20 resize-none"
         />
+
+        {/* Accent color */}
+        <div className="flex flex-col gap-1.5">
+          <div className="flex items-center justify-between">
+            <MonoLabel>Accent Color</MonoLabel>
+            <span className="text-xs font-mono text-muted-ash">{form.accent_color}</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <input
+              type="color"
+              value={form.accent_color}
+              onChange={(e) => set("accent_color", e.target.value)}
+              className="w-9 h-9 rounded cursor-pointer border-0 p-0.5"
+              style={{ background: "transparent" }}
+            />
+            <div className="flex gap-2 flex-wrap">
+              {["#7c3aed","#2563eb","#0ea5e9","#0d9488","#059669","#d97706","#dc2626","#db2777"].map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => set("accent_color", c)}
+                  className="w-6 h-6 rounded-sm transition-transform hover:scale-110"
+                  style={{
+                    background: c,
+                    outline: form.accent_color === c ? `2px solid ${c}` : "none",
+                    outlineOffset: "2px",
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          <p className="text-xs text-muted-ash" style={{ fontFamily: "var(--font-jetbrains)" }}>
+            Shown in icosahedron, tab underlines, bullet points, and hover states
+          </p>
+        </div>
 
         <UnderlineField
           label="Notion Page URL"
