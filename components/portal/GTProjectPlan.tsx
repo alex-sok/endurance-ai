@@ -347,7 +347,7 @@ export function GTProjectPlan() {
               { label: "Entry Scope Fee", value: "< $12,000" },
             ].map(m => (
               <div key={m.label} className="border border-[#e6e5e0] rounded-none bg-[#f7f7f4] p-4">
-                <p className="text-xs mb-1" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{m.label}</p>
+                <p className="text-xs mb-1" style={{ color: "#262510", fontFamily: "var(--font-jetbrains)" }}>{m.label}</p>
                 <p className="text-lg font-semibold text-[#262510]">{m.value}</p>
               </div>
             ))}
@@ -360,7 +360,7 @@ export function GTProjectPlan() {
                 <thead>
                   <tr className="border-b border-[#e6e5e0]">
                     {["Phase", "Deliverable", "Timeline", "Fee"].map(h => (
-                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#262510", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -390,7 +390,7 @@ export function GTProjectPlan() {
                 <thead>
                   <tr className="border-b border-[#e6e5e0]">
                     {["Name", "Role", "Org", "Involvement"].map(h => (
-                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#262510", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -465,7 +465,7 @@ export function GTProjectPlan() {
               <div className="flex flex-col gap-4">
                 {w.tracks.map(t => (
                   <div key={t.track}>
-                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{t.track}</p>
+                    <p className="text-xs uppercase tracking-widest mb-2" style={{ color: "#262510", fontFamily: "var(--font-jetbrains)" }}>{t.track}</p>
                     <div className="flex flex-col gap-1.5">
                       {t.tasks.map(task => <Bullet key={task}>{task}</Bullet>)}
                     </div>
@@ -594,7 +594,7 @@ export function GTProjectPlan() {
                 <thead>
                   <tr className="border-b border-[#e6e5e0]">
                     {["Issue Type", "Response Time", "Resolution Target"].map(h => (
-                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#262510", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -639,7 +639,7 @@ export function GTProjectPlan() {
                 <thead>
                   <tr className="border-b border-[#e6e5e0]">
                     {["Metric", "Baseline (Today)", "Target (Week 4)"].map(h => (
-                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                      <th key={h} className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium" style={{ color: "#262510", fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                     ))}
                   </tr>
                 </thead>

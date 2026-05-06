@@ -135,7 +135,7 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 
 function SectionHead({ label }: { label: string }) {
   return (
-    <p className="text-[10px] uppercase tracking-[0.25em] text-[#cdcdc9] mb-4" style={{ fontFamily: "var(--font-jetbrains)" }}>
+    <p className="text-[10px] uppercase tracking-[0.25em] text-[#262510] mb-4" style={{ fontFamily: "var(--font-jetbrains)" }}>
       {label}
     </p>
   );
@@ -207,7 +207,7 @@ function Overview() {
         <div className="grid sm:grid-cols-2 gap-3">
           {SITUATION.map((s) => (
             <Card key={s.label}>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>{s.label}</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>{s.label}</p>
               <p className="text-base font-semibold text-[#262510] mb-1">{s.value}</p>
               <p className="text-xs text-[#7a7974]">{s.note}</p>
             </Card>
@@ -292,7 +292,7 @@ function RiskRegister() {
           <thead>
             <tr className="border-b border-[#e6e5e0]">
               {["Risk", "Likelihood", "Impact", "Mitigation"].map((h) => (
-                <th key={h} className="text-left text-[10px] uppercase tracking-[0.2em] text-[#cdcdc9] pb-3 pr-4 font-normal" style={{ fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                <th key={h} className="text-left text-[10px] uppercase tracking-[0.2em] text-[#262510] pb-3 pr-4 font-normal" style={{ fontFamily: "var(--font-jetbrains)" }}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -321,7 +321,7 @@ function Timeline() {
           <thead>
             <tr className="border-b border-[#e6e5e0]">
               {["Phase", "Action", "Track"].map((h) => (
-                <th key={h} className="text-left text-[10px] uppercase tracking-[0.2em] text-[#cdcdc9] pb-3 pr-4 font-normal" style={{ fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                <th key={h} className="text-left text-[10px] uppercase tracking-[0.2em] text-[#262510] pb-3 pr-4 font-normal" style={{ fontFamily: "var(--font-jetbrains)" }}>{h}</th>
               ))}
             </tr>
           </thead>
@@ -352,7 +352,7 @@ function Investment() {
         <div className="grid sm:grid-cols-2 gap-3">
           {ROI_CARDS.map((c) => (
             <Card key={c.label}>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>{c.label}</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>{c.label}</p>
               <p className="text-base font-semibold text-[#262510] mb-1">{c.value}</p>
               <p className="text-xs text-[#7a7974]">{c.note}</p>
             </Card>
@@ -380,7 +380,7 @@ function NextSteps() {
           </div>
         </div>
       ))}
-      <p className="text-xs text-[#cdcdc9] pt-2">Prepared by Endurance AI · May 2026 · For internal use by Water Mission leadership</p>
+      <p className="text-xs text-[#7a7974] pt-2">Prepared by Endurance AI · May 2026 · For internal use by Water Mission leadership</p>
     </div>
   );
 }
@@ -406,7 +406,7 @@ export function WaterMissionBriefing() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <p className="text-xs uppercase tracking-[0.25em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>
+        <p className="text-xs uppercase tracking-[0.25em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>
           Business Case · May 2026
         </p>
         <h2 className="text-xl font-semibold text-[#262510] mb-1" style={{ letterSpacing: "-0.3px" }}>

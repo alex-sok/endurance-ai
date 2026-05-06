@@ -144,7 +144,7 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
 
 function SectionHead({ label }: { label: string }) {
   return (
-    <p className="text-[10px] uppercase tracking-[0.25em] text-[#cdcdc9] mb-3" style={{ fontFamily: "var(--font-jetbrains)" }}>
+    <p className="text-[10px] uppercase tracking-[0.25em] text-[#262510] mb-3" style={{ fontFamily: "var(--font-jetbrains)" }}>
       {label}
     </p>
   );
@@ -237,7 +237,7 @@ function Overview() {
           { label: "Annual Audits",         value: "5×",           sub: "Deloitte · Japan · Michigan" },
         ].map((k) => (
           <Card key={k.label}>
-            <p className="text-[10px] uppercase tracking-[0.2em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>{k.label}</p>
+            <p className="text-[10px] uppercase tracking-[0.2em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>{k.label}</p>
             <p className="text-2xl font-semibold mb-1" style={{ letterSpacing: "-0.5px", color: k.alert ? "#b91c1c" : "#262510" }}>{k.value}</p>
             <p className="text-xs text-[#7a7974]">{k.sub}</p>
           </Card>
@@ -301,11 +301,11 @@ function CriticalMissions() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="p-3 rounded border border-[#e6e5e0] bg-[#f7f7f4]">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Investment</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Investment</p>
                 <p className="text-sm font-semibold text-[#262510]">{m.estimate}</p>
               </div>
               <div className="p-3 rounded border border-[#e6e5e0] bg-[#f7f7f4]">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Timeline</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Timeline</p>
                 <p className="text-sm font-semibold text-[#262510]">{m.timeline}</p>
               </div>
             </div>
@@ -339,7 +339,7 @@ function ProjectPlan() {
                 <ul className="space-y-1.5">
                   {p.tasks.map((t) => (
                     <li key={t} className="flex items-start gap-2 text-sm text-[#262510]">
-                      <span className="text-[#cdcdc9] mt-0.5 flex-shrink-0">›</span>
+                      <span className="text-[#7a7974] mt-0.5 flex-shrink-0">›</span>
                       {t}
                     </li>
                   ))}
@@ -357,14 +357,14 @@ function ProjectPlan() {
             <thead>
               <tr className="border-b border-[#e6e5e0]">
                 {["#", "Action", "Owner", "Target"].map((h) => (
-                  <th key={h} className="text-left text-[10px] uppercase tracking-[0.2em] text-[#cdcdc9] pb-3 pr-4 font-normal" style={{ fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                  <th key={h} className="text-left text-[10px] uppercase tracking-[0.2em] text-[#262510] pb-3 pr-4 font-normal" style={{ fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {NEXT_STEPS.map((s, i) => (
                 <tr key={i} className="border-b border-[#e6e5e0]/60">
-                  <td className="py-3 pr-4 text-[#cdcdc9] font-mono text-xs">{i + 1}</td>
+                  <td className="py-3 pr-4 text-[#7a7974] font-mono text-xs">{i + 1}</td>
                   <td className="py-3 pr-4 text-[#262510] leading-snug">{s.action}</td>
                   <td className="py-3 pr-4 text-[#7a7974] whitespace-nowrap">{s.owner}</td>
                   <td className="py-3">
@@ -436,24 +436,116 @@ function NumCircle({ n, color }: { n: number; color: string }) {
 }
 
 function BusinessCase() {
-  return (
-    <>
-      {/* Print styles — injected into <head> only when this tab is rendered */}
-      <style>{`
-        @media print {
-          body * { visibility: hidden !important; }
-          #denso-biz-case, #denso-biz-case * { visibility: visible !important; }
-          #denso-biz-case { position: absolute; inset: 0; padding: 32px; }
-          @page { margin: 1.5cm; }
-        }
-      `}</style>
+  const handlePrint = () => {
+    const el = document.getElementById("denso-biz-case");
+    if (!el) return;
 
-      <div id="denso-biz-case" className="space-y-4">
+    // Clone the content and strip the print-button row so it doesn't appear
+    const clone = el.cloneNode(true) as HTMLElement;
+    clone.querySelectorAll("[data-no-print]").forEach((n) => n.remove());
+
+    // Carry over the portal accent colour (set as a CSS var on the shell element)
+    const accentHost = document.querySelector<HTMLElement>('[style*="--portal-accent"]');
+    const accent =
+      (accentHost
+        ? getComputedStyle(accentHost).getPropertyValue("--portal-accent").trim()
+        : "") || "#e27340";
+
+    // Mirror every stylesheet the current page loaded (gives us Tailwind for free)
+    const cssLinks = Array.from(
+      document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')
+    )
+      .map((l) => `<link rel="stylesheet" href="${l.href}">`)
+      .join("\n");
+
+    const w = window.open("", "_blank");
+    if (!w) {
+      alert("Allow pop-ups for this site to use Print / Save as PDF.");
+      return;
+    }
+
+    w.document.write(`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Business Case — DENSO × Endurance AI Labs</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+${cssLinks}
+<style>
+  :root {
+    --portal-accent: ${accent};
+    --font-figtree: 'Figtree', system-ui, sans-serif;
+    --font-jetbrains: 'JetBrains Mono', monospace;
+  }
+  @page { size: letter; margin: 1.5cm 1.8cm; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ffffff; }
+  body { font-family: var(--font-figtree); font-size: 9pt; line-height: 1.35; color: #262510; }
+
+  /* Compact space-y */
+  .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 8pt !important; }
+  .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 5pt !important; }
+  .space-y-2 > :not([hidden]) ~ :not([hidden]) { margin-top: 4pt !important; }
+
+  /* Card / panel padding */
+  .p-5 { padding: 9pt !important; }
+  .p-4 { padding: 8pt !important; }
+  .p-3 { padding: 6pt !important; }
+  .px-5 { padding-left: 10pt !important; padding-right: 10pt !important; }
+  .py-4 { padding-top: 7pt !important; padding-bottom: 7pt !important; }
+  .py-3 { padding-top: 5pt !important; padding-bottom: 5pt !important; }
+
+  /* Margin helpers */
+  .mb-4 { margin-bottom: 5pt !important; }
+  .mb-3 { margin-bottom: 4pt !important; }
+  .mb-2 { margin-bottom: 3pt !important; }
+  .mb-1 { margin-bottom: 2pt !important; }
+  .mt-4 { margin-top: 5pt !important; }
+  .mt-3 { margin-top: 4pt !important; }
+
+  /* Gaps */
+  .gap-6 { gap: 9pt !important; }
+  .gap-5 { gap: 8pt !important; }
+  .gap-4 { gap: 6pt !important; }
+  .gap-3 { gap: 5pt !important; }
+  .gap-2 { gap: 4pt !important; }
+
+  /* Type scale */
+  h2          { font-size: 14pt !important; letter-spacing: -0.4pt !important; }
+  .text-2xl   { font-size: 13pt !important; }
+  .text-xl    { font-size: 11pt !important; }
+  .text-lg    { font-size: 10pt !important; }
+  .text-sm    { font-size: 8.5pt !important; }
+  .text-xs    { font-size: 7.5pt !important; }
+  .text-3xl   { font-size: 14pt !important; }
+
+  /* Table */
+  .overflow-x-auto { overflow: visible !important; }
+  table { width: 100% !important; border-collapse: collapse; }
+  th, td { padding-top: 4pt !important; padding-bottom: 4pt !important; }
+  .pr-4 { padding-right: 7pt !important; }
+
+  /* Page breaks */
+  #denso-biz-case > div { page-break-inside: avoid; break-inside: avoid; }
+  .grid  { page-break-inside: avoid; break-inside: avoid; }
+  table  { page-break-inside: avoid; break-inside: avoid; }
+</style>
+</head>
+<body>${clone.outerHTML}</body>
+</html>`);
+
+    w.document.close();
+    // onload fires after stylesheets are fetched; small timeout lets layout settle
+    w.onload = () => setTimeout(() => w.print(), 400);
+  };
+
+  return (
+    <div id="denso-biz-case" className="space-y-4">
 
         {/* Header */}
         <div className="rounded border border-[#e6e5e0] bg-[#f0efe9] px-5 py-4 flex items-start justify-between gap-4">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.25em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Business Case · Confidential</p>
+            <p className="text-[10px] uppercase tracking-[0.25em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Business Case · Confidential</p>
             <h2 className="text-lg font-semibold text-[#262510] mb-0.5" style={{ letterSpacing: "-0.3px" }}>FTZ Inventory Reconciliation</h2>
             <p className="text-sm text-[#7a7974]">DENSO Products & Services Americas — Americas Operations</p>
           </div>
@@ -465,9 +557,9 @@ function BusinessCase() {
         </div>
 
         {/* Print button */}
-        <div className="flex justify-end print:hidden">
+        <div className="flex justify-end" data-no-print>
           <button
-            onClick={() => window.print()}
+            onClick={handlePrint}
             className="flex items-center gap-2 px-4 py-2 text-xs font-medium text-[#7a7974] hover:text-[#262510] transition-colors duration-150 rounded border border-[#e6e5e0] hover:border-[#262510]"
             style={{ fontFamily: "var(--font-jetbrains)" }}
           >
@@ -551,7 +643,7 @@ function BusinessCase() {
               ["Shipment Error Rate", "→ 0",         "Wrong-part shipments eliminated",           "#65a30d"],
             ].map(([label, value, sub, color]) => (
               <div key={label} className="p-3 rounded border border-[#e6e5e0] bg-[#f7f7f4]">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>{label}</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>{label}</p>
                 <p className="text-xl font-semibold mb-0.5" style={{ color, letterSpacing: "-0.3px" }}>{value}</p>
                 <p className="text-xs text-[#7a7974]">{sub}</p>
               </div>
@@ -580,7 +672,7 @@ function BusinessCase() {
               <thead>
                 <tr className="border-b border-[#e6e5e0]">
                   {["Phase", "Scope", "Duration", "Investment"].map((h) => (
-                    <th key={h} className="text-left text-[10px] uppercase tracking-[0.2em] text-[#cdcdc9] pb-3 pr-4 font-normal" style={{ fontFamily: "var(--font-jetbrains)" }}>{h}</th>
+                    <th key={h} className="text-left text-[10px] uppercase tracking-[0.2em] text-[#262510] pb-3 pr-4 font-normal" style={{ fontFamily: "var(--font-jetbrains)" }}>{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -603,12 +695,12 @@ function BusinessCase() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="p-4 rounded border border-[#e6e5e0] bg-[#f7f7f4]">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Total Investment</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Total Investment</p>
               <p className="text-2xl font-semibold text-[#262510]" style={{ letterSpacing: "-0.5px" }}>$20K – $30K</p>
               <p className="text-xs text-[#7a7974] mt-1">FTZ Inventory Reconciliation · Phase 1</p>
             </div>
             <div className="p-4 rounded border border-[#e6e5e0] bg-[#f7f7f4]">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Time to Value</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>Time to Value</p>
               <p className="text-2xl font-semibold text-[#262510]" style={{ letterSpacing: "-0.5px" }}>~3 Weeks</p>
               <p className="text-xs text-[#7a7974] mt-1">From kickoff to live reconciled ledger</p>
             </div>
@@ -651,8 +743,7 @@ function BusinessCase() {
           </div>
         </div>
 
-      </div>
-    </>
+    </div>
   );
 }
 
@@ -676,7 +767,7 @@ export function DensoMissionBriefing() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <p className="text-xs uppercase tracking-[0.25em] text-[#7a7974] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>
+        <p className="text-xs uppercase tracking-[0.25em] text-[#262510] mb-1" style={{ fontFamily: "var(--font-jetbrains)" }}>
           Mission Briefing Portal
         </p>
         <h2 className="text-xl font-semibold text-[#262510] mb-1" style={{ letterSpacing: "-0.3px" }}>

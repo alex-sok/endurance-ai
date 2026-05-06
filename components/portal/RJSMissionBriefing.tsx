@@ -232,7 +232,7 @@ function THead({ cols }: { cols: string[] }) {
       {cols.map(c => (
         <th
           key={c}
-          className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium text-[#7a7974]"
+          className="text-left pb-2 pr-6 text-xs uppercase tracking-widest font-medium text-[#262510]"
           style={{ fontFamily: "var(--font-jetbrains)" }}
         >
           {c}
