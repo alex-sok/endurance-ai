@@ -78,5 +78,7 @@ export function useSiteAnalytics() {
     return () => window.removeEventListener("beforeunload", handleUnload);
   }, []);
 
-  return { onSectionEnter, onChatOpen, onCtaClick };
+  const getSessionId = useCallback(() => sessionId.current, []);
+
+  return { onSectionEnter, onChatOpen, onCtaClick, getSessionId };
 }

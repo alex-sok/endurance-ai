@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Btn } from "@/components/ui/Btn";
+import { EmailCapture } from "./EmailCapture";
 import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/conversation-flows";
 
 interface Props {
@@ -38,13 +39,17 @@ export function LandingCTA({ onOpenChat }: Props) {
             trying to accomplish. We'll tell you if we're the right fit.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-3 mb-12">
             <Btn onClick={onOpenChat}>
               Begin Mission Briefing →
             </Btn>
             <Btn variant="signal" as="a" href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
               Book a Call
             </Btn>
+          </div>
+
+          <div style={{ borderTop: "1px solid #e6e5e0", paddingTop: "2rem" }}>
+            <EmailCapture />
           </div>
         </motion.div>
 
