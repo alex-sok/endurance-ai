@@ -20,6 +20,13 @@ export function PortalShell({ portal, sections }: Props) {
 
   usePortalAnalytics(portal.slug, activeSection);
 
+  // Some portals use a single self-contained component on one section.
+  // Filter the visible sections so the nav grid and canvas only show
+  // what's actually rendered (avoids empty "Content coming soon" tabs).
+  const visibleSections = portal.slug.startsWith("rjs")
+    ? sections.filter((s) => s.slug === "overview")
+    : sections;
+
   return (
     <div
       className="min-h-screen"
@@ -36,7 +43,7 @@ export function PortalShell({ portal, sections }: Props) {
 
       <PortalNav
         portal={portal}
-        sections={sections}
+        sections={visibleSections}
         activeSection={activeSection}
         onSelectSection={setActiveSection}
         onOpenChat={() => setMobileOpen(true)}
@@ -45,14 +52,14 @@ export function PortalShell({ portal, sections }: Props) {
       <div className="lg:pr-[380px]">
         <PortalHero
           portal={portal}
-          sections={sections}
+          sections={visibleSections}
           onSelectSection={(slug) => setActiveSection(slug)}
           onOpenChat={() => setMobileOpen(true)}
         />
         <div ref={canvasRef}>
           <PortalCanvas
             portal={portal}
-            sections={sections}
+            sections={visibleSections}
             activeSection={activeSection}
             onSelectSection={setActiveSection}
           />
