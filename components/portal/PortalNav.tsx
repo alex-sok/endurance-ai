@@ -57,7 +57,7 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
                 className="relative px-3 py-1.5 text-xs uppercase tracking-widest transition-colors duration-150"
                 style={{
                   fontFamily: "var(--font-jetbrains)",
-                  color: activeSection === section.slug ? "#262510" : "#7a7974",
+                  color: activeSection === section.slug ? "#262510" : "#4a4940",
                 }}
               >
                 {section.title}

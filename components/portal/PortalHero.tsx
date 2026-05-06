@@ -53,7 +53,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
           <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--portal-accent)" }} />
           <span
             className="text-xs uppercase tracking-[0.25em]"
-            style={{ color: "#7a7974", fontFamily: "var(--font-jetbrains)" }}
+            style={{ color: "#262510", fontFamily: "var(--font-jetbrains)" }}
           >
             Mission Briefing
           </span>
@@ -64,7 +64,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-          className="text-xs uppercase tracking-[0.3em] mb-4 text-[#7a7974]"
+          className="text-xs uppercase tracking-[0.3em] mb-4 text-[#262510]"
           style={{ fontFamily: "var(--font-jetbrains)" }}
         >
           {portal.client_name}
@@ -94,7 +94,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
             className="flex items-center gap-4 mb-5"
           >
             <div className="h-px w-8 bg-[#e6e5e0]" />
-            <p className="text-sm tracking-[0.15em] uppercase text-[#7a7974]">{portal.tagline}</p>
+            <p className="text-sm tracking-[0.15em] uppercase text-[#262510]">{portal.tagline}</p>
             <div className="h-px w-8 bg-[#e6e5e0]" />
           </motion.div>
         )}
@@ -163,7 +163,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
                 style={{ background: "var(--portal-accent)" }}
               />
               <span
-                className="block text-[10px] tracking-[0.25em] uppercase mb-2 text-[#cdcdc9]"
+                className="block text-[10px] tracking-[0.25em] uppercase mb-2 text-[#7a7974]"
                 style={{ fontFamily: "var(--font-jetbrains)" }}
               >
                 {String(i + 1).padStart(2, "0")}
