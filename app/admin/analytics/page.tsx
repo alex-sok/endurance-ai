@@ -34,6 +34,21 @@ function fmtDuration(s: number | null) {
   return `${Math.floor(s / 60)}m ${s % 60}s`;
 }
 
+/**
+ * Returns the most accurate session duration we can compute.
+ * duration_seconds is only stamped when page_exit fires. If it never fired
+ * (tab left open, browser killed, etc.) fall back to last_seen_at - started_at.
+ * Either way, never show more than last_seen_at + 30 min — caps stale sessions.
+ */
+function effectiveDuration(started_at: string, last_seen_at: string, duration_seconds: number | null): number | null {
+  const elapsed = Math.round(
+    (new Date(last_seen_at).getTime() - new Date(started_at).getTime()) / 1000
+  );
+  const cap = elapsed + 30 * 60; // last_seen_at + 30 min buffer
+  if (duration_seconds === null) return elapsed > 10 ? elapsed : null;
+  return Math.min(duration_seconds, cap);
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 interface Props {
@@ -107,9 +122,9 @@ export default async function AnalyticsPage({ searchParams }: Props) {
   // ── Summary stats (scoped to current filter) ──────────────────────────────
   const totalSessions = rows.length;
   const uniqueEmails  = new Set(rows.map((r) => r.email).filter(Boolean)).size;
-  const withDuration  = rows.filter((r) => r.duration_seconds);
+  const withDuration  = rows.filter((r) => effectiveDuration(r.started_at, r.last_seen_at, r.duration_seconds) !== null);
   const avgDuration   = withDuration.length
-    ? Math.round(withDuration.reduce((a, r) => a + (r.duration_seconds ?? 0), 0) / withDuration.length)
+    ? Math.round(withDuration.reduce((a, r) => a + (effectiveDuration(r.started_at, r.last_seen_at, r.duration_seconds) ?? 0), 0) / withDuration.length)
     : null;
 
   const activePortal = allPortals?.find((p) => p.slug === activePortalSlug);
@@ -404,9 +419,9 @@ export default async function AnalyticsPage({ searchParams }: Props) {
                 {/* Duration */}
                 <p
                   className="text-sm"
-                  style={{ color: row.duration_seconds ? "#262510" : "#cdcdc9", fontFamily: "var(--font-jetbrains)" }}
+                  style={{ color: effectiveDuration(row.started_at, row.last_seen_at, row.duration_seconds) ? "#262510" : "#cdcdc9", fontFamily: "var(--font-jetbrains)" }}
                 >
-                  {fmtDuration(row.duration_seconds)}
+                  {fmtDuration(effectiveDuration(row.started_at, row.last_seen_at, row.duration_seconds))}
                 </p>
 
                 {/* Chat turns */}
