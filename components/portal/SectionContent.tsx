@@ -3,6 +3,7 @@
 import type { Portal, PortalSection } from "@/types/portal";
 import { GTProjectPlan } from "./GTProjectPlan";
 import { RJSMissionBriefing } from "./RJSMissionBriefing";
+import { WaterMissionBriefing } from "./WaterMissionBriefing";
 
 interface Props {
   section: PortalSection;
@@ -20,6 +21,10 @@ export function SectionContent({ section, portal }: Props) {
   // Portal-level custom components — override section rendering for specific portals
   if ((portal.slug === "rjs-briefing" || portal.slug.startsWith("rjs")) && section.slug === "overview") {
     return <RJSMissionBriefing />;
+  }
+
+  if (portal.slug.startsWith("water-mission") && section.slug === "overview") {
+    return <WaterMissionBriefing />;
   }
 
   switch (section.slug) {

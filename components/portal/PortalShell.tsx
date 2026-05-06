@@ -23,9 +23,10 @@ export function PortalShell({ portal, sections }: Props) {
   // Some portals use a single self-contained component on one section.
   // Filter the visible sections so the nav grid and canvas only show
   // what's actually rendered (avoids empty "Content coming soon" tabs).
-  const visibleSections = portal.slug.startsWith("rjs")
-    ? sections.filter((s) => s.slug === "overview")
-    : sections;
+  const visibleSections =
+    portal.slug.startsWith("rjs") || portal.slug.startsWith("water-mission")
+      ? sections.filter((s) => s.slug === "overview")
+      : sections;
 
   return (
     <div
