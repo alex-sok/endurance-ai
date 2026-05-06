@@ -34,7 +34,6 @@ export async function POST(request: Request) {
   if (!type) return new Response("Bad request", { status: 400 });
 
   const supabase = await createClient(true);
-  const ip = getIP(request);
   const ipHash = ip
     ? createHmac("sha256", "site-ip-salt").update(ip).digest("hex").slice(0, 16)
     : null;
