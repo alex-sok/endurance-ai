@@ -18,12 +18,12 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
 const DEFAULT_SECTIONS = [
-  { section_slug: "overview", title: "Overview", order_index: 0 },
-  { section_slug: "problem",  title: "Problem",  order_index: 1 },
-  { section_slug: "solution", title: "Solution", order_index: 2 },
-  { section_slug: "roadmap",  title: "Roadmap",  order_index: 3 },
-  { section_slug: "team",     title: "Team",     order_index: 4 },
-  { section_slug: "metrics",  title: "Metrics",  order_index: 5 },
+  { slug: "overview", title: "Overview", sort_order: 0 },
+  { slug: "problem",  title: "Problem",  sort_order: 1 },
+  { slug: "solution", title: "Solution", sort_order: 2 },
+  { slug: "roadmap",  title: "Roadmap",  sort_order: 3 },
+  { slug: "team",     title: "Team",     sort_order: 4 },
+  { slug: "metrics",  title: "Metrics",  sort_order: 5 },
 ];
 
 function parseNotionPageId(url: string): string | null {
