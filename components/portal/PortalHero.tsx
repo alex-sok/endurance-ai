@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { Portal, PortalSection } from "@/types/portal";
+import { PortalHeroGeometry } from "./PortalHeroGeometry";
 
 interface Props {
   portal: Portal;
@@ -26,6 +27,9 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
           WebkitMaskImage: "radial-gradient(ellipse 80% 80% at 50% 0%, black 0%, transparent 100%)",
         }}
       />
+
+      {/* Rotating icosahedron wireframe */}
+      <PortalHeroGeometry />
 
       {/* Accent color wash */}
       <div
