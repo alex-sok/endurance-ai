@@ -31,8 +31,19 @@ export default async function AdminPortalsPage() {
           >
             Endurance AI Labs
           </div>
-          <h1 className="text-2xl font-semibold" style={{ letterSpacing: "-0.025em" }}>Client Portals</h1>
-          <p className="text-sm mt-1" style={{ color: "#7a7974" }}>Click a portal to edit it</p>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h1 className="text-2xl font-semibold" style={{ letterSpacing: "-0.025em" }}>Client Portals</h1>
+              <p className="text-sm mt-1" style={{ color: "#7a7974" }}>Click a portal to edit it</p>
+            </div>
+            <a
+              href="/admin/portals/new"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors"
+              style={{ background: "#262510", color: "#f7f7f4", borderRadius: "4px", whiteSpace: "nowrap" }}
+            >
+              + New Portal
+            </a>
+          </div>
         </div>
         <AdminPortalList />
       </div>
