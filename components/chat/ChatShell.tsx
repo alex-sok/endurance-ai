@@ -38,9 +38,11 @@ function StreamingBubble({ text }: { text: string }) {
 interface ChatShellProps {
   /** Pass true inside the landing-page overlay — the overlay renders its own header */
   hideHeader?: boolean;
+  /** Returns the site analytics session ID so messages can be persisted */
+  getSessionId?: () => string | null;
 }
 
-export function ChatShell({ hideHeader = false }: ChatShellProps) {
+export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) {
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
   const bottomRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -48,7 +50,7 @@ export function ChatShell({ hideHeader = false }: ChatShellProps) {
   const [streamingText, setStreamingText] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [showLeadForm, setShowLeadForm] = useState(true);
+  const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadDismissed, setLeadDismissed] = useState(false);
   const [leadInfo, setLeadInfo] = useState<{ name: string; email: string; company: string } | null>(null);
   const [leadSent, setLeadSent] = useState(false);
@@ -57,6 +59,15 @@ export function ChatShell({ hideHeader = false }: ChatShellProps) {
 
   // Has the conversation started (beyond the initial welcome)?
   const hasStarted = state.messages.length > 1;
+
+  // Show lead form after the 2nd assistant message (welcome + first real reply)
+  // — user is engaged at this point, not cold
+  const assistantMessageCount = state.messages.filter((m) => m.role === "assistant").length;
+  useEffect(() => {
+    if (!leadDismissed && assistantMessageCount >= 2) {
+      setShowLeadForm(true);
+    }
+  }, [assistantMessageCount, leadDismissed]);
 
 
   // ── Scroll to bottom ────────────────────────────────────────────────────
@@ -105,6 +116,7 @@ export function ChatShell({ hideHeader = false }: ChatShellProps) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             messages: messages.map((m) => ({ role: m.role, content: m.content })),
+            session_id: getSessionId?.() ?? null,
           }),
           signal: abortRef.current.signal,
         });

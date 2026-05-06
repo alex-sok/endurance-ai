@@ -8,9 +8,10 @@ import { MonoLabel } from "@/components/ui/MonoLabel";
 interface Props {
   open: boolean;
   onClose: () => void;
+  getSessionId?: () => string | null;
 }
 
-export function ChatOverlay({ open, onClose }: Props) {
+export function ChatOverlay({ open, onClose, getSessionId }: Props) {
   // ESC to close + lock body scroll while open
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -58,7 +59,7 @@ export function ChatOverlay({ open, onClose }: Props) {
 
           {/* Chat — hideHeader since we rendered our own above */}
           <div className="flex-1 overflow-hidden px-4 sm:px-6">
-            <ChatShell hideHeader />
+            <ChatShell hideHeader getSessionId={getSessionId} />
           </div>
         </motion.div>
       )}

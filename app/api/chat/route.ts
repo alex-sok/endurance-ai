@@ -1,5 +1,6 @@
 import { SYSTEM_PROMPT } from "@/lib/system-prompt";
 import { rateLimit, getIP } from "@/lib/rate-limit";
+import { createClient } from "@/lib/supabase/server";
 
 // Never statically pre-render — requires a live API key at runtime
 export const dynamic = "force-dynamic";
@@ -26,9 +27,11 @@ export async function POST(request: Request) {
   }
 
   let messages: ChatRequestMessage[];
+  let sessionId: string | null = null;
   try {
     const body = await request.json();
     messages = body.messages;
+    sessionId = typeof body.session_id === "string" ? body.session_id : null;
     if (!Array.isArray(messages) || messages.length === 0) {
       return new Response("messages array is required", { status: 400 });
     }
@@ -45,9 +48,13 @@ export async function POST(request: Request) {
   }
 
   const encoder = new TextEncoder();
+  // Captured outside the stream so we can persist after it closes
+  const capturedSession = sessionId;
+  const lastUserMessage = messages[messages.length - 1]?.content ?? "";
 
   const readable = new ReadableStream({
     async start(controller) {
+      let fullAssistantText = "";
       try {
         const res = await fetch("https://api.x.ai/v1/responses", {
           method: "POST",
@@ -88,6 +95,7 @@ export async function POST(request: Request) {
               const event = JSON.parse(data);
               // Only emit text deltas from the message output (not reasoning)
               if (event.type === "response.output_text.delta" && event.delta) {
+                fullAssistantText += event.delta;
                 controller.enqueue(encoder.encode(event.delta));
               }
             } catch {
@@ -100,6 +108,18 @@ export async function POST(request: Request) {
         controller.enqueue(encoder.encode(`\n\n[Error: ${msg}]`));
       } finally {
         controller.close();
+        // Persist the exchange to Supabase fire-and-forget (never blocks the response)
+        if (capturedSession && fullAssistantText) {
+          createClient(true).then((supabase) => {
+            const cleanText = fullAssistantText.replace(/\n?\[LEAD:[\s\S]*$/, "").trim();
+            supabase.from("site_messages").insert([
+              { session_id: capturedSession, role: "user",      content: lastUserMessage },
+              { session_id: capturedSession, role: "assistant", content: cleanText },
+            ]).then(({ error }) => {
+              if (error) console.error("[chat] message persist failed:", error.message);
+            });
+          }).catch(() => {});
+        }
       }
     },
   });

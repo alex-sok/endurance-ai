@@ -25,7 +25,7 @@ const SECTIONS = [
 
 export function LandingShell() {
   const [chatOpen, setChatOpen] = useState(false);
-  const { onSectionEnter, onChatOpen, onCtaClick } = useSiteAnalytics();
+  const { onSectionEnter, onChatOpen, onCtaClick, getSessionId } = useSiteAnalytics();
 
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
@@ -92,6 +92,7 @@ export function LandingShell() {
       <ChatOverlay
         open={chatOpen}
         onClose={() => setChatOpen(false)}
+        getSessionId={getSessionId}
       />
     </>
   );
