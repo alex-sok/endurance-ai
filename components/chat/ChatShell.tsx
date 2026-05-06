@@ -202,15 +202,31 @@ export function ChatShell({ hideHeader = false }: ChatShellProps) {
     [sendMessage]
   );
 
-  // ── Lead form: store info, don't send yet ───────────────────────────────
+  // ── Lead form: store info and fire immediately ───────────────────────────
   const handleLeadSubmit = useCallback(
     async (name: string, email: string, company: string) => {
       const info = { name, email, company };
       setLeadInfo(info);
       leadInfoRef.current = info;
       setLeadDismissed(true);
+      // Fire right away — don't wait for the 4th message trigger
+      if (!leadSentRef.current) {
+        leadSentRef.current = true;
+        setLeadSent(true);
+        fetch("/api/notify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "lead-capture",
+            name,
+            email,
+            company,
+            messages: state.messages.map((m) => ({ role: m.role, content: m.content })),
+          }),
+        }).catch(console.error);
+      }
     },
-    []
+    [state.messages]
   );
 
   // ── Fire lead to Slack (once only) ──────────────────────────────────────
