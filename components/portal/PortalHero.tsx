@@ -118,13 +118,15 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
           transition={{ duration: 0.5, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row items-center gap-3"
         >
-          <button
-            onClick={() => sections[0] && onSelectSection(sections[0].slug)}
-            className="px-6 py-2.5 text-sm font-medium text-[#f7f7f4] bg-[#262510] hover:bg-[#141414] transition-colors duration-150"
-            style={{ borderRadius: "4px" }}
-          >
-            Explore the Briefing →
-          </button>
+          {sections.length > 1 && (
+            <button
+              onClick={() => sections[0] && onSelectSection(sections[0].slug)}
+              className="px-6 py-2.5 text-sm font-medium text-[#f7f7f4] bg-[#262510] hover:bg-[#141414] transition-colors duration-150"
+              style={{ borderRadius: "4px" }}
+            >
+              Explore the Briefing →
+            </button>
+          )}
           <button
             onClick={onOpenChat}
             className="lg:hidden px-6 py-2.5 text-sm font-medium transition-all duration-150"
@@ -139,7 +141,8 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
         </motion.div>
       </div>
 
-      {/* Section nav grid flush to bottom */}
+      {/* Section nav grid — hidden when there's only one section */}
+      {sections.length > 1 && (
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -172,6 +175,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
           ))}
         </div>
       </motion.div>
+      )}
     </section>
   );
 }

@@ -37,6 +37,7 @@ export function PortalCanvas({ portal, sections, activeSection, onSelectSection 
             index={index}
             isActive={activeSection === section.slug}
             onSelect={() => onSelectSection(section.slug)}
+            single={sections.length === 1}
           />
         </div>
       ))}
@@ -52,29 +53,31 @@ interface PanelProps {
   onSelect: () => void;
 }
 
-function SectionPanel({ section, portal, index, isActive, onSelect }: PanelProps) {
+function SectionPanel({ section, portal, index, isActive, onSelect, single }: PanelProps & { single?: boolean }) {
   return (
-    <div className="max-w-6xl mx-auto px-6 md:px-12 py-20 md:py-28">
+    <div className={`max-w-6xl mx-auto px-6 md:px-12 ${single ? "py-12" : "py-20 md:py-28"}`}>
 
-      {/* Section header */}
-      <div className="mb-12">
-        <span
-          className="block text-xs tracking-[0.3em] uppercase font-medium mb-3"
-          style={{ color: "color-mix(in srgb, var(--portal-accent) 44%, transparent)" }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <div className="flex items-end gap-6">
-          <h2
-            className="text-3xl md:text-4xl font-semibold tracking-tight cursor-pointer transition-colors duration-200 leading-none"
-            style={{ color: isActive ? "var(--portal-accent)" : "#262510" }}
-            onClick={onSelect}
+      {/* Section header — hidden for single-section custom-component portals */}
+      {!single && (
+        <div className="mb-12">
+          <span
+            className="block text-xs tracking-[0.3em] uppercase font-medium mb-3"
+            style={{ color: "color-mix(in srgb, var(--portal-accent) 44%, transparent)" }}
           >
-            {section.title}
-          </h2>
-          <div className="h-px flex-1 mb-1.5 bg-[#e6e5e0]" />
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <div className="flex items-end gap-6">
+            <h2
+              className="text-3xl md:text-4xl font-semibold tracking-tight cursor-pointer transition-colors duration-200 leading-none"
+              style={{ color: isActive ? "var(--portal-accent)" : "#262510" }}
+              onClick={onSelect}
+            >
+              {section.title}
+            </h2>
+            <div className="h-px flex-1 mb-1.5 bg-[#e6e5e0]" />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Content */}
       <div>
@@ -82,7 +85,9 @@ function SectionPanel({ section, portal, index, isActive, onSelect }: PanelProps
       </div>
 
       {/* Bottom divider */}
-      <div className="mt-20 md:mt-28 h-px bg-gradient-to-r from-transparent via-[#e6e5e0] to-transparent" />
+      {!single && (
+        <div className="mt-20 md:mt-28 h-px bg-gradient-to-r from-transparent via-[#e6e5e0] to-transparent" />
+      )}
     </div>
   );
 }
