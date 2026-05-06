@@ -46,7 +46,7 @@ export function ChatOverlay({ open, onClose }: Props) {
               onClick={onClose}
               className="flex items-center gap-2 transition-colors duration-150 text-[#7a7974] hover:text-[#262510]"
             >
-              <MonoLabel>Mission Briefing</MonoLabel>
+              <MonoLabel>Grace · AI Advisor</MonoLabel>
               <span
                 className="text-xs"
                 style={{ fontFamily: "var(--font-jetbrains)" }}

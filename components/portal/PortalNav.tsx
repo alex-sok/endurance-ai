@@ -83,7 +83,7 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
               borderRadius: "4px",
             }}
           >
-            Mission AI
+            Ask Grace
           </button>
 
         </div>
