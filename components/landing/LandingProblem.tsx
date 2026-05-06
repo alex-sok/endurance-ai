@@ -1,16 +1,35 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Btn } from "@/components/ui/Btn";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 
 const failures = [
-  "Organizational inertia.",
-  "Weak data foundations.",
-  "No clear ownership.",
-  "Tool-first thinking.",
-  "Poor change management.",
-  "Lack of internal capability.",
+  {
+    title: "Organizational inertia.",
+    body: "Teams default to familiar workflows. Without a forcing function, adoption stalls before it starts.",
+  },
+  {
+    title: "Weak data foundations.",
+    body: "AI is only as good as the data feeding it. Fragmented systems and dirty data make even strong models useless.",
+  },
+  {
+    title: "No clear ownership.",
+    body: "When AI is everyone's job, it's no one's job. Initiatives drift without a single accountable driver.",
+  },
+  {
+    title: "Tool-first thinking.",
+    body: "Buying software is not a strategy. Deploying tools without redesigning the workflow around them changes nothing.",
+  },
+  {
+    title: "Poor change management.",
+    body: "The technical build is the easy part. Getting people to actually change how they work is where most initiatives die.",
+  },
+  {
+    title: "Lack of internal capability.",
+    body: "External vendors deliver and leave. Without building internal knowledge, organizations can't maintain or scale what was built.",
+  },
 ];
 
 interface Props {
@@ -18,6 +37,8 @@ interface Props {
 }
 
 export function LandingProblem({ onOpenChat }: Props) {
+  const [open, setOpen] = useState<number | null>(null);
+
   return (
     <section style={{ background: "#f7f7f4" }} className="py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 sm:px-10">
@@ -46,7 +67,7 @@ export function LandingProblem({ onOpenChat }: Props) {
             Most AI transformations fail for predictable reasons.
           </motion.p>
 
-          {/* Failure list */}
+          {/* Accordion */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -57,17 +78,52 @@ export function LandingProblem({ onOpenChat }: Props) {
             }}
             className="mb-12"
           >
-            {failures.map((f) => (
-              <motion.p
-                key={f}
+            {failures.map((f, i) => (
+              <motion.div
+                key={f.title}
                 variants={{
                   hidden: { opacity: 0, x: -8 },
                   visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
                 }}
-                className="text-base md:text-lg py-3.5 border-b border-surface text-muted-ash"
+                className="border-b border-surface"
               >
-                {f}
-              </motion.p>
+                <button
+                  onClick={() => setOpen(open === i ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 py-4 text-left group"
+                >
+                  <span className="text-base md:text-lg text-muted-ash group-hover:text-ink transition-colors duration-150">
+                    {f.title}
+                  </span>
+                  <span
+                    className="flex-shrink-0 w-4 h-4 flex items-center justify-center transition-transform duration-200"
+                    style={{
+                      transform: open === i ? "rotate(45deg)" : "rotate(0deg)",
+                      color: "#cdcdc9",
+                    }}
+                  >
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {open === i && (
+                    <motion.div
+                      key="body"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <p className="text-sm text-muted-ash leading-relaxed pb-4 max-w-xl">
+                        {f.body}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             ))}
           </motion.div>
 
