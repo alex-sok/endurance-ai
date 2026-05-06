@@ -61,7 +61,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "home",
     title: "Welcome",
     message:
-      "Welcome to Endurance AI Labs. Brief us on a critical initiative, explore what we do, or learn how we work.",
+      "Hi, I'm Grace, AI advisor for Endurance AI Labs. Brief us on a critical initiative, explore what we do, or learn how we work.",
     promptChips: [
       { id: "home-1", label: "Brief us on a mission", nextNodeId: "mission-start" },
       { id: "home-2", label: "What does Endurance do?", nextNodeId: "what-we-do" },

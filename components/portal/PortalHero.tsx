@@ -134,7 +134,7 @@ export function PortalHero({ portal, sections, onSelectSection, onOpenChat }: Pr
               color: "var(--portal-accent)",
             }}
           >
-            Ask our AI
+            Ask Grace
           </button>
         </motion.div>
       </div>
