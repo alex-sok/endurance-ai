@@ -198,14 +198,14 @@ async function pushToLightfield(payload: NotifyPayload): Promise<void> {
     $email: [email],
     $name:  { firstName, ...(lastName ? { lastName } : {}) },
   };
-  if (company) fields.company = company;
 
-  // Add lead type as a note so context is visible in Lightfield
+  // Build $notes — company + lead context (Lightfield has no standalone company field)
   const noteLines: string[] = [`Source: endurancelabs.ai chat (${payload.type})`];
+  if (company)                                   noteLines.push(`Company: ${company}`);
   if ("mission"  in payload && payload.mission)  noteLines.push(`Mission: ${payload.mission}`);
   if ("obstacle" in payload && payload.obstacle) noteLines.push(`Obstacle: ${payload.obstacle}`);
   if ("stakes"   in payload && payload.stakes)   noteLines.push(`Stakes: ${payload.stakes}`);
-  if (noteLines.length > 1) fields.notes = noteLines.join("\n");
+  fields.$notes = noteLines.join("\n");
 
   const res = await fetch("https://api.lightfield.app/v1/contacts", {
     method: "POST",
