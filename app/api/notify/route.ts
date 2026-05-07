@@ -177,6 +177,52 @@ function buildSlackMessage(payload: NotifyPayload, score: ScoreResult) {
   return { blocks };
 }
 
+// ── Lightfield CRM ────────────────────────────────────────────────────────────
+async function pushToLightfield(payload: NotifyPayload): Promise<void> {
+  const apiKey = process.env.LIGHTFIELD_API_KEY;
+  if (!apiKey) return; // silently skip if not configured
+
+  // Only push when we have an email address
+  const email   = "email"   in payload ? payload.email?.trim()   : "";
+  const name    = "name"    in payload ? payload.name?.trim()    : "";
+  const company = "company" in payload ? payload.company?.trim() : "";
+  if (!email) return;
+
+  // Split name into first / last best-effort
+  const parts     = name.split(" ").filter(Boolean);
+  const firstName = parts[0] ?? "";
+  const lastName  = parts.slice(1).join(" ") || undefined;
+
+  // Build contact fields
+  const fields: Record<string, unknown> = {
+    $email: [email],
+    $name:  { firstName, ...(lastName ? { lastName } : {}) },
+  };
+  if (company) fields.company = company;
+
+  // Add lead type as a note so context is visible in Lightfield
+  const noteLines: string[] = [`Source: endurancelabs.ai chat (${payload.type})`];
+  if ("mission"  in payload && payload.mission)  noteLines.push(`Mission: ${payload.mission}`);
+  if ("obstacle" in payload && payload.obstacle) noteLines.push(`Obstacle: ${payload.obstacle}`);
+  if ("stakes"   in payload && payload.stakes)   noteLines.push(`Stakes: ${payload.stakes}`);
+  if (noteLines.length > 1) fields.notes = noteLines.join("\n");
+
+  const res = await fetch("https://api.lightfield.app/v1/contacts", {
+    method: "POST",
+    headers: {
+      "Content-Type":     "application/json",
+      "Authorization":    `Bearer ${apiKey}`,
+      "Lightfield-Version": "2026-03-01",
+    },
+    body: JSON.stringify({ fields }),
+  });
+
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    console.error(`[lightfield] ${res.status}: ${body}`);
+  }
+}
+
 // ── Handler ───────────────────────────────────────────────────────────────────
 export async function POST(request: Request) {
   // ── Rate limiting ──────────────────────────────────────────────────────────
@@ -245,27 +291,36 @@ export async function POST(request: Request) {
     console.error(`[notify] Slack returned ${slackRes.status}: ${body}`);
   }
 
-  // ── Persist lead to Supabase (independent of Slack — never lose a lead) ──
-  try {
-    const supabase = await createClient(true);
-    const row: Record<string, unknown> = {
-      type:  payload.type,
-      score: score.score || null,
-      score_reasoning: score.reasoning || null,
-    };
-    if ("name"               in payload) row.name                = payload.name;
-    if ("email"              in payload) row.email               = payload.email;
-    if ("company"            in payload) row.company             = payload.company;
-    if ("mission"            in payload) row.mission             = payload.mission;
-    if ("obstacle"           in payload) row.obstacle            = payload.obstacle;
-    if ("stakes"             in payload) row.stakes              = payload.stakes;
-    if ("internalChallenges" in payload) row.internal_challenges = payload.internalChallenges;
+  // ── Persist + CRM (run in parallel, neither blocks the response) ─────────
+  await Promise.allSettled([
+    // Supabase — source of truth, never lose a lead
+    (async () => {
+      try {
+        const supabase = await createClient(true);
+        const row: Record<string, unknown> = {
+          type:  payload.type,
+          score: score.score || null,
+          score_reasoning: score.reasoning || null,
+        };
+        if ("name"               in payload) row.name                = payload.name;
+        if ("email"              in payload) row.email               = payload.email;
+        if ("company"            in payload) row.company             = payload.company;
+        if ("mission"            in payload) row.mission             = payload.mission;
+        if ("obstacle"           in payload) row.obstacle            = payload.obstacle;
+        if ("stakes"             in payload) row.stakes              = payload.stakes;
+        if ("internalChallenges" in payload) row.internal_challenges = payload.internalChallenges;
+        const { error: dbError } = await supabase.from("site_leads").insert(row);
+        if (dbError) console.error("[notify] DB insert failed:", dbError.message);
+      } catch (err) {
+        console.error("[notify] DB write threw:", err);
+      }
+    })(),
 
-    const { error: dbError } = await supabase.from("site_leads").insert(row);
-    if (dbError) console.error("[notify] DB insert failed:", dbError.message);
-  } catch (err) {
-    console.error("[notify] DB write threw:", err);
-  }
+    // Lightfield CRM — silently skipped if LIGHTFIELD_API_KEY not set
+    pushToLightfield(payload).catch((err) =>
+      console.error("[lightfield] push threw:", err)
+    ),
+  ]);
 
   return new Response("ok", { status: 200 });
 }
