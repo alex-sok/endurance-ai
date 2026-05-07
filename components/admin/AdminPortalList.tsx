@@ -16,7 +16,18 @@ interface PortalRow {
   password_hint: string | null;
   config: { notion_pages?: string[] };
   chunk_count: number;
+  session_count: number;
+  last_seen: string | null;
   created_at: string;
+}
+
+function relativeTime(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime();
+  const m = Math.floor(diff / 60_000);
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h / 24)}d ago`;
 }
 
 const ACCENT_PRESETS = ["#7c3aed","#2563eb","#0ea5e9","#0d9488","#059669","#d97706","#dc2626","#db2777"];
@@ -109,6 +120,16 @@ function PortalCard({ portal, onSaved }: { portal: PortalRow; onSaved: () => voi
         <div className="flex items-center gap-4 flex-shrink-0">
           <div className="w-3 h-3 rounded-sm" style={{ background: portal.accent_color }} />
           <span className="text-xs text-[#7a7974]">{portal.chunk_count} chunks</span>
+          {portal.session_count > 0 ? (
+            <span className="text-xs text-[#7a7974]">
+              {portal.session_count} {portal.session_count === 1 ? "session" : "sessions"}
+              {portal.last_seen && (
+                <span className="text-[#cdcdc9]"> · {relativeTime(portal.last_seen)}</span>
+              )}
+            </span>
+          ) : (
+            <span className="text-xs text-[#cdcdc9]">no sessions</span>
+          )}
           <span className="text-xs text-[#cdcdc9]" style={{ fontFamily: "var(--font-jetbrains)" }}>
             {open ? "▲" : "▼"}
           </span>
