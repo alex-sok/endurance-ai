@@ -138,8 +138,14 @@ export async function POST(
 
   const encoder = new TextEncoder();
 
+  // Capture for post-stream side effects
+  const isFirstMessage = messages.filter((m) => m.role === "user").length === 1;
+  const firstUserMessage = messages.find((m) => m.role === "user")?.content ?? "";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://endurancelabs.ai";
+
   const readable = new ReadableStream({
     async start(controller) {
+      let fullAssistantText = "";
       try {
         const res = await fetch("https://api.x.ai/v1/responses", {
           method: "POST",
@@ -179,6 +185,7 @@ export async function POST(
             try {
               const event = JSON.parse(data);
               if (event.type === "response.output_text.delta" && event.delta) {
+                fullAssistantText += event.delta;
                 controller.enqueue(encoder.encode(event.delta));
               }
             } catch {
@@ -191,6 +198,51 @@ export async function POST(
         controller.enqueue(encoder.encode(`\n\nError: ${msg}`));
       } finally {
         controller.close();
+
+        // ── Slack notification on first message of each portal chat session ──
+        if (isFirstMessage && fullAssistantText) {
+          const webhookUrl = process.env.SLACK_WEBHOOK_URL;
+          if (webhookUrl) {
+            fetch(webhookUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                blocks: [
+                  {
+                    type: "header",
+                    text: { type: "plain_text", text: "🏛️ Portal Chat Started", emoji: true },
+                  },
+                  {
+                    type: "section",
+                    fields: [
+                      { type: "mrkdwn", text: `*Portal*\n${portal.client_name}` },
+                      { type: "mrkdwn", text: `*Path*\n/mission/${slug}` },
+                    ],
+                  },
+                  { type: "divider" },
+                  {
+                    type: "section",
+                    text: {
+                      type: "mrkdwn",
+                      text: `*First question*\n${firstUserMessage.slice(0, 300)}`,
+                    },
+                  },
+                  {
+                    type: "actions",
+                    elements: [
+                      {
+                        type: "button",
+                        text: { type: "plain_text", text: "View Portal →", emoji: true },
+                        url: `${siteUrl}/mission/${slug}`,
+                        style: "primary",
+                      },
+                    ],
+                  },
+                ],
+              }),
+            }).catch(() => {});
+          }
+        }
       }
     },
   });

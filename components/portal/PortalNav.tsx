@@ -73,18 +73,33 @@ export function PortalNav({ portal, sections, activeSection, onSelectSection, on
             ))}
           </nav>
 
-          {/* Right: mobile chat toggle */}
-          <button
-            onClick={onOpenChat}
-            className="lg:hidden flex items-center gap-2 px-4 py-1.5 text-xs uppercase tracking-widest font-medium transition-all duration-150 text-[#262510] hover:bg-[#e6e5e0]"
-            style={{
-              fontFamily: "var(--font-jetbrains)",
-              border: "1px solid #cdcdc9",
-              borderRadius: "4px",
-            }}
-          >
-            Ask Grace
-          </button>
+          {/* Right: Book a call (desktop) + mobile chat toggle */}
+          <div className="flex items-center gap-3">
+            <a
+              href="https://calendar.notion.so/meet/alexsok/endurance-intro"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:flex items-center gap-2 px-4 py-1.5 text-xs uppercase tracking-widest font-medium transition-all duration-150 text-[#262510] hover:bg-[#e6e5e0]"
+              style={{
+                fontFamily: "var(--font-jetbrains)",
+                border: "1px solid #cdcdc9",
+                borderRadius: "4px",
+              }}
+            >
+              Book a Call →
+            </a>
+            <button
+              onClick={onOpenChat}
+              className="lg:hidden flex items-center gap-2 px-4 py-1.5 text-xs uppercase tracking-widest font-medium transition-all duration-150 text-[#262510] hover:bg-[#e6e5e0]"
+              style={{
+                fontFamily: "var(--font-jetbrains)",
+                border: "1px solid #cdcdc9",
+                borderRadius: "4px",
+              }}
+            >
+              Ask Grace
+            </button>
+          </div>
 
         </div>
       </div>

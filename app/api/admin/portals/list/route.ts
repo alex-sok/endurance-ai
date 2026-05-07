@@ -48,9 +48,27 @@ export async function GET(request: Request) {
     chunkCounts[chunk.portal_id] = (chunkCounts[chunk.portal_id] ?? 0) + 1;
   }
 
+  // Get session stats per portal (ordered desc so first occurrence = most recent)
+  const { data: sessions } = await supabase
+    .from("portal_sessions")
+    .select("portal_id, started_at")
+    .order("started_at", { ascending: false });
+
+  const sessionStats: Record<string, { count: number; last_seen: string }> = {};
+  for (const session of sessions ?? []) {
+    if (!sessionStats[session.portal_id]) {
+      // First occurrence is most recent (desc order)
+      sessionStats[session.portal_id] = { count: 1, last_seen: session.started_at };
+    } else {
+      sessionStats[session.portal_id].count++;
+    }
+  }
+
   const result = (portals ?? []).map((p) => ({
     ...p,
     chunk_count: chunkCounts[p.id] ?? 0,
+    session_count: sessionStats[p.id]?.count ?? 0,
+    last_seen: sessionStats[p.id]?.last_seen ?? null,
   }));
 
   return Response.json(result);
