@@ -24,7 +24,7 @@ export function PortalShell({ portal, sections }: Props) {
   // Filter the visible sections so the nav grid and canvas only show
   // what's actually rendered (avoids empty "Content coming soon" tabs).
   const visibleSections =
-    portal.slug.startsWith("rjs") || portal.slug.startsWith("water-mission") || portal.slug.startsWith("denso")
+    portal.slug.startsWith("rjs") || portal.slug.startsWith("water-mission") || portal.slug.startsWith("denso") || portal.slug.startsWith("franmore")
       ? sections.filter((s) => s.slug === "overview")
       : sections;
 
