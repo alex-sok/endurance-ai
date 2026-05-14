@@ -16,14 +16,14 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      // Next.js requires unsafe-inline for its runtime scripts
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      // Next.js requires unsafe-inline for its runtime scripts; Apollo tracker CDN
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.apollo.io",
       // Inline styles used by Tailwind + Google Fonts
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob:",
-      // Allow calls to our own API, xAI (streaming), and OpenAI (embeddings)
-      "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com",
+      // Allow calls to our own API, xAI (streaming), OpenAI (embeddings), and Apollo tracking
+      "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io",
       // No iframes anywhere
       "frame-ancestors 'none'",
       "base-uri 'self'",
