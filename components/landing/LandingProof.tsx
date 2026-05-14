@@ -6,19 +6,19 @@ import { Btn } from "@/components/ui/Btn";
 
 const cases = [
   {
-    stat: "9 months",
-    result: "→ 3 days",
-    body: "A software startup had been wrestling with a critical problem for nine months. We fixed it in three days, enabling them to go to market faster and secure more deals.",
+    stat: "20 engineers. 1 year.",
+    result: "→ 2 weeks.",
+    body: "A team at Expedia had been working on a specific problem for a year without solving it. We solved it in two weeks. The same pattern has repeated across every major engagement we've run.",
   },
   {
-    stat: "$5B",
-    result: "distribution business",
-    body: "A major distribution company needed to streamline operations as tariffs eroded their margins. We supported a mission-critical objective that protected their bottom line.",
+    stat: "6 months of waiting.",
+    result: "→ 4 days.",
+    body: "A CEO had been waiting six months for his own team to deliver an agentic e-commerce experience. We built it in four days. He's now using it to open doors at Macy's, American Express, and Nordstrom.",
   },
   {
-    stat: "1 year",
-    result: "→ 2 weeks",
-    body: "A massive e-commerce group had been tinkering with a new feature for over a year, going nowhere fast. We rearchitected the solution from the ground up and shipped in under two weeks.",
+    stat: "Regulated industries.",
+    result: "Production-ready.",
+    body: "Most AI firms quietly avoid regulated environments — pharma, financial services, healthcare. We don't. We've built production AI systems inside them, where breaking things is not an option and compliance is a constraint, not a suggestion.",
   },
 ];
 
@@ -109,7 +109,7 @@ export function LandingProof({ onOpenChat }: Props) {
           className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6"
         >
           <p className="text-xs text-subtle" style={{ fontFamily: "var(--font-jetbrains)" }}>
-            Engagements are confidential. Details shared under NDA.
+            Active engagements with Fortune 500 enterprises. Details shared under NDA.
           </p>
           <Btn onClick={onOpenChat}>Begin Mission Briefing →</Btn>
         </motion.div>

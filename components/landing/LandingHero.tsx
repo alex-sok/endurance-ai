@@ -116,6 +116,17 @@ export function LandingHero({ onOpenChat }: Props) {
             See how we work ↓
           </Btn>
         </motion.div>
+
+        {/* Fortune 500 credibility signal */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10 text-xs"
+          style={{ color: "rgba(247,247,244,0.28)", fontFamily: "var(--font-jetbrains)", letterSpacing: "0.12em" }}
+        >
+          Active engagements with Fortune 500 enterprises — built for the mid-market.
+        </motion.p>
       </div>
 
       {/* Bottom gradient fade into next section */}
