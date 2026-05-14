@@ -2,11 +2,15 @@
 
 import { useState, useEffect, useRef } from "react";
 import { LandingHero } from "./LandingHero";
+import { LandingIsThisYou } from "./LandingIsThisYou";
 import { LandingProblem } from "./LandingProblem";
+import { LandingWhyNow } from "./LandingWhyNow";
 import { LandingServices } from "./LandingServices";
 import { LandingProof } from "./LandingProof";
 import { LandingHowWeWork } from "./LandingHowWeWork";
 import { LandingWhoWeHelp } from "./LandingWhoWeHelp";
+import { LandingAudit } from "./LandingAudit";
+import { LandingFAQ } from "./LandingFAQ";
 import { LandingTeam } from "./LandingTeam";
 import { LandingCTA } from "./LandingCTA";
 import { ChatOverlay } from "./ChatOverlay";
@@ -14,11 +18,15 @@ import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 
 const SECTIONS = [
   "hero",
+  "is-this-you",
   "problem",
+  "why-now",
   "services",
   "proof",
   "how-we-work",
   "who-we-help",
+  "audit",
+  "faq",
   "team",
   "cta",
 ] as const;
@@ -67,8 +75,14 @@ export function LandingShell() {
       <div ref={sectionRef("hero")}         data-section="hero">
         <LandingHero onOpenChat={openChat} />
       </div>
+      <div ref={sectionRef("is-this-you")}  data-section="is-this-you">
+        <LandingIsThisYou />
+      </div>
       <div ref={sectionRef("problem")}      data-section="problem">
         <LandingProblem onOpenChat={openChat} />
+      </div>
+      <div ref={sectionRef("why-now")}      data-section="why-now">
+        <LandingWhyNow />
       </div>
       <div ref={sectionRef("services")}     data-section="services">
         <LandingServices onOpenChat={openChat} />
@@ -81,6 +95,12 @@ export function LandingShell() {
       </div>
       <div ref={sectionRef("who-we-help")}  data-section="who-we-help">
         <LandingWhoWeHelp onOpenChat={openChat} />
+      </div>
+      <div ref={sectionRef("audit")}        data-section="audit">
+        <LandingAudit onOpenChat={openChat} />
+      </div>
+      <div ref={sectionRef("faq")}          data-section="faq">
+        <LandingFAQ onOpenChat={openChat} />
       </div>
       <div ref={sectionRef("team")}         data-section="team">
         <LandingTeam />
