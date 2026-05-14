@@ -9,9 +9,9 @@ interface Props {
 }
 
 const auditIncludes = [
-  "We come in and look at what you're doing and what you're not doing",
-  "We identify exactly where AI can generate real ROI — and where it's a waste of money",
-  "You walk away with a prioritized roadmap you can act on immediately",
+  "We look at what you're doing and what you're not",
+  "We identify where AI generates real ROI, and where it's a waste of money",
+  "You walk away with a prioritized roadmap",
   "Whether you work with us afterward or not",
 ];
 
@@ -46,7 +46,7 @@ export function LandingAudit({ onOpenChat }: Props) {
           className="text-base leading-relaxed max-w-3xl mb-14"
           style={{ color: "rgba(247,247,244,0.55)" }}
         >
-          A dominant misconception paralyzes otherwise capable leadership teams: the belief that deploying AI requires a massive, enterprise-wide transformation. Months of planning. Millions in investment. Everything disrupted at once. This belief is false — and it's expensive. AI can be as simple as a walk after dinner. Small. Low-risk. High-value. Something you do this week.
+          A dominant misconception paralyzes capable leadership teams: that AI deployment requires a massive enterprise transformation. Months of planning. Millions in investment. Everything disrupted at once. This belief is false, and it costs real money. AI can be as simple as a walk after dinner. Small. Low-risk. High-value. Something you do this week.
         </motion.p>
 
         {/* Card + aside */}
@@ -109,7 +109,7 @@ export function LandingAudit({ onOpenChat }: Props) {
             className="text-sm leading-relaxed lg:pt-4"
             style={{ color: "rgba(247,247,244,0.35)", fontFamily: "var(--font-jetbrains)", letterSpacing: "0.02em" }}
           >
-            Not ready for a full engagement? This is how most of our best engagements start.
+            Not ready for a full engagement. This is how most of ours start.
           </motion.p>
 
         </div>
