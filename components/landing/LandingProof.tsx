@@ -8,7 +8,7 @@ const cases = [
   {
     stat: "20 engineers. 1 year.",
     result: "→ 2 weeks.",
-    body: "A team at a major Fortune 500 travel company had been working on a specific problem for a year without solving it. We solved it in two weeks. The same pattern has repeated across every major engagement we've run.",
+    body: "A team at a major Fortune 500 travel company had been working on a specific problem for a year. We solved it in two weeks. That pattern has held across every major engagement since.",
   },
   {
     stat: "6 months of waiting.",
@@ -18,7 +18,7 @@ const cases = [
   {
     stat: "Regulated industries.",
     result: "Production-ready.",
-    body: "Most AI firms quietly avoid regulated environments — pharma, financial services, healthcare. We don't. We've built production AI systems inside them, where breaking things is not an option and compliance is a constraint, not a suggestion.",
+    body: "Most AI firms quietly avoid regulated environments: pharma, financial services, healthcare. We don't. We've built production AI systems inside them, where breaking things is not an option and compliance is not a suggestion.",
   },
 ];
 

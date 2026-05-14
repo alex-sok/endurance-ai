@@ -37,16 +37,16 @@ export function LandingTeam() {
             <span className="text-ink font-medium">Sid Bhambhani</span>, and{" "}
             <span className="text-ink font-medium">Nick Maxwell</span>. Our backgrounds span AI
             engineering, enterprise architecture, product design, and operational execution across
-            complex, regulated, and high-growth environments.
+            regulated, high-growth, and complex environments.
           </p>
           <p className="text-base leading-relaxed text-muted-ash mt-4">
-            Sid co-founded Summatti, an AI-powered startup acquired by PartnerHero, and brings
-            over 20 years of technology leadership experience. Nick was a founding engineer at
-            TALA, acquired by Intuit, and holds a degree in Computer Science from Cornell.
+            Sid co-founded Summatti, an AI company acquired by PartnerHero, and brings over 20
+            years of technology leadership. Nick was a founding engineer at TALA, acquired by
+            Intuit, and holds a Computer Science degree from Cornell.
           </p>
           <p className="text-base leading-relaxed text-muted-ash mt-4">
-            We are not a consulting firm. We are operators, built to execute in environments
-            where the initiative is too important to drift.
+            We are operators. Built to execute in environments where the initiative is too
+            important to drift.
           </p>
         </motion.div>
 

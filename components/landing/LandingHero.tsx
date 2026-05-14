@@ -98,8 +98,8 @@ export function LandingHero({ onOpenChat }: Props) {
           className="text-sm sm:text-base leading-relaxed mb-12 max-w-md"
           style={{ color: "rgba(247,247,244,0.48)" }}
         >
-          Operator-led AI execution for leaders who are serious about outcomes.
-          Strategy through deployment, in one small senior team.
+          Operator-led AI execution for leaders with serious outcomes at stake.
+          Strategy through deployment. One small, senior team.
         </motion.p>
 
         {/* CTAs */}
@@ -125,7 +125,7 @@ export function LandingHero({ onOpenChat }: Props) {
           className="mt-10 text-xs"
           style={{ color: "rgba(247,247,244,0.28)", fontFamily: "var(--font-jetbrains)", letterSpacing: "0.12em" }}
         >
-          Active engagements with Fortune 500 enterprises — built for the mid-market.
+          Active engagements with Fortune 500 enterprises. Built for the mid-market.
         </motion.p>
       </div>
 

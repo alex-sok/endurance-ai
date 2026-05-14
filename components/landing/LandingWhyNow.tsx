@@ -34,10 +34,10 @@ export function LandingWhyNow() {
           className="max-w-3xl mb-12 space-y-5"
         >
           <p className="text-base leading-relaxed text-muted-ash">
-            OpenAI just announced a $4 billion fund for AI implementation, partnering with Bain, McKinsey, and Goldman Sachs. Anthropic announced $2.5 billion for the same purpose. For the next 12–18 months, every frontier lab will be focused almost entirely on Fortune 500. The mid-market — companies doing $10M–$500M in revenue — will be mostly left to figure it out on their own.
+            OpenAI announced a $4 billion fund for AI implementation, partnering with Bain, McKinsey, and Goldman Sachs. Anthropic announced $2.5 billion for the same purpose. For the next 12 to 18 months, every frontier lab will focus almost entirely on Fortune 500. The mid-market, companies doing $10M to $500M in revenue, will be mostly left to figure it out on their own.
           </p>
           <p className="text-base leading-relaxed text-muted-ash">
-            That is our market. We are building in it now, with the experience, tools, and reputation to serve it well — before the big players arrive and triple the price.
+            That is our market. We are building in it now, with the experience, tools, and reputation to serve it well. Before the big players arrive and triple the price.
           </p>
         </motion.div>
 
@@ -58,7 +58,7 @@ export function LandingWhyNow() {
             {
               figure: "$2.5B",
               label: "Anthropic implementation fund",
-              sub: "Same directive — Fortune 500 focus",
+              sub: "Same directive. Fortune 500 focus.",
             },
           ].map((stat) => (
             <motion.div
@@ -91,7 +91,7 @@ export function LandingWhyNow() {
           className="text-base md:text-lg font-semibold text-ink max-w-3xl"
           style={{ letterSpacing: "-0.2px" }}
         >
-          The organizations that get great AI work done in the next 18 months will have a compounding advantage their competitors won't be able to close. The ones that wait will pay three times the price to the same firms.
+          Organizations that move in the next 18 months will build a compounding advantage their competitors cannot close. The ones that wait will pay three times the price to the same firms.
         </motion.p>
 
       </div>
