@@ -18,8 +18,34 @@ const auditIncludes = [
 
 export function LandingAudit({ onOpenChat }: Props) {
   return (
-    <section className="py-24 md:py-32" style={{ background: "#080d17" }}>
-      <div className="max-w-6xl mx-auto px-6 sm:px-10">
+    <section className="py-24 md:py-32 relative overflow-hidden" style={{ background: "#080d17" }}>
+
+      {/* Purple glow — bottom center bloom */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          bottom: "-20%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "70%",
+          height: "60%",
+          background: "radial-gradient(ellipse at center, rgba(124,58,237,0.14) 0%, transparent 65%)",
+        }}
+      />
+
+      {/* Left edge glow — near the card */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "30%",
+          left: "-5%",
+          width: "40%",
+          height: "50%",
+          background: "radial-gradient(ellipse at center, rgba(124,58,237,0.07) 0%, transparent 65%)",
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10">
 
         {/* Section header */}
         <motion.div
@@ -114,7 +140,7 @@ export function LandingAudit({ onOpenChat }: Props) {
           </motion.p>
 
         </div>
-      </div>
+        </div>
     </section>
   );
 }

@@ -14,8 +14,21 @@ const bullets = [
 
 export function LandingIsThisYou() {
   return (
-    <section className="py-24 md:py-32" style={{ background: "#0d1117" }}>
-      <div className="max-w-6xl mx-auto px-6 sm:px-10">
+    <section className="py-24 md:py-32 relative overflow-hidden" style={{ background: "#0d1117" }}>
+
+      {/* Purple glow — upper right bleed */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "-15%",
+          right: "-5%",
+          width: "45%",
+          height: "70%",
+          background: "radial-gradient(ellipse at center, rgba(124,58,237,0.11) 0%, transparent 65%)",
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10">
         <div className="max-w-3xl">
 
           {/* Eyebrow */}
@@ -73,7 +86,7 @@ export function LandingIsThisYou() {
           </motion.div>
 
         </div>
-      </div>
+        </div>
     </section>
   );
 }
