@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import { LandingHero } from "./LandingHero";
+import { LandingMarquee } from "./LandingMarquee";
 import { LandingIsThisYou } from "./LandingIsThisYou";
 import { LandingProblem } from "./LandingProblem";
+import { LandingComparison } from "./LandingComparison";
 import { LandingWhyNow } from "./LandingWhyNow";
 import { LandingServices } from "./LandingServices";
 import { LandingProof } from "./LandingProof";
@@ -18,8 +20,10 @@ import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 
 const SECTIONS = [
   "hero",
+  "marquee",
   "is-this-you",
   "problem",
+  "comparison",
   "why-now",
   "services",
   "proof",
@@ -75,11 +79,17 @@ export function LandingShell() {
       <div ref={sectionRef("hero")}         data-section="hero">
         <LandingHero onOpenChat={openChat} />
       </div>
+      <div ref={sectionRef("marquee")}      data-section="marquee">
+        <LandingMarquee />
+      </div>
       <div ref={sectionRef("is-this-you")}  data-section="is-this-you">
         <LandingIsThisYou />
       </div>
       <div ref={sectionRef("problem")}      data-section="problem">
         <LandingProblem onOpenChat={openChat} />
+      </div>
+      <div ref={sectionRef("comparison")}   data-section="comparison">
+        <LandingComparison />
       </div>
       <div ref={sectionRef("why-now")}      data-section="why-now">
         <LandingWhyNow />

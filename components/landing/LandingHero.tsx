@@ -81,10 +81,10 @@ export function LandingHero({ onOpenChat }: Props) {
           transition={{ duration: 0.85, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
           className="font-semibold leading-[1.0] mb-8"
           style={{
-            fontSize: "clamp(42px, 6.5vw, 88px)",
-            letterSpacing: "clamp(-1px, -0.025em, -2.5px)",
+            fontSize: "clamp(52px, 8vw, 112px)",
+            letterSpacing: "clamp(-1.5px, -0.03em, -3.5px)",
             color: "#f7f7f4",
-            maxWidth: "820px",
+            maxWidth: "900px",
           }}
         >
           Execute the initiative that cannot afford to fail.
