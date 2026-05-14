@@ -357,7 +357,7 @@ function PersonalityTab() {
           <FeatureRow icon="🔀" title="Avatar-Driven Conversation Flows" tags={[{ label: "5 Personas", color: "copper" }]}
             description="Frankie is pre-loaded with Lance's 5 client archetypes — differentiated by investment level (under $50K, $50–100K, $100K+), ownership preference (full-time vs. semi-passive), and skills profile (sales background, operations, management). She routes each prospect into the correct avatar mid-conversation and adjusts her brand recommendations accordingly." />
           <FeatureRow icon="🛑" title="Graceful Objection Handling" tags={[{ label: "Programmed", color: "red" }]}
-            description='Frankie knows how to respond when a prospect pushes back on investment size, expresses interest in restaurants specifically, or asks questions only Lance can answer. She acknowledges, pivots, and bridges — e.g. "That's a great question — Lance is actually a restaurant franchise expert, and I'll make sure he covers that on your next call."' />
+            description={`Frankie knows how to respond when a prospect pushes back on investment size, expresses interest in restaurants specifically, or asks questions only Lance can answer. She acknowledges, pivots, and bridges — e.g. "That's a great question — Lance is actually a restaurant franchise expert, and I'll make sure he covers that on your next call."`} />
         </CardContent>
       </Card>
 
