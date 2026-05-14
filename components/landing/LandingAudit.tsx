@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { Btn } from "@/components/ui/Btn";
+import { CALENDLY_URL } from "@/lib/conversation-flows";
 
 interface Props {
   onOpenChat: () => void;
@@ -95,7 +96,7 @@ export function LandingAudit({ onOpenChat }: Props) {
             </p>
 
             {/* CTA */}
-            <Btn onClick={onOpenChat} className="w-full justify-center">
+            <Btn as="a" href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="w-full justify-center">
               Book an AI Audit →
             </Btn>
           </motion.div>
