@@ -8,12 +8,12 @@ const cases = [
   {
     stat: "20 engineers. 1 year.",
     result: "→ 2 weeks.",
-    body: "A team at Expedia had been working on a specific problem for a year without solving it. We solved it in two weeks. The same pattern has repeated across every major engagement we've run.",
+    body: "A team at a major Fortune 500 travel company had been working on a specific problem for a year without solving it. We solved it in two weeks. The same pattern has repeated across every major engagement we've run.",
   },
   {
     stat: "6 months of waiting.",
     result: "→ 4 days.",
-    body: "A CEO had been waiting six months for his own team to deliver an agentic e-commerce experience. We built it in four days. He's now using it to open doors at Macy's, American Express, and Nordstrom.",
+    body: "A CEO had been waiting six months for his own team to deliver an agentic e-commerce experience. We built it in four days. He's now using it to open doors at Fortune 500 retailers and financial institutions.",
   },
   {
     stat: "Regulated industries.",
