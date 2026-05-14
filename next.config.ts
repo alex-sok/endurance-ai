@@ -23,7 +23,7 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com data:",
       "img-src 'self' data: blob:",
       // Allow calls to our own API, xAI (streaming), OpenAI (embeddings), and Apollo tracking
-      "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io",
+      "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io https://aplo-evnt.com",
       // No iframes anywhere
       "frame-ancestors 'none'",
       "base-uri 'self'",
