@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Lato, Space_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -93,16 +92,14 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${lato.variable} ${spaceMono.variable} h-full`}>
+      <head>
+        {/* Apollo website tracker */}
+        <script dangerouslySetInnerHTML={{ __html: `function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"694ae0d3e06005002190100b"})},document.head.appendChild(o)}initApollo();` }} />
+      </head>
       <body className="h-full antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        {/* Apollo website tracker — loads after page is interactive, injects into <head> */}
-        <Script
-          id="apollo-tracker"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{ __html: `function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"694ae0d3e06005002190100b"})},document.head.appendChild(o)}initApollo();` }}
         />
         {children}
       </body>
