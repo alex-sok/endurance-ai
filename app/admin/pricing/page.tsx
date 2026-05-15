@@ -238,31 +238,31 @@ const SERVICES = [
         title: "Voice Agent Optimization Harness",
         tagline: "AI voice agents that get smarter over time — without you touching anything.",
         description:
-          "Most voice agents are built once and left to decay. Calls go sideways, edge cases pile up, and nobody's watching. We build the infrastructure to deploy voice agents, optimize each one individually, and keep them monitored and improving on a continuous basis. You pay once to set up the harness, once per agent to build and optimize it, and a flat monthly fee per agent to keep it running and learning. Priced by business scale.",
+          "Most voice agents are built once and left to decay. Calls go sideways, edge cases pile up, and nobody's watching. We build the infrastructure to deploy voice agents, optimize each one individually, and keep them monitored and improving on a continuous basis. You pay once to set up the harness, once per agent to build and optimize it, and a flat monthly fee to keep them running and learning. Minimum commitments apply. Annual contracts available at a discount.",
         tiers: [
           {
             name: "Small Business",
             price: "$1,999 setup",
-            duration: "$999 / agent · $99 / mo per agent",
+            duration: "$999 / agent · $149 / mo per agent",
             description:
-              "Standard harness setup. Individual agent builds with core optimization loop. Monthly monitoring included.",
+              "Standard harness setup. Individual agent builds with core optimization loop. Monthly monitoring included. 3-month minimum commitment. Annual option: 2 months free.",
           },
           {
             name: "Mid-Market",
             price: "$5,999 setup",
-            duration: "$2,499 / agent · $249 / mo per agent",
+            duration: "$2,499 / agent · $349 / mo per agent",
             description:
-              "Multi-system harness with CRM and helpdesk integrations. Advanced call flow logic and monthly optimization reviews with reporting.",
+              "Multi-system harness with CRM and helpdesk integrations. Advanced call flow logic and monthly optimization reviews with reporting. 6-month minimum commitment. Annual option: 2 months free.",
           },
           {
             name: "Large Enterprise",
-            price: "$14,999 setup",
-            duration: "$4,999 / agent · $499 / mo per agent",
+            price: "$24,999 setup",
+            duration: "$7,499 / mo platform · $599 / mo per agent over 10",
             description:
-              "Dedicated environment, compliance review, and custom integrations. Full-cycle optimization, dedicated account management, and SLA guarantee.",
+              "Dedicated environment, compliance review, and custom integrations. Platform fee covers up to 10 agents. Additional agents at $599/month each. Full-cycle optimization, dedicated account management, and SLA guarantee. Annual contract required.",
           },
         ],
-        note: "Setup fee covers the full infrastructure harness. Agent fee is one-time per voice agent built. Monthly fee covers monitoring, optimization, and ongoing service.",
+        note: "Setup fee covers the full infrastructure harness. Agent fee is one-time per voice agent built. Small Business and Mid-Market: monthly fee per agent. Large Enterprise: flat platform fee covering up to 10 agents, then per-agent beyond that.",
       },
     ],
   },
