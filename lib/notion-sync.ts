@@ -133,14 +133,32 @@ async function blocksToText(blockId: string, token: string, depth = 0): Promise<
       case "child_page":
         // Skip — handled separately as its own document
         break;
+      case "link_to_page":
+        // Skip inline — the target page is crawled in fetchAndChunkPage
+        break;
+      case "synced_block": {
+        // Synced blocks: recurse into the synced source if present
+        const syncedFrom = block.synced_block?.synced_from;
+        if (!syncedFrom && block.has_children) {
+          // Original synced block — children are inline, recurse normally
+          const syncedText = await blocksToText(block.id, token, depth + 1);
+          if (syncedText.trim()) lines.push(syncedText);
+        }
+        break;
+      }
       default:
         break;
     }
 
     if (text.trim()) lines.push(text.trim());
 
-    // Recurse into non-child_page blocks that have children (toggles, etc.)
-    if (block.has_children && block.type !== "child_page") {
+    // Recurse into non-child_page / non-link_to_page blocks that have children
+    if (
+      block.has_children &&
+      block.type !== "child_page" &&
+      block.type !== "link_to_page" &&
+      block.type !== "synced_block"
+    ) {
       const childText = await blocksToText(block.id, token, depth + 1);
       if (childText.trim()) lines.push(childText);
     }
@@ -207,12 +225,38 @@ export async function fetchAndChunkPage(
       allChunks.push(...chunkText(text, title, url));
     }
 
-    // Recurse into child pages
+    // Recurse into child pages and linked page references
     const blocks = await getBlocks(pageId, token);
     for (const block of blocks) {
       if (block.type === "child_page") {
         const childChunks = await fetchAndChunkPage(block.id, token, visited);
         allChunks.push(...childChunks);
+      } else if (block.type === "link_to_page") {
+        // Linked page reference (used in Master Index / hub pages)
+        const linkedId: string | undefined =
+          block.link_to_page?.page_id ?? block.link_to_page?.database_id;
+        if (linkedId) {
+          const linkedChunks = await fetchAndChunkPage(linkedId, token, visited);
+          allChunks.push(...linkedChunks);
+        }
+      } else if (block.type === "child_database") {
+        // Inline database — fetch all its pages
+        try {
+          const dbRes = await fetch(`${NOTION_API}/databases/${block.id}/query`, {
+            method: "POST",
+            headers: headers(token),
+            body: JSON.stringify({ page_size: 100 }),
+          });
+          if (dbRes.ok) {
+            const dbData = await dbRes.json();
+            for (const page of dbData.results ?? []) {
+              const dbPageChunks = await fetchAndChunkPage(page.id, token, visited);
+              allChunks.push(...dbPageChunks);
+            }
+          }
+        } catch (err) {
+          console.error(`[notion-sync] Failed to query database ${block.id}:`, err);
+        }
       }
     }
   } catch (err) {
