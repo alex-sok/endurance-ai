@@ -199,6 +199,46 @@ function chunkText(text: string, title: string, url: string): NotionChunk[] {
   return chunks;
 }
 
+// ── Extract Notion page links from rich text ──────────────────────────────────
+
+/**
+ * Scans a block list for rich_text elements whose href points to a Notion page,
+ * extracts the page IDs, and returns them for recursive crawling.
+ * Handles the "Master Index" pattern where bullet items are plain text linked to pages.
+ */
+function extractNotionHrefLinks(blocks: Block[]): string[] {
+  const pageIds: string[] = [];
+  // Match notion.so/<optional-workspace>/<32-hex-char page ID>
+  const notionPagePattern = /notion\.so\/(?:[^/]*\/)?([a-f0-9]{32})(?:[?#]|$)/i;
+
+  for (const block of blocks) {
+    const blockContent = block[block.type];
+    if (!blockContent) continue;
+
+    const richTextArrays: any[][] = [
+      blockContent.rich_text,
+      blockContent.title,
+      blockContent.caption,
+    ].filter(Array.isArray);
+
+    for (const richText of richTextArrays) {
+      for (const rt of richText) {
+        const href: string | null = rt.href ?? rt.text?.link?.url ?? null;
+        if (!href) continue;
+        const match = href.match(notionPagePattern);
+        if (match) {
+          const raw = match[1];
+          // Format raw 32-char hex into UUID format
+          const uuid = `${raw.slice(0,8)}-${raw.slice(8,12)}-${raw.slice(12,16)}-${raw.slice(16,20)}-${raw.slice(20)}`;
+          pageIds.push(uuid);
+        }
+      }
+    }
+  }
+
+  return pageIds;
+}
+
 // ── Public API ────────────────────────────────────────────────────────────────
 
 /**
@@ -227,6 +267,14 @@ export async function fetchAndChunkPage(
 
     // Recurse into child pages and linked page references
     const blocks = await getBlocks(pageId, token);
+
+    // Follow Notion href links embedded in rich text (Master Index pattern)
+    const hrefPageIds = extractNotionHrefLinks(blocks);
+    for (const linkedId of hrefPageIds) {
+      const linkedChunks = await fetchAndChunkPage(linkedId, token, visited);
+      allChunks.push(...linkedChunks);
+    }
+
     for (const block of blocks) {
       if (block.type === "child_page") {
         const childChunks = await fetchAndChunkPage(block.id, token, visited);
