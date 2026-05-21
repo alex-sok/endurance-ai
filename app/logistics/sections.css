@@ -1,0 +1,1188 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   Section-specific styles for /logistics.
+
+   Conventions:
+   - All rules live under .logistics-theme so nothing leaks to the rest
+     of the site.
+   - BEM-ish names: .logi-<section>__<part>.
+   - No Tailwind here on purpose — these are heavy layout rules that
+     benefit from being co-located and editable in one place.
+   ───────────────────────────────────────────────────────────────────── */
+
+/* ============================================================ §1 Hero */
+.logistics-theme .logi-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(120px, 14vh, 200px);
+}
+
+.logistics-theme .logi-hero__frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.logistics-theme .logi-hero__cones {
+  position: absolute;
+  left: 50%;
+  bottom: -10%;
+  width: 80%;
+  height: 70%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(245, 165, 36, 0.18) 0%,
+    rgba(245, 165, 36, 0.04) 30%,
+    transparent 60%
+  );
+  filter: blur(20px);
+}
+
+.logistics-theme .logi-hero__fog {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(10, 11, 13, 0.4) 75%,
+    rgba(10, 11, 13, 0.9) 100%
+  );
+}
+
+.logistics-theme .logi-hero__network {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+}
+
+.logistics-theme .logi-hero__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+}
+
+.logistics-theme .logi-hero__headline {
+  margin-top: 24px;
+}
+
+.logistics-theme .logi-hero__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-hero__sub {
+  margin-top: 32px;
+  max-width: 56ch;
+  color: var(--logi-fg);
+}
+
+.logistics-theme .logi-hero__scroll {
+  margin-top: 80px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .logi-hero__chevron {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid var(--logi-fg-muted);
+  border-bottom: 1px solid var(--logi-fg-muted);
+  transform: rotate(45deg) translateY(-2px);
+}
+
+/* ========================================================== §2 Problem */
+.logistics-theme .logi-problem__headline {
+  max-width: 22ch;
+  margin-bottom: 96px;
+}
+
+.logistics-theme .logi-problem__strike {
+  position: relative;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .logi-problem__strike::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  top: 52%;
+  height: 4px;
+  background: var(--logi-signal);
+  transform: skewY(-2deg);
+}
+
+.logistics-theme .logi-problem__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px;
+  padding-block: 32px;
+  border-top: 1px solid var(--logi-divider);
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-problem__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.logistics-theme .logi-problem__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.logistics-theme .logi-problem__quote {
+  margin: 96px 0 0;
+  max-width: 60ch;
+  padding-left: 24px;
+  border-left: 2px solid var(--logi-signal);
+}
+
+.logistics-theme .logi-problem__quote blockquote {
+  margin: 0 0 16px;
+  color: var(--logi-fg-pure);
+}
+
+/* =========================================================== §3 Shift */
+.logistics-theme .logi-shift__headline {
+  margin-bottom: 72px;
+  max-width: 18ch;
+}
+
+.logistics-theme .logi-shift__em {
+  color: var(--logi-signal);
+  font-style: normal;
+}
+
+.logistics-theme .logi-shift__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--logi-divider);
+  margin-bottom: 96px;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-shift__split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logistics-theme .logi-shift__col {
+  padding: clamp(32px, 4vw, 56px);
+}
+
+.logistics-theme .logi-shift__col--incumbent {
+  border-right: 1px solid var(--logi-divider);
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-shift__col--incumbent {
+    border-right: 0;
+    border-bottom: 1px solid var(--logi-divider);
+  }
+}
+
+.logistics-theme .logi-shift__col--endurance {
+  background: linear-gradient(
+    180deg,
+    rgba(245, 165, 36, 0.06) 0%,
+    transparent 60%
+  );
+}
+
+.logistics-theme .logi-shift__stack {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 18px;
+}
+
+.logistics-theme .logi-shift__col--incumbent .logi-shift__stack li {
+  color: var(--logi-fg-faint);
+  text-decoration: line-through;
+  text-decoration-color: var(--logi-fg-faint);
+}
+
+.logistics-theme .logi-shift__col--endurance .logi-shift__stack li {
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .logi-shift__col--endurance .logi-shift__stack li::before {
+  content: "→ ";
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-shift__pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-shift__pillars {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.logistics-theme .logi-shift__pillar h3 {
+  margin: 12px 0 16px;
+}
+
+.logistics-theme .logi-shift__pillar-num {
+  color: var(--logi-signal);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+}
+
+/* ========================================================= §4 Product */
+.logistics-theme .logi-product__headline {
+  max-width: 24ch;
+  margin-bottom: 56px;
+}
+
+.logistics-theme .logi-product__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-product__dashboard {
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(245, 242, 236, 0.04);
+}
+
+.logistics-theme .logi-product__kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+@media (max-width: 700px) {
+  .logistics-theme .logi-product__kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.logistics-theme .logi-product__kpi {
+  padding: 24px;
+  border-right: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .logi-product__kpi:last-child {
+  border-right: 0;
+}
+
+.logistics-theme .logi-product__kpi-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--logi-fg-muted);
+  text-transform: uppercase;
+}
+
+.logistics-theme .logi-product__kpi-value {
+  font-family: var(--logi-font-display);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--logi-fg-pure);
+  margin-top: 6px;
+}
+
+.logistics-theme .logi-product__body {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-product__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logistics-theme .logi-product__map {
+  position: relative;
+  min-height: 420px;
+  background: var(--logi-bg);
+  border-right: 1px solid var(--logi-divider);
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-product__map {
+    border-right: 0;
+    border-bottom: 1px solid var(--logi-divider);
+    min-height: 320px;
+  }
+}
+
+.logistics-theme .logi-product__map svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.logistics-theme .logi-product__map-overlay {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--logi-fg-muted);
+  text-transform: uppercase;
+}
+
+.logistics-theme .logi-product__transcript {
+  padding: 24px;
+  font-family: var(--logi-font-mono);
+  font-size: 13px;
+  line-height: 1.55;
+  min-height: 420px;
+}
+
+.logistics-theme .logi-product__transcript-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--logi-divider);
+  margin-bottom: 16px;
+}
+
+.logistics-theme .logi-product__pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--logi-signal);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 var(--logi-signal-glow);
+  animation: logiPulse 2s ease-in-out infinite;
+}
+
+@keyframes logiPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 165, 36, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(245, 165, 36, 0);
+  }
+}
+
+.logistics-theme .logi-product__transcript-feed {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logistics-theme .logi-product__line {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.logistics-theme .logi-product__line-tag {
+  color: var(--logi-fg-muted);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+.logistics-theme .logi-product__line--action .logi-product__line-tag {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-product__line--action .logi-product__line-body {
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .logi-product__caption {
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+/* ======================================================== §5 Traction */
+.logistics-theme .logi-traction__headline {
+  margin-bottom: 56px;
+}
+
+.logistics-theme .logi-traction__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-traction__headline-stat {
+  padding-block: 56px;
+  border-top: 1px solid var(--logi-divider);
+  border-bottom: 1px solid var(--logi-divider);
+  margin-bottom: 80px;
+}
+
+.logistics-theme .logi-traction__big {
+  font-size: clamp(72px, 10vw, 144px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .logi-traction__charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 80px;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-traction__charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logistics-theme .logi-traction__chart {
+  padding: 24px;
+}
+
+.logistics-theme .logi-traction__chart-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  margin-bottom: 16px;
+}
+
+.logistics-theme .logi-traction__chart-svg {
+  width: 100%;
+  height: 200px;
+  display: block;
+}
+
+.logistics-theme .logi-traction__chart-foot {
+  margin-top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--logi-fg-faint);
+}
+
+.logistics-theme .logi-traction__quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-traction__quotes {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.logistics-theme .logi-traction__quote blockquote {
+  margin: 0 0 16px;
+  color: var(--logi-fg);
+}
+
+/* ========================================================== §6 Market */
+.logistics-theme .logi-market__headline {
+  margin-bottom: 72px;
+}
+
+.logistics-theme .logi-market__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-market__breakdown {
+  display: flex;
+  height: 96px;
+  margin-bottom: 64px;
+  border: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .logi-market__slice {
+  position: relative;
+  padding: 16px;
+  border-right: 1px solid var(--logi-divider);
+  background: var(--logi-bg-elev);
+  color: var(--logi-fg-muted);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.logistics-theme .logi-market__slice:last-child {
+  border-right: 0;
+}
+
+.logistics-theme .logi-market__slice.is-highlight {
+  background: var(--logi-signal);
+  color: #0a0b0d;
+}
+
+.logistics-theme .logi-market__slice-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.logistics-theme .logi-market__slice-pct {
+  font-size: 14px;
+}
+
+.logistics-theme .logi-market__lanes {
+  margin-bottom: 72px;
+}
+
+.logistics-theme .logi-market__lane-list {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.logistics-theme .logi-market__lane {
+  display: grid;
+  grid-template-columns: 1fr 50%;
+  gap: 24px;
+  align-items: center;
+  padding-block: 18px;
+  border-bottom: 1px solid var(--logi-divider);
+  font-size: 14px;
+}
+
+.logistics-theme .logi-market__lane-name {
+  color: var(--logi-fg);
+}
+
+.logistics-theme .logi-market__lane-bar {
+  display: block;
+  height: 2px;
+  background: var(--logi-signal);
+  box-shadow: 0 0 12px var(--logi-signal-glow);
+}
+
+.logistics-theme .logi-market__sizes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  padding-block: 48px;
+  border-top: 1px solid var(--logi-divider);
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-market__sizes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================ §7 Moat */
+.logistics-theme .logi-moat__headline {
+  margin-bottom: 72px;
+}
+
+.logistics-theme .logi-moat__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-moat__table {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--logi-divider);
+  margin-bottom: 64px;
+}
+
+.logistics-theme .logi-moat__row {
+  display: grid;
+  grid-template-columns: 220px repeat(3, 1fr);
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .logi-moat__row:last-child {
+  border-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-moat__row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logistics-theme .logi-moat__row--header {
+  background: var(--logi-bg-elev);
+}
+
+.logistics-theme .logi-moat__cell {
+  padding: 24px;
+  border-right: 1px solid var(--logi-divider);
+  font-size: 15px;
+  color: var(--logi-fg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 88px;
+}
+
+.logistics-theme .logi-moat__cell:last-child {
+  border-right: 0;
+}
+
+.logistics-theme .logi-moat__cell--label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .logi-moat__cell--header {
+  min-height: 120px;
+}
+
+.logistics-theme .logi-moat__col-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  margin-bottom: 6px;
+}
+
+.logistics-theme .logi-moat__cell.is-signal {
+  background: linear-gradient(
+    180deg,
+    rgba(245, 165, 36, 0.1) 0%,
+    rgba(245, 165, 36, 0.02) 100%
+  );
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .logi-moat__cell--header.is-signal .logi-moat__col-eyebrow {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-moat__close {
+  max-width: 56ch;
+  color: var(--logi-fg-pure);
+}
+
+/* ============================================================ §8 Team */
+.logistics-theme .logi-team__headline {
+  margin-bottom: 72px;
+}
+
+.logistics-theme .logi-team__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-team__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 96px;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-team__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logistics-theme .logi-team__card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logistics-theme .logi-team__portrait {
+  aspect-ratio: 1 / 1;
+  background: var(--logi-bg-elev);
+  border: 1px solid var(--logi-divider);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logistics-theme .logi-team__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.25) contrast(1.05);
+}
+
+.logistics-theme .logi-team__portrait-placeholder {
+  font-size: 72px;
+  letter-spacing: -0.04em;
+  color: var(--logi-fg-faint);
+  font-family: var(--logi-font-display);
+}
+
+.logistics-theme .logi-team__role {
+  color: var(--logi-signal);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.logistics-theme .logi-team__hook {
+  margin-top: 16px;
+}
+
+.logistics-theme .logi-team__advisors {
+  padding-block: 32px;
+  border-top: 1px solid var(--logi-divider);
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .logi-marquee {
+  margin-top: 24px;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.logistics-theme .logi-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: logi-marquee linear infinite;
+}
+
+.logistics-theme .logi-marquee:hover .logi-marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes logi-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logistics-theme .logi-marquee__group {
+  display: flex;
+  gap: 64px;
+  padding-right: 64px;
+  flex-shrink: 0;
+}
+
+.logistics-theme .logi-team__advisor-chip {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  white-space: nowrap;
+}
+
+/* ========================================================= §9 Roadmap */
+.logistics-theme .logi-roadmap__headline {
+  margin-bottom: 72px;
+}
+
+.logistics-theme .logi-roadmap__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-roadmap__track {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.logistics-theme .logi-roadmap__rail {
+  height: 1px;
+  background: var(--logi-divider);
+  position: relative;
+}
+
+.logistics-theme .logi-roadmap__rail::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1px;
+  width: 12%;
+  background: var(--logi-signal);
+  box-shadow: 0 0 12px var(--logi-signal-glow);
+}
+
+.logistics-theme .logi-roadmap__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-roadmap__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.logistics-theme .logi-roadmap__milestone {
+  position: relative;
+  padding-top: 16px;
+}
+
+.logistics-theme .logi-roadmap__node {
+  width: 12px;
+  height: 12px;
+  background: var(--logi-signal);
+  margin-bottom: 16px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px var(--logi-signal-glow);
+}
+
+.logistics-theme .logi-roadmap__window {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  margin-bottom: 16px;
+}
+
+.logistics-theme .logi-roadmap__deliverables {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.logistics-theme .logi-roadmap__deliverables li {
+  padding-left: 16px;
+  position: relative;
+  font-size: 15px;
+  color: var(--logi-fg);
+}
+
+.logistics-theme .logi-roadmap__deliverables li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--logi-signal);
+}
+
+/* ============================================================ §10 Ask */
+.logistics-theme .logi-ask__headline {
+  margin-bottom: 56px;
+}
+
+.logistics-theme .logi-ask__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-ask__round {
+  padding-block: 48px;
+  border-top: 1px solid var(--logi-divider);
+  border-bottom: 1px solid var(--logi-divider);
+  margin-bottom: 56px;
+}
+
+.logistics-theme .logi-ask__amount {
+  font-size: clamp(64px, 9vw, 128px);
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .logi-ask__alloc {
+  margin-bottom: 72px;
+}
+
+.logistics-theme .logi-ask__alloc-bar {
+  display: flex;
+  height: 16px;
+  margin-bottom: 32px;
+  border: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .logi-ask__alloc-slice {
+  border-right: 1px solid var(--logi-bg);
+  background: var(--logi-signal);
+}
+
+.logistics-theme .logi-ask__alloc-slice:nth-child(1) { background: var(--logi-signal); }
+.logistics-theme .logi-ask__alloc-slice:nth-child(2) { background: #c08319; }
+.logistics-theme .logi-ask__alloc-slice:nth-child(3) { background: #8a5d12; }
+.logistics-theme .logi-ask__alloc-slice:nth-child(4) { background: #5c3e0c; }
+.logistics-theme .logi-ask__alloc-slice:last-child { border-right: 0; }
+
+.logistics-theme .logi-ask__alloc-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 700px) {
+  .logistics-theme .logi-ask__alloc-legend {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logistics-theme .logi-ask__alloc-legend li {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.logistics-theme .logi-ask__alloc-pct {
+  color: var(--logi-signal);
+  font-size: 14px;
+  padding-top: 6px;
+}
+
+.logistics-theme .logi-ask__alloc-slice-name {
+  margin-bottom: 8px;
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .logi-ask__unlocks {
+  margin-bottom: 56px;
+}
+
+.logistics-theme .logi-ask__unlocks ul {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logistics-theme .logi-ask__unlocks li {
+  padding-left: 24px;
+  position: relative;
+  color: var(--logi-fg);
+}
+
+.logistics-theme .logi-ask__unlocks li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-ask__committed-logos {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  color: var(--logi-fg-muted);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* =========================================================== §11 Close */
+.logistics-theme .logi-close {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.logistics-theme .logi-close__frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.logistics-theme .logi-close__copy {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.logistics-theme .logi-close__headline {
+  margin-bottom: 24px;
+}
+
+.logistics-theme .logi-close__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-close__sub {
+  margin-bottom: 56px;
+  max-width: 56ch;
+  margin-inline: auto;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .logi-close__ctas {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 96px;
+}
+
+.logistics-theme .logi-close__footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  padding-top: 32px;
+  border-top: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .logi-close__footer a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--logi-divider);
+  padding-bottom: 2px;
+}
+
+.logistics-theme .logi-close__footer a:hover {
+  color: var(--logi-fg);
+  border-color: var(--logi-signal);
+}
+
+/* =========================================================== Access gate */
+.logistics-theme .logi-access {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 96px);
+}
+
+.logistics-theme .logi-access__inner {
+  max-width: 480px;
+  width: 100%;
+}
+
+.logistics-theme .logi-access__title {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  max-width: 18ch;
+}
+
+.logistics-theme .logi-access__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-access__sub {
+  margin-bottom: 40px;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .logi-access__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logistics-theme .logi-access__field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logistics-theme .logi-access__label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .logi-access__input {
+  width: 100%;
+  background: var(--logi-bg-elev);
+  border: 1px solid var(--logi-divider);
+  color: var(--logi-fg-pure);
+  font-family: var(--logi-font-mono);
+  font-size: 16px;
+  padding: 16px 18px;
+  letter-spacing: 0.06em;
+  outline: 0;
+  transition: border-color 200ms var(--logi-ease);
+}
+
+.logistics-theme .logi-access__input:focus {
+  border-color: var(--logi-signal);
+}
+
+.logistics-theme .logi-access__submit {
+  align-self: flex-start;
+}
+
+.logistics-theme .logi-access__submit[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.logistics-theme .logi-access__error {
+  color: var(--logi-signal);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.logistics-theme .logi-access__foot {
+  margin-top: 48px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .logi-access__foot a {
+  color: var(--logi-fg);
+  text-decoration: none;
+  border-bottom: 1px solid var(--logi-divider);
+  padding-bottom: 2px;
+}
+
+.logistics-theme .logi-access__foot a:hover {
+  border-color: var(--logi-signal);
+}
+
+/* Screen-reader-only utility (Tailwind provides .sr-only, but we'll
+   include it here for safety in case Tailwind purges it). */
+.logistics-theme .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
