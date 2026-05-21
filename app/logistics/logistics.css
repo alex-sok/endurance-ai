@@ -13,6 +13,19 @@
      fallback in layout.tsx.
    ───────────────────────────────────────────────────────────────────── */
 
+/* Root <body> in the marketing layout has height: 100% (which clamps to
+   ~viewport height) and a bone-white background. When /logistics content
+   extends past the viewport, the body's bg ends abruptly and html's
+   default canvas shows through as a white flash. We override both with
+   :has() so only the /logistics route is affected — marketing site is
+   untouched. */
+html:has(.logistics-theme),
+body:has(.logistics-theme) {
+  background: #0a0b0d;
+  height: auto;
+  min-height: 100%;
+}
+
 .logistics-theme {
   /* Palette */
   --logi-bg: #0a0b0d;
