@@ -1,0 +1,269 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   /logistics theme tokens — fully scoped under .logistics-theme so the
+   main marketing site (which is light/bone) is untouched.
+
+   Notes for future editors:
+   - The only "hot" accent color is --logi-signal. Use it sparingly: data
+     points, CTAs, the progress rail, scroll cues. Everything else is the
+     ink + bone + steel scale.
+   - Type sizes are aggressive on desktop; the responsive utilities below
+     scale them down on smaller breakpoints.
+   - TODO(alex): when Neue Haas + Berkeley Mono are licensed, swap the
+     --logi-font-display / --logi-font-mono values and remove the next/font
+     fallback in layout.tsx.
+   ───────────────────────────────────────────────────────────────────── */
+
+.logistics-theme {
+  /* Palette */
+  --logi-bg: #0a0b0d;
+  --logi-bg-elev: #101216;
+  --logi-bg-panel: #14171c;
+  --logi-fg: #f5f2ec;
+  --logi-fg-pure: #ffffff;
+  --logi-fg-muted: #8a8b8f;
+  --logi-fg-faint: #4a4d54;
+  --logi-steel: #3b4252;
+  --logi-divider: rgba(245, 242, 236, 0.08);
+  --logi-signal: #f5a524;
+  --logi-signal-dim: rgba(245, 165, 36, 0.4);
+  --logi-signal-glow: rgba(245, 165, 36, 0.18);
+  --logi-road-line: #f5d524;
+
+  /* Type — display swaps to Neue Haas Grotesk Display when licensed */
+  --logi-font-display: var(--font-logi-display), "Inter Display",
+    "Neue Haas Grotesk Display", ui-sans-serif, system-ui, sans-serif;
+  --logi-font-body: var(--font-logi-display), "Inter Display", ui-sans-serif,
+    system-ui, sans-serif;
+  --logi-font-mono: var(--font-logi-mono), "JetBrains Mono", "Berkeley Mono",
+    ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Motion */
+  --logi-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --logi-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --logi-dur-slow: 1400ms;
+  --logi-dur-med: 800ms;
+  --logi-dur-fast: 300ms;
+
+  background: var(--logi-bg);
+  color: var(--logi-fg);
+  font-family: var(--logi-font-body);
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11", "tnum";
+  min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Film grain overlay — 3–5% opacity, page-wide, pointer-events: none */
+.logistics-theme::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Display headline utility — used by Hero and other large statements. */
+.logistics-theme .logi-display {
+  font-family: var(--logi-font-display);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+  font-size: clamp(56px, 11vw, 160px);
+}
+
+.logistics-theme .logi-display-md {
+  font-family: var(--logi-font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-size: clamp(40px, 6.5vw, 96px);
+}
+
+.logistics-theme .logi-display-sm {
+  font-family: var(--logi-font-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  font-size: clamp(28px, 4vw, 56px);
+}
+
+.logistics-theme .logi-eyebrow {
+  font-family: var(--logi-font-mono);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .logi-body {
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.55;
+  color: var(--logi-fg);
+}
+
+.logistics-theme .logi-body-muted {
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .logi-mono {
+  font-family: var(--logi-font-mono);
+  font-feature-settings: "tnum", "zero";
+}
+
+/* Signal "tag" — small label used for stat units, section numbers. */
+.logistics-theme .logi-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--logi-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--logi-signal);
+}
+
+.logistics-theme .logi-tag::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--logi-signal);
+  border-radius: 0;
+  box-shadow: 0 0 12px var(--logi-signal-glow);
+}
+
+/* Hairline rule — used between sections + within stat strips. */
+.logistics-theme .logi-rule {
+  border: 0;
+  height: 1px;
+  background: var(--logi-divider);
+  margin: 0;
+}
+
+/* CTA — primary (amber) and ghost (outline). */
+.logistics-theme .logi-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 28px;
+  font-family: var(--logi-font-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: var(--logi-signal);
+  color: #0a0b0d;
+  border: 0;
+  cursor: pointer;
+  transition: transform var(--logi-dur-fast) var(--logi-ease),
+    box-shadow var(--logi-dur-fast) var(--logi-ease);
+  text-decoration: none;
+}
+
+.logistics-theme .logi-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px var(--logi-signal),
+    0 12px 32px var(--logi-signal-glow);
+}
+
+.logistics-theme .logi-cta--ghost {
+  background: transparent;
+  color: var(--logi-fg);
+  border: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .logi-cta--ghost:hover {
+  border-color: var(--logi-fg);
+  background: rgba(245, 242, 236, 0.04);
+  box-shadow: none;
+}
+
+/* Section base — every section uses this for consistent rhythm. */
+.logistics-theme .logi-section {
+  position: relative;
+  padding-block: clamp(96px, 14vh, 200px);
+  padding-inline: clamp(24px, 6vw, 96px);
+  max-width: 100%;
+}
+
+.logistics-theme .logi-section__inner {
+  max-width: 1440px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* Section index labels (01 — / 02 — ...) */
+.logistics-theme .logi-section__index {
+  font-family: var(--logi-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  margin-bottom: 24px;
+}
+
+.logistics-theme .logi-section__index span {
+  color: var(--logi-signal);
+}
+
+/* Big-number stat treatment shared by §2, §5, §10. */
+.logistics-theme .logi-stat {
+  font-family: var(--logi-font-display);
+  font-weight: 500;
+  font-size: clamp(48px, 6vw, 88px);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .logi-stat__label {
+  font-family: var(--logi-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  margin-top: 18px;
+  max-width: 28ch;
+}
+
+/* Panel — for dashboard chrome, comparison cards, etc. */
+.logistics-theme .logi-panel {
+  background: var(--logi-bg-panel);
+  border: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .logi-panel--inset {
+  background: var(--logi-bg-elev);
+  border: 1px solid var(--logi-divider);
+}
+
+/* Focus rings — keyboard-only, designed (not browser default). */
+.logistics-theme *:focus-visible {
+  outline: 2px solid var(--logi-signal);
+  outline-offset: 3px;
+}
+
+/* Honor reduced motion globally for the logistics route. The skeleton
+   has no real animation yet, but Lenis is disabled below and any future
+   scroll-driven work should also branch on this. */
+@media (prefers-reduced-motion: reduce) {
+  .logistics-theme * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Selection */
+.logistics-theme ::selection {
+  background: var(--logi-signal);
+  color: #0a0b0d;
+}
