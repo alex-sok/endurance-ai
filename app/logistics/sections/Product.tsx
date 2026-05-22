@@ -1,4 +1,5 @@
 import { SectionShell } from "../components/SectionShell";
+import { DashboardMap } from "../components/DashboardMap";
 import { dispatcherTranscript, dispatcherKpis } from "../data/product";
 
 /**
@@ -43,64 +44,11 @@ export function Product() {
         </div>
 
         <div className="logi-product__body">
-          {/* Map placeholder. Phase 3: Mapbox dark style + live truck
-              positions driven from a GeoJSON route. */}
+          {/* Animated dashboard map. Trucks loop along the lanes.
+              Switches to real Mapbox automatically when
+              NEXT_PUBLIC_MAPBOX_TOKEN is wired (see DashboardMap.tsx). */}
           <div className="logi-product__map" aria-hidden="true">
-            <svg viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice">
-              {/* Faint grid */}
-              <defs>
-                <pattern
-                  id="mapgrid"
-                  width="40"
-                  height="40"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <path
-                    d="M40 0H0V40"
-                    fill="none"
-                    stroke="rgba(245,242,236,0.05)"
-                    strokeWidth="1"
-                  />
-                </pattern>
-              </defs>
-              <rect width="800" height="480" fill="url(#mapgrid)" />
-
-              {/* Lane paths */}
-              <g
-                stroke="var(--logi-signal-dim)"
-                strokeWidth="1.5"
-                fill="none"
-                strokeLinecap="round"
-              >
-                <path d="M80,360 C200,300 320,340 460,260 S680,200 740,160" />
-                <path d="M100,140 C220,200 360,180 480,240 S680,320 760,360" />
-                <path d="M120,260 L300,260 L380,180 L600,180" />
-              </g>
-
-              {/* Truck pips (active loads) */}
-              {[
-                [200, 320],
-                [340, 260],
-                [460, 220],
-                [560, 200],
-                [380, 180],
-                [600, 180],
-                [260, 230],
-                [700, 340],
-              ].map(([x, y], i) => (
-                <g key={i}>
-                  <circle cx={x} cy={y} r="10" fill="var(--logi-signal-glow)" />
-                  <rect
-                    x={x - 4}
-                    y={y - 3}
-                    width="8"
-                    height="6"
-                    fill="var(--logi-signal)"
-                  />
-                </g>
-              ))}
-            </svg>
-
+            <DashboardMap />
             <div className="logi-product__map-overlay logi-mono">
               <span>SOUTHEAST · LIVE</span>
               <span>{dispatcherKpis[0].value} loads</span>

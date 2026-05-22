@@ -1,27 +1,38 @@
 import { SectionShell } from "../components/SectionShell";
-import { marketSize, spendBreakdown, laneCorridors } from "../data/market";
+import { AnimatedMarketMap } from "../components/AnimatedMarketMap";
+import { MarketRevealClient } from "../components/MarketRevealClient";
+import { marketSize, spendBreakdown } from "../data/market";
 
 /**
- * §6 — Market.
+ * §6 Market.
  *
- * Phase 1: TAM/SAM/SOM block + static spend-breakdown bar + corridor list.
- * Phase 3: US map lights up lane-by-lane via Mapbox setPaintProperty;
- * spend breakdown animates as a stacked bar drawing in.
+ * The map is the centerpiece — five interstate corridors light up
+ * one-by-one as the section scrolls into view. The spend-breakdown
+ * bar fills in below; the TAM/SAM/SOM block stamps in.
+ *
+ * The corridor list that used to live here is gone — it duplicated
+ * what the map now shows. Names are labeled on the map itself.
  */
 export function Market() {
   return (
-    <SectionShell
-      id="market"
-      index="06"
-      eyebrow="Market"
-    >
-      <h2 className="logi-display-md logi-market__headline">
+    <SectionShell id="market" index="06" eyebrow="Market">
+      <MarketRevealClient />
+
+      <h2 className="logi-display-md logi-market__headline" data-reveal>
         <span className="logi-market__accent">$1.8 trillion</span>,
         <br />
         line by line.
       </h2>
 
-      <div className="logi-market__breakdown" aria-label="US logistics spend breakdown">
+      <div className="logi-market__map" aria-hidden="false">
+        <AnimatedMarketMap />
+      </div>
+
+      <div
+        className="logi-market__breakdown"
+        aria-label="US logistics spend breakdown"
+        data-reveal-bar
+      >
         {spendBreakdown.map((s) => (
           <div
             key={s.segment}
@@ -39,27 +50,9 @@ export function Market() {
         ))}
       </div>
 
-      <div className="logi-market__lanes">
-        <div className="logi-tag">Beachhead corridors</div>
-        <ul className="logi-market__lane-list">
-          {laneCorridors.map((lane) => (
-            <li key={lane.name} className="logi-market__lane">
-              <span className="logi-mono logi-market__lane-name">
-                {lane.name}
-              </span>
-              <span
-                className="logi-market__lane-bar"
-                style={{ width: `${lane.weight * 100}%` }}
-                aria-hidden="true"
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-
       <div className="logi-market__sizes">
         {[marketSize.tam, marketSize.sam, marketSize.som].map((m) => (
-          <div className="logi-market__size" key={m.value}>
+          <div className="logi-market__size" key={m.value} data-reveal-stat>
             <div className="logi-stat">{m.value}</div>
             <p className="logi-stat__label">{m.label}</p>
           </div>

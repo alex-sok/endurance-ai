@@ -514,11 +514,56 @@
   color: var(--logi-signal);
 }
 
+/* Animated US map — centerpiece of §6. */
+.logistics-theme .logi-market__map {
+  position: relative;
+  margin-bottom: 72px;
+  background: var(--logi-bg-elev);
+  border: 1px solid var(--logi-divider);
+  overflow: hidden;
+}
+
+.logistics-theme .logi-market__map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 800 / 480;
+}
+
 .logistics-theme .logi-market__breakdown {
   display: flex;
   height: 96px;
   margin-bottom: 64px;
   border: 1px solid var(--logi-divider);
+}
+
+/* Initial state for scroll-reveal elements. GSAP overrides these on
+   mount; if JS is disabled, the elements stay hidden — acceptable
+   tradeoff for an investor page where JS is always on. */
+.logistics-theme [data-reveal],
+.logistics-theme [data-reveal-stat] {
+  opacity: 0;
+}
+
+.logistics-theme [data-reveal-bar] .logi-market__slice {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* Reduced-motion: skip the choreography but make sure the content
+   stays visible. GSAP also bails early on these users, so the CSS
+   needs to render the final state on its own. */
+@media (prefers-reduced-motion: reduce) {
+  .logistics-theme [data-reveal],
+  .logistics-theme [data-reveal-stat] {
+    opacity: 1;
+  }
+  .logistics-theme [data-reveal-bar] .logi-market__slice {
+    transform: none;
+  }
+  .logistics-theme .logi-roadmap__milestone {
+    opacity: 1;
+  }
 }
 
 .logistics-theme .logi-market__slice {
@@ -815,24 +860,54 @@
 
 .logistics-theme .logi-roadmap__track {
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+  height: 24px; /* room for the truck */
 }
 
 .logistics-theme .logi-roadmap__rail {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
   height: 1px;
   background: var(--logi-divider);
-  position: relative;
+  transform: translateY(-50%);
+  overflow: visible;
 }
 
-.logistics-theme .logi-roadmap__rail::before {
-  content: "";
+.logistics-theme .logi-roadmap__rail-fill {
   position: absolute;
-  left: 0;
   top: 0;
-  height: 1px;
-  width: 12%;
+  left: 0;
+  height: 100%;
+  width: 0%;
   background: var(--logi-signal);
   box-shadow: 0 0 12px var(--logi-signal-glow);
+}
+
+.logistics-theme .logi-roadmap__truck {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  /* Translate up by half its own height so it sits centered on the rail */
+  transform: translate(0, -50%);
+  width: 36px;
+  height: 16px;
+  pointer-events: none;
+  /* The 100% xPercent target needs the truck's right edge to land at
+     the rail's right edge — using margin-right: -36px lets xPercent: 100
+     land the LEFT of the truck at the rail end, then we pull back. */
+}
+
+.logistics-theme .logi-roadmap__truck svg {
+  display: block;
+  filter: drop-shadow(0 0 6px var(--logi-signal-glow));
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .logi-roadmap__track {
+    display: none;
+  }
 }
 
 .logistics-theme .logi-roadmap__grid {
@@ -853,13 +928,33 @@
   padding-top: 16px;
 }
 
+.logistics-theme .logi-roadmap__milestone {
+  /* Default state: dimmed, awaiting the truck. */
+  opacity: 0.4;
+  transition: opacity 600ms var(--logi-ease);
+}
+
+.logistics-theme .logi-roadmap__milestone.is-unlocked {
+  opacity: 1;
+}
+
 .logistics-theme .logi-roadmap__node {
-  width: 12px;
-  height: 12px;
-  background: var(--logi-signal);
+  width: 10px;
+  height: 10px;
+  background: var(--logi-fg-faint);
   margin-bottom: 16px;
   transform: rotate(45deg);
-  box-shadow: 0 0 12px var(--logi-signal-glow);
+  transition: background 400ms var(--logi-ease),
+    box-shadow 400ms var(--logi-ease),
+    width 400ms var(--logi-ease),
+    height 400ms var(--logi-ease);
+}
+
+.logistics-theme .logi-roadmap__milestone.is-unlocked .logi-roadmap__node {
+  width: 14px;
+  height: 14px;
+  background: var(--logi-signal);
+  box-shadow: 0 0 16px var(--logi-signal-glow);
 }
 
 .logistics-theme .logi-roadmap__window {
