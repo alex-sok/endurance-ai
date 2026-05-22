@@ -26,17 +26,6 @@ export function Market() {
 
       <div className="logi-market__map" aria-hidden="false">
         <AnimatedMarketMap />
-        <p className="logi-market__attribution logi-mono">
-          Corridor geometry ©{" "}
-          <a
-            href="https://www.openstreetmap.org/copyright"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            OpenStreetMap contributors
-          </a>
-          , ODbL.
-        </p>
       </div>
 
       <div
