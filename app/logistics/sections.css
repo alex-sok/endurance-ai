@@ -530,6 +530,27 @@
   aspect-ratio: 800 / 480;
 }
 
+.logistics-theme .logi-market__attribution {
+  margin: 0;
+  padding: 10px 16px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--logi-fg-faint);
+  border-top: 1px solid var(--logi-divider);
+  background: var(--logi-bg-elev);
+}
+
+.logistics-theme .logi-market__attribution a {
+  color: var(--logi-fg-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .logi-market__attribution a:hover {
+  color: var(--logi-fg);
+  border-color: var(--logi-signal);
+}
+
 .logistics-theme .logi-market__breakdown {
   display: flex;
   height: 96px;
