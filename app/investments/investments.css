@@ -1,0 +1,266 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   /investments theme tokens — fully scoped under .invest-theme.
+
+   Palette intent: deep navy + warm gold = institutional capital, refined.
+   Reads distinctly from /logistics (amber-on-black industrial) so the
+   two arms of Endurance are visually independent.
+   ───────────────────────────────────────────────────────────────────── */
+
+html:has(.invest-theme),
+body:has(.invest-theme) {
+  background: #0a0b2a;
+  height: auto;
+  min-height: 100%;
+}
+
+.invest-theme {
+  /* Palette — midnight navy + electric violet */
+  --inv-bg: #0a0b2a;
+  --inv-bg-elev: #131544;
+  --inv-bg-panel: #181a4d;
+  --inv-fg: #f0eef8;
+  --inv-fg-pure: #ffffff;
+  --inv-fg-muted: #9098c0;
+  --inv-fg-faint: #4d527a;
+  --inv-steel: #2e3260;
+  --inv-divider: rgba(240, 238, 248, 0.08);
+  --inv-signal: #a855f7;
+  --inv-signal-dim: rgba(168, 85, 247, 0.4);
+  --inv-signal-glow: rgba(168, 85, 247, 0.28);
+  --inv-signal-soft: rgba(168, 85, 247, 0.06);
+
+  /* Type */
+  --inv-font-display: var(--font-inv-display), "Inter Display",
+    "Neue Haas Grotesk Display", ui-sans-serif, system-ui, sans-serif;
+  --inv-font-body: var(--font-inv-display), "Inter Display", ui-sans-serif,
+    system-ui, sans-serif;
+  --inv-font-mono: var(--font-inv-mono), "JetBrains Mono", "Berkeley Mono",
+    ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Motion */
+  --inv-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --inv-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --inv-dur-slow: 1400ms;
+  --inv-dur-med: 800ms;
+  --inv-dur-fast: 300ms;
+
+  background: var(--inv-bg);
+  color: var(--inv-fg);
+  font-family: var(--inv-font-body);
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11", "tnum";
+  min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
+}
+
+/* Film grain — slightly more subtle than logistics for the institutional feel */
+.invest-theme::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Display headline utility */
+.invest-theme .inv-display {
+  font-family: var(--inv-font-display);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+  font-size: clamp(56px, 11vw, 160px);
+}
+
+.invest-theme .inv-display-md {
+  font-family: var(--inv-font-display);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-size: clamp(40px, 6.5vw, 96px);
+}
+
+.invest-theme .inv-display-sm {
+  font-family: var(--inv-font-display);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  font-size: clamp(28px, 4vw, 56px);
+}
+
+.invest-theme .inv-eyebrow {
+  font-family: var(--inv-font-mono);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--inv-fg-muted);
+}
+
+.invest-theme .inv-body {
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.55;
+  color: var(--inv-fg);
+}
+
+.invest-theme .inv-body-muted {
+  color: var(--inv-fg-muted);
+}
+
+.invest-theme .inv-mono {
+  font-family: var(--inv-font-mono);
+  font-feature-settings: "tnum", "zero";
+}
+
+/* Signal tag — small label */
+.invest-theme .inv-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--inv-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--inv-signal);
+}
+
+.invest-theme .inv-tag::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: var(--inv-signal);
+  border-radius: 0;
+  box-shadow: 0 0 12px var(--inv-signal-glow);
+}
+
+/* Section dividers */
+.invest-theme .inv-rule {
+  border: 0;
+  height: 1px;
+  background: var(--inv-divider);
+  margin: 0;
+}
+
+/* CTAs */
+.invest-theme .inv-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 28px;
+  font-family: var(--inv-font-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: var(--inv-signal);
+  color: #ffffff;
+  border: 0;
+  cursor: pointer;
+  transition: transform var(--inv-dur-fast) var(--inv-ease),
+    box-shadow var(--inv-dur-fast) var(--inv-ease);
+  text-decoration: none;
+}
+
+.invest-theme .inv-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px var(--inv-signal),
+    0 12px 32px var(--inv-signal-glow);
+}
+
+.invest-theme .inv-cta--ghost {
+  background: transparent;
+  color: var(--inv-fg);
+  border: 1px solid var(--inv-divider);
+}
+
+.invest-theme .inv-cta--ghost:hover {
+  border-color: var(--inv-fg);
+  background: rgba(240, 236, 228, 0.04);
+  box-shadow: none;
+}
+
+/* Section base */
+.invest-theme .inv-section {
+  position: relative;
+  padding-block: clamp(96px, 14vh, 200px);
+  padding-inline: clamp(24px, 6vw, 96px);
+  max-width: 100%;
+}
+
+.invest-theme .inv-section__inner {
+  max-width: 1440px;
+  margin-inline: auto;
+  width: 100%;
+}
+
+.invest-theme .inv-section__index {
+  font-family: var(--inv-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--inv-fg-muted);
+  margin-bottom: 24px;
+}
+
+.invest-theme .inv-section__index span {
+  color: var(--inv-signal);
+}
+
+/* Stat treatment */
+.invest-theme .inv-stat {
+  font-family: var(--inv-font-display);
+  font-weight: 500;
+  font-size: clamp(48px, 6vw, 88px);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: var(--inv-fg-pure);
+}
+
+.invest-theme .inv-stat__label {
+  font-family: var(--inv-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--inv-fg-muted);
+  margin-top: 18px;
+  max-width: 28ch;
+}
+
+/* Panel — for cards, comparison tables, etc. */
+.invest-theme .inv-panel {
+  background: var(--inv-bg-panel);
+  border: 1px solid var(--inv-divider);
+}
+
+.invest-theme .inv-panel--inset {
+  background: var(--inv-bg-elev);
+  border: 1px solid var(--inv-divider);
+}
+
+/* Focus rings */
+.invest-theme *:focus-visible {
+  outline: 2px solid var(--inv-signal);
+  outline-offset: 3px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .invest-theme * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Selection */
+.invest-theme ::selection {
+  background: var(--inv-signal);
+  color: #ffffff;
+}

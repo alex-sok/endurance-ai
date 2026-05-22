@@ -2,27 +2,44 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Password gate for /logistics.
+ * Password gates for /logistics and /investments.
  *
- * Runs on the Edge runtime. Reads LOGISTICS_PASSWORD from env, derives
- * a SHA-256 cookie value, and lets the request through if the request's
- * cookie matches. Otherwise redirects to /logistics/access.
+ * Each route has its own password env var, cookie name, and salt so a
+ * leaked credential to one page never compromises the other.
  *
- * The password itself is NEVER sent to the client. The cookie carries
- * the derived hash, and is httpOnly + secure. If LOGISTICS_PASSWORD is
- * missing in the environment, the gate fails closed (redirects with
- * ?err=config) so a missing env var can't accidentally open the page.
- *
- * The matcher only runs on /logistics/* and explicitly excludes the
- * /logistics/access page so it's reachable.
+ * Edge runtime. The cookie carries the SHA-256-derived hash, never the
+ * plaintext password. Missing env vars fail closed.
  */
 
-const COOKIE_NAME = "endurance-logistics-access";
+interface GateConfig {
+  cookieName: string;
+  passwordEnv: string;
+  salt: string;
+  routePrefix: string;
+  accessPath: string;
+}
 
-async function deriveToken(password: string): Promise<string> {
+const GATES: GateConfig[] = [
+  {
+    cookieName: "endurance-logistics-access",
+    passwordEnv: "LOGISTICS_PASSWORD",
+    salt: "logistics-access-v1",
+    routePrefix: "/logistics",
+    accessPath: "/logistics/access",
+  },
+  {
+    cookieName: "endurance-investments-access",
+    passwordEnv: "INVESTMENTS_PASSWORD",
+    salt: "investments-access-v1",
+    routePrefix: "/investments",
+    accessPath: "/investments/access",
+  },
+];
+
+async function deriveToken(password: string, salt: string): Promise<string> {
   const buf = await crypto.subtle.digest(
     "SHA-256",
-    new TextEncoder().encode(`${password}:logistics-access-v1`),
+    new TextEncoder().encode(`${password}:${salt}`),
   );
   const bytes = new Uint8Array(buf);
   let bin = "";
@@ -33,33 +50,40 @@ async function deriveToken(password: string): Promise<string> {
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // The gate page itself must be reachable.
-  if (pathname === "/logistics/access") {
+  const gate = GATES.find((g) => pathname.startsWith(g.routePrefix));
+  if (!gate) return NextResponse.next();
+
+  if (pathname === gate.accessPath) {
     return NextResponse.next();
   }
 
-  const password = process.env.LOGISTICS_PASSWORD;
+  const password = process.env[gate.passwordEnv];
   if (!password) {
     const url = req.nextUrl.clone();
-    url.pathname = "/logistics/access";
+    url.pathname = gate.accessPath;
     url.searchParams.set("err", "config");
     return NextResponse.redirect(url);
   }
 
-  const expected = await deriveToken(password);
-  const got = req.cookies.get(COOKIE_NAME)?.value;
+  const expected = await deriveToken(password, gate.salt);
+  const got = req.cookies.get(gate.cookieName)?.value;
   if (got === expected) {
     return NextResponse.next();
   }
 
   const url = req.nextUrl.clone();
-  url.pathname = "/logistics/access";
-  if (pathname !== "/logistics") {
+  url.pathname = gate.accessPath;
+  if (pathname !== gate.routePrefix) {
     url.searchParams.set("from", pathname);
   }
   return NextResponse.redirect(url);
 }
 
 export const config = {
-  matcher: ["/logistics", "/logistics/:path*"],
+  matcher: [
+    "/logistics",
+    "/logistics/:path*",
+    "/investments",
+    "/investments/:path*",
+  ],
 };
