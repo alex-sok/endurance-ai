@@ -518,7 +518,7 @@
 .logistics-theme .logi-market__map {
   position: relative;
   margin-bottom: 72px;
-  background: var(--logi-bg-elev);
+  background: #060d18; /* ocean color matches SVG bg */
   border: 1px solid var(--logi-divider);
   overflow: hidden;
 }
@@ -528,6 +528,105 @@
   width: 100%;
   height: auto;
   aspect-ratio: 800 / 480;
+}
+
+/* Alert card — slides in over the map at Charlotte threshold */
+.logistics-theme .logi-market__alert {
+  position: absolute;
+  top: clamp(12px, 4%, 24px);
+  left: clamp(12px, 3%, 24px);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  max-width: 240px;
+  background: var(--logi-bg-panel);
+  border: 1px solid var(--logi-divider);
+  border-left: 2px solid var(--logi-signal);
+  border-radius: 4px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.logistics-theme .logi-market__alert-dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: var(--logi-signal);
+  box-shadow: 0 0 8px var(--logi-signal);
+  animation: logi-alert-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes logi-alert-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.logistics-theme .logi-market__alert-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.logistics-theme .logi-market__alert-headline {
+  margin: 0;
+  font-family: var(--logi-font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--logi-signal);
+  line-height: 1.4;
+}
+
+.logistics-theme .logi-market__alert-detail {
+  margin: 0;
+  font-family: var(--logi-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--logi-fg-muted);
+  line-height: 1.4;
+}
+
+.logistics-theme .logi-market__alert-action {
+  margin: 0;
+  font-family: var(--logi-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--logi-fg-faint);
+  line-height: 1.4;
+}
+
+/* Replay button — bottom-center of the map */
+.logistics-theme .logi-market__replay {
+  position: absolute;
+  bottom: clamp(10px, 3%, 18px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 18px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--logi-fg-muted);
+  background: rgba(10, 11, 13, 0.6);
+  border: 1px solid var(--logi-divider);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  backdrop-filter: blur(8px);
+}
+
+.logistics-theme .logi-market__replay:hover {
+  color: var(--logi-fg);
+  border-color: var(--logi-signal);
+  background: rgba(245, 165, 36, 0.08);
+}
+
+.logistics-theme .logi-market__replay:active {
+  transform: translateX(-50%) scale(0.97);
 }
 
 .logistics-theme .logi-market__attribution {
