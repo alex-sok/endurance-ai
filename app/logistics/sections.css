@@ -863,7 +863,7 @@
 
 .logistics-theme .logi-team__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
   margin-bottom: 96px;
 }
@@ -1287,6 +1287,125 @@
 .logistics-theme .logi-close__footer a:hover {
   color: var(--logi-fg);
   border-color: var(--logi-signal);
+}
+
+/* ============================= §11 The edge (strategic backer showpiece) */
+.logistics-theme .logi-edge {
+  position: relative;
+  width: 100%;
+  min-height: clamp(460px, 70vh, 720px);
+  display: flex;
+  align-items: center;
+}
+
+.logistics-theme .logi-edge__network {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.85;
+  z-index: 0;
+}
+
+.logistics-theme .logi-edge__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+}
+
+.logistics-theme .logi-edge__kicker {
+  font-family: var(--logi-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+  color: var(--logi-fg-muted);
+  margin-bottom: 24px;
+}
+
+.logistics-theme .logi-edge__kicker::before {
+  content: "◆";
+  color: var(--logi-signal);
+  font-size: 8px;
+  margin-right: 10px;
+  vertical-align: 2px;
+}
+
+.logistics-theme .logi-edge__amount {
+  display: inline-flex;
+  align-items: flex-start;
+  font-family: var(--logi-font-display);
+  font-weight: 600;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  font-size: clamp(88px, 16vw, 240px);
+  color: var(--logi-fg-pure);
+  filter: drop-shadow(0 0 40px rgba(245, 165, 36, 0.22));
+  font-variant-numeric: tabular-nums;
+}
+
+.logistics-theme .logi-edge__cur {
+  font-size: 0.42em;
+  margin-top: 0.16em;
+  margin-right: 0.04em;
+}
+
+.logistics-theme .logi-edge__unit {
+  font-size: 0.5em;
+  margin-top: 0.14em;
+  margin-left: 0.04em;
+}
+
+.logistics-theme .logi-edge__caption {
+  font-family: var(--logi-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: clamp(13px, 1.1vw, 16px);
+  color: var(--logi-fg-muted);
+  margin-top: 18px;
+}
+
+.logistics-theme .logi-edge__statement {
+  margin-top: 26px;
+  max-width: 26ch;
+  font-family: var(--logi-font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+  font-size: clamp(22px, 2.4vw, 34px);
+  color: var(--logi-fg);
+  text-wrap: balance;
+}
+
+.logistics-theme .logi-edge__chips {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 34px;
+}
+
+.logistics-theme .logi-edge__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 20px;
+  border: 1px solid var(--logi-signal-dim);
+  border-radius: 999px;
+  background: rgba(245, 165, 36, 0.05);
+  font-family: var(--logi-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  color: var(--logi-fg);
+}
+
+.logistics-theme .logi-edge__chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--logi-signal);
+  box-shadow: 0 0 10px var(--logi-signal);
 }
 
 /* =========================================================== Access gate */
