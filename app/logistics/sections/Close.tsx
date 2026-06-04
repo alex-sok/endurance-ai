@@ -2,7 +2,7 @@ import { SectionShell } from "../components/SectionShell";
 import { closeCTAs } from "../data/close";
 
 /**
- * §11 — Close & CTA.
+ * §12 — Close & CTA.
  *
  * Phase 1: Three working CTAs side-by-side, contact + footer. Reuses
  * the existing convoy/network silhouette from the Hero so the page
@@ -19,7 +19,7 @@ export function Close() {
   return (
     <SectionShell
       id="close"
-      index="11"
+      index="12"
       eyebrow="Join us"
     >
       <div className="logi-close__frame" aria-hidden="true">

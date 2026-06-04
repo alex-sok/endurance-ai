@@ -1,28 +1,34 @@
 // TODO(alex): provide high-res square headshots in /public/logistics/team/
-// — dark backgrounds preferred. Add bios + prior companies + the one-line
-// credibility hook below.
+// — dark backgrounds preferred. Until then, cards fall back to monogram initials.
 
 export const founders = [
   {
     name: "Alex Sok",
-    role: "Founder & CEO",
+    role: "Co-founder, CEO",
     headshot: null, // TODO(alex): /public/logistics/team/alex.jpg
-    hook: "TODO(alex): one-line credibility hook",
-    bio: "TODO(alex): 2–3 sentence bio. Prior companies, why logistics, why now.",
-  },
-  {
-    name: "Sid Bhambhani",
-    role: "Co-Founder & CTO",
-    headshot: null,
-    hook: "TODO(alex)",
-    bio: "TODO(alex)",
+    hook: "3x founder, angel investor (Spline, Superroot, Cairnspring), joined stealth AI/ML lab in 2018 and led product design, 0-$120M ARR in 24 months.",
+    bio: "3x founder, angel investor (Spline, Superroot, Cairnspring), joined stealth AI/ML lab in 2018 and led product design, 0-$120M ARR in 24 months.",
   },
   {
     name: "Nick Maxwell",
-    role: "Co-Founder & Chief AI Officer",
-    headshot: null,
-    hook: "TODO(alex)",
-    bio: "TODO(alex)",
+    role: "Co-founder, CTO",
+    headshot: null, // TODO(alex): /public/logistics/team/nick.jpg
+    hook: "2x founder, founding engineer at Tala Security acquired by Intuit, Cornell CS.",
+    bio: "2x founder, founding engineer at Tala Security acquired by Intuit, Cornell CS.",
+  },
+  {
+    name: "Anthony Haralson",
+    role: "Founding Partner, VP of GTM",
+    headshot: null, // TODO(alex): /public/logistics/team/anthony.jpg
+    hook: "Two decades of executive and investment experience across biopharma, financial services, and medtech at Pfizer, Abbott, and Goldman Sachs. Michigan grad and Dartmouth MBA.",
+    bio: "Two decades of executive and investment experience across biopharma, financial services, and medtech at Pfizer, Abbott, and Goldman Sachs. Michigan grad and Dartmouth MBA.",
+  },
+  {
+    name: "Ramzy Azar",
+    role: "Founding Partner, VP of Ops",
+    headshot: null, // TODO(alex): /public/logistics/team/ramzy.jpg
+    hook: "Principal real estate investment fund, operator, Cal grad.",
+    bio: "Principal real estate investment fund, operator, Cal grad.",
   },
 ] as const;
 

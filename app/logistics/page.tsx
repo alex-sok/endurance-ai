@@ -8,12 +8,13 @@ import { Moat } from "./sections/Moat";
 import { Team } from "./sections/Team";
 import { Roadmap } from "./sections/Roadmap";
 import { Ask } from "./sections/Ask";
+import { Edge } from "./sections/Edge";
 import { Close } from "./sections/Close";
 
 /**
  * /logistics — the investor page.
  *
- * Eleven sections, in narrative order. Each is a self-contained beat
+ * Twelve sections, in narrative order. Each is a self-contained beat
  * with its own copy + data. Phase 1 is fully static; Phase 3+ adds
  * GSAP scroll choreography on top of these same components.
  *
@@ -42,6 +43,8 @@ export default function LogisticsPage() {
       <Roadmap />
       <hr className="logi-rule" />
       <Ask />
+      <hr className="logi-rule" />
+      <Edge />
       <hr className="logi-rule" />
       <Close />
     </main>
