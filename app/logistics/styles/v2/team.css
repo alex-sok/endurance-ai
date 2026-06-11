@@ -1,0 +1,211 @@
+/* ── v2 styles for team — owned by its section agent (see DESIGN-V2.md) ──
+
+   §8 is a QUIET section: layout + one static amber-duotone portrait
+   treatment. Zero CSS animation except the advisor marquee loop (which
+   stops under prefers-reduced-motion). No hover theatrics. */
+
+.logistics-theme .v2-team__headline {
+  margin-bottom: 72px;
+}
+
+.logistics-theme .v2-team__accent {
+  color: var(--logi-signal);
+}
+
+/* ─ Founder grid ─ */
+
+.logistics-theme .v2-team__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 1100px) {
+  .logistics-theme .v2-team__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .logistics-theme .v2-team__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logistics-theme .v2-team__card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ─ Portrait: photo when supplied, amber-duotone monogram until then ─ */
+
+.logistics-theme .v2-team__portrait {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border: 1px solid var(--logi-divider);
+  background: var(--logi-bg-elev);
+}
+
+/* Static finishing layer over photo OR monogram: faint amber scanlines
+   (night-shift CRT texture) + a 1px amber baseline. Decorative, never
+   animated. */
+.logistics-theme .v2-team__portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+        90deg,
+        transparent 8%,
+        var(--logi-signal-dim) 50%,
+        transparent 92%
+      )
+      left bottom / 100% 1px no-repeat,
+    repeating-linear-gradient(
+      0deg,
+      rgba(245, 165, 36, 0.045) 0px,
+      rgba(245, 165, 36, 0.045) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+.logistics-theme .v2-team__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Static duotone-ish grade for real headshots — filters never animate. */
+  filter: grayscale(1) contrast(1.08) brightness(0.92);
+}
+
+/* Duotone field: charcoal falling into near-black with a low amber bloom
+   rising from the base — designed, not missing. */
+.logistics-theme .v2-team__monogram {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(
+      120% 85% at 50% 118%,
+      rgba(245, 165, 36, 0.2),
+      transparent 62%
+    ),
+    linear-gradient(165deg, #15171c 0%, var(--logi-bg) 52%, #110d05 100%);
+}
+
+.logistics-theme .v2-team__monogram-glyph {
+  font-family: var(--logi-font-display);
+  font-size: clamp(56px, 5vw, 84px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  background: linear-gradient(
+    180deg,
+    var(--logi-signal) 0%,
+    rgba(245, 165, 36, 0.3) 92%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ─ Meta ─ */
+
+.logistics-theme .v2-team__role {
+  color: var(--logi-signal);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.logistics-theme .v2-team__hook {
+  margin-top: 16px;
+}
+
+/* ─ Advisors & backers marquee ─
+   Hidden entirely while all names are placeholders (Team.tsx filters via
+   isPlaceholder). Marquee mechanics are re-declared here, scoped to this
+   section, so §8 keeps working when the legacy logi-team / logi-marquee
+   blocks are pruned from sections.css. */
+
+.logistics-theme .v2-team__advisors {
+  margin-top: 96px;
+  padding-block: 32px;
+  border-top: 1px solid var(--logi-divider);
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .v2-team__advisors .logi-marquee {
+  margin-top: 24px;
+  overflow: hidden;
+  /* Edge fade masks. */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.logistics-theme .v2-team__advisors .logi-marquee__track {
+  display: flex;
+  width: max-content;
+  /* Duration + direction come inline from the Marquee component. */
+  animation-name: v2-team-marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.logistics-theme .v2-team__advisors .logi-marquee:hover .logi-marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes v2-team-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logistics-theme .v2-team__advisors .logi-marquee__track {
+    animation: none;
+  }
+}
+
+.logistics-theme .v2-team__advisors .logi-marquee__group {
+  display: flex;
+  gap: 64px;
+  padding-right: 64px;
+  flex-shrink: 0;
+}
+
+.logistics-theme .v2-team__advisor-chip {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  white-space: nowrap;
+}
+
+.logistics-theme .v2-team__advisor-chip img {
+  height: 28px;
+  width: auto;
+  display: block;
+  opacity: 0.75;
+}

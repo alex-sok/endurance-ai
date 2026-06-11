@@ -4,11 +4,19 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { bootV2 } from "./v2-boot";
 
 // Register the plugin once, only in the browser, before any component
 // tries to use it. Server-side registration is a no-op.
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
+}
+
+declare global {
+  interface Window {
+    /** The /logistics Lenis instance — preloader + nav use stop()/start(). */
+    __logiLenis?: Lenis;
+  }
 }
 
 /**
@@ -21,14 +29,19 @@ if (typeof window !== "undefined") {
  *   still works against native scroll for any reveal-on-enter triggers
  *   that components register; they'll just behave like instant fades
  *   because the animations branch on prefers-reduced-motion themselves.
- * - Tears down cleanly on route change so the rest of the site returns
- *   to native scroll.
- *
- * GSAP free + ScrollTrigger free as of 2024 — no Club license needed.
+ * - Lenis owns ALL scroll smoothing. V2 doctrine (DESIGN-V2.md): every
+ *   scrubbed ScrollTrigger uses `scrub: true` — never a numeric scrub,
+ *   which would lerp on top of Lenis's lerp and feel rubbery.
+ * - Teardown is scoped: each component reverts its own gsap.context.
+ *   (A previous version killed ALL ScrollTriggers here, which raced
+ *   child re-mounts under StrictMode/HMR.)
  */
 export function LenisProvider() {
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    bootV2();
+
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -41,6 +54,7 @@ export function LenisProvider() {
       wheelMultiplier: 1,
       touchMultiplier: 1.5,
     });
+    window.__logiLenis = lenis;
 
     // Pipe Lenis scroll events to ScrollTrigger so every ScrollTrigger
     // recalculates progress against Lenis's interpolated position, not
@@ -57,10 +71,7 @@ export function LenisProvider() {
     return () => {
       gsap.ticker.remove(rafTick);
       lenis.destroy();
-      // Kill any ScrollTriggers a child component forgot to clean up,
-      // so navigating away from /logistics doesn't leave stale triggers
-      // running on the marketing site.
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      if (window.__logiLenis === lenis) delete window.__logiLenis;
     };
   }, []);
 

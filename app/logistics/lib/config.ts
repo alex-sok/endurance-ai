@@ -10,7 +10,8 @@
 export const PRIVATE_METRICS = false;
 
 /**
- * Feature flag for the optional R3F hero. Defaults off so the SVG hero
- * ships even if 3D work slips. Phase 3+ work.
+ * Kill-switch for the WebGL hero (V2). The static SVG network always
+ * renders as the base layer; this flag only controls whether the 3D
+ * scene crossfades over it. Flip to false to ship SVG-only.
  */
-export const HERO_3D_ENABLED = false;
+export const HERO_3D_ENABLED = true;

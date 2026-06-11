@@ -1,0 +1,176 @@
+/* ── v2 styles for moat — owned by its section agent (see DESIGN-V2.md) ── */
+
+/* §7 Moat — QUIET. One blockReveal entrance lives in sections/Moat.tsx;
+   everything in this file is static. The matrix reads as one solid,
+   settled wall; the Endurance column carries the section's only light —
+   a fixed amber left/top edge plus a soft persistent glow, built from
+   pseudo-elements that never animate (DESIGN-V2.md hard rule #3). */
+
+.logistics-theme .v2-moat__headline {
+  margin-bottom: 72px;
+}
+
+.logistics-theme .v2-moat__accent {
+  color: var(--logi-signal);
+}
+
+/* The wall — a single elevated slab, not floating rows. */
+.logistics-theme .v2-moat__table {
+  border: 1px solid var(--logi-divider);
+  background: var(--logi-bg-elev);
+  margin-bottom: 72px;
+}
+
+.logistics-theme .v2-moat__row {
+  display: grid;
+  grid-template-columns: 220px repeat(3, 1fr);
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .v2-moat__row:last-child {
+  border-bottom: 0;
+}
+
+.logistics-theme .v2-moat__row--header {
+  background: var(--logi-bg-panel);
+}
+
+.logistics-theme .v2-moat__cell {
+  position: relative;
+  padding: 26px 28px;
+  border-right: 1px solid var(--logi-divider);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--logi-fg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 96px;
+}
+
+.logistics-theme .v2-moat__cell:last-child {
+  border-right: 0;
+}
+
+.logistics-theme .v2-moat__cell--label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .v2-moat__cell--header {
+  min-height: 128px;
+}
+
+.logistics-theme .v2-moat__col-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  margin-bottom: 8px;
+}
+
+/* logi-display-sm is sized for statements; rein it in for column names. */
+.logistics-theme .v2-moat__col-name {
+  font-size: clamp(20px, 2.2vw, 30px);
+  line-height: 1.1;
+}
+
+/* Column names are redundant on desktop (the header row shows them). */
+.logistics-theme .v2-moat__cell-col {
+  display: none;
+}
+
+/* ── Endurance column — the only light in the section. All static. ── */
+
+.logistics-theme .v2-moat__cell--signal {
+  background: rgba(245, 165, 36, 0.045);
+  color: var(--logi-fg-pure);
+}
+
+/* Static amber left edge. top/bottom overshoot bridges the 1px row
+   dividers so the edge reads as one continuous line; the box-shadow is
+   the persistent glow — set once, never animated. */
+.logistics-theme .v2-moat__cell--signal::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: -1px;
+  width: 2px;
+  background: var(--logi-signal);
+  box-shadow: 0 0 24px 2px var(--logi-signal-glow);
+  pointer-events: none;
+}
+
+.logistics-theme .v2-moat__row:last-child .v2-moat__cell--signal::before {
+  bottom: 0;
+}
+
+/* Static amber top edge caps the column at the header cell. */
+.logistics-theme .v2-moat__row--header .v2-moat__cell--signal {
+  border-top: 2px solid var(--logi-signal);
+}
+
+/* Soft interior wash — light spilling from the edge. Static. */
+.logistics-theme .v2-moat__cell--signal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(245, 165, 36, 0.08) 0%,
+    rgba(245, 165, 36, 0) 55%
+  );
+}
+
+.logistics-theme .v2-moat__cell--signal .v2-moat__col-eyebrow {
+  color: var(--logi-signal);
+}
+
+/* ── Close line — part of the same single reveal. ── */
+
+.logistics-theme .v2-moat__close {
+  max-width: 56ch;
+  font-size: clamp(24px, 3vw, 44px);
+  line-height: 1.15;
+  color: var(--logi-fg-pure);
+  text-wrap: balance;
+}
+
+/* ── Mobile: rows stack; each value cell re-states its column. ── */
+
+@media (max-width: 900px) {
+  .logistics-theme .v2-moat__row {
+    grid-template-columns: 1fr;
+  }
+
+  .logistics-theme .v2-moat__row--header .v2-moat__cell--label {
+    display: none;
+  }
+
+  .logistics-theme .v2-moat__cell {
+    border-right: 0;
+    min-height: 0;
+    padding: 18px 22px;
+  }
+
+  .logistics-theme .v2-moat__cell--header {
+    min-height: 0;
+  }
+
+  .logistics-theme .v2-moat__cell--label {
+    padding-bottom: 6px;
+  }
+
+  .logistics-theme .v2-moat__cell-col {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--logi-fg-faint);
+    margin-bottom: 6px;
+  }
+}

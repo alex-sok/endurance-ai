@@ -2,8 +2,22 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { LenisProvider } from "./lib/lenis-provider";
 import { ProgressIndicator } from "./components/ProgressIndicator";
+import { Preloader } from "./components/Preloader";
+import { V2Nav } from "./components/V2Nav";
 import "./logistics.css";
 import "./sections.css";
+import "./styles/v2/index.css";
+
+/**
+ * Runs during HTML parse, before paint and before hydration: stamps
+ * data-run on the preloader overlay (the element right above this
+ * script) only for first-visit + motion-OK sessions. The overlay is
+ * display:none without the attribute, so repeat visitors never see a
+ * flash. The attribute lives on the preloader's own div (which sets
+ * suppressHydrationWarning) — NOT on <html>, which React owns and
+ * would flag as a hydration mismatch. See components/Preloader.tsx.
+ */
+const INTRO_SNIPPET = `try{var p=document.querySelector(".v2-preloader");if(p&&!sessionStorage.getItem("logi-intro-seen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){p.setAttribute("data-run","");sessionStorage.setItem("logi-intro-seen","1")}}catch(e){}`;
 
 /**
  * /logistics nested layout.
@@ -80,8 +94,11 @@ export default function LogisticsLayout({
     <div
       className={`logistics-theme ${interDisplay.variable} ${jetbrainsMono.variable}`}
     >
+      <Preloader />
+      <script dangerouslySetInnerHTML={{ __html: INTRO_SNIPPET }} />
       <LenisProvider />
       <ProgressIndicator />
+      <V2Nav />
       {children}
     </div>
   );

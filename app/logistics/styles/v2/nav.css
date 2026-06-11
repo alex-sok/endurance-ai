@@ -1,0 +1,183 @@
+/* ── v2 nav — fixed chrome: wordmark · night clock · shortcuts ──
+   V2Nav slides the bar in after ~80vh via GSAP (gsap.set hides it at
+   effect time — NOT here, so no-JS visitors get a working static bar
+   with live anchor links). Also styles the right-edge progress rail
+   (ProgressIndicator). z-layering: rail 60 < nav 80 < vignette 99 <
+   grain 100 < preloader 400. */
+
+.logistics-theme .v2-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 24px;
+  height: 56px;
+  padding: 0 28px;
+  background: rgba(10, 11, 13, 0.72);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+/* Left: wordmark */
+.logistics-theme .v2-nav__wordmark {
+  justify-self: start;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--logi-fg);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--logi-dur-fast) var(--logi-ease);
+}
+
+.logistics-theme .v2-nav__wordmark:hover {
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .v2-nav__dot {
+  color: var(--logi-signal);
+}
+
+/* Center: the night clock — the one-night conceit made literal.
+   Quietly prominent: brightest type in the bar, but no animation of
+   its own; it only moves when the page does. */
+.logistics-theme .v2-nav__clock {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  white-space: nowrap;
+}
+
+.logistics-theme .v2-nav__clock-time {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .v2-nav__clock-zone {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--logi-fg-muted);
+}
+
+/* Right: section shortcuts + CTA */
+.logistics-theme .v2-nav__links {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.logistics-theme .v2-nav__link {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--logi-dur-fast) var(--logi-ease);
+}
+
+.logistics-theme .v2-nav__link:hover {
+  color: var(--logi-fg);
+}
+
+.logistics-theme .v2-nav__link--ask {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .v2-nav__link--ask:hover {
+  color: var(--logi-fg-pure);
+}
+
+/* Plain-hover CTA — color/background only, never transform/shadow
+   (the page's single magnetic CTA lives in §12). */
+.logistics-theme .v2-nav__cta {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--logi-signal);
+  border: 1px solid var(--logi-signal-dim);
+  border-radius: 999px;
+  padding: 7px 15px;
+  transition:
+    color var(--logi-dur-fast) var(--logi-ease),
+    background-color var(--logi-dur-fast) var(--logi-ease),
+    border-color var(--logi-dur-fast) var(--logi-ease);
+}
+
+.logistics-theme .v2-nav__cta:hover {
+  color: var(--logi-bg);
+  background: var(--logi-signal);
+  border-color: var(--logi-signal);
+}
+
+/* Mobile <720px: clock + CTA only. */
+@media (max-width: 719.98px) {
+  .logistics-theme .v2-nav {
+    grid-template-columns: 1fr auto;
+    height: 52px;
+    padding: 0 16px;
+  }
+
+  .logistics-theme .v2-nav__wordmark,
+  .logistics-theme .v2-nav__link {
+    display: none;
+  }
+
+  .logistics-theme .v2-nav__clock {
+    justify-self: start;
+  }
+}
+
+/* ── Progress rail — 12 ticks, one per section (ProgressIndicator) ── */
+
+.logistics-theme .v2-nav__rail {
+  position: fixed;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  pointer-events: none;
+}
+
+.logistics-theme .v2-nav__tick {
+  width: 14px;
+  height: 2px;
+  background: var(--logi-fg-faint);
+  opacity: 0.55;
+  transform-origin: right center;
+  transition:
+    background-color 240ms var(--logi-ease),
+    opacity 240ms var(--logi-ease),
+    transform 240ms var(--logi-ease);
+}
+
+.logistics-theme .v2-nav__tick--active {
+  background: var(--logi-signal);
+  opacity: 1;
+  transform: scaleX(1.6);
+}
+
+@media (max-width: 719.98px) {
+  .logistics-theme .v2-nav__rail {
+    right: 8px;
+    gap: 10px;
+  }
+
+  .logistics-theme .v2-nav__tick {
+    width: 10px;
+  }
+}

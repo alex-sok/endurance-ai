@@ -2,65 +2,73 @@
 
 import { useEffect, useState } from "react";
 
+/** The 12 narrative beats, in page order (see page.tsx). */
+const SECTION_IDS = [
+  "hero",
+  "problem",
+  "shift",
+  "product",
+  "traction",
+  "market",
+  "moat",
+  "team",
+  "roadmap",
+  "ask",
+  "edge",
+  "close",
+] as const;
+
 /**
- * Thin amber progress rail pinned to the right edge of the viewport.
+ * Right-edge progress rail, v2: twelve hairline ticks — one per
+ * section — with the active section's tick in amber.
  *
- * - Tracks raw documentElement scroll, which Lenis drives.
- * - Pure CSS height transform — no per-frame React state churn beyond
- *   the percent number, which only rerenders on raf-throttled scroll.
- * - aria-hidden because it's a decoration; the section anchors below
- *   carry the real navigation semantics.
+ * - Active = the last section whose top has crossed the viewport
+ *   midline. Works through the §2 pin too: a pinned section reports
+ *   rect.top ≈ 0 while fixed, and its spacer keeps everything after
+ *   it in flow.
+ * - Tracks raw documentElement scroll (Lenis drives it), raf-throttled;
+ *   setState bails out unless the active index actually changed.
+ * - aria-hidden: decoration. The nav + section anchors carry the real
+ *   navigation semantics.
  */
 export function ProgressIndicator() {
-  const [progress, setProgress] = useState(0);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     let raf = 0;
     const update = () => {
-      const doc = document.documentElement;
-      const scrolled = doc.scrollTop;
-      const max = doc.scrollHeight - doc.clientHeight;
-      const next = max > 0 ? Math.min(1, Math.max(0, scrolled / max)) : 0;
-      setProgress(next);
       raf = 0;
+      const midline = window.innerHeight * 0.5;
+      let next = 0;
+      for (let i = 0; i < SECTION_IDS.length; i++) {
+        const el = document.getElementById(SECTION_IDS[i]);
+        if (el && el.getBoundingClientRect().top <= midline) next = i;
+      }
+      setActive(next);
     };
     const onScroll = () => {
       if (raf === 0) raf = requestAnimationFrame(update);
     };
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", update);
+    window.addEventListener("resize", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", update);
+      window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
   return (
-    <div
-      aria-hidden="true"
-      className="logi-progress-rail"
-      style={{
-        position: "fixed",
-        top: 0,
-        right: 0,
-        width: 2,
-        height: "100vh",
-        background: "var(--logi-divider)",
-        zIndex: 60,
-        pointerEvents: "none",
-      }}
-    >
-      <div
-        style={{
-          width: "100%",
-          height: `${progress * 100}%`,
-          background: "var(--logi-signal)",
-          boxShadow: "0 0 12px var(--logi-signal-glow)",
-          transition: "height 80ms linear",
-        }}
-      />
+    <div aria-hidden="true" className="v2-nav__rail">
+      {SECTION_IDS.map((id, i) => (
+        <span
+          key={id}
+          className={
+            i === active ? "v2-nav__tick v2-nav__tick--active" : "v2-nav__tick"
+          }
+        />
+      ))}
     </div>
   );
 }

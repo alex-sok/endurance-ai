@@ -1,0 +1,169 @@
+/* ── §12 close v2 — "05:58, dawn": road-level WebGL bookend + CTAs ── */
+
+/* Full-viewport bookend; SectionShell gets this class. */
+.logistics-theme .logi-section.v2-close {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Scene frame fills the section behind the copy. */
+.logistics-theme .v2-close__frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* No-WebGL / pre-ready base layer: a quiet dawn gradient. The canvas
+   crossfades over it via .v2-scene[data-ready] (global.css). */
+.logistics-theme .v2-close__fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      120% 55% at 50% 88%,
+      rgba(245, 165, 36, 0.16) 0%,
+      rgba(245, 165, 36, 0.05) 45%,
+      transparent 72%
+    ),
+    linear-gradient(to bottom, var(--logi-bg) 0%, #0d0e12 100%);
+}
+
+.logistics-theme .v2-close__canvas {
+  z-index: 1;
+}
+
+/* Blend the top edge into the previous section + a soft scrim behind
+   the centered copy for readability. Static — never animated. */
+.logistics-theme .v2-close__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to bottom, var(--logi-bg) 0%, transparent 28%),
+    radial-gradient(
+      55% 50% at 50% 48%,
+      rgba(10, 11, 13, 0.45) 0%,
+      transparent 72%
+    );
+}
+
+.logistics-theme .v2-close__copy {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.logistics-theme .v2-close__kicker {
+  margin-bottom: 28px;
+}
+
+.logistics-theme .v2-close__headline {
+  margin-bottom: 24px;
+}
+
+.logistics-theme .v2-close__accent {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .v2-close__sub {
+  margin-bottom: 56px;
+  max-width: 56ch;
+  margin-inline: auto;
+}
+
+.logistics-theme .v2-close__ctas {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 96px;
+}
+
+/* Primary CTA — the page's only magnetic element. GSAP owns its
+   transform, so the inherited .logi-cta hover transform/box-shadow are
+   disabled entirely (they'd fight quickTo and repaint per frame); the
+   hover glow rides the pre-rendered ::after's opacity instead. */
+.logistics-theme .logi-cta.v2-close__primary {
+  position: relative;
+  transition: none;
+}
+
+.logistics-theme .logi-cta.v2-close__primary:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.logistics-theme .v2-close__primary:hover::after {
+  opacity: 1;
+}
+
+/* Glow pulse: pre-rendered shadow on a pseudo-element, opacity-only
+   animation (hard rule #3 — never animate box-shadow itself). */
+.logistics-theme .v2-close__primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow:
+    0 0 24px var(--logi-signal-glow),
+    0 0 72px var(--logi-signal-glow);
+  opacity: 0.35;
+  transition: opacity var(--logi-dur-fast) var(--logi-ease);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logistics-theme .v2-close__primary::after {
+    animation: v2-close-glow 3.2s var(--logi-ease) infinite;
+  }
+}
+
+@keyframes v2-close-glow {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* Footer — hairline is a separate element so it can draw scaleX 0→1.
+   Default state is fully drawn (no-JS / reduced-motion correct). */
+.logistics-theme .v2-close__footer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  padding-top: 32px;
+}
+
+.logistics-theme .v2-close__hairline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--logi-divider);
+  transform-origin: left center;
+}
+
+.logistics-theme .v2-close__footer a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--logi-divider);
+  padding-bottom: 2px;
+}
+
+.logistics-theme .v2-close__footer a:hover {
+  color: var(--logi-fg);
+  border-color: var(--logi-signal);
+}
