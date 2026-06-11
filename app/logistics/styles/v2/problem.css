@@ -1,0 +1,83 @@
+/* ── §2 Problem — stat theatre (v2) — owned by its section agent ──────
+   No hidden initial states here: no-JS and reduced-motion must see the
+   full final layout. All hiding happens via gsap.set() at effect time
+   (components/ProblemTheatre.tsx). */
+
+/* Tighter vertical rhythm than the section default so the whole stage
+   (headline + grid + quote) sits inside one viewport while pinned on
+   ~800px-tall laptops. */
+.logistics-theme .v2-problem {
+  padding-block: clamp(72px, 9vh, 144px);
+}
+
+.logistics-theme .v2-problem__headline {
+  max-width: 22ch;
+  margin-bottom: clamp(48px, 8vh, 96px);
+}
+
+/* "phone calls" — struck through by the page's only strike-through.
+   Muted color carries the verdict even without the drawn line. */
+.logistics-theme .v2-problem__strike {
+  position: relative;
+  color: var(--logi-fg-muted);
+  white-space: nowrap; /* the strike must never span a line break */
+}
+
+.logistics-theme .v2-problem__strike-svg {
+  position: absolute;
+  left: -3%;
+  width: 106%;
+  top: 50%;
+  height: 0.5em;
+  transform: translateY(-50%);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.logistics-theme .v2-problem__strike-line {
+  fill: none;
+  stroke: var(--logi-signal);
+  stroke-width: 4px; /* non-scaling-stroke: screen px at any size */
+  stroke-linecap: square;
+}
+
+/* Stat grid — three side-by-side on desktop (the pin's end state). */
+.logistics-theme .v2-problem__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(32px, 4vw, 64px);
+  padding-block: 32px;
+  border-top: 1px solid var(--logi-divider);
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .v2-problem__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tabular figures so digits don't jitter sideways mid-count. */
+.logistics-theme .v2-problem__value {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.logistics-theme .v2-problem__quote {
+  margin: clamp(40px, 7vh, 96px) 0 0;
+  max-width: 60ch;
+  padding-left: 24px;
+  border-left: 2px solid var(--logi-signal);
+}
+
+.logistics-theme .v2-problem__quote blockquote {
+  margin: 0 0 16px;
+  color: var(--logi-fg-pure);
+}
+
+/* Breakpoint matches the ProblemTheatre matchMedia split (1024px). */
+@media (max-width: 1023.98px) {
+  .logistics-theme .v2-problem__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}

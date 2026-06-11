@@ -1,54 +1,37 @@
 import { SectionShell } from "../components/SectionShell";
-import { shiftPillars, shiftSplit } from "../data/shift";
+import { ShiftRevealClient } from "../components/ShiftRevealClient";
+import { shiftPillars } from "../data/shift";
+import { isPlaceholder } from "../lib/placeholders";
 
 /**
- * §3 — The shift.
+ * §3 — The shift. Quiet section (DESIGN-V2.md §3).
  *
- * Phase 1: Static split-screen + three pillars.
- * Phase 3: Pinned scrub timeline — incumbent stack desaturates, AI stack
- * ignites in the accent color as the user scrolls through.
+ * The dimmed incumbent stack vs the full-strength Endurance stack IS
+ * the design — static CSS contrast, one blockReveal per column (inside
+ * ShiftRevealClient). Headline and pillars render with no animation:
+ * this section is the silence between §2 and §4.
  */
 export function Shift() {
+  const pillars = shiftPillars.filter(
+    (p) => !isPlaceholder(p.title) && !isPlaceholder(p.body),
+  );
+
   return (
     <SectionShell
       id="shift"
       index="03"
       eyebrow="Why now"
     >
-      <h2 className="logi-display-md logi-shift__headline">
-        Why <em className="logi-shift__em">now</em>.
+      <h2 className="logi-display-md v2-shift__headline">
+        Why <em className="v2-shift__em">now</em>.
       </h2>
 
-      <div className="logi-shift__split">
-        <div className="logi-shift__col logi-shift__col--incumbent">
-          <div className="logi-tag" style={{ color: "var(--logi-fg-muted)" }}>
-            Incumbent
-          </div>
-          <ul className="logi-shift__stack">
-            {shiftSplit.incumbent.map((label, i) => (
-              <li key={`${label}-${i}`} className="logi-mono">
-                {label}
-              </li>
-            ))}
-          </ul>
-        </div>
+      <ShiftRevealClient />
 
-        <div className="logi-shift__col logi-shift__col--endurance">
-          <div className="logi-tag">Endurance</div>
-          <ul className="logi-shift__stack">
-            {shiftSplit.endurance.map((label) => (
-              <li key={label} className="logi-mono">
-                {label}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="logi-shift__pillars">
-        {shiftPillars.map((p, i) => (
-          <article className="logi-shift__pillar" key={p.title}>
-            <div className="logi-mono logi-shift__pillar-num">
+      <div className="v2-shift__pillars">
+        {pillars.map((p, i) => (
+          <article className="v2-shift__pillar" key={p.title}>
+            <div className="logi-mono v2-shift__pillar-num">
               0{i + 1}
             </div>
             <h3 className="logi-display-sm">{p.title}</h3>

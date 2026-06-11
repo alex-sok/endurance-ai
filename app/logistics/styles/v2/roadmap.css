@@ -1,0 +1,215 @@
+/* ── §9 Roadmap v2 — the long haul: rail, truck, headlight unlocks ──
+   Default CSS state = final/unlocked (no-JS and reduced-motion safe).
+   The client island applies .is-locked at effect time and swaps it for
+   .is-unlocked as the truck passes — which fires the one-shot headlight
+   sweep (pre-rendered gradient pseudo, transform + opacity only). */
+
+.logistics-theme .v2-roadmap__headline {
+  margin-bottom: 72px;
+}
+
+.logistics-theme .v2-roadmap__accent {
+  color: var(--logi-signal);
+}
+
+/* ── Track: the rail the truck drives. Desktop only. ── */
+
+.logistics-theme .v2-roadmap__track {
+  position: relative;
+  margin-bottom: 32px;
+  height: 24px; /* room for the truck */
+}
+
+.logistics-theme .v2-roadmap__rail {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--logi-divider);
+  transform: translateY(-50%);
+}
+
+/* Full by default; the client scrubs scaleX 0→1 (transform-only —
+   never width). Glow is a pre-rendered gradient pseudo, no box-shadow. */
+.logistics-theme .v2-roadmap__rail-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--logi-signal);
+  transform-origin: left center;
+}
+
+.logistics-theme .v2-roadmap__rail-fill::after {
+  content: "";
+  position: absolute;
+  inset: -5px 0;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--logi-signal-glow) 50%,
+    transparent
+  );
+}
+
+.logistics-theme .v2-roadmap__truck {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 56px;
+  height: 16px;
+  margin-top: -8px;
+  pointer-events: none;
+}
+
+.logistics-theme .v2-roadmap__truck svg {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .v2-roadmap__track {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logistics-theme .v2-roadmap__truck {
+    display: none;
+  }
+}
+
+/* ── Milestone grid ── */
+
+.logistics-theme .v2-roadmap__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .v2-roadmap__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.logistics-theme .v2-roadmap__milestone {
+  position: relative;
+  padding-top: 16px;
+  overflow: hidden; /* clips the headlight sweep */
+}
+
+/* Node: amber diamond by default; locked = faint + scaled down.
+   Background/transform transitions only — never box-shadow. */
+.logistics-theme .v2-roadmap__node {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  margin: 2px 0 16px 2px;
+  background: var(--logi-signal);
+  transform: rotate(45deg);
+  transition:
+    background-color 400ms var(--logi-ease),
+    transform 400ms var(--logi-ease);
+}
+
+/* Pre-rendered node glow — only its opacity ever changes. */
+.logistics-theme .v2-roadmap__node::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(
+    circle,
+    var(--logi-signal-glow) 0%,
+    transparent 70%
+  );
+  transition: opacity 500ms var(--logi-ease);
+}
+
+.logistics-theme .v2-roadmap__milestone.is-locked .v2-roadmap__node {
+  background: var(--logi-fg-faint);
+  transform: rotate(45deg) scale(0.72);
+}
+
+.logistics-theme .v2-roadmap__milestone.is-locked .v2-roadmap__node::after {
+  opacity: 0;
+}
+
+.logistics-theme .v2-roadmap__window {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  margin-bottom: 16px;
+  transition: opacity 600ms var(--logi-ease);
+}
+
+.logistics-theme .v2-roadmap__deliverables {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: opacity 600ms var(--logi-ease);
+}
+
+.logistics-theme .v2-roadmap__deliverables li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 15px;
+  color: var(--logi-fg);
+}
+
+.logistics-theme .v2-roadmap__deliverables li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--logi-signal);
+}
+
+/* Locked columns stay readable — dimmed, never hidden (animation must
+   not gate data). Window labels fade plainly on unlock; no scramble. */
+.logistics-theme .v2-roadmap__milestone.is-locked .v2-roadmap__window {
+  opacity: 0.5;
+}
+
+.logistics-theme .v2-roadmap__milestone.is-locked .v2-roadmap__deliverables {
+  opacity: 0.38;
+}
+
+/* ── Headlight sweep — the unlock moment ──
+   Pre-rendered linear-gradient pseudo; the one-shot keyframes animate
+   transform + opacity only. Invisible at rest, disabled entirely for
+   reduced motion (unlocked state is identical, minus the sweep). */
+.logistics-theme .v2-roadmap__milestone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    rgba(245, 165, 36, 0.14) 48%,
+    rgba(245, 213, 36, 0.2) 52%,
+    rgba(245, 165, 36, 0.14) 56%,
+    transparent 74%
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logistics-theme .v2-roadmap__milestone.is-unlocked::after {
+    animation: v2-roadmap-sweep 850ms var(--logi-ease-out) 1 both;
+  }
+}
+
+@keyframes v2-roadmap-sweep {
+  from {
+    transform: translateX(-105%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(105%);
+    opacity: 0;
+  }
+}

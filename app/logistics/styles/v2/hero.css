@@ -1,0 +1,67 @@
+/* ── §1 hero v2 — static art base + WebGL crossfade + facts strip ── */
+
+.logistics-theme .v2-hero__static {
+  position: absolute;
+  inset: 0;
+  transition: opacity 1100ms var(--logi-ease);
+}
+
+/* When the 3D scene is live, the static art recedes (kept faint as
+   depth, fully replaced visually by the constellation). */
+.logistics-theme .v2-hero__frame:has(.v2-scene[data-ready]) .v2-hero__static {
+  opacity: 0.18;
+}
+
+.logistics-theme .v2-hero__canvas {
+  z-index: 1;
+}
+
+.logistics-theme .v2-hero__copy {
+  position: relative;
+  z-index: 2;
+}
+
+/* Zero-animation facts strip — the 90-second skim row. */
+.logistics-theme .v2-hero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--logi-divider);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.logistics-theme .v2-hero__fact {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.logistics-theme .v2-hero__fact dt {
+  color: var(--logi-fg-faint);
+}
+
+.logistics-theme .v2-hero__fact dd {
+  margin: 0;
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .v2-hero__fact dd a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .v2-hero__fact dd a:hover {
+  color: var(--logi-fg);
+  border-color: var(--logi-signal);
+}
+
+@media (max-width: 720px) {
+  .logistics-theme .v2-hero__facts {
+    gap: 10px 24px;
+  }
+}

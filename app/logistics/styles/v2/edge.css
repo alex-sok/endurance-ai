@@ -1,0 +1,9 @@
+/* ── v2 styles for edge — owned by its section agent (see DESIGN-V2.md) ── */
+
+/*
+ * §11 is "polish only": the section intentionally KEEPS its existing
+ * `.logi-edge*` styles in sections.css (layout, amount type, chips,
+ * network art). Do NOT prune those blocks in the dead-CSS pass.
+ * Changes for v2 were motion-only (hard-cut $150M, plain kicker fade,
+ * house easings) and live in components/EdgeStatement.tsx.
+ */

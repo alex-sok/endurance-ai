@@ -1,0 +1,38 @@
+/* ── V2 preloader — one timestamp beat, ≤900ms, skippable ── */
+
+/* The inline script in layout.tsx stamps data-run on this overlay
+   before paint (first visit, motion OK). No attribute → repeat visitor
+   or reduced motion → the overlay never paints at all. */
+.logistics-theme .v2-preloader {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: var(--logi-bg);
+  align-items: center;
+  justify-content: center;
+}
+
+.logistics-theme .v2-preloader[data-run] {
+  display: flex;
+}
+
+.logistics-theme .v2-preloader__row {
+  display: flex;
+  align-items: baseline;
+  gap: 28px;
+  font-size: clamp(14px, 1.6vw, 20px);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.logistics-theme .v2-preloader__time {
+  color: var(--logi-fg);
+  font-feature-settings: "tnum";
+}
+
+.logistics-theme .v2-preloader__live {
+  color: var(--logi-signal);
+  opacity: 0;
+  font-size: 0.72em;
+}

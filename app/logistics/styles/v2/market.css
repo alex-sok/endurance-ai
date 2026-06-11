@@ -1,0 +1,235 @@
+/* ── §6 Market (v2) — "the funnel line" journey ─────────────────────
+   One continuous line draws down the journey, weaving through three
+   numbered scenes and narrowing at each gate, then dives into the map
+   frame. Line geometry is measured at runtime (MarketRevealClient);
+   nodes here only define WHERE the line passes. No hidden states in
+   CSS — GSAP sets them at effect time. */
+
+.logistics-theme .v2-market__headline {
+  margin-bottom: 24px;
+}
+
+.logistics-theme .v2-market__accent {
+  color: var(--logi-signal);
+}
+
+/* ── Journey container — the line's coordinate space ───────────────── */
+
+.logistics-theme .v2-market__journey {
+  position: relative;
+}
+
+.logistics-theme .v2-market__line-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.logistics-theme .v2-market__line-seg {
+  fill: none;
+  stroke: var(--logi-signal);
+  stroke-linecap: round;
+}
+
+.logistics-theme .v2-market__line-glow {
+  fill: none;
+  stroke: var(--logi-signal);
+  stroke-linecap: round;
+  opacity: 0.16;
+}
+
+.logistics-theme .v2-market__line-head {
+  fill: var(--logi-road-line);
+  opacity: 0;
+}
+
+/* ── Scenes — alternate around the line ────────────────────────────── */
+
+.logistics-theme .v2-market__scene {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 52vh;
+  padding-block: 48px;
+}
+
+.logistics-theme .v2-market__scene--right .v2-market__scene-body {
+  grid-column: 2;
+  padding-left: clamp(32px, 6vw, 96px);
+}
+
+.logistics-theme .v2-market__scene--left .v2-market__scene-body {
+  grid-column: 1;
+  padding-right: clamp(32px, 6vw, 96px);
+}
+
+/* The node the line passes through — pulled toward the content side so
+   the curve weaves. Content right → node left of center; vice versa. */
+.logistics-theme .v2-market__node {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--logi-signal-dim);
+  transform: translate(-50%, -50%) scale(0.7);
+  transition:
+    background 0.5s var(--logi-ease),
+    transform 0.6s var(--logi-ease-out);
+}
+
+.logistics-theme .v2-market__scene--right .v2-market__node {
+  left: 38%;
+}
+
+.logistics-theme .v2-market__scene--left .v2-market__node {
+  left: 62%;
+}
+
+/* Pre-rendered glow; opacity-only transition (hard rule #3). */
+.logistics-theme .v2-market__node::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 18px var(--logi-signal),
+    0 0 48px var(--logi-signal-glow);
+  opacity: 0;
+  transition: opacity 0.7s var(--logi-ease);
+}
+
+.logistics-theme .v2-market__node.is-lit {
+  background: var(--logi-signal);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.logistics-theme .v2-market__node.is-lit::after {
+  opacity: 1;
+}
+
+/* ── Scene content ─────────────────────────────────────────────────── */
+
+.logistics-theme .v2-market__kicker {
+  margin-bottom: 20px;
+}
+
+.logistics-theme .v2-market__scene--som .v2-market__kicker {
+  color: var(--logi-signal);
+}
+
+.logistics-theme .v2-market__label {
+  margin-top: 14px;
+  max-width: 34ch;
+}
+
+/* Funnel hierarchy: TAM huge → SOM smallest but amber (the smallest
+   number is the brightest light — precision IS the story). */
+.logistics-theme .v2-market__stat--tam {
+  font-size: clamp(72px, 9.5vw, 144px);
+}
+
+.logistics-theme .v2-market__stat--sam {
+  font-size: clamp(52px, 6.5vw, 96px);
+}
+
+.logistics-theme .v2-market__stat--som {
+  font-size: clamp(40px, 4.5vw, 68px);
+  color: var(--logi-signal);
+}
+
+/* ── Spend-breakdown bar (inside scene 01) ─────────────────────────── */
+
+.logistics-theme .v2-market__breakdown {
+  display: flex;
+  height: 88px;
+  margin-top: 40px;
+  max-width: 620px;
+  border: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .v2-market__slice {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px;
+  border-right: 1px solid var(--logi-divider);
+  background: var(--logi-bg-elev);
+  color: var(--logi-fg-muted);
+  overflow: hidden;
+}
+
+.logistics-theme .v2-market__slice:last-child {
+  border-right: 0;
+}
+
+.logistics-theme .v2-market__slice--highlight {
+  background: var(--logi-signal);
+  color: #0a0b0d;
+}
+
+.logistics-theme .v2-market__slice-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.logistics-theme .v2-market__slice-pct {
+  font-size: 13px;
+}
+
+/* ── Mobile (<1024px): no SVG line — static rail per scene ──────────
+   .98px closes the fractional-width gap against the JS gate
+   (gsap.matchMedia min-width: 1024px) under browser zoom / non-integer
+   DPI — otherwise widths inside (1023, 1024) show an empty line SVG. */
+
+@media (max-width: 1023.98px) {
+  .logistics-theme .v2-market__line-svg {
+    display: none;
+  }
+
+  .logistics-theme .v2-market__scene {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding-block: 40px;
+    padding-left: 28px;
+  }
+
+  .logistics-theme .v2-market__scene::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      var(--logi-signal-dim),
+      rgba(245, 165, 36, 0.08)
+    );
+  }
+
+  .logistics-theme .v2-market__scene--right .v2-market__scene-body,
+  .logistics-theme .v2-market__scene--left .v2-market__scene-body {
+    grid-column: 1;
+    padding-inline: 0;
+  }
+
+  .logistics-theme .v2-market__scene--right .v2-market__node,
+  .logistics-theme .v2-market__scene--left .v2-market__node {
+    left: 5.5px;
+    top: 56px;
+  }
+
+  .logistics-theme .v2-market__breakdown {
+    height: 76px;
+  }
+}

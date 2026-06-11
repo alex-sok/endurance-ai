@@ -1,0 +1,212 @@
+/* ── v2 styles for ask — owned by its section agent (see DESIGN-V2.md) ── */
+
+/* §10 ASK — "readable first". Round size left, use-of-funds right on
+   desktop so the entire ask reads in one viewport on a 13" laptop.
+   Only the bar segments move; everything else is set type. */
+
+.logistics-theme .v2-ask__headline {
+  margin-bottom: clamp(40px, 6vh, 64px);
+  max-width: 18ch;
+}
+
+.logistics-theme .v2-ask__accent {
+  color: var(--logi-signal);
+}
+
+/* ── Round size + allocation, side by side ≥1024px ─────────────────── */
+
+.logistics-theme .v2-ask__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(40px, 6vw, 96px);
+  align-items: start;
+  padding-top: clamp(32px, 5vh, 48px);
+  border-top: 1px solid var(--logi-divider);
+}
+
+@media (max-width: 1023.98px) {
+  .logistics-theme .v2-ask__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+.logistics-theme .v2-ask__amount {
+  font-size: clamp(56px, 7vw, 112px);
+  color: var(--logi-fg-pure);
+  white-space: nowrap;
+}
+
+/* Masked round size — static CSS shimmer, no JS (same treatment as the
+   §5 masked headline stat; that section names its own v2-traction__
+   classes). A narrow highlight sweeps the muted digits; both keyframe
+   endpoints sit fully outside the box so the loop has no visible seam. */
+.logistics-theme .v2-ask__amount-value--masked {
+  display: inline-block;
+  background: linear-gradient(
+    100deg,
+    var(--logi-fg-muted) 45%,
+    var(--logi-fg-pure) 50%,
+    var(--logi-fg-muted) 55%
+  );
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: v2-ask-shimmer 3.4s linear 3;
+}
+
+@keyframes v2-ask-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logistics-theme .v2-ask__amount-value--masked {
+    animation: none;
+  }
+}
+
+/* ── Allocation bar ─────────────────────────────────────────────────── */
+
+.logistics-theme .v2-ask__bar {
+  display: flex;
+  height: 18px;
+  border: 1px solid var(--logi-divider);
+  margin-bottom: clamp(28px, 4vh, 40px);
+}
+
+.logistics-theme .v2-ask__bar-seg {
+  border-right: 1px solid var(--logi-bg);
+}
+
+.logistics-theme .v2-ask__bar-seg:last-child {
+  border-right: 0;
+}
+
+/* Amber ramp — brightest slice first, matching the legend chips. */
+.logistics-theme .v2-ask__bar-seg:nth-child(1) { background: var(--logi-signal); }
+.logistics-theme .v2-ask__bar-seg:nth-child(2) { background: #c08319; }
+.logistics-theme .v2-ask__bar-seg:nth-child(3) { background: #8a5d12; }
+.logistics-theme .v2-ask__bar-seg:nth-child(4) { background: #5c3e0c; }
+
+/* ── Legend — one column beside the round size, visible as a unit ──── */
+
+.logistics-theme .v2-ask__legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logistics-theme .v2-ask__legend-item {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 20px;
+  align-items: start;
+  padding-block: 18px;
+  border-top: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .v2-ask__legend-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.logistics-theme .v2-ask__legend-item:last-child {
+  padding-bottom: 0;
+}
+
+.logistics-theme .v2-ask__legend-pct {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--logi-fg-pure);
+  padding-top: 5px;
+}
+
+.logistics-theme .v2-ask__legend-pct::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+}
+
+.logistics-theme .v2-ask__legend-item:nth-child(1) .v2-ask__legend-pct::before { background: var(--logi-signal); }
+.logistics-theme .v2-ask__legend-item:nth-child(2) .v2-ask__legend-pct::before { background: #c08319; }
+.logistics-theme .v2-ask__legend-item:nth-child(3) .v2-ask__legend-pct::before { background: #8a5d12; }
+.logistics-theme .v2-ask__legend-item:nth-child(4) .v2-ask__legend-pct::before { background: #5c3e0c; }
+
+.logistics-theme .v2-ask__legend-name {
+  font-family: var(--logi-font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-size: clamp(20px, 1.8vw, 26px);
+  color: var(--logi-fg-pure);
+  margin-bottom: 6px;
+}
+
+.logistics-theme .v2-ask__legend-blurb {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--logi-fg-muted);
+  max-width: 52ch;
+}
+
+/* ── 18-month unlocks (hidden while data is placeholder) ───────────── */
+
+.logistics-theme .v2-ask__unlocks {
+  margin-top: clamp(48px, 7vh, 72px);
+}
+
+.logistics-theme .v2-ask__unlocks ul {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.logistics-theme .v2-ask__unlocks li {
+  position: relative;
+  padding-left: 28px;
+  font-family: var(--logi-font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-size: clamp(20px, 2vw, 28px);
+  color: var(--logi-fg);
+}
+
+.logistics-theme .v2-ask__unlocks li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--logi-signal);
+}
+
+/* ── Committed investors (rendered only when real names exist) ─────── */
+
+.logistics-theme .v2-ask__committed {
+  margin-top: clamp(40px, 6vh, 64px);
+}
+
+.logistics-theme .v2-ask__committed-names {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  color: var(--logi-fg-muted);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,104 @@
+/* ── §3 Shift v2 — quiet (DESIGN-V2.md §3) ──
+   The contrast IS the design: the incumbent stack sits at 60% opacity
+   via static CSS; the Endurance column is full strength with its amber
+   accents. Exactly one blockReveal per column (ShiftRevealClient) —
+   no scrub, no parallax, no counters, no strike-throughs. */
+
+.logistics-theme .v2-shift__headline {
+  margin-bottom: 72px;
+  max-width: 18ch;
+}
+
+.logistics-theme .v2-shift__em {
+  color: var(--logi-signal);
+  font-style: normal;
+}
+
+.logistics-theme .v2-shift__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--logi-divider);
+  margin-bottom: 96px;
+}
+
+.logistics-theme .v2-shift__col {
+  padding: clamp(32px, 4vw, 56px);
+}
+
+/* Yesterday's stack: dimmed whole, no amber, no strike-throughs. */
+.logistics-theme .v2-shift__col--incumbent {
+  opacity: 0.6;
+  border-right: 1px solid var(--logi-divider);
+}
+
+.logistics-theme .v2-shift__col--incumbent .logi-tag {
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .v2-shift__col--incumbent .logi-tag::before {
+  background: var(--logi-fg-muted);
+  box-shadow: none;
+}
+
+.logistics-theme .v2-shift__col--endurance {
+  background: linear-gradient(
+    180deg,
+    rgba(245, 165, 36, 0.06) 0%,
+    transparent 60%
+  );
+}
+
+.logistics-theme .v2-shift__stack {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 18px;
+}
+
+.logistics-theme .v2-shift__col--incumbent .v2-shift__stack li {
+  color: var(--logi-fg-muted);
+}
+
+.logistics-theme .v2-shift__col--endurance .v2-shift__stack li {
+  color: var(--logi-fg-pure);
+}
+
+.logistics-theme .v2-shift__col--endurance .v2-shift__stack li::before {
+  content: "→ ";
+  color: var(--logi-signal);
+}
+
+.logistics-theme .v2-shift__pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px;
+}
+
+.logistics-theme .v2-shift__pillar h3 {
+  margin: 12px 0 16px;
+}
+
+.logistics-theme .v2-shift__pillar-num {
+  color: var(--logi-signal);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .v2-shift__split {
+    grid-template-columns: 1fr;
+  }
+
+  .logistics-theme .v2-shift__col--incumbent {
+    border-right: 0;
+    border-bottom: 1px solid var(--logi-divider);
+  }
+
+  .logistics-theme .v2-shift__pillars {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

@@ -1,116 +1,169 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { SectionShell } from "../components/SectionShell";
-import {
-  headlineStat,
-  customerQuotes,
-  revenueByMonth,
-} from "../data/traction";
+import { gsap, blockReveal } from "../lib/v2-motion";
+import { headlineStat, customerQuotes } from "../data/traction";
+import { closeCTAs } from "../data/close";
 import { PRIVATE_METRICS } from "../lib/config";
 import { fmtUSD } from "../lib/formatters";
+import { isPlaceholder } from "../lib/placeholders";
 
 /**
- * §5 — Traction.
+ * §5 — Traction. Quiet + honest (DESIGN-V2.md).
  *
- * Phase 1: One enormous headline number + simple bar/line stubs +
- * customer pull quotes. All real numbers live in /data/traction.ts.
- * Phase 3: Big number counts up digit-by-digit, charts draw on scroll
- * via Visx + GSAP drawSVG.
- *
- * When PRIVATE_METRICS is on, every sensitive number renders masked
- * so the page is safe to share with a public link.
+ * Exactly ONE blockReveal over the section's blocks — no parallax, no
+ * scrub, no counters. Data hygiene (hard rule #8): the charts render
+ * empty axes + gridlines with a "Full figures in the deck →" note —
+ * never a fabricated curve. The headline stat masks to "$ — — —" with
+ * a static CSS shimmer when PRIVATE_METRICS is on or the value is
+ * unset. Quotes hide entirely while their copy is placeholder.
  */
+
+const GRID_ROWS = [40, 80, 120, 160];
+const GRID_TICKS = Array.from({ length: 11 }, (_, i) => (i + 1) * 40);
+
+/** Empty chart frame: axes + gridlines only. Honest about missing data. */
+function EmptyChartGrid() {
+  return (
+    <svg
+      viewBox="0 0 480 200"
+      className="v2-traction__chart-svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {GRID_ROWS.map((y) => (
+        <line
+          key={y}
+          x1="0"
+          y1={y}
+          x2="480"
+          y2={y}
+          stroke="var(--logi-divider)"
+          strokeWidth="1"
+        />
+      ))}
+      {GRID_TICKS.map((x) => (
+        <line
+          key={x}
+          x1={x}
+          y1="194"
+          x2={x}
+          y2="200"
+          stroke="var(--logi-fg-faint)"
+          strokeOpacity="0.55"
+          strokeWidth="1"
+        />
+      ))}
+      {/* Axes */}
+      <line
+        x1="0.5"
+        y1="0"
+        x2="0.5"
+        y2="200"
+        stroke="var(--logi-fg-faint)"
+        strokeOpacity="0.9"
+        strokeWidth="1"
+      />
+      <line
+        x1="0"
+        y1="199.5"
+        x2="480"
+        y2="199.5"
+        stroke="var(--logi-fg-faint)"
+        strokeOpacity="0.9"
+        strokeWidth="1"
+      />
+    </svg>
+  );
+}
+
 export function Traction() {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const ctx = gsap.context(() => {
+      // The section's single entrance (quiet section — nothing else).
+      blockReveal(root.querySelectorAll(".v2-traction__block"), {
+        trigger: root,
+        stagger: 0.1,
+        y: 48,
+      });
+    }, root);
+    return () => ctx.revert();
+  }, []);
+
   const masked = PRIVATE_METRICS || headlineStat.value === 0;
 
+  const quotes = customerQuotes.filter(
+    (q) => !isPlaceholder(q.body) && !isPlaceholder(q.attribution),
+  );
+
   return (
-    <SectionShell
-      id="traction"
-      index="05"
-      eyebrow="Traction"
-    >
-      <h2 className="logi-display-md logi-traction__headline">
-        The <span className="logi-traction__accent">receipts</span>.
-      </h2>
+    <SectionShell id="traction" index="05" eyebrow="Traction">
+      <div ref={rootRef} className="v2-traction">
+        <h2 className="logi-display-md v2-traction__headline v2-traction__block">
+          The <span className="v2-traction__accent">receipts</span>.
+        </h2>
 
-      <div className="logi-traction__headline-stat">
-        <div className="logi-stat logi-traction__big">
-          {masked
-            ? "$ — — — — — —"
-            : `${headlineStat.prefix}${fmtUSD(headlineStat.value, {
-                compact: true,
-              }).replace("$", "")}`}
+        <div className="v2-traction__stat v2-traction__block">
+          <div
+            className={`logi-stat v2-traction__big${
+              masked ? " v2-traction__big--masked" : ""
+            }`}
+          >
+            {masked
+              ? "$ — — —"
+              : `${headlineStat.prefix}${fmtUSD(headlineStat.value, {
+                  compact: true,
+                }).replace("$", "")}`}
+          </div>
+          <p className="logi-stat__label">
+            {headlineStat.label}
+            {masked ? (
+              <span className="logi-mono"> · masked — see deck</span>
+            ) : null}
+          </p>
         </div>
-        <p className="logi-stat__label">
-          {headlineStat.label}
-          {masked ? (
-            <span className="logi-mono"> · masked — see deck</span>
-          ) : null}
+
+        <div className="v2-traction__charts v2-traction__block">
+          <div className="logi-panel v2-traction__chart">
+            <div className="logi-mono v2-traction__chart-label">
+              Revenue / GMV by month
+            </div>
+            <EmptyChartGrid />
+          </div>
+
+          <div className="logi-panel v2-traction__chart">
+            <div className="logi-mono v2-traction__chart-label">
+              Loads moved per week
+            </div>
+            <EmptyChartGrid />
+          </div>
+        </div>
+
+        <p className="logi-mono v2-traction__note v2-traction__block">
+          <a href={`mailto:${closeCTAs.contactEmail}`}>
+            Full figures in the deck <span aria-hidden="true">→</span>
+          </a>
         </p>
-      </div>
 
-      <div className="logi-traction__charts">
-        {/* Revenue placeholder. Phase 3: Visx line chart, drawn on
-            scroll, with annotation pins at inflection points. */}
-        <div className="logi-panel logi-traction__chart">
-          <div className="logi-mono logi-traction__chart-label">
-            Revenue / GMV by month
-          </div>
-          <svg viewBox="0 0 480 200" className="logi-traction__chart-svg">
-            <defs>
-              <linearGradient id="grad-rev" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stopColor="var(--logi-signal)" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="var(--logi-signal)" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path
-              d="M0,160 L60,140 L120,135 L180,110 L240,100 L300,75 L360,55 L420,30 L480,20 L480,200 L0,200 Z"
-              fill="url(#grad-rev)"
-            />
-            <path
-              d="M0,160 L60,140 L120,135 L180,110 L240,100 L300,75 L360,55 L420,30 L480,20"
-              fill="none"
-              stroke="var(--logi-signal)"
-              strokeWidth="2"
-            />
-          </svg>
-          <div className="logi-mono logi-traction__chart-foot">
-            {revenueByMonth.length} months · TODO(alex): real data
-          </div>
-        </div>
-
-        <div className="logi-panel logi-traction__chart">
-          <div className="logi-mono logi-traction__chart-label">
-            Loads moved per week
-          </div>
-          <svg viewBox="0 0 480 200" className="logi-traction__chart-svg">
-            {[12, 18, 22, 30, 38, 44, 56, 62, 78, 92, 110, 134].map((h, i) => (
-              <rect
-                key={i}
-                x={i * 38 + 12}
-                y={200 - h}
-                width="28"
-                height={h}
-                fill="var(--logi-signal)"
-                opacity="0.85"
-              />
+        {quotes.length > 0 ? (
+          <div className="v2-traction__quotes v2-traction__block">
+            {quotes.map((q) => (
+              <figure key={q.attribution} className="v2-traction__quote">
+                <blockquote className="logi-display-sm">
+                  &ldquo;{q.body}&rdquo;
+                </blockquote>
+                <figcaption className="logi-mono logi-body-muted">
+                  — {q.attribution}
+                </figcaption>
+              </figure>
             ))}
-          </svg>
-          <div className="logi-mono logi-traction__chart-foot">
-            Trailing 12 weeks · TODO(alex): real data
           </div>
-        </div>
-      </div>
-
-      <div className="logi-traction__quotes">
-        {customerQuotes.map((q) => (
-          <figure key={q.attribution} className="logi-traction__quote">
-            <blockquote className="logi-display-sm">
-              &ldquo;{q.body}&rdquo;
-            </blockquote>
-            <figcaption className="logi-mono logi-body-muted">
-              — {q.attribution}
-            </figcaption>
-          </figure>
-        ))}
+        ) : null}
       </div>
     </SectionShell>
   );

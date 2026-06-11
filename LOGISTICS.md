@@ -2,9 +2,19 @@
 
 A premium, animated investor pitch page for Endurance AI Labs' freight logistics platform. Password-protected, fully scoped dark theme, smooth scroll with GSAP animations.
 
+> **⚠️ V2 "Night Freight" overhaul (June 2026) supersedes much of this doc.**
+> The page was rebuilt as a GSAP + Three.js experience: WebGL night-world
+> bookends (real OSM interstate point cloud — aerial hero, road-level dawn
+> close), a transcript-driven §4 product demo, a night clock (23:47→05:58)
+> in a new fixed nav, 12 sections (added §11 "The edge"), strict
+> data-hygiene (placeholder TODOs hide their blocks), and a one-beat
+> timestamp preloader. The binding design doc is
+> **`app/logistics/DESIGN-V2.md`**. Sections below describing the §6 map,
+> password gate, theme scoping, and env vars remain accurate; per-section
+> animation details are V1 history.
+
 **Route:** `/logistics`  
-**Status:** Complete (Phase 1 + Phase 3 animations)  
-**Branch:** `logistics-real-interstates` (ready for merge)
+**Status:** V2 overhaul complete (uncommitted at time of writing)
 
 ---
 

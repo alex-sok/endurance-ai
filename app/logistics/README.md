@@ -1,9 +1,21 @@
 # /logistics — Endurance Logistics investor page
 
-Phase 1 ships the static skeleton. Animations, real data, and the perf/a11y
-hardening pass land in later phases per the build spec.
+> **V2 "Night Freight" overhaul shipped (June 2026).** The page is now a
+> full GSAP + Three.js scroll experience: a WebGL night-world of the real
+> US interstate network bookends the page (aerial hero → road-level dawn
+> close), §4 Product is the signature transcript-drives-the-map moment,
+> and a night clock in the fixed nav advances 23:47 → 05:58 across the
+> scroll. **The design contract is [`DESIGN-V2.md`](./DESIGN-V2.md)** —
+> read it before changing any animation. The file map below predates V2
+> but the section structure still holds (now 12 sections: §11 "The edge"
+> was added, Close is §12). Key V2 additions: `lib/v2-motion.ts` (the only
+> GSAP import path), `lib/v2-boot.ts`, `lib/placeholders.ts`,
+> `components/three/` (SceneCanvas + NightScene), `components/V2Nav.tsx`,
+> `components/Preloader.tsx`, and per-section styles in `styles/v2/`.
 
-## What's here right now
+Phase 1 shipped the static skeleton; V2 shipped the choreography.
+
+## What's here right now (Phase 1 map — see banner for V2 additions)
 
 ```
 app/logistics/

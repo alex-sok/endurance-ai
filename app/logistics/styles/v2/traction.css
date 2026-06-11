@@ -1,0 +1,139 @@
+/* ── v2 styles for traction — owned by its section agent (see DESIGN-V2.md) ──
+   §5 is a QUIET section: deliberately reserved, not unfinished. Empty
+   chart frames, a masked headline figure with a static CSS shimmer
+   (no JS), and a single mono pointer to the deck. */
+
+.logistics-theme .v2-traction__headline {
+  margin-bottom: 56px;
+}
+
+.logistics-theme .v2-traction__accent {
+  color: var(--logi-signal);
+}
+
+/* Headline stat — bordered band, same rhythm as the rest of the page. */
+.logistics-theme .v2-traction__stat {
+  padding-block: 56px;
+  border-top: 1px solid var(--logi-divider);
+  border-bottom: 1px solid var(--logi-divider);
+  margin-bottom: 80px;
+}
+
+.logistics-theme .v2-traction__big {
+  font-size: clamp(72px, 10vw, 144px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--logi-fg-pure);
+}
+
+/* Masked "$ — — —": a slow gradient glint sweeps the text. Pure CSS —
+   no JS animation. The band lives mid-gradient, so the keyframes' first
+   and last frames read as the flat base color: under reduced motion the
+   global animation kill (logistics.css) snaps to that identical static
+   state. background-position only — no animated filters/box-shadows. */
+.logistics-theme .v2-traction__big--masked {
+  color: transparent;
+  background-image: linear-gradient(
+    105deg,
+    var(--logi-fg) 0%,
+    var(--logi-fg) 42%,
+    var(--logi-fg-pure) 50%,
+    var(--logi-fg) 58%,
+    var(--logi-fg) 100%
+  );
+  background-size: 300% 100%;
+  background-position: 100% 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: v2-traction-shimmer 5.2s ease-in-out 3;
+}
+
+@keyframes v2-traction-shimmer {
+  0%,
+  52% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+/* Charts — empty frames, honest about missing data. */
+.logistics-theme .v2-traction__charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .v2-traction__charts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logistics-theme .v2-traction__chart {
+  padding: 24px;
+}
+
+.logistics-theme .v2-traction__chart-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--logi-fg-muted);
+  margin-bottom: 16px;
+}
+
+.logistics-theme .v2-traction__chart-svg {
+  width: 100%;
+  height: 200px;
+  display: block;
+}
+
+/* "Full figures in the deck →" — one understated pointer, not two. */
+.logistics-theme .v2-traction__note {
+  margin-top: 20px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.logistics-theme .v2-traction__note a {
+  color: var(--logi-fg-muted);
+  text-decoration: none;
+  transition: color var(--logi-dur-fast) var(--logi-ease);
+}
+
+.logistics-theme .v2-traction__note a:hover {
+  color: var(--logi-fg);
+}
+
+.logistics-theme .v2-traction__note a span {
+  color: var(--logi-signal);
+}
+
+/* Quotes — currently all hidden by isPlaceholder(); styled for the day
+   real ones land. */
+.logistics-theme .v2-traction__quotes {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+
+@media (max-width: 900px) {
+  .logistics-theme .v2-traction__quotes {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logistics-theme .v2-traction__quote blockquote {
+  margin: 0;
+}
+
+.logistics-theme .v2-traction__quote figcaption {
+  margin-top: 20px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}

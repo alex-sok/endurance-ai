@@ -1,16 +1,24 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger, prefersReducedMotion } from "../lib/animations";
+import {
+  gsap,
+  ScrollTrigger,
+  EASE,
+  prefersReducedMotion,
+} from "../lib/v2-motion";
 
 /**
  * §11 "The edge" showpiece — "capital seeds the network".
  *
- * A giant count-up $150M is the visual anchor; behind it an amber network
- * lights up as energy flows OUT from the number into the nodes — the
- * brokerage's capital seeding Endurance. Built in the deck's idiom:
- * stroke-dashoffset line draws, back.out node pops, particle flow, all
- * gated on prefers-reduced-motion (which jumps straight to final state).
+ * A giant $150M is the visual anchor; behind it an amber network lights
+ * up as energy flows OUT from the number into the nodes — the brokerage's
+ * capital seeding Endurance. Per DESIGN-V2 the number HARD-CUTS to its
+ * final value (no count-up — conviction, not theatre); it only rises in
+ * with the reveal. The kicker fades plainly (the page's two scramble
+ * slots are spent elsewhere). Line draws, node pops and particle flow
+ * keep their behavior; entrances ride the house ease. Reduced-motion
+ * jumps straight to the identical final state.
  */
 
 const VW = 1000;
@@ -47,12 +55,11 @@ const dEdge = (a: P, b: P) => `M${a.x},${a.y}L${b.x},${b.y}`;
 export function EdgeStatement() {
   const rootRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
-  const numRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    const root = rootRef.current;
     const svg = svgRef.current;
-    const num = numRef.current;
-    if (!svg || !num) return;
+    if (!root || !svg) return;
 
     const lines = Array.from(
       svg.querySelectorAll<SVGPathElement>(".logi-edge-line"),
@@ -63,8 +70,12 @@ export function EdgeStatement() {
     const particles = Array.from(
       svg.querySelectorAll<SVGCircleElement>(".logi-edge-particle"),
     );
+    const kicker = root.querySelector<HTMLElement>(".logi-edge__kicker");
+    const amount = root.querySelector<HTMLElement>(".logi-edge__amount");
+    if (!kicker || !amount) return;
 
-    // Initial state: lines undrawn, nodes + particles hidden.
+    // Initial state: lines undrawn, nodes + particles hidden, copy staged.
+    // (Set at effect time, never in CSS — no-JS and LCP see final content.)
     lines.forEach((ln) => {
       const len = ln.getTotalLength();
       ln.style.strokeDasharray = `${len}`;
@@ -72,35 +83,37 @@ export function EdgeStatement() {
     });
     gsap.set(nodes, { opacity: 0, scale: 0, transformOrigin: "center" });
     gsap.set(particles, { opacity: 0 });
+    gsap.set(kicker, { opacity: 0 });
+    gsap.set(amount, { opacity: 0, y: 36 });
 
     if (prefersReducedMotion()) {
+      // Identical final state, zero motion. Particles stay hidden.
       lines.forEach((ln) => (ln.style.strokeDashoffset = "0"));
       gsap.set(nodes, { opacity: 1, scale: 1 });
-      num.textContent = "150";
+      gsap.set(kicker, { opacity: 1 });
+      gsap.set(amount, { opacity: 1, y: 0 });
       return;
     }
 
-    // Section is far below the fold on load, so zeroing now never flashes.
-    num.textContent = "0";
-
     const ctx = gsap.context(() => {
-      const counter = { v: 0 };
       const reveal = gsap.timeline({ paused: true });
       reveal
+        // Kicker fades plainly — no scramble (both page slots are spent).
+        .to(kicker, { opacity: 1, duration: 0.7, ease: EASE.out }, 0)
         .to(lines, {
           strokeDashoffset: 0,
           duration: 1.0,
-          ease: "power2.out",
+          ease: EASE.out,
           stagger: 0.07,
         }, 0)
-        .to(counter, {
-          v: 150,
-          duration: 1.4,
-          ease: "power2.out",
-          onUpdate: () => {
-            num.textContent = String(Math.round(counter.v));
-          },
-        }, 0.1)
+        // The number never counts — already "150" in the markup, it just
+        // rises into place. One confident static figure.
+        .to(amount, {
+          opacity: 1,
+          y: 0,
+          duration: 1.1,
+          ease: EASE.out,
+        }, 0.08)
         .to(nodes, {
           opacity: 1,
           scale: 1,
@@ -120,24 +133,15 @@ export function EdgeStatement() {
       });
 
       ScrollTrigger.create({
-        trigger: rootRef.current!,
+        trigger: root,
         start: "top 78%",
+        once: true,
         onEnter: () => {
           reveal.play();
           flows.forEach((f) => f.play());
         },
-        onLeaveBack: () => {
-          reveal.pause(0);
-          flows.forEach((f) => f.pause(0));
-          gsap.set(particles, { opacity: 0 });
-          gsap.set(nodes, { opacity: 0, scale: 0 });
-          lines.forEach(
-            (ln) => (ln.style.strokeDashoffset = `${ln.getTotalLength()}`),
-          );
-          num.textContent = "0";
-        },
       });
-    }, rootRef);
+    }, root);
 
     return () => ctx.revert();
   }, []);
@@ -212,7 +216,7 @@ export function EdgeStatement() {
         <p className="logi-edge__kicker">The best part?</p>
         <div className="logi-edge__amount" aria-label="$150M">
           <span className="logi-edge__cur" aria-hidden="true">$</span>
-          <span ref={numRef} aria-hidden="true">150</span>
+          <span aria-hidden="true">150</span>
           <span className="logi-edge__unit" aria-hidden="true">M</span>
         </div>
         <p className="logi-edge__caption">Logistics brokerage</p>
