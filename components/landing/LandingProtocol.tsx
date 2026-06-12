@@ -91,7 +91,7 @@ export function LandingProtocol() {
     <section ref={ref} aria-label="How we work">
       <div data-protocol-pin className="lg:h-svh lg:overflow-hidden flex flex-col justify-center py-24 lg:py-0">
         <div className="max-w-7xl mx-auto w-full px-6 sm:px-10 mb-12 lg:mb-16 shrink-0">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             How We Work
           </p>
           <h2
@@ -129,7 +129,7 @@ export function LandingProtocol() {
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-flare mb-5 leading-relaxed">
                   {phase.goal}
                 </p>
-                <p className="text-sm md:text-[15px] leading-relaxed text-bone/45">{phase.body}</p>
+                <p className="text-sm md:text-[15px] leading-relaxed text-bone/65">{phase.body}</p>
               </div>
             </article>
           ))}
@@ -145,10 +145,10 @@ export function LandingProtocol() {
             />
           </div>
           <div className="flex justify-between mt-3">
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-bone/30">
+            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-bone/55">
               Phase 01 — Recon
             </span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-bone/30">
+            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-bone/55">
               Phase 05 — Transfer
             </span>
           </div>

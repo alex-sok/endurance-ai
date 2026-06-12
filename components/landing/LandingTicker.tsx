@@ -18,7 +18,7 @@ function Row({ ariaHidden = false }: { ariaHidden?: boolean }) {
     <div className="flex shrink-0 items-center" aria-hidden={ariaHidden}>
       {ITEMS.map((item) => (
         <span key={item} className="flex items-center">
-          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-bone/35 whitespace-nowrap px-7">
+          <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-bone/55 whitespace-nowrap px-7">
             {item}
           </span>
           <span className="text-flare/60 text-[7px]" aria-hidden>

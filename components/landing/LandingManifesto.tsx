@@ -40,7 +40,7 @@ export function LandingManifesto() {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         // Pinned statement — each word surfaces as you scroll through it.
         const split = new SplitText("[data-manifesto-statement]", { type: "words" });
-        gsap.set(split.words, { opacity: 0.13 });
+        gsap.set(split.words, { opacity: 0.2 });
 
         gsap
           .timeline({
@@ -90,7 +90,7 @@ export function LandingManifesto() {
       {/* Pinned statement */}
       <div data-manifesto-pin className="flex items-center" style={{ minHeight: "100svh" }}>
         <div className="max-w-5xl mx-auto px-6 sm:px-10 py-24">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-10">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-10">
             The Problem
           </p>
           <p
@@ -130,11 +130,11 @@ export function LandingManifesto() {
               className="border-b border-r p-8 md:p-10"
               style={{ borderColor: "rgba(244,243,238,0.08)" }}
             >
-              <span className="font-mono text-[10px] tracking-[0.25em] text-flare/80 block mb-6">
+              <span className="font-mono text-[10px] tracking-[0.25em] text-flare block mb-6">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="font-display text-bone text-xl md:text-2xl mb-3">{f.title}</h3>
-              <p className="text-sm leading-relaxed text-bone/45">{f.body}</p>
+              <p className="text-sm leading-relaxed text-bone/65">{f.body}</p>
             </div>
           ))}
         </div>
@@ -146,7 +146,7 @@ export function LandingManifesto() {
           >
             These are execution problems. <em>Not technology problems.</em>
           </p>
-          <p className="text-[15px] leading-relaxed text-bone/50">
+          <p className="text-[15px] leading-relaxed text-bone/70">
             Endurance was built to close the gap between ambition and execution.
           </p>
         </div>

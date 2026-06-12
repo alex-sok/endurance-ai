@@ -78,7 +78,7 @@ export function LandingProof({ onOpenChat }: Props) {
     <section ref={ref} className="py-28 md:py-40" aria-label="Proof">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div data-proof-header className="mb-16 md:mb-24">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             Field Results
           </p>
           <h2
@@ -95,7 +95,7 @@ export function LandingProof({ onOpenChat }: Props) {
               <div className="lg:col-span-7">
                 <p
                   data-case-before
-                  className="relative inline-block font-display text-bone/40 mb-2"
+                  className="relative inline-block font-display text-bone/60 mb-2"
                   style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.6rem)", lineHeight: 1.1 }}
                 >
                   {c.before}
@@ -116,7 +116,7 @@ export function LandingProof({ onOpenChat }: Props) {
               </div>
               <p
                 data-case-body
-                className="lg:col-span-5 text-sm md:text-[15px] leading-relaxed text-bone/45 lg:pt-4"
+                className="lg:col-span-5 text-sm md:text-[15px] leading-relaxed text-bone/65 lg:pt-4"
               >
                 {c.body}
               </p>
@@ -129,7 +129,7 @@ export function LandingProof({ onOpenChat }: Props) {
           className="mt-20 md:mt-28 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 border-t pt-10"
           style={{ borderColor: "rgba(244,243,238,0.08)" }}
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/30 max-w-sm leading-relaxed">
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55 max-w-sm leading-relaxed">
             Active engagements with Fortune 500 enterprises. Details shared under NDA.
           </p>
           <Btn variant="light" onClick={onOpenChat} className="shrink-0">

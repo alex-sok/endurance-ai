@@ -63,7 +63,7 @@ export function LandingTeam() {
     <section ref={ref} className="py-28 md:py-40" aria-label="The team">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div data-team-header className="mb-16 md:mb-20 max-w-3xl">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             The Team
           </p>
           <h2
@@ -72,7 +72,7 @@ export function LandingTeam() {
           >
             Built by <em>operators.</em>
           </h2>
-          <p className="text-[15px] leading-relaxed text-bone/50">
+          <p className="text-[15px] leading-relaxed text-bone/70">
             Our backgrounds span AI engineering, enterprise architecture,
             product design, and operational execution across regulated,
             high-growth, and complex environments.
@@ -93,7 +93,7 @@ export function LandingTeam() {
                 <p className="md:col-span-3 font-mono text-[10px] uppercase tracking-[0.2em] text-flare pt-2.5">
                   {f.role}
                 </p>
-                <p className="md:col-span-5 text-sm leading-relaxed text-bone/45 pt-1">{f.bio}</p>
+                <p className="md:col-span-5 text-sm leading-relaxed text-bone/65 pt-1">{f.bio}</p>
               </div>
               <span className="block h-px w-full bg-bone/10" />
             </div>

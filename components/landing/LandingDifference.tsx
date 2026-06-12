@@ -39,7 +39,7 @@ export function LandingDifference() {
         lines.forEach((line) => {
           tl.to(line, { opacity: 1, y: 0, duration: 1, ease: "power2.out" }).to(
             line,
-            { opacity: 0.14, duration: 0.7, ease: "none" },
+            { opacity: 0.22, duration: 0.7, ease: "none" },
             "+=0.25"
           );
         });
@@ -74,7 +74,7 @@ export function LandingDifference() {
       {/* Pinned positioning sequence */}
       <div data-diff-pin className="flex items-center" style={{ minHeight: "100svh" }}>
         <div className="max-w-6xl mx-auto w-full px-6 sm:px-10 py-24">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-12">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-12">
             The Difference
           </p>
 
@@ -102,7 +102,7 @@ export function LandingDifference() {
               data-diff-verdict-rule
               className="block h-px bg-flare/70 mt-8 mb-6 max-w-md"
             />
-            <p data-diff-verdict-sub className="text-[15px] text-bone/55 max-w-md leading-relaxed">
+            <p data-diff-verdict-sub className="text-[15px] text-bone/70 max-w-md leading-relaxed">
               Strategy, architecture, engineering, and execution — combined in
               one small, senior team.
             </p>
@@ -123,7 +123,7 @@ export function LandingDifference() {
           className="hidden md:grid grid-cols-2 pb-4 gap-x-12 border-b"
           style={{ borderColor: "rgba(244,243,238,0.14)" }}
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone/35">
+          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone/55">
             The old model
           </span>
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flare">
@@ -138,7 +138,7 @@ export function LandingDifference() {
             className="grid md:grid-cols-2 gap-x-12 gap-y-1 py-5 border-b"
             style={{ borderColor: "rgba(244,243,238,0.08)" }}
           >
-            <p className="text-[15px] text-bone/35 line-through decoration-bone/25 decoration-1">
+            <p className="text-[15px] text-bone/55 line-through decoration-bone/40 decoration-1">
               {old}
             </p>
             <p className="text-[15px] text-bone/85">{ours}</p>

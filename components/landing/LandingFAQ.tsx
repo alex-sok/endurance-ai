@@ -83,7 +83,7 @@ export function LandingFAQ({ onOpenChat }: Props) {
     <section ref={ref} className="py-28 md:py-40" aria-label="Frequently asked questions">
       <div className="max-w-4xl mx-auto px-6 sm:px-10">
         <div data-faq-header className="mb-14 md:mb-20">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             Questions
           </p>
           <h2
@@ -103,7 +103,7 @@ export function LandingFAQ({ onOpenChat }: Props) {
                 <button
                   onClick={() => toggle(i)}
                   aria-expanded={isOpen}
-                  className="w-full flex items-baseline justify-between gap-6 py-6 text-left group"
+                  className="w-full flex items-baseline justify-between gap-6 py-6 text-left group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
                 >
                   <span className="font-display text-bone text-lg md:text-xl leading-snug group-hover:text-white transition-colors duration-200">
                     {faq.q}
@@ -120,7 +120,7 @@ export function LandingFAQ({ onOpenChat }: Props) {
                   className="overflow-hidden transition-[max-height] duration-300 ease-out"
                   style={{ maxHeight: isOpen ? 320 : 0 }}
                 >
-                  <p className="pb-7 text-sm md:text-[15px] leading-relaxed text-bone/50 max-w-2xl">
+                  <p className="pb-7 text-sm md:text-[15px] leading-relaxed text-bone/70 max-w-2xl">
                     {faq.a}
                   </p>
                 </div>
@@ -131,7 +131,7 @@ export function LandingFAQ({ onOpenChat }: Props) {
         </div>
 
         <div className="mt-14 flex items-center gap-6">
-          <p className="text-sm text-bone/45">Still have questions?</p>
+          <p className="text-sm text-bone/65">Still have questions?</p>
           <Btn variant="ghost-light" onClick={onOpenChat}>
             Ask Grace →
           </Btn>
