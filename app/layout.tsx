@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lato, Space_Mono } from "next/font/google";
+import { Instrument_Serif, Lato, Space_Mono } from "next/font/google";
 import { ApolloTracker } from "@/components/ApolloTracker";
 import "./globals.css";
 
@@ -15,6 +15,14 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   weight: ["400", "700"],
+});
+
+// Instrument Serif — display headlines on the landing page
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 const SITE_URL = "https://endurancelabs.ai";
@@ -92,7 +100,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${lato.variable} ${spaceMono.variable} h-full`}>
+    <html lang="en" className={`${lato.variable} ${spaceMono.variable} ${instrumentSerif.variable} h-full`}>
       <body className="h-full antialiased">
         <ApolloTracker />
         <script
