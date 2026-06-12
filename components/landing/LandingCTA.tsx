@@ -1,82 +1,130 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { MonoLabel } from "@/components/ui/MonoLabel";
+import { useEffect, useRef } from "react";
+import { gsap, SplitText } from "@/lib/gsap";
 import { Btn } from "@/components/ui/Btn";
 import { EmailCapture } from "./EmailCapture";
 import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/conversation-flows";
 
 interface Props {
   onOpenChat: () => void;
+  onCtaClick?: (label: string) => void;
 }
 
-export function LandingCTA({ onOpenChat }: Props) {
+export function LandingCTA({ onOpenChat, onCtaClick }: Props) {
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const split = new SplitText("[data-cta-headline]", { type: "words", mask: "words" });
+
+        gsap
+          .timeline({
+            scrollTrigger: { trigger: "[data-cta-headline]", start: "top 78%" },
+            defaults: { ease: "power4.out" },
+          })
+          .from("[data-cta-eyebrow]", { autoAlpha: 0, y: 12, duration: 0.7 })
+          .from(split.words, { yPercent: 115, duration: 1.1, stagger: 0.07 }, 0.15)
+          .from("[data-cta-body]", { autoAlpha: 0, y: 16, duration: 0.8 }, 0.6)
+          .from("[data-cta-buttons]", { autoAlpha: 0, y: 14, duration: 0.7 }, 0.8);
+
+        gsap.from("[data-cta-capture]", {
+          autoAlpha: 0,
+          duration: 0.9,
+          scrollTrigger: { trigger: "[data-cta-capture]", start: "top 90%" },
+        });
+      });
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section
-      className="py-24 md:py-32"
-      style={{ background: "#f7f7f4", borderTop: "1px solid #e6e5e0" }}
-    >
-      <div className="max-w-6xl mx-auto px-6 sm:px-10">
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl"
-        >
-          <MonoLabel className="block mb-6">Ready?</MonoLabel>
-
-          <h2
-            className="text-4xl md:text-5xl lg:text-6xl font-semibold text-ink mb-6"
-            style={{ letterSpacing: "-1px", lineHeight: 1.0 }}
-          >
-            Brief us on a mission.
-          </h2>
-
-          <p className="text-base leading-relaxed text-muted-ash mb-10 max-w-md">
-            The first conversation is a mission briefing, not a sales call. Tell us what you're
-            trying to accomplish. We'll tell you if we're the right fit.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 mb-12">
-            <Btn onClick={onOpenChat}>
-              Begin Mission Briefing →
-            </Btn>
-            <Btn variant="signal" as="a" href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
-              Book a Call
-            </Btn>
-          </div>
-
-          <div style={{ borderTop: "1px solid #e6e5e0", paddingTop: "2rem" }}>
-            <EmailCapture />
-          </div>
-        </motion.div>
-
-      </div>
-
-      {/* Footer */}
+    <section ref={ref} className="relative" aria-label="Talk to Endurance">
+      {/* Blend from the solid page back into the terrain */}
       <div
-        className="max-w-6xl mx-auto px-6 sm:px-10 mt-24 pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
-        style={{ borderTop: "1px solid #e6e5e0" }}
-      >
-        <div className="flex items-center gap-3">
-          <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="h-4 w-auto opacity-60" />
+        className="absolute top-0 inset-x-0 h-48 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, #0a0a08, transparent)" }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-10 pt-40 md:pt-56 pb-24">
+        <p
+          data-cta-eyebrow
+          className="font-mono text-[10px] uppercase tracking-[0.32em] text-flare mb-10"
+        >
+          Ready?
+        </p>
+
+        <h2
+          data-cta-headline
+          className="font-display text-bone mb-10"
+          style={{
+            fontSize: "clamp(3rem, 9vw, 8.5rem)",
+            lineHeight: 0.97,
+            letterSpacing: "-0.015em",
+            maxWidth: "11ch",
+          }}
+        >
+          Brief us on a <em>mission.</em>
+        </h2>
+
+        <p data-cta-body className="text-[15px] sm:text-base leading-relaxed text-bone/55 max-w-md mb-12">
+          The first conversation is a mission briefing, not a sales call. Tell
+          us what you’re trying to accomplish. We’ll tell you if we’re the
+          right fit.
+        </p>
+
+        <div data-cta-buttons className="flex flex-col sm:flex-row gap-3 mb-24 md:mb-32">
+          <Btn variant="light" onClick={onOpenChat}>
+            Begin Mission Briefing →
+          </Btn>
+          <Btn
+            variant="ghost-light"
+            as="a"
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => onCtaClick?.("cta-book")}
+          >
+            Book a Call ↗
+          </Btn>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="text-xs text-muted-ash hover:text-ink transition-colors"
-            style={{ fontFamily: "var(--font-jetbrains)", letterSpacing: "0.08em" }}
-          >
-            {CONTACT_EMAIL}
-          </a>
-          <MonoLabel className="hidden sm:block" style={{ color: "#cdcdc9" }}>·</MonoLabel>
-          <MonoLabel style={{ color: "#cdcdc9" }}>
-            © {new Date().getFullYear()} Endurance AI Labs
-          </MonoLabel>
+        <div data-cta-capture className="mb-28 md:mb-36">
+          <EmailCapture />
         </div>
+
+        {/* Footer */}
+        <footer
+          className="border-t pt-10 flex flex-col md:flex-row md:items-end justify-between gap-10"
+          style={{ borderColor: "rgba(244,243,238,0.1)" }}
+        >
+          <div>
+            <img
+              src="/logo-endurance-white.svg"
+              alt="Endurance AI Labs"
+              className="h-3.5 w-auto opacity-70 mb-5"
+            />
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="block text-sm text-bone/50 hover:text-bone transition-colors duration-200"
+            >
+              {CONTACT_EMAIL}
+            </a>
+          </div>
+
+          <div className="md:text-right">
+            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-bone/25 mb-2">
+              68°44′21″S · 52°19′47″W — Endurance, found intact after 107 years
+            </p>
+            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-bone/25">
+              © {new Date().getFullYear()} Endurance AI Labs
+            </p>
+          </div>
+        </footer>
       </div>
     </section>
   );

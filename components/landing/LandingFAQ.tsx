@@ -1,15 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MonoLabel } from "@/components/ui/MonoLabel";
+import { useEffect, useRef, useState } from "react";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { Btn } from "@/components/ui/Btn";
 
 interface Props {
   onOpenChat: () => void;
 }
 
-const faqs = [
+const FAQS = [
   {
     q: "How long does a typical engagement take?",
     a: "Depends on scope. The AI Audit is one engagement: a prioritized roadmap within a week. The Embedded AI Engineer tiers run 2 weeks, 2 months, or 6 months. We scope work into defined deliverables, not open-ended retainers.",
@@ -45,110 +44,97 @@ const faqs = [
 ];
 
 export function LandingFAQ({ onOpenChat }: Props) {
+  const ref = useRef<HTMLElement>(null);
   const [open, setOpen] = useState<number | null>(null);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from("[data-faq-header]", {
+          autoAlpha: 0,
+          y: 24,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: { trigger: "[data-faq-header]", start: "top 85%" },
+        });
+        gsap.from("[data-faq-item]", {
+          autoAlpha: 0,
+          y: 16,
+          duration: 0.6,
+          stagger: 0.06,
+          ease: "power3.out",
+          scrollTrigger: { trigger: "[data-faq-list]", start: "top 85%" },
+        });
+      });
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
+  function toggle(index: number) {
+    setOpen((prev) => (prev === index ? null : index));
+    // Accordion height changes shift everything below it.
+    setTimeout(() => ScrollTrigger.refresh(), 350);
+  }
+
   return (
-    <section className="py-24 md:py-32" style={{ background: "#f7f7f4" }}>
-      <div className="max-w-6xl mx-auto px-6 sm:px-10">
-        <div className="max-w-3xl">
-
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-6"
+    <section ref={ref} className="py-28 md:py-40" aria-label="Frequently asked questions">
+      <div className="max-w-4xl mx-auto px-6 sm:px-10">
+        <div data-faq-header className="mb-14 md:mb-20">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-8">
+            Questions
+          </p>
+          <h2
+            className="font-display text-bone"
+            style={{ fontSize: "clamp(2rem, 4.4vw, 3.8rem)", lineHeight: 1.06 }}
           >
-            <MonoLabel>Questions</MonoLabel>
-          </motion.div>
+            Answered <em>before you have to ask.</em>
+          </h2>
+        </div>
 
-          {/* Heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: 0.04, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-4xl font-semibold text-ink mb-12"
-            style={{ letterSpacing: "-0.5px" }}
-          >
-            Answered before you have to ask.
-          </motion.h2>
-
-          {/* Accordion */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.055 } },
-            }}
-            className="mb-12"
-          >
-            {faqs.map((faq, i) => (
-              <motion.div
-                key={faq.q}
-                variants={{
-                  hidden: { opacity: 0, x: -8 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
-                }}
-                className="border-b border-surface"
-              >
+        <div data-faq-list>
+          <span className="block h-px w-full bg-bone/10" />
+          {FAQS.map((faq, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={faq.q} data-faq-item>
                 <button
-                  onClick={() => setOpen(open === i ? null : i)}
-                  className="w-full flex items-center justify-between gap-4 py-4 text-left group"
+                  onClick={() => toggle(i)}
+                  aria-expanded={isOpen}
+                  className="w-full flex items-baseline justify-between gap-6 py-6 text-left group"
                 >
-                  <span className="text-base md:text-lg text-muted-ash group-hover:text-ink transition-colors duration-150">
+                  <span className="font-display text-bone text-lg md:text-xl leading-snug group-hover:text-white transition-colors duration-200">
                     {faq.q}
                   </span>
                   <span
-                    className="flex-shrink-0 w-4 h-4 flex items-center justify-center transition-transform duration-200"
-                    style={{
-                      transform: open === i ? "rotate(45deg)" : "rotate(0deg)",
-                      color: "#cdcdc9",
-                    }}
+                    className="font-mono text-flare text-sm shrink-0 transition-transform duration-300"
+                    style={{ transform: isOpen ? "rotate(45deg)" : "none" }}
+                    aria-hidden
                   >
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                      <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
+                    +
                   </span>
                 </button>
+                <div
+                  className="overflow-hidden transition-[max-height] duration-300 ease-out"
+                  style={{ maxHeight: isOpen ? 320 : 0 }}
+                >
+                  <p className="pb-7 text-sm md:text-[15px] leading-relaxed text-bone/50 max-w-2xl">
+                    {faq.a}
+                  </p>
+                </div>
+                <span className="block h-px w-full bg-bone/10" />
+              </div>
+            );
+          })}
+        </div>
 
-                <AnimatePresence initial={false}>
-                  {open === i && (
-                    <motion.div
-                      key="body"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                      style={{ overflow: "hidden" }}
-                    >
-                      <p className="text-sm text-muted-ash leading-relaxed pb-4 max-w-xl">
-                        {faq.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row sm:items-center gap-4"
-          >
-            <p className="text-base text-muted-ash">Still have questions?</p>
-            <Btn onClick={onOpenChat} variant="outline">
-              Ask Grace →
-            </Btn>
-          </motion.div>
-
+        <div className="mt-14 flex items-center gap-6">
+          <p className="text-sm text-bone/45">Still have questions?</p>
+          <Btn variant="ghost-light" onClick={onOpenChat}>
+            Ask Grace →
+          </Btn>
         </div>
       </div>
     </section>

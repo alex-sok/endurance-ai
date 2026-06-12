@@ -35,6 +35,7 @@ export function ChatOverlay({ open, onClose, getSessionId }: Props) {
           transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="fixed inset-0 z-[200] flex flex-col"
           style={{ background: "#f7f7f4" }}
+          data-lenis-prevent
         >
           {/* Overlay header — replaces ChatShell's own header */}
           <div

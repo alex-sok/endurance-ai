@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { MonoLabel } from "@/components/ui/MonoLabel";
 
 export function EmailCapture() {
-  const [email, setEmail]     = useState("");
-  const [name, setName]       = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState("");
+  const [error, setError] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -40,12 +39,15 @@ export function EmailCapture() {
   if (submitted) {
     return (
       <div
-        className="px-5 py-4 max-w-sm"
-        style={{ border: "1px solid #e6e5e0", borderRadius: "4px", background: "#f0efe9" }}
+        className="px-6 py-5 max-w-sm border border-bone/15"
+        style={{ borderRadius: 4 }}
       >
-        <MonoLabel className="block mb-1">Got it.</MonoLabel>
-        <p className="text-sm text-[#262510]">
-          We'll be in touch. If your initiative is urgent, book a briefing directly.
+        <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-flare mb-2">
+          Got it.
+        </p>
+        <p className="text-sm text-bone/70 leading-relaxed">
+          We’ll be in touch. If your initiative is urgent, book a briefing
+          directly.
         </p>
       </div>
     );
@@ -53,8 +55,9 @@ export function EmailCapture() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-sm">
-      <p className="text-sm text-[#7a7974] mb-4">
-        Not ready to book? Leave your email and we'll reach out when the timing is right.
+      <p className="text-sm text-bone/45 mb-5 leading-relaxed">
+        Not ready to book? Leave your email and we’ll reach out when the timing
+        is right.
       </p>
 
       <div className="space-y-3">
@@ -63,7 +66,7 @@ export function EmailCapture() {
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full bg-transparent border-b border-[#cdcdc9] px-0 py-2 text-sm text-[#262510] placeholder:text-[#7a7974] focus:outline-none focus:border-[#262510] transition-colors duration-150"
+          className="w-full bg-transparent border-b border-bone/20 px-0 py-2.5 text-sm text-bone placeholder:text-bone/30 focus:outline-none focus:border-flare transition-colors duration-200"
         />
         <input
           type="email"
@@ -71,19 +74,17 @@ export function EmailCapture() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full bg-transparent border-b border-[#cdcdc9] px-0 py-2 text-sm text-[#262510] placeholder:text-[#7a7974] focus:outline-none focus:border-[#262510] transition-colors duration-150"
+          className="w-full bg-transparent border-b border-bone/20 px-0 py-2.5 text-sm text-bone placeholder:text-bone/30 focus:outline-none focus:border-flare transition-colors duration-200"
         />
       </div>
 
-      {error && (
-        <p className="text-xs text-red-500 mt-2">{error}</p>
-      )}
+      {error && <p className="text-xs text-flare mt-3">{error}</p>}
 
       <button
         type="submit"
         disabled={loading || !email.trim()}
-        className="mt-4 px-4 py-2 text-xs uppercase tracking-widest text-[#f7f7f4] bg-[#262510] hover:bg-[#141414] transition-colors duration-150 disabled:opacity-40 disabled:cursor-not-allowed"
-        style={{ borderRadius: "4px", fontFamily: "var(--font-jetbrains)" }}
+        className="mt-6 px-4 py-2.5 text-[10px] uppercase tracking-[0.18em] font-mono text-bone/70 border border-bone/20 hover:text-bone hover:border-bone/50 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+        style={{ borderRadius: 4 }}
       >
         {loading ? "Sending…" : "Stay in touch →"}
       </button>

@@ -38,6 +38,7 @@
   --color-muted-ash: var(--muted-ash);
   --color-signal:    var(--signal);
   --color-subtle:    var(--steel-300);   /* #cdcdc9 — placeholder, faint borders */
+  --color-flare:     var(--flare);       /* ember signal accent on the dark landing */
 }
 
 :root {
@@ -49,6 +50,7 @@
   --bone:       #f7f7f4;   /* canvas parchment — page + card backgrounds */
   --muted-ash:  #7a7974;   /* muted stone — secondary text, icons */
   --signal:     #7c3aed;   /* violet — outlined interactive accent */
+  --flare:      #f54e00;   /* ember orange — landing page signal accent */
   --rust:       #dc2626;
 
   /* Surface scale */
@@ -129,3 +131,28 @@
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--surface); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--muted-ash); }
+
+/* ── Landing (dark expedition theme) ──────────────────────────────────────── */
+
+/* Instrument Serif display type */
+.font-display {
+  font-family: var(--font-display), "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+}
+
+/* Ember selection inside the dark landing only */
+.theme-abyss ::selection {
+  background: var(--flare);
+  color: #0a0a08;
+}
+
+/* Credibility ticker */
+@keyframes ticker {
+  to { transform: translateX(-50%); }
+}
+
+/* ── Lenis smooth scroll ──────────────────────────────────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }

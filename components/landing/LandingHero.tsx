@@ -1,139 +1,138 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { MonoLabel } from "@/components/ui/MonoLabel";
+import { useEffect, useRef } from "react";
+import { gsap, SplitText } from "@/lib/gsap";
 import { Btn } from "@/components/ui/Btn";
-import { PortalHeroGeometry } from "@/components/portal/PortalHeroGeometry";
 
 interface Props {
   onOpenChat: () => void;
+  onNavigate: (id: string) => void;
 }
 
-export function LandingHero({ onOpenChat }: Props) {
+export function LandingHero({ onOpenChat, onNavigate }: Props) {
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const split = new SplitText("[data-hero-headline]", {
+          type: "words",
+          mask: "words",
+        });
+
+        gsap
+          .timeline({ defaults: { ease: "power4.out" } })
+          .from("[data-hero-eyebrow]", { autoAlpha: 0, y: 12, duration: 0.7 }, 0.15)
+          .from(
+            split.words,
+            { yPercent: 115, duration: 1.15, stagger: 0.055 },
+            0.3
+          )
+          .from("[data-hero-sub]", { autoAlpha: 0, y: 16, duration: 0.8 }, 0.85)
+          .from("[data-hero-ctas]", { autoAlpha: 0, y: 14, duration: 0.7 }, 1.0)
+          .from("[data-hero-trust]", { autoAlpha: 0, duration: 0.9 }, 1.25)
+          .from("[data-hero-scroll]", { autoAlpha: 0, duration: 0.9 }, 1.4);
+
+        gsap.to("[data-hero-scroll-line]", {
+          scaleY: 0.25,
+          transformOrigin: "top",
+          duration: 1.4,
+          ease: "power2.inOut",
+          repeat: -1,
+          yoyo: true,
+        });
+      });
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
+      ref={ref}
       className="relative flex flex-col justify-center overflow-hidden"
-      style={{ minHeight: "100svh", background: "#080d17" }}
+      style={{ minHeight: "100svh" }}
+      aria-label="Endurance AI Labs"
     >
-      {/* Dot grid — very faint architectural texture */}
+      {/* Legibility scrims over the terrain — text side and base */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px)",
-          backgroundSize: "44px 44px",
-        }}
-      />
-
-      {/* Vertical column lines — suggestion of architecture */}
-      {[18, 36, 55, 73, 91].map((pct) => (
-        <div
-          key={pct}
-          className="absolute inset-y-0 w-px pointer-events-none"
-          style={{ left: `${pct}%`, background: "rgba(255,255,255,0.022)" }}
-        />
-      ))}
-
-      {/* Rotating icosahedron wireframe */}
-      <PortalHeroGeometry color="rgba(148,163,184,0.9)" opacity={0.55} />
-
-      {/* Blue light bloom — breathing, right-center (like the photo) */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        animate={{ opacity: [0.65, 1, 0.65] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         style={{
           background:
-            "radial-gradient(ellipse 55% 75% at 68% 48%, rgba(59,130,246,0.09) 0%, rgba(29,78,216,0.04) 45%, transparent 70%)",
+            "linear-gradient(100deg, rgba(10,10,8,0.72) 0%, rgba(10,10,8,0.25) 48%, rgba(10,10,8,0) 75%)",
         }}
       />
-
-      {/* Darker vignette on the left — pushes eye to center/right, text on left is clear */}
       <div
-        className="absolute inset-y-0 left-0 w-1/3 pointer-events-none"
-        style={{ background: "linear-gradient(to right, rgba(0,0,0,0.35), transparent)" }}
+        className="absolute bottom-0 inset-x-0 h-40 pointer-events-none"
+        style={{ background: "linear-gradient(to bottom, transparent, #0a0a08)" }}
       />
 
-      {/* Floor line */}
-      <div
-        className="absolute bottom-0 inset-x-0 h-px pointer-events-none"
-        style={{ background: "rgba(255,255,255,0.04)" }}
-      />
-
-      {/* Content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 w-full py-28 md:py-36">
-
-        {/* Logo + eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-4 mb-12"
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 pt-36 pb-28">
+        <p
+          data-hero-eyebrow
+          className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/45 mb-10"
         >
-          <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="h-4 w-auto opacity-70" />
-          <div className="h-px w-6" style={{ background: "rgba(255,255,255,0.15)" }} />
-          <MonoLabel style={{ color: "rgba(247,247,244,0.4)" }}>AI Execution</MonoLabel>
-        </motion.div>
+          Operator-led AI execution
+        </p>
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: 0.07, ease: [0.16, 1, 0.3, 1] }}
-          className="font-semibold leading-[1.0] mb-8"
+        <h1
+          data-hero-headline
+          className="font-display text-bone mb-9"
           style={{
-            fontSize: "clamp(52px, 8vw, 112px)",
-            letterSpacing: "clamp(-1.5px, -0.03em, -3.5px)",
-            color: "#f7f7f4",
-            maxWidth: "900px",
+            fontSize: "clamp(3.3rem, 8.6vw, 8.25rem)",
+            lineHeight: 0.97,
+            letterSpacing: "-0.015em",
+            maxWidth: "13ch",
           }}
         >
-          Execute the initiative that cannot afford to fail.
-        </motion.h1>
+          Some initiatives <em className="not-italic md:italic">cannot afford to&nbsp;fail.</em>
+        </h1>
 
-        {/* Subhead */}
-        <motion.p
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.17, ease: [0.16, 1, 0.3, 1] }}
-          className="text-sm sm:text-base leading-relaxed mb-12 max-w-md"
-          style={{ color: "rgba(247,247,244,0.48)" }}
+        <p
+          data-hero-sub
+          className="text-[15px] sm:text-base leading-relaxed text-bone/55 max-w-md mb-11"
         >
-          Operator-led AI execution for leaders with serious outcomes at stake.
-          Strategy through deployment. One small, senior team.
-        </motion.p>
+          Endurance is the operator-led AI execution firm for leaders with
+          serious outcomes at stake. Strategy through deployment — one small,
+          senior team that ships.
+        </p>
 
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.26, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row gap-3"
-        >
+        <div data-hero-ctas className="flex flex-col sm:flex-row gap-3">
           <Btn variant="light" onClick={onOpenChat}>
             Begin Mission Briefing →
           </Btn>
-          <Btn variant="ghost-light" as="a" href="#services">
-            See how we work ↓
+          <Btn
+            variant="ghost-light"
+            as="a"
+            href="#audit"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate("audit");
+            }}
+          >
+            The $999 AI Audit ↓
           </Btn>
-        </motion.div>
+        </div>
 
-        {/* Fortune 500 credibility signal */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10 text-xs"
-          style={{ color: "rgba(247,247,244,0.28)", fontFamily: "var(--font-jetbrains)", letterSpacing: "0.12em" }}
+        <p
+          data-hero-trust
+          className="mt-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone/30"
         >
-          Active engagements with Fortune 500 enterprises. Built for the mid-market.
-        </motion.p>
+          Active engagements with Fortune 500 enterprises — built for the mid-market
+        </p>
       </div>
 
-      {/* Bottom gradient fade into next section */}
+      {/* Scroll cue */}
       <div
-        className="absolute bottom-0 inset-x-0 h-24 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, #080d17)" }}
-      />
+        data-hero-scroll
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
+        aria-hidden
+      >
+        <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-bone/30">Scroll</span>
+        <span data-hero-scroll-line className="block w-px h-10 bg-bone/25" />
+      </div>
     </section>
   );
 }

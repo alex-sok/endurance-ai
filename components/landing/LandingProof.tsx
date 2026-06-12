@@ -1,119 +1,141 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { MonoLabel } from "@/components/ui/MonoLabel";
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
 import { Btn } from "@/components/ui/Btn";
-
-const cases = [
-  {
-    stat: "20 engineers. 1 year.",
-    result: "→ 2 weeks.",
-    body: "A team at a major Fortune 500 travel company had been working on a specific problem for a year. We solved it in two weeks. That pattern has held across every major engagement since.",
-  },
-  {
-    stat: "6 months of waiting.",
-    result: "→ 4 days.",
-    body: "A CEO had been waiting six months for his own team to deliver an agentic e-commerce experience. We built it in four days. He's now using it to open doors at Fortune 500 retailers and financial institutions.",
-  },
-  {
-    stat: "Regulated industries.",
-    result: "Production-ready.",
-    body: "Most AI firms quietly avoid regulated environments: pharma, financial services, healthcare. We don't. We've built production AI systems inside them, where breaking things is not an option and compliance is not a suggestion.",
-  },
-];
 
 interface Props {
   onOpenChat: () => void;
 }
 
+const CASES = [
+  {
+    before: "20 engineers. 1 year.",
+    after: "2 weeks.",
+    body: "A team at a major Fortune 500 travel company had been working on a specific problem for a year. We solved it in two weeks. That pattern has held across every major engagement since.",
+  },
+  {
+    before: "6 months of waiting.",
+    after: "4 days.",
+    body: "A CEO had been waiting six months for his own team to deliver an agentic e-commerce experience. We built it in four days. He's now using it to open doors at Fortune 500 retailers and financial institutions.",
+  },
+  {
+    before: "Regulated industries.",
+    after: "Production-ready.",
+    body: "Most AI firms quietly avoid regulated environments: pharma, financial services, healthcare. We don't. We've built production AI systems inside them, where breaking things is not an option and compliance is not a suggestion.",
+  },
+];
+
 export function LandingProof({ onOpenChat }: Props) {
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from("[data-proof-header]", {
+          autoAlpha: 0,
+          y: 24,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: { trigger: "[data-proof-header]", start: "top 85%" },
+        });
+
+        gsap.utils.toArray<HTMLElement>("[data-case-row]").forEach((row) => {
+          const tl = gsap.timeline({
+            scrollTrigger: { trigger: row, start: "top 78%" },
+            defaults: { ease: "power3.out" },
+          });
+
+          tl.from(row.querySelector("[data-case-before]"), { autoAlpha: 0, y: 18, duration: 0.7 })
+            .fromTo(
+              row.querySelector("[data-case-strike]"),
+              { scaleX: 0 },
+              { scaleX: 1, transformOrigin: "left", duration: 0.55, ease: "power2.inOut" },
+              "+=0.15"
+            )
+            .from(
+              row.querySelector("[data-case-after]"),
+              { autoAlpha: 0, y: 26, duration: 0.8 },
+              "-=0.1"
+            )
+            .from(row.querySelector("[data-case-body]"), { autoAlpha: 0, duration: 0.7 }, "-=0.4");
+        });
+
+        gsap.from("[data-proof-nda]", {
+          autoAlpha: 0,
+          duration: 0.9,
+          scrollTrigger: { trigger: "[data-proof-nda]", start: "top 92%" },
+        });
+      });
+    }, ref);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-24 md:py-32" style={{ background: "#f7f7f4" }}>
-      <div className="max-w-6xl mx-auto px-6 sm:px-10">
-
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14"
-        >
-          <MonoLabel className="block mb-4">The Work</MonoLabel>
+    <section ref={ref} className="py-28 md:py-40" aria-label="Proof">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10">
+        <div data-proof-header className="mb-16 md:mb-24">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-8">
+            Field Results
+          </p>
           <h2
-            className="text-3xl md:text-4xl font-semibold text-ink"
-            style={{ letterSpacing: "-0.5px" }}
+            className="font-display text-bone"
+            style={{ fontSize: "clamp(2rem, 4.4vw, 3.8rem)", lineHeight: 1.06 }}
           >
-            Results, not presentations.
+            Results, <em>not presentations.</em>
           </h2>
-        </motion.div>
+        </div>
 
-        {/* Horizontal rule */}
-        <div className="h-px bg-[#e6e5e0] mb-0" />
-
-        {/* Cases — 3-col on desktop, stacked on mobile */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
-          className="grid grid-cols-1 md:grid-cols-3"
-          style={{ borderBottom: "1px solid #e6e5e0" }}
-        >
-          {cases.map((c, i) => (
-            <motion.div
-              key={i}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
-              }}
-              className="py-10 md:py-12 px-0 md:px-8 first:md:pl-0 last:md:pr-0"
-              style={{
-                borderRight: i < cases.length - 1 ? "1px solid #e6e5e0" : "none",
-                borderBottom: "1px solid transparent", // visual rhythm on mobile
-              }}
-            >
-              {/* Stat */}
-              <div className="mb-5">
+        <div className="space-y-20 md:space-y-28">
+          {CASES.map((c) => (
+            <div key={c.after} data-case-row className="grid lg:grid-cols-12 gap-y-6 lg:gap-x-12 items-start">
+              <div className="lg:col-span-7">
                 <p
-                  className="font-semibold leading-none mb-1 text-muted-ash"
-                  style={{ fontSize: "clamp(13px, 2vw, 15px)", fontFamily: "var(--font-jetbrains)", letterSpacing: "0.05em" }}
+                  data-case-before
+                  className="relative inline-block font-display text-bone/40 mb-2"
+                  style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.6rem)", lineHeight: 1.1 }}
                 >
-                  {c.stat}
+                  {c.before}
+                  <span
+                    data-case-strike
+                    className="absolute left-0 top-1/2 h-[2px] w-full bg-flare/80"
+                    style={{ transform: "scaleX(0)" }}
+                    aria-hidden
+                  />
                 </p>
                 <p
-                  className="font-semibold leading-none text-ink"
-                  style={{ fontSize: "clamp(28px, 4vw, 44px)", letterSpacing: "-1px" }}
+                  data-case-after
+                  className="font-display italic text-bone"
+                  style={{ fontSize: "clamp(3rem, 7vw, 6rem)", lineHeight: 1 }}
                 >
-                  {c.result}
+                  → {c.after}
                 </p>
               </div>
-
-              {/* Divider */}
-              <div className="h-px bg-[#e6e5e0] mb-5" />
-
-              {/* Body */}
-              <p className="text-sm leading-relaxed text-muted-ash">
+              <p
+                data-case-body
+                className="lg:col-span-5 text-sm md:text-[15px] leading-relaxed text-bone/45 lg:pt-4"
+              >
                 {c.body}
               </p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Confidentiality note + CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6"
+        <div
+          data-proof-nda
+          className="mt-20 md:mt-28 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 border-t pt-10"
+          style={{ borderColor: "rgba(244,243,238,0.08)" }}
         >
-          <p className="text-xs text-subtle" style={{ fontFamily: "var(--font-jetbrains)" }}>
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/30 max-w-sm leading-relaxed">
             Active engagements with Fortune 500 enterprises. Details shared under NDA.
           </p>
-          <Btn onClick={onOpenChat}>Begin Mission Briefing →</Btn>
-        </motion.div>
-
+          <Btn variant="light" onClick={onOpenChat} className="shrink-0">
+            Begin Mission Briefing →
+          </Btn>
+        </div>
       </div>
     </section>
   );
