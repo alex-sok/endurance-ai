@@ -54,7 +54,7 @@ export function LandingAudit({ onCtaClick }: Props) {
           style={{ borderRadius: 4 }}
         >
           <div className="lg:col-span-7">
-            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#7a7974] mb-8">
+            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-[#5f5e57] mb-8">
               Start Here
             </p>
             <h2
@@ -76,7 +76,7 @@ export function LandingAudit({ onCtaClick }: Props) {
                 Something you do this week.
               </p>
             </div>
-            <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.22em] text-[#7a7974]">
+            <p className="mt-10 font-mono text-[10px] uppercase tracking-[0.22em] text-[#5f5e57]">
               Not ready for a full engagement? This is how most of ours start.
             </p>
           </div>
@@ -86,7 +86,7 @@ export function LandingAudit({ onCtaClick }: Props) {
               className="border border-[#262510]/15 p-8 md:p-10 h-full flex flex-col"
               style={{ borderRadius: 4 }}
             >
-              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#7a7974] mb-6">
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#5f5e57] mb-6">
                 The AI Audit
               </p>
               <p
@@ -96,7 +96,7 @@ export function LandingAudit({ onCtaClick }: Props) {
               >
                 $999
               </p>
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#7a7974] mb-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#5f5e57] mb-8">
                 Flat fee. One engagement. No retainer.
               </p>
 
@@ -111,7 +111,7 @@ export function LandingAudit({ onCtaClick }: Props) {
                 ))}
               </ul>
 
-              <p className="text-xs text-[#7a7974] mb-8">
+              <p className="text-xs text-[#5f5e57] mb-8">
                 Most companies spending on AI without this are guessing.
               </p>
 
@@ -120,7 +120,7 @@ export function LandingAudit({ onCtaClick }: Props) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => onCtaClick?.("audit-book")}
-                className="mt-auto inline-flex items-center justify-center px-4 py-3 text-xs font-medium uppercase font-mono tracking-[0.1em] bg-ink text-bone hover:bg-[#141414] transition-colors duration-150"
+                className="mt-auto inline-flex items-center justify-center px-4 py-3 text-xs font-medium uppercase font-mono tracking-[0.1em] bg-ink text-bone hover:bg-[#141414] transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
                 style={{ borderRadius: 4 }}
               >
                 Book an AI Audit →

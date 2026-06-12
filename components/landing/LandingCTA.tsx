@@ -71,7 +71,7 @@ export function LandingCTA({ onOpenChat, onCtaClick }: Props) {
           Brief us on a <em>mission.</em>
         </h2>
 
-        <p data-cta-body className="text-[15px] sm:text-base leading-relaxed text-bone/55 max-w-md mb-12">
+        <p data-cta-body className="text-[15px] sm:text-base leading-relaxed text-bone/70 max-w-md mb-12">
           The first conversation is a mission briefing, not a sales call. Tell
           us what you’re trying to accomplish. We’ll tell you if we’re the
           right fit.
@@ -110,17 +110,17 @@ export function LandingCTA({ onOpenChat, onCtaClick }: Props) {
             />
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="block text-sm text-bone/50 hover:text-bone transition-colors duration-200"
+              className="block text-sm text-bone/70 hover:text-bone transition-colors duration-200"
             >
               {CONTACT_EMAIL}
             </a>
           </div>
 
           <div className="md:text-right">
-            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-bone/25 mb-2">
+            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-bone/55 mb-2">
               68°44′21″S · 52°19′47″W — Endurance, found intact after 107 years
             </p>
-            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-bone/25">
+            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-bone/55">
               © {new Date().getFullYear()} Endurance AI Labs
             </p>
           </div>

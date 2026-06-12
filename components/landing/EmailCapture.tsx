@@ -39,7 +39,7 @@ export function EmailCapture() {
   if (submitted) {
     return (
       <div
-        className="px-6 py-5 max-w-sm border border-bone/15"
+        className="px-6 py-5 max-w-sm border border-bone/40"
         style={{ borderRadius: 4 }}
       >
         <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-flare mb-2">
@@ -55,7 +55,7 @@ export function EmailCapture() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-sm">
-      <p className="text-sm text-bone/45 mb-5 leading-relaxed">
+      <p className="text-sm text-bone/65 mb-5 leading-relaxed">
         Not ready to book? Leave your email and we’ll reach out when the timing
         is right.
       </p>
@@ -66,7 +66,7 @@ export function EmailCapture() {
           placeholder="Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full bg-transparent border-b border-bone/20 px-0 py-2.5 text-sm text-bone placeholder:text-bone/30 focus:outline-none focus:border-flare transition-colors duration-200"
+          className="w-full bg-transparent border-b border-bone/40 px-0 py-2.5 text-sm text-bone placeholder:text-bone/55 focus:outline-none focus:border-flare transition-colors duration-200"
         />
         <input
           type="email"
@@ -74,7 +74,7 @@ export function EmailCapture() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full bg-transparent border-b border-bone/20 px-0 py-2.5 text-sm text-bone placeholder:text-bone/30 focus:outline-none focus:border-flare transition-colors duration-200"
+          className="w-full bg-transparent border-b border-bone/40 px-0 py-2.5 text-sm text-bone placeholder:text-bone/55 focus:outline-none focus:border-flare transition-colors duration-200"
         />
       </div>
 
@@ -83,7 +83,7 @@ export function EmailCapture() {
       <button
         type="submit"
         disabled={loading || !email.trim()}
-        className="mt-6 px-4 py-2.5 text-[10px] uppercase tracking-[0.18em] font-mono text-bone/70 border border-bone/20 hover:text-bone hover:border-bone/50 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+        className="mt-6 px-4 py-2.5 text-[10px] uppercase tracking-[0.18em] font-mono text-bone/75 border border-bone/40 hover:text-bone hover:border-bone/70 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
         style={{ borderRadius: 4 }}
       >
         {loading ? "Sending…" : "Stay in touch →"}

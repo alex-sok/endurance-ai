@@ -21,7 +21,7 @@ const variants = {
   /** For use on dark backgrounds — bone fill, inkwell text */
   light:       "bg-bone text-ink hover:bg-white border-transparent",
   /** For use on dark backgrounds — bone outline */
-  "ghost-light": "text-bone/60 border border-bone/20 hover:text-bone/90 hover:border-bone/40 bg-transparent",
+  "ghost-light": "text-bone/80 border border-bone/40 hover:text-bone hover:border-bone/70 bg-transparent",
 } as const;
 
 type Variant = keyof typeof variants;

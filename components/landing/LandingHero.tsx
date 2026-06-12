@@ -72,7 +72,7 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
       <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 pt-36 pb-28">
         <p
           data-hero-eyebrow
-          className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/45 mb-10"
+          className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/65 mb-10"
         >
           Operator-led AI execution
         </p>
@@ -92,7 +92,7 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
 
         <p
           data-hero-sub
-          className="text-[15px] sm:text-base leading-relaxed text-bone/55 max-w-md mb-11"
+          className="text-[15px] sm:text-base leading-relaxed text-bone/70 max-w-md mb-11"
         >
           Endurance is the operator-led AI execution firm for leaders with
           serious outcomes at stake. Strategy through deployment — one small,
@@ -118,7 +118,7 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
 
         <p
           data-hero-trust
-          className="mt-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone/30"
+          className="mt-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55"
         >
           Active engagements with Fortune 500 enterprises — built for the mid-market
         </p>
@@ -130,8 +130,8 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
         className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
         aria-hidden
       >
-        <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-bone/30">Scroll</span>
-        <span data-hero-scroll-line className="block w-px h-10 bg-bone/25" />
+        <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-bone/55">Scroll</span>
+        <span data-hero-scroll-line className="block w-px h-10 bg-bone/40" />
       </div>
     </section>
   );

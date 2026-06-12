@@ -74,7 +74,7 @@ export function LandingOperations({ onOpenChat }: Props) {
     <section ref={ref} className="py-28 md:py-40" aria-label="What we do">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div data-op-header className="mb-16 md:mb-24">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             What We Do
           </p>
           <h2
@@ -92,7 +92,7 @@ export function LandingOperations({ onOpenChat }: Props) {
               <div className="grid md:grid-cols-12 gap-y-3 md:gap-x-10 py-9 md:py-12 transition-colors duration-300 group-hover:bg-bone/[0.025]">
                 <span
                   data-op-content
-                  className="md:col-span-1 font-mono text-[11px] tracking-[0.25em] text-flare/80 pt-1.5"
+                  className="md:col-span-1 font-mono text-[11px] tracking-[0.25em] text-flare pt-1.5"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -104,7 +104,7 @@ export function LandingOperations({ onOpenChat }: Props) {
                 </h3>
                 <p
                   data-op-content
-                  className="md:col-span-6 text-sm md:text-[15px] leading-relaxed text-bone/45 max-w-xl"
+                  className="md:col-span-6 text-sm md:text-[15px] leading-relaxed text-bone/65 max-w-xl"
                 >
                   {s.body}
                 </p>

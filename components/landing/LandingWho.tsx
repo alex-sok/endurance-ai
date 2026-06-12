@@ -66,7 +66,7 @@ export function LandingWho() {
     <section ref={ref} className="py-28 md:py-40" aria-label="Who we help">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div data-who-header className="mb-16 md:mb-20">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-8">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             Who We Help
           </p>
           <h2
@@ -88,11 +88,11 @@ export function LandingWho() {
               className="border-b border-r p-8 md:p-12"
               style={{ borderColor: "rgba(244,243,238,0.08)" }}
             >
-              <span className="font-mono text-[10px] tracking-[0.25em] text-flare/80 block mb-6">
+              <span className="font-mono text-[10px] tracking-[0.25em] text-flare block mb-6">
                 {String.fromCharCode(65 + i)}
               </span>
               <h3 className="font-display text-bone text-2xl md:text-[1.7rem] mb-4">{seg.title}</h3>
-              <p className="text-sm leading-relaxed text-bone/45">{seg.body}</p>
+              <p className="text-sm leading-relaxed text-bone/65">{seg.body}</p>
             </div>
           ))}
         </div>
@@ -105,7 +105,7 @@ export function LandingWho() {
           <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-flare mb-4">
             Not a fit for
           </p>
-          <p className="text-sm md:text-[15px] leading-relaxed text-bone/55 max-w-3xl">
+          <p className="text-sm md:text-[15px] leading-relaxed text-bone/70 max-w-3xl">
             Generic AI experimentation. The lowest-cost vendor. Software
             shopping. Organizations without executive sponsorship or those not
             prepared to move once a direction is chosen. We work best with

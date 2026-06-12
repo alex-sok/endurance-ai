@@ -70,7 +70,7 @@ export function LandingWindow() {
         <div className="grid lg:grid-cols-12 gap-y-14 lg:gap-x-16">
           <div className="lg:col-span-7">
             <div data-window-header>
-              <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/40 mb-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
                 Why Now
               </p>
               <h2
@@ -80,7 +80,7 @@ export function LandingWindow() {
                 The window is open. <em>For about 18&nbsp;months.</em>
               </h2>
             </div>
-            <div data-window-copy className="space-y-5 text-[15px] leading-relaxed text-bone/50 max-w-xl">
+            <div data-window-copy className="space-y-5 text-[15px] leading-relaxed text-bone/70 max-w-xl">
               <p>
                 OpenAI announced a $4 billion fund for AI implementation,
                 partnering with Bain, McKinsey, and Goldman Sachs. Anthropic
@@ -112,7 +112,7 @@ export function LandingWindow() {
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-flare mb-2">
                   {stat.label}
                 </p>
-                <p className="text-sm text-bone/40">{stat.sub}</p>
+                <p className="text-sm text-bone/60">{stat.sub}</p>
               </div>
             ))}
           </div>
@@ -125,7 +125,7 @@ export function LandingWindow() {
         >
           Organizations that move in the next 18 months will build a compounding
           advantage their competitors cannot close.{" "}
-          <em className="text-bone/45">
+          <em className="text-bone/65">
             The ones that wait will pay three times the price to the same firms.
           </em>
         </p>

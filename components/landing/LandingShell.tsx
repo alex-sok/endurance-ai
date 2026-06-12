@@ -126,9 +126,16 @@ export function LandingShell() {
     <div className="theme-abyss relative bg-[#0a0a08] text-bone min-h-svh overflow-x-clip">
       <TerrainCanvas />
 
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-bone focus:text-[#0a0a08] focus:text-sm"
+      >
+        Skip to content
+      </a>
+
       <LandingNav onOpenChat={openChat} onNavigate={scrollToId} onCtaClick={onCtaClick} />
 
-      <main className="relative z-10">
+      <main id="main-content" className="relative z-10">
         <div ref={sectionRef("hero")} data-section="hero" className="relative">
           <LandingHero onOpenChat={openChat} onNavigate={scrollToId} />
         </div>
