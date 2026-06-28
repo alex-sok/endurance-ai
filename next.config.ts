@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const securityHeaders = [
-  // Prevent clickjacking
-  { key: "X-Frame-Options", value: "DENY" },
+  // Prevent cross-origin clickjacking (same-origin framing allowed for the /brain demo shell)
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
   // Prevent MIME-type sniffing
   { key: "X-Content-Type-Options", value: "nosniff" },
   // Control referrer info sent with requests
@@ -25,7 +25,7 @@ const securityHeaders = [
       // Allow calls to our own API, xAI (streaming), OpenAI (embeddings), and Apollo tracking
       "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io https://aplo-evnt.com",
       // No iframes anywhere
-      "frame-ancestors 'none'",
+      "frame-ancestors 'self'",
       "base-uri 'self'",
       "form-action 'self'",
     ].join("; "),
