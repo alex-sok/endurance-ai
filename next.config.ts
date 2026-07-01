@@ -44,6 +44,14 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Serve the 1100 Group landing page (hosted on GitHub Pages) at endurancelabs.ai/1100
+  // via a reverse-proxy rewrite — the address bar stays on our domain, no redirect.
+  async rewrites() {
+    return [
+      { source: "/1100", destination: "https://endurance-ai-labs.github.io/1100-group-landing/index.html" },
+      { source: "/1100/:path*", destination: "https://endurance-ai-labs.github.io/1100-group-landing/:path*" },
+    ];
+  },
 };
 
 export default nextConfig;
