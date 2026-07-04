@@ -33,6 +33,11 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Serve proxied static demos under a trailing-slash subpath (e.g. /remi/) without
+  // Next auto-stripping the slash — required so the demo's relative asset paths
+  // (external styles.css, console.html) resolve under the subpath instead of root.
+  // Only affects the auto trailing-slash redirect; explicit redirects still apply.
+  skipTrailingSlashRedirect: true,
   // Keep pdf-parse and mammoth out of the webpack bundle — they're CJS
   // modules with file-system side effects that break when bundled
   serverExternalPackages: ["pdf-parse", "mammoth"],
