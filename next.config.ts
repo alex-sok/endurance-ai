@@ -50,6 +50,12 @@ const nextConfig: NextConfig = {
     return [
       { source: "/1100", destination: "https://endurance-ai-labs.github.io/1100-group-landing/index.html" },
       { source: "/1100/:path*", destination: "https://endurance-ai-labs.github.io/1100-group-landing/:path*" },
+      // Brain Powered Operating System (Next.js app on Vercel) at endurancelabs.ai/BPOS
+      // via a reverse-proxy rewrite. The app is served under basePath "/BPOS", so all of
+      // its routes and assets are self-contained under that subpath — the address bar
+      // stays on our domain, no redirect.
+      { source: "/BPOS", destination: "https://brain-powered-os.vercel.app/BPOS" },
+      { source: "/BPOS/:path*", destination: "https://brain-powered-os.vercel.app/BPOS/:path*" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
