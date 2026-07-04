@@ -56,6 +56,10 @@ const nextConfig: NextConfig = {
       // stays on our domain, no redirect.
       { source: "/BPOS", destination: "https://brain-powered-os.vercel.app/BPOS" },
       { source: "/BPOS/:path*", destination: "https://brain-powered-os.vercel.app/BPOS/:path*" },
+      // Remi (AI conversation-intelligence demo on GitHub Pages) at endurancelabs.ai/remi
+      // via a reverse-proxy rewrite. Paired with the /remi -> /remi/ redirect below so the
+      // page's relative asset paths (styles.css, console.html) resolve under the subpath.
+      { source: "/remi/:path*", destination: "https://endurance-ai-labs.github.io/ella-demo/:path*" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
@@ -64,6 +68,9 @@ const nextConfig: NextConfig = {
   // under a subpath proxy. Lowercase variants included for typed URLs.
   async redirects() {
     return [
+      // Force a trailing slash for the Remi demo so its relative assets resolve under /remi/
+      // (the page loads an external styles.css; unlike /1100 which inlines its CSS).
+      { source: "/remi", destination: "/remi/", permanent: false },
       { source: "/CFPportal", destination: "https://cfp-portal-endurance.pages.dev/", permanent: false },
       { source: "/CFPportal/:path*", destination: "https://cfp-portal-endurance.pages.dev/:path*", permanent: false },
       { source: "/cfpportal", destination: "https://cfp-portal-endurance.pages.dev/", permanent: false },
