@@ -52,6 +52,18 @@ const nextConfig: NextConfig = {
       { source: "/1100/:path*", destination: "https://endurance-ai-labs.github.io/1100-group-landing/:path*" },
     ];
   },
+  // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
+  // Redirect rather than a /1100-style proxy rewrite: the portal uses
+  // root-absolute asset paths (/css, /js, /data, /api) that would 404
+  // under a subpath proxy. Lowercase variants included for typed URLs.
+  async redirects() {
+    return [
+      { source: "/CFPportal", destination: "https://cfp-portal-endurance.pages.dev/", permanent: false },
+      { source: "/CFPportal/:path*", destination: "https://cfp-portal-endurance.pages.dev/:path*", permanent: false },
+      { source: "/cfpportal", destination: "https://cfp-portal-endurance.pages.dev/", permanent: false },
+      { source: "/cfpportal/:path*", destination: "https://cfp-portal-endurance.pages.dev/:path*", permanent: false },
+    ];
+  },
 };
 
 export default nextConfig;
