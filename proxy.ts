@@ -50,6 +50,13 @@ async function deriveToken(password: string, salt: string): Promise<string> {
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
+  // /logistics/new — public Endurance Logistics marketing site, proxied to
+  // GitHub Pages via next.config.ts rewrites. Deliberately ungated; the
+  // gated investor pitch stays at /logistics.
+  if (pathname === "/logistics/new" || pathname.startsWith("/logistics/new/")) {
+    return NextResponse.next();
+  }
+
   const gate = GATES.find((g) => pathname.startsWith(g.routePrefix));
   if (!gate) return NextResponse.next();
 

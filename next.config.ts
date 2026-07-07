@@ -67,6 +67,12 @@ const nextConfig: NextConfig = {
       // styles.css and relative links resolve under the subpath.
       { source: "/remi", destination: "https://endurance-ai-labs.github.io/ella-demo/index.html" },
       { source: "/remi/:path*", destination: "https://endurance-ai-labs.github.io/ella-demo/:path*" },
+      // Endurance Logistics marketing site (GitHub Pages) at endurancelabs.ai/logistics/new
+      // via a reverse-proxy rewrite, same pattern as /1100 and /remi. Public — proxy.ts
+      // exempts /logistics/new from the /logistics investor-page gate. The page hops
+      // /logistics/new -> /logistics/new/ client-side so its relative assets resolve.
+      { source: "/logistics/new", destination: "https://endurance-ai-labs.github.io/endurance-logistics/index.html" },
+      { source: "/logistics/new/:path*", destination: "https://endurance-ai-labs.github.io/endurance-logistics/:path*" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
