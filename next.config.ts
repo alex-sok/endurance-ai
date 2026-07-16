@@ -21,7 +21,8 @@ const securityHeaders = [
       // Inline styles used by Tailwind + Google Fonts
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
-      "img-src 'self' data: blob:",
+      // OpenStreetMap raster tiles for the Margins demo's live shipment map (/margins)
+      "img-src 'self' data: blob: https://*.tile.openstreetmap.org",
       // Allow calls to our own API, xAI (streaming), OpenAI (embeddings), and Apollo tracking
       "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io https://aplo-evnt.com",
       // Draco/GLTF decoders (proxied /logistics/new WebGL hero) run in blob-URL workers
@@ -69,6 +70,11 @@ const nextConfig: NextConfig = {
       // styles.css and relative links resolve under the subpath.
       { source: "/remi", destination: "https://endurance-ai-labs.github.io/ella-demo/index.html" },
       { source: "/remi/:path*", destination: "https://endurance-ai-labs.github.io/ella-demo/:path*" },
+      // Margins (freight commissions demo, Next.js app on Vercel) at endurancelabs.ai/margins
+      // via a reverse-proxy rewrite, same pattern as /BPOS: the app is built with
+      // basePath "/margins", so all routes and assets are self-contained under the subpath.
+      { source: "/margins", destination: "https://payline-commissions-demo.vercel.app/margins" },
+      { source: "/margins/:path*", destination: "https://payline-commissions-demo.vercel.app/margins/:path*" },
       // Endurance Logistics marketing site (GitHub Pages) at endurancelabs.ai/logistics/new
       // via a reverse-proxy rewrite, same pattern as /1100 and /remi. Public — proxy.ts
       // exempts /logistics/new from the /logistics investor-page gate. The page hops
