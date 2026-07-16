@@ -24,6 +24,8 @@ const securityHeaders = [
       "img-src 'self' data: blob:",
       // Allow calls to our own API, xAI (streaming), OpenAI (embeddings), and Apollo tracking
       "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io https://aplo-evnt.com",
+      // Draco/GLTF decoders (proxied /logistics/new WebGL hero) run in blob-URL workers
+      "worker-src 'self' blob:",
       // No iframes anywhere
       "frame-ancestors 'self'",
       "base-uri 'self'",
