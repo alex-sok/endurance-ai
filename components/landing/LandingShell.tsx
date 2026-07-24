@@ -14,7 +14,6 @@ import { LandingProtocol } from "./LandingProtocol";
 import { LandingProof } from "./LandingProof";
 import { LandingWindow } from "./LandingWindow";
 import { LandingWho } from "./LandingWho";
-import { LandingAudit } from "./LandingAudit";
 import { LandingTeam } from "./LandingTeam";
 import { LandingFAQ } from "./LandingFAQ";
 import { LandingCTA } from "./LandingCTA";
@@ -36,7 +35,6 @@ const SECTIONS = [
   "proof",
   "why-now",
   "who-we-help",
-  "audit",
   "team",
   "faq",
   "cta",
@@ -170,10 +168,6 @@ export function LandingShell() {
 
         <div ref={sectionRef("who-we-help")} data-section="who-we-help" id="fit" className={solid}>
           <LandingWho />
-        </div>
-
-        <div ref={sectionRef("audit")} data-section="audit" id="audit" className={solid}>
-          <LandingAudit onCtaClick={onCtaClick} />
         </div>
 
         <div ref={sectionRef("team")} data-section="team" id="team" className={solid}>

@@ -74,7 +74,7 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
           data-hero-eyebrow
           className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/65 mb-10"
         >
-          Operator-led AI execution
+          Custom AI infrastructure for large industries
         </p>
 
         <h1
@@ -94,9 +94,10 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
           data-hero-sub
           className="text-[15px] sm:text-base leading-relaxed text-bone/70 max-w-md mb-11"
         >
-          Endurance is the operator-led AI execution firm for leaders with
-          serious outcomes at stake. Strategy through deployment — one small,
-          senior team that ships.
+          Endurance builds the AI infrastructure large organizations actually
+          run on — designed around how your business operates, not a platform
+          you're forced to adapt to. We embed with your operators and ship in
+          production.
         </p>
 
         <div data-hero-ctas className="flex flex-col sm:flex-row gap-3">
@@ -106,13 +107,13 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
           <Btn
             variant="ghost-light"
             as="a"
-            href="#audit"
+            href="#proof"
             onClick={(e) => {
               e.preventDefault();
-              onNavigate("audit");
+              onNavigate("proof");
             }}
           >
-            The $999 AI Audit ↓
+            What we build ↓
           </Btn>
         </div>
 
@@ -120,7 +121,7 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
           data-hero-trust
           className="mt-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55"
         >
-          Active engagements with Fortune 500 enterprises — built for the mid-market
+          Production AI systems inside large, regulated enterprises
         </p>
       </div>
 

@@ -11,11 +11,11 @@ interface Props {
 const FAQS = [
   {
     q: "How long does a typical engagement take?",
-    a: "Depends on scope. The AI Audit is one engagement: a prioritized roadmap within a week. The Embedded AI Engineer tiers run 2 weeks, 2 months, or 6 months. We scope work into defined deliverables, not open-ended retainers.",
+    a: "Depends on scope. Because every system is built around your operation, we scope each engagement into defined deliverables with a fixed timeline — usually measured in weeks to a few months, not open-ended retainers. We start most relationships with a focused discovery, then move straight into building.",
   },
   {
-    q: "What size companies do you work with?",
-    a: "Our sweet spot is the mid-market, companies doing $10M to $500M in revenue, but we work across the full range from venture-backed startups to Fortune 500 enterprises. The common thread is leadership that's serious about outcomes and prepared to move.",
+    q: "What kind of companies do you work with?",
+    a: "Large organizations operating in demanding, often regulated industries: legal, capital markets, logistics, multi-unit operations, and consumer. The common thread is leadership serious about outcomes and infrastructure that has to work in production, not a slide.",
   },
   {
     q: "How are you different from a Big 4 consulting firm?",
@@ -34,12 +34,12 @@ const FAQS = [
     a: "No. We've built production AI systems inside pharmaceuticals, financial services, healthcare, and insurance. Regulated environments require deliberation, not bravado. We build within compliance constraints without sacrificing the outcome.",
   },
   {
-    q: "What if we're not sure we're ready for a full engagement?",
-    a: "That's exactly what the AI Audit is for. $999 flat fee. We look at your operations, your data, and your goals, and give you a prioritized roadmap. You walk away with clarity, whether you work with us afterward or not.",
+    q: "What if we're not sure where AI actually helps us?",
+    a: "That's where we start. A focused discovery: we study how your operation runs, your data, and your goals, then hand you a prioritized plan for where custom AI infrastructure creates real ROI — and where it doesn't. You walk away with clarity, whether you build with us afterward or not.",
   },
   {
     q: "How does pricing work?",
-    a: "Fixed-scope engagements at flat fees. No hourly billing, no open-ended retainers unless you want them. The AI Audit is $999. Embedded AI Engineer engagements range from $19K to $179K depending on scope and timeline. We price the scope. We deliver it.",
+    a: "Fixed-scope engagements at flat fees. No hourly billing, no open-ended retainers unless you want them. We price the scope of the system we're building around your operation, then deliver it.",
   },
 ];
 
