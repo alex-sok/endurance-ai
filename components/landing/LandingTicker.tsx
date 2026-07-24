@@ -1,16 +1,18 @@
 "use client";
 
 const ITEMS = [
-  "Fortune 500 engagements",
-  "2-week turnarounds",
+  "Custom AI infrastructure",
+  "Private knowledge brains",
+  "Built around your operation",
   "Regulated industries",
-  "Strategy through deployment",
-  "No discovery theater",
-  "AI Audit · $999 flat",
-  "Embedded engineers",
+  "Embedded with your operators",
+  "Legal",
+  "Capital markets",
+  "Logistics",
+  "Multi-unit operations",
   "Ships, not decks",
-  "Mid-market focus",
-  "Fixed scope. Flat fee.",
+  "Production, not pilots",
+  "Not one-size-fits-all",
 ];
 
 function Row({ ariaHidden = false }: { ariaHidden?: boolean }) {

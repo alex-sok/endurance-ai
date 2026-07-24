@@ -4,10 +4,11 @@ import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 
 const ROWS: [string, string][] = [
-  ["6-month discovery phase", "Audit delivered in one week"],
-  ["Dozens in the room, none who ship", "3 senior operators, end-to-end"],
+  ["The same platform sold to everyone", "Infrastructure built around your operation"],
+  ["You adapt to their software", "The software adapts to you"],
+  ["Dozens in the room, none who ship", "Senior operators, end-to-end"],
   ["Recommendations deck", "Working system in production"],
-  ["Hourly billing, open retainer", "Fixed scope, flat fee"],
+  ["Generic model, generic outputs", "A private brain on your proprietary data"],
   ["Avoids regulated industries", "Built for them"],
   ["Generalist consultants", "AI engineers who ship"],
 ];
@@ -79,7 +80,7 @@ export function LandingDifference() {
           </p>
 
           <div className="space-y-3 md:space-y-4 mb-12">
-            {["Consultants advise.", "Integrators implement.", "Vendors sell."].map((line) => (
+            {["Consultants advise.", "Integrators implement.", "Enterprise vendors sell one-size software."].map((line) => (
               <p
                 key={line}
                 data-diff-line
@@ -103,8 +104,9 @@ export function LandingDifference() {
               className="block h-px bg-flare/70 mt-8 mb-6 max-w-md"
             />
             <p data-diff-verdict-sub className="text-[15px] text-bone/70 max-w-md leading-relaxed">
-              Strategy, architecture, engineering, and execution — combined in
-              one small, senior team.
+              We build software that fits you — not a platform you're forced to
+              adapt to. Strategy, architecture, and engineering, in one small,
+              senior team.
             </p>
           </div>
         </div>

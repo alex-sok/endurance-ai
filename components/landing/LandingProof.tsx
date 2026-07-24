@@ -8,21 +8,31 @@ interface Props {
   onOpenChat: () => void;
 }
 
-const CASES = [
+const BUILDS = [
   {
-    before: "20 engineers. 1 year.",
-    after: "2 weeks.",
-    body: "A team at a major Fortune 500 travel company had been working on a specific problem for a year. We solved it in two weeks. That pattern has held across every major engagement since.",
+    industry: "Legal",
+    problem: "Decades of matter files, expertise locked in people's heads, no institutional memory.",
+    built: "A private knowledge base and retrieval brain over the firm's entire document corpus.",
   },
   {
-    before: "6 months of waiting.",
-    after: "4 days.",
-    body: "A CEO had been waiting six months for his own team to deliver an agentic e-commerce experience. We built it in four days. He's now using it to open doors at Fortune 500 retailers and financial institutions.",
+    industry: "Real estate & capital markets",
+    problem: "Deal underwriting done by hand, one spreadsheet at a time.",
+    built: "Automated underwriting, an investment-memo pipeline, and a proprietary deal brain.",
   },
   {
-    before: "Regulated industries.",
-    after: "Production-ready.",
-    body: "Most AI firms quietly avoid regulated environments: pharma, financial services, healthcare. We don't. We've built production AI systems inside them, where breaking things is not an option and compliance is not a suggestion.",
+    industry: "Logistics & freight",
+    problem: "Operations fragmented across disconnected systems and manual handoffs.",
+    built: "A unified transportation-management and settlement layer built to their workflow.",
+  },
+  {
+    industry: "Multi-unit operations",
+    problem: "Many locations, each with its own systems, none of them sharing what they know.",
+    built: "One operational brain consolidating the entire group into a single source of truth.",
+  },
+  {
+    industry: "Consumer & brokerage",
+    problem: "Commission and settlement math done manually — slow, opaque, error-prone.",
+    built: "A penny-accurate commissions and settlement engine wired into their data.",
   },
 ];
 
@@ -42,31 +52,31 @@ export function LandingProof({ onOpenChat }: Props) {
           scrollTrigger: { trigger: "[data-proof-header]", start: "top 85%" },
         });
 
-        gsap.utils.toArray<HTMLElement>("[data-case-row]").forEach((row) => {
-          const tl = gsap.timeline({
-            scrollTrigger: { trigger: row, start: "top 78%" },
-            defaults: { ease: "power3.out" },
+        gsap.utils.toArray<HTMLElement>("[data-build-row]").forEach((row) => {
+          gsap.from(row.querySelector("[data-build-rule]"), {
+            scaleX: 0,
+            transformOrigin: "left",
+            duration: 1.1,
+            ease: "power2.inOut",
+            scrollTrigger: { trigger: row, start: "top 90%" },
           });
-
-          tl.from(row.querySelector("[data-case-before]"), { autoAlpha: 0, y: 18, duration: 0.7 })
-            .fromTo(
-              row.querySelector("[data-case-strike]"),
-              { scaleX: 0 },
-              { scaleX: 1, transformOrigin: "left", duration: 0.55, ease: "power2.inOut" },
-              "+=0.15"
-            )
-            .from(
-              row.querySelector("[data-case-after]"),
-              { autoAlpha: 0, y: 26, duration: 0.8 },
-              "-=0.1"
-            )
-            .from(row.querySelector("[data-case-body]"), { autoAlpha: 0, duration: 0.7 }, "-=0.4");
+          gsap.from(row.querySelectorAll("[data-build-content]"), {
+            autoAlpha: 0,
+            y: 22,
+            duration: 0.8,
+            stagger: 0.08,
+            ease: "power3.out",
+            scrollTrigger: { trigger: row, start: "top 88%" },
+          });
         });
 
-        gsap.from("[data-proof-nda]", {
+        gsap.from("[data-proof-thread], [data-proof-nda]", {
           autoAlpha: 0,
+          y: 20,
           duration: 0.9,
-          scrollTrigger: { trigger: "[data-proof-nda]", start: "top 92%" },
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: { trigger: "[data-proof-thread]", start: "top 90%" },
         });
       });
     }, ref);
@@ -75,65 +85,93 @@ export function LandingProof({ onOpenChat }: Props) {
   }, []);
 
   return (
-    <section ref={ref} className="py-28 md:py-40" aria-label="Proof">
+    <section ref={ref} className="py-28 md:py-40" aria-label="What we build">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
-        <div data-proof-header className="mb-16 md:mb-24">
+        <div data-proof-header className="mb-16 md:mb-24 max-w-3xl">
           <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
-            Field Results
+            Built in the field
           </p>
           <h2
-            className="font-display text-bone"
+            className="font-display text-bone mb-6"
             style={{ fontSize: "clamp(2rem, 4.4vw, 3.8rem)", lineHeight: 1.06 }}
           >
-            Results, <em>not presentations.</em>
+            Custom infrastructure, <em>built one industry at a time.</em>
           </h2>
+          <p className="text-[15px] leading-relaxed text-bone/65 max-w-xl">
+            We don't sell a product you adopt. We study how your business runs
+            and build the AI systems it needs — inside legal, capital markets,
+            logistics, and beyond.
+          </p>
         </div>
 
-        <div className="space-y-20 md:space-y-28">
-          {CASES.map((c) => (
-            <div key={c.after} data-case-row className="grid lg:grid-cols-12 gap-y-6 lg:gap-x-12 items-start">
-              <div className="lg:col-span-7">
-                <p
-                  data-case-before
-                  className="relative inline-block font-display text-bone/60 mb-2"
-                  style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.6rem)", lineHeight: 1.1 }}
+        {/* Industry × solution matrix */}
+        <div>
+          <div
+            className="hidden md:grid grid-cols-12 gap-x-10 pb-4 border-b"
+            style={{ borderColor: "rgba(244,243,238,0.14)" }}
+          >
+            <span className="col-span-3 font-mono text-[10px] uppercase tracking-[0.25em] text-bone/55">
+              Industry
+            </span>
+            <span className="col-span-4 font-mono text-[10px] uppercase tracking-[0.25em] text-bone/55">
+              The operational problem
+            </span>
+            <span className="col-span-5 font-mono text-[10px] uppercase tracking-[0.25em] text-flare">
+              What we built
+            </span>
+          </div>
+
+          {BUILDS.map((b) => (
+            <div key={b.industry} data-build-row className="group relative">
+              <span data-build-rule className="block h-px w-full bg-bone/10" />
+              <div className="grid md:grid-cols-12 gap-y-3 md:gap-x-10 py-8 md:py-10 transition-colors duration-300 group-hover:bg-bone/[0.025]">
+                <h3
+                  data-build-content
+                  className="md:col-span-3 font-display text-bone text-xl md:text-2xl leading-tight"
                 >
-                  {c.before}
-                  <span
-                    data-case-strike
-                    className="absolute left-0 top-1/2 h-[2px] w-full bg-flare/80"
-                    style={{ transform: "scaleX(0)" }}
-                    aria-hidden
-                  />
+                  {b.industry}
+                </h3>
+                <p
+                  data-build-content
+                  className="md:col-span-4 text-sm md:text-[15px] leading-relaxed text-bone/55"
+                >
+                  {b.problem}
                 </p>
                 <p
-                  data-case-after
-                  className="font-display italic text-bone"
-                  style={{ fontSize: "clamp(3rem, 7vw, 6rem)", lineHeight: 1 }}
+                  data-build-content
+                  className="md:col-span-5 text-sm md:text-[15px] leading-relaxed text-bone/85"
                 >
-                  → {c.after}
+                  {b.built}
                 </p>
               </div>
-              <p
-                data-case-body
-                className="lg:col-span-5 text-sm md:text-[15px] leading-relaxed text-bone/65 lg:pt-4"
-              >
-                {c.body}
-              </p>
             </div>
           ))}
+          <span className="block h-px w-full bg-bone/10" />
         </div>
+
+        <p
+          data-proof-thread
+          className="font-display text-bone/85 mt-16 md:mt-20 max-w-4xl"
+          style={{ fontSize: "clamp(1.3rem, 2.6vw, 2rem)", lineHeight: 1.3 }}
+        >
+          The common thread: a private <span className="text-flare">brain</span>{" "}
+          built on your proprietary data —{" "}
+          <em className="text-bone/65">
+            reshaped for how each business actually runs.
+          </em>
+        </p>
 
         <div
           data-proof-nda
-          className="mt-20 md:mt-28 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 border-t pt-10"
+          className="mt-16 md:mt-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 border-t pt-10"
           style={{ borderColor: "rgba(244,243,238,0.08)" }}
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55 max-w-sm leading-relaxed">
-            Active engagements with Fortune 500 enterprises. Details shared under NDA.
+          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55 max-w-md leading-relaxed">
+            Client names and details held in confidence. We'll walk your team
+            through the relevant work under NDA.
           </p>
           <Btn variant="light" onClick={onOpenChat} className="shrink-0">
-            Begin Mission Briefing →
+            Tell us how your business runs →
           </Btn>
         </div>
       </div>
