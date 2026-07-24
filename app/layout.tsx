@@ -26,9 +26,9 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const SITE_URL = "https://endurancelabs.ai";
-const TITLE = "Endurance AI Labs — Operator-Led AI Execution";
+const TITLE = "Endurance AI Labs — Custom AI Infrastructure for Large Industries";
 const DESCRIPTION =
-  "AI transformation, delivered under contract. Small units. Senior operators. Shipped systems.";
+  "We build the AI infrastructure large, regulated organizations run on — designed around how your business operates, not a one-size platform. Embedded senior operators. Shipped in production.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Endurance AI Labs — Operator-Led AI Execution",
+        alt: "Endurance AI Labs — Custom AI Infrastructure for Large Industries",
       },
     ],
   },
@@ -77,7 +77,7 @@ export default function RootLayout({
     url: "https://endurancelabs.ai",
     logo: "https://endurancelabs.ai/logo-endurance.svg",
     description:
-      "Operator-led AI execution firm for leaders navigating high-stakes AI initiatives. Strategy through deployment in one small senior team.",
+      "Custom AI infrastructure builder for large, regulated industries. We build the systems your business runs on — designed around your operation, not a one-size platform — with a small senior team embedded alongside your operators.",
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@endurancelabs.ai",
