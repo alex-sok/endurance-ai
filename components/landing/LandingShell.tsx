@@ -20,8 +20,8 @@ import { LandingCTA } from "./LandingCTA";
 import { ChatOverlay } from "./ChatOverlay";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 
-const TerrainCanvas = dynamic(
-  () => import("./TerrainCanvas").then((m) => m.TerrainCanvas),
+const ManifoldCanvas = dynamic(
+  () => import("./ManifoldCanvas").then((m) => m.ManifoldCanvas),
   { ssr: false }
 );
 
@@ -122,7 +122,7 @@ export function LandingShell() {
 
   return (
     <div className="theme-abyss relative bg-[#0a1120] text-bone min-h-svh overflow-x-clip">
-      <TerrainCanvas />
+      <ManifoldCanvas />
 
       <a
         href="#main-content"

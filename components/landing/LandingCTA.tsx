@@ -44,10 +44,19 @@ export function LandingCTA({ onOpenChat, onCtaClick }: Props) {
 
   return (
     <section ref={ref} className="relative" aria-label="Talk to Endurance">
-      {/* Blend from the solid page back into the terrain */}
+      {/* Blend from the solid page back into the manifold */}
       <div
         className="absolute top-0 inset-x-0 h-48 pointer-events-none"
         style={{ background: "linear-gradient(to bottom, #0a1120, transparent)" }}
+      />
+      {/* Legibility scrim — the field resolves right where this copy sits, so
+          the text side gets the same protection the hero has. */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(100deg, rgba(10,17,32,0.82) 0%, rgba(10,17,32,0.45) 46%, rgba(10,17,32,0) 78%)",
+        }}
       />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-10 pt-40 md:pt-56 pb-24">
