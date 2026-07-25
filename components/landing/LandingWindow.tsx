@@ -95,7 +95,7 @@ export function LandingWindow() {
             className="lg:col-span-5 flex flex-col gap-px bg-bone/10 border border-bone/10"
           >
             {TILES.map((tile) => (
-              <div key={tile.label} data-window-tile className="bg-[#0a0a08] p-8 md:p-10">
+              <div key={tile.label} data-window-tile className="bg-[#0a1120] p-8 md:p-10">
                 <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-flare mb-3">
                   {tile.label}
                 </p>

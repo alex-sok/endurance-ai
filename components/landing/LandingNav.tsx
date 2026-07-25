@@ -83,7 +83,7 @@ export function LandingNav({ onOpenChat, onNavigate, onCtaClick }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => onCtaClick?.("nav-book")}
-            className="hidden sm:inline-flex items-center px-3.5 py-2 text-[10px] uppercase tracking-[0.18em] font-mono bg-bone text-[#0a0a08] hover:bg-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
+            className="hidden sm:inline-flex items-center px-3.5 py-2 text-[10px] uppercase tracking-[0.18em] font-mono bg-bone text-[#0a1120] hover:bg-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
             style={{ borderRadius: 4 }}
           >
             Book a briefing

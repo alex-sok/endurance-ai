@@ -61,12 +61,12 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(100deg, rgba(10,10,8,0.72) 0%, rgba(10,10,8,0.25) 48%, rgba(10,10,8,0) 75%)",
+            "linear-gradient(100deg, rgba(10,17,32,0.74) 0%, rgba(10,17,32,0.28) 48%, rgba(10,17,32,0) 75%)",
         }}
       />
       <div
         className="absolute bottom-0 inset-x-0 h-40 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, #0a0a08)" }}
+        style={{ background: "linear-gradient(to bottom, transparent, #0a1120)" }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 pt-36 pb-28">

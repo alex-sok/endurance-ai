@@ -47,7 +47,7 @@ export function LandingCTA({ onOpenChat, onCtaClick }: Props) {
       {/* Blend from the solid page back into the terrain */}
       <div
         className="absolute top-0 inset-x-0 h-48 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, #0a0a08, transparent)" }}
+        style={{ background: "linear-gradient(to bottom, #0a1120, transparent)" }}
       />
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-10 pt-40 md:pt-56 pb-24">

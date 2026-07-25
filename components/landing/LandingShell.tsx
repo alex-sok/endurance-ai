@@ -118,15 +118,15 @@ export function LandingShell() {
 
   // Middle sections sit on solid ground so the fixed terrain only shows
   // through behind the hero and the final CTA.
-  const solid = "relative bg-[#0a0a08]";
+  const solid = "relative bg-[#0a1120]";
 
   return (
-    <div className="theme-abyss relative bg-[#0a0a08] text-bone min-h-svh overflow-x-clip">
+    <div className="theme-abyss relative bg-[#0a1120] text-bone min-h-svh overflow-x-clip">
       <TerrainCanvas />
 
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-bone focus:text-[#0a0a08] focus:text-sm"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-bone focus:text-[#0a1120] focus:text-sm"
       >
         Skip to content
       </a>
