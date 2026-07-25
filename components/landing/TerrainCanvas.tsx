@@ -9,9 +9,9 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
  *
  * A GPU-displaced point field reads as terrain being surveyed: ridgelines
  * flow slowly toward the camera with a flat "route" carved through the
- * center. Bone-white points on near-black, peaks tinged with the signal
- * accent. It backs the hero, dims to black as you scroll, and re-emerges
- * behind the final CTA.
+ * center. Cool bone points on deep navy, peaks tinged with the blue signal
+ * accent. It backs the hero, dims as you scroll, and re-emerges behind the
+ * final CTA.
  *
  * Restraint rules: DPR capped at 2, rendering pauses whenever neither the
  * hero nor the CTA is on screen, and prefers-reduced-motion gets a static
@@ -137,8 +137,8 @@ export function TerrainCanvas() {
       uTime: { value: reduced ? 20 : 0 },
       uPixelRatio: { value: renderer.getPixelRatio() },
       uDim: { value: 0 },
-      uBone: { value: new THREE.Color("#f4f3ee") },
-      uAccent: { value: new THREE.Color("#f54e00") },
+      uBone: { value: new THREE.Color("#f4f6fa") },
+      uAccent: { value: new THREE.Color("#4a86f7") },
     };
 
     const material = new THREE.ShaderMaterial({

@@ -1,29 +1,10 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Lato, Space_Mono } from "next/font/google";
 import { ApolloTracker } from "@/components/ApolloTracker";
 import "./globals.css";
 
-// Lato — Cursor Lato substitute for body and utility text
-const lato = Lato({
-  subsets: ["latin"],
-  variable: "--font-figtree",
-  weight: ["400", "700"],
-});
-
-// Space Mono — berkeleyMono substitute for code, labels, input text
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  weight: ["400", "700"],
-});
-
-// Instrument Serif — display headlines on the landing page
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: "400",
-  style: ["normal", "italic"],
-});
+// Type follows the Margins system: no webfonts at all. The sans and mono
+// stacks resolve to the OS UI faces (see --font-figtree / --font-jetbrains
+// in globals.css), so the page paints instantly with no font swap.
 
 const SITE_URL = "https://endurancelabs.ai";
 const TITLE = "Endurance AI Labs — Custom AI Infrastructure for Large Industries";
@@ -84,9 +65,10 @@ export default function RootLayout({
       contactType: "customer service",
     },
     founder: [
-      { "@type": "Person", name: "Alex Sok", jobTitle: "Founder & CEO" },
-      { "@type": "Person", name: "Sid Bhambhani", jobTitle: "Co-Founder & CTO" },
-      { "@type": "Person", name: "Nick Maxwell", jobTitle: "Co-Founder & Chief AI Officer" },
+      { "@type": "Person", name: "Alex S.", jobTitle: "CEO & Co-Founder" },
+      { "@type": "Person", name: "Nick M.", jobTitle: "CTO & Co-Founder" },
+      { "@type": "Person", name: "Ramzy A.", jobTitle: "COO & CFO, Co-Founder" },
+      { "@type": "Person", name: "Brennan B.", jobTitle: "CMO & Co-Founder" },
     ],
     knowsAbout: [
       "AI Strategy",
@@ -100,7 +82,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${lato.variable} ${spaceMono.variable} ${instrumentSerif.variable} h-full`}>
+    <html lang="en" className="h-full">
       <body className="h-full antialiased">
         <ApolloTracker />
         <script

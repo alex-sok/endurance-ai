@@ -5,19 +5,24 @@ import { gsap } from "@/lib/gsap";
 
 const FOUNDERS = [
   {
-    name: "Alex Sok",
-    role: "Founder & CEO",
+    name: "Alex S.",
+    role: "CEO & Co-Founder",
     bio: "Leads Endurance engagements from strategy through deployment.",
   },
   {
-    name: "Sid Bhambhani",
-    role: "Co-Founder & CTO",
-    bio: "Co-founded Summatti, an AI company acquired by PartnerHero. Over 20 years of technology leadership.",
+    name: "Nick M.",
+    role: "CTO & Co-Founder",
+    bio: "Founding engineer at TALA, acquired by Intuit. Computer Science, Cornell.",
   },
   {
-    name: "Nick Maxwell",
-    role: "Co-Founder & Chief AI Officer",
-    bio: "Founding engineer at TALA, acquired by Intuit. Computer Science, Cornell.",
+    name: "Ramzy A.",
+    role: "COO & CFO, Co-Founder",
+    bio: "Leads operations and finance, bringing an institutional real estate and capital markets background to how engagements are run.",
+  },
+  {
+    name: "Brennan B.",
+    role: "CMO & Co-Founder",
+    bio: "Leads marketing and go-to-market, translating technical execution into how the work reaches the market.",
   },
 ];
 
