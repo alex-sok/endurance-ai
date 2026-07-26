@@ -92,10 +92,13 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
 
         <p
           data-hero-sub
-          className="text-[15px] sm:text-base leading-relaxed text-bone/70 max-w-md mb-11"
+          className="text-[15px] sm:text-base leading-relaxed text-bone/70 max-w-xl mb-11"
         >
-          We build brain-powered operating systems — LLM infrastructure shaped
-          to your operation, not a platform you adapt to.
+          Endurance AI Labs is an AI research &amp; development company. We
+          build vertically integrated brain-powered operating systems — Large
+          Language Model infrastructure{" "}
+          <strong className="font-bold text-flare">shaped to your operation</strong>
+          , not an enterprise software platform your company needs to adapt to.
         </p>
 
         <div data-hero-ctas className="flex flex-col sm:flex-row gap-3">
