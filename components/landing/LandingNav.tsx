@@ -10,6 +10,7 @@ interface Props {
 }
 
 const LINKS = [
+  { id: "core", label: "The core" },
   { id: "services", label: "What we do" },
   { id: "method", label: "Method" },
   { id: "proof", label: "What we build" },

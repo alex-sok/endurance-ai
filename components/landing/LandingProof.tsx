@@ -19,34 +19,29 @@ const BUILDS = [
     problem:
       "Budgets built by hand. Forecasts stale on arrival. Margin gone before anyone sees it.",
     built:
-      "Automated budgeting and forecasting across every job — the financial bedrock the whole company runs on.",
+      "A brain-powered operating system for the whole company — automated budgeting, forecasting and accounting as the financial bedrock everything else runs on.",
     stack: [
       "Automated budgeting",
       "Cost-to-complete forecasting",
+      "Bid preparation & estimating",
+      "Job tracking & billing",
+      "Autonomous accounting",
       "Job costing & WIP",
-      "Preconstruction & estimating",
-      "Change-order capture",
-      "Cash flow & retainage",
-      "Subcontractor risk",
-      "Safety & compliance",
+      "Change orders & RFIs",
+      "Submittals & drawings",
+      "Schedule & sequencing",
+      "Subcontractor prequalification",
+      "Certified payroll & prevailing wage",
+      "Lien waivers & compliance",
+      "Retainage & cash flow",
+      "Materials & procurement",
+      "Equipment & fleet",
+      "Safety & OSHA reporting",
+      "HR guides & onboarding",
+      "Workforce certifications",
+      "Insurance & bonding",
+      "Punch list & warranty",
       "Executive reporting",
-    ],
-  },
-  {
-    industry: "Legal",
-    problem:
-      "Expertise locked in a few partners. Realization leaking everywhere.",
-    built:
-      "A private brain over every matter — staffing, budgets, billing and reporting.",
-    stack: [
-      "Matter knowledge retrieval",
-      "Precedent & clause search",
-      "Conflicts & intake",
-      "Time capture & realization",
-      "Matter budgeting",
-      "Utilization & staffing",
-      "Billing & collections",
-      "Client reporting",
     ],
   },
   {
@@ -54,17 +49,47 @@ const BUILDS = [
     problem:
       "Underwriting by hand. Investor reporting rebuilt from scratch every quarter.",
     built:
-      "A deal brain running underwriting straight through to what investors see.",
+      "An autonomous brain-powered operating system running the entire firm — underwriting through capital markets and everything investors ever see.",
     stack: [
       "Automated underwriting",
+      "Portfolio analytics",
+      "Market research",
+      "Capital markets & debt",
+      "Acquisitions pipeline",
       "IC memo pipeline",
-      "Comps & market data",
+      "Comps & valuations",
       "Budgeting & reforecast",
+      "Asset management",
+      "Lease administration",
+      "Property operations",
       "Liquidity & distributions",
       "Waterfall & LP reporting",
-      "Investor relations portal",
-      "Asset performance",
       "Capital calls",
+      "Investor relations portal",
+      "Tax & K-1 support",
+      "Dispositions",
+    ],
+  },
+  {
+    industry: "Legal",
+    problem:
+      "Expertise locked in a few partners. Realization leaking everywhere.",
+    built:
+      "A brain over the firm's entire corpus, running the practice from intake through collections.",
+    stack: [
+      "Matter knowledge retrieval",
+      "Precedent & clause search",
+      "Contract lifecycle",
+      "Discovery & document review",
+      "Conflicts & intake",
+      "Docket & deadlines",
+      "Time capture & realization",
+      "Matter budgeting",
+      "Utilization & staffing",
+      "Billing & collections",
+      "Trust accounting",
+      "Regulatory compliance",
+      "Client reporting",
     ],
   },
   {
@@ -72,15 +97,21 @@ const BUILDS = [
     problem:
       "Margin per load stays invisible until long after settlement.",
     built:
-      "One layer from tender to cash, built to their workflow.",
+      "One operating system from tender to cash, with margin visible on every load in real time.",
     stack: [
       "Dispatch & tendering",
+      "Load matching",
       "Carrier & capacity",
       "Rate & margin management",
       "Settlement & billing",
+      "Freight audit",
+      "Detention & accessorials",
       "Driver operations & HR",
+      "Fleet maintenance",
       "Fuel & cost control",
-      "Claims & compliance",
+      "ELD & DOT compliance",
+      "Claims management",
+      "Capacity forecasting",
       "Customer reporting",
     ],
   },
@@ -89,15 +120,21 @@ const BUILDS = [
     problem:
       "Every location its own island. Group P&L always arrives too late.",
     built:
-      "One brain over every unit — labor through consolidated reporting.",
+      "One operating system across every location — unit-level labor through consolidated group reporting.",
     stack: [
       "Unit-level P&L",
       "Labor scheduling & HR",
       "Inventory & purchasing",
       "Revenue management",
+      "Pricing & menu analytics",
       "Forecasting & budgeting",
       "Multi-entity consolidation",
       "Vendor & supply chain",
+      "Waste & shrink control",
+      "Health & safety compliance",
+      "Training & onboarding",
+      "Cash reconciliation",
+      "Customer feedback",
       "Owner reporting",
     ],
   },
@@ -106,13 +143,18 @@ const BUILDS = [
     problem:
       "Commission math by hand. Slow, opaque, impossible to audit.",
     built:
-      "A penny-accurate commissions engine finance can stand behind.",
+      "A penny-accurate commissions and settlement system finance can stand behind, wired into everything upstream.",
     stack: [
       "Commission calculation",
       "Split & override logic",
+      "Plan modeling",
       "Settlement & payouts",
+      "Clawbacks & adjustments",
+      "Producer onboarding",
+      "Licensing & compliance",
       "Producer reporting",
       "Revenue recognition",
+      "Dispute resolution",
       "Audit trail & controls",
       "Forecasting",
     ],
@@ -258,10 +300,8 @@ export function LandingProof({ onOpenChat }: Props) {
           className="font-display text-bone/85 mt-16 md:mt-20 max-w-4xl"
           style={{ fontSize: "clamp(1.3rem, 2.6vw, 2rem)", lineHeight: 1.3 }}
         >
-          One private <span className="text-flare">brain</span> on your data,{" "}
-          <em className="text-bone/65">
-            extended across every function that runs on it.
-          </em>
+          One private brain on your data,{" "}
+          <em>extended across every function that runs on it.</em>
         </p>
 
         <div

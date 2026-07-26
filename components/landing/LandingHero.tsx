@@ -94,8 +94,8 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
           data-hero-sub
           className="text-[15px] sm:text-base leading-relaxed text-bone/70 max-w-md mb-11"
         >
-          We build the AI infrastructure your business runs on — shaped to your
-          operation, not a platform you adapt to.
+          We build brain-powered operating systems — LLM infrastructure shaped
+          to your operation, not a platform you adapt to.
         </p>
 
         <div data-hero-ctas className="flex flex-col sm:flex-row gap-3">
@@ -119,7 +119,7 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
           data-hero-trust
           className="mt-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55"
         >
-          Production AI systems inside large, regulated enterprises
+          Deep experience building world-class LLMs — the core of everything we ship
         </p>
       </div>
 

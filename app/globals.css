@@ -147,7 +147,7 @@
 .font-display em {
   font-style: normal;
   font-weight: 800;
-  opacity: 0.62;
+  color: var(--flare);
 }
 
 /* Tailwind's `italic` on display type would make the browser synthesise a

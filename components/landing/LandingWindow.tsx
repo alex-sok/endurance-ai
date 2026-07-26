@@ -112,7 +112,7 @@ export function LandingWindow() {
           style={{ fontSize: "clamp(1.4rem, 2.8vw, 2.2rem)", lineHeight: 1.25 }}
         >
           Off-the-shelf gets you parity.{" "}
-          <em className="text-bone/65">Custom infrastructure gets you distance.</em>
+          <em>Custom infrastructure gets you distance.</em>
         </p>
       </div>
     </section>

@@ -9,6 +9,7 @@ import { LandingHero } from "./LandingHero";
 import { LandingTicker } from "./LandingTicker";
 import { LandingManifesto } from "./LandingManifesto";
 import { LandingDifference } from "./LandingDifference";
+import { LandingBrain } from "./LandingBrain";
 import { LandingOperations } from "./LandingOperations";
 import { LandingProtocol } from "./LandingProtocol";
 import { LandingProof } from "./LandingProof";
@@ -30,6 +31,7 @@ const SECTIONS = [
   "marquee",
   "problem",
   "comparison",
+  "core",
   "services",
   "how-we-work",
   "proof",
@@ -149,6 +151,10 @@ export function LandingShell() {
 
         <div ref={sectionRef("comparison")} data-section="comparison" id="difference" className={solid}>
           <LandingDifference />
+        </div>
+
+        <div ref={sectionRef("core")} data-section="core" id="core" className={solid}>
+          <LandingBrain />
         </div>
 
         <div ref={sectionRef("services")} data-section="services" id="services" className={solid}>

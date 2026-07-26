@@ -61,8 +61,8 @@ const VERT = /* glsl */ `
     vRand = aRand;
 
     gl_Position = projectionMatrix * mv;
-    gl_PointSize = uPixelRatio * (0.7 + vDepth * 1.9) * (1.0 + e * 0.45)
-                 * clamp(150.0 / dist, 0.4, 2.6);
+    gl_PointSize = uPixelRatio * (0.9 + vDepth * 2.2) * (1.0 + e * 0.4)
+                 * clamp(150.0 / dist, 0.45, 2.8);
   }
 `;
 
@@ -87,7 +87,9 @@ const FRAG = /* glsl */ `
     vec3 col = mix(uMuted, uAccent, clamp(e * 2.0 * vRand, 0.0, 1.0));
     col = mix(col, uAmber, smoothstep(0.55, 1.0, e) * pow(vRand, 4.0));
 
-    float alpha = (0.08 + vDepth * 0.60) * (0.40 + e * 0.60) * mix(1.0, 0.08, uDim);
+    // The noise state carries the hero, so the unresolved field keeps most of
+    // its presence instead of fading up from near-nothing.
+    float alpha = (0.11 + vDepth * 0.78) * (0.66 + e * 0.34) * mix(1.0, 0.08, uDim);
     gl_FragColor = vec4(col, alpha);
   }
 `;
