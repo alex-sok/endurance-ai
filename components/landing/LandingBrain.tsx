@@ -35,6 +35,14 @@ const STAGES = [
 
 const PRINCIPLES = [
   {
+    title: "Deterministic, not probabilistic.",
+    body: "Ask twice, get the same answer. We use LLMs to build software that behaves predictably — not software that guesses.",
+  },
+  {
+    title: "Anchored to your sources of truth.",
+    body: "Every output traces back to your systems of record. No invented logic, no confident fiction.",
+  },
+  {
     title: "Built on LLMs, end to end.",
     body: "Not a chatbot bolted onto a database. The model is the operating layer.",
   },
@@ -109,7 +117,9 @@ export function LandingBrain() {
           </h2>
           <p className="text-[15px] leading-relaxed text-bone/65 max-w-xl">
             Deep experience building world-class large language models sits at
-            the core of the company. Every system we ship is one.
+            the core of the company. We use them to build{" "}
+            <span className="text-bone">deterministic software</span> — systems
+            anchored to your sources of truth, not invented logic.
           </p>
         </div>
 
