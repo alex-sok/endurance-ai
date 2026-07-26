@@ -10,6 +10,11 @@ interface Props {
 
 const BUILDS = [
   {
+    industry: "Construction",
+    problem: "Decades of bids, drawings, change orders and job costs spread across projects — the hard-won estimating judgment lives in a handful of people.",
+    built: "A private brain over historical bids, submittals and job-cost history, so estimating and project controls draw on every job the firm has ever run.",
+  },
+  {
     industry: "Legal",
     problem: "Decades of matter files, expertise locked in people's heads, no institutional memory.",
     built: "A private knowledge base and retrieval brain over the firm's entire document corpus.",
@@ -99,8 +104,8 @@ export function LandingProof({ onOpenChat }: Props) {
           </h2>
           <p className="text-[15px] leading-relaxed text-bone/65 max-w-xl">
             We don't sell a product you adopt. We study how your business runs
-            and build the AI systems it needs — inside legal, capital markets,
-            logistics, and beyond.
+            and build the AI systems it needs — inside construction, legal,
+            capital markets, logistics, and beyond.
           </p>
         </div>
 

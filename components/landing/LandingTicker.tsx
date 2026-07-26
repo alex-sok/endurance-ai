@@ -6,6 +6,7 @@ const ITEMS = [
   "Built around your operation",
   "Regulated industries",
   "Embedded with your operators",
+  "Construction",
   "Legal",
   "Capital markets",
   "Logistics",
