@@ -7,7 +7,7 @@ const FOUNDERS = [
   {
     name: "Alex S.",
     role: "CEO & Co-Founder",
-    bio: "Cisco AI Labs alum. Two decades building enterprise systems, leading AI strategy and execution for mission-critical objectives — architecture through deployment.",
+    bio: "Cisco AI Labs alum. 10+ years architecting and implementing AI infrastructure at institutional companies — strategy through deployment on mission-critical systems.",
   },
   {
     name: "Nick M.",
@@ -22,7 +22,7 @@ const FOUNDERS = [
   {
     name: "Brennan B.",
     role: "CMO & Co-Founder",
-    bio: "Growth-focused marketing, communications and strategy leader. Indiana University.",
+    bio: "15+ years leading growth marketing, communications and strategy — across financial services and published business journalism. Indiana University.",
   },
 ];
 
