@@ -13,6 +13,8 @@ import { LandingBrain } from "./LandingBrain";
 import { LandingOperations } from "./LandingOperations";
 import { LandingProtocol } from "./LandingProtocol";
 import { LandingProof } from "./LandingProof";
+import { LandingResults } from "./LandingResults";
+import { LandingAudit } from "./LandingAudit";
 import { LandingWindow } from "./LandingWindow";
 import { LandingWho } from "./LandingWho";
 import { LandingTeam } from "./LandingTeam";
@@ -35,8 +37,10 @@ const SECTIONS = [
   "services",
   "how-we-work",
   "proof",
+  "results",
   "why-now",
   "who-we-help",
+  "audit",
   "team",
   "faq",
   "cta",
@@ -169,12 +173,20 @@ export function LandingShell() {
           <LandingProof onOpenChat={openChat} />
         </div>
 
+        <div ref={sectionRef("results")} data-section="results" id="results" className={solid}>
+          <LandingResults onOpenChat={openChat} />
+        </div>
+
         <div ref={sectionRef("why-now")} data-section="why-now" id="window" className={solid}>
           <LandingWindow />
         </div>
 
         <div ref={sectionRef("who-we-help")} data-section="who-we-help" id="fit" className={solid}>
           <LandingWho />
+        </div>
+
+        <div ref={sectionRef("audit")} data-section="audit" id="audit" className={solid}>
+          <LandingAudit onCtaClick={onCtaClick} />
         </div>
 
         <div ref={sectionRef("team")} data-section="team" id="team" className={solid}>

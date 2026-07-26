@@ -7,12 +7,12 @@ const FOUNDERS = [
   {
     name: "Alex S.",
     role: "CEO & Co-Founder",
-    bio: "Cisco AI Labs alum. Has spent his career architecting and implementing AI infrastructure inside institutional companies — strategy through deployment on mission-critical systems.",
+    bio: "Cisco AI Labs alum. Leads Endurance engagements from strategy through deployment.",
   },
   {
     name: "Nick M.",
     role: "CTO & Co-Founder",
-    bio: "Career computer scientist specializing in large-scale information systems. Founding engineer at a startup he carried through to acquisition. Cornell.",
+    bio: "Founding engineer at TALA, acquired by Intuit. Computer Science, Cornell.",
   },
   {
     name: "Ramzy A.",
