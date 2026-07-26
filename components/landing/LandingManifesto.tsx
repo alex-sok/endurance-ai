@@ -90,7 +90,7 @@ export function LandingManifesto() {
       {/* Pinned statement */}
       <div data-manifesto-pin className="flex items-center" style={{ minHeight: "100svh" }}>
         <div className="max-w-5xl mx-auto px-6 sm:px-10 py-24">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-10">
+          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/60 mb-10">
             The Problem
           </p>
           <p
@@ -130,7 +130,7 @@ export function LandingManifesto() {
               className="border-b border-r p-8 md:p-10"
               style={{ borderColor: "rgba(244,243,238,0.08)" }}
             >
-              <span className="font-mono text-[10px] tracking-[0.25em] text-flare block mb-6">
+              <span className="font-mono text-[11px] tracking-[0.25em] text-flare block mb-6">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="font-display text-bone text-xl md:text-2xl mb-3">{f.title}</h3>
