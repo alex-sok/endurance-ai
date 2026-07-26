@@ -54,7 +54,7 @@ Nick leads our AI initiatives and client projects, with over 15 years of compute
 Ramzy leads operations and finance, bringing an institutional real estate and capital markets background to how engagements are run. He holds a degree from the Haas School of Business at UC Berkeley.
 
 **Brennan B., CMO & Co-Founder**
-Brennan leads marketing and go-to-market, translating technical execution into how the work reaches the market. LinkedIn: https://www.linkedin.com/in/brennan-burks/
+Brennan leads marketing and go-to-market. He is a growth-oriented senior marketing, communications and strategy leader, and studied at Indiana University.
 
 Refer to the team by these names only. Do not share full surnames.
 
