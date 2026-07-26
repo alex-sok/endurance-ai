@@ -18,9 +18,13 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
  * the signal blue as structure forms, with amber igniting only on the densest
  * nodes at full resolution.
  *
- * Restraint rules: DPR capped at 2, rendering pauses whenever neither the hero
- * nor the CTA is on screen, and prefers-reduced-motion gets a single static
- * frame of the resolved state — no drift, no parallax.
+ * The field sits behind every section — the page's own panels are translucent
+ * over it — so the resolve is legible the whole way down rather than only at
+ * the two ends.
+ *
+ * Restraint rules: DPR capped at 2, rendering pauses whenever the tab is
+ * hidden, and prefers-reduced-motion gets a single static frame of the
+ * resolved state — no drift, no parallax.
  */
 
 const VERT = /* glsl */ `
@@ -188,17 +192,10 @@ export function ManifoldCanvas() {
     points.frustumCulled = false;
     scene.add(points);
 
-    // Render only while the hero or the CTA is on screen — the middle of the
-    // page sits on solid ground and covers the canvas entirely.
-    const visible = new Set<Element>();
-    const watched = document.querySelectorAll('[data-section="hero"], [data-section="cta"]');
-    const observer = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) visible.add(entry.target);
-        else visible.delete(entry.target);
-      }
-    });
-    watched.forEach((el) => observer.observe(el));
+    // The field shows through every section now, so it renders continuously.
+    // No visibility gate is needed: the GSAP ticker is driven by
+    // requestAnimationFrame, which the browser already suspends in a
+    // background tab.
 
     const mouse = { x: 0, y: 0 };
     const onMouseMove = (e: MouseEvent) => {
@@ -218,12 +215,13 @@ export function ManifoldCanvas() {
         },
       });
 
-      // Dim as the hero leaves…
+      // Settle back as the hero leaves — far enough to sit behind body copy,
+      // not so far that the field disappears through the middle of the page.
       gsap.fromTo(
         uniforms.uDim,
         { value: 0 },
         {
-          value: 1,
+          value: 0.25,
           ease: "none",
           scrollTrigger: {
             trigger: '[data-section="hero"]',
@@ -254,7 +252,6 @@ export function ManifoldCanvas() {
     const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
     const render = () => {
-      if (visible.size === 0) return;
       if (!reduced) uniforms.uTime.value = clock.getElapsedTime() * 0.9;
 
       const e = ease(scroll.progress);
@@ -298,7 +295,6 @@ export function ManifoldCanvas() {
     return () => {
       if (ticking) gsap.ticker.remove(render);
       ctx.revert();
-      observer.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
       geometry.dispose();

@@ -116,9 +116,10 @@ export function LandingShell() {
     };
   }
 
-  // Middle sections sit on solid ground so the fixed terrain only shows
-  // through behind the hero and the final CTA.
-  const solid = "relative bg-[#0a1120]";
+  // Middle sections are translucent rather than solid, so the manifold stays
+  // visible the whole way down the page. The tint is heavy enough to keep body
+  // copy and the dense capability chips legible over a moving field.
+  const solid = "relative bg-[#0a1120]/62";
 
   return (
     <div className="theme-abyss relative bg-[#0a1120] text-bone min-h-svh overflow-x-clip">
