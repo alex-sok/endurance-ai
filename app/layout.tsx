@@ -7,7 +7,7 @@ import "./globals.css";
 // in globals.css), so the page paints instantly with no font swap.
 
 const SITE_URL = "https://endurancelabs.ai";
-const TITLE = "Endurance AI Labs — Custom AI Infrastructure for Large Industries";
+const TITLE = "Endurance AI Labs — Custom Deterministic AI Infrastructure";
 const DESCRIPTION =
   "An AI research and development company in Silicon Valley. We build brain-powered operating systems and micro-SaaS products end to end — Large Language Model infrastructure shaped to your operation, not a one-size-fits-all enterprise platform you have to adapt to.";
 

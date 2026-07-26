@@ -72,9 +72,12 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
       <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 pt-36 pb-28">
         <p
           data-hero-eyebrow
-          className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/65 mb-10"
+          className="font-mono text-[11px] uppercase tracking-[0.24em] text-bone/65 mb-10 max-w-3xl leading-relaxed"
         >
-          Custom AI infrastructure for large industries
+          Custom deterministic AI infrastructure.{" "}
+          <strong className="font-bold text-flare">
+            AI that gives the same answer twice.
+          </strong>
         </p>
 
         <h1
