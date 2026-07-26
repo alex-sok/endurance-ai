@@ -81,9 +81,8 @@ export function LandingCTA({ onOpenChat, onCtaClick }: Props) {
         </h2>
 
         <p data-cta-body className="text-[15px] sm:text-base leading-relaxed text-bone/70 max-w-md mb-12">
-          The first conversation is a mission briefing, not a sales call. Tell
-          us what you’re trying to accomplish. We’ll tell you if we’re the
-          right fit.
+          A briefing, not a sales call. Tell us what you’re trying to do —
+          we’ll tell you if we fit.
         </p>
 
         <div data-cta-buttons className="flex flex-col sm:flex-row gap-3 mb-24 md:mb-32">

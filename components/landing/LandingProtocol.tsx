@@ -7,27 +7,27 @@ const PHASES = [
   {
     name: "Strategic Recon",
     goal: "Find where AI creates meaningful leverage.",
-    body: "Understanding the real situation: goals, friction points, technology stack, data landscape, constraints, and previous attempts.",
+    body: "Goals, friction, stack, data, constraints — and what already failed.",
   },
   {
     name: "Mission Definition",
     goal: "Move from vague ambition to a clear, executable path.",
-    body: "Selecting priority opportunities, defining success criteria, clarifying scope, sequencing the work, and identifying architecture needs.",
+    body: "Priorities, success criteria, scope, sequence, architecture.",
   },
   {
     name: "Rapid Deployment",
     goal: "Visible operational progress.",
-    body: "Building and deploying initial systems: prototypes, data pipelines, automations, AI-assisted workflows, orchestration logic, integrations.",
+    body: "Prototypes, data pipelines, automations and integrations — live.",
   },
   {
     name: "Embedding",
     goal: "Durable execution. Not a demo.",
-    body: "Making the system work inside the organization: workflow refinement, training, governance, monitoring, feedback loops, and adoption support.",
+    body: "Workflow refinement, training, governance, monitoring, adoption.",
   },
   {
     name: "Capability Transfer",
     goal: "Capability, not dependency.",
-    body: "Internal enablement, documentation, operating rhythms, ownership transition, and roadmap extension so the work sustains itself.",
+    body: "Documentation, operating rhythms, ownership handover, roadmap.",
   },
 ];
 

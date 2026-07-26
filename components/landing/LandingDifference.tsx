@@ -104,9 +104,8 @@ export function LandingDifference() {
               className="block h-px bg-flare/70 mt-8 mb-6 max-w-md"
             />
             <p data-diff-verdict-sub className="text-[15px] text-bone/70 max-w-md leading-relaxed">
-              We build software that fits you — not a platform you're forced to
-              adapt to. Strategy, architecture, and engineering, in one small,
-              senior team.
+              Software that fits you. Strategy, architecture and engineering in
+              one senior team.
             </p>
           </div>
         </div>

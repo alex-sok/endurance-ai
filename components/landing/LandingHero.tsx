@@ -94,10 +94,8 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
           data-hero-sub
           className="text-[15px] sm:text-base leading-relaxed text-bone/70 max-w-md mb-11"
         >
-          Endurance builds the AI infrastructure large organizations actually
-          run on — designed around how your business operates, not a platform
-          you're forced to adapt to. We embed with your operators and ship in
-          production.
+          We build the AI infrastructure your business runs on — shaped to your
+          operation, not a platform you adapt to.
         </p>
 
         <div data-hero-ctas className="flex flex-col sm:flex-row gap-3">
