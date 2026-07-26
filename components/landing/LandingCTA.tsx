@@ -62,7 +62,7 @@ export function LandingCTA({ onOpenChat, onCtaClick }: Props) {
       <div className="relative max-w-7xl mx-auto px-6 sm:px-10 pt-40 md:pt-56 pb-24">
         <p
           data-cta-eyebrow
-          className="font-mono text-[10px] uppercase tracking-[0.32em] text-flare mb-10"
+          className="font-mono text-[11px] uppercase tracking-[0.32em] text-flare mb-10"
         >
           Ready?
         </p>
@@ -125,10 +125,10 @@ export function LandingCTA({ onOpenChat, onCtaClick }: Props) {
           </div>
 
           <div className="md:text-right">
-            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-bone/55 mb-2">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55 mb-2">
               68°44′21″S · 52°19′47″W — Endurance, found intact after 107 years
             </p>
-            <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-bone/55">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55">
               © {new Date().getFullYear()} Endurance AI Labs
             </p>
           </div>

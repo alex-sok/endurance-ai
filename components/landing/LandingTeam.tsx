@@ -68,7 +68,7 @@ export function LandingTeam() {
     <section ref={ref} className="py-28 md:py-40" aria-label="The team">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div data-team-header className="mb-16 md:mb-20 max-w-3xl">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             The Team
           </p>
           <h2
@@ -94,7 +94,7 @@ export function LandingTeam() {
                 <h3 className="md:col-span-4 font-display text-bone text-3xl md:text-4xl transition-transform duration-300 md:group-hover:translate-x-2">
                   {f.name}
                 </h3>
-                <p className="md:col-span-3 font-mono text-[10px] uppercase tracking-[0.2em] text-flare pt-2.5">
+                <p className="md:col-span-3 font-mono text-[11px] uppercase tracking-[0.2em] text-flare pt-2.5">
                   {f.role}
                 </p>
                 <p className="md:col-span-5 text-sm leading-relaxed text-bone/65 pt-1">{f.bio}</p>

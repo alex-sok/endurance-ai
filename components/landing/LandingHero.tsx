@@ -72,7 +72,7 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
       <div className="relative z-10 max-w-7xl mx-auto w-full px-6 sm:px-10 pt-36 pb-28">
         <p
           data-hero-eyebrow
-          className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/65 mb-10"
+          className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/65 mb-10"
         >
           Custom AI infrastructure for large industries
         </p>
@@ -117,7 +117,7 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
 
         <p
           data-hero-trust
-          className="mt-12 font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55"
+          className="mt-12 font-mono text-[11px] uppercase tracking-[0.22em] text-bone/55"
         >
           Deep experience building world-class LLMs — the core of everything we ship
         </p>
@@ -129,7 +129,7 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
         className="absolute bottom-7 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
         aria-hidden
       >
-        <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-bone/55">Scroll</span>
+        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-bone/55">Scroll</span>
         <span data-hero-scroll-line className="block w-px h-10 bg-bone/40" />
       </div>
     </section>

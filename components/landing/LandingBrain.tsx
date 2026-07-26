@@ -98,7 +98,7 @@ export function LandingBrain() {
     <section ref={ref} className="py-28 md:py-40" aria-label="Brain-powered operating systems">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div data-brain-header className="mb-16 md:mb-20 max-w-3xl">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             The Core
           </p>
           <h2

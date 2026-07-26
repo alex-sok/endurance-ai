@@ -75,7 +75,7 @@ export function LandingDifference() {
       {/* Pinned positioning sequence */}
       <div data-diff-pin className="flex items-center" style={{ minHeight: "100svh" }}>
         <div className="max-w-6xl mx-auto w-full px-6 sm:px-10 py-24">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-12">
+          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/60 mb-12">
             The Difference
           </p>
 
@@ -124,10 +124,10 @@ export function LandingDifference() {
           className="hidden md:grid grid-cols-2 pb-4 gap-x-12 border-b"
           style={{ borderColor: "rgba(244,243,238,0.14)" }}
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-bone/55">
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-bone/55">
             The old model
           </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flare">
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-flare">
             Endurance
           </span>
         </div>

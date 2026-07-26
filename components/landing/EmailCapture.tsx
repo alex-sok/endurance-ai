@@ -42,7 +42,7 @@ export function EmailCapture() {
         className="px-6 py-5 max-w-sm border border-bone/40"
         style={{ borderRadius: 4 }}
       >
-        <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-flare mb-2">
+        <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-flare mb-2">
           Got it.
         </p>
         <p className="text-sm text-bone/70 leading-relaxed">
@@ -83,7 +83,7 @@ export function EmailCapture() {
       <button
         type="submit"
         disabled={loading || !email.trim()}
-        className="mt-6 px-4 py-2.5 text-[10px] uppercase tracking-[0.18em] font-mono text-bone/75 border border-bone/40 hover:text-bone hover:border-bone/70 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
+        className="mt-6 px-4 py-2.5 text-[11px] uppercase tracking-[0.18em] font-mono text-bone/75 border border-bone/40 hover:text-bone hover:border-bone/70 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
         style={{ borderRadius: 4 }}
       >
         {loading ? "Sending…" : "Stay in touch →"}

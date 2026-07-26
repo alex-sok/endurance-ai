@@ -63,7 +63,7 @@ export function LandingWindow() {
         <div className="grid lg:grid-cols-12 gap-y-14 lg:gap-x-16">
           <div className="lg:col-span-7">
             <div data-window-header>
-              <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
+              <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/60 mb-8">
                 Why Now
               </p>
               <h2
@@ -92,7 +92,7 @@ export function LandingWindow() {
           >
             {TILES.map((tile) => (
               <div key={tile.label} data-window-tile className="bg-[#0a1120] p-8 md:p-10">
-                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-flare mb-3">
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-flare mb-3">
                   {tile.label}
                 </p>
                 <p

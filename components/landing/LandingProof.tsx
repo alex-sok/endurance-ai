@@ -221,7 +221,7 @@ export function LandingProof({ onOpenChat }: Props) {
     <section ref={ref} className="py-28 md:py-40" aria-label="What we build">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div data-proof-header className="mb-16 md:mb-24 max-w-3xl">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             Built in the field
           </p>
           <h2
@@ -242,13 +242,13 @@ export function LandingProof({ onOpenChat }: Props) {
             className="hidden md:grid grid-cols-12 gap-x-10 pb-4 border-b"
             style={{ borderColor: "rgba(244,243,238,0.14)" }}
           >
-            <span className="col-span-3 font-mono text-[10px] uppercase tracking-[0.25em] text-bone/55">
+            <span className="col-span-3 font-mono text-[11px] uppercase tracking-[0.25em] text-bone/55">
               Industry
             </span>
-            <span className="col-span-4 font-mono text-[10px] uppercase tracking-[0.25em] text-bone/55">
+            <span className="col-span-4 font-mono text-[11px] uppercase tracking-[0.25em] text-bone/55">
               What it costs them
             </span>
-            <span className="col-span-5 font-mono text-[10px] uppercase tracking-[0.25em] text-flare">
+            <span className="col-span-5 font-mono text-[11px] uppercase tracking-[0.25em] text-flare">
               The system we built
             </span>
           </div>
@@ -281,7 +281,7 @@ export function LandingProof({ onOpenChat }: Props) {
                       <li
                         key={s}
                         data-build-chip
-                        className="font-mono text-[9px] uppercase tracking-[0.14em] text-bone/60 border px-2 py-1"
+                        className="font-mono text-[10px] uppercase tracking-[0.14em] text-bone/60 border px-2 py-1"
                         style={{ borderColor: "rgba(148,176,230,0.20)", borderRadius: 3 }}
                       >
                         {s}
@@ -309,7 +309,7 @@ export function LandingProof({ onOpenChat }: Props) {
           className="mt-16 md:mt-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 border-t pt-10"
           style={{ borderColor: "rgba(244,243,238,0.08)" }}
         >
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55 max-w-md leading-relaxed">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-bone/55 max-w-md leading-relaxed">
             Client names held in confidence. Full detail under NDA.
           </p>
           <Btn variant="light" onClick={onOpenChat} className="shrink-0">

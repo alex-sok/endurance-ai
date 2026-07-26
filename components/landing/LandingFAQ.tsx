@@ -83,7 +83,7 @@ export function LandingFAQ({ onOpenChat }: Props) {
     <section ref={ref} className="py-28 md:py-40" aria-label="Frequently asked questions">
       <div className="max-w-4xl mx-auto px-6 sm:px-10">
         <div data-faq-header className="mb-14 md:mb-20">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-bone/60 mb-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/60 mb-8">
             Questions
           </p>
           <h2
