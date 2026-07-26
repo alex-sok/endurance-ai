@@ -71,10 +71,59 @@ export function LandingShell() {
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    // Re-measure pinned sections once webfonts settle.
-    document.fonts?.ready.then(() => ScrollTrigger.refresh()).catch(() => {});
+    // Trigger positions are measured from page height, and this page keeps
+    // growing after first paint — the WebGL canvas mounts, images decode, the
+    // FAQ accordion shifts everything below it. Stale positions mean reveals
+    // get skipped entirely and their elements freeze in the start state
+    // (translated down, sometimes invisible), which reads as overlapping text.
+    // Re-measure whenever the document actually changes size.
+    let refreshTimer: number | undefined;
+    const scheduleRefresh = () => {
+      window.clearTimeout(refreshTimer);
+      refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 180);
+    };
+
+    document.fonts?.ready.then(scheduleRefresh).catch(() => {});
+    window.addEventListener("load", scheduleRefresh);
+
+    const ro = new ResizeObserver(scheduleRefresh);
+    ro.observe(document.body);
+
+    // Fail-safe. Reveals start hidden and translated, so a trigger that never
+    // fires leaves copy invisible or sitting on top of its neighbour. Anything
+    // well inside the viewport has had its chance: snap it to the final state.
+    let sweepQueued = false;
+    const sweep = () => {
+      sweepQueued = false;
+      const limit = window.innerHeight * 0.6;
+      const main = document.getElementById("main-content");
+      if (!main) return;
+      main
+        .querySelectorAll<HTMLElement>('[style*="opacity: 0"], [style*="visibility: hidden"]')
+        .forEach((el) => {
+          const r = el.getBoundingClientRect();
+          if (r.height > 0 && r.top < limit) {
+            gsap.set(el, { autoAlpha: 1, y: 0, clearProps: "transform" });
+          }
+        });
+    };
+    const onScrollSweep = () => {
+      if (sweepQueued) return;
+      sweepQueued = true;
+      requestAnimationFrame(sweep);
+    };
+    // Bind to both: Lenis drives normal scrolling, but anchor jumps, keyboard
+    // paging and restored scroll positions only surface as a native event.
+    lenis.on("scroll", onScrollSweep);
+    window.addEventListener("scroll", onScrollSweep, { passive: true });
+    const sweepTimer = window.setTimeout(sweep, 1500);
 
     return () => {
+      window.clearTimeout(refreshTimer);
+      window.clearTimeout(sweepTimer);
+      window.removeEventListener("scroll", onScrollSweep);
+      window.removeEventListener("load", scheduleRefresh);
+      ro.disconnect();
       gsap.ticker.remove(raf);
       lenis.destroy();
       lenisRef.current = null;
