@@ -35,11 +35,11 @@ const FAQS = [
   },
   {
     q: "What if we're not sure where AI actually helps us?",
-    a: "That's where we start. A focused discovery returns a prioritized plan for where custom infrastructure pays — and where it doesn't. Yours either way.",
+    a: "That's what the AI Audit is for. A focused diagnostic that returns a prioritized plan for where custom infrastructure pays — and where it doesn't. Yours either way.",
   },
   {
     q: "How does pricing work?",
-    a: "Fixed scope, flat fee. No hourly billing, no open-ended retainers. We price the system, then deliver it.",
+    a: "Fixed scope, flat fee. No hourly billing, no open-ended retainers. The AI Audit is $999; build engagements are priced to the system, then delivered.",
   },
 ];
 

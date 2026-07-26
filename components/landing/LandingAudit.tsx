@@ -76,6 +76,10 @@ export function LandingAudit({ onCtaClick }: Props) {
                 simple as a walk after dinner. Small. Low-risk. High-value.
                 Something you do this week.
               </p>
+              <p>
+                The operating system comes later. This is how you find out what
+                is worth building — before anyone writes a line of it.
+              </p>
             </div>
             <p className="mt-10 font-mono text-[11px] uppercase tracking-[0.22em]" style={{ color: "#5b6472" }}>
               Not ready for a full engagement? This is how most of ours start.

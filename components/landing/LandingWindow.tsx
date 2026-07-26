@@ -14,7 +14,7 @@ const STATS = [
     value: 2.5,
     decimals: 1,
     label: "Anthropic implementation fund",
-    sub: "Same directive. Fortune 500 focus.",
+    sub: "Same directive. The same playbook for everyone.",
   },
 ];
 
@@ -84,15 +84,15 @@ export function LandingWindow() {
               <p>
                 OpenAI announced a $4 billion fund for AI implementation,
                 partnering with Bain, McKinsey, and Goldman Sachs. Anthropic
-                announced $2.5 billion for the same purpose. For the next 12 to
-                18 months, every frontier lab will focus almost entirely on
-                Fortune 500. The mid-market — companies doing $10M to $500M in
-                revenue — will be mostly left to figure it out on their own.
+                announced $2.5 billion for the same purpose. The capital is
+                there. It is buying the same playbook, delivered to every large
+                enterprise at once.
               </p>
               <p>
-                That is our market. We are building in it now, with the
-                experience, tools, and reputation to serve it well. Before the
-                big players arrive and triple the price.
+                Standard implementation gets you what your competitors get.
+                Infrastructure built around your own operation is the only part
+                nobody can hand them. That is what we build, and the window to
+                build it first is open now.
               </p>
             </div>
           </div>
