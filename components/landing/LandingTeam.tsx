@@ -17,7 +17,7 @@ const FOUNDERS = [
   {
     name: "Ramzy A.",
     role: "COO & CFO, Co-Founder",
-    bio: "Leads operations and finance, bringing an institutional real estate and capital markets background to how engagements are run.",
+    bio: "Leads operations and finance, bringing an institutional real estate and capital markets background to how engagements are run. Haas School of Business, UC Berkeley.",
   },
   {
     name: "Brennan B.",
