@@ -184,6 +184,17 @@ export function LandingShell() {
         </div>
       </main>
 
+      {/* Edge glow — a cool rim light around the viewport, so the manifold
+          reads as lit from the frame rather than floating in flat dark. */}
+      <div
+        aria-hidden
+        className="fixed inset-0 z-[60] pointer-events-none"
+        style={{
+          boxShadow:
+            "inset 0 0 170px rgba(74,134,247,0.13), inset 0 0 55px rgba(127,169,255,0.07), inset 0 0 2px rgba(148,176,230,0.14)",
+        }}
+      />
+
       <ChatOverlay
         open={chatOpen}
         onClose={() => setChatOpen(false)}
