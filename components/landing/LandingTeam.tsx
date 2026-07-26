@@ -3,16 +3,21 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
 
-const FOUNDERS = [
+const FOUNDERS: {
+  name: string;
+  role: string;
+  bio: string;
+  linkedin?: string;
+}[] = [
   {
     name: "Alex S.",
     role: "CEO & Co-Founder",
-    bio: "Leads Endurance engagements from strategy through deployment.",
+    bio: "Cisco AI Labs alum. Leads engagements from strategy through deployment.",
   },
   {
     name: "Nick M.",
     role: "CTO & Co-Founder",
-    bio: "Founding engineer at TALA, acquired by Intuit. Computer Science, Cornell.",
+    bio: "15+ years in computer science. Founding engineer at TALA, acquired by Intuit. Cornell.",
   },
   {
     name: "Ramzy A.",
@@ -23,6 +28,7 @@ const FOUNDERS = [
     name: "Brennan B.",
     role: "CMO & Co-Founder",
     bio: "Marketing and go-to-market — turning execution into reach.",
+    linkedin: "https://www.linkedin.com/in/brennan-burks/",
   },
 ];
 
@@ -97,7 +103,20 @@ export function LandingTeam() {
                 <p className="md:col-span-3 font-mono text-[10px] uppercase tracking-[0.2em] text-flare pt-2.5">
                   {f.role}
                 </p>
-                <p className="md:col-span-5 text-sm leading-relaxed text-bone/65 pt-1">{f.bio}</p>
+                <div className="md:col-span-5 pt-1">
+                  <p className="text-sm leading-relaxed text-bone/65">{f.bio}</p>
+                  {f.linkedin && (
+                    <a
+                      href={f.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-flare hover:text-bone transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
+                    >
+                      LinkedIn
+                      <span aria-hidden>↗</span>
+                    </a>
+                  )}
+                </div>
               </div>
               <span className="block h-px w-full bg-bone/10" />
             </div>

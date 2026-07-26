@@ -68,7 +68,12 @@ export default function RootLayout({
       { "@type": "Person", name: "Alex S.", jobTitle: "CEO & Co-Founder" },
       { "@type": "Person", name: "Nick M.", jobTitle: "CTO & Co-Founder" },
       { "@type": "Person", name: "Ramzy A.", jobTitle: "COO & CFO, Co-Founder" },
-      { "@type": "Person", name: "Brennan B.", jobTitle: "CMO & Co-Founder" },
+      {
+        "@type": "Person",
+        name: "Brennan B.",
+        jobTitle: "CMO & Co-Founder",
+        sameAs: ["https://www.linkedin.com/in/brennan-burks/"],
+      },
     ],
     knowsAbout: [
       "AI Strategy",
