@@ -7,22 +7,22 @@ const FOUNDERS = [
   {
     name: "Alex S.",
     role: "CEO & Co-Founder",
-    bio: "Cisco AI Labs alum. 10+ years architecting and implementing AI infrastructure at institutional companies — strategy through deployment on mission-critical systems.",
+    bio: "Cisco AI Labs alum. Has spent his career architecting and implementing AI infrastructure inside institutional companies — strategy through deployment on mission-critical systems.",
   },
   {
     name: "Nick M.",
     role: "CTO & Co-Founder",
-    bio: "15+ years in computer science, specializing in large-scale information systems. Founding engineer at a startup carried through to acquisition. Cornell.",
+    bio: "Career computer scientist specializing in large-scale information systems. Founding engineer at a startup he carried through to acquisition. Cornell.",
   },
   {
     name: "Ramzy A.",
     role: "COO & CFO, Co-Founder",
-    bio: "10+ years in institutional private equity, real estate and capital markets. Leads operations and finance. Haas School of Business, UC Berkeley.",
+    bio: "Deep institutional private equity, real estate and capital markets background. Leads operations and finance. Haas School of Business, UC Berkeley.",
   },
   {
     name: "Brennan B.",
     role: "CMO & Co-Founder",
-    bio: "15+ years leading growth marketing, communications and strategy — across financial services and published business journalism. Indiana University.",
+    bio: "Senior growth marketing, communications and strategy leader, shaped by financial services and business journalism. Indiana University.",
   },
 ];
 

@@ -45,16 +45,16 @@ Endurance was built by operators, not consultants. We focus on execution.
 ## Founding Team
 
 **Alex S., CEO & Co-Founder**
-Alex came out of Cisco AI Labs and founded Endurance AI Labs to bring operator-grade AI execution to leadership teams navigating high-stakes initiatives. He has over 10 years architecting and implementing AI infrastructure at institutional companies, from strategy through deployment on mission-critical systems.
+Alex came out of Cisco AI Labs and founded Endurance AI Labs to bring operator-grade AI execution to leadership teams navigating high-stakes initiatives. He has spent his career architecting and implementing AI infrastructure inside institutional companies, from strategy through deployment on mission-critical systems.
 
 **Nick M., CTO & Co-Founder**
-Nick leads our AI initiatives and client projects, with over 15 years of computer science experience specializing in large-scale information systems. He was a founding engineer at a startup he carried through to acquisition, and holds a degree in Computer Science from Cornell University.
+Nick leads our AI initiatives and client projects. A career computer scientist specializing in large-scale information systems, he was a founding engineer at a startup he carried through to acquisition, and holds a degree in Computer Science from Cornell University.
 
 **Ramzy A., COO & CFO, Co-Founder**
-Ramzy leads operations and finance, with over 10 years in institutional private equity, real estate and capital markets. He holds a degree from the Haas School of Business at UC Berkeley.
+Ramzy leads operations and finance, bringing a deep institutional private equity, real estate and capital markets background. He holds a degree from the Haas School of Business at UC Berkeley.
 
 **Brennan B., CMO & Co-Founder**
-Brennan leads marketing and go-to-market, with over 15 years leading growth marketing, communications and strategy across financial services and published business journalism. He studied at Indiana University.
+Brennan leads marketing and go-to-market. A senior growth marketing, communications and strategy leader, shaped by financial services and business journalism, he studied at Indiana University.
 
 Refer to the team by these names only. Do not share full surnames.
 
