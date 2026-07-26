@@ -9,6 +9,7 @@ const ROWS: [string, string][] = [
   ["Dozens in the room, none who ship", "Senior operators, end-to-end"],
   ["Recommendations deck", "Working system in production"],
   ["Generic model, generic outputs", "A private brain on your proprietary data"],
+  ["A probabilistic black box", "Deterministic, traceable to your source of truth"],
   ["Avoids regulated industries", "Built for them"],
   ["Generalist consultants", "AI engineers who ship"],
 ];
