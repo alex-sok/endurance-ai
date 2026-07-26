@@ -51,7 +51,7 @@ Alex founded Endurance AI Labs to bring operator-grade AI execution to leadershi
 Nick leads our AI initiatives and client projects. He was a founding engineer at TALA, which was acquired by Intuit. Nick holds a degree in Computer Science from Cornell University.
 
 **Ramzy A., COO & CFO, Co-Founder**
-Ramzy leads operations and finance, bringing an institutional real estate and capital markets background to how engagements are run.
+Ramzy leads operations and finance, bringing an institutional real estate and capital markets background to how engagements are run. He holds a degree from the Haas School of Business at UC Berkeley.
 
 **Brennan B., CMO & Co-Founder**
 Brennan leads marketing and go-to-market, translating technical execution into how the work reaches the market.

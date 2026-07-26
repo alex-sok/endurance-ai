@@ -47,7 +47,7 @@ export function LandingNav({ onOpenChat, onNavigate, onCtaClick }: Props) {
           aria-label="Endurance AI Labs — top"
           className="shrink-0"
         >
-          <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="h-3.5 w-auto opacity-90" />
+          <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" className="h-6 sm:h-7 w-auto opacity-90" />
         </a>
 
         <nav className="hidden lg:flex items-center gap-7" aria-label="Primary">
@@ -59,7 +59,7 @@ export function LandingNav({ onOpenChat, onNavigate, onCtaClick }: Props) {
                 e.preventDefault();
                 onNavigate(link.id);
               }}
-              className="text-[10px] uppercase tracking-[0.25em] font-mono text-bone/60 hover:text-bone transition-colors duration-200"
+              className="text-[12px] uppercase tracking-[0.22em] font-mono text-bone/70 hover:text-bone transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -69,7 +69,7 @@ export function LandingNav({ onOpenChat, onNavigate, onCtaClick }: Props) {
         <div className="flex items-center gap-2.5">
           <button
             onClick={onOpenChat}
-            className="inline-flex items-center gap-2 px-3.5 py-2 text-[10px] uppercase tracking-[0.18em] font-mono text-bone/75 border border-bone/40 hover:text-bone hover:border-bone/70 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
+            className="inline-flex items-center gap-2 px-4 py-2.5 text-[11px] uppercase tracking-[0.16em] font-mono text-bone/80 border border-bone/40 hover:text-bone hover:border-bone/70 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
             style={{ borderRadius: 4 }}
           >
             <span className="relative flex h-1.5 w-1.5">
@@ -83,7 +83,7 @@ export function LandingNav({ onOpenChat, onNavigate, onCtaClick }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => onCtaClick?.("nav-book")}
-            className="hidden sm:inline-flex items-center px-3.5 py-2 text-[10px] uppercase tracking-[0.18em] font-mono bg-bone text-[#0a1120] hover:bg-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
+            className="hidden sm:inline-flex items-center px-4 py-2.5 text-[11px] uppercase tracking-[0.16em] font-mono bg-bone text-[#0a1120] hover:bg-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
             style={{ borderRadius: 4 }}
           >
             Book a briefing
