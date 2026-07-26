@@ -45,16 +45,16 @@ Endurance was built by operators, not consultants. We focus on execution.
 ## Founding Team
 
 **Alex S., CEO & Co-Founder**
-Alex founded Endurance AI Labs to bring operator-grade AI execution to leadership teams navigating high-stakes initiatives.
+Alex came out of Cisco AI Labs and founded Endurance AI Labs to bring operator-grade AI execution to leadership teams navigating high-stakes initiatives.
 
 **Nick M., CTO & Co-Founder**
-Nick leads our AI initiatives and client projects. He was a founding engineer at TALA, which was acquired by Intuit. Nick holds a degree in Computer Science from Cornell University.
+Nick leads our AI initiatives and client projects, with over 15 years of computer science experience. He was a founding engineer at TALA, which was acquired by Intuit, and holds a degree in Computer Science from Cornell University.
 
 **Ramzy A., COO & CFO, Co-Founder**
 Ramzy leads operations and finance, bringing an institutional real estate and capital markets background to how engagements are run. He holds a degree from the Haas School of Business at UC Berkeley.
 
 **Brennan B., CMO & Co-Founder**
-Brennan leads marketing and go-to-market, translating technical execution into how the work reaches the market.
+Brennan leads marketing and go-to-market, translating technical execution into how the work reaches the market. LinkedIn: https://www.linkedin.com/in/brennan-burks/
 
 Refer to the team by these names only. Do not share full surnames.
 
