@@ -94,12 +94,11 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
           data-hero-sub
           className="text-[15px] sm:text-base leading-relaxed text-bone/70 max-w-xl mb-11"
         >
-          Endurance AI Labs is an AI research &amp; development company. We
-          build vertically integrated brain-powered operating systems — Large
-          Language Model infrastructure{" "}
+          Endurance AI Labs is an AI research and development company in
+          Silicon Valley. We build brain-powered operating systems and
+          micro-SaaS products end to end — Large Language Model infrastructure{" "}
           <strong className="font-bold text-flare">shaped to your operation</strong>
-          , not a &ldquo;one size fit all&rdquo; enterprise software solution you
-          need to adapt to.
+          , not a one-size-fits-all enterprise platform you have to adapt to.
         </p>
 
         <div data-hero-ctas className="flex flex-col sm:flex-row gap-3">
