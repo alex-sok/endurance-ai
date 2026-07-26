@@ -14,6 +14,7 @@ const LINKS = [
   { id: "services", label: "What we do" },
   { id: "method", label: "Method" },
   { id: "proof", label: "What we build" },
+  { id: "audit", label: "The Audit" },
   { id: "team", label: "Team" },
   { id: "faq", label: "FAQ" },
 ];
