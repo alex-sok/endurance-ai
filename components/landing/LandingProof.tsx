@@ -8,36 +8,114 @@ interface Props {
   onOpenChat: () => void;
 }
 
+/**
+ * Each row pairs the economic problem an executive actually feels with the
+ * span of the system built for it. The capability list is the point: these are
+ * operating layers that run the business end to end, not point solutions.
+ */
 const BUILDS = [
   {
     industry: "Construction",
-    problem: "Decades of bids, drawings, change orders and job costs spread across projects — the hard-won estimating judgment lives in a handful of people.",
-    built: "A private brain over historical bids, submittals and job-cost history, so estimating and project controls draw on every job the firm has ever run.",
+    problem:
+      "Fixed-price work erodes through unpriced change orders, cost-to-complete stays a guess until closeout, and cash sits trapped in retainage across dozens of jobs.",
+    built:
+      "An operating layer over bids, submittals, job costs and pay applications — preconstruction, project controls and finance finally working from one record.",
+    stack: [
+      "Preconstruction & estimating",
+      "Job costing & WIP",
+      "Change-order capture",
+      "Cost-to-complete forecasting",
+      "Retainage & cash flow",
+      "Subcontractor risk",
+      "Safety & compliance",
+      "Workforce & certifications",
+      "Executive reporting",
+    ],
   },
   {
     industry: "Legal",
-    problem: "Decades of matter files, expertise locked in people's heads, no institutional memory.",
-    built: "A private knowledge base and retrieval brain over the firm's entire document corpus.",
+    problem:
+      "Decades of matter files with the expertise locked in a handful of partners, while realization leaks through unbilled time and write-offs.",
+    built:
+      "A private knowledge base and retrieval brain over the firm's entire corpus, wired into how matters are staffed, budgeted, billed and reported.",
+    stack: [
+      "Matter knowledge retrieval",
+      "Precedent & clause search",
+      "Conflicts & intake",
+      "Time capture & realization",
+      "Matter budgeting",
+      "Utilization & staffing",
+      "Billing & collections",
+      "Client reporting",
+    ],
   },
   {
     industry: "Real estate & capital markets",
-    problem: "Deal underwriting done by hand, one spreadsheet at a time.",
-    built: "Automated underwriting, an investment-memo pipeline, and a proprietary deal brain.",
+    problem:
+      "Underwriting done by hand, one spreadsheet per deal, with investor reporting and distributions rebuilt from scratch every quarter.",
+    built:
+      "An end-to-end deal and asset platform: a proprietary deal brain feeding underwriting and IC memos, then carrying straight through to what investors see.",
+    stack: [
+      "Automated underwriting",
+      "IC memo pipeline",
+      "Comps & market data",
+      "Budgeting & reforecast",
+      "Liquidity & distributions",
+      "Waterfall & LP reporting",
+      "Investor relations portal",
+      "Asset performance",
+      "Capital calls",
+    ],
   },
   {
     industry: "Logistics & freight",
-    problem: "Operations fragmented across disconnected systems and manual handoffs.",
-    built: "A unified transportation-management and settlement layer built to their workflow.",
+    problem:
+      "Operations fragmented across disconnected systems, so margin per load stays invisible until long after settlement.",
+    built:
+      "A unified transportation-management and settlement layer built to their workflow, from tender through cash.",
+    stack: [
+      "Dispatch & tendering",
+      "Carrier & capacity",
+      "Rate & margin management",
+      "Settlement & billing",
+      "Driver operations & HR",
+      "Fuel & cost control",
+      "Claims & compliance",
+      "Customer reporting",
+    ],
   },
   {
     industry: "Multi-unit operations",
-    problem: "Many locations, each with its own systems, none of them sharing what they know.",
-    built: "One operational brain consolidating the entire group into a single source of truth.",
+    problem:
+      "Every location runs its own systems, so group P&L, labor and inventory never reconcile in time to actually act on them.",
+    built:
+      "One operational brain consolidating the entire group into a single source of truth, from unit-level labor to consolidated reporting.",
+    stack: [
+      "Unit-level P&L",
+      "Labor scheduling & HR",
+      "Inventory & purchasing",
+      "Revenue management",
+      "Forecasting & budgeting",
+      "Multi-entity consolidation",
+      "Vendor & supply chain",
+      "Owner reporting",
+    ],
   },
   {
     industry: "Consumer & brokerage",
-    problem: "Commission and settlement math done manually — slow, opaque, error-prone.",
-    built: "A penny-accurate commissions and settlement engine wired into their data.",
+    problem:
+      "Commission and settlement math done by hand — slow, opaque, and impossible to audit once volume scales.",
+    built:
+      "A penny-accurate commissions and settlement engine wired into their data, with the controls and reporting a finance team can actually stand behind.",
+    stack: [
+      "Commission calculation",
+      "Split & override logic",
+      "Settlement & payouts",
+      "Producer reporting",
+      "Revenue recognition",
+      "Audit trail & controls",
+      "Forecasting",
+    ],
   },
 ];
 
@@ -63,7 +141,7 @@ export function LandingProof({ onOpenChat }: Props) {
             transformOrigin: "left",
             duration: 1.1,
             ease: "power2.inOut",
-            scrollTrigger: { trigger: row, start: "top 90%" },
+            scrollTrigger: { trigger: row, start: "top 92%" },
           });
           gsap.from(row.querySelectorAll("[data-build-content]"), {
             autoAlpha: 0,
@@ -71,6 +149,14 @@ export function LandingProof({ onOpenChat }: Props) {
             duration: 0.8,
             stagger: 0.08,
             ease: "power3.out",
+            scrollTrigger: { trigger: row, start: "top 90%" },
+          });
+          gsap.from(row.querySelectorAll("[data-build-chip]"), {
+            autoAlpha: 0,
+            y: 8,
+            duration: 0.5,
+            stagger: 0.025,
+            ease: "power2.out",
             scrollTrigger: { trigger: row, start: "top 88%" },
           });
         });
@@ -103,9 +189,10 @@ export function LandingProof({ onOpenChat }: Props) {
             Custom infrastructure, <em>built one industry at a time.</em>
           </h2>
           <p className="text-[15px] leading-relaxed text-bone/65 max-w-xl">
-            We don't sell a product you adopt. We study how your business runs
-            and build the AI systems it needs — inside construction, legal,
-            capital markets, logistics, and beyond.
+            We don&rsquo;t sell a product you adopt. We study how your business
+            runs and build the systems it needs end to end — operations,
+            finance, revenue, workforce and investor reporting — inside
+            construction, legal, capital markets, logistics and beyond.
           </p>
         </div>
 
@@ -119,17 +206,17 @@ export function LandingProof({ onOpenChat }: Props) {
               Industry
             </span>
             <span className="col-span-4 font-mono text-[10px] uppercase tracking-[0.25em] text-bone/55">
-              The operational problem
+              What it costs them
             </span>
             <span className="col-span-5 font-mono text-[10px] uppercase tracking-[0.25em] text-flare">
-              What we built
+              The system we built
             </span>
           </div>
 
           {BUILDS.map((b) => (
             <div key={b.industry} data-build-row className="group relative">
               <span data-build-rule className="block h-px w-full bg-bone/10" />
-              <div className="grid md:grid-cols-12 gap-y-3 md:gap-x-10 py-8 md:py-10 transition-colors duration-300 group-hover:bg-bone/[0.025]">
+              <div className="grid md:grid-cols-12 gap-y-4 md:gap-x-10 py-9 md:py-12 transition-colors duration-300 group-hover:bg-bone/[0.025]">
                 <h3
                   data-build-content
                   className="md:col-span-3 font-display text-bone text-xl md:text-2xl leading-tight"
@@ -142,12 +229,26 @@ export function LandingProof({ onOpenChat }: Props) {
                 >
                   {b.problem}
                 </p>
-                <p
-                  data-build-content
-                  className="md:col-span-5 text-sm md:text-[15px] leading-relaxed text-bone/85"
-                >
-                  {b.built}
-                </p>
+                <div className="md:col-span-5">
+                  <p
+                    data-build-content
+                    className="text-sm md:text-[15px] leading-relaxed text-bone/85"
+                  >
+                    {b.built}
+                  </p>
+                  <ul className="mt-5 flex flex-wrap gap-1.5" aria-label={`${b.industry} — systems covered`}>
+                    {b.stack.map((s) => (
+                      <li
+                        key={s}
+                        data-build-chip
+                        className="font-mono text-[9px] uppercase tracking-[0.14em] text-bone/60 border px-2 py-1"
+                        style={{ borderColor: "rgba(148,176,230,0.20)", borderRadius: 3 }}
+                      >
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           ))}
@@ -160,9 +261,10 @@ export function LandingProof({ onOpenChat }: Props) {
           style={{ fontSize: "clamp(1.3rem, 2.6vw, 2rem)", lineHeight: 1.3 }}
         >
           The common thread: a private <span className="text-flare">brain</span>{" "}
-          built on your proprietary data —{" "}
+          built on your proprietary data, then extended across every function
+          that runs on it —{" "}
           <em className="text-bone/65">
-            reshaped for how each business actually runs.
+            reshaped for how each business actually operates.
           </em>
         </p>
 
@@ -172,8 +274,8 @@ export function LandingProof({ onOpenChat }: Props) {
           style={{ borderColor: "rgba(244,243,238,0.08)" }}
         >
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55 max-w-md leading-relaxed">
-            Client names and details held in confidence. We'll walk your team
-            through the relevant work under NDA.
+            Client names and details held in confidence. We&rsquo;ll walk your
+            team through the relevant work under NDA.
           </p>
           <Btn variant="light" onClick={onOpenChat} className="shrink-0">
             Tell us how your business runs →
