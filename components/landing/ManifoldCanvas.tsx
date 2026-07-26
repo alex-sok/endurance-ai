@@ -31,6 +31,7 @@ const VERT = /* glsl */ `
   uniform float uTime;
   uniform float uPixelRatio;
   uniform float uProgress;
+  uniform float uCamZ;
 
   attribute vec3 aNoise;
   attribute vec3 aStruct;
@@ -54,12 +55,14 @@ const VERT = /* glsl */ `
     vec4 mv = modelViewMatrix * vec4(pos, 1.0);
     float dist = -mv.z;
 
-    vDepth = clamp((20.0 - dist) / 15.0, 0.0, 1.0);
+    // Depth fade is measured relative to the camera, so pulling the rig back
+    // on narrow viewports doesn't fade the whole field to nothing.
+    vDepth = clamp((uCamZ + 7.0 - dist) / 15.0, 0.0, 1.0);
     vRand = aRand;
 
     gl_Position = projectionMatrix * mv;
-    gl_PointSize = uPixelRatio * (0.85 + vDepth * 2.3) * (1.0 + e * 0.55)
-                 * clamp(150.0 / dist, 0.45, 3.0);
+    gl_PointSize = uPixelRatio * (0.7 + vDepth * 1.9) * (1.0 + e * 0.45)
+                 * clamp(150.0 / dist, 0.4, 2.6);
   }
 `;
 
@@ -84,7 +87,7 @@ const FRAG = /* glsl */ `
     vec3 col = mix(uMuted, uAccent, clamp(e * 2.0 * vRand, 0.0, 1.0));
     col = mix(col, uAmber, smoothstep(0.55, 1.0, e) * pow(vRand, 4.0));
 
-    float alpha = (0.10 + vDepth * 0.74) * (0.40 + e * 0.60) * mix(1.0, 0.08, uDim);
+    float alpha = (0.08 + vDepth * 0.60) * (0.40 + e * 0.60) * mix(1.0, 0.08, uDim);
     gl_FragColor = vec4(col, alpha);
   }
 `;
@@ -120,20 +123,34 @@ export function ManifoldCanvas() {
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, vw() / vh(), 0.1, 90);
-    camera.position.set(0, 0.8, 13);
+    const camera = new THREE.PerspectiveCamera(55, vw() / vh(), 0.1, 140);
+
+    // A tall, narrow viewport sees far less of the field horizontally, which
+    // crowds the clusters into the middle of the copy. Pull the rig back until
+    // the constellation spans the frame again.
+    const camDistance = () => {
+      const aspect = vw() / vh();
+      return aspect >= 1 ? 15 : Math.min(15 / Math.max(aspect, 0.42), 30);
+    };
+    let camZ = camDistance();
+    camera.position.set(0, 0.8, camZ);
 
     const rand = makeRandom(97);
-    const COUNT = isMobile ? 1800 : 4200;
-    const CLUSTERS = 7;
+    const COUNT = isMobile ? 2200 : 5000;
+    const CLUSTERS = 11;
 
-    // Cluster centres ring the origin at varying radius and height, so the
-    // resolved state reads as distinct groups rather than one even blob.
+    // Cluster centres are spread wide and pushed out to the edges of frame so
+    // the resolved state reads as a constellation spanning the backdrop rather
+    // than one dense knot sitting in the middle of the copy.
     const centres: [number, number, number][] = [];
     for (let k = 0; k < CLUSTERS; k++) {
-      const a = (k / CLUSTERS) * Math.PI * 2 + rand() * 0.35;
-      const r = 3.1 + rand() * 2.4;
-      centres.push([Math.cos(a) * r, (rand() - 0.5) * 4.4, Math.sin(a) * r - 2.0]);
+      const a = (k / CLUSTERS) * Math.PI * 2 + rand() * 0.5;
+      const r = 6.5 + rand() * 6.0;
+      centres.push([
+        Math.cos(a) * r,
+        (rand() - 0.5) * 9.0,
+        Math.sin(a) * r * 0.55 - 3.0,
+      ]);
     }
 
     const noise = new Float32Array(COUNT * 3);
@@ -142,11 +159,12 @@ export function ManifoldCanvas() {
 
     for (let i = 0; i < COUNT; i++) {
       const c = centres[i % CLUSTERS];
-      const spread = 0.55 + rand() * 0.5;
+      // Softer, larger cores — a diffuse constellation, not tight pom-poms.
+      const spread = 0.9 + rand() * 1.1;
 
-      noise[i * 3] = (rand() - 0.5) * 24;
-      noise[i * 3 + 1] = (rand() - 0.5) * 13;
-      noise[i * 3 + 2] = (rand() - 0.5) * 22 - 4;
+      noise[i * 3] = (rand() - 0.5) * 34;
+      noise[i * 3 + 1] = (rand() - 0.5) * 18;
+      noise[i * 3 + 2] = (rand() - 0.5) * 24 - 4;
 
       // Gaussian-ish falloff keeps cluster cores dense and edges wispy.
       const g = () => (rand() + rand() + rand() - 1.5) * spread * 1.6;
@@ -164,13 +182,14 @@ export function ManifoldCanvas() {
     geometry.setAttribute("aNoise", new THREE.BufferAttribute(noise, 3));
     geometry.setAttribute("aStruct", new THREE.BufferAttribute(struct, 3));
     geometry.setAttribute("aRand", new THREE.BufferAttribute(rnd, 1));
-    geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 0, -2), 22);
+    geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 0, -3), 32);
 
     const uniforms = {
       uTime: { value: reduced ? 20 : 0 },
       uPixelRatio: { value: renderer.getPixelRatio() },
       uDim: { value: 0 },
       uProgress: { value: reduced ? 0.85 : 0 },
+      uCamZ: { value: camZ },
       uMuted: { value: new THREE.Color("#93a3c0") },
       uAccent: { value: new THREE.Color("#4a86f7") },
       uAmber: { value: new THREE.Color("#c7a76c") },
@@ -263,6 +282,7 @@ export function ManifoldCanvas() {
 
       camera.position.x += (mouse.x * 1.1 - camera.position.x) * 0.04;
       camera.position.y = 0.8 + e * 1.1 + mouse.y * -0.25;
+      camera.position.z = camZ;
       camera.lookAt(lookAt);
 
       renderer.render(scene, camera);
@@ -287,6 +307,9 @@ export function ManifoldCanvas() {
       camera.aspect = vw() / vh();
       camera.updateProjectionMatrix();
       renderer.setSize(vw(), vh());
+      camZ = camDistance();
+      camera.position.z = camZ;
+      uniforms.uCamZ.value = camZ;
       uniforms.uPixelRatio.value = renderer.getPixelRatio();
       if (reduced) renderOnce();
     };
