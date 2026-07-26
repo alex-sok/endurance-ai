@@ -6,27 +6,27 @@ import { gsap, SplitText } from "@/lib/gsap";
 const FAILURES = [
   {
     title: "Organizational inertia.",
-    body: "Teams default to familiar workflows. Without a forcing function, adoption stalls before it starts.",
+    body: "Without a forcing function, adoption stalls before it starts.",
   },
   {
     title: "Weak data foundations.",
-    body: "AI is only as good as the data feeding it. Fragmented systems and dirty data make even strong models useless.",
+    body: "Fragmented, dirty data makes even the strongest models useless.",
   },
   {
     title: "No clear ownership.",
-    body: "When AI is everyone's job, it's no one's job. Initiatives drift without a single accountable driver.",
+    body: "When it's everyone's job, it's no one's. Initiatives drift.",
   },
   {
     title: "Tool-first thinking.",
-    body: "Buying software is not a strategy. Deploying tools without redesigning the workflow around them changes nothing.",
+    body: "Buying software isn't a strategy. Tools without new workflow change nothing.",
   },
   {
     title: "Poor change management.",
-    body: "The technical build is the easy part. Getting people to actually change how they work is where most initiatives die.",
+    body: "The build is the easy part. Changing how people work isn't.",
   },
   {
     title: "Lack of internal capability.",
-    body: "External vendors deliver and leave. Without building internal knowledge, organizations can't maintain or scale what was built.",
+    body: "Vendors deliver and leave. Nobody inside can scale what's left.",
   },
 ];
 
@@ -147,7 +147,7 @@ export function LandingManifesto() {
             These are execution problems. <em>Not technology problems.</em>
           </p>
           <p className="text-[15px] leading-relaxed text-bone/70">
-            Endurance was built to close the gap between ambition and execution.
+            We close the gap between ambition and execution.
           </p>
         </div>
       </div>

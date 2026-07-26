@@ -6,19 +6,19 @@ import { gsap } from "@/lib/gsap";
 const SEGMENTS = [
   {
     title: "Professional Services",
-    body: "Law firms, wealth managers, accounting firms, and consulting firms looking for workflow leverage, knowledge systems, and AI-enabled service delivery without losing the client relationship.",
+    body: "Law, wealth, accounting. Knowledge systems and leverage, without losing the client relationship.",
   },
   {
-    title: "Mid-Market Operating Companies",
-    body: "Organizations modernizing operations, eliminating friction, and improving scalability, often with disconnected data and limited internal AI capability to draw from.",
+    title: "Operating Companies",
+    body: "Modernizing operations with disconnected data and no internal AI bench.",
   },
   {
     title: "Venture-Backed Companies",
-    body: "Founders and product teams building AI-enabled products or navigating build-versus-buy decisions. Speed matters. So does not creating long-term technical debt.",
+    body: "Build-versus-buy under time pressure, without piling up technical debt.",
   },
   {
     title: "Large Enterprises",
-    body: "Complex transformation efforts that require focused outside execution capability. Situations where stakeholder complexity and organizational pace make internal-only approaches fail.",
+    body: "Transformation that needs outside execution when internal-only stalls.",
   },
 ];
 
@@ -106,10 +106,8 @@ export function LandingWho() {
             Not a fit for
           </p>
           <p className="text-sm md:text-[15px] leading-relaxed text-bone/70 max-w-3xl">
-            Generic AI experimentation. The lowest-cost vendor. Software
-            shopping. Organizations without executive sponsorship or those not
-            prepared to move once a direction is chosen. We work best with
-            leaders who are serious about outcomes.
+            Generic experimentation. Lowest-cost vendors. Software shopping.
+            Anyone without executive sponsorship or the will to move.
           </p>
         </div>
       </div>

@@ -17,12 +17,12 @@ const FOUNDERS = [
   {
     name: "Ramzy A.",
     role: "COO & CFO, Co-Founder",
-    bio: "Leads operations and finance, bringing an institutional real estate and capital markets background to how engagements are run. Haas School of Business, UC Berkeley.",
+    bio: "Operations and finance, from an institutional real estate and capital markets background. Haas School of Business, UC Berkeley.",
   },
   {
     name: "Brennan B.",
     role: "CMO & Co-Founder",
-    bio: "Leads marketing and go-to-market, translating technical execution into how the work reaches the market.",
+    bio: "Marketing and go-to-market — turning execution into reach.",
   },
 ];
 
@@ -78,9 +78,8 @@ export function LandingTeam() {
             Built by <em>operators.</em>
           </h2>
           <p className="text-[15px] leading-relaxed text-bone/70">
-            Our backgrounds span AI engineering, enterprise architecture,
-            product design, and operational execution across regulated,
-            high-growth, and complex environments.
+            AI engineering, enterprise architecture, and operational execution
+            in regulated environments.
           </p>
         </div>
 
@@ -110,8 +109,7 @@ export function LandingTeam() {
           className="font-display italic text-bone/70 mt-16 max-w-2xl"
           style={{ fontSize: "clamp(1.3rem, 2.4vw, 1.9rem)", lineHeight: 1.3 }}
         >
-          We are operators. Built to execute in environments where the
-          initiative is too important to drift.
+          We are operators. Built for initiatives too important to drift.
         </p>
       </div>
     </section>

@@ -17,27 +17,27 @@ const BUILDS = [
   {
     industry: "Construction",
     problem:
-      "Fixed-price work erodes through unpriced change orders, cost-to-complete stays a guess until closeout, and cash sits trapped in retainage across dozens of jobs.",
+      "Budgets built by hand. Forecasts stale on arrival. Margin gone before anyone sees it.",
     built:
-      "An operating layer over bids, submittals, job costs and pay applications — preconstruction, project controls and finance finally working from one record.",
+      "Automated budgeting and forecasting across every job — the financial bedrock the whole company runs on.",
     stack: [
-      "Preconstruction & estimating",
-      "Job costing & WIP",
-      "Change-order capture",
+      "Automated budgeting",
       "Cost-to-complete forecasting",
-      "Retainage & cash flow",
+      "Job costing & WIP",
+      "Preconstruction & estimating",
+      "Change-order capture",
+      "Cash flow & retainage",
       "Subcontractor risk",
       "Safety & compliance",
-      "Workforce & certifications",
       "Executive reporting",
     ],
   },
   {
     industry: "Legal",
     problem:
-      "Decades of matter files with the expertise locked in a handful of partners, while realization leaks through unbilled time and write-offs.",
+      "Expertise locked in a few partners. Realization leaking everywhere.",
     built:
-      "A private knowledge base and retrieval brain over the firm's entire corpus, wired into how matters are staffed, budgeted, billed and reported.",
+      "A private brain over every matter — staffing, budgets, billing and reporting.",
     stack: [
       "Matter knowledge retrieval",
       "Precedent & clause search",
@@ -52,9 +52,9 @@ const BUILDS = [
   {
     industry: "Real estate & capital markets",
     problem:
-      "Underwriting done by hand, one spreadsheet per deal, with investor reporting and distributions rebuilt from scratch every quarter.",
+      "Underwriting by hand. Investor reporting rebuilt from scratch every quarter.",
     built:
-      "An end-to-end deal and asset platform: a proprietary deal brain feeding underwriting and IC memos, then carrying straight through to what investors see.",
+      "A deal brain running underwriting straight through to what investors see.",
     stack: [
       "Automated underwriting",
       "IC memo pipeline",
@@ -70,9 +70,9 @@ const BUILDS = [
   {
     industry: "Logistics & freight",
     problem:
-      "Operations fragmented across disconnected systems, so margin per load stays invisible until long after settlement.",
+      "Margin per load stays invisible until long after settlement.",
     built:
-      "A unified transportation-management and settlement layer built to their workflow, from tender through cash.",
+      "One layer from tender to cash, built to their workflow.",
     stack: [
       "Dispatch & tendering",
       "Carrier & capacity",
@@ -87,9 +87,9 @@ const BUILDS = [
   {
     industry: "Multi-unit operations",
     problem:
-      "Every location runs its own systems, so group P&L, labor and inventory never reconcile in time to actually act on them.",
+      "Every location its own island. Group P&L always arrives too late.",
     built:
-      "One operational brain consolidating the entire group into a single source of truth, from unit-level labor to consolidated reporting.",
+      "One brain over every unit — labor through consolidated reporting.",
     stack: [
       "Unit-level P&L",
       "Labor scheduling & HR",
@@ -104,9 +104,9 @@ const BUILDS = [
   {
     industry: "Consumer & brokerage",
     problem:
-      "Commission and settlement math done by hand — slow, opaque, and impossible to audit once volume scales.",
+      "Commission math by hand. Slow, opaque, impossible to audit.",
     built:
-      "A penny-accurate commissions and settlement engine wired into their data, with the controls and reporting a finance team can actually stand behind.",
+      "A penny-accurate commissions engine finance can stand behind.",
     stack: [
       "Commission calculation",
       "Split & override logic",
@@ -189,10 +189,8 @@ export function LandingProof({ onOpenChat }: Props) {
             Custom infrastructure, <em>built one industry at a time.</em>
           </h2>
           <p className="text-[15px] leading-relaxed text-bone/65 max-w-xl">
-            We don&rsquo;t sell a product you adopt. We study how your business
-            runs and build the systems it needs end to end — operations,
-            finance, revenue, workforce and investor reporting — inside
-            construction, legal, capital markets, logistics and beyond.
+            Not a product you adopt. Systems built around how you already run —
+            operations, finance, revenue, workforce, reporting.
           </p>
         </div>
 
@@ -260,11 +258,9 @@ export function LandingProof({ onOpenChat }: Props) {
           className="font-display text-bone/85 mt-16 md:mt-20 max-w-4xl"
           style={{ fontSize: "clamp(1.3rem, 2.6vw, 2rem)", lineHeight: 1.3 }}
         >
-          The common thread: a private <span className="text-flare">brain</span>{" "}
-          built on your proprietary data, then extended across every function
-          that runs on it —{" "}
+          One private <span className="text-flare">brain</span> on your data,{" "}
           <em className="text-bone/65">
-            reshaped for how each business actually operates.
+            extended across every function that runs on it.
           </em>
         </p>
 
@@ -274,8 +270,7 @@ export function LandingProof({ onOpenChat }: Props) {
           style={{ borderColor: "rgba(244,243,238,0.08)" }}
         >
           <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-bone/55 max-w-md leading-relaxed">
-            Client names and details held in confidence. We&rsquo;ll walk your
-            team through the relevant work under NDA.
+            Client names held in confidence. Full detail under NDA.
           </p>
           <Btn variant="light" onClick={onOpenChat} className="shrink-0">
             Tell us how your business runs →

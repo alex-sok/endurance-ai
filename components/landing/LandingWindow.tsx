@@ -75,17 +75,13 @@ export function LandingWindow() {
             </div>
             <div data-window-copy className="space-y-5 text-[15px] leading-relaxed text-bone/70 max-w-xl">
               <p>
-                Frontier models are finally capable enough to run core
-                operations — not just demos. But the enterprise software market
-                is racing to package that capability into the same one-size
-                platform sold to every one of your competitors. Adopt it, and
-                you inherit everyone else's workflow.
+                Models can finally run core operations, not just demos. But
+                vendors are packaging that into one platform sold to every
+                competitor you have. Adopt it and you inherit their workflow.
               </p>
               <p>
-                Build around your own operation instead — on your data, shaped to
-                your processes — and you get something they can't buy off a
-                shelf. That advantage compounds. The window to build it before
-                everyone else does is open now.
+                Build on your own data instead and you get something they
+                can&rsquo;t buy. That advantage compounds.
               </p>
             </div>
           </div>

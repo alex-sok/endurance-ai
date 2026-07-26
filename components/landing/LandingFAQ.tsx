@@ -11,35 +11,35 @@ interface Props {
 const FAQS = [
   {
     q: "How long does a typical engagement take?",
-    a: "Depends on scope. Because every system is built around your operation, we scope each engagement into defined deliverables with a fixed timeline — usually measured in weeks to a few months, not open-ended retainers. We start most relationships with a focused discovery, then move straight into building.",
+    a: "Weeks to a few months, scoped into fixed deliverables — not open-ended retainers. A focused discovery first, then straight into building.",
   },
   {
     q: "What kind of companies do you work with?",
-    a: "Large organizations operating in demanding, often regulated industries: legal, capital markets, logistics, multi-unit operations, and consumer. The common thread is leadership serious about outcomes and infrastructure that has to work in production, not a slide.",
+    a: "Large organizations in demanding, often regulated industries: construction, legal, capital markets, logistics, multi-unit operations. Infrastructure that has to work in production, not on a slide.",
   },
   {
     q: "How are you different from a Big 4 consulting firm?",
-    a: "Big 4 firms produce recommendations. We produce systems. Their model is analysis and advisory, delivered by large teams, with implementation handled separately. Ours is a small senior team that does both: strategy and build, in the same engagement. We're also faster by an order of magnitude and don't require six-month discovery phases.",
+    a: "They produce recommendations. We produce systems. Strategy and build in the same engagement, by one senior team — and an order of magnitude faster.",
   },
   {
     q: "We already have an internal AI team. Can you still help?",
-    a: "Yes, and some of our most productive engagements are alongside internal teams, not instead of them. We're useful for initiatives that have stalled, architectural decisions that need an outside perspective, or situations where speed matters more than the team has capacity for.",
+    a: "Yes. Our best engagements run alongside internal teams — for stalled initiatives, architecture decisions needing outside eyes, or when speed outruns capacity.",
   },
   {
     q: "What does 'embedded' actually mean?",
-    a: "It means working inside your organization: in your Slack, your standups, your codebase. Not at arm's length producing deliverables. The work moves faster because we're not waiting on weekly status calls to understand what's changed.",
+    a: "Inside your Slack, your standups, your codebase. Not at arm's length. Nothing waits on a weekly status call.",
   },
   {
     q: "We're in a regulated industry. Does that change what you can do?",
-    a: "No. We've built production AI systems inside pharmaceuticals, financial services, healthcare, and insurance. Regulated environments require deliberation, not bravado. We build within compliance constraints without sacrificing the outcome.",
+    a: "No. We've shipped production AI inside pharma, financial services, healthcare and insurance — within compliance constraints, without sacrificing the outcome.",
   },
   {
     q: "What if we're not sure where AI actually helps us?",
-    a: "That's where we start. A focused discovery: we study how your operation runs, your data, and your goals, then hand you a prioritized plan for where custom AI infrastructure creates real ROI — and where it doesn't. You walk away with clarity, whether you build with us afterward or not.",
+    a: "That's where we start. A focused discovery returns a prioritized plan for where custom infrastructure pays — and where it doesn't. Yours either way.",
   },
   {
     q: "How does pricing work?",
-    a: "Fixed-scope engagements at flat fees. No hourly billing, no open-ended retainers unless you want them. We price the scope of the system we're building around your operation, then deliver it.",
+    a: "Fixed scope, flat fee. No hourly billing, no open-ended retainers. We price the system, then deliver it.",
   },
 ];
 

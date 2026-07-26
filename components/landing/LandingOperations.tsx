@@ -11,23 +11,23 @@ interface Props {
 const SERVICES = [
   {
     title: "AI Strategy & Leadership",
-    body: "Practical AI roadmaps tied directly to business outcomes. Identifying leverage points, prioritizing high-impact opportunities, defining operating models, and establishing governance.",
+    body: "Roadmaps tied to outcomes. Leverage points, priorities, operating model, governance.",
   },
   {
     title: "Automation & Workflow Transformation",
-    body: "Systems that eliminate bottlenecks and improve throughput. Workflow automation, document-heavy processes, customer operations, internal knowledge systems, decision-support.",
+    body: "Systems that kill bottlenecks: document-heavy work, customer ops, decision support.",
   },
   {
     title: "Architecture & Operating Layer",
-    body: "Infrastructure for AI systems to work reliably inside real organizations. Data integration, retrieval, orchestration, model selection, safety, and iteration loops.",
+    body: "Infrastructure that holds up in production: data, retrieval, orchestration, safety.",
   },
   {
     title: "Internal Capability Building",
-    body: "Building the internal capability to sustain the work. Leadership education, team design, governance structures, internal playbooks, and tooling.",
+    body: "Your team owns it after we leave: training, playbooks, governance.",
   },
   {
     title: "Initiative Recovery",
-    body: "Diagnosing and relaunching stalled or failed AI efforts. Root cause analysis, identifying salvageable assets, resetting scope, and relaunching with a realistic execution path.",
+    body: "Stalled efforts diagnosed, rescoped, and relaunched on a realistic path.",
   },
 ];
 
