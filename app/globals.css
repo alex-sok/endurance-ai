@@ -150,6 +150,13 @@
   opacity: 0.62;
 }
 
+/* Tailwind's `italic` on display type would make the browser synthesise a
+   sheared oblique from the system sans, which looks crude at weight 800.
+   Drop the slant and let each element's own colour carry the emphasis. */
+.font-display.italic {
+  font-style: normal;
+}
+
 /* Blue selection inside the dark landing only */
 .theme-abyss ::selection {
   background: var(--flare);
