@@ -26,7 +26,7 @@ const FAILURES = [
   },
   {
     title: "Lack of internal capability.",
-    body: "Vendors deliver and leave. Nobody inside can scale what's left.",
+    body: "Key strategic employees deliver and leave. Nobody inside can scale what's left.",
   },
 ];
 
