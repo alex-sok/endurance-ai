@@ -89,7 +89,7 @@ export function LandingOperations({ onOpenChat }: Props) {
           {SERVICES.map((s, i) => (
             <div key={s.title} data-op-row className="group relative">
               <span data-op-rule className="block h-px w-full bg-bone/10" />
-              <div className="grid md:grid-cols-12 gap-y-3 md:gap-x-10 py-9 md:py-12 transition-colors duration-300 group-hover:bg-bone/[0.025]">
+              <div className="grid md:grid-cols-12 gap-y-5 md:gap-y-3 md:gap-x-10 py-9 md:py-12 transition-colors duration-300 group-hover:bg-bone/[0.025]">
                 <span
                   data-op-content
                   className="md:col-span-1 font-mono text-[11px] tracking-[0.25em] text-flare pt-1.5"

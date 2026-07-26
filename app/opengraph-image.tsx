@@ -29,7 +29,7 @@ export default async function Image() {
   ).toString("base64");
 
   const rand = makeRandom(97);
-  const dots = Array.from({ length: 190 }, () => {
+  const dots = Array.from({ length: 200 }, () => {
     const r = rand();
     return {
       x: rand() * 1200,
