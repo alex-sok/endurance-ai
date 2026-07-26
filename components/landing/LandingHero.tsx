@@ -98,7 +98,8 @@ export function LandingHero({ onOpenChat, onNavigate }: Props) {
           build vertically integrated brain-powered operating systems — Large
           Language Model infrastructure{" "}
           <strong className="font-bold text-flare">shaped to your operation</strong>
-          , not an enterprise software platform your company needs to adapt to.
+          , not a &ldquo;one size fit all&rdquo; enterprise software solution you
+          need to adapt to.
         </p>
 
         <div data-hero-ctas className="flex flex-col sm:flex-row gap-3">
