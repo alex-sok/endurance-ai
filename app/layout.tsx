@@ -9,7 +9,7 @@ import "./globals.css";
 const SITE_URL = "https://endurancelabs.ai";
 const TITLE = "Endurance AI Labs — Custom AI Infrastructure for Large Industries";
 const DESCRIPTION =
-  "We build the AI infrastructure large, regulated organizations run on — designed around how your business operates, not a one-size platform. Embedded senior operators. Shipped in production.";
+  "An AI research and development company in Silicon Valley. We build brain-powered operating systems and micro-SaaS products end to end — Large Language Model infrastructure shaped to your operation, not a one-size-fits-all enterprise platform you have to adapt to.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -25,20 +25,13 @@ export const metadata: Metadata = {
     siteName: "Endurance AI Labs",
     type: "website",
     locale: "en_US",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Endurance AI Labs — Custom AI Infrastructure for Large Industries",
-      },
-    ],
+    // Card image comes from app/opengraph-image.tsx, so each deployment emits
+    // its own absolute URL instead of inheriting production's.
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
