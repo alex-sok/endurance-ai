@@ -81,6 +81,12 @@ const nextConfig: NextConfig = {
       // /logistics/new -> /logistics/new/ client-side so its relative assets resolve.
       { source: "/logistics/new", destination: "https://endurance-ai-labs.github.io/endurance-logistics/index.html" },
       { source: "/logistics/new/:path*", destination: "https://endurance-ai-labs.github.io/endurance-logistics/:path*" },
+      // Yates Construction operations-portal demo (GitHub Pages) at endurancelabs.ai/yates
+      // via a reverse-proxy rewrite. The static app hardcodes all internal URLs under
+      // /yates/, which matches the GitHub Pages repo-name prefix — so assets and links
+      // resolve identically on github.io and behind this proxy. Fictional demo data.
+      { source: "/yates", destination: "https://endurance-ai-labs.github.io/yates/index.html" },
+      { source: "/yates/:path*", destination: "https://endurance-ai-labs.github.io/yates/:path*" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
