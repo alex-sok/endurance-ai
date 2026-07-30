@@ -36,7 +36,7 @@ export default async function Image() {
       y: rand() * 630,
       d: 2 + r * 7,
       // Muted steel through signal blue, matching the resolved field.
-      color: r > 0.72 ? "#4a86f7" : r > 0.5 ? "#7fa9ff" : "#93a3c0",
+      color: r > 0.72 ? "#f7f7f4" : r > 0.5 ? "#cdcdc9" : "#7a7974",
       o: 0.08 + rand() * 0.5,
     };
   });
@@ -50,7 +50,7 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          background: "#0a1120",
+          background: "#0a0a08",
           position: "relative",
         }}
       >
@@ -76,7 +76,7 @@ export default async function Image() {
             position: "absolute",
             inset: 0,
             boxShadow:
-              "inset 0 0 170px rgba(74,134,247,0.16), inset 0 0 60px rgba(127,169,255,0.08)",
+              "inset 0 0 170px rgba(244,243,238,0.08), inset 0 0 60px rgba(244,243,238,0.05)",
           }}
         />
 
@@ -102,7 +102,7 @@ export default async function Image() {
               marginTop: 44,
               fontSize: 35,
               lineHeight: 1.25,
-              color: "#f4f6fa",
+              color: "#f7f7f4",
               letterSpacing: "-0.015em",
               whiteSpace: "nowrap",
             }}

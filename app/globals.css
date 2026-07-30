@@ -38,33 +38,31 @@
   --color-muted-ash: var(--muted-ash);
   --color-signal:    var(--signal);
   --color-subtle:    var(--steel-300);   /* #cdcdc9 — placeholder, faint borders */
-  --color-flare:     var(--flare);       /* Margins blue — signal accent on the dark landing */
-  --color-amber:     var(--amber);       /* Margins Terminal warm accent */
+  --color-flare:     var(--flare);       /* ember signal accent on the dark landing */
 }
 
 :root {
   /* ── Cursor-inspired design tokens ──────────────────────────────────────── */
 
-  /* Core palette — Margins (endurancelabs.ai/margins) */
-  --ink:        #1b2230;   /* Margins ink — desaturated navy, primary text */
-  --surface:    #e6e8ec;   /* Margins hairline/surface — elevated surfaces, hovers */
-  --bone:       #f4f6fa;   /* Margins Terminal bone — cool near-white */
-  --muted-ash:  #5b6472;   /* Margins muted — secondary text, icons */
-  --signal:     #2766d6;   /* Margins action blue — interactive accent */
-  --flare:      #4a86f7;   /* Margins Terminal blue — landing page signal accent */
-  --amber:      #c7a76c;   /* Margins Terminal amber — warm secondary accent */
-  --rust:       #b1503f;   /* Margins bad — muted, earthy */
+  /* Core palette */
+  --ink:        #262510;   /* inkwell — primary text, strong borders */
+  --surface:    #e6e5e0;   /* pebble gray — elevated surfaces, hovers */
+  --bone:       #f7f7f4;   /* canvas parchment — page + card backgrounds */
+  --muted-ash:  #7a7974;   /* muted stone — secondary text, icons */
+  --signal:     #7c3aed;   /* violet — outlined interactive accent */
+  --flare:      #f54e00;   /* ember orange — landing page signal accent */
+  --rust:       #dc2626;
 
-  /* Surface scale — Margins light foundation */
+  /* Surface scale */
   --steel-50:   #ffffff;
-  --steel-100:  #f7f8fa;
-  --steel-200:  #eef1f5;
-  --steel-300:  #d4d8df;
-  --steel-400:  #97a0ad;
-  --steel-500:  #5b6472;
-  --steel-600:  #d4d8df;
-  --steel-700:  #e6e8ec;
-  --steel-800:  #eef1f5;
+  --steel-100:  #f7f7f4;
+  --steel-200:  #e6e5e0;
+  --steel-300:  #cdcdc9;
+  --steel-400:  #7a7974;
+  --steel-500:  #7a7974;
+  --steel-600:  #cdcdc9;
+  --steel-700:  #e6e5e0;
+  --steel-800:  #f0f0ed;
 
   /* Semantic */
   --background:   var(--bone);
@@ -90,10 +88,10 @@
   --ring:               var(--signal);
   --radius:             4px;
 
-  /* Typography — Margins system stacks (no webfonts) */
-  --font-figtree:   ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-jetbrains: ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', Menlo, Consolas, monospace;
-  --font-instrument: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* Typography */
+  --font-figtree:   'Lato', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-jetbrains: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-instrument: ui-serif, Georgia, serif;
 
   /* Shadows */
   --shadow-xl:     rgba(0,0,0,0.14) 0px 28px 70px 0px, rgba(0,0,0,0.1) 0px 14px 32px 0px, rgba(0,0,0,0.08) 0px 0px 0px 1px;
@@ -136,31 +134,16 @@
 
 /* ── Landing (dark expedition theme) ──────────────────────────────────────── */
 
-/* Display type — Margins: heavy system sans, hierarchy from weight + tracking.
-   Italic <em> in headlines becomes a lighter, muted tone instead of a serif
-   italic, since the system stack has no editorial italic worth using. */
+/* Instrument Serif display type */
 .font-display {
-  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.022em;
-}
-.font-display em {
-  font-style: normal;
-  font-weight: 800;
-  color: var(--flare);
+  font-family: var(--font-display), "Instrument Serif", Georgia, serif;
+  font-weight: 400;
 }
 
-/* Tailwind's `italic` on display type would make the browser synthesise a
-   sheared oblique from the system sans, which looks crude at weight 800.
-   Drop the slant and let each element's own colour carry the emphasis. */
-.font-display.italic {
-  font-style: normal;
-}
-
-/* Blue selection inside the dark landing only */
+/* Ember selection inside the dark landing only */
 .theme-abyss ::selection {
   background: var(--flare);
-  color: #0a1120;
+  color: #0a0a08;
 }
 
 /* Credibility ticker */

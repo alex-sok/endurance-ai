@@ -282,7 +282,7 @@ export function LandingProof({ onOpenChat }: Props) {
                         key={s}
                         data-build-chip
                         className="font-mono text-[10px] uppercase tracking-[0.14em] text-bone/60 border px-2 py-1"
-                        style={{ borderColor: "rgba(148,176,230,0.20)", borderRadius: 3 }}
+                        style={{ borderColor: "rgba(244,243,238,0.18)", borderRadius: 3 }}
                       >
                         {s}
                       </li>
