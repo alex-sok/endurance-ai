@@ -7,22 +7,22 @@ const FOUNDERS = [
   {
     name: "Alex S.",
     role: "CEO & Co-Founder",
-    bio: "Cisco AI Labs alum. Leads Endurance engagements from strategy through deployment.",
+    bio: "Three-time startup founder and angel investor. Started in AI with Tetration and Cisco in 2018. Chief Product Officer of Prospera, an AI wealth management startup.",
   },
   {
     name: "Nick M.",
     role: "CTO & Co-Founder",
-    bio: "Founding engineer at TALA, acquired by Intuit. Computer Science, Cornell.",
+    bio: "Computer Science, Cornell. Three-time startup founder — exited his last, Tala, to Intuit.",
   },
   {
     name: "Ramzy A.",
     role: "COO & CFO, Co-Founder",
-    bio: "Deep institutional private equity, real estate and capital markets background. Leads operations and finance. Haas School of Business, UC Berkeley.",
+    bio: "UC Berkeley. Wells Fargo, then Principal for a real estate investment group. Leads operations, finance and AI strategy.",
   },
   {
     name: "Brennan B.",
     role: "CMO & Co-Founder",
-    bio: "Senior growth marketing, communications and strategy leader, shaped by financial services and business journalism. Indiana University.",
+    bio: "Indiana University. VP of Communications for Cambridge Bank. Leads marketing, client success and partnerships.",
   },
 ];
 
