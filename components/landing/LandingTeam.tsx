@@ -16,8 +16,8 @@ const FOUNDERS = [
   },
   {
     name: "Ramzy A.",
-    role: "COO & CFO, Co-Founder",
-    bio: "UC Berkeley. Wells Fargo, then Principal for a real estate investment group. Leads operations, finance and AI strategy.",
+    role: "COO & Co-Founder",
+    bio: "UC Berkeley Haas School of Business. Wells Fargo, then Principal for a real estate investment group. Leads operations, finance and AI strategy.",
   },
   {
     name: "Brennan B.",

@@ -52,8 +52,8 @@ Alex is a three-time startup founder and angel investor. He started in AI with T
 **Nick M., CTO & Co-Founder**
 Nick leads our AI initiatives and client projects. He studied Computer Science at Cornell and is a three-time startup founder, having exited his last company, Tala, to Intuit.
 
-**Ramzy A., COO & CFO, Co-Founder**
-Ramzy studied at UC Berkeley and worked at Wells Fargo before serving as Principal for a real estate investment group. He leads our operations, finance and AI strategy.
+**Ramzy A., COO & Co-Founder**
+Ramzy studied at the UC Berkeley Haas School of Business and worked at Wells Fargo before serving as Principal for a real estate investment group. He leads our operations, finance and AI strategy.
 
 **Brennan B., CMO & Co-Founder**
 Brennan went to Indiana University and was VP of Communications for Cambridge Bank. He leads our marketing, client success and partnerships.
