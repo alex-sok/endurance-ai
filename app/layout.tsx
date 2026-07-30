@@ -60,7 +60,7 @@ export default function RootLayout({
     founder: [
       { "@type": "Person", name: "Alex S.", jobTitle: "CEO & Co-Founder" },
       { "@type": "Person", name: "Nick M.", jobTitle: "CTO & Co-Founder" },
-      { "@type": "Person", name: "Ramzy A.", jobTitle: "COO & CFO, Co-Founder" },
+      { "@type": "Person", name: "Ramzy A.", jobTitle: "COO & Co-Founder" },
       { "@type": "Person", name: "Brennan B.", jobTitle: "CMO & Co-Founder" },
     ],
     knowsAbout: [
