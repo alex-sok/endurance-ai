@@ -148,7 +148,7 @@ export function LandingBrain() {
         {/* Design principles */}
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 mt-16 md:mt-20">
           {PRINCIPLES.map((p) => (
-            <div key={p.title} data-principle className="border-t pt-6" style={{ borderColor: "rgba(148,176,230,0.20)" }}>
+            <div key={p.title} data-principle className="border-t pt-6" style={{ borderColor: "rgba(244,243,238,0.18)" }}>
               <h3 className="font-display text-bone text-lg md:text-xl mb-2">{p.title}</h3>
               <p className="text-sm leading-relaxed text-bone/65 max-w-md">{p.body}</p>
             </div>

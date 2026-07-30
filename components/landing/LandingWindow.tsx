@@ -99,7 +99,7 @@ export function LandingWindow() {
 
           <div className="lg:col-span-5 flex flex-col gap-px bg-bone/10 border border-bone/10">
             {STATS.map((stat) => (
-              <div key={stat.label} className="bg-[#0a1120] p-8 md:p-10">
+              <div key={stat.label} className="bg-[#0a0a08] p-8 md:p-10">
                 <p
                   data-stat-figure
                   data-value={stat.value}

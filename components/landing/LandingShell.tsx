@@ -23,8 +23,8 @@ import { LandingCTA } from "./LandingCTA";
 import { ChatOverlay } from "./ChatOverlay";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 
-const ManifoldCanvas = dynamic(
-  () => import("./ManifoldCanvas").then((m) => m.ManifoldCanvas),
+const TerrainCanvas = dynamic(
+  () => import("./TerrainCanvas").then((m) => m.TerrainCanvas),
   { ssr: false }
 );
 
@@ -174,15 +174,15 @@ export function LandingShell() {
   // Middle sections are translucent rather than solid, so the manifold stays
   // visible the whole way down the page. The tint is heavy enough to keep body
   // copy and the dense capability chips legible over a moving field.
-  const solid = "relative bg-[#0a1120]/62";
+  const solid = "relative bg-[#0a0a08]";
 
   return (
-    <div className="theme-abyss relative bg-[#0a1120] text-bone min-h-svh overflow-x-clip">
-      <ManifoldCanvas />
+    <div className="theme-abyss relative bg-[#0a0a08] text-bone min-h-svh overflow-x-clip">
+      <TerrainCanvas />
 
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-bone focus:text-[#0a1120] focus:text-sm"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-bone focus:text-[#0a0a08] focus:text-sm"
       >
         Skip to content
       </a>
@@ -258,7 +258,7 @@ export function LandingShell() {
         className="fixed inset-0 z-[60] pointer-events-none"
         style={{
           boxShadow:
-            "inset 0 0 170px rgba(74,134,247,0.13), inset 0 0 55px rgba(127,169,255,0.07), inset 0 0 2px rgba(148,176,230,0.14)",
+            "inset 0 0 170px rgba(244,243,238,0.07), inset 0 0 55px rgba(244,243,238,0.04), inset 0 0 2px rgba(244,243,238,0.10)",
         }}
       />
 
