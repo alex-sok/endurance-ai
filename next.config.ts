@@ -81,6 +81,14 @@ const nextConfig: NextConfig = {
       // /logistics/new -> /logistics/new/ client-side so its relative assets resolve.
       { source: "/logistics/new", destination: "https://endurance-ai-labs.github.io/endurance-logistics/index.html" },
       { source: "/logistics/new/:path*", destination: "https://endurance-ai-labs.github.io/endurance-logistics/:path*" },
+      // Whitmore Vance LLP — law firm operating-system demo (GitHub Pages) at
+      // endurancelabs.ai/law via a reverse-proxy rewrite. Unlike the CFP Portal
+      // (see redirects below), this one proxies cleanly: every asset and route in
+      // the portal is written under the "/law" prefix, so nothing resolves to a
+      // root-absolute path that would 404 under the subpath. The GitHub Pages
+      // project path is also /law, so the two spaces line up exactly.
+      { source: "/law", destination: "https://endurance-ai-labs.github.io/law/index.html" },
+      { source: "/law/:path*", destination: "https://endurance-ai-labs.github.io/law/:path*" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
