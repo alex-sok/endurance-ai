@@ -87,8 +87,16 @@ const nextConfig: NextConfig = {
       // the portal is written under the "/law" prefix, so nothing resolves to a
       // root-absolute path that would 404 under the subpath. The GitHub Pages
       // project path is also /law, so the two spaces line up exactly.
+      // Order matters. GitHub Pages answers a directory request that has no
+      // trailing slash with a 301 to the slashed form, and a proxy passes that
+      // redirect straight through — which would bounce the visitor off this
+      // domain onto github.io. So directories are rewritten to their index.html
+      // explicitly and never round-trip through that redirect. Assets are
+      // matched first by their file extension and passed through untouched.
       { source: "/law", destination: "https://endurance-ai-labs.github.io/law/index.html" },
-      { source: "/law/:path*", destination: "https://endurance-ai-labs.github.io/law/:path*" },
+      { source: "/law/", destination: "https://endurance-ai-labs.github.io/law/index.html" },
+      { source: "/law/:file(.*\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/law/:file" },
+      { source: "/law/:path*", destination: "https://endurance-ai-labs.github.io/law/:path*/index.html" },
       // Hospitality operating system (multi-unit restaurant group portal, hosted on
       // GitHub Pages) at endurancelabs.ai/hospitality. Same clean-proxy pattern as
       // /law: every asset and route is written under the "/hospitality" prefix, and
