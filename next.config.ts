@@ -89,6 +89,13 @@ const nextConfig: NextConfig = {
       // project path is also /law, so the two spaces line up exactly.
       { source: "/law", destination: "https://endurance-ai-labs.github.io/law/index.html" },
       { source: "/law/:path*", destination: "https://endurance-ai-labs.github.io/law/:path*" },
+      // Hospitality operating system (multi-unit restaurant group portal, hosted on
+      // GitHub Pages) at endurancelabs.ai/hospitality. Same clean-proxy pattern as
+      // /law: every asset and route is written under the "/hospitality" prefix, and
+      // the GitHub Pages project path is also /hospitality, so the two spaces line
+      // up exactly and nothing resolves to a root-absolute path that would 404.
+      { source: "/hospitality", destination: "https://endurance-ai-labs.github.io/hospitality/index.html" },
+      { source: "/hospitality/:path*", destination: "https://endurance-ai-labs.github.io/hospitality/:path*" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
