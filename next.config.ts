@@ -95,7 +95,8 @@ const nextConfig: NextConfig = {
       // matched first by their file extension and passed through untouched.
       { source: "/law", destination: "https://endurance-ai-labs.github.io/law/index.html" },
       { source: "/law/", destination: "https://endurance-ai-labs.github.io/law/index.html" },
-      { source: "/law/:file(.*\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/law/:file" },
+      { source: "/law/:file(.*\\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/law/:file" },
+      { source: "/law/:path*/", destination: "https://endurance-ai-labs.github.io/law/:path*/index.html" },
       { source: "/law/:path*", destination: "https://endurance-ai-labs.github.io/law/:path*/index.html" },
       // Hospitality operating system (multi-unit restaurant group portal, hosted on
       // GitHub Pages) at endurancelabs.ai/hospitality. Same clean-proxy pattern as
