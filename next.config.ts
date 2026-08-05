@@ -105,6 +105,18 @@ const nextConfig: NextConfig = {
       // up exactly and nothing resolves to a root-absolute path that would 404.
       { source: "/hospitality", destination: "https://endurance-ai-labs.github.io/hospitality/index.html" },
       { source: "/hospitality/:path*", destination: "https://endurance-ai-labs.github.io/hospitality/:path*" },
+      // McCorvey Sheet Metal — Brain Powered operations portal demo (GitHub Pages)
+      // at endurancelabs.ai/mccorvey. Same /law-style proxy: every asset and route
+      // is written under the "/mccorvey" prefix and the GitHub Pages project path
+      // is also /mccorvey, so the two spaces line up exactly. Directory routes
+      // (/mccorvey/bidreview/, /mccorvey/jobs/job/, …) are rewritten straight to
+      // their index.html so GitHub's trailing-slash 301 never bounces the visitor
+      // off this domain; files are matched first by extension and passed through.
+      { source: "/mccorvey", destination: "https://endurance-ai-labs.github.io/mccorvey/index.html" },
+      { source: "/mccorvey/", destination: "https://endurance-ai-labs.github.io/mccorvey/index.html" },
+      { source: "/mccorvey/:file(.*\\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/mccorvey/:file" },
+      { source: "/mccorvey/:path*/", destination: "https://endurance-ai-labs.github.io/mccorvey/:path*/index.html" },
+      { source: "/mccorvey/:path*", destination: "https://endurance-ai-labs.github.io/mccorvey/:path*/index.html" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
