@@ -38,55 +38,35 @@ export function EmailCapture() {
 
   if (submitted) {
     return (
-      <div
-        className="px-6 py-5 max-w-sm border border-bone/40"
-        style={{ borderRadius: 4 }}
-      >
-        <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-flare mb-2">
-          Got it.
-        </p>
-        <p className="text-sm text-bone/70 leading-relaxed">
-          We’ll be in touch. If your initiative is urgent, book a briefing
-          directly.
-        </p>
+      <div className="lp-form">
+        <p>Got it. We will be in touch. If the work is urgent, book a call.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-sm">
-      <p className="text-sm text-bone/65 mb-5 leading-relaxed">
-        Not ready to book? Leave your email and we’ll reach out when the timing
-        is right.
-      </p>
-
-      <div className="space-y-3">
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full bg-transparent border-b border-bone/40 px-0 py-2.5 text-sm text-bone placeholder:text-bone/55 focus:outline-none focus:border-flare transition-colors duration-200"
-        />
-        <input
-          type="email"
-          placeholder="Email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="w-full bg-transparent border-b border-bone/40 px-0 py-2.5 text-sm text-bone placeholder:text-bone/55 focus:outline-none focus:border-flare transition-colors duration-200"
-        />
-      </div>
-
-      {error && <p className="text-xs text-flare mt-3">{error}</p>}
-
+    <form onSubmit={handleSubmit} className="lp-form">
+      <p>Not ready to talk? Leave a note and we will follow up.</p>
+      <input
+        type="text"
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        type="email"
+        placeholder="Email address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      {error ? <p className="lp-form-error">{error}</p> : null}
       <button
         type="submit"
+        className="lp-btn lp-btn-line"
         disabled={loading || !email.trim()}
-        className="mt-6 px-4 py-2.5 text-[11px] uppercase tracking-[0.18em] font-mono text-bone/75 border border-bone/40 hover:text-bone hover:border-bone/70 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-flare"
-        style={{ borderRadius: 4 }}
       >
-        {loading ? "Sending…" : "Stay in touch →"}
+        {loading ? "Sending…" : "Stay in touch"}
       </button>
     </form>
   );

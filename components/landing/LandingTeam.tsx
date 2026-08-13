@@ -1,116 +1,45 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
-
 const FOUNDERS = [
   {
-    name: "Alex S.",
-    role: "CEO & Co-Founder",
-    bio: "Three-time startup founder and angel investor. Started in AI with Tetration and Cisco in 2018. Chief Product Officer of Prospera, an AI wealth management startup.",
+    name: "Nick Maxwell",
+    role: "CTO",
+    bio: "Computer Science, Cornell. Three-time founder. Exited Tala to Intuit.",
   },
   {
-    name: "Nick M.",
-    role: "CTO & Co-Founder",
-    bio: "Computer Science, Cornell. Three-time startup founder — exited his last, Tala, to Intuit.",
+    name: "Alex Sok",
+    role: "CEO",
+    bio: "Three-time founder and angel investor. Started in AI at Tetration and Cisco in 2018. Chief Product Officer at Prospera, an AI wealth-management startup.",
   },
   {
-    name: "Ramzy A.",
-    role: "COO & Co-Founder",
-    bio: "UC Berkeley Haas School of Business. Wells Fargo, then Principal for a real estate investment group. Leads operations, finance and AI strategy.",
+    name: "Ramzy Azar",
+    role: "Chief AI Strategy & Ops",
+    bio: "UC Berkeley. Wells Fargo, then principal at a real estate investment group. Leads operations, finance, and AI strategy.",
   },
   {
-    name: "Brennan B.",
-    role: "CMO & Co-Founder",
-    bio: "Indiana University. VP of Communications for Cambridge Bank. Leads marketing, client success and partnerships.",
+    name: "Brennan Burks",
+    role: "Chief GTM Engineer",
+    bio: "Indiana University. Brand, marketing, and commercialization for multinational manufacturers and B2B technology startups. Leads marketing, GTM, and client partnerships.",
   },
 ];
 
 export function LandingTeam() {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from("[data-team-header]", {
-          autoAlpha: 0,
-          y: 24,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: { trigger: "[data-team-header]", start: "top 85%" },
-        });
-
-        gsap.utils.toArray<HTMLElement>("[data-team-row]").forEach((row, i) => {
-          gsap.from(row, {
-            autoAlpha: 0,
-            y: 24,
-            duration: 0.8,
-            delay: i * 0.08,
-            ease: "power3.out",
-            scrollTrigger: { trigger: row, start: "top 90%" },
-          });
-        });
-
-        gsap.from("[data-team-closing]", {
-          autoAlpha: 0,
-          duration: 1,
-          scrollTrigger: { trigger: "[data-team-closing]", start: "top 92%" },
-        });
-      });
-    }, ref);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={ref} className="py-28 md:py-40" aria-label="The team">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10">
-        <div data-team-header className="mb-16 md:mb-20 max-w-3xl">
-          <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-bone/60 mb-8">
-            The Team
-          </p>
-          <h2
-            className="font-display text-bone mb-8"
-            style={{ fontSize: "clamp(2rem, 4.4vw, 3.8rem)", lineHeight: 1.06 }}
-          >
-            Built by <em>operators.</em>
-          </h2>
-          <p className="text-[15px] leading-relaxed text-bone/70">
-            AI engineering, enterprise architecture, and operational execution
-            in regulated environments.
-          </p>
-        </div>
-
-        <div>
-          <span className="block h-px w-full bg-bone/10" />
+    <section className="lp-on-light" id="team" aria-label="The team">
+      <div className="lp-section">
+        <p className="lp-kicker">The team</p>
+        <h2 className="lp-h2">Built by people who ship.</h2>
+        <p className="lp-lede">
+          Research, engineering, and the operating reality of the industries we
+          build for. Small on purpose.
+        </p>
+        <div className="lp-team">
           {FOUNDERS.map((f) => (
-            <div key={f.name}>
-              <div
-                data-team-row
-                className="grid md:grid-cols-12 gap-y-2 md:gap-x-10 py-9 md:py-11 group"
-              >
-                <h3 className="md:col-span-4 font-display text-bone text-3xl md:text-4xl transition-transform duration-300 md:group-hover:translate-x-2">
-                  {f.name}
-                </h3>
-                <p className="md:col-span-3 font-mono text-[11px] uppercase tracking-[0.2em] text-flare pt-2.5">
-                  {f.role}
-                </p>
-                <p className="md:col-span-5 text-sm leading-relaxed text-bone/65 pt-1">{f.bio}</p>
-              </div>
-              <span className="block h-px w-full bg-bone/10" />
+            <div key={f.name} className="lp-team-row">
+              <h3>{f.name}</h3>
+              <p className="lp-role">{f.role}</p>
+              <p className="lp-bio">{f.bio}</p>
             </div>
           ))}
         </div>
-
-        <p
-          data-team-closing
-          className="font-display italic text-bone/70 mt-16 max-w-2xl"
-          style={{ fontSize: "clamp(1.3rem, 2.4vw, 1.9rem)", lineHeight: 1.3 }}
-        >
-          We are operators. Built for initiatives too important to drift.
-        </p>
       </div>
     </section>
   );

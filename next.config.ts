@@ -36,6 +36,11 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Home dir has a stray package-lock.json; pin Turbopack to this app so
+  // tailwindcss resolves from endurance-ai/node_modules, not ~/ .
+  turbopack: {
+    root: __dirname,
+  },
   // Serve proxied static demos under a trailing-slash subpath (e.g. /remi/) without
   // Next auto-stripping the slash — required so the demo's relative asset paths
   // (external styles.css, console.html) resolve under the subpath instead of root.

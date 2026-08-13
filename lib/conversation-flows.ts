@@ -61,13 +61,13 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "home",
     title: "Welcome",
     message:
-      "Hi, I'm Grace, AI advisor for Endurance AI Labs. Brief us on a critical initiative, explore what we do, or learn how we work.",
+      "Hi, I'm Grace, AI advisor for Endurance AI Labs. Tell us about the work, ask what we ship, or talk to the team.",
     promptChips: [
-      { id: "home-1", label: "Brief us on a mission", nextNodeId: "mission-start" },
+      { id: "home-1", label: "Tell us about the work", nextNodeId: "mission-start" },
       { id: "home-2", label: "What does Endurance do?", nextNodeId: "what-we-do" },
       { id: "home-3", label: "Who are you?", nextNodeId: "who-we-are" },
       { id: "home-4", label: "How do you work?", nextNodeId: "how-we-work" },
-      { id: "home-5", label: "Who do you help?", nextNodeId: "who-we-help" },
+      { id: "home-5", label: "What have you shipped?", nextNodeId: "who-we-help" },
       { id: "home-6", label: "I need support", nextNodeId: "support" },
       { id: "home-7", label: "Talk to the team", nextNodeId: "contact" },
     ],
@@ -78,16 +78,16 @@ export const conversationFlows: Record<string, ChatNode> = {
     id: "mission-start",
     route: "mission_intake",
     title: "Mission Intake",
-    message: "Let's start with the mission. What are you trying to accomplish?",
+    message: "Let's start with the work. What are you trying to accomplish?",
     allowFreeText: true,
     captureKey: "mission",
     nextNodeId: "mission-obstacle",
     promptChips: [
-      { id: "ms-1", label: "Launch an AI initiative" },
-      { id: "ms-2", label: "Automate a broken workflow" },
-      { id: "ms-3", label: "Rescue a stalled initiative" },
-      { id: "ms-4", label: "Build internal AI capability" },
-      { id: "ms-5", label: "Make sense of our AI roadmap" },
+      { id: "ms-1", label: "See if Brain fits our firm" },
+      { id: "ms-2", label: "A vertical system for our operation" },
+      { id: "ms-3", label: "Freight / logistics software" },
+      { id: "ms-4", label: "Something custom we cannot buy" },
+      { id: "ms-5", label: "Not sure yet. Help us think." },
     ],
   },
 
@@ -173,7 +173,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     id: "mission-summary",
     route: "mission_intake",
     message:
-      "Based on what you've shared, this looks less like a tooling problem and more like an execution problem. The likely path is a focused diagnostic, rapid prioritization, and a deployment around your highest-friction constraint.",
+      "Based on what you've shared, the next step is a close reading of the operation, then a decision: a product we already ship, or a vertical system built around how you run.",
     promptChips: [
       { id: "msum-1", label: "How would Endurance approach this?", nextNodeId: "mission-approach" },
       { id: "msum-2", label: "Are we a fit?", nextNodeId: "mission-fit" },
@@ -181,7 +181,7 @@ export const conversationFlows: Record<string, ChatNode> = {
       { id: "msum-4", label: "Talk to the team", nextNodeId: "contact" },
     ],
     cta: [
-      { label: "Schedule a mission briefing", action: "link", value: CALENDLY_URL },
+      { label: "Book a call", action: "link", value: CALENDLY_URL },
       { label: "Email the team", action: "email", value: CONTACT_EMAIL },
       { label: "Start over", action: "reset", value: "home" },
     ],
@@ -191,7 +191,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     id: "mission-approach",
     route: "mission_intake",
     message:
-      "We would usually begin with strategic recon to understand the real constraints, define the mission clearly, and sequence the work around the highest-leverage opportunity. From there, we move into a focused deployment designed to produce visible operational progress quickly.",
+      "We start in the operation. We study how the work actually runs, then we design the system and ship production software. Products where the pattern repeats. A custom vertical system where it does not.",
     promptChips: [
       { id: "map-1", label: "What would phase one look like?", nextNodeId: "mission-phase-one" },
       { id: "map-2", label: "How do you work?", nextNodeId: "how-we-work" },
@@ -214,7 +214,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     id: "mission-phase-one",
     route: "mission_intake",
     message:
-      "Phase one is usually strategic recon. We look at the goals, systems, constraints, prior attempts, and where leverage exists. The output is not a vague deck. It is a sharper understanding of what matters, what is in the way, and what the first serious move should be.",
+      "Phase one is field research. We look at the goals, systems, constraints, prior attempts, and where the work actually lives. The output is not a deck. It is a clear read of what to build first.",
     promptChips: [
       { id: "mp1-1", label: "How do you work?", nextNodeId: "how-we-work" },
       { id: "mp1-2", label: "Talk to the team", nextNodeId: "contact" },
@@ -227,13 +227,13 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "what_we_do",
     title: "What We Do",
     message:
-      "Endurance AI Labs helps leaders execute critical AI initiatives that cannot afford drag, bureaucracy, or failure. We work as a small senior team across strategy, architecture, automation, and internal capability building.",
+      "Endurance is a research and engineering lab. We study how a specific industry actually runs, then we write the vertical software for that work. Some of that is a product. Some of it is a system built around one operation.",
     promptChips: [
       { id: "wwd-1", label: "Show capabilities", nextNodeId: "capabilities" },
       { id: "wwd-2", label: "How are you different?", nextNodeId: "difference" },
       { id: "wwd-3", label: "How do you work?", nextNodeId: "how-we-work" },
-      { id: "wwd-4", label: "Who do you help?", nextNodeId: "who-we-help" },
-      { id: "wwd-5", label: "Brief us on a mission", nextNodeId: "mission-start" },
+      { id: "wwd-4", label: "What have you shipped?", nextNodeId: "who-we-help" },
+      { id: "wwd-5", label: "Tell us about the work", nextNodeId: "mission-start" },
     ],
   },
 
@@ -242,7 +242,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "what_we_do",
     title: "Capabilities",
     message:
-      "Our work usually falls into five areas: AI strategy and leadership, workflow automation, architecture and operating layer design, internal capability building, and initiative recovery. The through-line is execution. We help leadership move important work from ambition into operation.",
+      "Three disciplines: research, engineering, and vertical software. Products include Endurance Brain (institutional memory that cites its sources) and Endurance Logistics (freight, tender to cash). We also build custom systems for construction, capital markets, legal, and commissions-heavy businesses.",
     promptChips: [
       { id: "cap-1", label: "How are you different?", nextNodeId: "difference" },
       { id: "cap-2", label: "How do you work?", nextNodeId: "how-we-work" },
@@ -255,7 +255,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "who_we_are",
     title: "Who We Are",
     message:
-      "Endurance AI Labs is built by operators. Our background spans AI engineering, data architecture, product design, enterprise systems, and execution inside complex environments. We are not a deck-first consulting firm. We are a small senior team built for important work.",
+      "Endurance is a small research and engineering lab. Our background spans AI engineering, data architecture, product design, and the operating reality of the industries we build for. We are not a deck-first consulting firm.",
     promptChips: [
       { id: "wwa-1", label: "What makes you different?", nextNodeId: "difference" },
       { id: "wwa-2", label: "How do you work?", nextNodeId: "how-we-work" },
@@ -269,22 +269,22 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "how_we_work",
     title: "How We Work",
     message:
-      "We work in five phases: strategic recon, mission definition, rapid deployment, embedding, and capability transfer. The goal is not to run a vague AI program. The goal is to produce real outcomes and leave the organization stronger than we found it.",
+      "Three steps. Study the operation. Design the system. Ship it and leave it running. The goal is production software your team owns, not a program that needs us forever.",
     promptChips: [
-      { id: "hww-1", label: "Walk me through the five phases", nextNodeId: "five-phases" },
-      { id: "hww-2", label: "What happens in phase one?", nextNodeId: "mission-phase-one" },
+      { id: "hww-1", label: "Walk me through the method", nextNodeId: "five-phases" },
+      { id: "hww-2", label: "What happens first?", nextNodeId: "mission-phase-one" },
       { id: "hww-3", label: "How long does this usually take?", nextNodeId: "timelines-topic" },
-      { id: "hww-4", label: "How do you avoid consultant bloat?", nextNodeId: "difference" },
-      { id: "hww-5", label: "Brief us on a mission", nextNodeId: "mission-start" },
+      { id: "hww-4", label: "How are you different from consultants?", nextNodeId: "difference" },
+      { id: "hww-5", label: "Tell us about the work", nextNodeId: "mission-start" },
     ],
   },
 
   "five-phases": {
     id: "five-phases",
     route: "how_we_work",
-    title: "Five Phases",
+    title: "The Method",
     message:
-      "Strategic recon helps us understand the real terrain. Mission definition turns ambiguity into a clear path. Rapid deployment creates visible progress. Embedding makes the system work inside the organization. Capability transfer ensures the client can sustain and extend the work over time.",
+      "Study the operation: sit with the people who run the work. Design the system: architecture, sources of truth, the path from ingest to action. Ship and leave it running: production software, documentation, ownership on your side.",
     promptChips: [
       { id: "fp-1", label: "What happens in phase one?", nextNodeId: "mission-phase-one" },
       { id: "fp-2", label: "Who do you help?", nextNodeId: "who-we-help" },
@@ -297,7 +297,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "who_we_help",
     title: "Who We Help",
     message:
-      "We typically work with four kinds of organizations: professional services firms, mid-market operating companies, venture-backed companies, and larger enterprises pursuing complex transformation efforts.",
+      "We ship Brain, Logistics, and custom vertical systems. The industries we know from the floor: construction, freight, capital markets, legal, multi-unit operations, and commissions-heavy businesses.",
     promptChips: [
       { id: "wwh-1", label: "Do you work with firms like mine?", nextNodeId: "client-segments" },
       { id: "wwh-2", label: "What are you not a fit for?", nextNodeId: "not-fit" },
@@ -313,7 +313,7 @@ export const conversationFlows: Record<string, ChatNode> = {
       "Professional services firms often need workflow leverage and better knowledge systems. Mid-market operating companies are usually dealing with operational friction and disconnected data. Venture-backed companies need to move quickly without making bad architecture decisions. Large enterprises often struggle with stakeholder complexity and slow execution.",
     promptChips: [
       { id: "cs-1", label: "What makes you different?", nextNodeId: "difference" },
-      { id: "cs-2", label: "Brief us on a mission", nextNodeId: "mission-start" },
+      { id: "cs-2", label: "Tell us about the work", nextNodeId: "mission-start" },
       { id: "cs-3", label: "Talk to the team", nextNodeId: "contact" },
     ],
   },
@@ -323,7 +323,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "difference",
     title: "What Makes Us Different",
     message:
-      "Most firms give you one piece of the puzzle. Consultants give advice. Integrators implement tools. Vendors sell software. Endurance combines strategy, architecture, engineering, and execution in one small senior team.",
+      "Consultants leave a recommendation. Horizontal vendors sell one platform to everyone. We research the specific operation and ship software that fits how it already runs.",
     promptChips: [
       { id: "diff-1", label: "Are you a consultancy?", nextNodeId: "difference-detail" },
       { id: "diff-2", label: "What are you not a fit for?", nextNodeId: "not-fit" },
@@ -339,7 +339,7 @@ export const conversationFlows: Record<string, ChatNode> = {
       "We can advise, but we are not built to stop there. We are built for situations where the initiative is too important to drift between departments, too sensitive for bloated teams, or too urgent for traditional transformation pace.",
     promptChips: [
       { id: "dd-1", label: "How do you work?", nextNodeId: "how-we-work" },
-      { id: "dd-2", label: "Brief us on a mission", nextNodeId: "mission-start" },
+      { id: "dd-2", label: "Tell us about the work", nextNodeId: "mission-start" },
       { id: "dd-3", label: "Talk to the team", nextNodeId: "contact" },
     ],
   },
@@ -395,13 +395,13 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "contact",
     title: "Talk to the Team",
     message:
-      "The best next step is a mission briefing. Share a bit about the initiative, or book time directly with the team.",
+      "The best next step is a conversation with the team. Tell us how the work runs, or book time directly.",
     promptChips: [
-      { id: "con-1", label: "Schedule a mission briefing", nextNodeId: "contact-schedule" },
-      { id: "con-2", label: "Brief us first", nextNodeId: "mission-start" },
+      { id: "con-1", label: "Book a call", nextNodeId: "contact-schedule" },
+      { id: "con-2", label: "Tell us about the work first", nextNodeId: "mission-start" },
     ],
     cta: [
-      { label: "Book a briefing →", action: "link", value: CALENDLY_URL },
+      { label: "Book a call →", action: "link", value: CALENDLY_URL },
       { label: "Email the team →", action: "email", value: CONTACT_EMAIL },
     ],
   },
@@ -409,9 +409,9 @@ export const conversationFlows: Record<string, ChatNode> = {
   "contact-schedule": {
     id: "contact-schedule",
     route: "contact",
-    message: `You can book a mission briefing here: ${CALENDLY_URL}`,
+    message: `You can book a call here: ${CALENDLY_URL}`,
     promptChips: [
-      { id: "csch-1", label: "Brief us on a mission", nextNodeId: "mission-start" },
+      { id: "csch-1", label: "Tell us about the work", nextNodeId: "mission-start" },
       { id: "csch-2", label: "Start over", nextNodeId: "home" },
     ],
   },
@@ -501,7 +501,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     message:
       "Pricing depends on the shape of the engagement: diagnostic work, focused deployment, embedded execution, or broader capability building. The right way to think about pricing is in relation to the value of the constraint being removed, the speed required, and the importance of getting the architecture right.",
     promptChips: [
-      { id: "price-1", label: "Brief us on a mission", nextNodeId: "mission-start" },
+      { id: "price-1", label: "Tell us about the work", nextNodeId: "mission-start" },
       { id: "price-2", label: "Talk to the team", nextNodeId: "contact" },
       { id: "price-3", label: "Start over", nextNodeId: "home" },
     ],
@@ -540,7 +540,7 @@ export function generateMissionSummary(data: MissionIntakeData): string {
 
   const greeting = name ? `${name}, based on what you've shared` : "Based on what you've shared";
 
-  return `${greeting}, the mission is ${mission}. The main constraint appears to be ${obstacle}, with ${stakes} at stake if the work does not move. Internally, the effort seems complicated by ${internalChallenges}. This looks less like a simple tooling problem and more like an execution problem. The likely path is a focused diagnostic, sharp prioritization, and a deployment around the highest-friction constraint.`;
+  return `${greeting}, the work is ${mission}. The main constraint appears to be ${obstacle}, with ${stakes} at stake if it does not move. Internally, it seems complicated by ${internalChallenges}. The likely path is a close reading of the operation, then either a product we already ship or a vertical system built around how you run.`;
 }
 
 export function getNextNodeForFreeText(input: string): string {

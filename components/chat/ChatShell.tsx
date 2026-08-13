@@ -392,7 +392,7 @@ export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) 
                   borderRadius: "4px",
                 }}
               >
-                Brief us →
+                Book a call →
               </a>
               <button
                 onClick={() => { fireLeadNotify(state.messages); sendMessage("I'd like to talk to the team.", true); }}
@@ -417,7 +417,7 @@ export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) 
         />
 
         <p className="text-center text-[11px] uppercase" style={{ fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em", color: "#7a7974" }}>
-          Endurance AI Labs · AI transformation, delivered under contract
+          Endurance AI Labs · Research, engineering, vertical software
         </p>
       </div>
     </div>
