@@ -1,15 +1,34 @@
 import type { Metadata } from "next";
+import { Instrument_Serif, Lato, Space_Mono } from "next/font/google";
 import { ApolloTracker } from "@/components/ApolloTracker";
 import "./globals.css";
 
-// Type follows the Margins system: no webfonts at all. The sans and mono
-// stacks resolve to the OS UI faces (see --font-figtree / --font-jetbrains
-// in globals.css), so the page paints instantly with no font swap.
+// Lato — Cursor Lato substitute for body and utility text
+const lato = Lato({
+  subsets: ["latin"],
+  variable: "--font-figtree",
+  weight: ["400", "700"],
+});
+
+// Space Mono — berkeleyMono substitute for code, labels, input text
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
+  weight: ["400", "700"],
+});
+
+// Instrument Serif — display headlines on the landing page
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: "400",
+  style: ["normal", "italic"],
+});
 
 const SITE_URL = "https://endurancelabs.ai";
-const TITLE = "Endurance AI Labs — Custom Deterministic AI Infrastructure";
+const TITLE = "Endurance AI Labs — Research, engineering, vertical software";
 const DESCRIPTION =
-  "An AI research and development company in Silicon Valley. We build brain-powered operating systems and micro-SaaS products end to end — Large Language Model infrastructure shaped to your operation, not a one-size-fits-all enterprise platform you have to adapt to.";
+  "A research and engineering lab that studies how industries actually run, then ships the vertical systems they have been missing.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -25,13 +44,20 @@ export const metadata: Metadata = {
     siteName: "Endurance AI Labs",
     type: "website",
     locale: "en_US",
-    // Card image comes from app/opengraph-image.tsx, so each deployment emits
-    // its own absolute URL instead of inheriting production's.
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Endurance AI Labs — Research, engineering, vertical software",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -51,31 +77,33 @@ export default function RootLayout({
     url: "https://endurancelabs.ai",
     logo: "https://endurancelabs.ai/logo-endurance.svg",
     description:
-      "Custom AI infrastructure builder for large, regulated industries. We build the systems your business runs on — designed around your operation, not a one-size platform — with a small senior team embedded alongside your operators.",
+      "A research and engineering lab that studies how industries actually run, then ships vertical software for that work.",
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@endurancelabs.ai",
       contactType: "customer service",
     },
     founder: [
-      { "@type": "Person", name: "Alex S.", jobTitle: "CEO & Co-Founder" },
-      { "@type": "Person", name: "Nick M.", jobTitle: "CTO & Co-Founder" },
-      { "@type": "Person", name: "Ramzy A.", jobTitle: "COO & Co-Founder" },
-      { "@type": "Person", name: "Brennan B.", jobTitle: "CMO & Co-Founder" },
+      { "@type": "Person", name: "Alex Sok", jobTitle: "CEO" },
+      { "@type": "Person", name: "Nick Maxwell", jobTitle: "CTO" },
+    ],
+    employee: [
+      { "@type": "Person", name: "Ramzy Azar", jobTitle: "Chief AI Strategy & Ops" },
+      { "@type": "Person", name: "Brennan Burks", jobTitle: "Chief GTM Engineer" },
     ],
     knowsAbout: [
-      "AI Strategy",
-      "AI Transformation",
-      "Workflow Automation",
-      "AI Architecture",
-      "Enterprise AI",
-      "AI Execution",
+      "Vertical SaaS",
+      "AI research",
+      "Software engineering",
+      "Institutional knowledge systems",
+      "Logistics software",
+      "Industry operating systems",
     ],
     sameAs: [],
   };
 
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={`${lato.variable} ${spaceMono.variable} ${instrumentSerif.variable} h-full`}>
       <body className="h-full antialiased">
         <ApolloTracker />
         <script

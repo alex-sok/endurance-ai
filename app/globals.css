@@ -140,17 +140,6 @@
   font-weight: 400;
 }
 
-/* Ember selection inside the dark landing only */
-.theme-abyss ::selection {
-  background: var(--flare);
-  color: #0a0a08;
-}
-
-/* Credibility ticker */
-@keyframes ticker {
-  to { transform: translateX(-50%); }
-}
-
 /* ── Lenis smooth scroll ──────────────────────────────────────────────────── */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
