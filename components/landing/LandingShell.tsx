@@ -15,22 +15,10 @@ import { LandingCTA } from "./LandingCTA";
 import { ChatOverlay } from "./ChatOverlay";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 
-const SECTIONS = [
-  "hero",
-  "work",
-  "research",
-  "method",
-  "proof",
-  "team",
-  "faq",
-  "cta",
-] as const;
-
 export function LandingShell() {
   const [chatOpen, setChatOpen] = useState(false);
   const { onSectionEnter, onChatOpen, onCtaClick, getSessionId } = useSiteAnalytics();
 
-  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
   const lenisRef = useRef<Lenis | null>(null);
 
   const openChat = () => {
@@ -52,18 +40,33 @@ export function LandingShell() {
 
     document.fonts?.ready.then(() => ScrollTrigger.refresh()).catch(() => {});
 
-    const parallax = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
+    const deck = gsap.context(() => {
+      const slides = gsap.utils.toArray<HTMLElement>(".lp-slide");
+      slides.forEach((slide, i) => {
+        const next = slides[i + 1];
+        if (!next) return;
+
+        ScrollTrigger.create({
+          trigger: slide,
+          start: "top top",
+          endTrigger: next,
+          end: "top top",
+          pin: true,
+          pinSpacing: false,
+          anticipatePin: 1,
+        });
+
         gsap.fromTo(
-          el,
-          { yPercent: -8 },
+          slide,
+          { autoAlpha: 1, y: 0 },
           {
-            yPercent: 8,
+            autoAlpha: 0,
+            y: -32,
             ease: "none",
             scrollTrigger: {
-              trigger: el.closest("[data-parallax-root]") ?? el.parentElement,
+              trigger: next,
               start: "top bottom",
-              end: "bottom top",
+              end: "top top",
               scrub: true,
             },
           }
@@ -72,7 +75,7 @@ export function LandingShell() {
     });
 
     return () => {
-      parallax.revert();
+      deck.revert();
       gsap.ticker.remove(raf);
       lenis.destroy();
       lenisRef.current = null;
@@ -87,7 +90,7 @@ export function LandingShell() {
   const scrollToId = useCallback((id: string) => {
     const target = document.getElementById(id);
     if (!target) return;
-    if (lenisRef.current) lenisRef.current.scrollTo(target, { offset: -64 });
+    if (lenisRef.current) lenisRef.current.scrollTo(target, { offset: 0 });
     else target.scrollIntoView({ behavior: "smooth" });
   }, []);
 
@@ -104,22 +107,16 @@ export function LandingShell() {
       { threshold: 0.4 }
     );
 
-    for (const slug of SECTIONS) {
-      const el = sectionRefs.current[slug];
-      if (el) observer.observe(el);
-    }
+    document.querySelectorAll<HTMLElement>("[data-section]").forEach((el) => {
+      observer.observe(el);
+    });
 
     return () => observer.disconnect();
   }, [onSectionEnter]);
 
-  function sectionRef(slug: string) {
-    return (el: HTMLElement | null) => {
-      sectionRefs.current[slug] = el;
-    };
-  }
-
   return (
-    <div className="theme-paper relative min-h-svh overflow-x-clip">
+    <div className="theme-paper relative min-h-svh">
+      <div className="lp-canvas" aria-hidden="true" />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--lp-ink)] focus:text-[var(--lp-paper)] focus:text-sm"
@@ -129,31 +126,27 @@ export function LandingShell() {
 
       <LandingNav onOpenChat={openChat} onNavigate={scrollToId} onCtaClick={onCtaClick} />
 
-      <main id="main-content" className="relative">
-        <div ref={sectionRef("hero")} data-section="hero">
+      <main id="main-content" className="lp-deck">
+        <div className="lp-slide" data-section="hero">
           <LandingHero onOpenChat={openChat} onNavigate={scrollToId} />
         </div>
-        <div ref={sectionRef("work")} data-section="work">
-          <LandingProducts onNavigate={scrollToId} />
-        </div>
-        <div ref={sectionRef("research")} data-section="research">
+        <LandingProducts onNavigate={scrollToId} />
+        <div className="lp-slide" data-section="research" id="research">
           <LandingRoots />
         </div>
-        <div ref={sectionRef("method")} data-section="method">
+        <div className="lp-slide" data-section="method" id="method">
           <LandingMethod />
         </div>
-        <div ref={sectionRef("proof")} data-section="proof">
+        <div className="lp-slide" data-section="proof" id="proof">
           <LandingProof />
         </div>
-        <div ref={sectionRef("team")} data-section="team">
+        <div className="lp-slide" data-section="team" id="team">
           <LandingTeam />
         </div>
-        <div ref={sectionRef("faq")} data-section="faq">
+        <div className="lp-slide" data-section="faq" id="faq">
           <LandingFAQ onOpenChat={openChat} />
         </div>
-        <div ref={sectionRef("cta")} data-section="cta">
-          <LandingCTA onOpenChat={openChat} onCtaClick={onCtaClick} />
-        </div>
+        <LandingCTA onOpenChat={openChat} onCtaClick={onCtaClick} />
       </main>
 
       <ChatOverlay

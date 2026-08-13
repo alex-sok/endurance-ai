@@ -18,8 +18,7 @@ const ROOTS = [
 
 export function LandingRoots() {
   return (
-    <section className="lp-band-dark lp-on-dark" id="research" aria-label="The lab">
-      <div className="lp-section">
+    <section className="lp-sheet" aria-label="The lab">
         <p className="lp-kicker">The lab</p>
         <h2 className="lp-h2">How we are built.</h2>
         <p className="lp-lede">
@@ -35,7 +34,6 @@ export function LandingRoots() {
             </article>
           ))}
         </div>
-      </div>
     </section>
   );
 }

@@ -8,15 +8,6 @@ interface Props {
 export function LandingHero({ onOpenChat, onNavigate }: Props) {
   return (
     <header className="lp-hero" id="top">
-      <div className="lp-media" data-parallax-root>
-        <img
-          src="/landing/hero.jpg"
-          alt=""
-          data-parallax
-          fetchPriority="high"
-        />
-        <div className="lp-hero-veil" />
-      </div>
       <div className="lp-hero-copy">
         <p className="lp-kicker">Research · Engineering · Vertical&nbsp;software</p>
         <h1>
