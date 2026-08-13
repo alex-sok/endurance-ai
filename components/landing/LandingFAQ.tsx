@@ -41,8 +41,7 @@ export function LandingFAQ({ onOpenChat }: Props) {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="lp-on-light" id="faq" aria-label="Questions">
-      <div className="lp-section">
+    <section className="lp-sheet" aria-label="Questions">
         <p className="lp-kicker">Questions</p>
         <h2 className="lp-h2">Answered plainly.</h2>
         <div className="lp-faq">
@@ -66,7 +65,6 @@ export function LandingFAQ({ onOpenChat }: Props) {
             Ask Grace
           </button>
         </p>
-      </div>
     </section>
   );
 }

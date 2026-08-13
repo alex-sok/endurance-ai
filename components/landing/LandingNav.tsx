@@ -41,7 +41,7 @@ export function LandingNav({ onOpenChat, onNavigate }: Props) {
             onNavigate("top");
           }}
         >
-          <img src="/logo-endurance-white.svg" alt="" />
+          <img src="/logo-endurance.svg" alt="" />
         </a>
         <div className="lp-nav-links">
           {LINKS.map((link) => (
