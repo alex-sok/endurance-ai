@@ -21,10 +21,15 @@ export async function POST(request: Request) {
     return new Response("Invalid JSON", { status: 400 });
   }
 
+  const isPublished = Boolean(record.is_published);
+  // Unpublished portals 404 at /mission/[slug]; CRM briefing create is draft-only.
+  if (!isPublished) {
+    return new Response("ok", { status: 200 });
+  }
+
   const clientName = String(record.client_name ?? "Unknown");
   const slug = String(record.slug ?? "");
   const tagline = record.tagline ? String(record.tagline) : null;
-  const isPublished = Boolean(record.is_published);
   // Masked hint set at portal creation time (e.g. "GT****").
   // Never derived algorithmically here — keeps the formula out of source code.
   const passwordHint = record.password_hint ? String(record.password_hint) : null;
