@@ -63,3 +63,5 @@ export type SectionSlug =
   | "roadmap"
   | "team"
   | "metrics";
+
+export type PortalSectionMap = import("@/lib/portal-section-schema").PortalSectionMap;
