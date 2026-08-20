@@ -63,3 +63,20 @@ export type SectionSlug =
   | "roadmap"
   | "team"
   | "metrics";
+
+export type PortalSectionMap = {
+  overview: { body: string; bullets: string[] };
+  problem: { body: string; challenges: { title: string; description: string }[] };
+  solution: {
+    body: string;
+    pillars: { title: string; tag?: string; description: string }[];
+  };
+  roadmap: {
+    phases: { phase: string; title: string; duration: string; milestones: string[] }[];
+  };
+  team: { members: { name: string; role: string; bio?: string }[] };
+  metrics: {
+    body?: string;
+    kpis: { label: string; value: string; description?: string }[];
+  };
+};
