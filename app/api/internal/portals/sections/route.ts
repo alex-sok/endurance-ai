@@ -55,43 +55,28 @@ async function upsertSectionContent(
   portalId: string,
   sections: PortalSectionMap,
 ): Promise<string | null> {
-  const { data: current, error: readError } = await supabase
-    .from("portal_sections")
-    .select("slug")
-    .eq("portal_id", portalId);
+  const fullRows = NEW_SECTIONS.map((meta) => ({
+    ...meta,
+    portal_id: portalId,
+    content: sections[meta.slug],
+  }));
 
-  if (readError) return readError.message;
+  const { error: insertError } = await supabase.from("portal_sections").insert(fullRows);
+  if (!insertError) return null;
+  if (insertError.code !== "23505") return insertError.message;
 
-  const have = new Set((current ?? []).map((row) => row.slug as string));
-  const inserts: Array<{
-    slug: string;
-    title: string;
-    icon: string;
-    sort_order: number;
-    portal_id: string;
-    content: PortalSectionMap[keyof PortalSectionMap];
-  }> = [];
-
-  for (const meta of NEW_SECTIONS) {
-    const content = sections[meta.slug];
-    if (have.has(meta.slug)) {
-      const { error } = await supabase
+  // Unique (portal_id, slug): rows already exist. Content only — do not write title.
+  const results = await Promise.all(
+    NEW_SECTIONS.map((meta) =>
+      supabase
         .from("portal_sections")
-        .update({ content })
+        .update({ content: sections[meta.slug] })
         .eq("portal_id", portalId)
-        .eq("slug", meta.slug);
-      if (error) return error.message;
-    } else {
-      inserts.push({ ...meta, portal_id: portalId, content });
-    }
-  }
-
-  if (inserts.length > 0) {
-    const { error } = await supabase.from("portal_sections").insert(inserts);
-    if (error) return error.message;
-  }
-
-  return null;
+        .eq("slug", meta.slug),
+    ),
+  );
+  const failed = results.find((r) => r.error);
+  return failed?.error?.message ?? null;
 }
 
 export async function POST(request: Request) {
@@ -214,14 +199,21 @@ export async function POST(request: Request) {
   if (tagline !== undefined) updates.tagline = tagline.trim() || null;
   if (accent_color !== undefined) updates.accent_color = accent_color.trim() || DEFAULT_ACCENT;
 
-  const { error: updateError } = await supabase
-    .from("portals")
-    .update(updates)
-    .eq("id", portal.id);
+  const portalUpdate =
+    force === true
+      ? supabase.from("portals").update(updates).eq("id", portal.id)
+      : supabase.from("portals").update(updates).eq("id", portal.id).eq("is_published", false);
+
+  const { data: updated, error: updateError } = await portalUpdate.select("id");
 
   if (updateError) {
     console.log(`[portal-publish] status=500 slug=${slug}`);
     return Response.json({ error: updateError.message }, { status: 500 });
+  }
+
+  if (force !== true && (updated?.length ?? 0) === 0) {
+    console.log(`[portal-publish] status=409 slug=${slug}`);
+    return Response.json({ error: "portal_live", is_published: true }, { status: 409 });
   }
 
   const sectionError = await upsertSectionContent(supabase, portal.id, sections);
