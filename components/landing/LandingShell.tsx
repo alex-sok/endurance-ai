@@ -116,19 +116,7 @@ export function LandingShell() {
 
   return (
     <div className="theme-paper relative min-h-svh">
-      <div className="lp-canvas" aria-hidden="true">
-        <video
-          className="lp-canvas-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/landing/canvas.jpg"
-        >
-          <source src="/landing/canvas.mp4" type="video/mp4" />
-        </video>
-      </div>
+      <div className="lp-canvas" aria-hidden="true" />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--lp-ink)] focus:text-[var(--lp-paper)] focus:text-sm"
