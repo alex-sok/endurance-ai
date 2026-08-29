@@ -110,6 +110,24 @@ const nextConfig: NextConfig = {
       // up exactly and nothing resolves to a root-absolute path that would 404.
       { source: "/hospitality", destination: "https://endurance-ai-labs.github.io/hospitality/index.html" },
       { source: "/hospitality/:path*", destination: "https://endurance-ai-labs.github.io/hospitality/:path*" },
+      // Blackmont Advisors prospect demo (wealth management portal, hosted on GitHub Pages) at
+      // endurancelabs.ai/blackmont. Same clean-proxy pattern as /law: the repository
+      // is named "blackmont" and every asset and route inside it is written under
+      // that prefix, so the proxied path and the Pages project path line up.
+      { source: "/blackmont", destination: "https://endurance-ai-labs.github.io/blackmont/index.html" },
+      { source: "/blackmont/", destination: "https://endurance-ai-labs.github.io/blackmont/index.html" },
+      { source: "/blackmont/:file(.*\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/blackmont/:file" },
+      { source: "/blackmont/:path*/", destination: "https://endurance-ai-labs.github.io/blackmont/:path*/index.html" },
+      { source: "/blackmont/:path*", destination: "https://endurance-ai-labs.github.io/blackmont/:path*/index.html" },
+      // Evolve Private Wealth prospect demo (wealth management portal, hosted on GitHub Pages) at
+      // endurancelabs.ai/evolve. Same clean-proxy pattern as /law: the repository
+      // is named "evolve" and every asset and route inside it is written under
+      // that prefix, so the proxied path and the Pages project path line up.
+      { source: "/evolve", destination: "https://endurance-ai-labs.github.io/evolve/index.html" },
+      { source: "/evolve/", destination: "https://endurance-ai-labs.github.io/evolve/index.html" },
+      { source: "/evolve/:file(.*\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/evolve/:file" },
+      { source: "/evolve/:path*/", destination: "https://endurance-ai-labs.github.io/evolve/:path*/index.html" },
+      { source: "/evolve/:path*", destination: "https://endurance-ai-labs.github.io/evolve/:path*/index.html" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
