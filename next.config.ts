@@ -112,16 +112,30 @@ const nextConfig: NextConfig = {
       { source: "/hospitality/:path*", destination: "https://endurance-ai-labs.github.io/hospitality/:path*" },
     ];
   },
-  // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
+  // REPE — real estate private equity operating system demo (Cloudflare Pages)
+  // at endurancelabs.ai/repe.
+  //
   // Redirect rather than a /1100-style proxy rewrite: the portal uses
-  // root-absolute asset paths (/css, /js, /data, /api) that would 404
-  // under a subpath proxy. Lowercase variants included for typed URLs.
+  // root-absolute asset paths (/css, /js, /data, /api) that would 404 under a
+  // subpath proxy. Because the visitor lands on the destination host, that
+  // host must itself be clean — it is endurance-repe.pages.dev, not the old
+  // cfp-named project, so nothing in the address bar references the client
+  // whose portal this was originally built from.
+  //
+  // The /CFPportal entries stay as legacy aliases for links already shared,
+  // and point at the same clean host.
   async redirects() {
+    const REPE = "https://endurance-repe.pages.dev";
     return [
-      { source: "/CFPportal", destination: "https://cfp-portal-endurance.pages.dev/", permanent: false },
-      { source: "/CFPportal/:path*", destination: "https://cfp-portal-endurance.pages.dev/:path*", permanent: false },
-      { source: "/cfpportal", destination: "https://cfp-portal-endurance.pages.dev/", permanent: false },
-      { source: "/cfpportal/:path*", destination: "https://cfp-portal-endurance.pages.dev/:path*", permanent: false },
+      { source: "/repe", destination: REPE + "/", permanent: false },
+      { source: "/repe/:path*", destination: REPE + "/:path*", permanent: false },
+      { source: "/REPE", destination: REPE + "/", permanent: false },
+      { source: "/REPE/:path*", destination: REPE + "/:path*", permanent: false },
+      // legacy aliases
+      { source: "/CFPportal", destination: REPE + "/", permanent: false },
+      { source: "/CFPportal/:path*", destination: REPE + "/:path*", permanent: false },
+      { source: "/cfpportal", destination: REPE + "/", permanent: false },
+      { source: "/cfpportal/:path*", destination: REPE + "/:path*", permanent: false },
     ];
   },
 };
