@@ -110,6 +110,16 @@ const nextConfig: NextConfig = {
       // up exactly and nothing resolves to a root-absolute path that would 404.
       { source: "/hospitality", destination: "https://endurance-ai-labs.github.io/hospitality/index.html" },
       { source: "/hospitality/:path*", destination: "https://endurance-ai-labs.github.io/hospitality/:path*" },
+      // Rosemont Partners private wealth portal (fictional RIA demo, hosted on
+      // GitHub Pages) at endurancelabs.ai/wealthmanagement. Same clean-proxy
+      // pattern as /law: the repository is named "wealthmanagement" and every
+      // asset and route inside it is written under the "/wealthmanagement"
+      // prefix, so the proxied path and the Pages project path line up exactly.
+      { source: "/wealthmanagement", destination: "https://endurance-ai-labs.github.io/wealthmanagement/index.html" },
+      { source: "/wealthmanagement/", destination: "https://endurance-ai-labs.github.io/wealthmanagement/index.html" },
+      { source: "/wealthmanagement/:file(.*\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/wealthmanagement/:file" },
+      { source: "/wealthmanagement/:path*/", destination: "https://endurance-ai-labs.github.io/wealthmanagement/:path*/index.html" },
+      { source: "/wealthmanagement/:path*", destination: "https://endurance-ai-labs.github.io/wealthmanagement/:path*/index.html" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
