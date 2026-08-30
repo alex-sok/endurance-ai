@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { ChatOverlay } from "./ChatOverlay";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import { CONTACT_EMAIL } from "@/lib/conversation-flows";
@@ -62,9 +63,9 @@ export function BrainLanding() {
 
       <nav className={scrolled ? "lp-nav is-scrolled" : "lp-nav"} aria-label="Primary">
         <div className="lp-nav-inner">
-          <a className="lp-wordmark" href="/" aria-label="Endurance AI Labs">
+          <Link className="lp-wordmark" href="/" aria-label="Endurance AI Labs">
             <img src="/logo-endurance.svg" alt="" />
-          </a>
+          </Link>
           <div className="lp-nav-links">
             <a href="/brain/reel">Reel</a>
             <button type="button" className="lp-nav-talk" onClick={openChat}>
@@ -156,7 +157,7 @@ export function BrainLanding() {
                 <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
               </span>
               <span>
-                <a href="/">Home</a>
+                <Link href="/">Home</Link>
                 {" · "}
                 <a href="/brain/reel">Reel</a>
               </span>
