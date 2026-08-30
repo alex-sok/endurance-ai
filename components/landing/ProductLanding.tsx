@@ -82,12 +82,7 @@ export function ProductLanding(product: ProductContent) {
           <div className="lp-feature-frame">
             <img src={product.frameSrc} alt={product.frameAlt} />
           </div>
-          <ul className="lp-chips">
-            {product.chips.map((chip) => (
-              <li key={chip}>{chip}</li>
-            ))}
-          </ul>
-          <ol className="lp-grid-3">
+          <ol className="lp-team">
             {product.steps.map((step) => (
               <li key={step.n} className="lp-card">
                 <p className="lp-num">{step.n}</p>
@@ -99,17 +94,9 @@ export function ProductLanding(product: ProductContent) {
         </section>
 
         <section className="lp-sheet" data-section="proof" aria-label="In the field">
-          <p className="lp-kicker">In the field</p>
+          <p className="lp-lede">{product.proofLede}</p>
           <h2 className="lp-h2">{product.proofTitle}</h2>
-          <div className="lp-proof-grid">
-            {product.proofs.map((c) => (
-              <article key={c.after}>
-                <p className="lp-proof-before">{c.before}</p>
-                <p className="lp-proof-after">{c.after}</p>
-                <p className="lp-card-body">{c.body}</p>
-              </article>
-            ))}
-          </div>
+          <p className="lp-lede">{product.proofNote}</p>
           {product.note ? (
             <p className="lp-note">
               {product.note.text}{" "}

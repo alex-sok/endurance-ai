@@ -25,7 +25,7 @@ export function LandingRoots() {
           Three disciplines, held in one small team. Research without a product is
           a paper. A product without research is a guess.
         </p>
-        <div className="lp-grid-3">
+        <div className="lp-team">
           {ROOTS.map((root) => (
             <article key={root.n} className="lp-card">
               <p className="lp-num">{root.n}</p>

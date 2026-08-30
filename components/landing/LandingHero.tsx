@@ -2,37 +2,33 @@
 
 interface Props {
   onOpenChat: () => void;
-  onNavigate: (id: string) => void;
 }
 
-export function LandingHero({ onOpenChat, onNavigate }: Props) {
+export function LandingHero({ onOpenChat }: Props) {
   return (
     <header className="lp-hero" id="top" data-section="hero">
       <div className="lp-hero-copy">
-        <p className="lp-kicker">Research · Engineering · Vertical&nbsp;software</p>
         <h1>
-          We research the work.
-          <em>Then we write the software.</em>
+          Most AI is a chat window.
+          <em>The advantage is a system that runs the week.</em>
         </h1>
         <p className="lp-hero-lede">
-          Endurance is a lab. We study how construction, logistics, capital
-          markets, and professional services actually run. Then we ship the
-          vertical systems those operations have been missing.
+          A copilot sits on top of the mess. We sit in the operation, then we
+          write the software that does the work: cites its sources, settles the
+          money, leaves Friday proven.
+        </p>
+        <p className="lp-hero-lede">
+          We are Endurance. A lab. We study how a business actually runs —
+          freight, construction, capital, the functions where a week can break —
+          then we write the vertical system it was missing.
         </p>
         <div className="lp-hero-actions">
-          <button type="button" className="lp-btn lp-btn-fill" onClick={onOpenChat}>
+          <a className="lp-btn lp-btn-fill" href="/margins">
+            See Margins
+          </a>
+          <button type="button" className="lp-btn lp-btn-line" onClick={onOpenChat}>
             Talk to us
           </button>
-          <a
-            className="lp-btn lp-btn-line"
-            href="#work"
-            onClick={(e) => {
-              e.preventDefault();
-              onNavigate("work");
-            }}
-          >
-            See the work
-          </a>
         </div>
       </div>
     </header>
