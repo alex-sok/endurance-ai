@@ -31,7 +31,7 @@
   /* ── Named palette utilities ──────────────────────────────────────────────
      Maps core tokens → Tailwind color classes:
      text-ink, bg-bone, border-surface, text-muted-ash, text-signal, etc.
-     Change a color once in :root; every class updates automatically.      */
+     Change a color once in :root or .theme-product; classes update with it. */
   --color-ink:       var(--ink);
   --color-bone:      var(--bone);
   --color-surface:   var(--surface);
@@ -42,27 +42,24 @@
 }
 
 :root {
-  /* ── Cursor-inspired design tokens ──────────────────────────────────────── */
-
-  /* Core palette */
-  --ink:        #262510;   /* inkwell — primary text, strong borders */
-  --surface:    #e6e5e0;   /* pebble gray — elevated surfaces, hovers */
-  --bone:       #f7f7f4;   /* canvas parchment — page + card backgrounds */
-  --muted-ash:  #7a7974;   /* muted stone — secondary text, icons */
-  --signal:     #7c3aed;   /* violet — outlined interactive accent */
-  --flare:      #f54e00;   /* ember orange — landing page signal accent */
+  /* Marketing-safe paper tokens. Olive / purple / bright-flare live on .theme-product. */
+  --ink:        #1c1916;
+  --surface:    #e4d8c6;
+  --bone:       #f6f4ef;
+  --muted-ash:  #5c574e;
+  --flare:      #c2410c;
   --rust:       #dc2626;
 
   /* Surface scale */
   --steel-50:   #ffffff;
-  --steel-100:  #f7f7f4;
-  --steel-200:  #e6e5e0;
-  --steel-300:  #cdcdc9;
-  --steel-400:  #7a7974;
-  --steel-500:  #7a7974;
-  --steel-600:  #cdcdc9;
-  --steel-700:  #e6e5e0;
-  --steel-800:  #f0f0ed;
+  --steel-100:  #f6f4ef;
+  --steel-200:  #e4d8c6;
+  --steel-300:  #d4c9b6;
+  --steel-400:  #5c574e;
+  --steel-500:  #5c574e;
+  --steel-600:  #d4c9b6;
+  --steel-700:  #ebe6dc;
+  --steel-800:  #f0ede6;
 
   /* Semantic */
   --background:   var(--bone);
@@ -80,13 +77,13 @@
   --secondary-foreground: var(--ink);
   --muted:              var(--steel-700);
   --muted-foreground:   var(--muted-ash);
-  --accent:             var(--signal);
+  --accent:             var(--ink);
   --accent-foreground:  var(--bone);
   --destructive:        var(--rust);
   --border:             var(--surface);
   --input:              var(--muted-ash);
-  --ring:               var(--signal);
-  --radius:             4px;
+  --ring:               var(--ink);
+  --radius:             8px;
 
   /* Typography */
   --font-figtree:   'Lato', ui-sans-serif, system-ui, -apple-system, sans-serif;
@@ -101,6 +98,49 @@
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --dur-fast:   120ms;
   --dur-base:   200ms;
+}
+
+/* Product-app palette — portals, admin, chat. Do not set these on :root. */
+.theme-product {
+  --ink:        #262510;
+  --surface:    #e6e5e0;
+  --bone:       #f7f7f4;
+  --muted-ash:  #7a7974;
+  --signal:     #7c3aed;
+  --flare:      #f54e00;
+  --rust:       #dc2626;
+
+  --steel-50:   #ffffff;
+  --steel-100:  #f7f7f4;
+  --steel-200:  #e6e5e0;
+  --steel-300:  #cdcdc9;
+  --steel-400:  #7a7974;
+  --steel-500:  #7a7974;
+  --steel-600:  #cdcdc9;
+  --steel-700:  #e6e5e0;
+  --steel-800:  #f0f0ed;
+
+  --background:   var(--bone);
+  --foreground:   var(--ink);
+  --fg-muted:     var(--muted-ash);
+  --fg-subtle:    var(--muted-ash);
+  --border-color: var(--surface);
+
+  --card:               var(--surface);
+  --card-foreground:    var(--ink);
+  --primary:            var(--ink);
+  --primary-foreground: var(--bone);
+  --secondary:          var(--surface);
+  --secondary-foreground: var(--ink);
+  --muted:              var(--steel-700);
+  --muted-foreground:   var(--muted-ash);
+  --accent:             var(--signal);
+  --accent-foreground:  var(--bone);
+  --destructive:        var(--rust);
+  --border:             var(--surface);
+  --input:              var(--muted-ash);
+  --ring:               var(--signal);
+  --radius:             4px;
 }
 
 @layer base {

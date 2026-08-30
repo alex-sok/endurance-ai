@@ -44,7 +44,7 @@ export function PortalPasswordGate({ slug }: Props) {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-center px-6"
+      className="theme-product min-h-screen flex flex-col items-center justify-center px-6"
       style={{ background: "#f7f7f4", fontFamily: "var(--font-figtree)" }}
     >
       <motion.div

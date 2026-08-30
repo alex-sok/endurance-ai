@@ -658,7 +658,7 @@
 }
 
 .invest-theme .inv-comp__cell--header.is-signal .inv-comp__col-eyebrow {
-  color: var(--inv-signal);
+  color: var(--inv-fg-pure);
 }
 
 .invest-theme .inv-comp__check {

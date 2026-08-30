@@ -15,7 +15,7 @@ export default async function AccessPage({
   return (
     <main className="inv-access">
       <div className="inv-access__inner">
-        <div className="inv-tag">Endurance Investments</div>
+        <div className="inv-tag inv-tag--name">Endurance Investments</div>
         <h1 className="inv-display-sm inv-access__title">
           This page is{" "}
           <span className="inv-access__accent">password protected</span>.

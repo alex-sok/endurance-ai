@@ -139,6 +139,16 @@ body:has(.invest-theme) {
   box-shadow: 0 0 12px var(--inv-signal-glow);
 }
 
+/* Identity labels — never put signal purple on the Endurance name */
+.invest-theme .inv-tag--name {
+  color: var(--inv-fg);
+}
+
+.invest-theme .inv-tag--name::before {
+  background: var(--inv-fg);
+  box-shadow: none;
+}
+
 /* Section dividers */
 .invest-theme .inv-rule {
   border: 0;
