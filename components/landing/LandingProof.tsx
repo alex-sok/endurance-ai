@@ -5,8 +5,9 @@ export function LandingProof() {
         Margins is in production inside a freight brokerage, running the weekly
         pay run from their TMS.
       </p>
-      <h2 className="lp-h2">That is the advantage.</h2>
-      <p className="lp-lede">Not a demo. The week.</p>
+      <p className="lp-lede">
+        That is the method. Sit in the operation. Ship the system.
+      </p>
     </section>
   );
 }
