@@ -18,7 +18,7 @@ export function LandingClose({ onOpenChat }: Props) {
         />
         <h2 className="lp-h2">The work, then the software.</h2>
         <p className="lp-lede">
-          If the week still lives in someone&apos;s head, we should talk.
+          If there is a system worth building, we will say so.
         </p>
         <div className="lp-cta-actions">
           <button type="button" className="lp-btn lp-btn-fill" onClick={onOpenChat}>

@@ -20,7 +20,7 @@ export const BRAIN: ProductContent = {
   kicker: "Product · Brain",
   title: "Institutional memory",
   italic: "that cites its sources.",
-  lede: "Most AI cannot show its work. That is a rumor with a UI. Brain compiles what the firm already produced. Every claim has a source. Nothing is invented.",
+  lede: "Everything the firm already produces, compiled. Every claim cites a source. Nothing is invented.",
   frameSrc: "/landing/brain.png",
   frameAlt: "Ask Brain console",
   steps: [
@@ -40,9 +40,8 @@ export const BRAIN: ProductContent = {
       body: "Ask in plain language. Every figure points at a document.",
     },
   ],
-  proofLede:
-    "Most AI cannot show its work. That is a rumor with a UI.",
-  proofTitle: "Every claim has a source.",
+  proofLede: "Everything the firm already produces, compiled.",
+  proofTitle: "Every claim cites a source.",
   proofNote: "Nothing is invented.",
   lineLabel: "Book a call",
   lineHref: CALENDLY_URL,
@@ -57,7 +56,7 @@ export const MARGINS: ProductContent = {
   kicker: "Product · Margins",
   title: "Pay for the margin,",
   italic: "not the load.",
-  lede: "Your TMS prices the load. It does not pay the people. That is a person and a spreadsheet. Margins is AI in the pay run: every split from what the load actually made, every exception before payday.",
+  lede: "TMS loads become a weekly pay run. Splits track what the load actually made.",
   frameSrc: "/landing/margins.jpg",
   frameAlt: "Margins commissions run",
   steps: [
@@ -79,8 +78,8 @@ export const MARGINS: ProductContent = {
   ],
   proofLede:
     "Margins is in production inside a freight brokerage, running the weekly pay run from their TMS.",
-  proofTitle: "That is the advantage.",
-  proofNote: "Not a demo. The week.",
+  proofTitle: "That is the method.",
+  proofNote: "Sit in the operation. Ship the system.",
   lineLabel: "Book a call",
   lineHref: CALENDLY_URL,
   note: {
