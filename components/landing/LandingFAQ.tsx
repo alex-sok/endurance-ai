@@ -2,10 +2,6 @@
 
 import { useState } from "react";
 
-interface Props {
-  onOpenChat: () => void;
-}
-
 const FAQS = [
   {
     q: "What is Endurance, exactly?",
@@ -37,34 +33,28 @@ const FAQS = [
   },
 ];
 
-export function LandingFAQ({ onOpenChat }: Props) {
+export function LandingFAQ() {
   const [open, setOpen] = useState(0);
 
   return (
     <section className="lp-sheet" id="faq" data-section="faq" aria-label="Questions">
-        <p className="lp-kicker">Questions</p>
-        <h2 className="lp-h2">Answered plainly.</h2>
-        <div className="lp-faq">
-          {FAQS.map((faq, i) => (
-            <div key={faq.q}>
-              <button
-                type="button"
-                onClick={() => setOpen(i === open ? -1 : i)}
-                aria-expanded={i === open}
-              >
-                {faq.q}
-                <span aria-hidden="true">{i === open ? "–" : "+"}</span>
-              </button>
-              {i === open ? <p>{faq.a}</p> : null}
-            </div>
-          ))}
-        </div>
-        <p className="lp-note">
-          Still have a question?{" "}
-          <button type="button" className="lp-link" onClick={onOpenChat}>
-            Ask Grace
-          </button>
-        </p>
+      <p className="lp-kicker">Questions</p>
+      <h2 className="lp-h2">Answered plainly.</h2>
+      <div className="lp-faq">
+        {FAQS.map((faq, i) => (
+          <div key={faq.q}>
+            <button
+              type="button"
+              onClick={() => setOpen(i === open ? -1 : i)}
+              aria-expanded={i === open}
+            >
+              {faq.q}
+              <span aria-hidden="true">{i === open ? "–" : "+"}</span>
+            </button>
+            {i === open ? <p>{faq.a}</p> : null}
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

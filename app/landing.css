@@ -69,6 +69,16 @@
   background-position: center;
 }
 
+.lp-canvas::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  mix-blend-mode: overlay;
+}
+
 /* ---------- nav ---------- */
 .lp-nav {
   position: fixed;
@@ -305,7 +315,7 @@
   font-size: 16px;
   line-height: 1.58;
   color: var(--lp-muted);
-  max-width: 34ch;
+  max-width: 40ch;
 }
 
 .lp-hero-lede + .lp-hero-lede {
@@ -355,7 +365,7 @@
   font-size: 16px;
   line-height: 1.6;
   color: var(--lp-muted);
-  max-width: 42ch;
+  max-width: 40ch;
 }
 
 .lp-lede + .lp-h2 {
@@ -426,7 +436,7 @@
 }
 
 .lp-feature-copy .lp-lede {
-  max-width: 38ch;
+  max-width: 40ch;
 }
 
 .lp-feature-cta {
@@ -442,6 +452,10 @@
 
 .lp-feature-cta:hover {
   border-bottom-color: var(--lp-ink);
+}
+
+.lp-feature-frame:hover {
+  transform: none;
 }
 
 .lp-feature-frame {
@@ -539,8 +553,12 @@ ol.lp-team {
   grid-template-columns: 1.1fr 0.9fr 1.6fr;
   gap: 16px 32px;
   align-items: baseline;
-  padding: 24px 0;
+  padding: 32px 0;
   border-top: 1px solid var(--lp-line);
+}
+
+.lp-team-row.is-index {
+  grid-template-columns: 2.75rem minmax(8rem, 1fr) 1.8fr;
 }
 
 .lp-team-row h3 {
@@ -687,6 +705,24 @@ ol.lp-team {
 
 .lp-close .lp-kicker {
   color: rgba(246, 244, 239, 0.55);
+}
+
+.lp-close .lp-form p {
+  color: rgba(246, 244, 239, 0.64);
+}
+
+.lp-close .lp-form input {
+  color: var(--lp-snow);
+  border-bottom-color: rgba(246, 244, 239, 0.14);
+}
+
+.lp-close .lp-form input:hover,
+.lp-close .lp-form input:focus {
+  border-bottom-color: rgba(246, 244, 239, 0.45);
+}
+
+.lp-close .lp-form input::placeholder {
+  color: rgba(246, 244, 239, 0.4);
 }
 
 /* Night sheet on the field — same close tokens, sheet geometry. */
