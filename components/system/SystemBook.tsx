@@ -315,12 +315,12 @@ export function SystemBook() {
             <li>Capital markets</li>
           </ul>
 
-          <ol className="lp-grid-3">
+          <ol className="lp-team">
             {PART_STEPS.map((step) => (
-              <li key={step.n} className="lp-card">
+              <li key={step.n} className="lp-team-row is-index">
                 <p className="lp-num">{step.n}</p>
                 <h3>{step.title}</h3>
-                <p>{step.body}</p>
+                <p className="lp-bio">{step.body}</p>
               </li>
             ))}
           </ol>
@@ -366,12 +366,12 @@ export function SystemBook() {
           <p className="lp-kicker">Recipes</p>
           <h2 className="lp-h2">Three pages.</h2>
           <p className="lp-lede">Same system. Different length.</p>
-          <ol className="lp-grid-3">
+          <ol className="lp-team">
             {RECIPES.map((recipe) => (
-              <li key={recipe.n} className="lp-card">
+              <li key={recipe.n} className="lp-team-row is-index">
                 <p className="lp-num">{recipe.n}</p>
                 <h3>{recipe.title}</h3>
-                <p>{recipe.body}</p>
+                <p className="lp-bio">{recipe.body}</p>
               </li>
             ))}
           </ol>
@@ -386,17 +386,19 @@ export function SystemBook() {
               <h3 className="lp-h2">Stay on the tokens.</h3>
               <p className="lp-lede">
                 Let the field read. Regular + italic only. Air around the
-                second line. Product frames are the only dense color. Grain
-                you feel, not see. Flare only on proof numbers.
+                second line. Hairline rows, not 3-ups. Product frames are
+                the only dense color. Grain you feel, not see. Night owns
+                Talk and Book. Flare only on proof numbers.
               </p>
             </article>
             <article>
               <p className="lp-kicker">Do not</p>
               <h3 className="lp-h2">Invent a second system.</h3>
               <p className="lp-lede">
-                Do not wash the field. Do not louder the CTAs. No extra
-                accents. No spacecraft still as the identity. No stock
-                people. No SaaS grids. No product-app tokens.
+                Do not wash the field. No rust radial. No frame lift. No
+                second Talk on paper. No 3-up grids. No louder CTAs. No
+                spacecraft still as the identity. No stock people. No
+                product-app tokens.
               </p>
             </article>
           </div>

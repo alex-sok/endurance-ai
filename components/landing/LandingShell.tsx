@@ -104,7 +104,7 @@ export function LandingShell() {
         <LandingMethod />
         <LandingProof />
         <LandingTeam />
-        <LandingFAQ onOpenChat={openChat} />
+        <LandingFAQ />
         <LandingClose onOpenChat={openChat} />
       </main>
 
