@@ -19,7 +19,7 @@ const LINKS = [
 export function LandingNav({ onOpenChat, onNavigate }: Props) {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [scrolled, setScrolled] = useState(!isHome);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const hero = document.getElementById("top");

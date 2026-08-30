@@ -78,10 +78,13 @@ export function ProductLanding(product: ProductContent) {
           </div>
         </header>
 
-        <section className="lp-sheet" data-section="product" aria-label="Product">
+        <figure className="lp-object" data-section="product" aria-label={product.frameAlt}>
           <div className="lp-feature-frame">
             <img src={product.frameSrc} alt={product.frameAlt} />
           </div>
+        </figure>
+
+        <section className="lp-sheet" data-section="how" aria-label="How it runs">
           <ol className="lp-team">
             {product.steps.map((step) => (
               <li key={step.n} className="lp-card">
