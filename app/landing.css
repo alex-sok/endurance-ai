@@ -67,28 +67,6 @@
   background-image: url("/landing/field.jpg");
   background-size: cover;
   background-position: center;
-  background-blend-mode: soft-light;
-}
-
-.lp-canvas::before {
-  content: "";
-  position: absolute;
-  inset: -10%;
-  background: radial-gradient(
-    ellipse 80% 60% at 16% 8%,
-    rgba(255, 248, 236, 0.55) 0%,
-    transparent 58%
-  );
-}
-
-.lp-canvas::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.12;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  mix-blend-mode: multiply;
 }
 
 /* ---------- nav ---------- */
@@ -279,52 +257,55 @@
   width: 100%;
   min-height: 100svh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .lp-hero-copy {
   width: 100%;
   max-width: var(--lp-max);
   margin: 0 auto;
-  padding: calc(var(--lp-nav-h) + 32px) var(--lp-space) 96px;
+  padding: calc(var(--lp-nav-h) + 88px) var(--lp-space) 160px;
 }
 
 .lp-hero-copy > * {
-  max-width: 40rem;
+  max-width: 28rem;
 }
 
 .lp-kicker {
   font-family: var(--lp-mono);
   font-size: 11px;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--lp-muted);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .lp-hero .lp-kicker {
-  color: rgba(28, 25, 22, 0.62);
+  color: rgba(28, 25, 22, 0.58);
 }
 
 .lp-hero-copy h1 {
   font-family: var(--lp-display);
   font-size: clamp(2.35rem, 4.2vw, 3.25rem);
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  line-height: 1.06;
+  letter-spacing: -0.032em;
+  max-width: 13.5em;
 }
 
 .lp-hero-copy h1 em {
   display: block;
   font-style: italic;
-  margin-top: 0.14em;
+  margin-top: 0.82em;
+  max-width: 10.5em;
+  line-height: 1.16;
 }
 
 .lp-hero-lede {
-  margin-top: 28px;
+  margin-top: 64px;
   font-size: 16px;
-  line-height: 1.7;
-  color: rgba(28, 25, 22, 0.78);
-  max-width: 40rem;
+  line-height: 1.58;
+  color: var(--lp-muted);
+  max-width: 34ch;
 }
 
 .lp-hero-lede + .lp-hero-lede {
@@ -335,7 +316,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  margin-top: 40px;
+  margin-top: 56px;
 }
 
 /* ---------- sheets (land on the canvas) ---------- */
@@ -344,12 +325,21 @@
   z-index: 1;
   width: calc(100% - 48px);
   max-width: var(--lp-sheet);
-  margin: 64px auto;
+  margin: 104px auto;
   padding: 64px var(--lp-space) 72px;
   background: var(--lp-paper);
   border-radius: var(--lp-radius);
   box-shadow: var(--lp-lift);
   scroll-margin-top: 80px;
+}
+
+/* Product frame as an object on the plaster — the only dense color. */
+.lp-object {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 48px);
+  max-width: var(--lp-sheet);
+  margin: 0 auto 104px;
 }
 
 .lp-h2 {
@@ -410,10 +400,10 @@
 /* ---------- products inside a sheet ---------- */
 .lp-product {
   display: grid;
-  grid-template-columns: minmax(14rem, 0.85fr) minmax(0, 1.15fr);
-  gap: 48px;
+  grid-template-columns: minmax(14rem, 0.8fr) minmax(0, 1.2fr);
+  gap: 64px;
   align-items: center;
-  margin-top: 32px;
+  margin-top: 44px;
 }
 
 .lp-product.is-flip {
@@ -465,8 +455,13 @@
   text-decoration: none;
 }
 
-.lp-sheet > .lp-feature-frame {
-  margin-top: 8px;
+.lp-sheet > .lp-feature-frame,
+.lp-object > .lp-feature-frame {
+  margin-top: 0;
+}
+
+.lp-sheet > .lp-team:first-child {
+  margin-top: 0;
 }
 
 .lp-feature-frame img {
@@ -738,11 +733,21 @@ ol.lp-team {
 @media (max-width: 900px) {
   .lp-sheet {
     width: calc(100% - 32px);
-    margin: 32px auto;
+    margin: 56px auto;
     padding: 48px 24px 56px;
+  }
+  .lp-object {
+    width: calc(100% - 32px);
+    margin-bottom: 56px;
+  }
+  .lp-hero-copy {
+    padding: calc(var(--lp-nav-h) + 56px) var(--lp-space) 96px;
   }
   .lp-hero-copy h1 {
     font-size: clamp(2.1rem, 8vw, 2.75rem);
+  }
+  .lp-hero-copy h1 em {
+    margin-top: 0.68em;
   }
   .lp-product,
   .lp-product.is-flip {
@@ -791,8 +796,5 @@ ol.lp-team {
   .lp-faq button,
   .lp-form input {
     transition: none;
-  }
-  .lp-canvas::before {
-    animation: none;
   }
 }
