@@ -4,7 +4,6 @@ import { LenisProvider } from "./lib/lenis-provider";
 import { ProgressIndicator } from "./components/ProgressIndicator";
 import { Preloader } from "./components/Preloader";
 import { V2Nav } from "./components/V2Nav";
-import "../product-tokens.css";
 import "./logistics.css";
 import "./sections.css";
 import "./styles/v2/index.css";
@@ -95,6 +94,9 @@ export default function LogisticsLayout({
     <div
       className={`logistics-theme ${interDisplay.variable} ${jetbrainsMono.variable}`}
     >
+      {/* Product tokens stay off the marketing CSS bundle. */}
+      {/* eslint-disable-next-line @next/next/no-css-tags */}
+      <link rel="stylesheet" href="/product-tokens.css" />
       <Preloader />
       <script dangerouslySetInnerHTML={{ __html: INTRO_SNIPPET }} />
       <LenisProvider />
