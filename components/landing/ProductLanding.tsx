@@ -87,10 +87,10 @@ export function ProductLanding(product: ProductContent) {
         <section className="lp-sheet" data-section="how" aria-label="How it runs">
           <ol className="lp-team">
             {product.steps.map((step) => (
-              <li key={step.n} className="lp-card">
+              <li key={step.n} className="lp-team-row is-index">
                 <p className="lp-num">{step.n}</p>
                 <h3>{step.title}</h3>
-                <p>{step.body}</p>
+                <p className="lp-bio">{step.body}</p>
               </li>
             ))}
           </ol>
