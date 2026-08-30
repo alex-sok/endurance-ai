@@ -25,9 +25,9 @@ export function LandingMethod() {
           No six-month discovery. No deck that outlives the engagement. Field
           research, then software.
         </p>
-        <ol className="lp-team">
+        <ol className="lp-stack">
           {STEPS.map((step) => (
-            <li key={step.n} className="lp-card">
+            <li key={step.n} className="lp-stack-row">
               <p className="lp-num">{step.n}</p>
               <h3>{step.title}</h3>
               <p>{step.body}</p>

@@ -82,9 +82,9 @@ export function ProductLanding(product: ProductContent) {
           <div className="lp-feature-frame">
             <img src={product.frameSrc} alt={product.frameAlt} />
           </div>
-          <ol className="lp-team">
+          <ol className="lp-stack">
             {product.steps.map((step) => (
-              <li key={step.n} className="lp-card">
+              <li key={step.n} className="lp-stack-row">
                 <p className="lp-num">{step.n}</p>
                 <h3>{step.title}</h3>
                 <p>{step.body}</p>
