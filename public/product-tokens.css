@@ -1,0 +1,67 @@
+/* Product-app tokens. Linked from logistics, investments, mission, admin.
+   Do not import this file from homepage /brain /margins /system —
+   Next would fold the :root hex into the marketing CSS payload. */
+
+:root {
+  --ink:        #262510;
+  --surface:    #e6e5e0;
+  --bone:       #f7f7f4;
+  --muted-ash:  #7a7974;
+  --signal:     #7c3aed;
+  --flare:      #f54e00;
+  --rust:       #dc2626;
+
+  --steel-50:   #ffffff;
+  --steel-100:  #f7f7f4;
+  --steel-200:  #e6e5e0;
+  --steel-300:  #cdcdc9;
+  --steel-400:  #7a7974;
+  --steel-500:  #7a7974;
+  --steel-600:  #cdcdc9;
+  --steel-700:  #e6e5e0;
+  --steel-800:  #f0f0ed;
+
+  --background:   var(--bone);
+  --foreground:   var(--ink);
+  --fg-muted:     var(--muted-ash);
+  --fg-subtle:    var(--muted-ash);
+  --border-color: var(--surface);
+
+  --card:               var(--surface);
+  --card-foreground:    var(--ink);
+  --primary:            var(--ink);
+  --primary-foreground: var(--bone);
+  --secondary:          var(--surface);
+  --secondary-foreground: var(--ink);
+  --muted:              var(--steel-700);
+  --muted-foreground:   var(--muted-ash);
+  --accent:             var(--signal);
+  --accent-foreground:  var(--bone);
+  --destructive:        var(--rust);
+  --border:             var(--surface);
+  --input:              var(--muted-ash);
+  --ring:               var(--signal);
+  --radius:             4px;
+
+  --shadow-xl:     rgba(0,0,0,0.14) 0px 28px 70px 0px, rgba(0,0,0,0.1) 0px 14px 32px 0px, rgba(0,0,0,0.08) 0px 0px 0px 1px;
+  --shadow-subtle: rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.12) 0px 4px 12px -4px;
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:   120ms;
+  --dur-base:   200ms;
+}
+
+body {
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-figtree);
+  font-size: 14px;
+  line-height: 1.43;
+  letter-spacing: 0.08px;
+  font-feature-settings: "tnum";
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--surface); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted-ash); }
