@@ -30,7 +30,7 @@ export function PortalShell({ portal, sections }: Props) {
 
   return (
     <div
-      className="min-h-screen"
+      className="theme-product min-h-screen"
       style={{
         background: "#f7f7f4",
         fontFamily: "var(--font-figtree)",

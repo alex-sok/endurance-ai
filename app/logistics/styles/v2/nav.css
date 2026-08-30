@@ -23,23 +23,34 @@
   border-bottom: 1px solid var(--logi-divider);
 }
 
-/* Left: wordmark */
+/* Left: endurance mark + normal-case product name */
 .logistics-theme .v2-nav__wordmark {
   justify-self: start;
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   color: var(--logi-fg);
   text-decoration: none;
   white-space: nowrap;
   transition: color var(--logi-dur-fast) var(--logi-ease);
 }
 
-.logistics-theme .v2-nav__wordmark:hover {
-  color: var(--logi-fg-pure);
+.logistics-theme .v2-nav__wordmark img {
+  height: 16px;
+  width: auto;
+  display: block;
 }
 
-.logistics-theme .v2-nav__dot {
-  color: var(--logi-signal);
+.logistics-theme .v2-nav__product {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: inherit;
+}
+
+.logistics-theme .v2-nav__wordmark:hover {
+  color: var(--logi-fg-pure);
 }
 
 /* Center: the night clock — the one-night conceit made literal.

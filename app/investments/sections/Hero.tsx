@@ -99,7 +99,7 @@ export function Hero() {
       </div>
 
       <div className="inv-hero__copy">
-        <div className="inv-tag">{hero.eyebrow}</div>
+        <div className="inv-tag inv-tag--name">{hero.eyebrow}</div>
         <h1 className="inv-display inv-hero__headline">
           {hero.headlinePrefix}
           <br />
