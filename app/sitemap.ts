@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: "https://endurancelabs.ai/margins",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
       url: "https://endurancelabs.ai/logistics",
       lastModified: new Date(),
       changeFrequency: "weekly",

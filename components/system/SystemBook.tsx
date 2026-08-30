@@ -16,7 +16,7 @@ const COLORS = [
     name: "Field",
     hex: "#e4d8c6",
     token: "--lp-field",
-    use: "The canvas. Every marketing page sits on it.",
+    use: "The canvas. Present in the first second — plaster, not a wash.",
     swatch: "var(--lp-field)",
   },
   {
@@ -74,7 +74,7 @@ const PART_STEPS = [
   {
     n: "01",
     title: "A sheet",
-    body: "Paper on the field. Radius 8. Max 920. One claim, then the evidence.",
+    body: "Paper on the field. Radius 8. Max 920. Leave plaster around it. One claim, then the evidence.",
   },
   {
     n: "02",
@@ -92,12 +92,12 @@ const RECIPES = [
   {
     n: "01",
     title: "Lab homepage",
-    body: "Field canvas. Hero on the plaster. Sheets in sequence. Night close. This is endurancelabs.ai.",
+    body: "Field canvas, unwashed. Hero on the plaster. Sheets in sequence. Night close. This is endurancelabs.ai.",
   },
   {
     n: "02",
     title: "Product landing",
-    body: "Same tokens. One product, one proof, one ask. Brain, Logistics, Margins.",
+    body: "Same tokens. Hero on the plaster. The product frame sits on the field — the only dense color. One proof, one ask.",
   },
   {
     n: "03",
@@ -254,7 +254,7 @@ export function SystemBook() {
               <h3>Display</h3>
               <p className="lp-role">Instrument Serif 400</p>
               <p className="lp-bio">
-                Headlines. Tracking −0.03em. Italic on the second line.
+                Regular, then italic. Air around the second line. Tracking −0.03em.
               </p>
             </div>
             <div className="lp-hero-copy" style={{ padding: 0, maxWidth: "none" }}>
@@ -385,18 +385,18 @@ export function SystemBook() {
               <p className="lp-kicker">Do</p>
               <h3 className="lp-h2">Stay on the tokens.</h3>
               <p className="lp-lede">
-                Field canvas. Paper sheets. Hairlines. Instrument Serif
-                display. Lato body. Space Mono kickers. Pill buttons. Flare
-                only on proof numbers.
+                Let the field read. Regular + italic only. Air around the
+                second line. Product frames are the only dense color. Grain
+                you feel, not see. Flare only on proof numbers.
               </p>
             </article>
             <article>
               <p className="lp-kicker">Do not</p>
               <h3 className="lp-h2">Invent a second system.</h3>
               <p className="lp-lede">
-                No purple. No Inter or Geist. No all-caps headlines. No SaaS
-                gradients. No product-app tokens. Do not restyle a client
-                demo onto this system.
+                Do not wash the field. Do not louder the CTAs. No extra
+                accents. No spacecraft still as the identity. No stock
+                people. No SaaS grids. No product-app tokens.
               </p>
             </article>
           </div>
