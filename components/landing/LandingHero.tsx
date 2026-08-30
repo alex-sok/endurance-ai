@@ -7,7 +7,7 @@ interface Props {
 
 export function LandingHero({ onOpenChat, onNavigate }: Props) {
   return (
-    <header className="lp-hero" id="top">
+    <header className="lp-hero" id="top" data-section="hero">
       <div className="lp-hero-copy">
         <p className="lp-kicker">Research · Engineering · Vertical&nbsp;software</p>
         <h1>

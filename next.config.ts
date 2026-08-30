@@ -75,10 +75,10 @@ const nextConfig: NextConfig = {
       // styles.css and relative links resolve under the subpath.
       { source: "/remi", destination: "https://endurance-ai-labs.github.io/ella-demo/index.html" },
       { source: "/remi/:path*", destination: "https://endurance-ai-labs.github.io/ella-demo/:path*" },
-      // Margins (freight commissions demo, Next.js app on Vercel) at endurancelabs.ai/margins
-      // via a reverse-proxy rewrite, same pattern as /BPOS: the app is built with
-      // basePath "/margins", so all routes and assets are self-contained under the subpath.
-      { source: "/margins", destination: "https://payline-commissions-demo-sigma.vercel.app/margins" },
+      // Margins marketing landing is app/margins/page.tsx. The live commissions
+      // demo stays under /margins/app (and any leftover /margins/* asset paths).
+      { source: "/margins/app", destination: "https://payline-commissions-demo-sigma.vercel.app/margins" },
+      { source: "/margins/app/:path*", destination: "https://payline-commissions-demo-sigma.vercel.app/margins/:path*" },
       { source: "/margins/:path*", destination: "https://payline-commissions-demo-sigma.vercel.app/margins/:path*" },
       // Endurance Logistics marketing site (GitHub Pages) at endurancelabs.ai/logistics/new
       // via a reverse-proxy rewrite, same pattern as /1100 and /remi. Public — proxy.ts

@@ -18,7 +18,7 @@ const STEPS = [
 
 export function LandingMethod() {
   return (
-    <section className="lp-sheet" aria-label="How we work">
+    <section className="lp-sheet" id="method" data-section="method" aria-label="How we work">
         <p className="lp-kicker">Method</p>
         <h2 className="lp-h2">From the floor to production.</h2>
         <p className="lp-lede">
