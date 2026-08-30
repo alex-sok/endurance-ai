@@ -84,6 +84,20 @@
   --input:              var(--muted-ash);
   --ring:               var(--ink);
   --radius:             8px;
+
+  /* Typography */
+  --font-figtree:   'Lato', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-jetbrains: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --font-instrument: ui-serif, Georgia, serif;
+
+  /* Shadows */
+  --shadow-xl:     rgba(0,0,0,0.14) 0px 28px 70px 0px, rgba(0,0,0,0.1) 0px 14px 32px 0px, rgba(0,0,0,0.08) 0px 0px 0px 1px;
+  --shadow-subtle: rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.12) 0px 4px 12px -4px;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:   120ms;
+  --dur-base:   200ms;
 }
 
 /* Product-app palette — portals, admin, chat. Do not set these on :root. */
@@ -127,21 +141,6 @@
   --input:              var(--muted-ash);
   --ring:               var(--signal);
   --radius:             4px;
-}
-
-  /* Typography */
-  --font-figtree:   'Lato', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-jetbrains: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  --font-instrument: ui-serif, Georgia, serif;
-
-  /* Shadows */
-  --shadow-xl:     rgba(0,0,0,0.14) 0px 28px 70px 0px, rgba(0,0,0,0.1) 0px 14px 32px 0px, rgba(0,0,0,0.08) 0px 0px 0px 1px;
-  --shadow-subtle: rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.12) 0px 4px 12px -4px;
-
-  /* Motion */
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --dur-fast:   120ms;
-  --dur-base:   200ms;
 }
 
 @layer base {
