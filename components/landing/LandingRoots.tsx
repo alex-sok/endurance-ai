@@ -18,7 +18,7 @@ const ROOTS = [
 
 export function LandingRoots() {
   return (
-    <section className="lp-sheet" aria-label="The lab">
+    <section className="lp-sheet" id="research" data-section="research" aria-label="The lab">
         <p className="lp-kicker">The lab</p>
         <h2 className="lp-h2">How we are built.</h2>
         <p className="lp-lede">

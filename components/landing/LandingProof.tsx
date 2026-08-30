@@ -13,7 +13,7 @@ const CASES = [
 
 export function LandingProof() {
   return (
-    <section className="lp-sheet" aria-label="In the field">
+    <section className="lp-sheet" id="proof" data-section="proof" aria-label="In the field">
         <p className="lp-kicker">In the field</p>
         <h2 className="lp-h2">Time, compressed.</h2>
         <div className="lp-proof-grid">

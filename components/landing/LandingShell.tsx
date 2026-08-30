@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import Lenis from "lenis";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { LandingNav } from "./LandingNav";
 import { LandingHero } from "./LandingHero";
 import { LandingRoots } from "./LandingRoots";
@@ -32,51 +31,16 @@ export function LandingShell() {
 
     const lenis = new Lenis({ duration: 1.05 });
     lenisRef.current = lenis;
-    lenis.on("scroll", ScrollTrigger.update);
 
-    const raf = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
-
-    document.fonts?.ready.then(() => ScrollTrigger.refresh()).catch(() => {});
-
-    const deck = gsap.context(() => {
-      const slides = gsap.utils.toArray<HTMLElement>(".lp-slide");
-      slides.forEach((slide, i) => {
-        const next = slides[i + 1];
-        if (!next) return;
-
-        ScrollTrigger.create({
-          trigger: slide,
-          start: "top top",
-          endTrigger: next,
-          end: "top top",
-          pin: true,
-          pinSpacing: false,
-          anticipatePin: 1,
-        });
-
-        gsap.fromTo(
-          slide,
-          { autoAlpha: 1, y: 0 },
-          {
-            autoAlpha: 0,
-            y: -32,
-            ease: "none",
-            scrollTrigger: {
-              trigger: next,
-              start: "top bottom",
-              end: "top top",
-              scrub: true,
-            },
-          }
-        );
-      });
-    });
+    let rafId = 0;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
 
     return () => {
-      deck.revert();
-      gsap.ticker.remove(raf);
+      cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
     };
@@ -90,9 +54,16 @@ export function LandingShell() {
   const scrollToId = useCallback((id: string) => {
     const target = document.getElementById(id);
     if (!target) return;
-    if (lenisRef.current) lenisRef.current.scrollTo(target, { offset: 0 });
+    if (lenisRef.current) lenisRef.current.scrollTo(target, { offset: -80 });
     else target.scrollIntoView({ behavior: "smooth" });
   }, []);
+
+  useEffect(() => {
+    const id = window.location.hash.replace("#", "");
+    if (!id) return;
+    const t = window.setTimeout(() => scrollToId(id), 50);
+    return () => window.clearTimeout(t);
+  }, [scrollToId]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -126,26 +97,14 @@ export function LandingShell() {
 
       <LandingNav onOpenChat={openChat} onNavigate={scrollToId} onCtaClick={onCtaClick} />
 
-      <main id="main-content" className="lp-deck">
-        <div className="lp-slide" data-section="hero">
-          <LandingHero onOpenChat={openChat} onNavigate={scrollToId} />
-        </div>
+      <main id="main-content">
+        <LandingHero onOpenChat={openChat} onNavigate={scrollToId} />
         <LandingProducts onNavigate={scrollToId} />
-        <div className="lp-slide" data-section="research" id="research">
-          <LandingRoots />
-        </div>
-        <div className="lp-slide" data-section="method" id="method">
-          <LandingMethod />
-        </div>
-        <div className="lp-slide" data-section="proof" id="proof">
-          <LandingProof />
-        </div>
-        <div className="lp-slide" data-section="team" id="team">
-          <LandingTeam />
-        </div>
-        <div className="lp-slide" data-section="faq" id="faq">
-          <LandingFAQ onOpenChat={openChat} />
-        </div>
+        <LandingRoots />
+        <LandingMethod />
+        <LandingProof />
+        <LandingTeam />
+        <LandingFAQ onOpenChat={openChat} />
         <LandingCTA onOpenChat={openChat} onCtaClick={onCtaClick} />
       </main>
 
