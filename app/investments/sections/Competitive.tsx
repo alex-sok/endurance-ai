@@ -81,7 +81,7 @@ export function Competitive() {
       </div>
 
       <div className="inv-comp__advantages">
-        <div className="inv-tag">Why Endurance wins</div>
+        <div className="inv-tag inv-tag--name">Why Endurance wins</div>
         <ul className="inv-comp__advantages-list">
           {competitiveAdvantages.map((a) => (
             <li key={a.title} className="inv-comp__advantage">

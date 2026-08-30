@@ -120,11 +120,13 @@ export function V2Nav() {
   return (
     <nav ref={rootRef} className="v2-nav" aria-label="Page sections">
       <a
-        className="v2-nav__wordmark logi-mono"
+        className="v2-nav__wordmark"
         href="#hero"
         onClick={jumpTo("#hero")}
+        aria-label="Endurance Logistics"
       >
-        ENDURANCE <span className="v2-nav__dot">▪</span> LOGISTICS
+        <img src="/logo-endurance-white.svg" alt="" />
+        <span className="v2-nav__product">Logistics</span>
       </a>
 
       <div className="v2-nav__clock logi-mono" aria-hidden="true">

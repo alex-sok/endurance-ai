@@ -33,7 +33,7 @@ export function ChatOverlay({ open, onClose, getSessionId }: Props) {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 8 }}
           transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          className="fixed inset-0 z-[200] flex flex-col"
+          className="theme-product fixed inset-0 z-[200] flex flex-col"
           style={{ background: "#ffffff" }}
           data-lenis-prevent
         >
