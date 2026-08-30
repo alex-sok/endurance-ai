@@ -23,7 +23,7 @@ const FOUNDERS = [
 
 export function LandingTeam() {
   return (
-    <section className="lp-sheet" aria-label="The team">
+    <section className="lp-sheet" id="team" data-section="team" aria-label="The team">
         <p className="lp-kicker">The team</p>
         <h2 className="lp-h2">Built by people who ship.</h2>
         <p className="lp-lede">

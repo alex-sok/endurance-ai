@@ -41,7 +41,7 @@ export function LandingFAQ({ onOpenChat }: Props) {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="lp-sheet" aria-label="Questions">
+    <section className="lp-sheet" id="faq" data-section="faq" aria-label="Questions">
         <p className="lp-kicker">Questions</p>
         <h2 className="lp-h2">Answered plainly.</h2>
         <div className="lp-faq">

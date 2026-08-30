@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface Props {
   onOpenChat: () => void;
-  onNavigate: (id: string) => void;
+  onNavigate?: (id: string) => void;
   onCtaClick?: (label: string) => void;
 }
 
@@ -16,7 +17,9 @@ const LINKS = [
 ];
 
 export function LandingNav({ onOpenChat, onNavigate }: Props) {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const [scrolled, setScrolled] = useState(!isHome);
 
   useEffect(() => {
     const hero = document.getElementById("top");
@@ -34,11 +37,12 @@ export function LandingNav({ onOpenChat, onNavigate }: Props) {
       <div className="lp-nav-inner">
         <a
           className="lp-wordmark"
-          href="#top"
+          href={isHome ? "#top" : "/"}
           aria-label="Endurance AI Labs"
           onClick={(e) => {
+            if (!isHome) return;
             e.preventDefault();
-            onNavigate("top");
+            onNavigate?.("top");
           }}
         >
           <img src="/logo-endurance.svg" alt="" />
@@ -47,10 +51,11 @@ export function LandingNav({ onOpenChat, onNavigate }: Props) {
           {LINKS.map((link) => (
             <a
               key={link.id}
-              href={`#${link.id}`}
+              href={isHome ? `#${link.id}` : `/#${link.id}`}
               onClick={(e) => {
+                if (!isHome) return;
                 e.preventDefault();
-                onNavigate(link.id);
+                onNavigate?.(link.id);
               }}
             >
               {link.label}

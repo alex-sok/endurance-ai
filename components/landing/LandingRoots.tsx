@@ -18,14 +18,14 @@ const ROOTS = [
 
 export function LandingRoots() {
   return (
-    <section className="lp-sheet" aria-label="The lab">
+    <section className="lp-sheet" id="research" data-section="research" aria-label="The lab">
         <p className="lp-kicker">The lab</p>
         <h2 className="lp-h2">How we are built.</h2>
         <p className="lp-lede">
           Three disciplines, held in one small team. Research without a product is
           a paper. A product without research is a guess.
         </p>
-        <div className="lp-grid-3">
+        <div className="lp-team">
           {ROOTS.map((root) => (
             <article key={root.n} className="lp-card">
               <p className="lp-num">{root.n}</p>
