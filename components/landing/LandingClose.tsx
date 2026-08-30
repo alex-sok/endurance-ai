@@ -1,6 +1,7 @@
 "use client";
 
-import { CONTACT_EMAIL } from "@/lib/conversation-flows";
+import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/conversation-flows";
+import { EmailCapture } from "./EmailCapture";
 
 interface Props {
   onOpenChat: () => void;
@@ -23,7 +24,16 @@ export function LandingClose({ onOpenChat }: Props) {
           <button type="button" className="lp-btn lp-btn-fill" onClick={onOpenChat}>
             Talk to us
           </button>
+          <a
+            className="lp-btn lp-btn-line"
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book a call
+          </a>
         </div>
+        <EmailCapture />
         <div className="lp-foot">
           <span>
             © {new Date().getFullYear()}{" "}
