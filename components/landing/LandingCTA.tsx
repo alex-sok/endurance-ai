@@ -62,6 +62,8 @@ export function LandingCTA({ onOpenChat, onCtaClick }: Props) {
                 <a href="/logistics/new">Logistics</a>
                 {" · "}
                 <a href="/margins">Margins</a>
+                {" · "}
+                <a href="/system">System</a>
               </span>
             </div>
           </div>

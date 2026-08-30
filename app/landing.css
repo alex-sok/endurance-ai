@@ -691,6 +691,16 @@
   border-color: rgba(246, 244, 239, 0.14);
 }
 
+.lp-close .lp-kicker {
+  color: rgba(246, 244, 239, 0.55);
+}
+
+/* Night sheet on the field — same close tokens, sheet geometry. */
+.lp-sheet.lp-close {
+  padding: 64px var(--lp-space) 56px;
+  margin-bottom: 64px;
+}
+
 .lp-foot {
   display: flex;
   justify-content: space-between;
