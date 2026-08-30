@@ -12,7 +12,6 @@ interface Props {
 const LINKS = [
   { id: "research", label: "Lab" },
   { id: "work", label: "Work" },
-  { id: "method", label: "Method" },
   { id: "team", label: "Team" },
 ];
 

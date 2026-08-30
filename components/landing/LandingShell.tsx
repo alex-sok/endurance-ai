@@ -6,10 +6,8 @@ import { LandingNav } from "./LandingNav";
 import { LandingHero } from "./LandingHero";
 import { LandingRoots } from "./LandingRoots";
 import { LandingProducts } from "./LandingProducts";
-import { LandingMethod } from "./LandingMethod";
 import { LandingProof } from "./LandingProof";
 import { LandingTeam } from "./LandingTeam";
-import { LandingFAQ } from "./LandingFAQ";
 import { LandingClose } from "./LandingClose";
 import { ChatOverlay } from "./ChatOverlay";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
@@ -101,10 +99,8 @@ export function LandingShell() {
         <LandingHero onOpenChat={openChat} />
         <LandingProducts />
         <LandingRoots />
-        <LandingMethod />
         <LandingProof />
         <LandingTeam />
-        <LandingFAQ />
         <LandingClose onOpenChat={openChat} />
       </main>
 
