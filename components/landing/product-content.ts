@@ -7,10 +7,10 @@ export type ProductContent = {
   lede: string;
   frameSrc: string;
   frameAlt: string;
-  chips: string[];
   steps: { n: string; title: string; body: string }[];
-  proofs: { before: string; after: string; body: string }[];
+  proofLede: string;
   proofTitle: string;
+  proofNote: string;
   lineLabel: string;
   lineHref: string;
   note?: { text: string; href: string; link: string };
@@ -18,12 +18,11 @@ export type ProductContent = {
 
 export const BRAIN: ProductContent = {
   kicker: "Product · Brain",
-  title: "Institutional memory.",
-  italic: "That cites its sources.",
-  lede: "Everything the firm already produces, compiled into a living knowledge base. Every claim cites a source. Nothing is invented.",
+  title: "Institutional memory",
+  italic: "that cites its sources.",
+  lede: "Most AI cannot show its work. That is a rumor with a UI. Brain compiles what the firm already produced. Every claim has a source. Nothing is invented.",
   frameSrc: "/landing/brain.png",
   frameAlt: "Ask Brain console",
-  chips: ["Email", "Slack", "Drive", "Deal rooms", "Code"],
   steps: [
     {
       n: "01",
@@ -41,19 +40,10 @@ export const BRAIN: ProductContent = {
       body: "Ask in plain language. Every figure points at a document.",
     },
   ],
-  proofs: [
-    {
-      before: "Answers buried in mail.",
-      after: "Cited. Every time.",
-      body: "The thread, the deck, the meeting. Compiled. Asked. Sourced.",
-    },
-    {
-      before: "Knowledge walking out.",
-      after: "The firm still knows.",
-      body: "When people leave, the work they did does not.",
-    },
-  ],
-  proofTitle: "Every claim, sourced.",
+  proofLede:
+    "Most AI cannot show its work. That is a rumor with a UI.",
+  proofTitle: "Every claim has a source.",
+  proofNote: "Nothing is invented.",
   lineLabel: "Book a call",
   lineHref: CALENDLY_URL,
   note: {
@@ -65,12 +55,11 @@ export const BRAIN: ProductContent = {
 
 export const MARGINS: ProductContent = {
   kicker: "Product · Margins",
-  title: "Commissions.",
-  italic: "Settled to the penny.",
-  lede: "TMS loads become a proven pay run. Every split computed. Every exception surfaced before payday.",
+  title: "Pay for the margin,",
+  italic: "not the load.",
+  lede: "Your TMS prices the load. It does not pay the people. That is a person and a spreadsheet. Margins is AI in the pay run: every split from what the load actually made, every exception before payday.",
   frameSrc: "/landing/margins.jpg",
   frameAlt: "Margins commissions run",
-  chips: ["TMS loads", "Splits", "Exceptions", "Owner-operators", "Payday"],
   steps: [
     {
       n: "01",
@@ -88,19 +77,10 @@ export const MARGINS: ProductContent = {
       body: "What does not prove out is a list, before the money moves.",
     },
   ],
-  proofs: [
-    {
-      before: "Payday in a spreadsheet.",
-      after: "Settled to the penny.",
-      body: "Loads become a proven run. The math is the product.",
-    },
-    {
-      before: "Exceptions after the fact.",
-      after: "Before payday.",
-      body: "What does not prove out is a list, not a surprise.",
-    },
-  ],
-  proofTitle: "The run, proven.",
+  proofLede:
+    "Margins is in production inside a freight brokerage, running the weekly pay run from their TMS.",
+  proofTitle: "That is the advantage.",
+  proofNote: "Not a demo. The week.",
   lineLabel: "Book a call",
   lineHref: CALENDLY_URL,
   note: {

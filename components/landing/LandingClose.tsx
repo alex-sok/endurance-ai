@@ -8,7 +8,7 @@ interface Props {
 
 export function LandingClose({ onOpenChat }: Props) {
   return (
-    <footer className="lp-close" data-section="close">
+    <footer className="lp-close" id="cta" data-section="close">
       <div className="lp-close-inner">
         <img
           className="lp-close-logo"
@@ -16,6 +16,9 @@ export function LandingClose({ onOpenChat }: Props) {
           alt="Endurance AI Labs"
         />
         <h2 className="lp-h2">The work, then the software.</h2>
+        <p className="lp-lede">
+          If the week still lives in someone&apos;s head, we should talk.
+        </p>
         <div className="lp-cta-actions">
           <button type="button" className="lp-btn lp-btn-fill" onClick={onOpenChat}>
             Talk to us

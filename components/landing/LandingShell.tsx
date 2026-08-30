@@ -10,7 +10,7 @@ import { LandingMethod } from "./LandingMethod";
 import { LandingProof } from "./LandingProof";
 import { LandingTeam } from "./LandingTeam";
 import { LandingFAQ } from "./LandingFAQ";
-import { LandingCTA } from "./LandingCTA";
+import { LandingClose } from "./LandingClose";
 import { ChatOverlay } from "./ChatOverlay";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 
@@ -98,14 +98,14 @@ export function LandingShell() {
       <LandingNav onOpenChat={openChat} onNavigate={scrollToId} onCtaClick={onCtaClick} />
 
       <main id="main-content">
-        <LandingHero onOpenChat={openChat} onNavigate={scrollToId} />
-        <LandingProducts onNavigate={scrollToId} />
+        <LandingHero onOpenChat={openChat} />
+        <LandingProducts />
         <LandingRoots />
         <LandingMethod />
         <LandingProof />
         <LandingTeam />
         <LandingFAQ onOpenChat={openChat} />
-        <LandingCTA onOpenChat={openChat} onCtaClick={onCtaClick} />
+        <LandingClose onOpenChat={openChat} />
       </main>
 
       <ChatOverlay
