@@ -44,5 +44,12 @@ export default async function MissionLayout({ params, children }: Props) {
 
   if (!portal) notFound();
 
-  return <>{children}</>;
+  return (
+    <>
+      {/* Product tokens stay off the marketing CSS bundle. */}
+      {/* eslint-disable-next-line @next/next/no-css-tags */}
+      <link rel="stylesheet" href="/product-tokens.css" />
+      {children}
+    </>
+  );
 }
