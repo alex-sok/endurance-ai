@@ -26,9 +26,9 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const SITE_URL = "https://endurancelabs.ai";
-const TITLE = "Endurance AI Labs — Research, engineering, vertical software";
+const TITLE = "Endurance AI Labs — We research the work.";
 const DESCRIPTION =
-  "A research and engineering lab that studies how industries actually run, then ships the vertical systems they have been missing.";
+  "Endurance is a lab. We sit in the operation, then we ship the system it was missing.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -44,20 +44,11 @@ export const metadata: Metadata = {
     siteName: "Endurance AI Labs",
     type: "website",
     locale: "en_US",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Endurance AI Labs — Research, engineering, vertical software",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -89,7 +80,7 @@ export default function RootLayout({
     url: "https://endurancelabs.ai",
     logo: "https://endurancelabs.ai/logo-endurance.svg",
     description:
-      "A research and engineering lab that studies how industries actually run, then ships vertical software for that work.",
+      "Endurance is a lab. We sit in the operation, then we ship the system it was missing.",
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@endurancelabs.ai",

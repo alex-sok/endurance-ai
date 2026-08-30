@@ -7,10 +7,8 @@ export function LandingProducts() {
           <div className="lp-feature-copy">
             <h2>Pay for the margin, not the load.</h2>
             <p className="lp-lede">
-              Your TMS prices the load. It does not pay the people. That is a
-              person and a spreadsheet. Margins is AI in the pay run: every
-              split from what the load actually made, every exception before
-              payday.
+              TMS loads become a weekly pay run. Splits track what the load
+              actually made.
             </p>
             <a className="lp-feature-cta" href="/margins">
               Open Margins
@@ -31,9 +29,8 @@ export function LandingProducts() {
           <div className="lp-feature-copy">
             <h2>Institutional memory that cites its sources.</h2>
             <p className="lp-lede">
-              Most AI cannot show its work. That is a rumor with a UI. Brain
-              compiles what the firm already produced. Every claim has a source.
-              Nothing is invented.
+              Everything the firm already produces, compiled. Every claim cites
+              a source. Nothing is invented.
             </p>
             <a className="lp-feature-cta" href="/brain">
               Open Brain

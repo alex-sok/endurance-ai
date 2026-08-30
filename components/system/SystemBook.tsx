@@ -414,8 +414,7 @@ export function SystemBook() {
             <p className="lp-kicker">Start here</p>
             <h2 className="lp-h2">The work, then the software.</h2>
             <p className="lp-lede">
-              A working conversation, not a pitch. If there is a page to
-              make, it uses this system.
+              If there is a system worth building, we will say so.
             </p>
             <div className="lp-cta-actions">
               <button

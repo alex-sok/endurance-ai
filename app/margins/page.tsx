@@ -5,7 +5,7 @@ import "../landing.css";
 
 const TITLE = "Margins — Endurance AI Labs";
 const DESCRIPTION =
-  "Commissions, settled to the penny. TMS loads become a proven pay run. Every exception surfaced before payday.";
+  "Pay for the margin, not the load. TMS loads become a weekly pay run. Splits track what the load actually made.";
 
 export const metadata: Metadata = {
   title: TITLE,
