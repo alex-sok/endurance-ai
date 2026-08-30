@@ -4,6 +4,7 @@ import { LenisProvider } from "./lib/lenis-provider";
 import { ProgressIndicator } from "./components/ProgressIndicator";
 import { Preloader } from "./components/Preloader";
 import { V2Nav } from "./components/V2Nav";
+import "../product-tokens.css";
 import "./logistics.css";
 import "./sections.css";
 import "./styles/v2/index.css";

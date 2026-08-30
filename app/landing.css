@@ -2,6 +2,11 @@
    Pace's structure (field, product evidence, dark close),
    our material (plaster field, serif, ember). */
 
+body:has(.theme-paper) {
+  background: #e4d8c6;
+  color: #1c1916;
+}
+
 .theme-paper {
   --lp-field: #e4d8c6;
   --lp-paper: #f6f4ef;

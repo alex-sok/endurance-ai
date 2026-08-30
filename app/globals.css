@@ -41,68 +41,6 @@
   --color-flare:     var(--flare);       /* ember signal accent on the dark landing */
 }
 
-:root {
-  /* ── Cursor-inspired design tokens ──────────────────────────────────────── */
-
-  /* Core palette */
-  --ink:        #262510;   /* inkwell — primary text, strong borders */
-  --surface:    #e6e5e0;   /* pebble gray — elevated surfaces, hovers */
-  --bone:       #f7f7f4;   /* canvas parchment — page + card backgrounds */
-  --muted-ash:  #7a7974;   /* muted stone — secondary text, icons */
-  --signal:     #7c3aed;   /* violet — outlined interactive accent */
-  --flare:      #f54e00;   /* ember orange — landing page signal accent */
-  --rust:       #dc2626;
-
-  /* Surface scale */
-  --steel-50:   #ffffff;
-  --steel-100:  #f7f7f4;
-  --steel-200:  #e6e5e0;
-  --steel-300:  #cdcdc9;
-  --steel-400:  #7a7974;
-  --steel-500:  #7a7974;
-  --steel-600:  #cdcdc9;
-  --steel-700:  #e6e5e0;
-  --steel-800:  #f0f0ed;
-
-  /* Semantic */
-  --background:   var(--bone);
-  --foreground:   var(--ink);
-  --fg-muted:     var(--muted-ash);
-  --fg-subtle:    var(--muted-ash);
-  --border-color: var(--surface);
-
-  /* Component tokens (Tailwind compat) */
-  --card:               var(--surface);
-  --card-foreground:    var(--ink);
-  --primary:            var(--ink);
-  --primary-foreground: var(--bone);
-  --secondary:          var(--surface);
-  --secondary-foreground: var(--ink);
-  --muted:              var(--steel-700);
-  --muted-foreground:   var(--muted-ash);
-  --accent:             var(--signal);
-  --accent-foreground:  var(--bone);
-  --destructive:        var(--rust);
-  --border:             var(--surface);
-  --input:              var(--muted-ash);
-  --ring:               var(--signal);
-  --radius:             4px;
-
-  /* Typography */
-  --font-figtree:   'Lato', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-jetbrains: 'Space Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-  --font-instrument: ui-serif, Georgia, serif;
-
-  /* Shadows */
-  --shadow-xl:     rgba(0,0,0,0.14) 0px 28px 70px 0px, rgba(0,0,0,0.1) 0px 14px 32px 0px, rgba(0,0,0,0.08) 0px 0px 0px 1px;
-  --shadow-subtle: rgba(0,0,0,0.08) 0px 0px 0px 1px, rgba(0,0,0,0.12) 0px 4px 12px -4px;
-
-  /* Motion */
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --dur-fast:   120ms;
-  --dur-base:   200ms;
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -114,23 +52,10 @@
     height: 100%;
   }
   body {
-    background: var(--bone);
-    color: var(--ink);
-    font-family: var(--font-figtree);
-    font-size: 14px;
-    line-height: 1.43;
-    letter-spacing: 0.08px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "tnum";
   }
 }
-
-/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--surface); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--muted-ash); }
 
 /* ── Landing (dark expedition theme) ──────────────────────────────────────── */
 

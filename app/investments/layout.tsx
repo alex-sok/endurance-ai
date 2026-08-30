@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { LenisProvider } from "./lib/lenis-provider";
 import { ProgressIndicator } from "./components/ProgressIndicator";
+import "../product-tokens.css";
 import "./investments.css";
 import "./sections.css";
 
