@@ -1,5 +1,6 @@
-/* Product-app tokens. Import from logistics, investments, mission, admin.
-   Do not import from homepage /brain /margins /system. */
+/* Product-app tokens. Linked from logistics, investments, mission, admin.
+   Do not import this file from homepage /brain /margins /system —
+   Next would fold the :root hex into the marketing CSS payload. */
 
 :root {
   --ink:        #262510;
