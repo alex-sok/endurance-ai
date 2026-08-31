@@ -34,6 +34,13 @@ const GATES: GateConfig[] = [
     routePrefix: "/investments",
     accessPath: "/investments/access",
   },
+  {
+    cookieName: "endurance-copperline-access",
+    passwordEnv: "COPPERLINE_PASSWORD",
+    salt: "copperline-access-v1",
+    routePrefix: "/copperline",
+    accessPath: "/copperline/access",
+  },
 ];
 
 async function deriveToken(password: string, salt: string): Promise<string> {
@@ -92,5 +99,7 @@ export const config = {
     "/logistics/:path*",
     "/investments",
     "/investments/:path*",
+    "/copperline",
+    "/copperline/:path*",
   ],
 };

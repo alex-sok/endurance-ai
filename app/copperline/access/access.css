@@ -1,0 +1,74 @@
+/* /copperline/access — the password gate for the Copperline Logistics demo.
+
+   Deliberately self-contained: the demo itself lives on another origin behind a
+   proxy rewrite, so this page cannot inherit its stylesheet. Everything here is
+   scoped under .cl-access and mirrors the demo's own tokens (near-white canvas,
+   near-black ink, one electric-cobalt accent, hairlines rather than shadows) so
+   the gate reads as the front door of the thing behind it. */
+
+.cl-access {
+  --cl-bg: #fafaf8;
+  --cl-surface: #ffffff;
+  --cl-ink: #1a1a18;
+  --cl-muted: #71716b;
+  --cl-muted-2: #a6a69f;
+  --cl-line: #e7e6e1;
+  --cl-accent: #2e6ff2;
+  --cl-accent-2: #1d55d4;
+  --cl-bad: #a4503b;
+
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--cl-bg);
+  color: var(--cl-ink);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.cl-access__inner {
+  width: 100%;
+  max-width: 400px;
+  background: var(--cl-surface);
+  border: 1px solid var(--cl-line);
+  border-radius: 10px;
+  padding: 32px;
+}
+
+.cl-access__mark { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+.cl-access__mark span { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+
+.cl-access__title { font-size: 20px; font-weight: 700; margin: 0 0 6px; letter-spacing: -0.01em; }
+.cl-access__sub { font-size: 13px; color: var(--cl-muted); margin: 0 0 22px; line-height: 1.55; }
+
+.cl-access__field { display: block; margin-bottom: 14px; }
+.cl-access__label {
+  display: block; font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--cl-muted); margin-bottom: 6px;
+}
+.cl-access__input {
+  width: 100%; height: 38px; padding: 0 12px; font: 14px inherit; color: var(--cl-ink);
+  background: var(--cl-surface); border: 1px solid var(--cl-line); border-radius: 8px;
+  box-sizing: border-box;
+}
+.cl-access__input:focus {
+  outline: none; border-color: var(--cl-accent);
+  box-shadow: 0 0 0 3px rgba(46, 111, 242, 0.28);
+}
+
+.cl-access__submit {
+  width: 100%; height: 38px; border: none; border-radius: 8px; cursor: pointer;
+  background: var(--cl-ink); color: #fff; font: 600 13px inherit;
+}
+.cl-access__submit:hover:not(:disabled) { background: #333330; }
+.cl-access__submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.cl-access__error { font-size: 12px; color: var(--cl-bad); margin: 12px 0 0; }
+
+.cl-access__foot {
+  font-size: 11px; color: var(--cl-muted-2); margin: 22px 0 0;
+  padding-top: 16px; border-top: 1px solid var(--cl-line); line-height: 1.6;
+}
+.cl-access__foot a { color: var(--cl-accent-2); }
