@@ -109,6 +109,36 @@ const nextConfig: NextConfig = {
       // up exactly and nothing resolves to a root-absolute path that would 404.
       { source: "/hospitality", destination: "https://endurance-ai-labs.github.io/hospitality/index.html" },
       { source: "/hospitality/:path*", destination: "https://endurance-ai-labs.github.io/hospitality/:path*" },
+      // Wealth management portals, all hosted on GitHub Pages. Same clean-proxy
+      // pattern as /law: each repository is named for its path and every asset
+      // and route inside it is written under that prefix, so the proxied path
+      // and the Pages project path line up exactly. Directories are rewritten
+      // to their index.html explicitly so nothing round-trips through the
+      // GitHub Pages trailing-slash redirect.
+      // Blackmont Advisors wealth portal (client-facing demo)
+      { source: "/wealthmanagement", destination: "https://endurance-ai-labs.github.io/wealthmanagement/index.html" },
+      { source: "/wealthmanagement/", destination: "https://endurance-ai-labs.github.io/wealthmanagement/index.html" },
+      { source: "/wealthmanagement/:file(.*\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/wealthmanagement/:file" },
+      { source: "/wealthmanagement/:path*/", destination: "https://endurance-ai-labs.github.io/wealthmanagement/:path*/index.html" },
+      { source: "/wealthmanagement/:path*", destination: "https://endurance-ai-labs.github.io/wealthmanagement/:path*/index.html" },
+      // Blackmont Advisors, also reachable at its own name
+      { source: "/blackmont", destination: "https://endurance-ai-labs.github.io/blackmont/index.html" },
+      { source: "/blackmont/", destination: "https://endurance-ai-labs.github.io/blackmont/index.html" },
+      { source: "/blackmont/:file(.*\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/blackmont/:file" },
+      { source: "/blackmont/:path*/", destination: "https://endurance-ai-labs.github.io/blackmont/:path*/index.html" },
+      { source: "/blackmont/:path*", destination: "https://endurance-ai-labs.github.io/blackmont/:path*/index.html" },
+      // Evolve Private Wealth prospect demo
+      { source: "/evolve", destination: "https://endurance-ai-labs.github.io/evolve/index.html" },
+      { source: "/evolve/", destination: "https://endurance-ai-labs.github.io/evolve/index.html" },
+      { source: "/evolve/:file(.*\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/evolve/:file" },
+      { source: "/evolve/:path*/", destination: "https://endurance-ai-labs.github.io/evolve/:path*/index.html" },
+      { source: "/evolve/:path*", destination: "https://endurance-ai-labs.github.io/evolve/:path*/index.html" },
+      // Rosemont Partners, the generic wealth reference build
+      { source: "/rosemont", destination: "https://endurance-ai-labs.github.io/rosemont/index.html" },
+      { source: "/rosemont/", destination: "https://endurance-ai-labs.github.io/rosemont/index.html" },
+      { source: "/rosemont/:file(.*\.[a-zA-Z0-9]+)", destination: "https://endurance-ai-labs.github.io/rosemont/:file" },
+      { source: "/rosemont/:path*/", destination: "https://endurance-ai-labs.github.io/rosemont/:path*/index.html" },
+      { source: "/rosemont/:path*", destination: "https://endurance-ai-labs.github.io/rosemont/:path*/index.html" },
     ];
   },
   // CFP Portal (Cloudflare Pages app) at endurancelabs.ai/CFPportal.
