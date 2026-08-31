@@ -69,6 +69,14 @@ const nextConfig: NextConfig = {
       // stays on our domain, no redirect.
       { source: "/BPOS", destination: "https://brain-powered-os.vercel.app/BPOS" },
       { source: "/BPOS/:path*", destination: "https://brain-powered-os.vercel.app/BPOS/:path*" },
+      // Copperline Logistics — the freight-brokerage platform demo (Next.js app on
+      // Vercel) at endurancelabs.ai/copperline. Same clean-proxy pattern as /BPOS:
+      // the app is served under basePath "/copperline", so every route and asset is
+      // self-contained under that subpath and nothing resolves root-absolute.
+      // Password-gated in proxy.ts; /copperline/access is a real page in this app and
+      // wins over these rewrites because an array return is matched afterFiles.
+      { source: "/copperline", destination: "https://copperline-portal-gray.vercel.app/copperline" },
+      { source: "/copperline/:path*", destination: "https://copperline-portal-gray.vercel.app/copperline/:path*" },
       // Remi (AI conversation-intelligence demo on GitHub Pages) at endurancelabs.ai/remi
       // via a reverse-proxy rewrite. skipTrailingSlashRedirect (above) keeps /remi/ from
       // being stripped; the page itself hops /remi -> /remi/ client-side so its external
