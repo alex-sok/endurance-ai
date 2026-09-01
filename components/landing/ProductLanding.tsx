@@ -178,6 +178,21 @@ export function ProductLanding(product: ProductContent) {
           </div>
         ) : null}
 
+        {product.proofFacts ? (
+          <section
+            className="lp-proof-band"
+            data-section="proof-band"
+            aria-label={product.proofFacts.heading}
+          >
+            <h2>{product.proofFacts.heading}</h2>
+            <ul>
+              {product.proofFacts.lines.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
         {!product.proofStrip ? (
           <section className="lp-sheet" data-section="proof" aria-label="In the field">
             <p className="lp-lede">{product.proofLede}</p>

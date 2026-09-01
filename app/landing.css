@@ -126,14 +126,14 @@ body:has(.theme-snow) {
 .theme-snow .lp-hero.lp-fold {
   display: grid;
   grid-template-columns: minmax(14rem, 17rem) minmax(0, 1fr);
-  column-gap: 20px;
+  column-gap: 0;
   align-items: stretch;
   width: 100%;
   min-height: 100svh;
   height: 100svh;
   max-height: 100svh;
   overflow: hidden;
-  padding: calc(var(--lp-nav-h) + 8px) 12px 12px var(--lp-space);
+  padding: calc(var(--lp-nav-h) + 8px) 0 0 var(--lp-space);
   box-sizing: border-box;
 }
 
@@ -232,26 +232,30 @@ body:has(.theme-snow) {
   -webkit-backdrop-filter: none;
 }
 
-.theme-snow .lp-fold-instrument {
+.theme-snow .lp-hero.lp-fold > .lp-fold-instrument {
   position: relative;
   margin: 0;
   min-width: 0;
-  min-height: 0;
-  height: 100%;
+  min-height: calc(100svh - var(--lp-nav-h) - 8px);
+  height: auto;
+  max-width: none;
+  aspect-ratio: auto;
   align-self: stretch;
   overflow: hidden;
   background: none;
   box-shadow: none;
   outline: none;
+  border: 0;
   border-radius: 0;
 }
 
-.theme-snow .lp-fold-instrument img {
+.theme-snow .lp-hero.lp-fold > .lp-fold-instrument > img {
   position: absolute;
   inset: 0;
   display: block;
   width: 100%;
   height: 100%;
+  max-width: none;
   max-height: none;
   object-fit: cover;
   object-position: left top;
@@ -259,6 +263,7 @@ body:has(.theme-snow) {
   background: none;
   box-shadow: none;
   outline: none;
+  border: 0;
 }
 
 .theme-snow .lp-sheet {
@@ -772,6 +777,47 @@ body:has(.theme-snow) {
   list-style: none;
 }
 
+.lp-proof-band {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 48px);
+  max-width: var(--lp-sheet);
+  margin: 0 auto 96px;
+}
+
+.lp-proof-band h2 {
+  font-family: var(--lp-display);
+  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  max-width: 18ch;
+}
+
+.lp-proof-band ul {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  max-width: 42rem;
+}
+
+.lp-proof-band li {
+  margin: 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--lp-line);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--lp-ink);
+}
+
+.lp-proof-band li:last-child {
+  border-bottom: 1px solid var(--lp-line);
+}
+
+.theme-snow .lp-proof-band h2,
+.theme-snow .lp-proof-band li {
+  color: var(--lp-night);
+}
+
 /* ---------- proof / team ---------- */
 .lp-proof-grid {
   display: grid;
@@ -1067,12 +1113,14 @@ ol.lp-team {
     padding: 0;
     max-width: none;
   }
-  .theme-snow .lp-fold-instrument {
+  .theme-snow .lp-fold-instrument,
+  .theme-snow .lp-hero.lp-fold > .lp-fold-instrument {
     position: relative;
     height: auto;
     min-height: 0;
   }
-  .theme-snow .lp-fold-instrument img {
+  .theme-snow .lp-fold-instrument img,
+  .theme-snow .lp-hero.lp-fold > .lp-fold-instrument > img {
     position: static;
     inset: auto;
     height: auto;
@@ -1143,5 +1191,54 @@ ol.lp-team {
   .lp-faq button,
   .lp-form input {
     transition: none;
+  }
+}
+/* Desktop fold — last so it wins over preflight img { height: auto } and the 900px stack. */
+@media (min-width: 1080px) {
+  .theme-snow .lp-hero.lp-fold {
+    display: grid;
+    grid-template-columns: minmax(14rem, 17rem) minmax(0, 1fr);
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+    padding: calc(var(--lp-nav-h) + 8px) 0 0 var(--lp-space);
+    align-items: stretch;
+  }
+
+  .theme-snow .lp-hero.lp-fold > .lp-hero-copy {
+    align-self: center;
+  }
+
+  .theme-snow .lp-hero.lp-fold > .lp-fold-instrument {
+    align-self: stretch;
+    min-width: 0;
+    min-height: calc(100svh - var(--lp-nav-h) - 8px);
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    max-width: none;
+    aspect-ratio: auto;
+    margin: 0;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+    background: none;
+  }
+
+  .theme-snow .lp-hero.lp-fold > .lp-fold-instrument > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    object-position: left top;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    outline: none;
   }
 }
