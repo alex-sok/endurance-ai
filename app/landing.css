@@ -43,9 +43,7 @@ body:has(.theme-paper) {
 .theme-paper h2,
 .theme-paper h3,
 .theme-paper p {
-  margin: 0;
   font-weight: 400;
-  color: inherit;
 }
 
 .theme-paper a:focus-visible,
@@ -287,6 +285,7 @@ body:has(.theme-paper) {
 
 .lp-hero .lp-kicker {
   color: rgba(28, 25, 22, 0.58);
+  margin-bottom: 16px;
 }
 
 .lp-hero-copy h1 {
@@ -307,12 +306,7 @@ body:has(.theme-paper) {
   line-height: 1.16;
 }
 
-/* Named with the theme so the margin survives the .theme-paper p reset. */
-.theme-paper .lp-hero .lp-kicker {
-  margin-bottom: 16px;
-}
-
-.theme-paper .lp-hero-lede {
+.lp-hero-lede {
   margin-top: 32px;
   font-size: 16px;
   line-height: 1.58;
@@ -671,11 +665,8 @@ ol.lp-team {
   color: var(--lp-muted);
 }
 
-/* ---------- figures: a proof number and the fine line under it ----------
-   .theme-paper h1..p sets color and margin at one class plus one element,
-   which outranks a bare .lp-* class. Primitives below that carry a color or
-   a margin on those elements name the theme too, or the reset wins. */
-.theme-paper .lp-figure {
+/* ---------- figures: a proof number and the fine line under it ---------- */
+.lp-figure {
   font-family: var(--lp-mono);
   font-variant-numeric: tabular-nums;
   font-size: 1.375rem;
@@ -684,7 +675,7 @@ ol.lp-team {
   color: var(--lp-flare);
 }
 
-.theme-paper .lp-fine {
+.lp-fine {
   font-size: 14px;
   line-height: 1.5;
   color: var(--lp-muted);
@@ -719,7 +710,7 @@ ol.lp-team {
   max-width: 22ch;
 }
 
-.theme-paper .lp-band-note {
+.lp-band-note {
   margin-top: 20px;
   max-width: 68ch;
 }
@@ -759,7 +750,7 @@ ol.lp-team {
   margin-top: 56px;
 }
 
-.theme-paper .lp-closer {
+.lp-closer {
   margin-top: 48px;
 }
 
@@ -810,7 +801,7 @@ ol.lp-team {
 }
 
 /* ---------- colophon: where the figures came from ---------- */
-.theme-paper .lp-colophon {
+.lp-colophon {
   margin-top: 40px;
   font-family: var(--lp-mono);
   font-size: 11px;
