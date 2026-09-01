@@ -5,13 +5,36 @@ import { ChatOverlay } from "./ChatOverlay";
 import { LandingClose } from "./LandingClose";
 import { LandingNav } from "./LandingNav";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
-import type { ProductContent, ProductSolve } from "./product-content";
+import type { ProductContent, ProductRecipe, ProductSolve } from "./product-content";
 
 function SolveFrame({ block }: { block: ProductSolve }) {
   return (
     <div className="lp-feature-frame">
       <img src={block.frameSrc} alt={block.frameAlt} />
     </div>
+  );
+}
+
+function RecipeBand({ recipe }: { recipe: ProductRecipe }) {
+  return (
+    <section
+      className="lp-sheet"
+      data-section="recipe"
+      id="recipe"
+      aria-label={recipe.solve}
+    >
+      <div className="lp-product">
+        <div className="lp-feature-copy">
+          <p className="lp-kicker">{recipe.pain}</p>
+          <h2>{recipe.solve}</h2>
+          <p className="lp-recipe-line">{recipe.line}</p>
+          <p className="lp-lede">{recipe.body}</p>
+        </div>
+        <div className="lp-feature-frame">
+          <img src={recipe.frameSrc} alt={recipe.frameAlt} />
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -148,6 +171,8 @@ export function ProductLanding(product: ProductContent) {
             </ol>
           </section>
         ) : null}
+
+        {product.recipe ? <RecipeBand recipe={product.recipe} /> : null}
 
         {product.proofStrip ? (
           <section className="lp-strip" data-section="proof-strip" aria-label="In production">

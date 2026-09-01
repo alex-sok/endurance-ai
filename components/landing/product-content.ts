@@ -24,6 +24,16 @@ export type ProductSolve = {
   framePending?: boolean;
 };
 
+/** One pain / one solve / one frame. Sits after the fold, before A–E. */
+export type ProductRecipe = {
+  pain: string;
+  solve: string;
+  line: string;
+  body: string;
+  frameSrc: string;
+  frameAlt: string;
+};
+
 export type ProductContent = {
   kicker: string;
   title: string;
@@ -38,6 +48,7 @@ export type ProductContent = {
   proofStrip?: string;
   /** Ordered pain→solve sheets. Append when VP locks more; do not invent copy. */
   solves?: ProductSolve[];
+  recipe?: ProductRecipe;
   steps: { n: string; title: string; body: string }[];
   proofLede: string;
   proofTitle: string;
@@ -147,6 +158,14 @@ export const MARGINS: ProductContent = {
     "One brokerage per deployment",
   ],
   steps: [],
+  recipe: {
+    pain: "Every vendor wants us to change how we run.",
+    solve: "Fitted to this brokerage.",
+    line: "We sit in the brokerage.",
+    body: "The pay run takes your deals, your TMS, your roster. Not a template. Not a new OS.",
+    frameSrc: MARGINS_SLOTS["pay-run"],
+    frameAlt: "this week’s run",
+  },
   solves: lockedSolves(MARGINS_LIVE_IDS, {
     ingest: {
       pain: "“Splits don’t follow what the load actually made.”",
