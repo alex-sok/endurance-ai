@@ -118,27 +118,32 @@ body:has(.theme-snow) {
   color: var(--lp-snow);
 }
 
-.theme-snow .lp-hero {
-  min-height: 100svh;
-  align-items: stretch;
-}
-
-.theme-snow .lp-fold-inner {
-  display: grid;
-  grid-template-columns: minmax(15rem, 22rem) minmax(0, 1fr);
-  gap: 36px;
-  align-items: center;
-  width: 100%;
+.theme-snow .lp-nav-inner {
   max-width: none;
   margin: 0;
-  padding: calc(var(--lp-nav-h) + 12px) var(--lp-space) 20px;
+}
+
+.theme-snow .lp-hero.lp-fold {
+  display: grid;
+  grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
+  column-gap: 28px;
+  align-items: center;
+  width: 100%;
   min-height: 100svh;
+  height: 100svh;
+  max-height: 100svh;
+  overflow: hidden;
+  padding: 0 0 0 var(--lp-space);
+  box-sizing: border-box;
 }
 
 .theme-snow .lp-hero-copy {
-  padding: 0;
-  max-width: 22rem;
+  width: auto;
+  margin: 0;
+  padding: var(--lp-nav-h) 0 0;
+  max-width: 20rem;
   text-align: left;
+  justify-self: start;
 }
 
 .theme-snow .lp-hero-copy > * {
@@ -164,11 +169,11 @@ body:has(.theme-snow) {
 
 .theme-snow .lp-hero-kicker {
   margin: 0 0 14px;
-  font-family: var(--lp-mono);
-  font-size: 11px;
+  font-family: var(--lp-sans);
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   line-height: 1.4;
   color: var(--lp-muted);
   text-transform: none;
@@ -183,6 +188,7 @@ body:has(.theme-snow) {
   background: none;
   color: var(--lp-night);
   font-size: 15px;
+  line-height: 1.2;
   text-decoration: none;
   border-bottom: 1px solid rgba(22, 20, 18, 0.28);
 }
@@ -225,7 +231,7 @@ body:has(.theme-snow) {
   -webkit-backdrop-filter: none;
 }
 
-.theme-snow .lp-fold-frame {
+.theme-snow .lp-fold-instrument {
   margin: 0;
   min-width: 0;
   min-height: 0;
@@ -233,39 +239,25 @@ body:has(.theme-snow) {
   align-self: stretch;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: none;
+  box-shadow: none;
+  outline: none;
+  border-radius: 0;
 }
 
-.theme-snow .lp-fold-frame img {
+.theme-snow .lp-fold-instrument img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: calc(100svh - var(--lp-nav-h) - 32px);
+  max-height: 92%;
   object-fit: contain;
   object-position: left center;
   border-radius: 0;
   background: none;
   box-shadow: none;
   outline: none;
-}
-
-@media (min-width: 901px) {
-  .theme-snow .lp-hero.lp-fold {
-    height: 100svh;
-    max-height: 100svh;
-    overflow: hidden;
-  }
-
-  .theme-snow .lp-fold-inner {
-    height: 100svh;
-    max-height: 100svh;
-    box-sizing: border-box;
-  }
-
-  .theme-snow .lp-fold-frame img {
-    height: 100%;
-    max-height: none;
-    object-fit: contain;
-  }
 }
 
 .theme-snow .lp-sheet {
@@ -1055,15 +1047,28 @@ ol.lp-team {
   .lp-hero-copy {
     padding: calc(var(--lp-nav-h) + 56px) var(--lp-space) 96px;
   }
-  .theme-snow .lp-fold-inner {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: calc(var(--lp-nav-h) + 16px) var(--lp-space) 16px;
-    min-height: 0;
+  .theme-snow .lp-hero.lp-fold {
+    display: flex;
+    flex-direction: column;
     height: auto;
+    max-height: none;
+    min-height: 0;
+    overflow: visible;
+    padding: calc(var(--lp-nav-h) + 16px) 0 0 var(--lp-space);
+    gap: 20px;
   }
   .theme-snow .lp-hero-copy {
     padding: 0;
+    max-width: none;
+  }
+  .theme-snow .lp-fold-instrument {
+    height: auto;
+    margin-right: 0;
+  }
+  .theme-snow .lp-fold-instrument img {
+    height: auto;
+    width: 100%;
+    max-height: none;
   }
   .theme-snow .lp-sheet {
     margin: 0 auto;

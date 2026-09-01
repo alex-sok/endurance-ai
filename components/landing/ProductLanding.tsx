@@ -92,40 +92,38 @@ export function ProductLanding(product: ProductContent) {
 
       <main id="main-content">
         <header className={firstSolve ? "lp-hero lp-fold" : "lp-hero"} id="top" data-section="hero">
-          <div className={firstSolve ? "lp-fold-inner" : undefined}>
-            <div className="lp-hero-copy">
-              {product.kicker ? <p className="lp-kicker">{product.kicker}</p> : null}
-              {product.italic && product.italicAsKicker ? (
-                <p className="lp-hero-kicker">{product.italic}</p>
-              ) : null}
-              <h1>{product.title}</h1>
-              {product.italic && !product.italicAsKicker ? (
-                <p className="lp-hero-display-em">
-                  <em>{product.italic}</em>
-                </p>
-              ) : null}
-              <p className="lp-hero-lede">{product.lede}</p>
-              <div className="lp-hero-actions">
-                <button type="button" className="lp-btn lp-btn-fill" onClick={openChat}>
-                  {talkLabel}
-                </button>
-                <a
-                  className="lp-hero-line"
-                  href={product.lineHref}
-                  target={product.lineHref.startsWith("http") ? "_blank" : undefined}
-                  rel={product.lineHref.startsWith("http") ? "noopener noreferrer" : undefined}
-                  onClick={() => onCtaClick?.(product.lineLabel)}
-                >
-                  {product.lineLabel}
-                </a>
-              </div>
-            </div>
-            {firstSolve ? (
-              <figure className="lp-fold-frame" aria-label={product.frameAlt}>
-                <img src={product.frameSrc} alt={product.frameAlt} />
-              </figure>
+          <div className="lp-hero-copy">
+            {product.kicker ? <p className="lp-kicker">{product.kicker}</p> : null}
+            {product.italic && product.italicAsKicker ? (
+              <p className="lp-hero-kicker">{product.italic}</p>
             ) : null}
+            <h1>{product.title}</h1>
+            {product.italic && !product.italicAsKicker ? (
+              <p className="lp-hero-display-em">
+                <em>{product.italic}</em>
+              </p>
+            ) : null}
+            <p className="lp-hero-lede">{product.lede}</p>
+            <div className="lp-hero-actions">
+              <button type="button" className="lp-btn lp-btn-fill" onClick={openChat}>
+                {talkLabel}
+              </button>
+              <a
+                className="lp-hero-line"
+                href={product.lineHref}
+                target={product.lineHref.startsWith("http") ? "_blank" : undefined}
+                rel={product.lineHref.startsWith("http") ? "noopener noreferrer" : undefined}
+                onClick={() => onCtaClick?.(product.lineLabel)}
+              >
+                {product.lineLabel}
+              </a>
+            </div>
           </div>
+          {firstSolve ? (
+            <figure className="lp-fold-instrument" aria-label={product.frameAlt}>
+              <img src={product.frameSrc} alt={product.frameAlt} />
+            </figure>
+          ) : null}
         </header>
 
         {!hasSolves ? (
