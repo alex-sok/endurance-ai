@@ -15,17 +15,25 @@ function SolveFrame({ block }: { block: ProductSolve }) {
   );
 }
 
-function SolveSheet({ block, flip }: { block: ProductSolve; flip: boolean }) {
+function SolveSheet({
+  block,
+  flip,
+  hideFrame,
+}: {
+  block: ProductSolve;
+  flip: boolean;
+  hideFrame?: boolean;
+}) {
   return (
     <section className="lp-sheet" data-section={block.id} id={block.id} aria-label={block.solve}>
-      <div className={flip ? "lp-product is-flip" : "lp-product"}>
-        {flip ? <SolveFrame block={block} /> : null}
+      <div className={flip ? "lp-product is-flip" : hideFrame ? "lp-product is-solo" : "lp-product"}>
+        {flip && !hideFrame ? <SolveFrame block={block} /> : null}
         <div className="lp-feature-copy">
           <p className="lp-kicker">{block.pain}</p>
           <h2>{block.solve}</h2>
           <p className="lp-lede">{block.body}</p>
         </div>
-        {flip ? null : <SolveFrame block={block} />}
+        {!flip && !hideFrame ? <SolveFrame block={block} /> : null}
       </div>
     </section>
   );
@@ -83,28 +91,35 @@ export function ProductLanding(product: ProductContent) {
       <LandingNav onOpenChat={openChat} onNavigate={scrollToId} onCtaClick={onCtaClick} />
 
       <main id="main-content">
-        <header className="lp-hero" id="top" data-section="hero">
-          <div className="lp-hero-copy">
-            {product.kicker ? <p className="lp-kicker">{product.kicker}</p> : null}
-            <h1>
-              {product.title}
-              {product.italic ? <em>{product.italic}</em> : null}
-            </h1>
-            <p className="lp-hero-lede">{product.lede}</p>
-            <div className="lp-hero-actions">
-              <button type="button" className="lp-btn lp-btn-fill" onClick={openChat}>
-                {talkLabel}
-              </button>
-              <a
-                className="lp-btn lp-btn-line"
-                href={product.lineHref}
-                target={product.lineHref.startsWith("http") ? "_blank" : undefined}
-                rel={product.lineHref.startsWith("http") ? "noopener noreferrer" : undefined}
-                onClick={() => onCtaClick?.(product.lineLabel)}
-              >
-                {product.lineLabel}
-              </a>
+        <header className={firstSolve ? "lp-hero lp-fold" : "lp-hero"} id="top" data-section="hero">
+          <div className={firstSolve ? "lp-fold-inner" : undefined}>
+            <div className="lp-hero-copy">
+              {product.kicker ? <p className="lp-kicker">{product.kicker}</p> : null}
+              <h1>
+                {product.title}
+                {product.italic ? <em>{product.italic}</em> : null}
+              </h1>
+              <p className="lp-hero-lede">{product.lede}</p>
+              <div className="lp-hero-actions">
+                <button type="button" className="lp-btn lp-btn-fill" onClick={openChat}>
+                  {talkLabel}
+                </button>
+                <a
+                  className="lp-btn lp-btn-line"
+                  href={product.lineHref}
+                  target={product.lineHref.startsWith("http") ? "_blank" : undefined}
+                  rel={product.lineHref.startsWith("http") ? "noopener noreferrer" : undefined}
+                  onClick={() => onCtaClick?.(product.lineLabel)}
+                >
+                  {product.lineLabel}
+                </a>
+              </div>
             </div>
+            {firstSolve ? (
+              <figure className="lp-fold-frame" aria-label={firstSolve.frameAlt}>
+                <SolveFrame block={firstSolve} />
+              </figure>
+            ) : null}
           </div>
         </header>
 
@@ -130,11 +145,7 @@ export function ProductLanding(product: ProductContent) {
           </section>
         ) : null}
 
-        {firstSolve ? (
-          <div className="lp-fold">
-            <SolveSheet block={firstSolve} flip={false} />
-          </div>
-        ) : null}
+        {firstSolve ? <SolveSheet block={firstSolve} flip={false} hideFrame /> : null}
 
         {laterSolves.length ? (
           <div className="lp-solves">
