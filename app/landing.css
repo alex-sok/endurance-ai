@@ -120,18 +120,43 @@ body:has(.theme-snow) {
 
 .theme-snow .lp-hero {
   min-height: 0;
+  align-items: stretch;
+}
+
+.theme-snow .lp-fold-inner {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.15fr);
+  gap: 40px;
+  align-items: center;
+  width: 100%;
+  max-width: var(--lp-max);
+  margin: 0 auto;
+  padding: calc(var(--lp-nav-h) + 24px) var(--lp-space) 28px;
 }
 
 .theme-snow .lp-hero-copy {
-  padding: calc(var(--lp-nav-h) + 28px) var(--lp-space) 24px;
+  padding: 0;
+  max-width: none;
+}
+
+.theme-snow .lp-hero-copy > * {
+  max-width: 26rem;
 }
 
 .theme-snow .lp-hero-lede {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .theme-snow .lp-hero-actions {
   margin-top: 20px;
+}
+
+.theme-snow .lp-hero-copy h1 {
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+}
+
+.theme-snow .lp-hero-copy h1 em {
+  margin-top: 0.45em;
 }
 
 .theme-snow .lp-kicker {
@@ -144,18 +169,12 @@ body:has(.theme-snow) {
   -webkit-backdrop-filter: none;
 }
 
-.theme-snow .lp-fold {
-  position: relative;
-  z-index: 1;
+.theme-snow .lp-fold-frame {
+  margin: 0;
 }
 
-.theme-snow .lp-fold > .lp-sheet {
-  margin: 0 auto;
-  padding-top: 8px;
-}
-
-.theme-snow .lp-fold .lp-product {
-  margin-top: 0;
+.theme-snow .lp-fold-frame .lp-feature-frame img {
+  aspect-ratio: 16 / 10;
 }
 
 .theme-snow .lp-sheet {
@@ -934,8 +953,13 @@ ol.lp-team {
   .lp-hero-copy {
     padding: calc(var(--lp-nav-h) + 56px) var(--lp-space) 96px;
   }
+  .theme-snow .lp-fold-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: calc(var(--lp-nav-h) + 16px) var(--lp-space) 16px;
+  }
   .theme-snow .lp-hero-copy {
-    padding: calc(var(--lp-nav-h) + 20px) var(--lp-space) 16px;
+    padding: 0;
   }
   .theme-snow .lp-sheet {
     margin: 0 auto;
