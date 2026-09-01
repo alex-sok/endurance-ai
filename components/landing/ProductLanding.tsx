@@ -8,6 +8,15 @@ import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import type { ProductContent, ProductSolve } from "./product-content";
 
 function SolveFrame({ block }: { block: ProductSolve }) {
+  if (block.framePending) {
+    return (
+      <div
+        className="lp-feature-frame is-slot"
+        role="img"
+        aria-label={block.frameAlt}
+      />
+    );
+  }
   return (
     <div className="lp-feature-frame">
       <img src={block.frameSrc} alt={block.frameAlt} />
