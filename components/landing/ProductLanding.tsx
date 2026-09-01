@@ -8,7 +8,7 @@ import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import type { ProductContent, ProductSolve } from "./product-content";
 
 function SolveFrame({ block }: { block: ProductSolve }) {
-  if (block.framePending) {
+  if (block.framePending || !block.frameSrc) {
     return (
       <div
         className="lp-feature-frame is-slot"
@@ -33,16 +33,17 @@ function SolveSheet({
   flip: boolean;
   hideFrame?: boolean;
 }) {
+  const typeOnly = hideFrame || !block.frameSrc;
   return (
     <section className="lp-sheet" data-section={block.id} id={block.id} aria-label={block.solve}>
-      <div className={flip ? "lp-product is-flip" : hideFrame ? "lp-product is-solo" : "lp-product"}>
-        {flip && !hideFrame ? <SolveFrame block={block} /> : null}
+      <div className={flip && !typeOnly ? "lp-product is-flip" : typeOnly ? "lp-product is-solo" : "lp-product"}>
+        {flip && !typeOnly ? <SolveFrame block={block} /> : null}
         <div className="lp-feature-copy">
           <p className="lp-kicker">{block.pain}</p>
           <h2>{block.solve}</h2>
           <p className="lp-lede">{block.body}</p>
         </div>
-        {!flip && !hideFrame ? <SolveFrame block={block} /> : null}
+        {!flip && !typeOnly ? <SolveFrame block={block} /> : null}
       </div>
     </section>
   );
