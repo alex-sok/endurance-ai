@@ -100,6 +100,7 @@ export default function RootLayout({
       "Software engineering",
       "Institutional knowledge systems",
       "Logistics software",
+      "Commission settlement",
       "Industry operating systems",
     ],
     sameAs: [],

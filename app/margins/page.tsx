@@ -1,26 +1,22 @@
 import type { Metadata } from "next";
-import { ProductLanding } from "@/components/landing/ProductLanding";
-import { MARGINS } from "@/components/landing/product-content";
+import { MarginsLanding } from "@/components/margins/MarginsLanding";
+import { MARGINS_META } from "@/components/margins/content";
 import "../landing.css";
 
-const TITLE = "Margins — Endurance AI Labs";
-const DESCRIPTION =
-  "Pay for the margin, not the load. TMS loads become a weekly pay run. Splits track what the load actually made.";
-
 export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
+  title: MARGINS_META.title,
+  description: MARGINS_META.description,
   alternates: {
-    canonical: "https://endurancelabs.ai/margins",
+    canonical: MARGINS_META.canonical,
   },
   openGraph: {
-    title: TITLE,
-    description: DESCRIPTION,
-    url: "https://endurancelabs.ai/margins",
+    title: MARGINS_META.title,
+    description: MARGINS_META.description,
+    url: MARGINS_META.canonical,
     type: "website",
   },
 };
 
 export default function MarginsPage() {
-  return <ProductLanding {...MARGINS} />;
+  return <MarginsLanding />;
 }
