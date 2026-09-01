@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Lenis from "lenis";
 import { LandingNav } from "./LandingNav";
 import { LandingHero } from "./LandingHero";
+import { LandingStage } from "./LandingStage";
 import { LandingRoots } from "./LandingRoots";
 import { LandingProducts } from "./LandingProducts";
 import { LandingProof } from "./LandingProof";
@@ -97,6 +98,7 @@ export function LandingShell() {
 
       <main id="main-content">
         <LandingHero onOpenChat={openChat} />
+        <LandingStage />
         <LandingProducts />
         <LandingRoots />
         <LandingProof />

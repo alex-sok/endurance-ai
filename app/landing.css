@@ -610,6 +610,28 @@ body:has(.theme-paper) {
   max-width: var(--lp-max);
 }
 
+/* A statement in the operator's register, then the claim it earns. */
+.lp-split-copy .lp-pain + .lp-h2 {
+  margin-top: 40px;
+}
+
+/* Rows inside a proof card start flush with the card's own edge. */
+.lp-proofcard .lp-team {
+  margin-top: 0;
+}
+
+.lp-proofcard .lp-team-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+/* A wider right float for a landscape window, like the Brain answers panel. */
+.lp-stage-float.is-right.is-wide {
+  width: 30%;
+  right: 0;
+  bottom: 6%;
+}
+
 /* ---------- sheets (land on the canvas) ---------- */
 .lp-sheet {
   position: relative;

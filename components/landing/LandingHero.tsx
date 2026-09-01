@@ -6,11 +6,11 @@ interface Props {
 
 export function LandingHero({ onOpenChat }: Props) {
   return (
-    <header className="lp-hero" id="top" data-section="hero">
+    <header className="lp-hero is-center" id="top" data-section="hero">
       <div className="lp-hero-copy">
         <p className="lp-kicker">Research · Engineering · Vertical software</p>
         <h1>
-          We research the work.
+          We research the <span className="lp-accent">work</span>.
           <em>Then we write the software.</em>
         </h1>
         <p className="lp-hero-lede">

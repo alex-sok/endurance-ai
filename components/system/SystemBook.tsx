@@ -102,7 +102,7 @@ const RECIPES = [
   {
     n: "01",
     title: "Lab homepage",
-    body: "Field canvas, one light wash. Hero on the field. Sheets in sequence. Night close. This is endurancelabs.ai.",
+    body: "Field canvas, one light wash. Hero centered on the field, one word in flare, the stage beneath it. Products as washed cards with a proof row under each; the lab and the team on wide sheets. Night close. This is endurancelabs.ai.",
   },
   {
     n: "02",
