@@ -68,7 +68,7 @@ Endurance starts with field research, then writes production software: products 
 
 **Engineering.** Write production software. Deterministic where it must be, model-powered where it should be. Traceable to the source of truth. Data stays on the client's side of the line.
 
-**Vertical software.** Operating systems for one industry at a time. Current products include Endurance Brain (institutional memory that cites its sources) and Endurance Logistics (freight, tender to cash). We also build custom systems for construction, capital markets, legal, and commissions-heavy businesses.
+**Vertical software.** Operating systems for one industry at a time. Current products include Endurance Margins (commission settlement for freight brokerages), Endurance Brain (institutional memory that cites its sources), and Endurance Logistics (freight, tender to cash). Margins turns a week of TMS loads into a provable weekly pay run: exceptions caught before payday, every earner signed into their own statement. There is a live no-login demo at endurancelabs.ai/margins/app and the product page is at endurancelabs.ai/margins. We also build custom systems for construction, capital markets, legal, and commissions-heavy businesses.
 
 ## What Makes Us Different
 

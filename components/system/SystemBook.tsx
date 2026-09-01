@@ -16,7 +16,7 @@ const COLORS = [
     name: "Field",
     hex: "#e4d8c6",
     token: "--lp-field",
-    use: "The canvas. Present in the first second — plaster, not a wash.",
+    use: "The canvas. Present in the first second. Flat, not a wash.",
     swatch: "var(--lp-field)",
   },
   {
@@ -74,7 +74,7 @@ const PART_STEPS = [
   {
     n: "01",
     title: "A sheet",
-    body: "Paper on the field. Radius 8. Max 920. Leave plaster around it. One claim, then the evidence.",
+    body: "Paper on the field. Radius 8. Max 920. Leave the field around it. One claim, then the evidence.",
   },
   {
     n: "02",
@@ -86,18 +86,23 @@ const PART_STEPS = [
     title: "A close",
     body: "Night sheet. Snow type. One sentence, then the ask.",
   },
+  {
+    n: "04",
+    title: "A receipt",
+    body: "Mono flare figure, fine label, hairline above. Proof attached to the claim it backs. The only place flare appears.",
+  },
 ];
 
 const RECIPES = [
   {
     n: "01",
     title: "Lab homepage",
-    body: "Field canvas, unwashed. Hero on the plaster. Sheets in sequence. Night close. This is endurancelabs.ai.",
+    body: "Field canvas, flat and unwashed. Hero on the field. Sheets in sequence. Night close. This is endurancelabs.ai.",
   },
   {
     n: "02",
     title: "Product landing",
-    body: "Same tokens. Hero on the plaster. The product frame sits on the field — the only dense color. One proof, one ask.",
+    body: "Same tokens. Hero on the field, frames still the only dense color. Chapters run pain, answer, receipt: a quote in the operator's voice, the fix, a flare number that proves it, a quiet link into the demo. The ledger carries the full proof. Night still owns Talk and Book.",
   },
   {
     n: "03",
@@ -325,6 +330,17 @@ export function SystemBook() {
             ))}
           </ol>
 
+          <ul className="lp-receipt">
+            <li>
+              <p className="lp-figure">$4.02M</p>
+              <p className="lp-fine">Figure in mono flare, tabular.</p>
+            </li>
+            <li>
+              <p className="lp-figure">605</p>
+              <p className="lp-fine">Label in fine muted sans, under it.</p>
+            </li>
+          </ul>
+
           <div className="lp-team">
             <div className="lp-team-row">
               <h3>Alex Sok</h3>
@@ -387,7 +403,7 @@ export function SystemBook() {
               <p className="lp-lede">
                 Let the field read. Regular + italic only. Air around the
                 second line. Hairline rows, not 3-ups. Product frames are
-                the only dense color. Grain you feel, not see. Night owns
+                the only dense color. The field stays flat. Night owns
                 Talk and Book. Flare only on proof numbers.
               </p>
             </article>
