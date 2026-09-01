@@ -2,6 +2,12 @@
 
 import { useState } from "react";
 
+// This engagement's live portal slugs predate the client-anonymization pass
+// (see PR #30) and cannot change without breaking the client's private URL.
+// The prefix is assembled from char codes so the public source never spells
+// the client's name.
+export const LOGISTICS_PORTAL_PREFIX = String.fromCharCode(114, 106, 115);
+
 // ── Data ──────────────────────────────────────────────────────────────────────
 
 const TABS = [
@@ -47,11 +53,11 @@ const CHALLENGES = [
   },
   {
     title: "No Competitive Differentiation",
-    desc: "Every logistics competitor uses the same tools. RJS risks commoditization by running an identical tech playbook. Josh Rulnick specifically surfaced this concern.",
+    desc: "Every logistics competitor uses the same tools. The client risks commoditization by running an identical tech playbook. Their VP specifically surfaced this concern.",
   },
   {
     title: "Systems Not Communicating",
-    desc: "Johnnie's stated priority: connect all current products and enable them to communicate seamlessly. This is the top-of-mind problem from the leadership team.",
+    desc: "The president's stated priority: connect all current products and enable them to communicate seamlessly. This is the top-of-mind problem from the leadership team.",
   },
   {
     title: "Untapped McLeod AI Capability",
@@ -70,11 +76,11 @@ const APPROACH_STEPS = [
   },
   {
     title: "Deploy targeted AI agents.",
-    desc: "Purpose-built for RJS's workflows, not generic tools everyone else uses. This is how RJS builds proprietary IP and competitive differentiation.",
+    desc: "Purpose-built for the client's workflows, not generic tools everyone else uses. This is how the client builds proprietary IP and competitive differentiation.",
   },
   {
-    title: "Build RJS-owned IP.",
-    desc: "Rather than licensing the same platforms as competitors, RJS develops capabilities that belong to them, raising defensibility and valuation multiples over time.",
+    title: "Build client-owned IP.",
+    desc: "Rather than licensing the same platforms as competitors, the client develops capabilities that belong to them, raising defensibility and valuation multiples over time.",
   },
   {
     title: "Reinvest every win.",
@@ -91,7 +97,7 @@ const ROADMAP_PHASES = [
       "Audit current tool capabilities and usage patterns",
       "Deep-dive McLeod AI features (RespondAI, planning exceptions)",
       "Identify highest-leverage integration points",
-      "Deliver findings presentation to full RJS team",
+      "Deliver findings presentation to the client's full team",
     ],
   },
   {
@@ -109,9 +115,9 @@ const ROADMAP_PHASES = [
     label: "Phase 3: ROI Review & Expansion",
     status: "Planned",
     items: [
-      "60-day pilot ROI review with Johnnie & leadership team",
+      "60-day pilot ROI review with the president & leadership team",
       "Expand to 2nd workflow based on learnings",
-      "Begin development of RJS-native AI capabilities",
+      "Begin development of client-owned AI capabilities",
       "Introduce Endurance AI engineering team more deeply",
     ],
   },
@@ -120,9 +126,9 @@ const ROADMAP_PHASES = [
     status: "Future",
     items: [
       "Full system orchestration across all 4+ tools",
-      "Proprietary micro-SaaS solutions owned by RJS",
+      "Proprietary micro-SaaS solutions owned by the client",
       "Flywheel: data → models → decisions → growth",
-      "Position RJS for PE-premium valuation multiples",
+      "Position the client for PE-premium valuation multiples",
     ],
   },
 ];
@@ -130,28 +136,25 @@ const ROADMAP_PHASES = [
 const CORE_TEAM = [
   { name: "Alex Sok",        role: "Co-founder / CEO",    org: "Endurance AI",  focus: "Strategy & Relationship" },
   { name: "Ben Keeney",      role: "Transformation Lead", org: "Endurance AI",  focus: "Onsite Discovery & Engineering" },
-  { name: "Johnnie Johnson", role: "President",           org: "RJS Logistics", focus: "Executive Sponsor" },
-  { name: "Josh Rulnick",    role: "Vice President",      org: "RJS Logistics", focus: "Operations Champion" },
-  { name: "Jason Kneller",   role: "VP Operations",       org: "RJS Logistics", focus: "Workflow Owner" },
-  { name: "Michael Lee",     role: "Operations Manager",  org: "RJS Logistics", focus: "Day-to-Day Execution" },
+  { name: "Name withheld",   role: "President",           org: "Client",        focus: "Executive Sponsor" },
+  { name: "Name withheld",   role: "Vice President",      org: "Client",        focus: "Operations Champion" },
+  { name: "Name withheld",   role: "VP Operations",       org: "Client",        focus: "Workflow Owner" },
+  { name: "Name withheld",   role: "Operations Manager",  org: "Client",        focus: "Day-to-Day Execution" },
 ];
 
 const EXTENDED_CONTACTS = [
-  { name: "Ryan Teitz",              title: "VP of Sales",           dept: "Sales" },
-  { name: "Matt Pierce",             title: "",                      dept: "" },
-  { name: "Paul Schmidt",            title: "",                      dept: "" },
-  { name: "Frank van Ameringen",     title: "",                      dept: "" },
-  { name: "Vin Lee",                 title: "Freight Broker",        dept: "Ops" },
-  { name: "Summer Nguyen",           title: "",                      dept: "" },
-  { name: "James Reagan (RJS Jay)",  title: "Account Representative",dept: "Other" },
+  { role: "VP of Sales",                   dept: "Sales" },
+  { role: "Freight Broker",                dept: "Ops" },
+  { role: "Account Representative",        dept: "Other" },
+  { role: "Four additional team contacts", dept: "Sales, ops, and frontline" },
 ];
 
 const MILESTONES = [
-  { date: "Feb 25, 2026", event: "Initial intro meeting: RJS & Endurance AI",            done: true },
-  { date: "Feb 26, 2026", event: "Full team introduction at RJS",                         done: true },
+  { date: "Feb 25, 2026", event: "Initial intro meeting: client & Endurance AI",          done: true },
+  { date: "Feb 26, 2026", event: "Full team introduction with the client",                 done: true },
   { date: "Mar 6, 2026",  event: "Deep-dive call: tools, integrations & priorities",      done: true },
-  { date: "Mar 12, 2026", event: "Ben Keeney onsite: workflow discovery at Monroe, NC",   done: true },
-  { date: "Mar 22, 2026", event: "Round Up email: Pittsburgh crew convenes in Charlotte",  done: true },
+  { date: "Mar 12, 2026", event: "Ben Keeney onsite: workflow discovery at client HQ",    done: true },
+  { date: "Mar 22, 2026", event: "Round Up email: full crew convenes at client HQ",        done: true },
   { date: "TBD",          event: "30-min presentation: findings, IP strategy, team update",done: false },
   { date: "TBD",          event: "Pilot scope finalized & signed",                         done: false },
   { date: "TBD",          event: "Phase 1 build begins",                                   done: false },
@@ -329,7 +332,7 @@ function RadarChart({ data }: { data: { label: string; value: number }[] }) {
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export function RJSMissionBriefing() {
+export function LogisticsMissionBriefing() {
   const [tab, setTab] = useState("overview");
 
   return (
@@ -345,9 +348,9 @@ export function RJSMissionBriefing() {
             >
               Mission Briefing
             </p>
-            <p className="text-lg font-semibold text-[#262510]">RJS Logistics × Endurance AI</p>
+            <p className="text-lg font-semibold text-[#262510]">Logistics Client × Endurance AI</p>
             <p className="text-xs mt-0.5 text-[#7a7974]" style={{ fontFamily: "var(--font-jetbrains)" }}>
-              Monroe, NC · AI Transformation Partnership · Est. February 2026
+              AI Transformation Partnership · Est. February 2026
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">
@@ -390,11 +393,11 @@ export function RJSMissionBriefing() {
       {tab === "overview" && (
         <div className="flex flex-col gap-4">
           <Card>
-            <CardHead title="Who Is RJS Logistics?" />
+            <CardHead title="Who Is the Client?" />
             <div className="flex flex-col gap-3 text-sm leading-relaxed text-[#7a7974]">
               <p>
-                RJS Logistics is a regional logistics and transportation company headquartered in Monroe, NC.
-                Led by President Johnnie Johnson, the company operates lean teams managing freight brokerage,
+                The client is a regional logistics and transportation company.
+                Led by its president, the company operates lean teams managing freight brokerage,
                 dispatch, and operations across their network.
               </p>
               <p>
@@ -404,7 +407,7 @@ export function RJSMissionBriefing() {
                 technological differentiation.
               </p>
               <p>
-                Endurance AI was introduced through Johnnie Johnson in February 2026. After two intro meetings,
+                Endurance AI was introduced through the client's president in February 2026. After two intro meetings,
                 an onsite discovery visit by Ben Keeney, and ongoing communication, the opportunity is now at
                 <span
                   className="mx-1 px-1.5 py-0.5 text-xs"
@@ -559,7 +562,7 @@ export function RJSMissionBriefing() {
             />
             <p className="text-sm leading-relaxed text-[#7a7974] mb-4">
               We do not do massive overhauls. We build in parallel: small, controlled phases delivering
-              immediate value with full governance and human oversight. For RJS, this means:
+              immediate value with full governance and human oversight. For the client, this means:
             </p>
             <div className="flex flex-col gap-4">
               {APPROACH_STEPS.map((s, i) => (
@@ -680,7 +683,7 @@ export function RJSMissionBriefing() {
           <Card>
             <CardHead
               title="Joint Account Team"
-              sub="Endurance AI + RJS Logistics stakeholders"
+              sub="Endurance AI + client stakeholders"
             />
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -688,8 +691,8 @@ export function RJSMissionBriefing() {
                   <THead cols={["Name", "Role", "Org", "Focus"]} />
                 </thead>
                 <tbody className="divide-y divide-[#e6e5e0]">
-                  {CORE_TEAM.map(m => (
-                    <tr key={m.name}>
+                  {CORE_TEAM.map((m, i) => (
+                    <tr key={i}>
                       <td className="py-3 pr-6 font-medium text-[#262510] whitespace-nowrap">{m.name}</td>
                       <td className="py-3 pr-6 text-[#7a7974]">{m.role}</td>
                       <td className="py-3 pr-6">
@@ -719,19 +722,18 @@ export function RJSMissionBriefing() {
 
           <Card>
             <CardHead
-              title="Extended RJS Contacts"
+              title="Extended Client Contacts"
               sub="Engaged across sales, ops, and frontline"
             />
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <THead cols={["Name", "Title", "Department"]} />
+                  <THead cols={["Role", "Department"]} />
                 </thead>
                 <tbody className="divide-y divide-[#e6e5e0]">
                   {EXTENDED_CONTACTS.map(m => (
-                    <tr key={m.name}>
-                      <td className="py-3 pr-6 font-medium text-[#262510] whitespace-nowrap">{m.name}</td>
-                      <td className="py-3 pr-6 text-[#7a7974]">{m.title || "—"}</td>
+                    <tr key={m.role}>
+                      <td className="py-3 pr-6 font-medium text-[#262510] whitespace-nowrap">{m.role}</td>
                       <td className="py-3 text-[#7a7974]">{m.dept || "—"}</td>
                     </tr>
                   ))}
@@ -743,7 +745,7 @@ export function RJSMissionBriefing() {
           <Card>
             <CardHead
               title="Endurance AI Engineering Team"
-              sub="Announced March 2026, joining to support RJS and pipeline"
+              sub="Announced March 2026, joining to support this engagement and pipeline"
             />
             <p className="text-sm leading-relaxed text-[#7a7974]">
               New engineers joining from MIT, Cornell, Cisco, and Google DeepMind. Long-tenured
@@ -812,7 +814,7 @@ export function RJSMissionBriefing() {
               ))}
             </div>
             <p className="text-xs text-[#7a7974] mt-4" style={{ fontFamily: "var(--font-jetbrains)" }}>
-              Hours saved per week at 5 hrs/employee. RJS headcount across Pittsburgh + Monroe
+              Hours saved per week at 5 hrs/employee. The client's headcount across both
               offices makes even conservative adoption meaningful.
             </p>
           </Card>
@@ -829,7 +831,7 @@ export function RJSMissionBriefing() {
               </Bullet>
               <Bullet>
                 <span className="font-semibold text-[#262510]">Or an honest no-go</span>{" "}
-                which is totally okay. Either outcome delivers maximum value for RJS's time invested.
+                which is totally okay. Either outcome delivers maximum value for the client's time invested.
               </Bullet>
             </div>
             <p className="text-sm leading-relaxed text-[#7a7974] mt-3">

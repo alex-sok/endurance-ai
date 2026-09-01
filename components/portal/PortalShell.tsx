@@ -6,6 +6,7 @@ import { PortalNav } from "./PortalNav";
 import { PortalHero } from "./PortalHero";
 import { PortalCanvas } from "./PortalCanvas";
 import { PortalChat } from "./PortalChat";
+import { LOGISTICS_PORTAL_PREFIX } from "./LogisticsMissionBriefing";
 import { usePortalAnalytics } from "@/hooks/usePortalAnalytics";
 
 interface Props {
@@ -24,7 +25,7 @@ export function PortalShell({ portal, sections }: Props) {
   // Filter the visible sections so the nav grid and canvas only show
   // what's actually rendered (avoids empty "Content coming soon" tabs).
   const visibleSections =
-    portal.slug.startsWith("rjs") || portal.slug.startsWith("water-mission") || portal.slug.startsWith("denso") || portal.slug.startsWith("franmore")
+    portal.slug.startsWith(LOGISTICS_PORTAL_PREFIX) || portal.slug.startsWith("water-mission") || portal.slug.startsWith("denso") || portal.slug.startsWith("franmore")
       ? sections.filter((s) => s.slug === "overview")
       : sections;
 
