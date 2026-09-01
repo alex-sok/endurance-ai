@@ -444,7 +444,16 @@ body:has(.theme-paper) {
 
 .lp-feature-copy .lp-kicker {
   margin-bottom: 12px;
+}
+
+.theme-paper.is-margins .lp-kicker {
   letter-spacing: 0.14em;
+}
+
+.theme-paper.is-margins .lp-nav.is-scrolled {
+  background: var(--lp-paper);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .lp-feature-copy h2 {
