@@ -102,7 +102,7 @@ const RECIPES = [
   {
     n: "02",
     title: "Product landing",
-    body: "Same tokens. Hero on the field, frames still the only dense color. Chapters run pain, answer, receipt: a quote in the operator's voice, the fix, a flare number that proves it, a quiet link into the demo. The ledger carries the full proof. Night still owns Talk and Book.",
+    body: "Same tokens. Hero centered on the field, the product stage beneath it: one frame, card crops floating over its edges, still the only dense color. Chapters run pain, answer, receipt: a quote in the operator's voice, the fix, a flare number that proves it, a quiet link into the demo. The ledger carries the full proof. Night still owns Talk and Book.",
   },
   {
     n: "03",

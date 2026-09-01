@@ -237,7 +237,7 @@ export function MarginsLanding() {
       <LandingNav onOpenChat={openChat} onNavigate={scrollToId} onCtaClick={onCtaClick} />
 
       <main id="main-content">
-        <header className="lp-hero" id="top" data-section="hero">
+        <header className="lp-hero is-center" id="top" data-section="hero">
           <div className="lp-hero-copy">
             <p className="lp-kicker">{HERO.kicker}</p>
             <h1>
@@ -270,13 +270,33 @@ export function MarginsLanding() {
           </div>
         </header>
 
-        <figure className="lp-object" data-section="product">
+        <figure className="lp-stage" data-section="product">
           <div className="lp-feature-frame">
             <img
               src={HERO_FRAME.src}
               alt={HERO_FRAME.alt}
               width={2880}
               height={1800}
+              decoding="async"
+            />
+          </div>
+          {/* Card crops from the same dashboard; decorative duplicates,
+              so they stay out of the accessibility tree. */}
+          <div className="lp-stage-float is-left" aria-hidden="true">
+            <img
+              src="/landing/margins-card-ready.jpg"
+              alt=""
+              width={1064}
+              height={508}
+              decoding="async"
+            />
+          </div>
+          <div className="lp-stage-float is-right" aria-hidden="true">
+            <img
+              src="/landing/margins-card-blocker.jpg"
+              alt=""
+              width={508}
+              height={232}
               decoding="async"
             />
           </div>

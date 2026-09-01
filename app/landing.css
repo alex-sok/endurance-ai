@@ -331,6 +331,71 @@ body:has(.theme-paper) {
   margin-top: 48px;
 }
 
+/* ---------- centered hero + the stage ----------
+   The Sundial move on our material: copy centered on the field, the
+   product laid out beneath it as a composition, not one monolith. */
+.lp-hero.is-center {
+  min-height: auto;
+}
+
+.lp-hero.is-center .lp-hero-copy {
+  text-align: center;
+  padding-bottom: 96px;
+}
+
+.lp-hero.is-center .lp-hero-copy > * {
+  margin-inline: auto;
+}
+
+.lp-hero.is-center .lp-hero-actions {
+  justify-content: center;
+}
+
+.lp-hero.is-center .lp-band .lp-fine {
+  margin-inline: auto;
+}
+
+.lp-stage {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 48px);
+  max-width: var(--lp-max);
+  margin: 0 auto 104px;
+}
+
+.lp-stage > .lp-feature-frame {
+  width: min(78%, 820px);
+  margin: 0 auto;
+}
+
+.lp-stage-float {
+  position: absolute;
+  border-radius: var(--lp-radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--lp-lift);
+  outline: 1px solid var(--lp-line);
+  outline-offset: -1px;
+}
+
+.lp-stage-float img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lp-stage-float.is-left {
+  width: 27%;
+  left: 0;
+  top: 16%;
+}
+
+.lp-stage-float.is-right {
+  width: 17%;
+  right: 1%;
+  bottom: 12%;
+}
+
 /* ---------- sheets (land on the canvas) ---------- */
 .lp-sheet {
   position: relative;
@@ -950,14 +1015,21 @@ ol.lp-team {
     width: calc(100% - 32px);
     margin-bottom: 56px;
   }
+  .lp-stage {
+    width: calc(100% - 32px);
+    margin-bottom: 56px;
+  }
+  .lp-stage > .lp-feature-frame {
+    width: 100%;
+  }
+  .lp-stage-float {
+    display: none;
+  }
   .lp-hero-copy {
     padding: calc(var(--lp-nav-h) + 56px) var(--lp-space) 96px;
   }
   .lp-hero-copy h1 {
     font-size: clamp(2.1rem, 8vw, 2.75rem);
-  }
-  .lp-hero-copy h1 em {
-    margin-top: 0.68em;
   }
   .lp-product,
   .lp-product.is-flip {
