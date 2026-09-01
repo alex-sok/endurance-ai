@@ -300,13 +300,20 @@ body:has(.theme-paper) {
 .lp-hero-copy h1 em {
   display: block;
   font-style: italic;
-  margin-top: 0.82em;
+  /* Air around the second line, tuned for Source Serif 4's mass: the two
+     lines are one claim and must read as a couple, not two headlines. */
+  margin-top: 0.3em;
   max-width: 10.5em;
   line-height: 1.16;
 }
 
-.lp-hero-lede {
-  margin-top: 64px;
+/* Named with the theme so the margin survives the .theme-paper p reset. */
+.theme-paper .lp-hero .lp-kicker {
+  margin-bottom: 16px;
+}
+
+.theme-paper .lp-hero-lede {
+  margin-top: 32px;
   font-size: 16px;
   line-height: 1.58;
   color: var(--lp-muted);
@@ -321,7 +328,7 @@ body:has(.theme-paper) {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  margin-top: 56px;
+  margin-top: 48px;
 }
 
 /* ---------- sheets (land on the canvas) ---------- */
