@@ -178,10 +178,11 @@ export const MARGINS: ProductContent = {
     "agent-my": {
       pain: "Agents only see the number after Friday.",
       solve: "The agent sees the week.",
-      body: "Not the staff run. Their statement, their login. The house keeps the workbench.",
+      body: "Not the staff run. Their statement. The house keeps the workbench.",
       frameSrc: MARGINS_SLOTS["agent-my"],
       frameAlt: "/my statement",
       // TODO: product crop incoming — /landing/margins-portal.png
+      // Named surface only. No login, booth, sandbox, public URL, or $ saved.
       framePending: true,
     },
   }),
