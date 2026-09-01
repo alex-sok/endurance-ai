@@ -89,7 +89,12 @@ const PART_STEPS = [
   {
     n: "04",
     title: "A receipt",
-    body: "Mono flare figure, fine label, hairline above. Proof attached to the claim it backs. The only place flare appears.",
+    body: "Mono flare figure, fine label, hairline above. Proof attached to the claim it backs. Where flare lives, with the claim's one word.",
+  },
+  {
+    n: "05",
+    title: "A wash",
+    body: "A light wash of the field, angled, with a whisper of ember in one corner. Copy on one side, the evidence on the other and bleeding off the edge. Radius 12. A two-up row of proof beneath it: the receipt, and a door into the demo.",
   },
 ];
 
@@ -102,7 +107,7 @@ const RECIPES = [
   {
     n: "02",
     title: "Product landing",
-    body: "Same tokens. Hero centered on the field, the product stage beneath it: one frame, card crops floating over its edges, still the only dense color. Chapters run pain, answer, receipt: a quote in the operator's voice, the fix, a flare number that proves it, a quiet link into the demo. The ledger carries the full proof. Night still owns Talk and Book.",
+    body: "Same tokens. Hero centered on the field, one word of the claim in flare, the product stage beneath it fading into the page. Chapters are washed cards that alternate sides: a quote in the operator's voice, the fix, the evidence bleeding off the edge; beneath each, a receipt and a door into the demo. The ledger carries the full proof. Night still owns Talk and Book.",
   },
   {
     n: "03",
@@ -406,7 +411,7 @@ export function SystemBook() {
                 Let the field read. Regular + italic only. Air around the
                 second line. Hairline rows, not 3-ups. Product frames are
                 the only dense color. One light wash on the field. Night owns
-                Talk and Book. Flare only on proof numbers.
+                Talk and Book. Flare on proof numbers and one word of the claim.
               </p>
             </article>
             <article>

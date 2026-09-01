@@ -23,7 +23,6 @@ export type MarginsChapter = {
   body: string[];
   frameSrc: string;
   frameAlt: string;
-  frameCaption: string;
   receipts: MarginsFigure[];
   demoHref: string;
   demoLabel: string;
@@ -46,6 +45,7 @@ export const MARGINS_META = {
 export const HERO = {
   kicker: "Product · Margins",
   h1: "Pay for the margin,",
+  h1Accent: "margin",
   h1Em: "not the load.",
   lede: "Your TMS produces a commission number. Someone still finishes it by hand: overrides, pools, splits, reserves. Margins closes that gap and proves every dollar before payday.",
   fillLabel: "Open the live demo",
@@ -80,9 +80,8 @@ export const CHAPTERS: MarginsChapter[] = [
       "Customer deals, team splits, extra shares, dispatcher pay, draws, escrow, loans, floors. At the brokerage where Margins was built, thirteen distinct pay mechanisms are in force, and before Margins none of them lived in one place. Now each one is configuration, not a formula in a cell.",
       "Every rate and split edit is filed with its dollar impact previewed, approved by a second administrator, and recorded on the audit board. Deals are effective-dated, so re-running an old week uses that week's rates, not today's.",
     ],
-    frameSrc: "/landing/margins-load.jpg",
+    frameSrc: "/landing/margins-frag-deals.jpg",
     frameAlt: "One load in Margins: who got paid on the left, and the precedence ladder explaining why on the right",
-    frameCaption: "Who got paid on the left. Why on the right, rule by rule.",
     receipts: [
       { value: "13", label: "pay mechanisms in force" },
       { value: "343", label: "changes filed and reviewed: 311 approved, 29 rejected" },
@@ -100,9 +99,8 @@ export const CHAPTERS: MarginsChapter[] = [
       "The same load billed twice is a duplicate, and it blocks the run. Re-billed loads with changed financials go to review. Loads whose agent code maps to nobody, loads that lost money, and margins high enough to suggest a missing carrier cost all wait for a person before payday. Warnings ask for a look. Blockers lock the pay step until someone acts.",
       "The same run protects the house. A load below the minimum margin pays zero and says so in words. No deal can distribute more than 100 percent of a load's profit. Margins above a set review threshold, currently just under 60 percent, get a second pair of eyes, and the what-if simulator prices a proposed rate change against the real engine before anyone approves it.",
     ],
-    frameSrc: "/landing/margins-exceptions.jpg",
+    frameSrc: "/landing/margins-frag-catches.jpg",
     frameAlt: "The Margins exceptions worklist: one blocker holding the run, fifteen warnings, and the dollars at stake on each row",
-    frameCaption: "Every problem load, with the money attached and the reason written out.",
     receipts: [
       { value: "605", label: "exceptions raised and worked in twenty weeks" },
       { value: "$5,491", label: "that would have paid twice, stopped across 20 duplicate loads" },
@@ -124,9 +122,8 @@ export const CHAPTERS: MarginsChapter[] = [
       "Each broker, dispatcher, and salaried person gets their own portal. Locked statements only: a week appears once the office finalizes it, and every line traces to the load behind it. Their live board, their book by customer, and a scorecard benchmarked against anonymized peers.",
       "Statement emails carry a sign-in link, never financial data. Archive a payee and their sessions end that instant. Nobody waits for accounting to assemble a statement, and nobody argues with a number they can walk back to the load.",
     ],
-    frameSrc: "/landing/margins-statement.jpg",
+    frameSrc: "/landing/margins-frag-portal.jpg",
     frameAlt: "A Margins commission statement: net pay, the margin gate explained in plain words, and every load behind the number",
-    frameCaption: "One person's week, tracing back to the loads behind it.",
     receipts: [
       { value: "270", label: "statements delivered since the end of July" },
       { value: "89", label: "people they reached" },
@@ -194,9 +191,8 @@ export const PILOT = {
       unlock: "Payday runs without you. You are not the single point of failure any more.",
     },
   ],
-  frameSrc: "/landing/margins-reconcile.jpg",
+  frameSrc: "/landing/margins-frag-pilot.jpg",
   frameAlt: "The Margins reconciliation screen: a pay run matched line by line against the spreadsheet, variances named to the cent",
-  frameCaption: "The parallel run, made into a screen. Matched to the cent, variances named.",
   demoHref: "/margins/app/reconciliation",
   demoLabel: "See the reconciliation screen in the demo",
   note: "Under about fifteen people getting paid, a spreadsheet genuinely still works, and we will say so. Margins runs one brokerage per deployment today. Fitting a second one is integration work, not a signup form, and we would rather say that here than discover it together in week three.",
