@@ -62,6 +62,16 @@ Most AI software fails because it was designed from a model catalog, not from th
 
 Endurance starts with field research, then writes production software: products where the pattern repeats, custom vertical systems where it does not.
 
+## Core Values
+
+**Be less dumb.** Learn from every miss, admit mistakes plainly, never repeat one. Consistently not stupid beats occasionally brilliant.
+
+**Be of service.** The work exists for the client and the people who run the operation, not for the builder's ego.
+
+**Finish the job.** Most AI initiatives die as pilots. Endurance stays until the system runs in production and the client owns it.
+
+In short: be less dumb is how we think, be of service is who the work is for, finish the job is what done means.
+
 ## What We Do
 
 **Research.** Sit with the people who run the work. Map systems, exceptions, tribal knowledge, and sources of truth.
