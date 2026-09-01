@@ -334,6 +334,19 @@ body:has(.theme-paper) {
   margin-top: 56px;
 }
 
+.lp-strip {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 48px);
+  max-width: var(--lp-sheet);
+  margin: 0 auto 72px;
+}
+
+.lp-strip .lp-lede {
+  margin-top: 0;
+  max-width: 48ch;
+}
+
 /* ---------- sheets (land on the canvas) ---------- */
 .lp-sheet {
   position: relative;
@@ -441,7 +454,22 @@ body:has(.theme-paper) {
 }
 
 .lp-feature-copy .lp-lede {
-  max-width: 40ch;
+  max-width: 42ch;
+}
+
+.lp-solve-pain {
+  font-family: var(--lp-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  color: var(--lp-muted);
+  max-width: 28ch;
+  margin-bottom: 20px;
+}
+
+.lp-sheet > .lp-product:first-child {
+  margin-top: 0;
 }
 
 .lp-feature-cta {
@@ -491,12 +519,24 @@ body:has(.theme-paper) {
   display: block;
 }
 
+.lp-feature-frame.is-center img {
+  object-position: center center;
+}
+
+.lp-feature-frame.is-end img {
+  object-position: right bottom;
+}
+
 .lp-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 24px;
   padding: 0;
+}
+
+.lp-proof-after + .lp-chips {
+  margin-top: 40px;
 }
 
 .lp-chips li {
@@ -777,7 +817,8 @@ ol.lp-team {
     margin: 56px auto;
     padding: 48px 24px 56px;
   }
-  .lp-object {
+  .lp-object,
+  .lp-strip {
     width: calc(100% - 32px);
     margin-bottom: 56px;
   }
@@ -802,6 +843,11 @@ ol.lp-team {
   }
   .lp-product.is-flip .lp-feature-frame {
     order: 1;
+  }
+  .lp-sheet > .lp-product:first-child,
+  .lp-sheet > .lp-product.is-flip:first-child {
+    margin-top: 0;
+    padding-top: 0;
   }
   .lp-grid-3,
   .lp-proof-grid {
