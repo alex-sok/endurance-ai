@@ -72,8 +72,8 @@ body:has(.theme-snow) {
   --lp-field: #f6f4ef;
   --lp-paper: #f6f4ef;
   --lp-ink: #161412;
-  --lp-muted: #5c574e;
-  --lp-line: rgba(22, 20, 18, 0.14);
+  --lp-muted: rgba(22, 20, 18, 0.64);
+  --lp-line: rgba(22, 20, 18, 0.12);
   --lp-flare: #c2410c;
   --lp-night: #161412;
   --lp-snow: #f6f4ef;
@@ -159,8 +159,32 @@ body:has(.theme-snow) {
   margin-top: 0.45em;
 }
 
-.theme-snow .lp-kicker {
+.theme-snow .lp-kicker,
+.theme-snow .lp-hero .lp-kicker {
   letter-spacing: 0.14em;
+  color: var(--lp-muted);
+}
+
+.theme-snow .lp-btn-fill,
+.theme-snow .lp-nav-talk {
+  background: var(--lp-night);
+  color: var(--lp-snow);
+  border-color: var(--lp-night);
+}
+
+.theme-snow .lp-btn-fill:hover,
+.theme-snow .lp-nav-talk:hover {
+  background: #000;
+}
+
+.theme-snow .lp-hero .lp-btn-line {
+  border-color: var(--lp-line);
+}
+
+.theme-snow .lp-feature-frame {
+  background: var(--lp-snow);
+  box-shadow: none;
+  outline: 1px solid var(--lp-line);
 }
 
 .theme-snow .lp-nav.is-scrolled {
