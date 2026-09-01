@@ -2,9 +2,9 @@ import { CALENDLY_URL } from "@/lib/conversation-flows";
 
 // Margins marketing page copy. Single source of truth.
 //
-// Every figure is drawn from the RJS Logistics production system as of
-// August 24, 2026 (see CASE-STUDY-2026-08-24-margins.md in the rjs-platform
-// repo), except the finance hours, which are the team's estimate and must
+// Every figure is drawn from the source brokerage's production system as of
+// August 24, 2026 (see the Margins case study in the platform repo), except
+// the finance hours, which are the team's estimate and must
 // stay labeled as such. Claims discipline: Margins calculates, proves, and
 // locks pay; it does not move money. Caught dollars were caught before
 // payment, never recovered losses. Do not alter strings without sign-off.
@@ -62,7 +62,7 @@ export const BAND: MarginsFigure[] = [
 ];
 
 export const BAND_PROVENANCE =
-  "Production figures from RJS Logistics, the brokerage where Margins was built. Queried August 24, 2026.";
+  "Production figures from the brokerage where Margins was built. Queried August 24, 2026.";
 
 export const HERO_FRAME = {
   src: "/landing/margins.jpg",
@@ -77,7 +77,7 @@ export const CHAPTERS: MarginsChapter[] = [
     answerKicker: "What Margins does",
     title: "Every deal, in one governed place.",
     body: [
-      "Customer deals, team splits, extra shares, dispatcher pay, draws, escrow, loans, floors. At RJS Logistics thirteen distinct pay mechanisms are in force, and before Margins none of them lived in one place. Now each one is configuration, not a formula in a cell.",
+      "Customer deals, team splits, extra shares, dispatcher pay, draws, escrow, loans, floors. At the brokerage where Margins was built, thirteen distinct pay mechanisms are in force, and before Margins none of them lived in one place. Now each one is configuration, not a formula in a cell.",
       "Every rate and split edit is filed with its dollar impact previewed, approved by a second administrator, and recorded on the audit board. Deals are effective-dated, so re-running an old week uses that week's rates, not today's.",
     ],
     frameSrc: "/landing/margins-load.jpg",
@@ -111,7 +111,7 @@ export const CHAPTERS: MarginsChapter[] = [
     demoLabel: "Open the exceptions worklist in the demo",
     note: {
       title: "Caught before it paid.",
-      body: "During configuration at RJS, an audit found two people sharing one agent code. A broker's entire book, about $3,961 a week, was crediting to the wrong person. Every run was still a draft, so nothing had been disbursed, and roughly $39,400 went back to the broker who earned it. A system you can audit surfaces that error. A spreadsheet just pays it.",
+      body: "During configuration, an audit found two people sharing one agent code. A broker's entire book, about $3,961 a week, was crediting to the wrong person. Every run was still a draft, so nothing had been disbursed, and roughly $39,400 went back to the broker who earned it. A system you can audit surfaces that error. A spreadsheet just pays it.",
     },
   },
   {
@@ -140,7 +140,7 @@ export const LEDGER = {
   slug: "ledger",
   kicker: "The ledger",
   title: "Twenty weeks in one brokerage.",
-  lede: "RJS Logistics, 20 closed weekly runs, March 29 through August 16, 2026.",
+  lede: "One brokerage, 20 closed weekly runs, March 29 through August 16, 2026.",
   rows: [
     { label: "Commission settled through Margins", figure: "$4,015,094" },
     { label: "Average weekly payroll", qualifier: "across the closed weeks", figure: "$200,755" },
@@ -162,7 +162,7 @@ export const LEDGER = {
   closer:
     "Margins was not designed and then sold. It was built inside a brokerage's Monday, against real loads and real disputes, until the spreadsheet had nothing left to do.",
   colophon:
-    "Every figure except the finance hours is drawn from the RJS Logistics production system on August 24, 2026. The hours are the finance team's own estimate.",
+    "Every figure except the finance hours is drawn from the brokerage's production system on August 24, 2026. The hours are the finance team's own estimate.",
 };
 
 export const PILOT = {
