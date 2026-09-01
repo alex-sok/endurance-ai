@@ -18,7 +18,7 @@ function SolveFrame({ block }: { block: ProductSolve }) {
 function RecipeBand({ recipe }: { recipe: ProductRecipe }) {
   return (
     <section
-      className="lp-sheet"
+      className="lp-sheet lp-recipe"
       data-section="recipe"
       id="recipe"
       aria-label={recipe.solve}
@@ -27,7 +27,7 @@ function RecipeBand({ recipe }: { recipe: ProductRecipe }) {
         <div className="lp-feature-copy">
           <p className="lp-kicker">{recipe.pain}</p>
           <h2>{recipe.solve}</h2>
-          <p className="lp-recipe-line">{recipe.line}</p>
+          <p className="lp-lede">{recipe.line}</p>
           <p className="lp-lede">{recipe.body}</p>
         </div>
         <div className="lp-feature-frame">
@@ -35,6 +35,21 @@ function RecipeBand({ recipe }: { recipe: ProductRecipe }) {
         </div>
       </div>
     </section>
+  );
+}
+
+const PROOF_WEIGHT = /30 hours|83%|30 seconds/;
+
+function ProofLine({ line }: { line: string }) {
+  const match = line.match(PROOF_WEIGHT);
+  if (!match || match.index == null) return line;
+  const i = match.index;
+  return (
+    <>
+      {line.slice(0, i)}
+      <span className="lp-proof-num">{match[0]}</span>
+      {line.slice(i + match[0].length)}
+    </>
   );
 }
 
@@ -209,11 +224,22 @@ export function ProductLanding(product: ProductContent) {
             data-section="proof-band"
             aria-label={product.proofFacts.heading}
           >
-            <h2>{product.proofFacts.heading}</h2>
-            <ul>
-              {product.proofFacts.lines.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
+            <p className="lp-kicker">{product.proofFacts.heading}</p>
+            <ul className="lp-proof-weight">
+              {product.proofFacts.lines
+                .filter((line) => PROOF_WEIGHT.test(line))
+                .map((line) => (
+                  <li key={line}>
+                    <ProofLine line={line} />
+                  </li>
+                ))}
+            </ul>
+            <ul className="lp-proof-rest">
+              {product.proofFacts.lines
+                .filter((line) => !PROOF_WEIGHT.test(line))
+                .map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
             </ul>
           </section>
         ) : null}
