@@ -57,7 +57,7 @@ const MARGINS_SLOTS = {
   "agent-my": "/landing/margins-agent-my.png",
 } as const;
 
-/** Render order A–E. Do not invent reserved bands. */
+/** Locked A–E. Only A–C render until the fold is signed. */
 export const MARGINS_SOLVE_IDS = [
   "ingest",
   "pay-run",
@@ -67,6 +67,12 @@ export const MARGINS_SOLVE_IDS = [
 ] as const;
 
 export type MarginsSolveId = (typeof MARGINS_SOLVE_IDS)[number];
+
+const MARGINS_LIVE_IDS: readonly MarginsSolveId[] = [
+  "ingest",
+  "pay-run",
+  "exceptions",
+];
 
 type LockedSolve = Omit<ProductSolve, "id">;
 
@@ -136,7 +142,7 @@ export const MARGINS: ProductContent = {
     "One brokerage per deployment",
   ],
   steps: [],
-  solves: lockedSolves(MARGINS_SOLVE_IDS, {
+  solves: lockedSolves(MARGINS_LIVE_IDS, {
     ingest: {
       pain: "“Splits don’t follow what the load actually made.”",
       solve: "Pay follows the margin.",
