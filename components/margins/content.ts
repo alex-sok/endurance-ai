@@ -2,9 +2,9 @@ import { CALENDLY_URL } from "@/lib/conversation-flows";
 
 // Margins marketing page copy. Single source of truth.
 //
-// Every figure is drawn from the brokerage's production system as of
-// August 24, 2026 (see CASE-STUDY-2026-08-24-margins.md in the platform
-// repo), except the finance hours, which are the team's estimate and must
+// Every figure is drawn from the source brokerage's production system as of
+// August 24, 2026 (see the Margins case study in the platform repo), except
+// the finance hours, which are the team's estimate and must
 // stay labeled as such. Claims discipline: Margins calculates, proves, and
 // locks pay; it does not move money. Caught dollars were caught before
 // payment, never recovered losses. Do not alter strings without sign-off.
@@ -77,7 +77,7 @@ export const CHAPTERS: MarginsChapter[] = [
     answerKicker: "What Margins does",
     title: "Every deal, in one governed place.",
     body: [
-      "Customer deals, team splits, extra shares, dispatcher pay, draws, escrow, loans, floors. At the brokerage thirteen distinct pay mechanisms are in force, and before Margins none of them lived in one place. Now each one is configuration, not a formula in a cell.",
+      "Customer deals, team splits, extra shares, dispatcher pay, draws, escrow, loans, floors. At the brokerage where Margins was built, thirteen distinct pay mechanisms are in force, and before Margins none of them lived in one place. Now each one is configuration, not a formula in a cell.",
       "Every rate and split edit is filed with its dollar impact previewed, approved by a second administrator, and recorded on the audit board. Deals are effective-dated, so re-running an old week uses that week's rates, not today's.",
     ],
     frameSrc: "/landing/margins-load.jpg",
@@ -111,7 +111,7 @@ export const CHAPTERS: MarginsChapter[] = [
     demoLabel: "Open the exceptions worklist in the demo",
     note: {
       title: "Caught before it paid.",
-      body: "During configuration at the brokerage, an audit found two people sharing one agent code. A broker's entire book, about $3,961 a week, was crediting to the wrong person. Every run was still a draft, so nothing had been disbursed, and roughly $39,400 went back to the broker who earned it. A system you can audit surfaces that error. A spreadsheet just pays it.",
+      body: "During configuration, an audit found two people sharing one agent code. A broker's entire book, about $3,961 a week, was crediting to the wrong person. Every run was still a draft, so nothing had been disbursed, and roughly $39,400 went back to the broker who earned it. A system you can audit surfaces that error. A spreadsheet just pays it.",
     },
   },
   {
