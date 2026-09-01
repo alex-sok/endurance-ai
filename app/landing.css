@@ -345,6 +345,13 @@ body:has(.theme-paper) {
   justify-content: center;
 }
 
+/* Centered, the second line runs the full width of the first and sits on
+   the same axis; the left-aligned hero's cap would otherwise pin it left. */
+.lp-hero.is-center h1 em {
+  max-width: none;
+  margin-inline: auto;
+}
+
 .lp-hero.is-center .lp-band .lp-fine {
   margin-inline: auto;
 }
