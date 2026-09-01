@@ -5,6 +5,8 @@ import Lenis from "lenis";
 import { LandingNav } from "./LandingNav";
 import { LandingHero } from "./LandingHero";
 import { LandingStage } from "./LandingStage";
+import { StageTilt } from "./StageTilt";
+import { FieldShader } from "./FieldShader";
 import { LandingRoots } from "./LandingRoots";
 import { LandingProducts } from "./LandingProducts";
 import { LandingProof } from "./LandingProof";
@@ -86,7 +88,9 @@ export function LandingShell() {
 
   return (
     <div className="theme-paper relative min-h-svh">
-      <div className="lp-canvas" aria-hidden="true" />
+      <div className="lp-canvas" aria-hidden="true">
+        <FieldShader />
+      </div>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--lp-ink)] focus:text-[var(--lp-paper)] focus:text-sm"
@@ -98,7 +102,9 @@ export function LandingShell() {
 
       <main id="main-content">
         <LandingHero onOpenChat={openChat} />
-        <LandingStage />
+        <StageTilt>
+          <LandingStage />
+        </StageTilt>
         <LandingProducts />
         <LandingRoots />
         <LandingProof />

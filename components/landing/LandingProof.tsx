@@ -21,11 +21,11 @@ export function LandingProof() {
         <div className="lp-split-shot">
           <div className="lp-bleed">
             <img
-              src="/landing/margins-frag-catches.jpg"
-              alt="The Margins exceptions worklist: one blocker holding the run, fifteen warnings, and the dollars at stake on each row"
-              width={1848}
-              height={1258}
-              style={{ aspectRatio: "1848 / 1258" }}
+              src="/landing/home-field-art.jpg"
+              alt="Paper collage: a bearded marble bust holding a ruled paper ledger, with an ember circle and bar"
+              width={1248}
+              height={640}
+              style={{ aspectRatio: "1248 / 640" }}
               loading="lazy"
               decoding="async"
             />

@@ -10,6 +10,7 @@ interface Props {
 export function LandingClose({ onOpenChat }: Props) {
   return (
     <footer className="lp-close" id="cta" data-section="close">
+      <div className="lp-close-photo" aria-hidden="true" />
       <div className="lp-close-inner">
         <img
           className="lp-close-logo"

@@ -632,6 +632,74 @@ body:has(.theme-paper) {
   bottom: 6%;
 }
 
+/* ---------- the field, breathing ----------
+   A WebGL wash drawn over the CSS one: the same warm light, drifting. It
+   fades in once it is live, so a device without WebGL just keeps the still. */
+.lp-canvas-gl {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 600ms var(--lp-ease);
+}
+
+.lp-canvas-gl.is-live {
+  opacity: 1;
+}
+
+/* ---------- the stage in depth ----------
+   It arrives leaning back and settles flat as it rises; the floats sit
+   forward of the frame so a small pan separates the layers. */
+.lp-stage3d {
+  perspective: 1400px;
+  perspective-origin: 50% 0%;
+}
+
+.lp-stage3d .lp-stage {
+  transform: rotateX(var(--tilt, 0deg)) rotateY(var(--pan, 0deg));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.lp-stage3d .lp-stage-float.is-left {
+  transform: translateZ(60px);
+}
+
+.lp-stage3d .lp-stage-float.is-right {
+  transform: translateZ(36px);
+}
+
+/* ---------- a photograph at night, behind the close ---------- */
+.lp-close-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/landing/night.jpg") center 40% / cover no-repeat;
+  opacity: 0.74;
+}
+
+.lp-close-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(22, 20, 18, 0.42) 0%, rgba(22, 20, 18, 0.82) 58%, rgba(22, 20, 18, 0.97) 100%);
+}
+
+/* ---------- an illustration heading a sheet ---------- */
+.lp-sheet-art {
+  margin: -64px calc(-1 * var(--lp-space)) 40px;
+  border-bottom: 1px solid var(--lp-line);
+}
+
+.lp-sheet-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--lp-radius) var(--lp-radius) 0 0;
+}
+
 /* ---------- sheets (land on the canvas) ---------- */
 .lp-sheet {
   position: relative;
@@ -1329,6 +1397,9 @@ ol.lp-team {
   }
   .lp-chapter:last-of-type {
     margin-bottom: 56px;
+  }
+  .lp-sheet-art {
+    margin: -48px -24px 32px;
   }
   .lp-band {
     margin-top: 56px;
