@@ -2,7 +2,7 @@
 
 import type { Portal, PortalSection } from "@/types/portal";
 import { GTProjectPlan } from "./GTProjectPlan";
-import { LogisticsMissionBriefing } from "./LogisticsMissionBriefing";
+import { LogisticsMissionBriefing, LOGISTICS_PORTAL_PREFIX } from "./LogisticsMissionBriefing";
 import { WaterMissionBriefing } from "./WaterMissionBriefing";
 import { DensoMissionBriefing } from "./DensoMissionBriefing";
 import { FrankieDeliverable } from "./FrankieDeliverable";
@@ -21,7 +21,11 @@ export function SectionContent({ section, portal }: Props) {
   const c = section.content;
 
   // Portal-level custom components — override section rendering for specific portals
-  if ((portal.slug.startsWith("client")) && section.slug === "overview") {
+  if (portal.slug.startsWith(LOGISTICS_PORTAL_PREFIX) && section.slug === "overview") {
+    return <LogisticsMissionBriefing />;
+  }
+
+  if (section.slug === `${LOGISTICS_PORTAL_PREFIX}-briefing`) {
     return <LogisticsMissionBriefing />;
   }
 
@@ -52,8 +56,6 @@ export function SectionContent({ section, portal }: Props) {
       return <MetricsContent content={c} portal={portal} />;
     case "project-plan":
       return <GTProjectPlan />;
-    case "client-briefing":
-      return <LogisticsMissionBriefing />;
     default:
       return <GenericContent content={c} portal={portal} />;
   }
