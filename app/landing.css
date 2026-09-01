@@ -700,6 +700,18 @@ body:has(.theme-snow) {
   max-width: 42ch;
 }
 
+.lp-recipe-line {
+  margin-top: 14px;
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--lp-ink);
+  max-width: 28ch;
+}
+
+.theme-snow .lp-recipe-line {
+  color: var(--lp-night);
+}
+
 .lp-sheet > .lp-product:first-child {
   margin-top: 0;
 }
