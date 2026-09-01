@@ -59,7 +59,7 @@ const MARGINS_SLOTS = {
   "agent-my": "/landing/margins-portal.png",
 } as const;
 
-/** Locked A–E. Fold stays AutoSplit. D/E stay out of HTML until the fold is the instrument. */
+/** Locked A–E. Fold stays AutoSplit. All five sheets render after the fold. */
 export const MARGINS_SOLVE_IDS = [
   "ingest",
   "pay-run",
@@ -74,6 +74,8 @@ const MARGINS_LIVE_IDS: readonly MarginsSolveId[] = [
   "ingest",
   "pay-run",
   "exceptions",
+  "duplicate",
+  "agent-my",
 ];
 
 type LockedSolve = Omit<ProductSolve, "id">;
