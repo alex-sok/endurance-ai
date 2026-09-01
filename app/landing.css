@@ -745,6 +745,11 @@ body:has(.theme-snow) {
   display: block;
 }
 
+.lp-feature-frame.is-slot {
+  aspect-ratio: 16 / 10;
+  width: 100%;
+}
+
 .lp-chips {
   display: flex;
   flex-wrap: wrap;

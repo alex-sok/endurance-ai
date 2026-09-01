@@ -20,6 +20,8 @@ export type ProductSolve = {
   body: string;
   frameSrc: string;
   frameAlt: string;
+  /** Crop not in repo yet — render the 16:10 slot, do not fake UI. */
+  framePending?: boolean;
 };
 
 export type ProductContent = {
@@ -53,11 +55,11 @@ const MARGINS_SLOTS = {
   ingest: "/landing/margins-autosplit.png",
   "pay-run": "/landing/margins-week-run.png",
   exceptions: "/landing/margins-exceptions.png",
-  duplicate: "/landing/margins-duplicate.png",
-  "agent-my": "/landing/margins-agent-my.png",
+  duplicate: "/landing/margins-duplicates.png",
+  "agent-my": "/landing/margins-portal.png",
 } as const;
 
-/** Locked A–E. Only A–C render until the fold is signed. */
+/** Locked A–E. Fold stays AutoSplit. D/E sheets follow A/B/C. */
 export const MARGINS_SOLVE_IDS = [
   "ingest",
   "pay-run",
@@ -72,6 +74,8 @@ const MARGINS_LIVE_IDS: readonly MarginsSolveId[] = [
   "ingest",
   "pay-run",
   "exceptions",
+  "duplicate",
+  "agent-my",
 ];
 
 type LockedSolve = Omit<ProductSolve, "id">;
@@ -170,6 +174,8 @@ export const MARGINS: ProductContent = {
       body: "Same load, same money, two weeks — that’s a duplicate. Money changed — that’s a rebill to review. Void the flagged instance. The run does not pay it twice.",
       frameSrc: MARGINS_SLOTS.duplicate,
       frameAlt: "void duplicate",
+      // TODO: product crop incoming — /landing/margins-duplicates.png
+      framePending: true,
     },
     "agent-my": {
       pain: "Agents only see the number after Friday.",
@@ -177,6 +183,8 @@ export const MARGINS: ProductContent = {
       body: "Not the staff run. Their statement, their login. The house keeps the workbench.",
       frameSrc: MARGINS_SLOTS["agent-my"],
       frameAlt: "/my statement",
+      // TODO: product crop incoming — /landing/margins-portal.png
+      framePending: true,
     },
   }),
   proofLede: "",
