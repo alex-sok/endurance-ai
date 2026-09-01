@@ -1,20 +1,106 @@
 import { CALENDLY_URL } from "@/lib/conversation-flows";
 
+export type ProductProofPair = {
+  before: string;
+  after: string;
+};
+
+export type ProductClose = {
+  kicker?: string;
+  title: string;
+  lede?: string;
+  talkLabel?: string;
+  hideCapture?: boolean;
+};
+
+export type ProductSolve = {
+  id: string;
+  pain: string;
+  solve: string;
+  body: string;
+  frameSrc: string;
+  frameAlt: string;
+  /** Crop not in repo yet — render the 16:10 slot, do not fake UI. */
+  framePending?: boolean;
+};
+
+/** One pain / one solve / one frame. Sits after the fold, before A–E. */
+export type ProductRecipe = {
+  pain: string;
+  solve: string;
+  line: string;
+  body: string;
+  frameSrc: string;
+  frameAlt: string;
+};
+
 export type ProductContent = {
   kicker: string;
   title: string;
   italic: string;
+  /** Penny / subline as a muted kicker, not a second display H1. */
+  italicAsKicker?: boolean;
   lede: string;
+  talkLabel?: string;
   frameSrc: string;
   frameAlt: string;
+  chips?: string[];
+  proofStrip?: string;
+  /** Ordered pain→solve sheets. Append when VP locks more; do not invent copy. */
+  solves?: ProductSolve[];
+  recipe?: ProductRecipe;
   steps: { n: string; title: string; body: string }[];
   proofLede: string;
   proofTitle: string;
   proofNote: string;
+  proofPair?: ProductProofPair;
+  close?: ProductClose;
   lineLabel: string;
   lineHref: string;
   note?: { text: string; href: string; link: string };
+  proofFacts?: { heading: string; lines: string[] };
 };
+
+const MARGINS_FRAME = "/landing/margins-autosplit.png";
+// SAMPLE 16:10 crops, not the live book. SAMPLE stays in the stills.
+// Fold owns AutoSplit once. A is type-only — no ingest crop.
+const MARGINS_SLOTS = {
+  "pay-run": "/landing/margins-week-run.png",
+  exceptions: "/landing/margins-exceptions.png",
+  duplicate: "/landing/margins-duplicate.png",
+  "agent-my": "/landing/margins-agent-my.png",
+} as const;
+
+/** Locked A–E. Fold stays AutoSplit. */
+export const MARGINS_SOLVE_IDS = [
+  "ingest",
+  "pay-run",
+  "exceptions",
+  "duplicate",
+  "agent-my",
+] as const;
+
+export type MarginsSolveId = (typeof MARGINS_SOLVE_IDS)[number];
+
+const MARGINS_LIVE_IDS: readonly MarginsSolveId[] = [
+  "ingest",
+  "pay-run",
+  "exceptions",
+  "duplicate",
+  "agent-my",
+];
+
+type LockedSolve = Omit<ProductSolve, "id">;
+
+function lockedSolves(
+  order: readonly MarginsSolveId[],
+  locked: Partial<Record<MarginsSolveId, LockedSolve>>,
+): ProductSolve[] {
+  return order.flatMap((id) => {
+    const block = locked[id];
+    return block ? [{ id, ...block }] : [];
+  });
+}
 
 export const BRAIN: ProductContent = {
   kicker: "Product · Brain",
@@ -52,39 +138,96 @@ export const BRAIN: ProductContent = {
   },
 };
 
+// Hero is the margin claim. Commission math is table stakes — a band, not the hero.
 export const MARGINS: ProductContent = {
-  kicker: "Product · Margins",
-  title: "Pay for the margin,",
-  italic: "not the load.",
+  kicker: "",
+  title: "Pay for the margin, not the load.",
+  italic: "Every commission, to the penny.",
+  italicAsKicker: true,
   lede: "TMS loads become a weekly pay run. Splits track what the load actually made.",
-  frameSrc: "/landing/margins.jpg",
-  frameAlt: "Margins commissions run",
-  steps: [
-    {
-      n: "01",
-      title: "Ingest the loads",
-      body: "Jobs, people, and splits in from the TMS. No re-keying.",
-    },
-    {
-      n: "02",
-      title: "Compute every split",
-      body: "Every commission, to the penny. The spreadsheet is not the system.",
-    },
-    {
-      n: "03",
-      title: "Surface exceptions",
-      body: "What does not prove out is a list, before the money moves.",
-    },
+  talkLabel: "Talk",
+  frameSrc: MARGINS_FRAME,
+  frameAlt: "AutoSplit / scale",
+  proofStrip:
+    "In production at a freight brokerage. Weekly pay run from their TMS.",
+  chips: [
+    "McLeod-first",
+    "Existing TMS",
+    "Pay run",
+    "Brokerage owners",
+    "One brokerage per deployment",
   ],
-  proofLede:
-    "Margins is in production inside a freight brokerage, running the weekly pay run from their TMS.",
-  proofTitle: "That is the method.",
-  proofNote: "Sit in the operation. Ship the system.",
+  steps: [],
+  recipe: {
+    pain: "Every vendor wants us to change how we run.",
+    solve: "Fitted to this brokerage.",
+    line: "We sit in the brokerage.",
+    body: "The pay run takes your deals, your TMS, your roster. Not a template. Not a new OS.",
+    frameSrc: MARGINS_SLOTS["pay-run"],
+    frameAlt: "this week’s run",
+  },
+  solves: lockedSolves(MARGINS_LIVE_IDS, {
+    ingest: {
+      pain: "“Splits don’t follow what the load actually made.”",
+      solve: "Pay follows the margin.",
+      body: "Ingest from the TMS. No re-keying. A fat load and a thin load are not the same deal. Agents can still make more. The house stops overpaying the week the market was fat.",
+      frameSrc: "",
+      frameAlt: "",
+    },
+    "pay-run": {
+      pain: "“The spreadsheet is the system.”",
+      solve: "A pay run.",
+      body: "Every split computed. Everyone who gets paid, and the rule that pays them. The run is an object you can close.",
+      frameSrc: MARGINS_SLOTS["pay-run"],
+      frameAlt: "this week’s run",
+    },
+    exceptions: {
+      pain: "“We find the miss after payday.”",
+      solve: "Exceptions before money moves.",
+      body: "Blockers and warnings while the run is still a draft. Friday is the close, not the discovery.",
+      frameSrc: MARGINS_SLOTS.exceptions,
+      frameAlt: "exceptions on the run",
+    },
+    duplicate: {
+      pain: "The same load paid twice.",
+      solve: "The duplicate does not pay.",
+      body: "Same load, same money, two weeks — that’s a duplicate. Money changed — that’s a rebill to review. Void the flagged instance. The run does not pay it twice.",
+      frameSrc: MARGINS_SLOTS.duplicate,
+      frameAlt: "void duplicate",
+    },
+    "agent-my": {
+      pain: "Agents only see the number after Friday.",
+      solve: "The agent sees the week.",
+      body: "Not the staff run. Their statement. The house keeps the workbench.",
+      frameSrc: MARGINS_SLOTS["agent-my"],
+      frameAlt: "/my statement",
+      // Hold until recut crops the plate to the statement. Do not ship the empty interior.
+      framePending: true,
+    },
+  }),
+  proofLede: "",
+  proofTitle: "",
+  proofNote: "",
+  proofPair: {
+    before: "The spreadsheet.",
+    after: "The pay run.",
+  },
+  close: {
+    title: "Talk if the pay run is still a spreadsheet.",
+    talkLabel: "Talk",
+    hideCapture: true,
+  },
   lineLabel: "Book a call",
   lineHref: CALENDLY_URL,
-  note: {
-    text: "A sample run, not this page.",
-    href: "/margins/app",
-    link: "Open the demo",
+  proofFacts: {
+    heading: "Margins is loved by logistics brokerages.",
+    lines: [
+      "In production at a freight brokerage.",
+      "30 hours a week back on commissions and reporting.",
+      "Admin time reduced as much as 83%.",
+      "Accurate numbers in under 30 seconds.",
+      "New deals, managed.",
+      "A full audit. Every penny.",
+    ],
   },
 };
