@@ -109,7 +109,7 @@ export function ProductLanding(product: ProductContent) {
                 {talkLabel}
               </button>
               <a
-                className="lp-hero-line"
+                className={isMargins ? "lp-hero-line" : "lp-btn lp-btn-line"}
                 href={product.lineHref}
                 target={product.lineHref.startsWith("http") ? "_blank" : undefined}
                 rel={product.lineHref.startsWith("http") ? "noopener noreferrer" : undefined}
