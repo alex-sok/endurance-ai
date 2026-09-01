@@ -95,15 +95,14 @@ export function ProductLanding(product: ProductContent) {
           <div className={firstSolve ? "lp-fold-inner" : undefined}>
             <div className="lp-hero-copy">
               {product.kicker ? <p className="lp-kicker">{product.kicker}</p> : null}
+              {product.italic && product.italicAsKicker ? (
+                <p className="lp-hero-kicker">{product.italic}</p>
+              ) : null}
               <h1>{product.title}</h1>
-              {product.italic ? (
-                product.italicAsKicker ? (
-                  <p className="lp-hero-kicker">{product.italic}</p>
-                ) : (
-                  <p className="lp-hero-display-em">
-                    <em>{product.italic}</em>
-                  </p>
-                )
+              {product.italic && !product.italicAsKicker ? (
+                <p className="lp-hero-display-em">
+                  <em>{product.italic}</em>
+                </p>
               ) : null}
               <p className="lp-hero-lede">{product.lede}</p>
               <div className="lp-hero-actions">
@@ -111,7 +110,7 @@ export function ProductLanding(product: ProductContent) {
                   {talkLabel}
                 </button>
                 <a
-                  className="lp-btn lp-btn-line"
+                  className="lp-hero-line"
                   href={product.lineHref}
                   target={product.lineHref.startsWith("http") ? "_blank" : undefined}
                   rel={product.lineHref.startsWith("http") ? "noopener noreferrer" : undefined}
@@ -123,9 +122,7 @@ export function ProductLanding(product: ProductContent) {
             </div>
             {firstSolve ? (
               <figure className="lp-fold-frame" aria-label={product.frameAlt}>
-                <div className="lp-feature-frame">
-                  <img src={product.frameSrc} alt={product.frameAlt} />
-                </div>
+                <img src={product.frameSrc} alt={product.frameAlt} />
               </figure>
             ) : null}
           </div>
