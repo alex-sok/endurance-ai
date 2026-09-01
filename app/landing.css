@@ -62,6 +62,117 @@ body:has(.theme-paper) {
   color: var(--lp-paper);
 }
 
+/* Margins — Hume inverted. Snow surface, night type. No field. */
+body:has(.theme-snow) {
+  background: #f6f4ef;
+  color: #161412;
+}
+
+.theme-snow {
+  --lp-field: #f6f4ef;
+  --lp-paper: #f6f4ef;
+  --lp-ink: #161412;
+  --lp-muted: #5c574e;
+  --lp-line: rgba(22, 20, 18, 0.14);
+  --lp-flare: #c2410c;
+  --lp-night: #161412;
+  --lp-snow: #f6f4ef;
+  --lp-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --lp-sans: var(--font-figtree), "Lato", ui-sans-serif, system-ui, sans-serif;
+  --lp-display: var(--font-display), "Instrument Serif", Georgia, serif;
+  --lp-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --lp-space: clamp(24px, 4vw, 48px);
+  --lp-max: 1040px;
+  --lp-sheet: 920px;
+  --lp-radius: 8px;
+  --lp-nav-h: 64px;
+  --lp-lift: none;
+
+  min-height: 100vh;
+  background: var(--lp-snow);
+  color: var(--lp-night);
+  font-family: var(--lp-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.theme-snow h1,
+.theme-snow h2,
+.theme-snow h3,
+.theme-snow p {
+  margin: 0;
+  font-weight: 400;
+  color: inherit;
+}
+
+.theme-snow a:focus-visible,
+.theme-snow button:focus-visible {
+  outline: 2px solid var(--lp-night);
+  outline-offset: 3px;
+}
+
+.theme-snow ::selection {
+  background: var(--lp-night);
+  color: var(--lp-snow);
+}
+
+.theme-snow .lp-hero {
+  min-height: 0;
+}
+
+.theme-snow .lp-hero-copy {
+  padding: calc(var(--lp-nav-h) + 28px) var(--lp-space) 24px;
+}
+
+.theme-snow .lp-hero-lede {
+  margin-top: 20px;
+}
+
+.theme-snow .lp-hero-actions {
+  margin-top: 20px;
+}
+
+.theme-snow .lp-kicker {
+  letter-spacing: 0.14em;
+}
+
+.theme-snow .lp-nav.is-scrolled {
+  background: var(--lp-snow);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.theme-snow .lp-fold {
+  position: relative;
+  z-index: 1;
+}
+
+.theme-snow .lp-fold > .lp-sheet {
+  margin: 0 auto;
+  padding-top: 8px;
+}
+
+.theme-snow .lp-fold .lp-product {
+  margin-top: 0;
+}
+
+.theme-snow .lp-sheet {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.theme-snow .lp-solves {
+  gap: 48px;
+  margin-bottom: 64px;
+}
+
+.theme-snow .lp-strip {
+  margin-bottom: 48px;
+}
+
 /* ---------- canvas (the stage) ---------- */
 .lp-canvas {
   position: fixed;
@@ -459,16 +570,6 @@ body:has(.theme-paper) {
   margin-bottom: 12px;
 }
 
-.theme-paper.is-margins .lp-kicker {
-  letter-spacing: 0.14em;
-}
-
-.theme-paper.is-margins .lp-nav.is-scrolled {
-  background: var(--lp-paper);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
 .lp-feature-copy h2 {
   font-family: var(--lp-display);
   font-size: clamp(1.85rem, 3vw, 2.5rem);
@@ -832,6 +933,13 @@ ol.lp-team {
   }
   .lp-hero-copy {
     padding: calc(var(--lp-nav-h) + 56px) var(--lp-space) 96px;
+  }
+  .theme-snow .lp-hero-copy {
+    padding: calc(var(--lp-nav-h) + 20px) var(--lp-space) 16px;
+  }
+  .theme-snow .lp-sheet {
+    margin: 0 auto;
+    padding: 24px 20px;
   }
   .lp-hero-copy h1 {
     font-size: clamp(2.1rem, 8vw, 2.75rem);

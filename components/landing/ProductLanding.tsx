@@ -35,8 +35,11 @@ export function ProductLanding(product: ProductContent) {
   const [chatOpen, setChatOpen] = useState(false);
   const { onSectionEnter, onChatOpen, onCtaClick, getSessionId } = useSiteAnalytics();
   const talkLabel = product.talkLabel ?? "Talk to us";
-  const hasSolves = Boolean(product.solves?.length);
-  const isMargins = Boolean(product.solves?.length || product.proofStrip);
+  const solves = product.solves ?? [];
+  const hasSolves = solves.length > 0;
+  const isMargins = Boolean(hasSolves || product.proofStrip);
+  const firstSolve = hasSolves ? solves[0] : null;
+  const laterSolves = hasSolves ? solves.slice(1) : [];
 
   const openChat = () => {
     setChatOpen(true);
@@ -68,8 +71,8 @@ export function ProductLanding(product: ProductContent) {
   }, []);
 
   return (
-    <div className={isMargins ? "theme-paper is-margins relative min-h-svh" : "theme-paper relative min-h-svh"}>
-      <div className="lp-canvas" aria-hidden="true" />
+    <div className={isMargins ? "theme-snow is-margins relative min-h-svh" : "theme-paper relative min-h-svh"}>
+      {isMargins ? null : <div className="lp-canvas" aria-hidden="true" />}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--lp-ink)] focus:text-[var(--lp-paper)] focus:text-sm"
@@ -105,12 +108,6 @@ export function ProductLanding(product: ProductContent) {
           </div>
         </header>
 
-        {product.proofStrip ? (
-          <section className="lp-strip" data-section="proof-strip" aria-label="In production">
-            <p className="lp-lede">{product.proofStrip}</p>
-          </section>
-        ) : null}
-
         {!hasSolves ? (
           <figure className="lp-object" data-section="product" aria-label={product.frameAlt}>
             <div className="lp-feature-frame">
@@ -133,12 +130,24 @@ export function ProductLanding(product: ProductContent) {
           </section>
         ) : null}
 
-        {hasSolves ? (
+        {firstSolve ? (
+          <div className="lp-fold">
+            <SolveSheet block={firstSolve} flip={false} />
+          </div>
+        ) : null}
+
+        {laterSolves.length ? (
           <div className="lp-solves">
-            {product.solves?.map((block, i) => (
-              <SolveSheet key={block.id} block={block} flip={i % 2 === 1} />
+            {laterSolves.map((block, i) => (
+              <SolveSheet key={block.id} block={block} flip={i % 2 === 0} />
             ))}
           </div>
+        ) : null}
+
+        {product.proofStrip ? (
+          <section className="lp-strip" data-section="proof-strip" aria-label="In production">
+            <p className="lp-lede">{product.proofStrip}</p>
+          </section>
         ) : null}
 
         <section className="lp-sheet" data-section="proof" aria-label="In the field">
