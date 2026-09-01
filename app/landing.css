@@ -1,15 +1,17 @@
 /* Endurance landing — one canvas, sheets land on it.
    Pace's structure (field, product evidence, dark close),
-   our material (plaster field, serif, ember). */
+   our material (white field, one light wash, serif, ember).
+   The Public-minimal pairing: Source Serif 4 on claims,
+   IBM Plex Sans on body and nav, IBM Plex Mono on kickers. */
 
 body:has(.theme-paper) {
-  background: #e4d8c6;
+  background: #ffffff;
   color: #1c1916;
 }
 
 .theme-paper {
-  --lp-field: #e4d8c6;
-  --lp-paper: #f6f4ef;
+  --lp-field: #faf9f6;
+  --lp-paper: #ffffff;
   --lp-ink: #1c1916;
   --lp-muted: #5c574e;
   --lp-line: rgba(28, 25, 22, 0.12);
@@ -17,9 +19,9 @@ body:has(.theme-paper) {
   --lp-night: #161412;
   --lp-snow: #f6f4ef;
   --lp-ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --lp-sans: var(--font-figtree), "Lato", ui-sans-serif, system-ui, sans-serif;
-  --lp-display: var(--font-display), "Instrument Serif", Georgia, serif;
-  --lp-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --lp-sans: var(--font-plex-sans), "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --lp-display: var(--font-display), "Source Serif 4", Georgia, serif;
+  --lp-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
   --lp-space: clamp(24px, 4vw, 48px);
   --lp-max: 1040px;
   --lp-sheet: 920px;
@@ -62,13 +64,14 @@ body:has(.theme-paper) {
   color: var(--lp-paper);
 }
 
-/* ---------- canvas (the stage): a flat field, no photo, no grain ---------- */
+/* ---------- canvas (the stage): white, one light wash from the top ---------- */
 .lp-canvas {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-color: var(--lp-field);
+  background-image: linear-gradient(180deg, #f4f1ea 0%, #faf9f6 52%, #fdfdfc 100%);
 }
 
 /* ---------- nav ---------- */
@@ -82,7 +85,7 @@ body:has(.theme-paper) {
 }
 
 .lp-nav.is-scrolled {
-  background: rgba(246, 244, 239, 0.94);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--lp-line);

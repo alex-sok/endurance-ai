@@ -14,14 +14,14 @@ const NAV = [
 const COLORS = [
   {
     name: "Field",
-    hex: "#e4d8c6",
+    hex: "#faf9f6",
     token: "--lp-field",
-    use: "The canvas. Present in the first second. Flat, not a wash.",
+    use: "The canvas. White, with one light wash from the top.",
     swatch: "var(--lp-field)",
   },
   {
     name: "Paper",
-    hex: "#f6f4ef",
+    hex: "#ffffff",
     token: "--lp-paper",
     use: "Sheets. Content lands here.",
     swatch: "var(--lp-paper)",
@@ -79,7 +79,7 @@ const PART_STEPS = [
   {
     n: "02",
     title: "A kicker",
-    body: "Space Mono, 11px, tracked 0.14em, uppercase. Names the section. Not the headline.",
+    body: "IBM Plex Mono, 11px, tracked 0.14em, uppercase. Names the section. Not the headline.",
   },
   {
     n: "03",
@@ -97,7 +97,7 @@ const RECIPES = [
   {
     n: "01",
     title: "Lab homepage",
-    body: "Field canvas, flat and unwashed. Hero on the field. Sheets in sequence. Night close. This is endurancelabs.ai.",
+    body: "Field canvas, one light wash. Hero on the field. Sheets in sequence. Night close. This is endurancelabs.ai.",
   },
   {
     n: "02",
@@ -252,14 +252,16 @@ export function SystemBook() {
           <p className="lp-kicker">Type</p>
           <h2 className="lp-h2">Three faces.</h2>
           <p className="lp-lede">
-            Display for the claim. Sans for the sentence. Mono for the label.
+            The Public-minimal pairing. One editorial serif on claims, one
+            grotesque on body and nav, the same grotesque's mono on labels.
           </p>
           <div className="lp-team">
             <div className="lp-team-row">
               <h3>Display</h3>
-              <p className="lp-role">Instrument Serif 400</p>
+              <p className="lp-role">Source Serif 4</p>
               <p className="lp-bio">
-                Regular, then italic. Air around the second line. Tracking −0.03em.
+                The claim. Regular, then italic. Air around the second line.
+                Tracking −0.03em.
               </p>
             </div>
             <div className="lp-hero-copy" style={{ padding: 0, maxWidth: "none" }}>
@@ -270,14 +272,14 @@ export function SystemBook() {
             </div>
             <div className="lp-team-row">
               <h3>Sans</h3>
-              <p className="lp-role">Lato</p>
+              <p className="lp-role">IBM Plex Sans</p>
               <p className="lp-bio">
                 Body 16 / 1.55. Nav 14. Wordmark 16. This paragraph is the body.
               </p>
             </div>
             <div className="lp-team-row">
               <h3>Mono</h3>
-              <p className="lp-role">Space Mono</p>
+              <p className="lp-role">IBM Plex Mono</p>
               <p className="lp-bio">
                 Kickers. 11px, 0.14em, uppercase. Section names, not headlines.
               </p>
@@ -403,7 +405,7 @@ export function SystemBook() {
               <p className="lp-lede">
                 Let the field read. Regular + italic only. Air around the
                 second line. Hairline rows, not 3-ups. Product frames are
-                the only dense color. The field stays flat. Night owns
+                the only dense color. One light wash on the field. Night owns
                 Talk and Book. Flare only on proof numbers.
               </p>
             </article>
@@ -411,7 +413,7 @@ export function SystemBook() {
               <p className="lp-kicker">Do not</p>
               <h3 className="lp-h2">Invent a second system.</h3>
               <p className="lp-lede">
-                Do not wash the field. No rust radial. No frame lift. No
+                No heavy washes. No rust radial. No frame lift. No
                 second Talk on paper. No 3-up grids. No louder CTAs. No
                 spacecraft still as the identity. No stock people. No
                 product-app tokens.

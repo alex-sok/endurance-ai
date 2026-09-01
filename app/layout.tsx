@@ -1,27 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Serif, Lato, Space_Mono } from "next/font/google";
+import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
 import { ApolloTracker } from "@/components/ApolloTracker";
 import "./globals.css";
 
-// Lato — Cursor Lato substitute for body and utility text
-const lato = Lato({
+// The Public-minimal pairing: one editorial serif on claims, one grotesque
+// on body and nav, and the same grotesque's mono on kickers.
+
+// IBM Plex Sans — the grotesque, body and nav
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-figtree",
+  variable: "--font-plex-sans",
   weight: ["400", "700"],
 });
 
-// Space Mono — berkeleyMono substitute for code, labels, input text
-const spaceMono = Space_Mono({
+// IBM Plex Mono — the grotesque's mono, kickers and labels
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains",
+  variable: "--font-plex-mono",
   weight: ["400", "700"],
 });
 
-// Instrument Serif — display headlines on the landing page
-const instrumentSerif = Instrument_Serif({
+// Source Serif 4 — the editorial serif, claims only
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: "400",
   style: ["normal", "italic"],
 });
 
@@ -65,7 +67,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#e4d8c6",
+  themeColor: "#faf9f6",
 };
 
 export default function RootLayout({
@@ -107,7 +109,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${lato.variable} ${spaceMono.variable} ${instrumentSerif.variable} h-full`}>
+    <html lang="en" className={`${plexSans.variable} ${plexMono.variable} ${sourceSerif.variable} h-full`}>
       <body className="h-full antialiased">
         <ApolloTracker />
         <script
