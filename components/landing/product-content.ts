@@ -49,7 +49,7 @@ const MARGINS_FRAME = "/landing/margins.jpg";
 // SAMPLE 16:10 crops, not the live book. SAMPLE stays in the stills.
 const MARGINS_SLOTS = {
   ingest: "/landing/margins-autosplit.png",
-  "pay-run": "/landing/margins-run.png",
+  "pay-run": "/landing/margins-week-run.png",
   exceptions: "/landing/margins-exceptions.png",
 } as const;
 
