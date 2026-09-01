@@ -15,6 +15,22 @@ function SolveFrame({ block }: { block: ProductSolve }) {
   );
 }
 
+function SolveSheet({ block, flip }: { block: ProductSolve; flip: boolean }) {
+  return (
+    <section className="lp-sheet" data-section={block.id} id={block.id} aria-label={block.solve}>
+      <div className={flip ? "lp-product is-flip" : "lp-product"}>
+        {flip ? <SolveFrame block={block} /> : null}
+        <div className="lp-feature-copy">
+          <p className="lp-kicker">{block.pain}</p>
+          <h2>{block.solve}</h2>
+          <p className="lp-lede">{block.body}</p>
+        </div>
+        {flip ? null : <SolveFrame block={block} />}
+      </div>
+    </section>
+  );
+}
+
 export function ProductLanding(product: ProductContent) {
   const [chatOpen, setChatOpen] = useState(false);
   const { onSectionEnter, onChatOpen, onCtaClick, getSessionId } = useSiteAnalytics();
@@ -117,27 +133,13 @@ export function ProductLanding(product: ProductContent) {
           </section>
         ) : null}
 
-        {product.solves?.map((block, i) => {
-          const flip = i % 2 === 1;
-          return (
-            <section
-              key={block.solve}
-              className="lp-sheet"
-              data-section={`solve-${i + 1}`}
-              aria-label={block.solve}
-            >
-              <div className={flip ? "lp-product is-flip" : "lp-product"}>
-                {flip ? <SolveFrame block={block} /> : null}
-                <div className="lp-feature-copy">
-                  <p className="lp-kicker">{block.pain}</p>
-                  <h2>{block.solve}</h2>
-                  <p className="lp-lede">{block.body}</p>
-                </div>
-                {flip ? null : <SolveFrame block={block} />}
-              </div>
-            </section>
-          );
-        })}
+        {hasSolves ? (
+          <div className="lp-solves">
+            {product.solves?.map((block, i) => (
+              <SolveSheet key={block.id} block={block} flip={i % 2 === 1} />
+            ))}
+          </div>
+        ) : null}
 
         <section className="lp-sheet" data-section="proof" aria-label="In the field">
           {product.proofPair ? (

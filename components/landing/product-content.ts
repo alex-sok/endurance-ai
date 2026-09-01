@@ -14,6 +14,7 @@ export type ProductClose = {
 };
 
 export type ProductSolve = {
+  id: string;
   pain: string;
   solve: string;
   body: string;
@@ -48,10 +49,36 @@ export type ProductContent = {
 // ships true 16:10 files — do not lock 1000×680 SAMPLE crops here.
 const MARGINS_FRAME = "/landing/margins.jpg";
 const MARGINS_SLOTS = {
-  autosplit: MARGINS_FRAME,
-  run: MARGINS_FRAME,
+  ingest: MARGINS_FRAME,
+  "pay-run": MARGINS_FRAME,
   exceptions: MARGINS_FRAME,
 } as const;
+
+/** Render order. Locked copy appears; reserved ids stay dark until VP locks them. */
+export const MARGINS_SOLVE_IDS = [
+  "ingest",
+  "pay-run",
+  "exceptions",
+  "structures",
+  "fraud",
+  "overpay",
+  "deals",
+  "portal",
+] as const;
+
+export type MarginsSolveId = (typeof MARGINS_SOLVE_IDS)[number];
+
+type LockedSolve = Omit<ProductSolve, "id">;
+
+function lockedSolves(
+  order: readonly MarginsSolveId[],
+  locked: Partial<Record<MarginsSolveId, LockedSolve>>,
+): ProductSolve[] {
+  return order.flatMap((id) => {
+    const block = locked[id];
+    return block ? [{ id, ...block }] : [];
+  });
+}
 
 export const BRAIN: ProductContent = {
   kicker: "Product · Brain",
@@ -107,29 +134,29 @@ export const MARGINS: ProductContent = {
     "One brokerage per deployment",
   ],
   steps: [],
-  solves: [
-    {
+  solves: lockedSolves(MARGINS_SOLVE_IDS, {
+    ingest: {
       pain: "“Splits don’t follow what the load actually made.”",
       solve: "Pay follows the margin.",
       body: "Ingest from the TMS. No re-keying. A fat load and a thin load are not the same deal. Agents can still make more. The house stops overpaying the week the market was fat.",
-      frameSrc: MARGINS_SLOTS.autosplit,
+      frameSrc: MARGINS_SLOTS.ingest,
       frameAlt: "AutoSplit / scale",
     },
-    {
+    "pay-run": {
       pain: "“The spreadsheet is the system.”",
       solve: "A weekly pay run.",
       body: "Every split computed. Everyone who gets paid, and the rule that pays them. The week is an object you can run.",
-      frameSrc: MARGINS_SLOTS.run,
+      frameSrc: MARGINS_SLOTS["pay-run"],
       frameAlt: "this week’s run",
     },
-    {
+    exceptions: {
       pain: "“We find the miss after payday.”",
       solve: "Exceptions before money moves.",
       body: "Blockers and warnings while the run is still a draft. Friday is the close, not the discovery.",
       frameSrc: MARGINS_SLOTS.exceptions,
       frameAlt: "exceptions on the run",
     },
-  ],
+  }),
   proofLede: "",
   proofTitle: "",
   proofNote: "",
