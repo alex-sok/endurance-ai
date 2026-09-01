@@ -347,6 +347,19 @@ body:has(.theme-paper) {
   max-width: 48ch;
 }
 
+.lp-solves {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
+  margin: 0 auto 104px;
+}
+
+.lp-solves > .lp-sheet {
+  margin: 0 auto;
+}
+
 /* ---------- sheets (land on the canvas) ---------- */
 .lp-sheet {
   position: relative;
@@ -811,6 +824,10 @@ ol.lp-team {
   .lp-object,
   .lp-strip {
     width: calc(100% - 32px);
+    margin-bottom: 56px;
+  }
+  .lp-solves {
+    gap: 56px;
     margin-bottom: 56px;
   }
   .lp-hero-copy {
