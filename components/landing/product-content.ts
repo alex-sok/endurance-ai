@@ -45,13 +45,12 @@ export type ProductContent = {
   note?: { text: string; href: string; link: string };
 };
 
-// Slots for per-block 16:10 stills. Stay on the live book until Visual
-// ships true 16:10 files — do not lock 1000×680 SAMPLE crops here.
 const MARGINS_FRAME = "/landing/margins.jpg";
+// SAMPLE 16:10 crops, not the live book. SAMPLE stays in the stills.
 const MARGINS_SLOTS = {
-  ingest: MARGINS_FRAME,
-  "pay-run": MARGINS_FRAME,
-  exceptions: MARGINS_FRAME,
+  ingest: "/landing/margins-autosplit.png",
+  "pay-run": "/landing/margins-run.png",
+  exceptions: "/landing/margins-exceptions.png",
 } as const;
 
 /** Render order. Locked copy appears; reserved ids stay dark until VP locks them. */
@@ -116,6 +115,7 @@ export const BRAIN: ProductContent = {
   },
 };
 
+// Hero is the margin claim. Commission math is table stakes — a band, not the hero.
 export const MARGINS: ProductContent = {
   kicker: "",
   title: "Pay for the margin, not the load.",
