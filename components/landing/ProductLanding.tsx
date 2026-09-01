@@ -20,6 +20,7 @@ export function ProductLanding(product: ProductContent) {
   const { onSectionEnter, onChatOpen, onCtaClick, getSessionId } = useSiteAnalytics();
   const talkLabel = product.talkLabel ?? "Talk to us";
   const hasSolves = Boolean(product.solves?.length);
+  const isMargins = Boolean(product.solves?.length || product.proofStrip);
 
   const openChat = () => {
     setChatOpen(true);
@@ -51,7 +52,7 @@ export function ProductLanding(product: ProductContent) {
   }, []);
 
   return (
-    <div className="theme-paper relative min-h-svh">
+    <div className={isMargins ? "theme-paper is-margins relative min-h-svh" : "theme-paper relative min-h-svh"}>
       <div className="lp-canvas" aria-hidden="true" />
       <a
         href="#main-content"
