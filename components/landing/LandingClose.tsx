@@ -2,12 +2,18 @@
 
 import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/conversation-flows";
 import { EmailCapture } from "./EmailCapture";
+import type { ProductClose } from "./product-content";
 
 interface Props {
   onOpenChat: () => void;
+  close?: ProductClose;
 }
 
-export function LandingClose({ onOpenChat }: Props) {
+export function LandingClose({ onOpenChat, close }: Props) {
+  const title = close?.title ?? "The work, then the software.";
+  const lede = close ? close.lede : "If there is a system worth building, we will say so.";
+  const talkLabel = close?.talkLabel ?? "Talk to us";
+
   return (
     <footer className="lp-close" id="cta" data-section="close">
       <div className="lp-close-inner">
@@ -16,13 +22,12 @@ export function LandingClose({ onOpenChat }: Props) {
           src="/logo-endurance-white.svg"
           alt="Endurance AI Labs"
         />
-        <h2 className="lp-h2">The work, then the software.</h2>
-        <p className="lp-lede">
-          If there is a system worth building, we will say so.
-        </p>
+        {close?.kicker ? <p className="lp-kicker">{close.kicker}</p> : null}
+        <h2 className="lp-h2">{title}</h2>
+        {lede ? <p className="lp-lede">{lede}</p> : null}
         <div className="lp-cta-actions">
           <button type="button" className="lp-btn lp-btn-fill" onClick={onOpenChat}>
-            Talk to us
+            {talkLabel}
           </button>
           <a
             className="lp-btn lp-btn-line"
@@ -33,7 +38,7 @@ export function LandingClose({ onOpenChat }: Props) {
             Book a call
           </a>
         </div>
-        <EmailCapture />
+        {close?.hideCapture ? null : <EmailCapture />}
         <div className="lp-foot">
           <span>
             © {new Date().getFullYear()}{" "}

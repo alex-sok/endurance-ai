@@ -19,8 +19,35 @@ export const metadata: Metadata = {
     url: "https://endurancelabs.ai/margins",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+};
+
+const productJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: "Margins",
+  description: DESCRIPTION,
+  url: "https://endurancelabs.ai/margins",
+  image: "https://endurancelabs.ai/landing/margins.jpg",
+  brand: {
+    "@type": "Organization",
+    name: "Endurance AI Labs",
+    url: "https://endurancelabs.ai",
+  },
 };
 
 export default function MarginsPage() {
-  return <ProductLanding {...MARGINS} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <ProductLanding {...MARGINS} />
+    </>
+  );
 }
