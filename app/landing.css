@@ -1,15 +1,17 @@
 /* Endurance landing — one canvas, sheets land on it.
    Pace's structure (field, product evidence, dark close),
-   our material (plaster field, serif, ember). */
+   our material (white field, one light wash, serif, ember).
+   The Public-minimal pairing: Source Serif 4 on claims,
+   IBM Plex Sans on body and nav, IBM Plex Mono on kickers. */
 
 body:has(.theme-paper) {
-  background: #e4d8c6;
+  background: #ffffff;
   color: #1c1916;
 }
 
 .theme-paper {
-  --lp-field: #e4d8c6;
-  --lp-paper: #f6f4ef;
+  --lp-field: #faf9f6;
+  --lp-paper: #ffffff;
   --lp-ink: #1c1916;
   --lp-muted: #5c574e;
   --lp-line: rgba(28, 25, 22, 0.12);
@@ -17,9 +19,9 @@ body:has(.theme-paper) {
   --lp-night: #161412;
   --lp-snow: #f6f4ef;
   --lp-ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --lp-sans: var(--font-figtree), "Lato", ui-sans-serif, system-ui, sans-serif;
-  --lp-display: var(--font-display), "Instrument Serif", Georgia, serif;
-  --lp-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --lp-sans: var(--font-plex-sans), "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --lp-display: var(--font-display), "Source Serif 4", Georgia, serif;
+  --lp-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
   --lp-space: clamp(24px, 4vw, 48px);
   --lp-max: 1040px;
   --lp-sheet: 920px;
@@ -62,13 +64,14 @@ body:has(.theme-paper) {
   color: var(--lp-paper);
 }
 
-/* ---------- canvas (the stage): a flat field, no photo, no grain ---------- */
+/* ---------- canvas (the stage): white, one light wash from the top ---------- */
 .lp-canvas {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-color: var(--lp-field);
+  background-image: linear-gradient(180deg, #f4f1ea 0%, #faf9f6 52%, #fdfdfc 100%);
 }
 
 /* ---------- nav ---------- */
@@ -82,7 +85,7 @@ body:has(.theme-paper) {
 }
 
 .lp-nav.is-scrolled {
-  background: rgba(246, 244, 239, 0.94);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--lp-line);
@@ -297,13 +300,20 @@ body:has(.theme-paper) {
 .lp-hero-copy h1 em {
   display: block;
   font-style: italic;
-  margin-top: 0.82em;
+  /* Air around the second line, tuned for Source Serif 4's mass: the two
+     lines are one claim and must read as a couple, not two headlines. */
+  margin-top: 0.3em;
   max-width: 10.5em;
   line-height: 1.16;
 }
 
-.lp-hero-lede {
-  margin-top: 64px;
+/* Named with the theme so the margin survives the .theme-paper p reset. */
+.theme-paper .lp-hero .lp-kicker {
+  margin-bottom: 16px;
+}
+
+.theme-paper .lp-hero-lede {
+  margin-top: 32px;
   font-size: 16px;
   line-height: 1.58;
   color: var(--lp-muted);
@@ -318,7 +328,72 @@ body:has(.theme-paper) {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  margin-top: 56px;
+  margin-top: 48px;
+}
+
+/* ---------- centered hero + the stage ----------
+   The Sundial move on our material: copy centered on the field, the
+   product laid out beneath it as a composition, not one monolith. */
+.lp-hero.is-center {
+  min-height: auto;
+}
+
+.lp-hero.is-center .lp-hero-copy {
+  text-align: center;
+  padding-bottom: 96px;
+}
+
+.lp-hero.is-center .lp-hero-copy > * {
+  margin-inline: auto;
+}
+
+.lp-hero.is-center .lp-hero-actions {
+  justify-content: center;
+}
+
+.lp-hero.is-center .lp-band .lp-fine {
+  margin-inline: auto;
+}
+
+.lp-stage {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 48px);
+  max-width: var(--lp-max);
+  margin: 0 auto 104px;
+}
+
+.lp-stage > .lp-feature-frame {
+  width: min(78%, 820px);
+  margin: 0 auto;
+}
+
+.lp-stage-float {
+  position: absolute;
+  border-radius: var(--lp-radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--lp-lift);
+  outline: 1px solid var(--lp-line);
+  outline-offset: -1px;
+}
+
+.lp-stage-float img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lp-stage-float.is-left {
+  width: 27%;
+  left: 0;
+  top: 16%;
+}
+
+.lp-stage-float.is-right {
+  width: 17%;
+  right: 1%;
+  bottom: 12%;
 }
 
 /* ---------- sheets (land on the canvas) ---------- */
@@ -940,14 +1015,21 @@ ol.lp-team {
     width: calc(100% - 32px);
     margin-bottom: 56px;
   }
+  .lp-stage {
+    width: calc(100% - 32px);
+    margin-bottom: 56px;
+  }
+  .lp-stage > .lp-feature-frame {
+    width: 100%;
+  }
+  .lp-stage-float {
+    display: none;
+  }
   .lp-hero-copy {
     padding: calc(var(--lp-nav-h) + 56px) var(--lp-space) 96px;
   }
   .lp-hero-copy h1 {
     font-size: clamp(2.1rem, 8vw, 2.75rem);
-  }
-  .lp-hero-copy h1 em {
-    margin-top: 0.68em;
   }
   .lp-product,
   .lp-product.is-flip {
