@@ -73,8 +73,8 @@ export const LEARN_ARTICLES: LearnArticle[] = [
   {
     slug: "build-vs-buy",
     kicker: "LEARN · 03",
-    hed: "Buy the pay run. Keep the TMS you already run.",
-    dek: "ChatGPT is not commissions software. Neither is ripping out the TMS.",
+    hed: "Buy the system that settles commissions, not a chat window.",
+    dek: "ChatGPT is not commissions software. The calculator is not the job.",
     pull: "The calculation is the part everyone already has.",
     grafs: [
       "The market is full of software that “does commissions.”",
@@ -92,7 +92,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       "If a vendor list is the answer you get from an engine, you are still in the calculator aisle.",
       "If the answer is “use ChatGPT for email, use a system for data,” you are closer. The system for this data is the pay run.",
       "Do not build a commissions engine because you can. Do not buy a copilot because it talks.",
-      "Buy the object. Keep the TMS. Build only what is actually yours.",
+      "Buy the object. Build only what is actually yours.",
     ],
     close:
       "The unfair advantage is not a new logo on the stack. It is Friday, proven, without a new system of record.",
@@ -100,7 +100,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
   {
     slug: "what-ai-can-and-cannot-do",
     kicker: "LEARN · 04",
-    hed: "Chat can draft the email. It cannot move the money.",
+    hed: "ChatGPT can draft the email. It cannot move the money.",
     dek: "Put AI on the week: splits, exceptions, payday. Not on model trivia.",
     pull: "If it cannot own the number, it is not the pay run.",
     grafs: [
@@ -116,7 +116,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
       "The person who had the spreadsheet still owns Friday. The system does the week they used to hold together by hand.",
       "If you cannot describe the job as a rule, a record, or a source, it is not a first job for a model.",
       "Email is language. Payday is money. Do not confuse them because both happen on a screen.",
-      "Use chat for words. Use a system for data.",
+      "Use a chat window for words. Use a system for data.",
       "The empty page is how brokers settle commissions. That page should not be another calculator.",
       "It should say what the system may do, what it may not, and who still owns the exception.",
       "Margins computes. It does not guess Friday. Brain cites. It does not invent a memo.",
@@ -126,7 +126,7 @@ export const LEARN_ARTICLES: LearnArticle[] = [
   {
     slug: "what-plugs-into-your-tms",
     kicker: "LEARN · 05",
-    hed: "Plug into the TMS you already run. Do not replace it.",
+    hed: "Plug commissions into the TMS you already run. Do not replace it.",
     dek: "Headless means the intelligence sits behind the system the operator already lives in.",
     pull: "Changing TMS is a last resort.",
     grafs: [
