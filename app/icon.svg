@@ -1,5 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <title>Endurance AI Labs</title>
-  <rect width="64" height="64" fill="#161412"></rect>
-  <circle cx="32" cy="32" r="21" fill="none" stroke="#ffffff" stroke-width="10" stroke-dasharray="8.4 2.5956" stroke-dashoffset="4.2" transform="rotate(-90 32 32)"></circle>
+  <style>
+    /* No field behind the mark, so the ring reads at full size in the tab.
+       Night on light chrome, Snow on dark. */
+    circle { stroke: #161412; }
+    @media (prefers-color-scheme: dark) { circle { stroke: #f6f4ef; } }
+  </style>
+  <circle cx="32" cy="32" r="26" fill="none" stroke-width="12" stroke-dasharray="10.4 3.2136" stroke-dashoffset="5.2" transform="rotate(-90 32 32)"></circle>
 </svg>
