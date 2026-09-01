@@ -181,6 +181,8 @@ export const MARGINS: ProductContent = {
       body: "Not the staff run. Their statement. The house keeps the workbench.",
       frameSrc: MARGINS_SLOTS["agent-my"],
       frameAlt: "/my statement",
+      // Hold until recut crops the plate to the statement. Do not ship the empty interior.
+      framePending: true,
     },
   }),
   proofLede: "",

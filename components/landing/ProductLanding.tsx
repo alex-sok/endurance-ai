@@ -8,15 +8,6 @@ import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import type { ProductContent, ProductSolve } from "./product-content";
 
 function SolveFrame({ block }: { block: ProductSolve }) {
-  if (block.framePending || !block.frameSrc) {
-    return (
-      <div
-        className="lp-feature-frame is-slot"
-        role="img"
-        aria-label={block.frameAlt}
-      />
-    );
-  }
   return (
     <div className="lp-feature-frame">
       <img src={block.frameSrc} alt={block.frameAlt} />
@@ -33,7 +24,7 @@ function SolveSheet({
   flip: boolean;
   hideFrame?: boolean;
 }) {
-  const typeOnly = hideFrame || !block.frameSrc;
+  const typeOnly = hideFrame || !block.frameSrc || block.framePending;
   return (
     <section className="lp-sheet" data-section={block.id} id={block.id} aria-label={block.solve}>
       <div className={flip && !typeOnly ? "lp-product is-flip" : typeOnly ? "lp-product is-solo" : "lp-product"}>
