@@ -444,6 +444,7 @@ body:has(.theme-paper) {
 
 .lp-feature-copy .lp-kicker {
   margin-bottom: 12px;
+  letter-spacing: 0.14em;
 }
 
 .lp-feature-copy h2 {
@@ -455,17 +456,6 @@ body:has(.theme-paper) {
 
 .lp-feature-copy .lp-lede {
   max-width: 42ch;
-}
-
-.lp-solve-pain {
-  font-family: var(--lp-display);
-  font-style: italic;
-  font-size: 1.15rem;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
-  color: var(--lp-muted);
-  max-width: 28ch;
-  margin-bottom: 20px;
 }
 
 .lp-sheet > .lp-product:first-child {
@@ -517,14 +507,6 @@ body:has(.theme-paper) {
   object-fit: cover;
   object-position: left top;
   display: block;
-}
-
-.lp-feature-frame.is-center img {
-  object-position: center center;
-}
-
-.lp-feature-frame.is-end img {
-  object-position: right bottom;
 }
 
 .lp-chips {

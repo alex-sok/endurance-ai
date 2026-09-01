@@ -19,7 +19,6 @@ export type ProductSolve = {
   body: string;
   frameSrc: string;
   frameAlt: string;
-  frameFocus?: "start" | "center" | "end";
 };
 
 export type ProductContent = {
@@ -32,6 +31,7 @@ export type ProductContent = {
   frameAlt: string;
   chips?: string[];
   proofStrip?: string;
+  /** Ordered pain→solve sheets. Append when VP locks more; do not invent copy. */
   solves?: ProductSolve[];
   steps: { n: string; title: string; body: string }[];
   proofLede: string;
@@ -44,7 +44,14 @@ export type ProductContent = {
   note?: { text: string; href: string; link: string };
 };
 
+// Slots for per-block 16:10 stills. Stay on the live book until Visual
+// ships true 16:10 files — do not lock 1000×680 SAMPLE crops here.
 const MARGINS_FRAME = "/landing/margins.jpg";
+const MARGINS_SLOTS = {
+  autosplit: MARGINS_FRAME,
+  run: MARGINS_FRAME,
+  exceptions: MARGINS_FRAME,
+} as const;
 
 export const BRAIN: ProductContent = {
   kicker: "Product · Brain",
@@ -105,25 +112,22 @@ export const MARGINS: ProductContent = {
       pain: "“Splits don’t follow what the load actually made.”",
       solve: "Pay follows the margin.",
       body: "Ingest from the TMS. No re-keying. A fat load and a thin load are not the same deal. Agents can still make more. The house stops overpaying the week the market was fat.",
-      frameSrc: MARGINS_FRAME,
+      frameSrc: MARGINS_SLOTS.autosplit,
       frameAlt: "AutoSplit / scale",
-      frameFocus: "start",
     },
     {
       pain: "“The spreadsheet is the system.”",
       solve: "A weekly pay run.",
       body: "Every split computed. Everyone who gets paid, and the rule that pays them. The week is an object you can run.",
-      frameSrc: MARGINS_FRAME,
+      frameSrc: MARGINS_SLOTS.run,
       frameAlt: "this week’s run",
-      frameFocus: "center",
     },
     {
       pain: "“We find the miss after payday.”",
       solve: "Exceptions before money moves.",
       body: "Blockers and warnings while the run is still a draft. Friday is the close, not the discovery.",
-      frameSrc: MARGINS_FRAME,
+      frameSrc: MARGINS_SLOTS.exceptions,
       frameAlt: "exceptions on the run",
-      frameFocus: "end",
     },
   ],
   proofLede: "",
