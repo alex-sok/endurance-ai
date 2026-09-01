@@ -51,12 +51,12 @@ export type ProductContent = {
 
 const MARGINS_FRAME = "/landing/margins-autosplit.png";
 // SAMPLE 16:10 crops, not the live book. SAMPLE stays in the stills.
+// Fold owns AutoSplit once. A is type-only — no ingest crop.
 const MARGINS_SLOTS = {
-  ingest: "/landing/margins-autosplit.png",
   "pay-run": "/landing/margins-week-run.png",
   exceptions: "/landing/margins-exceptions.png",
-  duplicate: "/landing/margins-duplicates.png",
-  "agent-my": "/landing/margins-portal.png",
+  duplicate: "/landing/margins-duplicate.png",
+  "agent-my": "/landing/margins-agent-my.png",
 } as const;
 
 /** Locked A–E. Fold stays AutoSplit. All five sheets render after the fold. */
@@ -151,8 +151,8 @@ export const MARGINS: ProductContent = {
       pain: "“Splits don’t follow what the load actually made.”",
       solve: "Pay follows the margin.",
       body: "Ingest from the TMS. No re-keying. A fat load and a thin load are not the same deal. Agents can still make more. The house stops overpaying the week the market was fat.",
-      frameSrc: MARGINS_SLOTS.ingest,
-      frameAlt: "AutoSplit / scale",
+      frameSrc: "",
+      frameAlt: "",
     },
     "pay-run": {
       pain: "“The spreadsheet is the system.”",
@@ -174,8 +174,6 @@ export const MARGINS: ProductContent = {
       body: "Same load, same money, two weeks — that’s a duplicate. Money changed — that’s a rebill to review. Void the flagged instance. The run does not pay it twice.",
       frameSrc: MARGINS_SLOTS.duplicate,
       frameAlt: "void duplicate",
-      // TODO: product crop incoming — /landing/margins-duplicates.png
-      framePending: true,
     },
     "agent-my": {
       pain: "Agents only see the number after Friday.",
@@ -183,9 +181,6 @@ export const MARGINS: ProductContent = {
       body: "Not the staff run. Their statement. The house keeps the workbench.",
       frameSrc: MARGINS_SLOTS["agent-my"],
       frameAlt: "/my statement",
-      // TODO: product crop incoming — /landing/margins-portal.png
-      // Named surface only. No login, booth, sandbox, public URL, or $ saved.
-      framePending: true,
     },
   }),
   proofLede: "",
