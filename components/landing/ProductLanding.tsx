@@ -8,9 +8,8 @@ import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import type { ProductContent, ProductSolve } from "./product-content";
 
 function SolveFrame({ block }: { block: ProductSolve }) {
-  const focus = block.frameFocus ?? "start";
   return (
-    <div className={`lp-feature-frame is-${focus}`}>
+    <div className="lp-feature-frame">
       <img src={block.frameSrc} alt={block.frameAlt} />
     </div>
   );
@@ -129,7 +128,7 @@ export function ProductLanding(product: ProductContent) {
               <div className={flip ? "lp-product is-flip" : "lp-product"}>
                 {flip ? <SolveFrame block={block} /> : null}
                 <div className="lp-feature-copy">
-                  <p className="lp-solve-pain">{block.pain}</p>
+                  <p className="lp-kicker">{block.pain}</p>
                   <h2>{block.solve}</h2>
                   <p className="lp-lede">{block.body}</p>
                 </div>
