@@ -26,6 +26,8 @@ export type ProductContent = {
   kicker: string;
   title: string;
   italic: string;
+  /** Penny / subline as a muted kicker, not a second display H1. */
+  italicAsKicker?: boolean;
   lede: string;
   talkLabel?: string;
   frameSrc: string;
@@ -45,24 +47,23 @@ export type ProductContent = {
   note?: { text: string; href: string; link: string };
 };
 
-const MARGINS_FRAME = "/landing/margins.jpg";
+const MARGINS_FRAME = "/landing/margins-autosplit.png";
 // SAMPLE 16:10 crops, not the live book. SAMPLE stays in the stills.
 const MARGINS_SLOTS = {
   ingest: "/landing/margins-autosplit.png",
   "pay-run": "/landing/margins-week-run.png",
   exceptions: "/landing/margins-exceptions.png",
+  duplicate: "/landing/margins-duplicate.png",
+  "agent-my": "/landing/margins-agent-my.png",
 } as const;
 
-/** Render order. Locked copy appears; reserved ids stay dark until VP locks them. */
+/** Render order A–E. Do not invent reserved bands. */
 export const MARGINS_SOLVE_IDS = [
   "ingest",
   "pay-run",
   "exceptions",
-  "structures",
-  "fraud",
-  "overpay",
-  "deals",
-  "portal",
+  "duplicate",
+  "agent-my",
 ] as const;
 
 export type MarginsSolveId = (typeof MARGINS_SOLVE_IDS)[number];
@@ -120,16 +121,17 @@ export const MARGINS: ProductContent = {
   kicker: "",
   title: "Pay for the margin, not the load.",
   italic: "Every commission, to the penny.",
+  italicAsKicker: true,
   lede: "TMS loads become a weekly pay run. Splits track what the load actually made.",
   talkLabel: "Talk",
   frameSrc: MARGINS_FRAME,
-  frameAlt: "Margins commissions run",
+  frameAlt: "AutoSplit / scale",
   proofStrip:
     "In production at a freight brokerage. Weekly pay run from their TMS.",
   chips: [
     "McLeod-first",
     "Existing TMS",
-    "Weekly pay run",
+    "Pay run",
     "Brokerage owners",
     "One brokerage per deployment",
   ],
@@ -144,8 +146,8 @@ export const MARGINS: ProductContent = {
     },
     "pay-run": {
       pain: "“The spreadsheet is the system.”",
-      solve: "A weekly pay run.",
-      body: "Every split computed. Everyone who gets paid, and the rule that pays them. The week is an object you can run.",
+      solve: "A pay run.",
+      body: "Every split computed. Everyone who gets paid, and the rule that pays them. The run is an object you can close.",
       frameSrc: MARGINS_SLOTS["pay-run"],
       frameAlt: "this week’s run",
     },
@@ -155,6 +157,20 @@ export const MARGINS: ProductContent = {
       body: "Blockers and warnings while the run is still a draft. Friday is the close, not the discovery.",
       frameSrc: MARGINS_SLOTS.exceptions,
       frameAlt: "exceptions on the run",
+    },
+    duplicate: {
+      pain: "The same load paid twice.",
+      solve: "The duplicate does not pay.",
+      body: "Same load, same money, two weeks — that’s a duplicate. Money changed — that’s a rebill to review. Void the flagged instance. The run does not pay it twice.",
+      frameSrc: MARGINS_SLOTS.duplicate,
+      frameAlt: "void duplicate",
+    },
+    "agent-my": {
+      pain: "Agents only see the number after Friday.",
+      solve: "The agent sees the week.",
+      body: "Not the staff run. Their statement, their login. The house keeps the workbench.",
+      frameSrc: MARGINS_SLOTS["agent-my"],
+      frameAlt: "/my statement",
     },
   }),
   proofLede: "",

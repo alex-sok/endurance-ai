@@ -95,10 +95,16 @@ export function ProductLanding(product: ProductContent) {
           <div className={firstSolve ? "lp-fold-inner" : undefined}>
             <div className="lp-hero-copy">
               {product.kicker ? <p className="lp-kicker">{product.kicker}</p> : null}
-              <h1>
-                {product.title}
-                {product.italic ? <em>{product.italic}</em> : null}
-              </h1>
+              <h1>{product.title}</h1>
+              {product.italic ? (
+                product.italicAsKicker ? (
+                  <p className="lp-hero-kicker">{product.italic}</p>
+                ) : (
+                  <p className="lp-hero-display-em">
+                    <em>{product.italic}</em>
+                  </p>
+                )
+              ) : null}
               <p className="lp-hero-lede">{product.lede}</p>
               <div className="lp-hero-actions">
                 <button type="button" className="lp-btn lp-btn-fill" onClick={openChat}>
@@ -116,8 +122,10 @@ export function ProductLanding(product: ProductContent) {
               </div>
             </div>
             {firstSolve ? (
-              <figure className="lp-fold-frame" aria-label={firstSolve.frameAlt}>
-                <SolveFrame block={firstSolve} />
+              <figure className="lp-fold-frame" aria-label={product.frameAlt}>
+                <div className="lp-feature-frame">
+                  <img src={product.frameSrc} alt={product.frameAlt} />
+                </div>
               </figure>
             ) : null}
           </div>
@@ -145,6 +153,25 @@ export function ProductLanding(product: ProductContent) {
           </section>
         ) : null}
 
+        {product.proofStrip ? (
+          <section className="lp-strip" data-section="proof-strip" aria-label="In production">
+            <p className="lp-lede">{product.proofStrip}</p>
+            {product.proofPair ? (
+              <>
+                <p className="lp-proof-before">{product.proofPair.before}</p>
+                <p className="lp-proof-after">{product.proofPair.after}</p>
+              </>
+            ) : null}
+            {product.chips?.length ? (
+              <ul className="lp-chips" aria-label="Fit">
+                {product.chips.map((chip) => (
+                  <li key={chip}>{chip}</li>
+                ))}
+              </ul>
+            ) : null}
+          </section>
+        ) : null}
+
         {firstSolve ? <SolveSheet block={firstSolve} flip={false} hideFrame /> : null}
 
         {laterSolves.length ? (
@@ -155,41 +182,21 @@ export function ProductLanding(product: ProductContent) {
           </div>
         ) : null}
 
-        {product.proofStrip ? (
-          <section className="lp-strip" data-section="proof-strip" aria-label="In production">
-            <p className="lp-lede">{product.proofStrip}</p>
+        {!product.proofStrip ? (
+          <section className="lp-sheet" data-section="proof" aria-label="In the field">
+            <p className="lp-lede">{product.proofLede}</p>
+            <h2 className="lp-h2">{product.proofTitle}</h2>
+            <p className="lp-lede">{product.proofNote}</p>
+            {product.note ? (
+              <p className="lp-note">
+                {product.note.text}{" "}
+                <a className="lp-link" href={product.note.href}>
+                  {product.note.link}
+                </a>
+              </p>
+            ) : null}
           </section>
         ) : null}
-
-        <section className="lp-sheet" data-section="proof" aria-label="In the field">
-          {product.proofPair ? (
-            <>
-              <p className="lp-proof-before">{product.proofPair.before}</p>
-              <p className="lp-proof-after">{product.proofPair.after}</p>
-              {product.chips?.length ? (
-                <ul className="lp-chips" aria-label="Fit">
-                  {product.chips.map((chip) => (
-                    <li key={chip}>{chip}</li>
-                  ))}
-                </ul>
-              ) : null}
-            </>
-          ) : (
-            <>
-              <p className="lp-lede">{product.proofLede}</p>
-              <h2 className="lp-h2">{product.proofTitle}</h2>
-              <p className="lp-lede">{product.proofNote}</p>
-              {product.note ? (
-                <p className="lp-note">
-                  {product.note.text}{" "}
-                  <a className="lp-link" href={product.note.href}>
-                    {product.note.link}
-                  </a>
-                </p>
-              ) : null}
-            </>
-          )}
-        </section>
 
         <LandingClose onOpenChat={openChat} close={product.close} />
       </main>
