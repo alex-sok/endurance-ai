@@ -47,6 +47,7 @@ export type ProductContent = {
   lineLabel: string;
   lineHref: string;
   note?: { text: string; href: string; link: string };
+  proofFacts?: { heading: string; lines: string[] };
 };
 
 const MARGINS_FRAME = "/landing/margins-autosplit.png";
@@ -59,7 +60,7 @@ const MARGINS_SLOTS = {
   "agent-my": "/landing/margins-agent-my.png",
 } as const;
 
-/** Locked A–E. Fold stays AutoSplit. All five sheets render after the fold. */
+/** Locked A–E. Fold stays AutoSplit. */
 export const MARGINS_SOLVE_IDS = [
   "ingest",
   "pay-run",
@@ -199,4 +200,15 @@ export const MARGINS: ProductContent = {
   },
   lineLabel: "Book a call",
   lineHref: CALENDLY_URL,
+  proofFacts: {
+    heading: "Margins is loved by logistics brokerages.",
+    lines: [
+      "In production at a freight brokerage.",
+      "30 hours a week back on commissions and reporting.",
+      "Admin time reduced as much as 83%.",
+      "Accurate numbers in under 30 seconds.",
+      "New deals, managed.",
+      "A full audit. Every penny.",
+    ],
+  },
 };
