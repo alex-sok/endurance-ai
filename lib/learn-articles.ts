@@ -6,6 +6,7 @@ export type LearnArticle = {
   pull: string;
   grafs: string[];
   close: string;
+  htmlTitle?: string;
 };
 
 export const LEARN_INDEX_LINE =
@@ -74,7 +75,9 @@ export const LEARN_ARTICLES: LearnArticle[] = [
     slug: "build-vs-buy",
     kicker: "LEARN · 03",
     hed: "Buy the system that settles commissions, not a chat window.",
-    dek: "ChatGPT is not commissions software. The calculator is not the job.",
+    dek: "Freight brokers already have a calculator. ChatGPT is not commissions software.",
+    htmlTitle:
+      "Buy the system that settles commissions, not a chat window · Freight brokers",
     pull: "The calculation is the part everyone already has.",
     grafs: [
       "The market is full of software that “does commissions.”",

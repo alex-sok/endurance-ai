@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const article = getLearnArticle(slug);
   if (!article) return {};
 
-  const title = `${article.hed} — Endurance AI Labs`;
+  const title = article.htmlTitle ?? `${article.hed} — Endurance AI Labs`;
   const url = `https://endurancelabs.ai/learn/${article.slug}`;
 
   return {
