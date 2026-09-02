@@ -1687,6 +1687,35 @@ body:has(.theme-paper) {
   stroke-width: 1;
 }
 
+/* ---------- pricing ----------
+   A price that is not set yet reads as unset, never as a number. A prose
+   ledger keeps the label column and gives the right column running text. */
+.lp-figure.is-unset {
+  font-family: var(--lp-sans);
+  font-size: 15px;
+  color: var(--lp-muted);
+}
+
+.lp-ledger-prose .lp-included-body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--lp-muted);
+}
+
+.lp-ledger-prose li {
+  align-items: start;
+  min-height: 0;
+}
+
+.lp-block .lp-faq {
+  margin-top: 40px;
+  max-width: none;
+}
+
+.lp-block .lp-faq button {
+  font-size: 17px;
+}
+
 /* ---------- the system book's own few rules ---------- */
 .sb-part {
   padding: 48px 0;
