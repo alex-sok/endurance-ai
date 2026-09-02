@@ -382,6 +382,553 @@ body:has(.theme-paper) {
   margin-top: 28px;
 }
 
+/* ---------- the morph: the spreadsheet becomes the run ----------
+   A photographed desk, and on its display a typeset spreadsheet. Over two
+   screens of scroll the cells peel off, rush together, and the run assembles
+   where they were; a bar fills and lands on "Ready for review". Scroll drives
+   five numbers on the stage (--p --b --c --r --l); everything else is CSS. */
+.lp-morph {
+  position: relative;
+  height: 320svh;
+}
+
+.lp-morph-stage {
+  --p: 0;
+  --b: 0;
+  --c: 0;
+  --r: 0;
+  --l: 0;
+  --sx: 46%;
+  --sy: 19%;
+  --sw: 44%;
+  --sh: 46%;
+  --dw: 700px;
+  --dh: 440px;
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: #e8e3dc;
+  color: var(--lp-ink);
+}
+
+.lp-morph-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.lp-morph-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 253, 250, 0.34), rgba(255, 253, 250, 0) 46%);
+}
+
+.lp-morph-copy {
+  --copy-w: calc(var(--sx) - var(--lp-space) - 32px);
+  position: absolute;
+  left: var(--lp-space);
+  top: 50%;
+  width: min(33rem, var(--copy-w));
+  transform: translateY(-54%);
+}
+
+.lp-morph-copy h1 {
+  margin-top: 0;
+  font-family: var(--lp-display);
+  font-size: clamp(2.1rem, calc(var(--copy-w) / 9.6), 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.lp-morph-copy h1 em {
+  display: block;
+  font-style: italic;
+  margin-top: 0.08em;
+}
+
+.lp-morph-copy .lp-hero-lede {
+  margin-top: 28px;
+  max-width: 28rem;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.lp-morph-copy .lp-hero-actions {
+  margin-top: 36px;
+}
+
+/* The display: covers the photographed one, bezel and all. */
+.lp-morph-display {
+  position: absolute;
+  left: var(--sx);
+  top: var(--sy);
+  width: var(--sw);
+  height: var(--sh);
+  container-type: inline-size;
+  background: #0d0d10;
+  border-radius: 0.5cqw;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 40px 80px -40px rgba(20, 19, 25, 0.55);
+}
+
+.lp-morph-glass {
+  position: absolute;
+  inset: 1.4% 1.1%;
+  background: #15151a;
+  overflow: visible;
+}
+
+/* The spreadsheet's chrome goes first, quietly. */
+.lp-sheet-chrome {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  color: #3a3d45;
+  font-family: var(--lp-sans);
+  font-size: 1.45cqw;
+  opacity: calc(1 - var(--b));
+}
+
+.lp-sheet-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6.2%;
+  display: flex;
+  align-items: center;
+  gap: 1.4cqw;
+  padding: 0 1.6cqw;
+  border-bottom: 1px solid #dcdfe5;
+  background: #f6f7f9;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.lp-sheet-ref {
+  min-width: 6cqw;
+  color: #1f2126;
+}
+
+.lp-sheet-fx {
+  font-style: italic;
+  color: #7a7f8a;
+}
+
+.lp-sheet-formula {
+  font-family: var(--lp-mono);
+  font-size: 1.3cqw;
+  color: #1f2126;
+}
+
+.lp-sheet-letters {
+  position: absolute;
+  top: 6.2%;
+  left: 0;
+  right: 0;
+  height: 5.4%;
+  display: grid;
+  grid-template-columns: 4.6cqw 1.05fr 1.6fr 1.1fr 0.95fr 0.95fr 0.9fr 0.75fr 1.15fr;
+  background: #f1f2f5;
+  border-bottom: 1px solid #dcdfe5;
+  text-align: center;
+  line-height: 2.4;
+  color: #6b7080;
+}
+
+.lp-sheet-numbers {
+  position: absolute;
+  top: 11.6%;
+  left: 0;
+  width: 4.6cqw;
+  bottom: 6.6%;
+  display: grid;
+  grid-auto-rows: 1fr;
+  background: #f1f2f5;
+  border-right: 1px solid #dcdfe5;
+  text-align: center;
+  color: #6b7080;
+}
+
+.lp-sheet-numbers span {
+  display: grid;
+  place-items: center;
+}
+
+.lp-sheet-tabs {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6.6%;
+  display: flex;
+  align-items: stretch;
+  gap: 1px;
+  padding: 0 1.2cqw;
+  background: #eceef2;
+  border-top: 1px solid #dcdfe5;
+  font-size: 1.35cqw;
+  color: #6b7080;
+}
+
+.lp-sheet-tabs span {
+  display: grid;
+  place-items: center;
+  padding: 0 1.6cqw;
+}
+
+.lp-sheet-tabs .is-on {
+  background: #ffffff;
+  color: #1f2126;
+  border-bottom: 2px solid #1f2126;
+}
+
+/* The cells: white chips on a grid, each carrying its own flight plan. */
+.lp-sheet-cells {
+  position: absolute;
+  top: 11.6%;
+  left: 4.6cqw;
+  right: 0;
+  bottom: 6.6%;
+  display: grid;
+  grid-template-columns: 1.05fr 1.6fr 1.1fr 0.95fr 0.95fr 0.9fr 0.75fr 1.15fr;
+  grid-auto-rows: 1fr;
+}
+
+.lp-cell {
+  --bc: clamp(0, calc((var(--b) - var(--dl) * 0.5) / 0.5), 1);
+  --cc: clamp(0, calc((var(--c) - var(--dl) * 0.3) / 0.7), 1);
+  --s: calc(var(--bc) * (1 - var(--cc)));
+  display: flex;
+  align-items: center;
+  padding: 0 1.1cqw;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 0.5px #dfe2e8;
+  color: #1f2126;
+  font-family: var(--lp-sans);
+  font-size: 1.42cqw;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translate(
+      calc(var(--dx) * var(--s) + var(--cxu) * var(--dw) * var(--cc)),
+      calc(var(--dy) * var(--s) + var(--cyu) * var(--dh) * var(--cc))
+    )
+    rotate(calc(var(--dr) * var(--s))) scale(calc(1 - 0.6 * var(--cc)));
+  opacity: calc(1 - var(--cc));
+  will-change: transform, opacity;
+}
+
+.lp-cell.is-head {
+  background: #f6f7f9;
+  color: #5c6270;
+  font-weight: 500;
+}
+
+.lp-cell.is-num {
+  justify-content: flex-end;
+  font-variant-numeric: tabular-nums;
+}
+
+.lp-cell.is-neg {
+  color: #b03a5e;
+}
+
+.lp-cell.is-active {
+  box-shadow: inset 0 0 0 1.5px #1f2126;
+}
+
+/* The run assembles where the cells were. */
+.lp-run {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4cqw;
+  padding: 3cqw 3.2cqw;
+  background: #f3f3f4;
+  color: #17181c;
+  font-family: var(--lp-sans);
+  opacity: var(--r);
+  transform: scale(calc(0.96 + 0.04 * var(--r)));
+  pointer-events: none;
+}
+
+.lp-run-title {
+  font-size: 2.5cqw;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.lp-run-sub {
+  margin-top: 0.5cqw;
+  font-size: 1.5cqw;
+  color: #6b6f7a;
+}
+
+.lp-run-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 58fr 42fr;
+  gap: 1.6cqw;
+  min-height: 0;
+}
+
+.lp-run-card,
+.lp-run-tiles > div {
+  background: #ffffff;
+  border-radius: 1.4cqw;
+  padding: 2.2cqw 2.4cqw;
+}
+
+.lp-run-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.lp-run-label {
+  font-size: 1.45cqw;
+  color: #6b6f7a;
+}
+
+.lp-run-big {
+  margin-top: 1.2cqw;
+  font-size: 6.4cqw;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.lp-run-note {
+  margin-top: 1.2cqw;
+  font-size: 1.5cqw;
+  color: #6b6f7a;
+}
+
+.lp-run-note b {
+  color: #17181c;
+  font-weight: 500;
+}
+
+.lp-run-tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 1.6cqw;
+}
+
+.lp-run-fig {
+  margin-top: 1cqw;
+  font-size: 3.1cqw;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.lp-run-fig.is-flare {
+  color: #c2402f;
+}
+
+.lp-run-fine {
+  margin-top: 0.9cqw;
+  font-size: 1.35cqw;
+  color: #6b6f7a;
+}
+
+/* The indicator: a line that fills, then a check that draws itself. */
+.lp-run-status {
+  margin-top: auto;
+  padding-top: 2cqw;
+}
+
+.lp-run-track {
+  height: 2px;
+  border-radius: 1px;
+  background: rgba(23, 24, 28, 0.12);
+  overflow: hidden;
+}
+
+.lp-run-fill {
+  position: relative;
+  height: 100%;
+  width: calc(var(--l) * 100%);
+  background: #17181c;
+}
+
+.lp-run-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: translateX(-100%);
+  animation: lp-shimmer 1.3s linear infinite;
+}
+
+.lp-run.is-ready .lp-run-fill::after {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes lp-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.lp-run-state {
+  position: relative;
+  margin-top: 1.4cqw;
+  height: 2cqw;
+  font-size: 1.5cqw;
+  font-weight: 500;
+}
+
+.lp-run-state > span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9cqw;
+  transition: opacity 320ms var(--lp-ease);
+}
+
+.lp-run-building {
+  color: #6b6f7a;
+}
+
+.lp-run-done {
+  opacity: 0;
+}
+
+.lp-run.is-ready .lp-run-building {
+  opacity: 0;
+}
+
+.lp-run.is-ready .lp-run-done {
+  opacity: 1;
+}
+
+.lp-run-done svg {
+  width: 1.9cqw;
+  height: 1.9cqw;
+  fill: none;
+  stroke: #17181c;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lp-run-done polyline {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 640ms var(--lp-ease) 240ms;
+}
+
+.lp-run.is-ready .lp-run-done polyline {
+  stroke-dashoffset: 0;
+}
+
+/* The foot: the scroll prompt, and where the story is. */
+.lp-morph-foot {
+  position: absolute;
+  left: var(--lp-space);
+  right: var(--lp-space);
+  bottom: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: var(--lp-sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247, 246, 251, 0.86);
+}
+
+.lp-morph-scroll {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lp-morph-scroll::after {
+  content: "";
+  width: 56px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+  transform-origin: left;
+  transform: scaleX(calc(1 - var(--p)));
+}
+
+.lp-morph-steps {
+  display: flex;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lp-morph-steps li {
+  width: 132px;
+}
+
+.lp-morph-steps li span {
+  display: block;
+  margin-bottom: 10px;
+  opacity: 0.55;
+  white-space: nowrap;
+}
+
+.lp-morph-stage[data-phase="1"] li:nth-child(1) span,
+.lp-morph-stage[data-phase="2"] li:nth-child(2) span,
+.lp-morph-stage[data-phase="3"] li:nth-child(3) span {
+  opacity: 1;
+}
+
+.lp-morph-steps li i {
+  position: relative;
+  display: block;
+  height: 1px;
+  background: rgba(247, 246, 251, 0.28);
+}
+
+.lp-morph-steps li i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--lp-snow);
+  transform-origin: left;
+  transform: scaleX(var(--f, 0));
+}
+
+.lp-morph-steps li:nth-child(1) i {
+  --f: clamp(0, calc(var(--p) / 0.14), 1);
+}
+
+.lp-morph-steps li:nth-child(2) i {
+  --f: clamp(0, calc((var(--p) - 0.14) / 0.44), 1);
+}
+
+.lp-morph-steps li:nth-child(3) i {
+  --f: clamp(0, calc((var(--p) - 0.58) / 0.42), 1);
+}
+
+/* A product frame that runs past the column, for the wider crops. */
+.lp-realframe.is-wide img {
+  width: min(1216px, calc(100vw - 2 * var(--lp-space)));
+  max-width: none;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
 /* ---------- the sequence: chapters as one typographic run ----------
    No cards. A chapter number in the margin, the statement, the fix, and one
    composed detail frame aligned to the heading. Hairlines do the dividing. */
@@ -1541,6 +2088,53 @@ ol.lp-team {
 }
 
 @media (max-width: 900px) {
+  .lp-morph {
+    height: 280svh;
+  }
+  .lp-morph-stage {
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--lp-nav-h) + 20px) 16px 20px;
+    background: linear-gradient(180deg, #f4f2ee, #e6e1da);
+  }
+  .lp-morph-bg,
+  .lp-morph-scrim,
+  .lp-morph-foot {
+    display: none;
+  }
+  .lp-morph-copy {
+    position: static;
+    width: auto;
+    transform: none;
+    flex: 0 0 auto;
+  }
+  .lp-morph-copy h1 {
+    font-size: clamp(2.1rem, 9.6vw, 2.6rem);
+  }
+  .lp-morph-copy .lp-hero-lede {
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .lp-morph-copy .lp-hero-actions {
+    margin-top: 24px;
+  }
+  .lp-morph-display {
+    position: relative;
+    left: auto;
+    top: auto;
+    align-self: flex-start;
+    width: min(100%, calc((100svh - 470px) * 1.6));
+    height: auto;
+    aspect-ratio: 16 / 10;
+    flex: 0 0 auto;
+    margin: 24px auto 0;
+  }
+  .lp-realframe.is-wide img {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
   .lp-sheet {
     width: calc(100% - 32px);
     margin: 56px auto;
@@ -1710,6 +2304,35 @@ ol.lp-team {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .lp-morph {
+    height: auto;
+  }
+  .lp-morph-stage {
+    position: relative;
+    --p: 1;
+    --b: 1;
+    --c: 1;
+    --r: 1;
+    --l: 1;
+  }
+  .lp-cell {
+    will-change: auto;
+  }
+  .lp-run-fill::after {
+    animation: none;
+  }
+  .lp-run-building {
+    opacity: 0;
+  }
+  .lp-run-done {
+    opacity: 1;
+  }
+  .lp-run-done polyline {
+    stroke-dashoffset: 0;
+  }
+  .lp-morph-steps li span {
+    opacity: 1;
+  }
   .lp-btn,
   .lp-nav,
   .lp-nav-links a,

@@ -5,6 +5,7 @@ import { ChatOverlay } from "@/components/landing/ChatOverlay";
 import { Exhibit } from "@/components/landing/Exhibit";
 import { LandingClose } from "@/components/landing/LandingClose";
 import { LandingNav } from "@/components/landing/LandingNav";
+import { MorphHero } from "./MorphHero";
 import { RunDiagram } from "@/components/landing/RunDiagram";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import { CHAPTERS, HERO, LEDGER, PILOT, type MarginsChapter } from "./content";
@@ -58,7 +59,7 @@ function Chapter({ chapter }: { chapter: MarginsChapter }) {
         </div>
       ) : null}
       {chapter.shotSrc && chapter.shotAlt ? (
-        <figure className="lp-realframe">
+        <figure className={chapter.shotWide ? "lp-realframe is-wide" : "lp-realframe"}>
           <img
             src={chapter.shotSrc}
             alt={chapter.shotAlt}
@@ -193,34 +194,7 @@ export function MarginsLanding() {
       <LandingNav onOpenChat={openChat} onNavigate={scrollToId} onCtaClick={onCtaClick} />
 
       <main id="main-content">
-        <header className="lp-hero" id="top" data-section="hero">
-          <div className="lp-hero-copy">
-            <p className="lp-eyebrow">{HERO.kicker}</p>
-            <h1>
-              {HERO.h1}
-              <em>{HERO.h1Em}</em>
-            </h1>
-            <p className="lp-hero-lede">{HERO.lede}</p>
-            <div className="lp-hero-actions">
-              <a
-                className="lp-btn lp-btn-fill"
-                href={HERO.fillHref}
-                onClick={() => onCtaClick(HERO.fillLabel)}
-              >
-                {HERO.fillLabel}
-              </a>
-              <a
-                className="lp-btn-quiet"
-                href={HERO.lineHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => onCtaClick(HERO.lineLabel)}
-              >
-                {HERO.lineLabel}
-              </a>
-            </div>
-          </div>
-        </header>
+        <MorphHero onCtaClick={onCtaClick} />
 
         <div className="lp-seq">
           <Ledger />
