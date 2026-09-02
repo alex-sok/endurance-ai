@@ -142,6 +142,9 @@ function Pilot() {
         ))}
       </div>
       <p className="lp-note">{PILOT.note}</p>
+      <a className="lp-feature-cta" href="/margins/pricing">
+        See what it costs
+      </a>
     </section>
   );
 }
