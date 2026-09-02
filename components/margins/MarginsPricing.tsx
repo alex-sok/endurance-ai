@@ -7,14 +7,14 @@ import { LandingNav } from "@/components/landing/LandingNav";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import { CALENDLY_URL } from "@/lib/conversation-flows";
 import {
+  BANDS,
   FAQ,
-  INCLUDED,
   LINE_BLOCK,
   PILOT_BLOCK,
-  PRICE,
-  PRICE_NOTE,
-  PRICE_ROWS,
+  PRICE_BLOCK,
   PRICING_HERO,
+  START_BLOCK,
+  WARRANTY_BLOCK,
 } from "./pricing-content";
 
 export function MarginsPricing() {
@@ -74,47 +74,47 @@ export function MarginsPricing() {
 
         <div className="lp-seq">
           <section className="lp-block" id="price" aria-labelledby="price-title">
-            <p className="lp-eyebrow">01 · The price</p>
+            <p className="lp-eyebrow">{PRICE_BLOCK.kicker}</p>
             <h2 className="lp-h2" id="price-title">
-              Two numbers, both of them plain.
+              {PRICE_BLOCK.title}
             </h2>
-            <p className="lp-block-lede">
-              No seat tiers, no modules to unlock, and nothing priced on a percentage of what you pay
-              out.
-            </p>
-            <ul className="lp-ledger">
-              {PRICE_ROWS.map((row) => {
-                const value = PRICE[row.key];
-                return (
-                  <li key={row.label}>
-                    <div>
-                      <p>{row.label}</p>
-                      <p className="lp-fine">{row.qualifier}</p>
-                    </div>
-                    {value ? (
-                      <p className="lp-figure">{value}</p>
-                    ) : (
-                      <p className="lp-figure is-unset">Not set</p>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-            <p className="lp-note">{PRICE_NOTE}</p>
-            <p className="lp-colophon">
-              List price, effective {PRICE.effective}. Production figures on this page are drawn from
-              the brokerage where Margins was built and were queried on August 24, 2026.
-            </p>
+            <p className="lp-block-lede">{PRICE_BLOCK.lede}</p>
+            <table className="lp-rate">
+              <thead>
+                <tr>
+                  <th scope="col">People paid in a typical week</th>
+                  <th scope="col">Monthly</th>
+                  <th scope="col">Annual</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BANDS.map((band) => (
+                  <tr key={band.range}>
+                    <th scope="row">{band.range}</th>
+                    <td>{band.monthly}</td>
+                    <td>{band.annual}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="lp-body">{PRICE_BLOCK.fixed}</p>
+            <p className="lp-note">{PRICE_BLOCK.note}</p>
+            <p className="lp-colophon">{PRICE_BLOCK.colophon}</p>
           </section>
 
-          <section className="lp-block" id="included" aria-labelledby="included-title">
-            <p className="lp-eyebrow">{INCLUDED.kicker}</p>
-            <h2 className="lp-h2" id="included-title">
-              {INCLUDED.title}
+          <section className="lp-block" id="start" aria-labelledby="start-title">
+            <p className="lp-eyebrow">{START_BLOCK.kicker}</p>
+            <h2 className="lp-h2" id="start-title">
+              {START_BLOCK.title}
             </h2>
-            <p className="lp-block-lede">{INCLUDED.lede}</p>
+            <p className="lp-block-lede">{START_BLOCK.lede}</p>
+            {START_BLOCK.body.map((paragraph) => (
+              <p className="lp-body" key={paragraph}>
+                {paragraph}
+              </p>
+            ))}
             <ul className="lp-ledger lp-ledger-prose">
-              {INCLUDED.rows.map((row) => (
+              {START_BLOCK.rows.map((row) => (
                 <li key={row.label}>
                   <div>
                     <p>{row.label}</p>
@@ -142,7 +142,21 @@ export function MarginsPricing() {
                 </li>
               ))}
             </ol>
-            <p className="lp-note">{PILOT_BLOCK.closer}</p>
+            <p className="lp-note">{PILOT_BLOCK.note}</p>
+            <p className="lp-note">{PILOT_BLOCK.scarcity}</p>
+          </section>
+
+          <section className="lp-block" id="warranty" aria-labelledby="warranty-title">
+            <p className="lp-eyebrow">{WARRANTY_BLOCK.kicker}</p>
+            <h2 className="lp-h2" id="warranty-title">
+              {WARRANTY_BLOCK.title}
+            </h2>
+            <p className="lp-block-lede">{WARRANTY_BLOCK.lede}</p>
+            {WARRANTY_BLOCK.body.map((paragraph) => (
+              <p className="lp-body" key={paragraph}>
+                {paragraph}
+              </p>
+            ))}
           </section>
 
           <section className="lp-block" id="line" aria-labelledby="line-title">

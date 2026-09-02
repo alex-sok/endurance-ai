@@ -1690,10 +1690,53 @@ body:has(.theme-paper) {
 /* ---------- pricing ----------
    A price that is not set yet reads as unset, never as a number. A prose
    ledger keeps the label column and gives the right column running text. */
-.lp-figure.is-unset {
+/* The rate card: the same hairline rows as the ledger, in a real table. */
+.lp-rate {
+  width: 100%;
+  max-width: 34rem;
+  margin-top: 40px;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.lp-rate th,
+.lp-rate td {
+  padding: 18px 0;
+  border-top: 1px solid var(--lp-line);
+  font-weight: 400;
+  vertical-align: baseline;
+}
+
+.lp-rate thead th {
+  border-top: 0;
+  padding-top: 0;
   font-family: var(--lp-sans);
-  font-size: 15px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--lp-muted);
+}
+
+.lp-rate tbody th {
+  font-size: 17px;
+  color: var(--lp-ink);
+}
+
+.lp-rate td {
+  font-family: var(--lp-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: 1.1875rem;
+  color: var(--lp-ink);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.lp-rate td {
+  padding-left: 40px;
+}
+
+.lp-rate thead th:not(:first-child) {
+  text-align: right;
 }
 
 .lp-ledger-prose .lp-included-body {
@@ -2709,6 +2752,19 @@ ol.lp-team {
 
   .lp-photo {
     margin-top: 40px;
+  }
+  .lp-rate {
+    font-size: 15px;
+  }
+  .lp-rate th,
+  .lp-rate td {
+    padding: 14px 0;
+  }
+  .lp-rate tbody th {
+    font-size: 15px;
+  }
+  .lp-rate td {
+    font-size: 1rem;
   }
   .lp-chapter:last-of-type {
     margin-bottom: 56px;
