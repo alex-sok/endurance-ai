@@ -63,9 +63,9 @@ function Chapter({ chapter }: { chapter: MarginsChapter }) {
           <img
             src={chapter.shotSrc}
             alt={chapter.shotAlt}
-            width={944}
-            height={142}
-            style={{ aspectRatio: "944 / 142" }}
+            width={chapter.shotSize?.[0]}
+            height={chapter.shotSize?.[1]}
+            style={chapter.shotSize ? { aspectRatio: `${chapter.shotSize[0]} / ${chapter.shotSize[1]}` } : undefined}
             loading="lazy"
             decoding="async"
           />
