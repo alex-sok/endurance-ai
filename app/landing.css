@@ -1687,6 +1687,81 @@ body:has(.theme-paper) {
   stroke-width: 1;
 }
 
+/* ---------- the system book's own few rules ---------- */
+.sb-part {
+  padding: 48px 0;
+  border-top: 1px solid var(--lp-line);
+}
+
+.sb-part:first-of-type {
+  margin-top: 56px;
+}
+
+.sb-part .lp-h3 + .lp-body {
+  margin-top: 16px;
+}
+
+.sb-part .lp-realframe,
+.sb-part .lp-diagram,
+.sb-part .lp-headfigure {
+  margin-top: 40px;
+}
+
+.sb-two {
+  display: grid;
+  grid-template-columns: minmax(0, 30rem) minmax(0, 1fr);
+  gap: 0 56px;
+}
+
+.sb-two .lp-aside,
+.sb-two .lp-margin-note {
+  grid-column: 2;
+  grid-row: 1;
+  margin-top: 0;
+}
+
+.sb-swatch-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.sb-swatch {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
+  border-radius: var(--lp-radius);
+  border: 1px solid var(--lp-line);
+}
+
+.lp-ledger .sb-token {
+  font-family: var(--lp-sans);
+  font-size: 14px;
+  color: var(--lp-muted);
+}
+
+.sb-specimen {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid var(--lp-line);
+}
+
+.sb-inline {
+  padding: 40px 0 0;
+  border-top: 0;
+}
+
+.sb-controls {
+  margin-top: 28px;
+  align-items: center;
+  gap: 24px;
+}
+
+.sb-controls .lp-feature-cta {
+  margin-top: 0;
+}
+
 /* ---------- a block of running type in the sequence ---------- */
 .lp-block {
   padding: 96px 0;
@@ -2369,6 +2444,15 @@ ol.lp-team {
 }
 
 @media (max-width: 900px) {
+  .sb-two {
+    grid-template-columns: 1fr;
+  }
+  .sb-two .lp-aside,
+  .sb-two .lp-margin-note {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 32px;
+  }
   .lp-chapter > *,
   .lp-chapter .lp-margin-note,
   .lp-chapter .lp-aside,

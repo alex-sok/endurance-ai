@@ -4,7 +4,7 @@ import "../landing.css";
 
 const TITLE = "Marketing system — Endurance AI Labs";
 const DESCRIPTION =
-  "The shared design language for Endurance marketing. Field, paper, type, and the parts every page uses.";
+  "The shared design language for Endurance marketing. Paper, two faces, and the parts every page uses, written in itself.";
 
 export const metadata: Metadata = {
   title: TITLE,
