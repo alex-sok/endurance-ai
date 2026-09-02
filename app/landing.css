@@ -653,7 +653,7 @@ body:has(.theme-paper) {
    It arrives leaning back and settles flat as it rises; the floats sit
    forward of the frame so a small pan separates the layers. */
 .lp-stage3d {
-  perspective: 1400px;
+  perspective: 1200px;
   perspective-origin: 50% 0%;
 }
 
@@ -664,11 +664,11 @@ body:has(.theme-paper) {
 }
 
 .lp-stage3d .lp-stage-float.is-left {
-  transform: translateZ(60px);
+  transform: translateZ(84px);
 }
 
 .lp-stage3d .lp-stage-float.is-right {
-  transform: translateZ(36px);
+  transform: translateZ(52px);
 }
 
 /* ---------- a photograph at night, behind the close ---------- */
