@@ -1,4 +1,4 @@
-/* /values — endurancelabs.ai light editorial skin (live-site --lp-* tokens),
+/* /values — endurancelabs.ai /margins editorial UI (live --lp-* tokens),
    scoped under .values-page */
 
 .values-page {
@@ -27,7 +27,7 @@
 }
 
 .values-page .v-wrap {
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
   padding: 0 28px;
 }
@@ -36,18 +36,67 @@
   color: var(--v-flare);
 }
 
+/* ---------- Buttons (margins pill pair) ---------- */
+.values-page .v-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-family: var(--v-sans);
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 13px 24px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+.values-page .v-btn-fill {
+  background: var(--v-ink);
+  color: #fff;
+}
+.values-page .v-btn-fill:hover {
+  background: var(--v-night);
+}
+.values-page .v-btn-line {
+  background: transparent;
+  color: var(--v-ink);
+  border-color: var(--v-line);
+}
+.values-page .v-btn-line:hover {
+  border-color: var(--v-ink);
+}
+.values-page .v-btn:focus-visible {
+  outline: 2px solid var(--v-ink);
+  outline-offset: 3px;
+}
+.values-page .v-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
 /* ---------- Nav ---------- */
 .values-page .v-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--v-line-soft);
+  padding: 18px 0;
 }
 .values-page .v-nav img {
   height: 22px;
   width: auto;
   display: block;
+}
+.values-page .v-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.values-page .v-nav-right .v-btn {
+  padding: 10px 20px;
+  font-size: 13.5px;
 }
 .values-page .v-nav-label {
   font-family: var(--v-mono);
@@ -57,80 +106,99 @@
   color: var(--v-faint);
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (centered, margins-style) ---------- */
 .values-page .v-hero {
-  padding: 96px 0 76px;
-  border-bottom: 1px solid var(--v-line-soft);
+  padding: 92px 0 84px;
+  text-align: center;
   background:
     radial-gradient(
-      ellipse 75% 70% at 22% 0%,
-      rgba(199, 189, 238, 0.34) 0%,
-      transparent 62%
+      ellipse 80% 75% at 30% -5%,
+      rgba(199, 189, 238, 0.38) 0%,
+      transparent 60%
     ),
     radial-gradient(
-      ellipse 60% 55% at 85% 30%,
-      rgba(240, 205, 216, 0.4) 0%,
-      transparent 68%
+      ellipse 70% 60% at 80% 20%,
+      rgba(240, 205, 216, 0.42) 0%,
+      transparent 66%
     ),
     var(--v-field);
 }
 .values-page .v-eyebrow {
   font-family: var(--v-mono);
   font-size: 12px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--v-faint);
   margin: 0 0 30px;
 }
 .values-page .v-hero h1 {
   font-family: var(--v-serif);
-  font-size: clamp(40px, 6.2vw, 68px);
+  font-size: clamp(44px, 6.8vw, 76px);
   font-weight: 400;
-  line-height: 1.06;
+  line-height: 1.08;
   letter-spacing: -0.01em;
-  margin: 0 0 26px;
-  max-width: 18ch;
+  margin: 0 auto 28px;
+  max-width: 16ch;
   text-wrap: balance;
 }
 .values-page .v-hero h1 em {
   font-style: italic;
-  color: var(--v-flare);
+  color: inherit;
 }
 .values-page .v-lede {
   color: var(--v-muted);
-  font-size: 18px;
-  max-width: 56ch;
-  margin: 0;
-}
-.values-page .v-lede strong {
-  color: var(--v-ink);
-  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 46ch;
+  margin: 0 auto 36px;
 }
 
-/* ---------- Values index strip ---------- */
-.values-page .v-index {
+/* ---------- Values band (margins stat band) ---------- */
+.values-page .v-band {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--v-line);
+  border-bottom: 1px solid var(--v-line);
+  margin-top: 8px;
+}
+.values-page .v-band-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px 30px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--v-line-soft);
-  font-family: var(--v-mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.values-page .v-index a {
-  color: var(--v-muted);
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
   text-decoration: none;
-  transition: color 120ms ease;
+  padding: 30px 18px 26px;
 }
-.values-page .v-index a:hover,
-.values-page .v-index a:focus-visible {
+.values-page .v-band-item + .v-band-item {
+  border-left: 1px solid var(--v-line-soft);
+}
+.values-page .v-band-num {
+  font-family: var(--v-mono);
+  font-size: clamp(26px, 3.4vw, 36px);
+  font-weight: 500;
+  letter-spacing: 0.04em;
   color: var(--v-flare);
+  font-variant-numeric: tabular-nums;
 }
-.values-page .v-index a:focus-visible {
+.values-page .v-band-caption {
+  color: var(--v-muted);
+  font-size: 14.5px;
+  line-height: 1.4;
+}
+.values-page .v-band-item:hover .v-band-caption,
+.values-page .v-band-item:focus-visible .v-band-caption {
+  color: var(--v-ink);
+}
+.values-page .v-band-item:focus-visible {
   outline: 2px solid var(--v-ink);
-  outline-offset: 4px;
+  outline-offset: -2px;
+}
+.values-page .v-band-note {
+  text-align: center;
+  color: var(--v-faint);
+  font-size: 13px;
+  margin: 18px 0 0;
 }
 
 /* ---------- Value rows ---------- */
@@ -141,6 +209,10 @@
   padding: 76px 0;
   border-bottom: 1px solid var(--v-line-soft);
   scroll-margin-top: 24px;
+}
+.values-page .v-value:first-of-type {
+  margin-top: 44px;
+  border-top: 1px solid var(--v-line-soft);
 }
 .values-page .v-num {
   font-family: var(--v-mono);
@@ -210,7 +282,8 @@
 
 /* ---------- Coda ---------- */
 .values-page .v-coda {
-  padding: 92px 0 108px;
+  padding: 96px 0 110px;
+  text-align: center;
 }
 .values-page .v-coda-line {
   font-family: var(--v-serif);
@@ -218,12 +291,15 @@
   font-weight: 400;
   line-height: 1.3;
   max-width: 28ch;
-  margin: 0 0 20px;
+  margin: 0 auto 30px;
   text-wrap: balance;
 }
 .values-page .v-coda-line em {
   font-style: italic;
   color: var(--v-flare);
+}
+.values-page .v-coda .v-cta-row {
+  margin-bottom: 34px;
 }
 .values-page .v-coda-sig {
   font-family: var(--v-mono);
@@ -236,7 +312,14 @@
 
 @media (max-width: 720px) {
   .values-page .v-hero {
-    padding: 64px 0 54px;
+    padding: 60px 0 56px;
+  }
+  .values-page .v-band {
+    grid-template-columns: 1fr;
+  }
+  .values-page .v-band-item + .v-band-item {
+    border-left: none;
+    border-top: 1px solid var(--v-line-soft);
   }
   .values-page .v-value {
     grid-template-columns: 1fr;
@@ -248,7 +331,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .values-page .v-index a {
+  .values-page .v-btn,
+  .values-page .v-band-caption {
     transition: none;
   }
 }

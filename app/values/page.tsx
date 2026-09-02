@@ -40,6 +40,7 @@ export const metadata: Metadata = {
 type Value = {
   id: string;
   num: string;
+  short: string;
   name: React.ReactNode;
   creed: string;
   body: React.ReactNode;
@@ -50,6 +51,7 @@ const VALUES: Value[] = [
   {
     id: "less-dumb",
     num: "01",
+    short: "Be less dumb every day",
     name: (
       <>
         Be <span className="v-accent">less dumb</span> every day.
@@ -77,6 +79,7 @@ const VALUES: Value[] = [
   {
     id: "be-of-service",
     num: "02",
+    short: "Be of service",
     name: (
       <>
         Be of <span className="v-accent">service</span>.
@@ -102,6 +105,7 @@ const VALUES: Value[] = [
   {
     id: "do-your-job",
     num: "03",
+    short: "Do your job",
     name: (
       <>
         Do your <span className="v-accent">job</span>.
@@ -135,33 +139,52 @@ export default function ValuesPage() {
           <Link href="/">
             <img src="/logo-endurance.svg" alt="Endurance AI Labs" />
           </Link>
-          <span className="v-nav-label">Core Values</span>
+          <div className="v-nav-right">
+            <span className="v-nav-label">Core Values</span>
+            <a className="v-btn v-btn-fill" href="mailto:hello@endurancelabs.ai">
+              Talk
+            </a>
+          </div>
         </nav>
       </div>
 
       <header className="v-hero">
         <div className="v-wrap">
-          <p className="v-eyebrow">Endurance AI Labs · Core Values</p>
+          <p className="v-eyebrow">Endurance · Core Values</p>
           <h1>
-            Three values, <em>said plainly.</em>
+            Three <span className="v-accent">values</span>,<br />
+            <em>said plainly.</em>
           </h1>
           <p className="v-lede">
             We don&apos;t do poster values — no &quot;heart,&quot; no
             &quot;resilience,&quot; no &quot;be a lion.&quot; These are the
-            three rules we actually run on,{" "}
-            <strong>written the way we say them out loud.</strong>
+            three rules we actually run on, written the way we say them out
+            loud.
           </p>
+          <div className="v-cta-row">
+            <a className="v-btn v-btn-fill" href="#less-dumb">
+              Read the values
+            </a>
+            <a className="v-btn v-btn-line" href="https://endurancelabs.ai/">
+              endurancelabs.ai
+            </a>
+          </div>
         </div>
       </header>
 
       <div className="v-wrap">
-        <nav className="v-index" aria-label="Values">
+        <nav className="v-band" aria-label="Values">
           {VALUES.map((v) => (
-            <a key={v.id} href={`#${v.id}`}>
-              {v.num} · {v.creed}
+            <a className="v-band-item" key={v.id} href={`#${v.id}`}>
+              <span className="v-band-num">{v.num}</span>
+              <span className="v-band-caption">{v.short}</span>
             </a>
           ))}
         </nav>
+        <p className="v-band-note">
+          Set by the founding team on the August 31 call. Nothing here was
+          written by a committee.
+        </p>
 
         {VALUES.map((v) => (
           <section className="v-value" id={v.id} key={v.id}>
@@ -187,6 +210,11 @@ export default function ValuesPage() {
             The name comes from the ship — a crew that stayed.{" "}
             <em>The values come from the crew.</em>
           </p>
+          <div className="v-cta-row">
+            <a className="v-btn v-btn-fill" href="mailto:hello@endurancelabs.ai">
+              Work with us
+            </a>
+          </div>
           <p className="v-coda-sig">Endurance AI Labs · endurancelabs.ai</p>
         </footer>
       </div>
