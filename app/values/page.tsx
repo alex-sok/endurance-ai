@@ -1,10 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
 import "./values.css";
+
+const serif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--vf-serif",
+  weight: ["400"],
+  style: ["normal", "italic"],
+});
+
+const sans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  variable: "--vf-sans",
+  weight: ["400", "500", "600"],
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  variable: "--vf-mono",
+  weight: ["400", "500"],
+});
 
 const TITLE = "Core Values — Endurance AI Labs";
 const DESCRIPTION =
-  "Endurance, empathy, craft, candor, crew — the five commitments behind every system we build.";
+  "Be less dumb every day. Be of service. Do your job. The three rules Endurance AI Labs actually runs on.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -19,7 +39,8 @@ export const metadata: Metadata = {
 
 type Value = {
   id: string;
-  name: string;
+  num: string;
+  name: React.ReactNode;
   creed: string;
   body: React.ReactNode;
   practices: string[];
@@ -27,115 +48,92 @@ type Value = {
 
 const VALUES: Value[] = [
   {
-    id: "endurance",
-    name: "Endurance",
-    creed: "We stay through the hard middle.",
-    body: (
-      <p>
-        We took the name from the ship. The <em>Endurance</em> was crushed by
-        the ice, and the expedition became something harder and more important
-        — getting every member of the crew home. Every one of them made it. The
-        exciting part of any build is the first two weeks; the part that
-        matters is the long middle — messy data, changed requirements, the
-        third revision of the thing everyone thought was done.{" "}
-        <strong>We don&apos;t hand off and disappear.</strong> We stay until
-        the system is part of how the business runs.
-      </p>
+    id: "less-dumb",
+    num: "01",
+    name: (
+      <>
+        Be <span className="v-accent">less dumb</span> every day.
+      </>
     ),
-    practices: [
-      "Launch is the midpoint of an engagement, not the end of it.",
-      "We iterate until the system is used daily without us in the room.",
-      "Hard problems get worked, not re-scoped away.",
-    ],
-  },
-  {
-    id: "empathy",
-    name: "Empathy",
-    creed: "We build for the person on the other side of the screen.",
+    creed: "Humility and curiosity, first and foremost.",
     body: (
       <p>
-        Every system we ship lands on someone&apos;s desk at 7 a.m. — a
-        dispatcher, an analyst, a controller closing the month. If it
-        doesn&apos;t fit the way they actually work, it doesn&apos;t matter how
-        clever it is.{" "}
-        <strong>Understanding the operator comes before writing the code</strong>,
-        and it stays the measure after launch.
-      </p>
-    ),
-    practices: [
-      "We sit with the people who'll use the system before we design it — their workflow shapes the software, not the other way around.",
-      "Success is measured on the operator's first Tuesday, not the demo day.",
-      "We name things the way our users say them, not the way the schema does.",
-    ],
-  },
-  {
-    id: "craft",
-    name: "Craft",
-    creed: "Bespoke every time — no templates.",
-    body: (
-      <p>
-        Enterprise vendors ship the same product to everyone and call the gaps
-        &quot;configuration.&quot; We build the thing that fits — and that
-        means the details have to be right.{" "}
+        Nobody here has it all figured out — if we did, there would be a
+        billion dollars in the bank account. Trying to act smart shuts down
+        listening, and listening is where the work starts.{" "}
         <strong>
-          Penny-accurate, reconciled to zero, finished past the point where
-          most people stop.
-        </strong>
+          Stay humble, stay curious, and get a little less dumb every day.
+        </strong>{" "}
+        This is where empathy lives too: ask more questions, listen harder,
+        and let what you hear shape what you build.
       </p>
     ),
     practices: [
-      "Numbers reconcile exactly. A total that's off by a cent is a bug, not a rounding note.",
-      "Every build starts from the client's world, not from our last project.",
-      "The last 5% — edge cases, empty states, the awkward export — gets the same attention as the demo path.",
+      "Ask more questions than you answer — a great second meeting is earned by the questions asked in the first.",
+      "Don't act smart. Say \"I don't know yet\" and then go find out.",
+      "Listen before you build — what the operator says shapes the system.",
     ],
   },
   {
-    id: "candor",
-    name: "Candor",
-    creed: "Plain answers, cited sources.",
+    id: "be-of-service",
+    num: "02",
+    name: (
+      <>
+        Be of <span className="v-accent">service</span>.
+      </>
+    ),
+    creed: "To each other, and to the people we build for.",
     body: (
       <p>
-        We work inside clients&apos; proprietary data, so trust is the whole
-        product. That means <strong>we never fabricate</strong> — not a number,
-        not a contact, not a comp — and we say &quot;we don&apos;t know
-        yet&quot; out loud instead of papering over it. Bad news travels
-        fastest here.
+        Inside the team, everyone has direct access to everyone — when you
+        need someone, you get them, not a gatekeeper. Everyone has the
+        autonomy to take on what they want and pull in who they need. Outside
+        the team, everyone is busy; the question is whether our partners are a
+        priority.{" "}
+        <strong>They are, and they can tell by how fast we answer.</strong>
       </p>
     ),
     practices: [
-      "Real data or no data. Every figure traces to a source someone can open.",
-      "Risks and misses get flagged the day we see them, not in the retro.",
-      "We write the way we talk — no hedge words doing the work honesty should.",
+      "Direct access, no layers — when a teammate needs you, they get you.",
+      "When a partner or client calls, they get a fast, real response.",
+      "Take on what you want to own, and pull each other in freely.",
     ],
   },
   {
-    id: "crew",
-    name: "Crew",
-    creed: "Four people, every rope.",
+    id: "do-your-job",
+    num: "03",
+    name: (
+      <>
+        Do your <span className="v-accent">job</span>.
+      </>
+    ),
+    creed: "Done well, and never alone.",
     body: (
       <p>
-        Shackleton chose a small crew deliberately, and every man pulled every
-        rope. So do we. There&apos;s no layer to escalate to and no one to hand
-        the awkward part of a problem to —{" "}
-        <strong>whoever builds a system is responsible for it working</strong>,
-        end to end, in production, for real people.
+        If everyone does their job and does it well, we have the makings of a
+        great team. And doing your job here means being collaborative —{" "}
+        <strong>nobody works a deal or a project in isolation.</strong> Lean
+        on whoever knows the system best, share what you learn, and challenge
+        each other to raise the level.
       </p>
     ),
     practices: [
-      "End-to-end responsibility: design, build, deploy, and the 11 p.m. fix all belong to the same person.",
-      "We fix root causes, not symptoms — a patch that hides a problem is a debt, not a fix.",
-      "“Not my job” isn't a sentence anyone here says.",
+      "No solo projects — every deal gets more than one set of eyes.",
+      "Lean on the person who knows it best, whoever built it.",
+      "Share more: what you learned, what broke, what worked.",
     ],
   },
 ];
 
 export default function ValuesPage() {
   return (
-    <main className="values-page">
+    <main
+      className={`values-page ${serif.variable} ${sans.variable} ${mono.variable}`}
+    >
       <div className="v-wrap">
         <nav className="v-nav" aria-label="Site">
           <Link href="/">
-            <img src="/logo-endurance-white.svg" alt="Endurance AI Labs" />
+            <img src="/logo-endurance.svg" alt="Endurance AI Labs" />
           </Link>
           <span className="v-nav-label">Core Values</span>
         </nav>
@@ -143,18 +141,15 @@ export default function ValuesPage() {
 
       <header className="v-hero">
         <div className="v-wrap">
-          <p className="v-eyebrow">
-            Endurance AI Labs <span className="v-amp">///</span> Core Values
-          </p>
+          <p className="v-eyebrow">Endurance AI Labs · Core Values</p>
           <h1>
-            By endurance <em>we conquer.</em>
+            Three values, <em>said plainly.</em>
           </h1>
-          <p className="v-motto">Fortitudine Vincimus — the Shackleton motto</p>
           <p className="v-lede">
-            We build private AI infrastructure inside other people&apos;s
-            businesses — embedded with their operators, on their data, for
-            their daily work. The name comes from the ship.{" "}
-            <strong>The values come from the crew.</strong>
+            We don&apos;t do poster values — no &quot;heart,&quot; no
+            &quot;resilience,&quot; no &quot;be a lion.&quot; These are the
+            three rules we actually run on,{" "}
+            <strong>written the way we say them out loud.</strong>
           </p>
         </div>
       </header>
@@ -163,7 +158,7 @@ export default function ValuesPage() {
         <nav className="v-index" aria-label="Values">
           {VALUES.map((v) => (
             <a key={v.id} href={`#${v.id}`}>
-              {v.name}
+              {v.num} · {v.creed}
             </a>
           ))}
         </nav>
@@ -171,6 +166,7 @@ export default function ValuesPage() {
         {VALUES.map((v) => (
           <section className="v-value" id={v.id} key={v.id}>
             <div>
+              <p className="v-num">{v.num}</p>
               <h2>{v.name}</h2>
               <p className="v-creed">{v.creed}</p>
             </div>
@@ -188,12 +184,10 @@ export default function ValuesPage() {
 
         <footer className="v-coda">
           <p className="v-coda-line">
-            Enterprise vendors make you fit their software.{" "}
-            <em>We build software that fits you.</em>
+            The name comes from the ship — a crew that stayed.{" "}
+            <em>The values come from the crew.</em>
           </p>
-          <p className="v-coda-sig">
-            Fortitudine Vincimus &middot; Endurance AI Labs
-          </p>
+          <p className="v-coda-sig">Endurance AI Labs · endurancelabs.ai</p>
         </footer>
       </div>
     </main>
