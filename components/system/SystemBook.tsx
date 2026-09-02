@@ -377,7 +377,7 @@ export function SystemBook() {
               <p className="lp-body">
                 The filled button at radius 6, the same radius as every frame. Beside it the quiet action: an
                 ink underline, no box. In running text, links underline in ink. The outlined pill is legacy: the form
-                submit on night, and the Brain page's second action.
+                submit on night, and the Brain page&rsquo;s second action.
               </p>
               <div className="lp-hero-actions sb-controls">
                 <button type="button" className="lp-btn lp-btn-fill">

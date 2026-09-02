@@ -1735,7 +1735,7 @@ body:has(.theme-paper) {
   border: 1px solid var(--lp-line);
 }
 
-.lp-ledger .sb-token {
+.lp-ledger .lp-figure.sb-token {
   font-family: var(--lp-sans);
   font-size: 14px;
   color: var(--lp-muted);
