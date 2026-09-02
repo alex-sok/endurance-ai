@@ -4,12 +4,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Lenis from "lenis";
 import { LandingNav } from "./LandingNav";
 import { LandingHero } from "./LandingHero";
-import { LandingStage } from "./LandingStage";
-import { StageTilt } from "./StageTilt";
-import { FieldShader } from "./FieldShader";
 import { LandingRoots } from "./LandingRoots";
 import { LandingProducts } from "./LandingProducts";
-import { LandingProof } from "./LandingProof";
 import { LandingTeam } from "./LandingTeam";
 import { LandingClose } from "./LandingClose";
 import { ChatOverlay } from "./ChatOverlay";
@@ -88,9 +84,6 @@ export function LandingShell() {
 
   return (
     <div className="theme-paper relative min-h-svh">
-      <div className="lp-canvas" aria-hidden="true">
-        <FieldShader />
-      </div>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--lp-ink)] focus:text-[var(--lp-paper)] focus:text-sm"
@@ -102,13 +95,18 @@ export function LandingShell() {
 
       <main id="main-content">
         <LandingHero onOpenChat={openChat} />
-        <StageTilt>
-          <LandingStage />
-        </StageTilt>
-        <LandingProducts />
-        <LandingRoots />
-        <LandingProof />
-        <LandingTeam />
+
+        <div className="lp-seq">
+          <LandingProducts />
+          <LandingRoots />
+          <section className="lp-interstitial" data-section="method">
+            <p className="lp-closer">
+              That is the method. Sit in the operation. Ship the system.
+            </p>
+          </section>
+          <LandingTeam />
+        </div>
+
         <LandingClose onOpenChat={openChat} />
       </main>
 
