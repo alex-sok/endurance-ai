@@ -23,9 +23,9 @@ export function LandingProof() {
             <img
               src="/landing/home-field-art.jpg"
               alt="Paper collage: a bearded marble bust holding a ruled paper ledger, with an ember circle and bar"
-              width={1248}
-              height={640}
-              style={{ aspectRatio: "1248 / 640" }}
+              width={1244}
+              height={636}
+              style={{ aspectRatio: "1244 / 636" }}
               loading="lazy"
               decoding="async"
             />

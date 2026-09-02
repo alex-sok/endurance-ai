@@ -1,23 +1,23 @@
 /* Endurance landing — one canvas, sheets land on it.
    Pace's structure (field, product evidence, dark close),
-   our material (white field, one light wash, serif, ember).
+   our material (white field, violet and desert rose, serif).
    The Public-minimal pairing: Source Serif 4 on claims,
    IBM Plex Sans on body and nav, IBM Plex Mono on kickers. */
 
 body:has(.theme-paper) {
   background: #ffffff;
-  color: #1c1916;
+  color: #1b1a22;
 }
 
 .theme-paper {
-  --lp-field: #faf9f6;
+  --lp-field: #fcfbff;
   --lp-paper: #ffffff;
-  --lp-ink: #1c1916;
-  --lp-muted: #5c574e;
-  --lp-line: rgba(28, 25, 22, 0.12);
-  --lp-flare: #c2410c;
-  --lp-night: #161412;
-  --lp-snow: #f6f4ef;
+  --lp-ink: #1b1a22;
+  --lp-muted: #5b5866;
+  --lp-line: rgba(27, 26, 34, 0.12);
+  --lp-flare: #b03a5e;
+  --lp-night: #141319;
+  --lp-snow: #f7f6fb;
   --lp-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --lp-sans: var(--font-plex-sans), "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --lp-display: var(--font-display), "Source Serif 4", Georgia, serif;
@@ -27,7 +27,7 @@ body:has(.theme-paper) {
   --lp-sheet: 920px;
   --lp-radius: 8px;
   --lp-nav-h: 64px;
-  --lp-lift: 0 1px 2px rgba(28, 25, 22, 0.04), 0 16px 40px rgba(28, 25, 22, 0.1);
+  --lp-lift: 0 1px 2px rgba(27, 26, 34, 0.04), 0 16px 40px rgba(27, 26, 34, 0.1);
 
   min-height: 100vh;
   background: transparent;
@@ -69,7 +69,7 @@ body:has(.theme-paper) {
   z-index: 0;
   pointer-events: none;
   background-color: var(--lp-field);
-  background-image: linear-gradient(180deg, #f4f1ea 0%, #faf9f6 52%, #fdfdfc 100%);
+  background-image: linear-gradient(168deg, #efe9fb 0%, #fdfcff 48%, #fbeef1 100%);
 }
 
 /* ---------- nav ---------- */
@@ -156,7 +156,7 @@ body:has(.theme-paper) {
 }
 
 .lp-nav-talk:active {
-  background: #2a2622;
+  background: #26242f;
 }
 
 /* ---------- buttons ---------- */
@@ -192,7 +192,7 @@ body:has(.theme-paper) {
 }
 
 .lp-hero .lp-btn-line {
-  border-color: rgba(28, 25, 22, 0.32);
+  border-color: rgba(27, 26, 34, 0.32);
 }
 
 .lp-btn-line:hover {
@@ -206,12 +206,12 @@ body:has(.theme-paper) {
 }
 
 .lp-close .lp-btn-fill:hover {
-  background: #e7e4dc;
+  background: #e6e4ee;
 }
 
 .lp-close .lp-btn-line {
   color: var(--lp-snow);
-  border-color: rgba(246, 244, 239, 0.28);
+  border-color: rgba(247, 246, 251, 0.28);
 }
 
 .lp-close .lp-btn-line:hover {
@@ -284,7 +284,7 @@ body:has(.theme-paper) {
 }
 
 .lp-hero .lp-kicker {
-  color: rgba(28, 25, 22, 0.58);
+  color: rgba(27, 26, 34, 0.58);
   margin-bottom: 16px;
 }
 
@@ -426,8 +426,8 @@ body:has(.theme-paper) {
   border-radius: 12px;
   overflow: hidden;
   background:
-    radial-gradient(90% 80% at 100% 100%, rgba(194, 65, 12, 0.06), transparent 62%),
-    linear-gradient(var(--wash-angle), #efe9dd 0%, #f7f4ee 56%, #fbf9f5 100%);
+    radial-gradient(90% 80% at 100% 100%, rgba(198, 122, 145, 0.10), transparent 62%),
+    linear-gradient(var(--wash-angle), #f1ebfc 0%, #fdfbff 56%, #fdf3f5 100%);
   outline: 1px solid var(--lp-line);
   outline-offset: -1px;
 }
@@ -537,7 +537,7 @@ body:has(.theme-paper) {
 }
 
 .lp-democard:hover {
-  outline-color: rgba(28, 25, 22, 0.4);
+  outline-color: rgba(27, 26, 34, 0.4);
 }
 
 .lp-democard-kicker {
@@ -676,15 +676,15 @@ body:has(.theme-paper) {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("/landing/night.jpg") center 40% / cover no-repeat;
-  opacity: 0.74;
+  background: url("/landing/night.jpg") center 45% / cover no-repeat;
+  opacity: 0.92;
 }
 
 .lp-close-photo::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(22, 20, 18, 0.42) 0%, rgba(22, 20, 18, 0.82) 58%, rgba(22, 20, 18, 0.97) 100%);
+  background: linear-gradient(180deg, rgba(20, 19, 25, 0.30) 0%, rgba(20, 19, 25, 0.72) 58%, rgba(20, 19, 25, 0.95) 100%);
 }
 
 /* ---------- an illustration heading a sheet ---------- */
@@ -846,7 +846,7 @@ body:has(.theme-paper) {
   border-radius: var(--lp-radius);
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 1px 2px rgba(28, 25, 22, 0.05), 0 12px 32px rgba(28, 25, 22, 0.08);
+  box-shadow: 0 1px 2px rgba(27, 26, 34, 0.05), 0 12px 32px rgba(27, 26, 34, 0.08);
   outline: 1px solid var(--lp-line);
   outline-offset: -1px;
   text-decoration: none;
@@ -1191,7 +1191,7 @@ ol.lp-team {
 }
 
 .lp-form input:hover {
-  border-bottom-color: rgba(28, 25, 22, 0.28);
+  border-bottom-color: rgba(27, 26, 34, 0.28);
 }
 
 .lp-form input:focus {
@@ -1200,7 +1200,7 @@ ol.lp-team {
 }
 
 .lp-form input::placeholder {
-  color: #9a968c;
+  color: #96939f;
 }
 
 .lp-form .lp-btn {
@@ -1239,30 +1239,30 @@ ol.lp-team {
 
 .lp-close .lp-lede,
 .lp-close .lp-note {
-  color: rgba(246, 244, 239, 0.64);
-  border-color: rgba(246, 244, 239, 0.14);
+  color: rgba(247, 246, 251, 0.64);
+  border-color: rgba(247, 246, 251, 0.14);
 }
 
 .lp-close .lp-kicker {
-  color: rgba(246, 244, 239, 0.55);
+  color: rgba(247, 246, 251, 0.55);
 }
 
 .lp-close .lp-form p {
-  color: rgba(246, 244, 239, 0.64);
+  color: rgba(247, 246, 251, 0.64);
 }
 
 .lp-close .lp-form input {
   color: var(--lp-snow);
-  border-bottom-color: rgba(246, 244, 239, 0.14);
+  border-bottom-color: rgba(247, 246, 251, 0.14);
 }
 
 .lp-close .lp-form input:hover,
 .lp-close .lp-form input:focus {
-  border-bottom-color: rgba(246, 244, 239, 0.45);
+  border-bottom-color: rgba(247, 246, 251, 0.45);
 }
 
 .lp-close .lp-form input::placeholder {
-  color: rgba(246, 244, 239, 0.4);
+  color: rgba(247, 246, 251, 0.4);
 }
 
 /* Night sheet on the field — same close tokens, sheet geometry. */
@@ -1279,8 +1279,8 @@ ol.lp-team {
   margin-top: 64px;
   padding-top: 24px;
   font-size: 14px;
-  color: rgba(246, 244, 239, 0.55);
-  border-top: 1px solid rgba(246, 244, 239, 0.14);
+  color: rgba(247, 246, 251, 0.55);
+  border-top: 1px solid rgba(247, 246, 251, 0.14);
 }
 
 .lp-foot a,
@@ -1292,7 +1292,7 @@ ol.lp-team {
   font: inherit;
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid rgba(246, 244, 239, 0.28);
+  border-bottom: 1px solid rgba(247, 246, 251, 0.28);
   cursor: pointer;
 }
 

@@ -14,9 +14,9 @@ const NAV = [
 const COLORS = [
   {
     name: "Field",
-    hex: "#faf9f6",
+    hex: "#fcfbff",
     token: "--lp-field",
-    use: "The canvas. White, with one light wash from the top.",
+    use: "The canvas. Bright white, violet settling at the head and desert rose at the foot.",
     swatch: "var(--lp-field)",
   },
   {
@@ -28,42 +28,42 @@ const COLORS = [
   },
   {
     name: "Ink",
-    hex: "#1c1916",
+    hex: "#1b1a22",
     token: "--lp-ink",
     use: "Text, fill buttons, wordmark.",
     swatch: "var(--lp-ink)",
   },
   {
     name: "Muted",
-    hex: "#5c574e",
+    hex: "#5b5866",
     token: "--lp-muted",
     use: "Secondary text and kickers.",
     swatch: "var(--lp-muted)",
   },
   {
     name: "Line",
-    hex: "#1c19161f",
+    hex: "#1b1a221f",
     token: "--lp-line",
     use: "Hairlines only.",
     swatch: "var(--lp-line)",
   },
   {
     name: "Flare",
-    hex: "#c2410c",
+    hex: "#b03a5e",
     token: "--lp-flare",
-    use: "Proof numbers. Nowhere else.",
+    use: "Proof numbers, and one word of the claim. A deepened desert rose.",
     swatch: "var(--lp-flare)",
   },
   {
     name: "Night",
-    hex: "#161412",
+    hex: "#141319",
     token: "--lp-night",
     use: "The close.",
     swatch: "var(--lp-night)",
   },
   {
     name: "Snow",
-    hex: "#f6f4ef",
+    hex: "#f7f6fb",
     token: "--lp-snow",
     use: "Type and buttons on night.",
     swatch: "var(--lp-snow)",
@@ -94,12 +94,12 @@ const PART_STEPS = [
   {
     n: "05",
     title: "A wash",
-    body: "A light wash of the field, angled, with a whisper of ember in one corner. Copy on one side, the evidence on the other and bleeding off the edge. Radius 12. A two-up row of proof beneath it: the receipt, and a door into the demo.",
+    body: "A light wash of the field, angled, violet through white to desert rose, with rose gathering in one corner. Copy on one side, the evidence on the other and bleeding off the edge. Radius 12. A two-up row of proof beneath it: the receipt, and a door into the demo.",
   },
   {
     n: "06",
     title: "A field that breathes",
-    body: "The wash, drawn live: warm light drifting down from the top with a whisper of ember at the edges, at half resolution, thirty frames a second. One still frame under reduced motion. The CSS wash beneath if there is no WebGL.",
+    body: "The wash, drawn live: violet gathering at the head of the field and desert rose at its foot, both breathing, at half resolution, thirty frames a second. One still frame under reduced motion. The CSS wash beneath if there is no WebGL.",
   },
   {
     n: "07",
@@ -109,7 +109,7 @@ const PART_STEPS = [
   {
     n: "08",
     title: "A made image",
-    body: "Two kinds only. A paper collage in the palette, a marble bust with a ruled ledger and one ember shape, heading a sheet or standing as evidence. A photograph at night, mostly darkness and a few ember lamps, behind the close. Nothing else is illustrated.",
+    body: "Two kinds only. A paper cut collage in the palette, a marble bust with a ruled ledger, one lilac band and one desert rose circle, heading a sheet or standing as evidence. A photograph at night, mostly violet darkness and a few far lamps, behind the close. Nothing else is illustrated.",
   },
 ];
 

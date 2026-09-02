@@ -24,7 +24,7 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          background: "#faf9f6",
+          background: "#fcfbff",
           position: "relative",
         }}
       >
@@ -49,7 +49,7 @@ export default async function Image() {
               marginTop: 48,
               fontSize: 44,
               lineHeight: 1.15,
-              color: "#1c1916",
+              color: "#1b1a22",
               letterSpacing: "-0.02em",
             }}
           >
