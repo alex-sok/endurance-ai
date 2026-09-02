@@ -23,8 +23,8 @@ const FOUNDERS = [
 
 export function LandingTeam() {
   return (
-    <section className="lp-sheet is-wide" id="team" data-section="team" aria-label="The team">
-        <p className="lp-kicker">The team</p>
+    <section className="lp-block" id="team" data-section="team" aria-label="The team">
+        <p className="lp-eyebrow">04 · The team</p>
         <h2 className="lp-h2">Built by people who ship.</h2>
         <p className="lp-lede">
           Research, engineering, and the operating reality of the industries we
@@ -32,7 +32,7 @@ export function LandingTeam() {
         </p>
         <div className="lp-team">
           {FOUNDERS.map((f) => (
-            <div key={f.name} className="lp-team-row">
+            <div key={f.name} className="lp-team-row is-person">
               <h3>{f.name}</h3>
               <p className="lp-role">{f.role}</p>
               <p className="lp-bio">{f.bio}</p>

@@ -25,14 +25,6 @@ export function LandingClose({ onOpenChat }: Props) {
           <button type="button" className="lp-btn lp-btn-fill" onClick={onOpenChat}>
             Talk to us
           </button>
-          <a
-            className="lp-btn lp-btn-line"
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Book a call
-          </a>
         </div>
         <EmailCapture />
         <div className="lp-foot">
@@ -41,11 +33,13 @@ export function LandingClose({ onOpenChat }: Props) {
             <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
           </span>
           <span>
-            <a href="/brain">Brain</a>
+            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">
+              Book a call
+            </a>
             {" · "}
             <a href="/margins">Margins</a>
             {" · "}
-            <a href="/system">System</a>
+            <a href="/brain">Brain</a>
           </span>
         </div>
       </div>

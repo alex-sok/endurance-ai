@@ -35,7 +35,11 @@ const securityHeaders = [
   },
 ];
 
+// The dev overlay sits over the page and pollutes design captures.
+const devIndicators = false as const;
+
 const nextConfig: NextConfig = {
+  devIndicators,
   // Home dir has a stray package-lock.json; pin Turbopack to this app so
   // tailwindcss resolves from endurance-ai/node_modules, not ~/ .
   turbopack: {
