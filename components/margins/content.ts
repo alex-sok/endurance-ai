@@ -36,11 +36,7 @@ export type MarginsChapter = {
   body: string[];
   exhibit?: Exhibit;
   diagram?: boolean;
-  shotSrc?: string;
-  shotAlt?: string;
-  shotCaption?: string;
-  shotSize?: [number, number];
-  shotWide?: boolean;
+  frame?: "paid" | "held" | "statement";
   frameCaption?: string;
   receipts: MarginsFigure[];
   note?: { title: string; body: string };
@@ -92,10 +88,8 @@ export const CHAPTERS: MarginsChapter[] = [
         { label: "Margins keeps", sub: "Remainder after payouts", value: "$89.00" },
       ],
     },
-    shotSrc: "/landing/margins-paid.jpg",
-    shotAlt: "The same load in Margins: who got paid on it, and what each share was for",
-    shotCaption: "The same load in the product. Every share names its rule.",
-    shotSize: [1032, 586],
+    frame: "paid",
+    frameCaption: "The same load in the product. Every share names its rule.",
     receipts: [
       { value: "13", label: "pay mechanisms in force" },
       { value: "343", label: "changes filed and reviewed: 311 approved, 29 rejected" },
@@ -111,10 +105,8 @@ export const CHAPTERS: MarginsChapter[] = [
       "The same run protects the house. A load below the minimum margin pays zero and says so in words. No deal can distribute more than 100 percent of a load's profit. Margins above a set review threshold, currently just under 60 percent, get a second pair of eyes, and the what-if simulator prices a proposed rate change against the real engine before anyone approves it.",
     ],
     diagram: true,
-    shotSize: [944, 142],
-    shotSrc: "/landing/margins-held.jpg",
-    shotAlt: "The Margins exceptions screen: one blocker holding the run, fifteen warnings, and $3,442.33 at stake across sixteen exceptions",
-    shotCaption: "The same week in the product. One blocker holds the pay step; the run will not release until a person clears it.",
+    frame: "held",
+    frameCaption: "The same week in the product. One blocker holds the pay step; the run will not release until a person clears it.",
     receipts: [
       { value: "605", label: "exceptions raised and worked in twenty weeks" },
       { value: "$5,491", label: "that would have paid twice, stopped across 20 duplicate loads" },
@@ -143,11 +135,8 @@ export const CHAPTERS: MarginsChapter[] = [
       ],
       foot: { label: "Net pay · week ending Jun 20", value: "$544.00" },
     },
-    shotSrc: "/landing/margins-statement.jpg",
-    shotAlt: "A Margins commission statement: net pay, and the margin gate explained in plain words",
-    shotCaption: "A statement as the earner sees it. The gate is explained in words, not a code.",
-    shotSize: [1216, 412],
-    shotWide: true,
+    frame: "statement",
+    frameCaption: "A statement as the earner sees it. The gate is explained in words, not a code.",
     receipts: [
       { value: "270", label: "statements delivered since the end of July" },
       { value: "89", label: "people they reached" },

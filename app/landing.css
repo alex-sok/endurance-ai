@@ -921,14 +921,6 @@ body:has(.theme-paper) {
   --f: clamp(0, calc((var(--p) - 0.58) / 0.42), 1);
 }
 
-/* A product frame that runs past the column, for the wider crops. */
-.lp-realframe.is-wide img {
-  width: min(1216px, calc(100vw - 2 * var(--lp-space)));
-  max-width: none;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-
 /* ---------- the sequence: chapters as one typographic run ----------
    No cards. A chapter number in the margin, the statement, the fix, and one
    composed detail frame aligned to the heading. Hairlines do the dividing. */
@@ -1293,21 +1285,310 @@ body:has(.theme-paper) {
   margin: 72px 0 0;
 }
 
-.lp-realframe img {
-  display: block;
-  width: 944px;
-  max-width: 100%;
-  height: auto;
-  border: 1px solid var(--lp-line);
-  border-radius: var(--lp-radius);
-}
-
 .lp-realframe figcaption {
   margin-top: 18px;
   font-size: 14px;
   line-height: 1.6;
   color: var(--lp-muted);
   max-width: 54ch;
+}
+
+/* ---------- the product, rebuilt in markup ----------
+   The screens the chapters point at, as HTML in the product's own structure
+   and palette. They reflow on a narrow screen instead of shrinking. */
+.pf {
+  font-family: var(--lp-sans);
+  color: #17181c;
+  background: #f2f2f3;
+  border: 1px solid var(--lp-line);
+  border-radius: var(--lp-radius);
+  padding: 16px;
+}
+
+.pf p {
+  margin: 0;
+}
+
+.pf-card,
+.pf-tiles > div,
+.pf-paper {
+  background: #ffffff;
+  border-radius: 12px;
+}
+
+.pf-card {
+  padding: 22px 24px 8px;
+}
+
+.pf-h {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.pf-sub,
+.pf-fine {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #6b6f7a;
+}
+
+.pf-sub {
+  margin-top: 4px;
+}
+
+.pf-fine b {
+  font-weight: 500;
+  color: #17181c;
+}
+
+.pf-label {
+  font-size: 12px;
+  color: #6b6f7a;
+}
+
+/* Who got paid: the bar, then the shares that make it. */
+.pf-bar {
+  display: flex;
+  gap: 2px;
+  height: 34px;
+  margin-top: 18px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pf-bar span {
+  display: grid;
+  place-items: center;
+  flex-basis: 0;
+  min-width: 0;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.pf-t1 {
+  background: #3a3d45;
+}
+
+.pf-t2 {
+  background: #5c6270;
+}
+
+.pf-t3 {
+  background: #8a8f9a;
+}
+
+.pf-t4 {
+  background: #17181c;
+}
+
+.pf-rows {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pf-rows li {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto;
+  gap: 4px 14px;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid #ececef;
+}
+
+.pf-rows li:first-child {
+  border-top: 0;
+}
+
+.pf-rows i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.pf-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pf-code {
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #6b6f7a;
+}
+
+.pf-amt {
+  font-size: 17px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The held run: the alert, then the four tiles. */
+.pf-alert {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: #f3e3e3;
+  border: 1.5px solid #c2402f;
+  border-radius: 12px;
+}
+
+.pf-alert svg {
+  flex: none;
+  fill: none;
+  stroke: #c2402f;
+  stroke-width: 1.5;
+}
+
+.pf-alert-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.pf-alert-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pf-pill {
+  flex: none;
+  padding: 9px 16px;
+  background: #ffffff;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pf-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.pf-tiles > div {
+  padding: 14px 16px 16px;
+}
+
+.pf-fig {
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.pf-red {
+  color: #c2402f;
+}
+
+.pf-tiles .pf-sub {
+  margin-top: 8px;
+  color: #17181c;
+}
+
+/* The statement: masthead, payee, the gate explained. */
+.pf-paper {
+  padding: 24px 28px 26px;
+}
+
+.pf-masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid #17181c;
+}
+
+.pf-brand {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pf-doc {
+  margin-top: 3px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #6b6f7a;
+}
+
+.pf-dates {
+  text-align: right;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #6b6f7a;
+}
+
+.pf-payee {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 20px 0 18px;
+}
+
+.pf-payee-name {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.pf-net {
+  text-align: right;
+}
+
+.pf-net .pf-label {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.pf-net-fig {
+  margin-top: 4px;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.pf-gate {
+  padding: 14px 16px;
+  background: #f7f7f8;
+  border: 1.5px solid #17181c;
+  border-radius: 10px;
+}
+
+.pf-gate-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pf-gate-title svg {
+  fill: none;
+  stroke: #17181c;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pf-gate .pf-fine {
+  margin-top: 6px;
 }
 
 /* ---------- the run, drawn ----------
@@ -2088,6 +2369,51 @@ ol.lp-team {
 }
 
 @media (max-width: 900px) {
+  .lp-chapter > *,
+  .lp-chapter .lp-margin-note,
+  .lp-chapter .lp-aside,
+  .lp-chapter .lp-realframe {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .lp-chapter .lp-margin-note {
+    margin-top: 40px;
+    padding-left: 20px;
+  }
+  .lp-chapter .lp-realframe {
+    margin-top: 48px;
+  }
+  .pf {
+    padding: 10px;
+  }
+  .pf-card {
+    padding: 18px 16px 6px;
+  }
+  .pf-alert {
+    flex-wrap: wrap;
+    padding: 14px;
+  }
+  .pf-alert-text {
+    flex-basis: calc(100% - 30px);
+  }
+  .pf-pill {
+    margin-left: 30px;
+  }
+  .pf-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pf-paper {
+    padding: 18px 16px 18px;
+  }
+  .pf-masthead,
+  .pf-payee {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pf-dates,
+  .pf-net {
+    text-align: left;
+  }
   .lp-morph {
     height: 280svh;
   }
@@ -2129,11 +2455,6 @@ ol.lp-team {
     aspect-ratio: 16 / 10;
     flex: 0 0 auto;
     margin: 24px auto 0;
-  }
-  .lp-realframe.is-wide img {
-    width: 100%;
-    margin-left: 0;
-    transform: none;
   }
   .lp-sheet {
     width: calc(100% - 32px);

@@ -6,6 +6,7 @@ import { Exhibit } from "@/components/landing/Exhibit";
 import { LandingClose } from "@/components/landing/LandingClose";
 import { LandingNav } from "@/components/landing/LandingNav";
 import { MorphHero } from "./MorphHero";
+import { ProductFrame } from "@/components/landing/ProductFrames";
 import { RunDiagram } from "@/components/landing/RunDiagram";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import { CHAPTERS, HERO, LEDGER, PILOT, type MarginsChapter } from "./content";
@@ -58,18 +59,10 @@ function Chapter({ chapter }: { chapter: MarginsChapter }) {
           </p>
         </div>
       ) : null}
-      {chapter.shotSrc && chapter.shotAlt ? (
-        <figure className={chapter.shotWide ? "lp-realframe is-wide" : "lp-realframe"}>
-          <img
-            src={chapter.shotSrc}
-            alt={chapter.shotAlt}
-            width={chapter.shotSize?.[0]}
-            height={chapter.shotSize?.[1]}
-            style={chapter.shotSize ? { aspectRatio: `${chapter.shotSize[0]} / ${chapter.shotSize[1]}` } : undefined}
-            loading="lazy"
-            decoding="async"
-          />
-          <figcaption>{chapter.shotCaption}</figcaption>
+      {chapter.frame ? (
+        <figure className="lp-realframe">
+          <ProductFrame kind={chapter.frame} />
+          <figcaption>{chapter.frameCaption}</figcaption>
         </figure>
       ) : null}
     </section>
