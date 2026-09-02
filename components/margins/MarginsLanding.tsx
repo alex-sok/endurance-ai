@@ -25,7 +25,7 @@ const SHOT_SIZES: Record<string, [number, number]> = {
   "/landing/margins-frag-deals.jpg": [1848, 941],
   "/landing/margins-frag-catches.jpg": [1848, 1258],
   "/landing/margins-frag-portal.jpg": [1300, 1003],
-  "/landing/margins-statements.jpg": [1280, 720],
+  "/landing/margins-statements.jpg": [1276, 716],
 };
 
 // Each washed card turns its light one step further than the last, and the
@@ -150,8 +150,8 @@ function Ledger() {
         <img
           src="/landing/margins-ledger-art.jpg"
           alt="Paper collage: a laurelled marble bust holding a ruled paper ledger, with an ember circle and bar"
-          width={1248}
-          height={640}
+          width={1244}
+          height={636}
           loading="lazy"
           decoding="async"
         />

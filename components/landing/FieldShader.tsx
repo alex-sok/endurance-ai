@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-// The field, breathing: a slow warm light drifting down from the top of the
-// page with a whisper of ember at the edges. Drawn small and upscaled, so it
+// The field, breathing: violet light settling at the head of the page and
+// desert rose at its foot, drifting. Drawn small and upscaled, so it
 // costs almost nothing. Under reduced motion it renders one still frame; if
 // WebGL is unavailable the CSS wash beneath simply shows through.
 const VERT = `#version 300 es
@@ -29,18 +29,19 @@ void main(){
   vec2 uv = gl_FragCoord.xy / u_res;
   float t = u_t * 0.018;
   float n = fbm(vec2(uv.x * 1.6 + t, uv.y * 1.2 - t * 0.6));
-  float glow = smoothstep(0.0, 1.0, 1.0 - uv.y);
-  vec3 field = vec3(0.980, 0.976, 0.965);
-  vec3 warm  = vec3(0.957, 0.945, 0.918);
-  vec3 ember = vec3(0.761, 0.255, 0.047);
-  vec3 c = mix(field, warm, glow * (0.55 + 0.45 * n));
-  // Ember at the edges, reaching further in and breathing more visibly,
-  // and a soft glow rising in the top-right corner: the field lit from one side.
-  float edge = pow(smoothstep(0.2, 1.0, abs(uv.x - 0.5) * 2.0), 1.6);
+  vec3 white  = vec3(0.988, 0.984, 1.000);
+  vec3 violet = vec3(0.906, 0.878, 0.976);
+  vec3 rose   = vec3(0.965, 0.882, 0.902);
+  // Violet gathers at the head of the field and desert rose settles at the
+  // foot, both breathing; the middle stays white, where the copy sits.
   float breath = 0.55 + 0.45 * fbm(vec2(uv.y * 2.0 - t, t));
-  c = mix(c, ember, edge * 0.13 * breath);
-  float corner = smoothstep(0.5, 1.0, uv.x) * smoothstep(0.25, 1.0, uv.y);
-  c = mix(c, ember, corner * 0.07 * (0.7 + 0.3 * n));
+  float head = pow(smoothstep(0.28, 1.0, uv.y), 1.4);
+  float foot = pow(smoothstep(0.52, 0.0, uv.y), 1.4);
+  vec3 c = mix(white, violet, head * (0.55 + 0.45 * n) * breath);
+  c = mix(c, rose, foot * (0.5 + 0.5 * n) * breath);
+  float edge = pow(smoothstep(0.25, 1.0, abs(uv.x - 0.5) * 2.0), 1.6);
+  c = mix(c, violet, edge * 0.34 * breath * (1.0 - foot));
+  c = mix(c, rose, edge * 0.30 * breath * foot);
   float grain = (hash(gl_FragCoord.xy + fract(u_t)) - 0.5) * 0.012;
   o = vec4(c + grain, 1.0);
 }`;
