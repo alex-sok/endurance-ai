@@ -34,9 +34,13 @@ void main(){
   vec3 warm  = vec3(0.957, 0.945, 0.918);
   vec3 ember = vec3(0.761, 0.255, 0.047);
   vec3 c = mix(field, warm, glow * (0.55 + 0.45 * n));
-  float edge = pow(smoothstep(0.35, 1.0, abs(uv.x - 0.5) * 2.0), 2.0);
-  float breath = 0.6 + 0.4 * fbm(vec2(uv.y * 2.0 - t, t));
-  c = mix(c, ember, edge * 0.045 * breath);
+  // Ember at the edges, reaching further in and breathing more visibly,
+  // and a soft glow rising in the top-right corner: the field lit from one side.
+  float edge = pow(smoothstep(0.2, 1.0, abs(uv.x - 0.5) * 2.0), 1.6);
+  float breath = 0.55 + 0.45 * fbm(vec2(uv.y * 2.0 - t, t));
+  c = mix(c, ember, edge * 0.13 * breath);
+  float corner = smoothstep(0.5, 1.0, uv.x) * smoothstep(0.25, 1.0, uv.y);
+  c = mix(c, ember, corner * 0.07 * (0.7 + 0.3 * n));
   float grain = (hash(gl_FragCoord.xy + fract(u_t)) - 0.5) * 0.012;
   o = vec4(c + grain, 1.0);
 }`;
