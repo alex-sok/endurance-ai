@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState, type CSSProperties } from "react";
 import { ChatOverlay } from "@/components/landing/ChatOverlay";
 import { LandingClose } from "@/components/landing/LandingClose";
 import { LandingNav } from "@/components/landing/LandingNav";
+import { FieldShader } from "@/components/landing/FieldShader";
+import { StageTilt } from "@/components/landing/StageTilt";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import {
   BAND,
@@ -23,7 +25,7 @@ const SHOT_SIZES: Record<string, [number, number]> = {
   "/landing/margins-frag-deals.jpg": [1848, 941],
   "/landing/margins-frag-catches.jpg": [1848, 1258],
   "/landing/margins-frag-portal.jpg": [1300, 1003],
-  "/landing/margins-frag-pilot.jpg": [1540, 1258],
+  "/landing/margins-statements.jpg": [1280, 720],
 };
 
 // Each washed card turns its light one step further than the last, and the
@@ -144,6 +146,16 @@ function Ledger() {
       data-section={LEDGER.slug}
       aria-labelledby="ledger-title"
     >
+      <figure className="lp-sheet-art">
+        <img
+          src="/landing/margins-ledger-art.jpg"
+          alt="Paper collage: a laurelled marble bust holding a ruled paper ledger, with an ember circle and bar"
+          width={1248}
+          height={640}
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
       <p className="lp-kicker">{LEDGER.kicker}</p>
       <h2 className="lp-h2" id="ledger-title">
         {LEDGER.title}
@@ -253,7 +265,9 @@ export function MarginsLanding() {
 
   return (
     <div className="theme-paper relative min-h-svh">
-      <div className="lp-canvas" aria-hidden="true" />
+      <div className="lp-canvas" aria-hidden="true">
+        <FieldShader />
+      </div>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-2 focus:bg-[var(--lp-ink)] focus:text-[var(--lp-paper)] focus:text-sm"
@@ -297,6 +311,7 @@ export function MarginsLanding() {
           </div>
         </header>
 
+        <StageTilt>
         <figure className="lp-stage" data-section="product">
           <div className="lp-feature-frame lp-stage-main">
             <img
@@ -328,6 +343,7 @@ export function MarginsLanding() {
             />
           </div>
         </figure>
+        </StageTilt>
 
         {CHAPTERS.map((chapter, index) => (
           <Chapter key={chapter.slug} chapter={chapter} index={index} />

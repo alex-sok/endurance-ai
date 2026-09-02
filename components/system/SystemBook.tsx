@@ -96,13 +96,28 @@ const PART_STEPS = [
     title: "A wash",
     body: "A light wash of the field, angled, with a whisper of ember in one corner. Copy on one side, the evidence on the other and bleeding off the edge. Radius 12. A two-up row of proof beneath it: the receipt, and a door into the demo.",
   },
+  {
+    n: "06",
+    title: "A field that breathes",
+    body: "The wash, drawn live: warm light drifting down from the top with a whisper of ember at the edges, at half resolution, thirty frames a second. One still frame under reduced motion. The CSS wash beneath if there is no WebGL.",
+  },
+  {
+    n: "07",
+    title: "A stage in depth",
+    body: "The frame arrives leaning back and settles to a four degree rest as it rises; the cards float forward of it and pan a hair with the pointer. Under reduced motion it holds the rest and never moves.",
+  },
+  {
+    n: "08",
+    title: "A made image",
+    body: "Two kinds only. A paper collage in the palette, a marble bust with a ruled ledger and one ember shape, heading a sheet or standing as evidence. A photograph at night, mostly darkness and a few ember lamps, behind the close. Nothing else is illustrated.",
+  },
 ];
 
 const RECIPES = [
   {
     n: "01",
     title: "Lab homepage",
-    body: "Field canvas, one light wash. Hero on the field. Sheets in sequence. Night close. This is endurancelabs.ai.",
+    body: "Field canvas, one light wash. Hero centered on the field, one word in flare, the stage beneath it. Products as washed cards with a proof row under each; the lab and the team on wide sheets. Night close. This is endurancelabs.ai.",
   },
   {
     n: "02",
@@ -409,8 +424,8 @@ export function SystemBook() {
               <h3 className="lp-h2">Stay on the tokens.</h3>
               <p className="lp-lede">
                 Let the field read. Regular + italic only. Air around the
-                second line. Hairline rows, not 3-ups. Product frames are
-                the only dense color. One light wash on the field. Night owns
+                second line. Hairline rows, not 3-ups. Product frames and the
+                made images are the only dense color. One light wash on the field. Night owns
                 Talk and Book. Flare on proof numbers and one word of the claim.
               </p>
             </article>
