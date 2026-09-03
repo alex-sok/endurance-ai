@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 interface Props {
-  onOpenChat: () => void;
+  onOpenChat?: () => void;
   onNavigate?: (id: string) => void;
   onCtaClick?: (label: string) => void;
 }
@@ -60,9 +60,11 @@ export function LandingNav({ onOpenChat, onNavigate }: Props) {
               {link.label}
             </a>
           ))}
-          <button type="button" className="lp-nav-talk" onClick={onOpenChat}>
-            Talk
-          </button>
+          {onOpenChat ? (
+            <button type="button" className="lp-nav-talk" onClick={onOpenChat}>
+              Talk
+            </button>
+          ) : null}
         </div>
       </div>
     </nav>
