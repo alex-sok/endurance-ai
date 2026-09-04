@@ -8,11 +8,15 @@ export function LandingProducts() {
         <div className="lp-chapter-copy">
           <p className="lp-eyebrow">01 · Margins</p>
           <h2 id="work-margins">Commission settlement for freight brokerages.</h2>
-          <p className="lp-lead">Pay for the margin, not the load.</p>
+          <p className="lp-lead">
+            One person knows the spreadsheet. Everyone is paid from it.
+          </p>
           <p className="lp-body">
-            TMS loads become a weekly pay run. Splits track what the load
-            actually made. Margins is in production inside a freight brokerage,
-            running the weekly pay run from their TMS.
+            Margins computes every split off the TMS, holds the loads that would
+            pay wrong, and hands each broker a statement that traces to the
+            load. It has run the weekly pay run inside a freight brokerage since
+            March, which means you can add agents without adding another person
+            who knows the sheet.
           </p>
           <p className="lp-proofline">
             <b>$4.02M</b> settled in 20 closed weeks · <b>20</b> duplicate loads
