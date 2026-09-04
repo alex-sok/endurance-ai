@@ -49,7 +49,7 @@ export const HERO = {
   kicker: "Product · Margins",
   h1: "One person knows the spreadsheet.",
   h1Em: "Everyone is paid from it.",
-  lede: "It decides what every broker gets paid, and the only test it has ever had is the person who built it. Margins computes every split off your TMS, holds the loads that would pay wrong, and hands each broker a statement that traces to the load.",
+  lede: "It decides what every broker gets paid. The only test it has ever had is the person who built it. Margins computes every split off your TMS, holds the loads that would pay wrong, and hands each broker a statement that traces to the load.",
   ledeTwo: "Add agents without adding another person who knows the sheet.",
   fillLabel: "Open the live demo, no login",
   fillHref: DEMO_HREF,
@@ -62,7 +62,7 @@ export const HERO = {
 // decides the deal.
 export const CHAMPION = {
   title: "If you are the one who knows the sheet.",
-  body: "Margins does not replace you. It makes sure the run happens the week you are out, and that the next person can read what you built. The pilot needs you in the room.",
+  body: "Margins does not replace you. The run happens the week you are out. The next person can read what you built. The pilot needs you in the room.",
 };
 
 export const BEATS: MarginsBeat[] = [
@@ -72,7 +72,7 @@ export const BEATS: MarginsBeat[] = [
     title: "Thirteen ways to get paid. One file knows them all.",
     body: [
       "Customer deals, team splits, extra shares, dispatcher pay, draws, escrow, loans, floors. At the brokerage where Margins was built, thirteen distinct pay mechanisms are in force. In the sheet each one is a formula in a cell. In Margins each one is a rule with a date on it.",
-      "Changing a rule takes a filed request, its dollar impact previewed, and a second administrator's approval. Nothing behind that date moves.",
+      "Changing a rule takes a filed request, a priced dollar impact, and a second signature. Nothing behind that date moves.",
     ],
     receipts: [
       { value: "13", label: "pay mechanisms in force" },
@@ -99,7 +99,7 @@ export const BEATS: MarginsBeat[] = [
     kicker: "03 · The catch",
     title: "$39,400 was going to the wrong broker.",
     body: [
-      "Two people, one agent code. A whole book, about $3,961 a week, landing on the wrong statement. Every run was still a draft, so not a dollar had moved, and it went back to the broker who earned it.",
+      "Two people, one agent code. A whole book, about $3,961 a week, landing on the wrong statement. Every run was still a draft. Not a dollar had moved. It went back to the broker who earned it.",
       "A system you can audit finds that. A spreadsheet just pays it.",
     ],
     demo: { label: "Open the audit board", href: "/margins/app/audit" },
@@ -123,7 +123,7 @@ export const BEATS: MarginsBeat[] = [
     kicker: "05 · Six months later",
     title: "A broker disputes a check from April. His deal changed in June.",
     body: [
-      "Re-run April. Margins uses April's rates, because every deal carries a date. Corrections post forward as their own lines instead of rewriting what was paid, so what actually went out stays queryable years later, next to the reason it changed and the person who approved it.",
+      "Re-run April. Margins uses April's rates, because every deal carries a date. Corrections post forward as their own lines. Nothing rewrites what was paid. Years later, what went out is still queryable, next to the reason it changed and who approved it.",
       "It is also the record a buyer asks for in diligence.",
     ],
     receipts: [
@@ -139,7 +139,7 @@ export const REFUSALS = {
   kicker: "06 · The limits",
   title: "What Margins will not do.",
   items: [
-    "It will not move your money. It computes, proves, and locks what every person earned, then works with how you already pay.",
+    "It will not move your money. It computes, proves, and locks what every person earned. Then it works with how you already pay.",
     "It will not replace your TMS. It sits on top of it.",
     "It will not earn its keep under about fifteen payees. Keep the sheet. We mean it. Come back when it hurts.",
     "It will not run two brokerages on one deployment today. A second one is integration work, not a signup form.",
