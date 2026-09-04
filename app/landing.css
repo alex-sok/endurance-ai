@@ -138,7 +138,8 @@ body:has(.theme-paper) {
   transition: opacity 160ms var(--lp-ease);
 }
 
-.lp-nav-links a:hover {
+.lp-nav-links a:hover,
+.lp-nav-links .lp-nav-page:hover {
   opacity: 1;
 }
 
@@ -164,6 +165,23 @@ body:has(.theme-paper) {
 
 .lp-nav-talk:active {
   background: #26242f;
+}
+
+/* A nav item that is a page rather than a section, and can be the current one. */
+.lp-nav-page {
+  font-size: 14px;
+  color: var(--lp-ink);
+  text-decoration: none;
+  opacity: 0.72;
+  transition: opacity 160ms var(--lp-ease);
+}
+
+.lp-nav-page[aria-current="page"] {
+  opacity: 1;
+  text-decoration: underline;
+  text-decoration-color: rgba(27, 26, 34, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
 }
 
 /* ---------- buttons ---------- */
@@ -2777,7 +2795,7 @@ ol.lp-team {
 }
 
 @media (max-width: 640px) {
-  .lp-nav-links a {
+  .lp-nav-links a:not(.lp-nav-page) {
     display: none;
   }
   .lp-slide .lp-sheet {
