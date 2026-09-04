@@ -1,4 +1,4 @@
-import type { Exhibit as ExhibitData } from "@/components/margins/content";
+import type { Exhibit as ExhibitData } from "@/components/margins/proof-content";
 
 // Product data, typeset in the page's own hand. A marketing page never shows
 // eight-pixel interface text; where a detail matters, it is set here.

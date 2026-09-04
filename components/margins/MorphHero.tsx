@@ -148,6 +148,7 @@ export function MorphHero({ onCtaClick }: Props) {
             <em>{HERO.h1Em}</em>
           </h1>
           <p className="lp-hero-lede">{HERO.lede}</p>
+          <p className="lp-hero-lede lp-hero-alpha">{HERO.ledeTwo}</p>
           <div className="lp-hero-actions">
             <a className="lp-btn lp-btn-fill" href={HERO.fillHref} onClick={() => onCtaClick(HERO.fillLabel)}>
               {HERO.fillLabel}
@@ -273,17 +274,19 @@ export function MorphHero({ onCtaClick }: Props) {
 
         <div className="lp-morph-foot" aria-hidden="true">
           <p className="lp-morph-scroll">Scroll</p>
+          {/* Phases of the hero's own animation. Deliberately unnumbered: the
+              numbered sequence on this page belongs to the beats below. */}
           <ol className="lp-morph-steps">
             <li>
-              <span>01 · The spreadsheet</span>
+              <span>The spreadsheet</span>
               <i />
             </li>
             <li>
-              <span>02 · It breaks</span>
+              <span>It breaks</span>
               <i />
             </li>
             <li>
-              <span>03 · The run</span>
+              <span>The run</span>
               <i />
             </li>
           </ol>

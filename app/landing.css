@@ -2314,8 +2314,8 @@ ol.lp-team {
 /* ---------- receipt: the proof attached to the claim above it ---------- */
 .lp-receipt {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: 24px 48px;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 24px 40px;
   margin: 40px 0 0;
   padding: 20px 0 0;
   list-style: none;
@@ -2618,7 +2618,58 @@ ol.lp-team {
   border-bottom-color: currentColor;
 }
 
+/* ---------- the evidence page's masthead ----------
+   No hero on that page, so the head clears the fixed nav itself and sets its
+   title at head scale rather than borrowing a section heading's size. */
+.lp-proofhead {
+  padding-top: calc(var(--lp-nav-h) + 72px);
+}
+
+.lp-proofhead h1 {
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  max-width: 20ch;
+}
+
+/* ---------- the alpha: one line under the lede, in ink ----------
+   The lede explains. This is the sentence the owner repeats to a partner, so
+   it stands out of the muted block above it without becoming a second head. */
+.lp-morph-copy .lp-hero-alpha {
+  margin-top: 18px;
+  max-width: 26rem;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--lp-ink);
+  text-wrap: balance;
+}
+
+/* ---------- refusals: the limits, in a row ----------
+   Four sentences that open the same way. The anaphora is the design; the rules
+   between them are what keep it from reading as a paragraph of caveats. */
+.lp-refusals {
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 46rem;
+}
+
+.lp-refusals li {
+  padding: 22px 0;
+  border-top: 1px solid var(--lp-line);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--lp-ink);
+  text-wrap: pretty;
+}
+
+.lp-refusals li:last-child {
+  border-bottom: 1px solid var(--lp-line);
+}
+
 @media (max-width: 900px) {
+  .lp-band-figures {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 32px;
+  }
   .sb-two {
     grid-template-columns: 1fr;
   }
@@ -2881,6 +2932,14 @@ ol.lp-team {
 }
 
 @media (max-width: 640px) {
+  .lp-band-figures {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .lp-refusals li {
+    font-size: 16px;
+    padding: 18px 0;
+  }
   .lp-nav-links a:not(.lp-nav-page) {
     display: none;
   }
