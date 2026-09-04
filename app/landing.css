@@ -3408,3 +3408,137 @@ ol.lp-team {
   margin: 14px 0 0; padding-top: 11px; border-top: 1px solid var(--lp-line);
   font-size: 11.5px; color: var(--lp-muted);
 }
+
+/* ── BPOS: legibility pass on the data ────────────────────────────────────
+   The wide grids were running numeric columns into each other with no gutter,
+   which is exactly the spreadsheet look the product is supposed to replace. */
+.theme-paper .bpos-wide th,
+.theme-paper .bpos-wide td { padding-left: 16px; }
+.theme-paper .bpos-wide th:first-child,
+.theme-paper .bpos-wide td:first-child { padding-left: 0; }
+.theme-paper .bpos-wide th.r,
+.theme-paper .bpos-wide td.r { padding-left: 24px; }
+.theme-paper .bpos-wide tbody tr { transition: background 140ms var(--lp-ease); }
+.theme-paper .bpos-wide tbody tr:hover { background: var(--lp-snow); }
+.theme-paper .bpos-num-cell { font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+/* totals and variances read at a glance, not by squinting at a sign */
+.theme-paper .bpos-tab-list tr.is-total > * {
+  font-weight: 600; color: var(--lp-ink);
+  border-top: 1px solid var(--lp-ink); border-bottom: 0;
+}
+.theme-paper .bpos-tab-list td.is-good { color: var(--lp-ink); }
+.theme-paper .bpos-tab-list td.is-bad { color: var(--lp-flare); }
+
+/* ── the map ──────────────────────────────────────────────────────────── */
+.theme-paper .bpos-mapcard { margin-top: 14px; }
+.theme-paper .bpos-map {
+  margin: 14px 0 0; background: var(--lp-snow);
+  border: 1px solid var(--lp-line); border-radius: 5px; padding: 8px;
+}
+.theme-paper .bpos-map svg { display: block; width: 100%; height: auto; }
+.theme-paper .bpos-map-states path {
+  fill: var(--lp-paper); stroke: var(--lp-line); stroke-width: 0.9;
+  vector-effect: non-scaling-stroke;
+}
+.theme-paper .bpos-dot-hit { fill: transparent; cursor: pointer; }
+.theme-paper .bpos-dot-ring {
+  fill: color-mix(in srgb, var(--lp-ink) 14%, transparent);
+  stroke: var(--lp-ink); stroke-width: 1.1; vector-effect: non-scaling-stroke;
+  transition: fill 140ms var(--lp-ease);
+}
+.theme-paper .bpos-dot-core { fill: var(--lp-ink); }
+.theme-paper .bpos-dot-g.flag .bpos-dot-ring { stroke: var(--lp-flare); fill: transparent; stroke-width: 1.6; }
+.theme-paper .bpos-dot-g.flag .bpos-dot-core { fill: var(--lp-flare); }
+.theme-paper .bpos-dot-g.on .bpos-dot-ring { fill: color-mix(in srgb, var(--lp-ink) 42%, transparent); }
+.theme-paper .bpos-lane-hit {
+  fill: none; stroke: transparent; stroke-width: 12; cursor: pointer;
+  vector-effect: non-scaling-stroke;
+}
+.theme-paper .bpos-lane-line {
+  fill: none; stroke: var(--lp-ink); stroke-width: 1.3; opacity: 0.42;
+  vector-effect: non-scaling-stroke; transition: opacity 140ms var(--lp-ease);
+}
+.theme-paper .bpos-lane.flag .bpos-lane-line { stroke: var(--lp-flare); opacity: 0.9; }
+.theme-paper .bpos-lane.on .bpos-lane-line { opacity: 1; stroke-width: 2; }
+.theme-paper .bpos-lane-a { fill: var(--lp-paper); stroke: var(--lp-ink); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.theme-paper .bpos-lane-b { fill: var(--lp-ink); }
+.theme-paper .bpos-map-foot {
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  margin-top: 11px; padding-top: 10px; border-top: 1px solid var(--lp-line);
+  font-size: 11.5px; color: var(--lp-muted);
+}
+.theme-paper .bpos-map-read { font-family: var(--lp-mono); font-size: 11px; color: var(--lp-ink); }
+
+/* ── the asset book ───────────────────────────────────────────────────── */
+.theme-paper .bpos-book, .theme-paper .bpos-bench { margin-top: 14px; }
+.theme-paper .bpos-book-head {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 16px; flex-wrap: wrap; margin-bottom: 12px;
+}
+.theme-paper .bpos-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+.theme-paper .bpos-chip {
+  display: inline-flex; align-items: baseline; gap: 7px;
+  border: 1px solid var(--lp-line); border-radius: 4px; padding: 5px 10px;
+}
+.theme-paper .bpos-chip em {
+  font-style: normal; font-family: var(--lp-mono); font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--lp-muted);
+}
+.theme-paper .bpos-chip b { font-weight: 600; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.theme-paper .bpos-book-body {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px;
+}
+@media (min-width: 900px) {
+  .theme-paper .bpos-book-body { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 30px; }
+}
+.theme-paper .bpos-book-tab { min-width: 460px; }
+.theme-paper .bpos-book-tab th.r, .theme-paper .bpos-book-tab td.r { padding-left: 22px; }
+.theme-paper .bpos-book-side { display: flex; flex-direction: column; gap: 18px; }
+.theme-paper .bpos-side-block {
+  border: 1px solid var(--lp-line); border-radius: 5px; padding: 13px 14px;
+}
+.theme-paper .bpos-trend { width: 100%; height: 44px; display: block; margin: 8px 0; }
+.theme-paper .bpos-trend-fill { fill: color-mix(in srgb, var(--lp-ink) 8%, transparent); }
+.theme-paper .bpos-trend-line { fill: none; stroke: var(--lp-ink); stroke-width: 1.4; vector-effect: non-scaling-stroke; }
+.theme-paper .bpos-trend-end { fill: var(--lp-ink); }
+.theme-paper .bpos-defs { margin: 8px 0 0; display: flex; flex-direction: column; gap: 7px; }
+.theme-paper .bpos-defs > div {
+  display: grid; grid-template-columns: minmax(0, 6.5rem) minmax(0, 1fr); gap: 12px;
+  padding-bottom: 7px; border-bottom: 1px solid var(--lp-line);
+}
+.theme-paper .bpos-defs > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.theme-paper .bpos-defs dt {
+  margin: 0; font-family: var(--lp-mono); font-size: 9.5px; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--lp-muted);
+}
+.theme-paper .bpos-defs dd { margin: 0; font-size: 12.5px; line-height: 1.4; }
+
+/* ── the underwriting bench ───────────────────────────────────────────── */
+.theme-paper .bpos-bench-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px;
+}
+@media (min-width: 960px) {
+  .theme-paper .bpos-bench-grid { grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.35fr); gap: 30px; }
+}
+.theme-paper .bpos-bench-col > .bpos-lab { margin-bottom: 10px; }
+.theme-paper .bpos-lab-gap { margin-top: 22px; }
+.theme-paper .bpos-model, .theme-paper .bpos-fall { min-width: 460px; }
+.theme-paper .bpos-model th.r, .theme-paper .bpos-model td.r { padding-left: 18px; }
+.theme-paper .bpos-fall-note { display: block; margin-top: 2px; }
+.theme-paper .bpos-bench-low {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; margin-top: 26px;
+}
+@media (min-width: 960px) {
+  .theme-paper .bpos-bench-low { grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.35fr); gap: 30px; }
+}
+.theme-paper .bpos-returns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.theme-paper .bpos-returns .bpos-out.lead { grid-column: 1 / -1; }
+.theme-paper .bpos-sens-tab { min-width: 420px; margin-top: 10px; }
+.theme-paper .bpos-sens-tab th[scope="row"] {
+  text-align: left; font-family: var(--lp-mono); font-size: 10.5px;
+  color: var(--lp-muted); font-weight: 400;
+}
+.theme-paper .bpos-sens-tab td.is-base {
+  background: var(--lp-night); color: var(--lp-snow); font-weight: 600;
+}

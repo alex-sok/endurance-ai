@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { BPOS_INDUSTRIES } from "./bpos-content";
 import { BPOS_VIEWS, BPOS_SOURCES, BPOS_WORKLIST, BPOS_FEATURES } from "./bpos-views";
+import { AssetBook, UnderwritingBench } from "./BposPanels";
+import { BposMap } from "./BposMap";
+import { COMP_DOTS, LOAD_LANES, LOAD_HUBS } from "./bpos-panels";
 
 /**
  * The BPOS console, shown rather than described.
@@ -56,6 +59,8 @@ export function LandingBPOS() {
   /** Every non-flagship tab is a working screen with its own worklist. */
   const showWorklist = !flagship;
   const feature = BPOS_FEATURES[`${d.id}.${m.nav}`];
+  /** Screens that are a product rather than a table. */
+  const screen = `${d.id}.${m.nav}`;
   const worklistTitle = BPOS_WORKLIST[`${d.id}.${m.nav}`] ?? "Needs a look";
 
   function pickIndustry(i: number) {
@@ -282,6 +287,26 @@ export function LandingBPOS() {
                 </table>
               </div>
             </div>
+          ) : null}
+
+          {screen === "realestate.Asset Books" ? <AssetBook /> : null}
+          {screen === "realestate.Underwriting" ? <UnderwritingBench /> : null}
+          {screen === "realestate.Comps" ? (
+            <BposMap
+              title="Comp coverage"
+              meta="29 markets tracked · 1,240 sale comps · 3,880 rent comps"
+              dots={COMP_DOTS}
+              legend="Dot size is comps in the set. Outlined markets need a look."
+            />
+          ) : null}
+          {screen === "logistics.Load board" ? (
+            <BposMap
+              title="Board coverage"
+              meta="1,077 loads in flight · positions updated every 15 minutes"
+              dots={LOAD_HUBS}
+              lanes={LOAD_LANES}
+              legend="Dot size is loads in flight. Outlined lanes need a look."
+            />
           ) : null}
 
           {feature ? (

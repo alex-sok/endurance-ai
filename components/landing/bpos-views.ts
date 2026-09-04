@@ -344,7 +344,7 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
   },
   logistics: {
     layout: "command",
-    runModule: 2,
+    runModule: 3,
     ticker: [
       ["DAT VAN SPOT", "$2.41/mi", "+0.03"],
       ["REEFER SPOT", "$2.78/mi", "+0.02"],
@@ -493,6 +493,7 @@ export const BPOS_WORKLIST: Record<string, string> = {
   "legal.Budget": "Budget breaches",
   "legal.People": "Capacity flags",
   "logistics.Ops": "Dispatch flags",
+  "logistics.Load board": "Open lanes",
   "logistics.Carrier audit": "Audit exceptions",
   "logistics.Billing": "Invoice exceptions",
   "logistics.Reconciliation": "Unmatched items",

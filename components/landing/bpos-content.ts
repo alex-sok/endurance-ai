@@ -1597,6 +1597,31 @@ export const BPOS_INDUSTRIES: Industry[] = [
         ]
       },
       {
+        "nav": "Load board",
+        "crumb": "Operations / Load board",
+        "title": "Load board · Week ending Jun 20th",
+        "sub": "Every load in flight, on the map, with the reload beside it.",
+        "cta": "Open the board",
+        "hero": ["Loads in flight", "1,077", "412 carriers · 38 states", "Cover the open lanes"],
+        "stats": [
+          ["", "Covered", "947", "88.0% of the board"],
+          ["", "Open lanes", "108", "22 without a reload"],
+          ["b", "Blockers", "1", "Must fix to tender"],
+          ["w", "Warnings", "7", "Worth a look"]
+        ],
+        "unit": "Loads",
+        "rows": [
+          ["DFW-DEN", "No reload on the return leg", 14, "Cover", 1],
+          ["LAX-PHX", "Capacity tight, rate above target", 9, "Review", 0],
+          ["SAV-CLT", "Appointment not confirmed", 6, "Review", 0],
+          ["HSV-MLU", "Deadhead over 180 miles", 5, "Review", 0],
+          ["ORD-CMH", "Carrier insurance expiring", 4, "Review", 0],
+          ["LRD-MEM", "Cross-border documents pending", 3, "Review", 0]
+        ],
+        "more": 3,
+        "pills": ["All 8", "1 blocker", "7 warnings"]
+      },
+      {
         "nav": "Carrier audit",
         "crumb": "Audit / This week",
         "title": "Carrier audit · Week ending Jun 20th",
