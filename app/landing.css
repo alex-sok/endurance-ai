@@ -1690,6 +1690,11 @@ body:has(.theme-paper) {
 /* ---------- pricing ----------
    A price that is not set yet reads as unset, never as a number. A prose
    ledger keeps the label column and gives the right column running text. */
+/* A block's own actions sit below its argument, not beside it. */
+.lp-block-actions {
+  margin-top: 40px;
+}
+
 /* The rate card: the same hairline rows as the ledger, in a real table. */
 .lp-rate {
   width: 100%;

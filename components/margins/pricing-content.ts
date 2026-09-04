@@ -39,7 +39,7 @@ export const PRICING_HERO = {
   h1Em: "and it does not move.",
   lede: "Your price is set once, from your own pay runs, and it is fixed for the year. Hire ten brokers in March and the bill is the same in April. Implementation is credited back in full, so your first year costs exactly what every year after it costs.",
   fillLabel: "Open the live demo",
-  fillHref: "/margins/app",
+  fillHref: "/margins/app/commissions",
   lineLabel: "Book a call",
 };
 
