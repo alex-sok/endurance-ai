@@ -6,7 +6,7 @@
 //             wealth run this way: one source of truth, drill-downs a click
 //             away. Modelled on the Blackwater Executive Command Center.
 //   board   — a KPI strip over contract-style progress rows and a rollup.
-//             Construction, restaurants and brokerage read as a book of jobs,
+//             Construction, hospitality and brokerage read as a book of jobs,
 //             units or listings, each with a number that is tracking or not.
 //   run     — a headline figure, blockers, worklist and a locked checklist.
 //             Legal and logistics are periodic runs: something has to clear
@@ -197,7 +197,7 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     },
   },
 
-  restaurants: {
+  hospitality: {
     layout: "command",
     ticker: [
       ["BEEF (CME)", "$2.34/lb", "+1.8%"],
@@ -440,7 +440,7 @@ export const BPOS_SOURCES: Record<string, { synced: string; sources: Source[] }>
       { kind: "MCP", name: "Carrier invoices" },
     ],
   },
-  restaurants: {
+  hospitality: {
     synced: "11 min ago",
     sources: [
       { kind: "API", name: "Toast", note: "×41 units" },
@@ -498,10 +498,10 @@ export const BPOS_WORKLIST: Record<string, string> = {
   "logistics.Billing": "Invoice exceptions",
   "logistics.Reconciliation": "Unmatched items",
   "logistics.Commissions": "Pay exceptions",
-  "restaurants.Labor": "Labor flags",
-  "restaurants.Inventory": "Count and price flags",
-  "restaurants.COGS": "Cost variances",
-  "restaurants.Reports": "Close blockers",
+  "hospitality.Labor": "Labor flags",
+  "hospitality.Inventory": "Count and price flags",
+  "hospitality.COGS": "Cost variances",
+  "hospitality.Reports": "Close blockers",
   "brokerage.BOV": "BOV queue",
   "brokerage.Broker desk": "Payout exceptions",
   "brokerage.Research": "Data gaps",
@@ -706,7 +706,7 @@ export const BPOS_FEATURES: Record<string, Feature> = {
     note: "The dwell time comes from the truck, so the dispute is not an opinion.",
   },
 
-  "restaurants.COGS": {
+  "hospitality.COGS": {
     title: "Theoretical vs actual",
     meta: "Recipe cost against what was actually used",
     inputs: [
@@ -723,7 +723,7 @@ export const BPOS_FEATURES: Record<string, Feature> = {
     ],
     note: "Recipes come from the menu system; usage comes from the invoices and the count.",
   },
-  "restaurants.Labor": {
+  "hospitality.Labor": {
     title: "Schedule cost check",
     meta: "The posted schedule priced before the week starts",
     inputs: [

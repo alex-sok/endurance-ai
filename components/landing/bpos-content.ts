@@ -11,6 +11,583 @@ export interface Industry { id: string; name: string;
 
 export const BPOS_INDUSTRIES: Industry[] = [
   {
+    "id": "logistics",
+    "name": "Logistics",
+    "steps": [
+      [
+        "Invoices brought in",
+        "done",
+        "done"
+      ],
+      [
+        "Fix what needs a look",
+        "now",
+        "25 open"
+      ],
+      [
+        "Run settlement",
+        "lock",
+        "locked by 3 blockers"
+      ],
+      [
+        "Check the numbers",
+        "num",
+        "after run"
+      ],
+      [
+        "Send payments",
+        "lock",
+        "locked"
+      ]
+    ],
+    "lock": [
+      "Step 3 is locked",
+      "3 blockers on the worklist are holding settlement. Warnings don't block, but the blockers must go."
+    ],
+    "mods": [
+      {
+        "nav": "Ops",
+        "crumb": "Ops / This week",
+        "title": "Operations · Week ending Jun 20th",
+        "sub": "What is moving, what is covered, and what is still open.",
+        "cta": "Import loads",
+        "hero": [
+          "Loads this week",
+          "1,077",
+          "96% covered · 26 still uncovered",
+          "Review the board"
+        ],
+        "stats": [
+          [
+            "",
+            "Loads imported",
+            "1,077",
+            "From your TMS · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "1",
+            "Must fix to dispatch"
+          ],
+          [
+            "",
+            "On time",
+            "94.2%",
+            "Trailing 7 days"
+          ],
+          [
+            "g",
+            "Warnings",
+            "10",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Loads",
+        "rows": [
+          [
+            "NEXTWK",
+            "26 loads uncovered",
+            26,
+            "Resolve",
+            1
+          ],
+          [
+            "LAREDO-77",
+            "Detention risk building",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "DALLAS-08",
+            "Appointment missed",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "MEMPHIS-31",
+            "Driver hours near limit",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "TULSA-19",
+            "Reefer temp out of range",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "ELPASO-12",
+            "Cross-border docs pending",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 6,
+        "pills": [
+          "All 12",
+          "1 blocker",
+          "10 warnings"
+        ]
+      },
+      {
+        "nav": "Load board",
+        "crumb": "Operations / Load board",
+        "title": "Load board · Week ending Jun 20th",
+        "sub": "Every load in flight, on the map, with the reload beside it.",
+        "cta": "Open the board",
+        "hero": [
+          "Loads in flight",
+          "1,077",
+          "412 carriers · 38 states",
+          "Cover the open lanes"
+        ],
+        "stats": [
+          [
+            "",
+            "Covered",
+            "947",
+            "88.0% of the board"
+          ],
+          [
+            "",
+            "Open lanes",
+            "108",
+            "22 without a reload"
+          ],
+          [
+            "b",
+            "Blockers",
+            "1",
+            "Must fix to tender"
+          ],
+          [
+            "w",
+            "Warnings",
+            "7",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Loads",
+        "rows": [
+          [
+            "DFW-DEN",
+            "No reload on the return leg",
+            14,
+            "Cover",
+            1
+          ],
+          [
+            "LAX-PHX",
+            "Capacity tight, rate above target",
+            9,
+            "Review",
+            0
+          ],
+          [
+            "SAV-CLT",
+            "Appointment not confirmed",
+            6,
+            "Review",
+            0
+          ],
+          [
+            "HSV-MLU",
+            "Deadhead over 180 miles",
+            5,
+            "Review",
+            0
+          ],
+          [
+            "ORD-CMH",
+            "Carrier insurance expiring",
+            4,
+            "Review",
+            0
+          ],
+          [
+            "LRD-MEM",
+            "Cross-border documents pending",
+            3,
+            "Review",
+            0
+          ]
+        ],
+        "more": 3,
+        "pills": [
+          "All 8",
+          "1 blocker",
+          "7 warnings"
+        ]
+      },
+      {
+        "nav": "Carrier audit",
+        "crumb": "Audit / This week",
+        "title": "Carrier audit · Week ending Jun 20th",
+        "sub": "Every invoice checked against the rate confirmation, before it is paid.",
+        "cta": "Run the audit",
+        "hero": [
+          "Recovered this month",
+          "$212,000",
+          "3,908 invoices audited · 25 exceptions",
+          "Review the exceptions"
+        ],
+        "stats": [
+          [
+            "",
+            "Invoices audited",
+            "3,908",
+            "From carrier billing · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "3",
+            "Must fix to settle"
+          ],
+          [
+            "",
+            "Over rate con",
+            "$84K",
+            "Flagged this week"
+          ],
+          [
+            "g",
+            "Warnings",
+            "22",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Loads",
+        "rows": [
+          [
+            "LAREDO-77",
+            "Invoice over the rate con",
+            4,
+            "Resolve",
+            1
+          ],
+          [
+            "ELPASO-12",
+            "Carrier insurance lapsed",
+            1,
+            "Resolve",
+            1
+          ],
+          [
+            "TULSA-19",
+            "Duplicate invoice submitted",
+            1,
+            "Resolve",
+            1
+          ],
+          [
+            "DALLAS-08",
+            "Detention billed without proof",
+            2,
+            "Review",
+            0
+          ],
+          [
+            "MEMPHIS-31",
+            "Accessorial not on contract",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "LAREDO-77",
+            "Fuel surcharge mismatch",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 16,
+        "pills": [
+          "All 25",
+          "3 blockers",
+          "22 warnings"
+        ]
+      },
+      {
+        "nav": "Billing",
+        "crumb": "Billing / This week",
+        "title": "Billing & settlement · Week ending Jun 20th",
+        "sub": "Everything standing between this run and carriers being paid Friday.",
+        "cta": "Upload load sheet",
+        "hero": [
+          "Ready to settle",
+          "$1.84M",
+          "across 214 carriers · nothing sent yet",
+          "Review the run"
+        ],
+        "stats": [
+          [
+            "",
+            "Invoices matched",
+            "3,883",
+            "Against rate confirmations · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "3",
+            "Must fix to run"
+          ],
+          [
+            "",
+            "Settlement in",
+            "2 days",
+            "Friday, Jun 27"
+          ],
+          [
+            "g",
+            "Warnings",
+            "18",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Loads",
+        "rows": [
+          [
+            "LAREDO-77",
+            "Invoice over the rate con",
+            4,
+            "Resolve",
+            1
+          ],
+          [
+            "ELPASO-12",
+            "Carrier insurance lapsed",
+            1,
+            "Resolve",
+            1
+          ],
+          [
+            "MEMPHIS-31",
+            "Invoice held, credit check",
+            1,
+            "Resolve",
+            1
+          ],
+          [
+            "DALLAS-08",
+            "Detention billed without proof",
+            2,
+            "Review",
+            0
+          ],
+          [
+            "TULSA-19",
+            "Customer AR past 60 days",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "LAREDO-77",
+            "Accessorial off contract",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 12,
+        "pills": [
+          "All 21",
+          "3 blockers",
+          "18 warnings"
+        ]
+      },
+      {
+        "nav": "Reconciliation",
+        "crumb": "Reconciliation / This week",
+        "title": "Reconciliation · Week ending Jun 20th",
+        "sub": "What matched, what did not, and what it is worth.",
+        "cta": "Close the week",
+        "hero": [
+          "Unmatched variance",
+          "$18,400",
+          "98.4% matched · 41 open items",
+          "Review the variance"
+        ],
+        "stats": [
+          [
+            "",
+            "Lines reconciled",
+            "7,812",
+            "Carrier AP against customer AR · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "1",
+            "Must fix to close"
+          ],
+          [
+            "",
+            "Closed through",
+            "Jun 20",
+            "Last full week"
+          ],
+          [
+            "g",
+            "Warnings",
+            "13",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Items",
+        "rows": [
+          [
+            "LOADS",
+            "Rate confirmation missing",
+            4,
+            "Resolve",
+            1
+          ],
+          [
+            "TULSA-19",
+            "Fuel surcharge mismatch",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "DALLAS-08",
+            "Short pay unexplained",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "LAREDO-77",
+            "Accessorial double counted",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "MEMPHIS-31",
+            "Credit memo unapplied",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "ELPASO-12",
+            "Currency conversion variance",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 9,
+        "pills": [
+          "All 14",
+          "1 blocker",
+          "13 warnings"
+        ]
+      },
+      {
+        "nav": "Commissions",
+        "crumb": "Commissions / This week",
+        "title": "Commissions · Week ending Jun 20th",
+        "sub": "Everything standing between this run and payday on Friday.",
+        "cta": "Upload load sheet",
+        "hero": [
+          "Ready to pay",
+          "$201,480",
+          "across 54 people · nothing sent yet",
+          "Review the run"
+        ],
+        "stats": [
+          [
+            "",
+            "Loads imported",
+            "1,077",
+            "From your TMS · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "1",
+            "Must fix to run"
+          ],
+          [
+            "",
+            "Payday in",
+            "2 days",
+            "Friday, Jun 27"
+          ],
+          [
+            "g",
+            "Warnings",
+            "15",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Loads",
+        "rows": [
+          [
+            "ALEXJCO",
+            "Nobody to pay — needs a payee",
+            2,
+            "Resolve",
+            1
+          ],
+          [
+            "MAYABFL",
+            "Loads that lost money",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "NYLARTX",
+            "Loads that lost money",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "WRENDAZ",
+            "Loads that lost money",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "DOTXUOH",
+            "Loads that lost money",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "MAYABFL",
+            "Below min margin — pays $0",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 9,
+        "pills": [
+          "All 16",
+          "1 blocker",
+          "15 warnings"
+        ]
+      }
+    ]
+  },
+  {
     "id": "construction",
     "name": "Construction",
     "steps": [
@@ -985,6 +1562,493 @@ export const BPOS_INDUSTRIES: Industry[] = [
     ]
   },
   {
+    "id": "brokerage",
+    "name": "Brokerage",
+    "steps": [
+      [
+        "Transactions synced",
+        "done",
+        "done"
+      ],
+      [
+        "Fix what needs a look",
+        "now",
+        "8 open"
+      ],
+      [
+        "Run the payouts",
+        "lock",
+        "locked by 1 blocker"
+      ],
+      [
+        "Check the splits",
+        "num",
+        "after run"
+      ],
+      [
+        "Send statements",
+        "lock",
+        "locked"
+      ]
+    ],
+    "lock": [
+      "Step 3 is locked",
+      "1 blocker on the worklist is holding payouts. Warnings don't block, but the blocker must go."
+    ],
+    "mods": [
+      {
+        "nav": "Listings",
+        "crumb": "Listings / This week",
+        "title": "Live listings · Week ending Jun 20th",
+        "sub": "What is on the market, and what is quietly going stale.",
+        "cta": "Add a listing",
+        "hero": [
+          "Live listings",
+          "74",
+          "18 under contract · 63 days on market",
+          "Review the listings"
+        ],
+        "stats": [
+          [
+            "",
+            "Listings synced",
+            "74",
+            "From your CRM · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "1",
+            "Must fix to publish"
+          ],
+          [
+            "",
+            "New this week",
+            "6",
+            "Added to market"
+          ],
+          [
+            "g",
+            "Warnings",
+            "7",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Listings",
+        "rows": [
+          [
+            "LIST-0902",
+            "Listing expired, still live",
+            1,
+            "Resolve",
+            1
+          ],
+          [
+            "LIST-0914",
+            "Photos missing",
+            3,
+            "Review",
+            0
+          ],
+          [
+            "LIST-0918",
+            "Price reduction overdue",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "LIST-0871",
+            "No activity in 45 days",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "LIST-0933",
+            "Square footage disputed",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "LIST-0902",
+            "Owner contact stale",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 2,
+        "pills": [
+          "All 8",
+          "1 blocker",
+          "7 warnings"
+        ]
+      },
+      {
+        "nav": "BOV",
+        "crumb": "BOV / This month",
+        "title": "Autonomous BOV · June",
+        "sub": "Comps, pricing and the letter, drafted before the pitch.",
+        "cta": "Start a BOV",
+        "hero": [
+          "BOVs this month",
+          "22",
+          "2-day average turnaround · 4 in review",
+          "Review the queue"
+        ],
+        "stats": [
+          [
+            "",
+            "Comps pulled",
+            "1,940",
+            "From listings and county records · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "1",
+            "Must fix to send"
+          ],
+          [
+            "",
+            "In review",
+            "4",
+            "Awaiting broker sign-off"
+          ],
+          [
+            "g",
+            "Warnings",
+            "5",
+            "Worth a look"
+          ]
+        ],
+        "unit": "BOVs",
+        "rows": [
+          [
+            "BOV-2210",
+            "Comp set incomplete",
+            2,
+            "Resolve",
+            1
+          ],
+          [
+            "BOV-2204",
+            "Pricing outside market range",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "BOV-2199",
+            "Owner data stale",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "BOV-2211",
+            "No recent closings in set",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "BOV-2207",
+            "Letter not reviewed",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "BOV-2210",
+            "Photos not attached",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 2,
+        "pills": [
+          "All 8",
+          "1 blocker",
+          "5 warnings"
+        ]
+      },
+      {
+        "nav": "Broker desk",
+        "crumb": "Desk / This week",
+        "title": "Broker desk · Week ending Jun 20th",
+        "sub": "Everything standing between this run and agent payouts on Friday.",
+        "cta": "Import transactions",
+        "hero": [
+          "Commissions payable",
+          "$684,200",
+          "across 38 agents · nothing sent yet",
+          "Review the run"
+        ],
+        "stats": [
+          [
+            "",
+            "Transactions synced",
+            "96",
+            "From closings · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "1",
+            "Must fix to run"
+          ],
+          [
+            "",
+            "Payout in",
+            "2 days",
+            "Friday, Jun 27"
+          ],
+          [
+            "g",
+            "Warnings",
+            "7",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Deals",
+        "rows": [
+          [
+            "LIST-0914",
+            "Split not agreed in writing",
+            1,
+            "Resolve",
+            1
+          ],
+          [
+            "TXN-1187",
+            "Referral fee unallocated",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "TXN-1190",
+            "Override applied twice",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "TXN-1176",
+            "Escrow not released",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "TXN-1188",
+            "Agent licence expiring",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "TXN-1190",
+            "Cap reached mid-deal",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 2,
+        "pills": [
+          "All 8",
+          "1 blocker",
+          "7 warnings"
+        ]
+      },
+      {
+        "nav": "Research",
+        "crumb": "Research / Markets",
+        "title": "Market research · Week ending Jun 20th",
+        "sub": "What the submarket did, and whether the data is worth quoting.",
+        "cta": "Refresh markets",
+        "hero": [
+          "Ownership records",
+          "12,400",
+          "41 submarkets · absorption tracked",
+          "Review the markets"
+        ],
+        "stats": [
+          [
+            "",
+            "Records refreshed",
+            "1,180",
+            "From county and listing sources · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "1",
+            "Must fix to publish"
+          ],
+          [
+            "",
+            "Refreshed",
+            "Today",
+            "06:00 local"
+          ],
+          [
+            "g",
+            "Warnings",
+            "6",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Markets",
+        "rows": [
+          [
+            "SUBMKT",
+            "Absorption data stale",
+            2,
+            "Resolve",
+            1
+          ],
+          [
+            "DOWNTOWN",
+            "Ownership unverified",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "MIDTOWN",
+            "New comp recorded",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "NORTH",
+            "Vacancy series revised",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "SOUTH",
+            "Construction starts missing",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "DOWNTOWN",
+            "Rent survey out of date",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 2,
+        "pills": [
+          "All 8",
+          "1 blocker",
+          "6 warnings"
+        ]
+      },
+      {
+        "nav": "Agents",
+        "crumb": "Agents / This week",
+        "title": "Agent growth · Week ending Jun 20th",
+        "sub": "Who is producing, who is drifting, and who is about to leave.",
+        "cta": "Add a prospect",
+        "hero": [
+          "Pipeline",
+          "$128M",
+          "across 38 agents · 312 hours reclaimed",
+          "Review the desk"
+        ],
+        "stats": [
+          [
+            "",
+            "Prospects sourced",
+            "840",
+            "From market and ownership data · automatic"
+          ],
+          [
+            "r",
+            "Blockers",
+            "1",
+            "Must fix to assign"
+          ],
+          [
+            "",
+            "At retention risk",
+            "6",
+            "Flagged this week"
+          ],
+          [
+            "g",
+            "Warnings",
+            "5",
+            "Worth a look"
+          ]
+        ],
+        "unit": "Agents",
+        "rows": [
+          [
+            "DESK",
+            "6 agents at retention risk",
+            6,
+            "Resolve",
+            1
+          ],
+          [
+            "ONBOARD",
+            "Onboarding incomplete",
+            2,
+            "Review",
+            0
+          ],
+          [
+            "PROD",
+            "Production below target",
+            4,
+            "Review",
+            0
+          ],
+          [
+            "DESK",
+            "No pipeline activity 30 days",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "ONBOARD",
+            "Licence not verified",
+            1,
+            "Review",
+            0
+          ],
+          [
+            "PROD",
+            "Split renegotiation due",
+            1,
+            "Review",
+            0
+          ]
+        ],
+        "more": 2,
+        "pills": [
+          "All 8",
+          "1 blocker",
+          "5 warnings"
+        ]
+      }
+    ]
+  },
+  {
     "id": "legal",
     "name": "Legal",
     "steps": [
@@ -1472,520 +2536,8 @@ export const BPOS_INDUSTRIES: Industry[] = [
     ]
   },
   {
-    "id": "logistics",
-    "name": "Logistics",
-    "steps": [
-      [
-        "Invoices brought in",
-        "done",
-        "done"
-      ],
-      [
-        "Fix what needs a look",
-        "now",
-        "25 open"
-      ],
-      [
-        "Run settlement",
-        "lock",
-        "locked by 3 blockers"
-      ],
-      [
-        "Check the numbers",
-        "num",
-        "after run"
-      ],
-      [
-        "Send payments",
-        "lock",
-        "locked"
-      ]
-    ],
-    "lock": [
-      "Step 3 is locked",
-      "3 blockers on the worklist are holding settlement. Warnings don't block, but the blockers must go."
-    ],
-    "mods": [
-      {
-        "nav": "Ops",
-        "crumb": "Ops / This week",
-        "title": "Operations · Week ending Jun 20th",
-        "sub": "What is moving, what is covered, and what is still open.",
-        "cta": "Import loads",
-        "hero": [
-          "Loads this week",
-          "1,077",
-          "96% covered · 26 still uncovered",
-          "Review the board"
-        ],
-        "stats": [
-          [
-            "",
-            "Loads imported",
-            "1,077",
-            "From your TMS · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "1",
-            "Must fix to dispatch"
-          ],
-          [
-            "",
-            "On time",
-            "94.2%",
-            "Trailing 7 days"
-          ],
-          [
-            "g",
-            "Warnings",
-            "10",
-            "Worth a look"
-          ]
-        ],
-        "unit": "Loads",
-        "rows": [
-          [
-            "NEXTWK",
-            "26 loads uncovered",
-            26,
-            "Resolve",
-            1
-          ],
-          [
-            "LAREDO-77",
-            "Detention risk building",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "DALLAS-08",
-            "Appointment missed",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "MEMPHIS-31",
-            "Driver hours near limit",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "TULSA-19",
-            "Reefer temp out of range",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "ELPASO-12",
-            "Cross-border docs pending",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 6,
-        "pills": [
-          "All 12",
-          "1 blocker",
-          "10 warnings"
-        ]
-      },
-      {
-        "nav": "Load board",
-        "crumb": "Operations / Load board",
-        "title": "Load board · Week ending Jun 20th",
-        "sub": "Every load in flight, on the map, with the reload beside it.",
-        "cta": "Open the board",
-        "hero": ["Loads in flight", "1,077", "412 carriers · 38 states", "Cover the open lanes"],
-        "stats": [
-          ["", "Covered", "947", "88.0% of the board"],
-          ["", "Open lanes", "108", "22 without a reload"],
-          ["b", "Blockers", "1", "Must fix to tender"],
-          ["w", "Warnings", "7", "Worth a look"]
-        ],
-        "unit": "Loads",
-        "rows": [
-          ["DFW-DEN", "No reload on the return leg", 14, "Cover", 1],
-          ["LAX-PHX", "Capacity tight, rate above target", 9, "Review", 0],
-          ["SAV-CLT", "Appointment not confirmed", 6, "Review", 0],
-          ["HSV-MLU", "Deadhead over 180 miles", 5, "Review", 0],
-          ["ORD-CMH", "Carrier insurance expiring", 4, "Review", 0],
-          ["LRD-MEM", "Cross-border documents pending", 3, "Review", 0]
-        ],
-        "more": 3,
-        "pills": ["All 8", "1 blocker", "7 warnings"]
-      },
-      {
-        "nav": "Carrier audit",
-        "crumb": "Audit / This week",
-        "title": "Carrier audit · Week ending Jun 20th",
-        "sub": "Every invoice checked against the rate confirmation, before it is paid.",
-        "cta": "Run the audit",
-        "hero": [
-          "Recovered this month",
-          "$212,000",
-          "3,908 invoices audited · 25 exceptions",
-          "Review the exceptions"
-        ],
-        "stats": [
-          [
-            "",
-            "Invoices audited",
-            "3,908",
-            "From carrier billing · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "3",
-            "Must fix to settle"
-          ],
-          [
-            "",
-            "Over rate con",
-            "$84K",
-            "Flagged this week"
-          ],
-          [
-            "g",
-            "Warnings",
-            "22",
-            "Worth a look"
-          ]
-        ],
-        "unit": "Loads",
-        "rows": [
-          [
-            "LAREDO-77",
-            "Invoice over the rate con",
-            4,
-            "Resolve",
-            1
-          ],
-          [
-            "ELPASO-12",
-            "Carrier insurance lapsed",
-            1,
-            "Resolve",
-            1
-          ],
-          [
-            "TULSA-19",
-            "Duplicate invoice submitted",
-            1,
-            "Resolve",
-            1
-          ],
-          [
-            "DALLAS-08",
-            "Detention billed without proof",
-            2,
-            "Review",
-            0
-          ],
-          [
-            "MEMPHIS-31",
-            "Accessorial not on contract",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "LAREDO-77",
-            "Fuel surcharge mismatch",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 16,
-        "pills": [
-          "All 25",
-          "3 blockers",
-          "22 warnings"
-        ]
-      },
-      {
-        "nav": "Billing",
-        "crumb": "Billing / This week",
-        "title": "Billing & settlement · Week ending Jun 20th",
-        "sub": "Everything standing between this run and carriers being paid Friday.",
-        "cta": "Upload load sheet",
-        "hero": [
-          "Ready to settle",
-          "$1.84M",
-          "across 214 carriers · nothing sent yet",
-          "Review the run"
-        ],
-        "stats": [
-          [
-            "",
-            "Invoices matched",
-            "3,883",
-            "Against rate confirmations · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "3",
-            "Must fix to run"
-          ],
-          [
-            "",
-            "Settlement in",
-            "2 days",
-            "Friday, Jun 27"
-          ],
-          [
-            "g",
-            "Warnings",
-            "18",
-            "Worth a look"
-          ]
-        ],
-        "unit": "Loads",
-        "rows": [
-          [
-            "LAREDO-77",
-            "Invoice over the rate con",
-            4,
-            "Resolve",
-            1
-          ],
-          [
-            "ELPASO-12",
-            "Carrier insurance lapsed",
-            1,
-            "Resolve",
-            1
-          ],
-          [
-            "MEMPHIS-31",
-            "Invoice held, credit check",
-            1,
-            "Resolve",
-            1
-          ],
-          [
-            "DALLAS-08",
-            "Detention billed without proof",
-            2,
-            "Review",
-            0
-          ],
-          [
-            "TULSA-19",
-            "Customer AR past 60 days",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "LAREDO-77",
-            "Accessorial off contract",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 12,
-        "pills": [
-          "All 21",
-          "3 blockers",
-          "18 warnings"
-        ]
-      },
-      {
-        "nav": "Reconciliation",
-        "crumb": "Reconciliation / This week",
-        "title": "Reconciliation · Week ending Jun 20th",
-        "sub": "What matched, what did not, and what it is worth.",
-        "cta": "Close the week",
-        "hero": [
-          "Unmatched variance",
-          "$18,400",
-          "98.4% matched · 41 open items",
-          "Review the variance"
-        ],
-        "stats": [
-          [
-            "",
-            "Lines reconciled",
-            "7,812",
-            "Carrier AP against customer AR · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "1",
-            "Must fix to close"
-          ],
-          [
-            "",
-            "Closed through",
-            "Jun 20",
-            "Last full week"
-          ],
-          [
-            "g",
-            "Warnings",
-            "13",
-            "Worth a look"
-          ]
-        ],
-        "unit": "Items",
-        "rows": [
-          [
-            "LOADS",
-            "Rate confirmation missing",
-            4,
-            "Resolve",
-            1
-          ],
-          [
-            "TULSA-19",
-            "Fuel surcharge mismatch",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "DALLAS-08",
-            "Short pay unexplained",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "LAREDO-77",
-            "Accessorial double counted",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "MEMPHIS-31",
-            "Credit memo unapplied",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "ELPASO-12",
-            "Currency conversion variance",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 9,
-        "pills": [
-          "All 14",
-          "1 blocker",
-          "13 warnings"
-        ]
-      },
-      {
-        "nav": "Commissions",
-        "crumb": "Commissions / This week",
-        "title": "Commissions · Week ending Jun 20th",
-        "sub": "Everything standing between this run and payday on Friday.",
-        "cta": "Upload load sheet",
-        "hero": [
-          "Ready to pay",
-          "$201,480",
-          "across 54 people · nothing sent yet",
-          "Review the run"
-        ],
-        "stats": [
-          [
-            "",
-            "Loads imported",
-            "1,077",
-            "From your TMS · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "1",
-            "Must fix to run"
-          ],
-          [
-            "",
-            "Payday in",
-            "2 days",
-            "Friday, Jun 27"
-          ],
-          [
-            "g",
-            "Warnings",
-            "15",
-            "Worth a look"
-          ]
-        ],
-        "unit": "Loads",
-        "rows": [
-          [
-            "ALEXJCO",
-            "Nobody to pay — needs a payee",
-            2,
-            "Resolve",
-            1
-          ],
-          [
-            "MAYABFL",
-            "Loads that lost money",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "NYLARTX",
-            "Loads that lost money",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "WRENDAZ",
-            "Loads that lost money",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "DOTXUOH",
-            "Loads that lost money",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "MAYABFL",
-            "Below min margin — pays $0",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 9,
-        "pills": [
-          "All 16",
-          "1 blocker",
-          "15 warnings"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "restaurants",
-    "name": "Restaurants",
+    "id": "hospitality",
+    "name": "Hospitality",
     "steps": [
       [
         "Sales imported",
@@ -2466,493 +3018,6 @@ export const BPOS_INDUSTRIES: Industry[] = [
           "All 8",
           "1 blocker",
           "6 warnings"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "brokerage",
-    "name": "Brokerage",
-    "steps": [
-      [
-        "Transactions synced",
-        "done",
-        "done"
-      ],
-      [
-        "Fix what needs a look",
-        "now",
-        "8 open"
-      ],
-      [
-        "Run the payouts",
-        "lock",
-        "locked by 1 blocker"
-      ],
-      [
-        "Check the splits",
-        "num",
-        "after run"
-      ],
-      [
-        "Send statements",
-        "lock",
-        "locked"
-      ]
-    ],
-    "lock": [
-      "Step 3 is locked",
-      "1 blocker on the worklist is holding payouts. Warnings don't block, but the blocker must go."
-    ],
-    "mods": [
-      {
-        "nav": "Listings",
-        "crumb": "Listings / This week",
-        "title": "Live listings · Week ending Jun 20th",
-        "sub": "What is on the market, and what is quietly going stale.",
-        "cta": "Add a listing",
-        "hero": [
-          "Live listings",
-          "74",
-          "18 under contract · 63 days on market",
-          "Review the listings"
-        ],
-        "stats": [
-          [
-            "",
-            "Listings synced",
-            "74",
-            "From your CRM · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "1",
-            "Must fix to publish"
-          ],
-          [
-            "",
-            "New this week",
-            "6",
-            "Added to market"
-          ],
-          [
-            "g",
-            "Warnings",
-            "7",
-            "Worth a look"
-          ]
-        ],
-        "unit": "Listings",
-        "rows": [
-          [
-            "LIST-0902",
-            "Listing expired, still live",
-            1,
-            "Resolve",
-            1
-          ],
-          [
-            "LIST-0914",
-            "Photos missing",
-            3,
-            "Review",
-            0
-          ],
-          [
-            "LIST-0918",
-            "Price reduction overdue",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "LIST-0871",
-            "No activity in 45 days",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "LIST-0933",
-            "Square footage disputed",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "LIST-0902",
-            "Owner contact stale",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 2,
-        "pills": [
-          "All 8",
-          "1 blocker",
-          "7 warnings"
-        ]
-      },
-      {
-        "nav": "BOV",
-        "crumb": "BOV / This month",
-        "title": "Autonomous BOV · June",
-        "sub": "Comps, pricing and the letter, drafted before the pitch.",
-        "cta": "Start a BOV",
-        "hero": [
-          "BOVs this month",
-          "22",
-          "2-day average turnaround · 4 in review",
-          "Review the queue"
-        ],
-        "stats": [
-          [
-            "",
-            "Comps pulled",
-            "1,940",
-            "From listings and county records · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "1",
-            "Must fix to send"
-          ],
-          [
-            "",
-            "In review",
-            "4",
-            "Awaiting broker sign-off"
-          ],
-          [
-            "g",
-            "Warnings",
-            "5",
-            "Worth a look"
-          ]
-        ],
-        "unit": "BOVs",
-        "rows": [
-          [
-            "BOV-2210",
-            "Comp set incomplete",
-            2,
-            "Resolve",
-            1
-          ],
-          [
-            "BOV-2204",
-            "Pricing outside market range",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "BOV-2199",
-            "Owner data stale",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "BOV-2211",
-            "No recent closings in set",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "BOV-2207",
-            "Letter not reviewed",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "BOV-2210",
-            "Photos not attached",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 2,
-        "pills": [
-          "All 8",
-          "1 blocker",
-          "5 warnings"
-        ]
-      },
-      {
-        "nav": "Broker desk",
-        "crumb": "Desk / This week",
-        "title": "Broker desk · Week ending Jun 20th",
-        "sub": "Everything standing between this run and agent payouts on Friday.",
-        "cta": "Import transactions",
-        "hero": [
-          "Commissions payable",
-          "$684,200",
-          "across 38 agents · nothing sent yet",
-          "Review the run"
-        ],
-        "stats": [
-          [
-            "",
-            "Transactions synced",
-            "96",
-            "From closings · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "1",
-            "Must fix to run"
-          ],
-          [
-            "",
-            "Payout in",
-            "2 days",
-            "Friday, Jun 27"
-          ],
-          [
-            "g",
-            "Warnings",
-            "7",
-            "Worth a look"
-          ]
-        ],
-        "unit": "Deals",
-        "rows": [
-          [
-            "LIST-0914",
-            "Split not agreed in writing",
-            1,
-            "Resolve",
-            1
-          ],
-          [
-            "TXN-1187",
-            "Referral fee unallocated",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "TXN-1190",
-            "Override applied twice",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "TXN-1176",
-            "Escrow not released",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "TXN-1188",
-            "Agent licence expiring",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "TXN-1190",
-            "Cap reached mid-deal",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 2,
-        "pills": [
-          "All 8",
-          "1 blocker",
-          "7 warnings"
-        ]
-      },
-      {
-        "nav": "Research",
-        "crumb": "Research / Markets",
-        "title": "Market research · Week ending Jun 20th",
-        "sub": "What the submarket did, and whether the data is worth quoting.",
-        "cta": "Refresh markets",
-        "hero": [
-          "Ownership records",
-          "12,400",
-          "41 submarkets · absorption tracked",
-          "Review the markets"
-        ],
-        "stats": [
-          [
-            "",
-            "Records refreshed",
-            "1,180",
-            "From county and listing sources · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "1",
-            "Must fix to publish"
-          ],
-          [
-            "",
-            "Refreshed",
-            "Today",
-            "06:00 local"
-          ],
-          [
-            "g",
-            "Warnings",
-            "6",
-            "Worth a look"
-          ]
-        ],
-        "unit": "Markets",
-        "rows": [
-          [
-            "SUBMKT",
-            "Absorption data stale",
-            2,
-            "Resolve",
-            1
-          ],
-          [
-            "DOWNTOWN",
-            "Ownership unverified",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "MIDTOWN",
-            "New comp recorded",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "NORTH",
-            "Vacancy series revised",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "SOUTH",
-            "Construction starts missing",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "DOWNTOWN",
-            "Rent survey out of date",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 2,
-        "pills": [
-          "All 8",
-          "1 blocker",
-          "6 warnings"
-        ]
-      },
-      {
-        "nav": "Agents",
-        "crumb": "Agents / This week",
-        "title": "Agent growth · Week ending Jun 20th",
-        "sub": "Who is producing, who is drifting, and who is about to leave.",
-        "cta": "Add a prospect",
-        "hero": [
-          "Pipeline",
-          "$128M",
-          "across 38 agents · 312 hours reclaimed",
-          "Review the desk"
-        ],
-        "stats": [
-          [
-            "",
-            "Prospects sourced",
-            "840",
-            "From market and ownership data · automatic"
-          ],
-          [
-            "r",
-            "Blockers",
-            "1",
-            "Must fix to assign"
-          ],
-          [
-            "",
-            "At retention risk",
-            "6",
-            "Flagged this week"
-          ],
-          [
-            "g",
-            "Warnings",
-            "5",
-            "Worth a look"
-          ]
-        ],
-        "unit": "Agents",
-        "rows": [
-          [
-            "DESK",
-            "6 agents at retention risk",
-            6,
-            "Resolve",
-            1
-          ],
-          [
-            "ONBOARD",
-            "Onboarding incomplete",
-            2,
-            "Review",
-            0
-          ],
-          [
-            "PROD",
-            "Production below target",
-            4,
-            "Review",
-            0
-          ],
-          [
-            "DESK",
-            "No pipeline activity 30 days",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "ONBOARD",
-            "Licence not verified",
-            1,
-            "Review",
-            0
-          ],
-          [
-            "PROD",
-            "Split renegotiation due",
-            1,
-            "Review",
-            0
-          ]
-        ],
-        "more": 2,
-        "pills": [
-          "All 8",
-          "1 blocker",
-          "5 warnings"
         ]
       }
     ]
