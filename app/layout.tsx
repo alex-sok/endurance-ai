@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import { ApolloTracker } from "@/components/ApolloTracker";
 import "./globals.css";
 
-// The Public-minimal pairing: one editorial serif on claims, one grotesque
-// on body and nav, and the same grotesque's mono on kickers.
+// The pairing: one American grotesque on claims and figures, one humanist
+// grotesque on body and nav. No serif, and no italic anywhere.
 
 // IBM Plex Sans — the grotesque, body and nav
 const plexSans = IBM_Plex_Sans({
@@ -20,11 +20,14 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "700"],
 });
 
-// Source Serif 4 — the editorial serif, claims only
-const sourceSerif = Source_Serif_4({
+// Archivo: an American grotesque drawn for print and signage. It carries the
+// claim and every figure. The serif is gone: a literary serif over a mono
+// eyebrow is what every lab site converged on, and this is a freight ledger.
+const archivo = Archivo({
   subsets: ["latin"],
   variable: "--font-display",
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 const SITE_URL = "https://endurancelabs.ai";
@@ -109,7 +112,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexMono.variable} ${sourceSerif.variable} h-full`}>
+    <html lang="en" className={`${plexSans.variable} ${plexMono.variable} ${archivo.variable} h-full`}>
       <body className="h-full antialiased">
         <ApolloTracker />
         <script
