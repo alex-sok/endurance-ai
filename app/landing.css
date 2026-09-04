@@ -2116,19 +2116,23 @@ body:has(.theme-paper) {
 }
 
 .lp-feature-cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
   margin-top: 28px;
-  color: var(--lp-ink);
+  padding: 0 24px;
+  border: 1px solid var(--lp-ink);
+  border-radius: var(--lp-radius);
+  background: var(--lp-ink);
+  color: var(--lp-paper);
   font-size: 15px;
-  text-decoration: underline;
-  text-decoration-color: rgba(27, 26, 34, 0.35);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
-  transition: text-decoration-color 160ms var(--lp-ease);
+  text-decoration: none;
+  transition: background 160ms var(--lp-ease);
 }
 
 .lp-feature-cta:hover {
-  text-decoration-color: var(--lp-ink);
+  background: #000;
 }
 
 .lp-feature-frame:hover {

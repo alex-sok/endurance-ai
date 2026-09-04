@@ -19,7 +19,7 @@ export function LandingHero({ onOpenChat }: Props) {
             See Margins
           </a>
           <button type="button" className="lp-btn-quiet" onClick={onOpenChat}>
-            Talk to us
+            Invitation to Learn More
           </button>
         </div>
       </div>
