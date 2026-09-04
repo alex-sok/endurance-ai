@@ -38,8 +38,16 @@ export interface BarRow {
   flag?: boolean;
 }
 
+export type Tick = [label: string, value: string, delta: string];
+
 export interface IndustryView {
   layout: Layout;
+  /** run: index of the module the checklist actually belongs to. Every other
+   *  module gets a full-width worklist instead of a checklist that does not
+   *  describe it. */
+  runModule?: number;
+  /** command: the market strip across the top of the band */
+  ticker?: Tick[];
   /** command: the dark band */
   bandTitle?: string;
   bandSub?: string;
@@ -55,6 +63,17 @@ export interface IndustryView {
 export const BPOS_VIEWS: Record<string, IndustryView> = {
   realestate: {
     layout: "command",
+    ticker: [
+      ["30D avg SOFR", "3.66%", ""],
+      ["2Y UST", "4.37%", "+3.0 bps"],
+      ["5Y UST", "4.54%", "+2.0 bps"],
+      ["10Y UST", "4.78%", "+1.0 bps"],
+      ["30Y MTG", "6.71%", ""],
+      ["CPI YOY", "3.36%", ""],
+      ["CORE PCE", "3.34%", ""],
+      ["FED FUNDS", "3.75%", ""],
+      ["10Y-2Y", "0.41%", ""],
+    ],
     bandTitle: "Executive Command Center",
     bandSub:
       "36 assets in scope — one source of truth: property-management financials, rent rolls, work orders and collections. No exports, no spreadsheet rebuilds, drill-downs one click away.",
@@ -86,6 +105,17 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
 
   wealth: {
     layout: "command",
+    ticker: [
+      ["S&P 500", "6,284", "+0.42%"],
+      ["NASDAQ", "20,918", "+0.61%"],
+      ["10Y UST", "4.78%", "+1.0 bps"],
+      ["2Y UST", "4.37%", "+3.0 bps"],
+      ["VIX", "13.4", "-0.6"],
+      ["DXY", "104.2", "+0.11%"],
+      ["GOLD", "$3,412", "+0.28%"],
+      ["IG OAS", "92 bps", "-1 bp"],
+      ["HY OAS", "318 bps", "-4 bps"],
+    ],
     bandTitle: "Client Command Center",
     bandSub:
       "1,204 households in scope — custodial positions, portfolio accounting, billing and the CRM reconciled nightly. Every figure on a client pack traces to a custodian record.",
@@ -201,8 +231,8 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     },
   },
 
-  legal: { layout: "run" },
-  logistics: { layout: "run" },
+  legal: { layout: "run", runModule: 2 },
+  logistics: { layout: "run", runModule: 2 },
 };
 
 /** What the system is plugged into. APIs are systems of record; MCP servers
@@ -292,4 +322,40 @@ export const BPOS_SOURCES: Record<string, { synced: string; sources: Source[] }>
       { kind: "MCP", name: "Client packs" },
     ],
   },
+};
+
+/** The worklist header, per module. "Needs a look" on every screen of every
+ *  product read as one template with the data swapped out. Keyed
+ *  `industry.module`. */
+export const BPOS_WORKLIST: Record<string, string> = {
+  "construction.Bids": "Bid gaps",
+  "construction.Budget": "Budget exceptions",
+  "construction.Billing": "Billing held up",
+  "construction.Manpower": "Crew flags",
+  "realestate.Asset Books": "Book exceptions",
+  "realestate.Underwriting": "Deal blockers",
+  "realestate.Distributions": "Distribution holds",
+  "realestate.Comps": "Comp set gaps",
+  "legal.Matters": "Matter risks",
+  "legal.Intake": "Intake queue",
+  "legal.Billing": "Prebill exceptions",
+  "legal.Budget": "Budget breaches",
+  "legal.People": "Capacity flags",
+  "logistics.Ops": "Dispatch flags",
+  "logistics.Carrier audit": "Audit exceptions",
+  "logistics.Billing": "Invoice exceptions",
+  "logistics.Reconciliation": "Unmatched items",
+  "logistics.Commissions": "Pay exceptions",
+  "restaurants.Labor": "Labor flags",
+  "restaurants.Inventory": "Count and price flags",
+  "restaurants.COGS": "Cost variances",
+  "restaurants.Reports": "Close blockers",
+  "brokerage.BOV": "BOV queue",
+  "brokerage.Broker desk": "Payout exceptions",
+  "brokerage.Research": "Data gaps",
+  "brokerage.Agents": "Agent flags",
+  "wealth.Models": "Drift and trade flags",
+  "wealth.Performance": "Pack exceptions",
+  "wealth.Committee": "Committee items",
+  "wealth.Compliance": "Compliance items",
 };

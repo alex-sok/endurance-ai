@@ -2,16 +2,22 @@
 
 import { useState } from "react";
 import { BPOS_INDUSTRIES } from "./bpos-content";
-import { BPOS_VIEWS, BPOS_SOURCES } from "./bpos-views";
+import { BPOS_VIEWS, BPOS_SOURCES, BPOS_WORKLIST } from "./bpos-views";
 
 /**
  * The BPOS console, shown rather than described.
  *
  * Industry chips swap the whole product; the module bar swaps the page inside
- * it. The products do not look alike in real life, so the page shape changes
- * with the industry: a command band over a data grid for the portfolio
- * businesses, a KPI strip over progress rows for the book-of-jobs businesses,
- * a headline figure over a locked run for the periodic ones.
+ * it. Two things had to be true for this to read as seven real products
+ * rather than one template:
+ *
+ * 1. The first tab of every industry is the flagship view and nothing else
+ *    looks like it — the command centre for the portfolio businesses, the
+ *    contract board for the book-of-jobs ones. It appears once.
+ * 2. The other four tabs are working screens: a headline figure, stat cards
+ *    and the worklist for that module, with its own header. The run checklist
+ *    only appears on the module the run actually belongs to, since "run the
+ *    prebills" is not what a capacity screen does.
  */
 function Spark({ points }: { points: number[] }) {
   const w = 120;
@@ -42,6 +48,14 @@ export function LandingBPOS() {
   const view = BPOS_VIEWS[d.id];
   const conn = BPOS_SOURCES[d.id];
 
+  /** The flagship view — shown on the first tab only, never repeated. */
+  const flagship = mod === 0;
+  /** The run checklist belongs to one module, not to all five. */
+  const showChecklist = view.layout === "run" && mod === view.runModule;
+  /** Every non-flagship tab is a working screen with its own worklist. */
+  const showWorklist = view.layout === "run" || !flagship;
+  const worklistTitle = BPOS_WORKLIST[`${d.id}.${m.nav}`] ?? "Needs a look";
+
   function pickIndustry(i: number) {
     setInd(i);
     setMod(0);
@@ -60,18 +74,17 @@ export function LandingBPOS() {
     document.getElementById(`bpos-tab-${n}`)?.focus();
   }
 
-  const grid = view.grid;
+  const showBand = view.layout === "command" && flagship;
+  const showBars = view.layout === "board" && flagship && view.bars;
+  const showGrid = view.grid && flagship;
 
   return (
-    <section className="lp-sheet" id="bpos" data-section="bpos" aria-label="Brain powered operating systems">
-      <p className="lp-kicker">Brain powered operating systems</p>
-      <h2 className="lp-h2">
-        Your whole company&rsquo;s operations, automated before anybody asks.
-      </h2>
+    <section className="lp-sheet" id="bpos" data-section="bpos" aria-label="Inside a BPOS">
+      <p className="lp-kicker">03 · Inside a BPOS</p>
+      <h2 className="lp-h2">Pick an industry. Look inside the system.</h2>
       <p className="lp-lede">
-        One system per industry, wired into what you already run. Deterministic
-        by design: ask twice, get the same answer, and every figure traces back
-        to a source of truth.
+        Each of these is a product already running. The shape changes with the
+        operation, because the operation is what it is wired into.
       </p>
 
       <div className="bpos-tabs" role="tablist" aria-label="Industry">
@@ -133,26 +146,45 @@ export function LandingBPOS() {
         ) : null}
 
         <div className="bpos-body" aria-live="polite">
-          {view.layout === "command" ? (
+          {showBand ? (
             <div className="bpos-band">
-              <p className="bpos-band-kick">
-                {d.name} — period operating report · all {m.nav.toLowerCase()}
-              </p>
-              <div className="bpos-band-head">
-                <h3>{view.bandTitle}</h3>
-                <span className="bpos-band-meta">{view.bandMeta}</span>
-              </div>
-              <p className="bpos-band-sub">{view.bandSub}</p>
-              <div className="bpos-band-grid">
-                {view.band?.map((k) => (
-                  <div className="bpos-bcard" key={k.label}>
-                    <p className="bpos-bk">{k.label}</p>
-                    <p className="bpos-bv">{k.value}</p>
-                    <p className="bpos-bd">▲ {k.delta}</p>
-                    <p className="bpos-bs">{k.sub}</p>
-                    <Spark points={k.spark} />
+              {view.ticker ? (
+                <div className="bpos-ticker" aria-label="Market inputs">
+                  <span className="bpos-tick-kick">
+                    <i className="bpos-pulse" />
+                    Market
+                  </span>
+                  <div className="bpos-tick-scroll">
+                    {view.ticker.map((t) => (
+                      <span className="bpos-tick" key={t[0]}>
+                        <em>{t[0]}</em>
+                        <b>{t[1]}</b>
+                        {t[2] ? <i>{t[2]}</i> : null}
+                      </span>
+                    ))}
                   </div>
-                ))}
+                </div>
+              ) : null}
+              <div className="bpos-band-in">
+                <div className="bpos-band-head">
+                  <div>
+                    <p className="bpos-band-kick">{d.name} — period operating report</p>
+                    <h3>{view.bandTitle}</h3>
+                  </div>
+                  <span className="bpos-band-meta">{view.bandMeta}</span>
+                </div>
+                <p className="bpos-band-sub">{view.bandSub}</p>
+                <div className="bpos-band-grid">
+                  {view.band?.map((k) => (
+                    <div className="bpos-bcard" key={k.label}>
+                      <p className="bpos-bk">{k.label}</p>
+                      <p className="bpos-bv">{k.value}</p>
+                      <p className="bpos-bd">▲ {k.delta}</p>
+                      <p className="bpos-bs">{k.sub}</p>
+                      <Spark points={k.spark} />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ) : (
@@ -187,13 +219,13 @@ export function LandingBPOS() {
             </>
           )}
 
-          {view.layout === "board" && view.bars ? (
+          {showBars ? (
             <div className="bpos-card bpos-bars">
               <div className="bpos-crow">
                 <p className="bpos-ct">{view.barsTitle}</p>
                 <span className="bpos-sm">{view.barsMeta}</span>
               </div>
-              {view.bars.map((b) => (
+              {view.bars?.map((b) => (
                 <div className="bpos-brow" key={b.name}>
                   <div className="bpos-bmeta">
                     <p className="bpos-bname">
@@ -214,17 +246,17 @@ export function LandingBPOS() {
             </div>
           ) : null}
 
-          {grid ? (
+          {showGrid && view.grid ? (
             <div className="bpos-card bpos-gridcard">
               <div className="bpos-crow">
-                <p className="bpos-ct">{grid.title}</p>
-                <span className="bpos-sm">{grid.meta}</span>
+                <p className="bpos-ct">{view.grid.title}</p>
+                <span className="bpos-sm">{view.grid.meta}</span>
               </div>
               <div className="bpos-scroll">
                 <table className="bpos-tab-list bpos-wide">
                   <thead>
                     <tr>
-                      {grid.cols.map((c, i) => (
+                      {view.grid.cols.map((c, i) => (
                         <th key={c} className={i > 1 ? "r" : undefined}>
                           {c}
                         </th>
@@ -232,7 +264,7 @@ export function LandingBPOS() {
                     </tr>
                   </thead>
                   <tbody>
-                    {grid.rows.map((r) => (
+                    {view.grid.rows.map((r) => (
                       <tr key={r[0]}>
                         {r.map((cell, i) => (
                           <td
@@ -250,11 +282,11 @@ export function LandingBPOS() {
             </div>
           ) : null}
 
-          {view.layout === "run" ? (
-            <div className="bpos-low">
+          {showWorklist ? (
+            <div className={`bpos-low${showChecklist ? "" : " bpos-low-wide"}`}>
               <div className="bpos-card">
                 <div className="bpos-crow">
-                  <p className="bpos-ct">Needs a look</p>
+                  <p className="bpos-ct">{worklistTitle}</p>
                   <span className="bpos-pills">
                     <span className="bpos-pill on">{m.pills[0]}</span>
                     <span className="bpos-pill rd">{m.pills[1]}</span>
@@ -297,33 +329,35 @@ export function LandingBPOS() {
                 </div>
               </div>
 
-              <div className="bpos-card">
-                <p className="bpos-ct">Run checklist</p>
-                <p className="bpos-sm">1 of 5 steps clear</p>
-                <ul className="bpos-steps">
-                  {d.steps.map((s, i) => (
-                    <li key={s[0]} className={s[1] === "lock" ? "lock" : undefined}>
-                      <span className={`bpos-num${s[1] === "done" ? " done" : s[1] === "now" ? " now" : ""}`}>
-                        {s[1] === "done" ? "✓" : i + 1}
-                      </span>
-                      <span className="bpos-stxt">{s[0]}</span>
-                      <span className="bpos-sright">{s[2]}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="bpos-locked">
-                  <b>{d.lock[0]}</b>
-                  <p>{d.lock[1]}</p>
-                  <span className="bpos-btn">Open the worklist &rarr;</span>
+              {showChecklist ? (
+                <div className="bpos-card">
+                  <p className="bpos-ct">Run checklist</p>
+                  <p className="bpos-sm">1 of 5 steps clear</p>
+                  <ul className="bpos-steps">
+                    {d.steps.map((s, i) => (
+                      <li key={s[0]} className={s[1] === "lock" ? "lock" : undefined}>
+                        <span className={`bpos-num${s[1] === "done" ? " done" : s[1] === "now" ? " now" : ""}`}>
+                          {s[1] === "done" ? "✓" : i + 1}
+                        </span>
+                        <span className="bpos-stxt">{s[0]}</span>
+                        <span className="bpos-sright">{s[2]}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="bpos-locked">
+                    <b>{d.lock[0]}</b>
+                    <p>{d.lock[1]}</p>
+                    <span className="bpos-btn">Open the worklist &rarr;</span>
+                  </div>
                 </div>
-              </div>
+              ) : null}
             </div>
-          ) : (
-            <p className="bpos-trace">
-              Every figure links to the record behind it — no exports, no
-              spreadsheet rebuilds.
-            </p>
-          )}
+          ) : null}
+
+          <p className="bpos-trace">
+            Every figure links to the record behind it — no exports, no
+            spreadsheet rebuilds.
+          </p>
         </div>
       </div>
     </section>

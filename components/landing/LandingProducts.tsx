@@ -43,12 +43,18 @@ export function LandingProducts() {
 
       <section className="lp-chapter" aria-labelledby="work-brain">
         <div className="lp-chapter-copy">
-          <p className="lp-eyebrow">02 · Brain</p>
-          <h2 id="work-brain">Institutional memory that cites its sources.</h2>
-          <p className="lp-lead">Everything the firm already produces, compiled.</p>
+          <p className="lp-eyebrow">02 · Brain powered operating systems (BPOS)</p>
+          <h2 id="work-brain">
+            Your whole company&rsquo;s operations - automated before anybody
+            asks.
+          </h2>
+          <p className="lp-lead">
+            A brain is where it starts. The operating system is what we ship,
+            wired into the systems you already run.
+          </p>
           <p className="lp-body">
-            Every claim cites a source. Nothing is invented. Ask in plain
-            language, and every figure points at a document.
+            Deterministic by design: ask twice, get the same answer. Every
+            output traces back to a source of truth. Nothing is invented.
           </p>
           <a className="lp-feature-cta" href="/brain">
             Open Brain
