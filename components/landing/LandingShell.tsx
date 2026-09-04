@@ -6,6 +6,7 @@ import { LandingNav } from "./LandingNav";
 import { LandingHero } from "./LandingHero";
 import { LandingRoots } from "./LandingRoots";
 import { LandingProducts } from "./LandingProducts";
+import { LandingBPOS } from "./LandingBPOS";
 import { LandingTeam } from "./LandingTeam";
 import { LandingClose } from "./LandingClose";
 import { ChatOverlay } from "./ChatOverlay";
@@ -98,6 +99,7 @@ export function LandingShell() {
 
         <div className="lp-seq">
           <LandingProducts />
+        <LandingBPOS />
           <LandingRoots />
           <section className="lp-interstitial" data-section="method">
             <p className="lp-closer">
