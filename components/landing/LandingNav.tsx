@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface Props {
@@ -9,11 +10,16 @@ interface Props {
   onCtaClick?: (label: string) => void;
 }
 
+// Section anchors on the homepage, then the one link that is a page of its
+// own. Pricing keeps its place on a phone, where the anchors are hidden: the
+// page is what gets handed out, and it is handed out to people holding phones.
 const LINKS = [
   { id: "research", label: "Lab" },
   { id: "work", label: "Work" },
   { id: "team", label: "Team" },
 ];
+
+const PRICING_HREF = "/margins/pricing";
 
 export function LandingNav({ onOpenChat, onNavigate }: Props) {
   const pathname = usePathname();
@@ -60,6 +66,13 @@ export function LandingNav({ onOpenChat, onNavigate }: Props) {
               {link.label}
             </a>
           ))}
+          <Link
+            className="lp-nav-page"
+            href={PRICING_HREF}
+            aria-current={pathname === PRICING_HREF ? "page" : undefined}
+          >
+            Pricing
+          </Link>
           <button type="button" className="lp-nav-talk" onClick={onOpenChat}>
             Talk
           </button>
