@@ -101,8 +101,8 @@ export function LandingShell() {
 
         <div className="lp-seq">
           <LandingProducts />
-          <LandingBuilds />
           <LandingIDE />
+          <LandingBuilds />
           <LandingRoots />
           <section className="lp-interstitial" data-section="method">
             <p className="lp-closer">

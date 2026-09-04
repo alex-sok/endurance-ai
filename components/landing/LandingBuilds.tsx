@@ -1,10 +1,10 @@
-/* Section 03 — the work that does not fit an industry.
+/* Section 04 — the work that does not fit an industry.
    Clients are described by what they run, not by name. */
 export function LandingBuilds() {
   return (
     <section className="lp-block lp-split" id="builds" data-section="builds" aria-label="Micro SaaS">
       <div className="lp-split-copy">
-        <p className="lp-eyebrow">03 · Micro SaaS</p>
+        <p className="lp-eyebrow">04 · Micro SaaS</p>
         <h2 className="lp-h2">Not every operation is an industry.</h2>
         <p className="lp-lead">
           Some of what we ship exists once, for one operator, because nothing

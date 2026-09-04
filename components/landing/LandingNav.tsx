@@ -15,8 +15,8 @@ interface Props {
 // page is what gets handed out, and it is handed out to people holding phones.
 const LINKS = [
   { id: "work", label: "Work" },
-  { id: "builds", label: "Builds" },
   { id: "ide", label: "IDE" },
+  { id: "builds", label: "Builds" },
   { id: "research", label: "Lab" },
   { id: "team", label: "Team" },
 ];

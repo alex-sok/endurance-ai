@@ -1,22 +1,25 @@
 import { Exhibit } from "./Exhibit";
 
-/* Section 04 — the bench the lab works at. Hybrid framing: the internal
-   advantage first, early access for select clients second. */
+/* Section 03 — the multiplayer development platform. Hybrid framing: the
+   internal advantage first, early access for select clients second. */
 export function LandingIDE() {
   return (
     <section className="lp-chapter" aria-labelledby="work-ide" id="ide" data-section="ide">
       <div className="lp-chapter-copy">
-        <p className="lp-eyebrow">04 · IDE</p>
-        <h2 id="work-ide">The bench the lab works at.</h2>
+        <p className="lp-eyebrow">03 · IDE</p>
+        <h2 id="work-ide">Where your whole company builds together.</h2>
         <p className="lp-lead">
-          Every engagement starts in the same environment: the brain, the data
-          connections and the deploy path already wired.
+          A multiplayer development platform: every AI subscription, every
+          project, every Slack and Teams thread your business runs, wired into
+          one live environment.
         </p>
         <p className="lp-body">
-          It is why a client system ships in weeks. A new build starts from a
-          running start, not a blank repository — and the same bench keeps the
-          system current after we hand it over. Today it is our advantage;
-          select clients run it with us.
+          It is a harness for the whole operation. Your repos, your data, your
+          conversations and your Claude Code sessions in one place, so anyone
+          on the team can sit down and build against the real thing, together,
+          in real time. What used to take a vendor and a quarter takes an
+          afternoon and the people who already know the work. It is the bench
+          our own lab works at; select clients run it with us.
         </p>
         <a className="lp-feature-cta" href="#close">
           Ask about early access
@@ -24,14 +27,14 @@ export function LandingIDE() {
       </div>
       <Exhibit
         exhibit={{
-          caption: "One engagement",
-          head: "Week one, on the bench",
-          meta: "New client system · from intake to running",
+          caption: "One environment",
+          head: "Live session",
+          meta: "4 people building · one harness",
           rows: [
-            { label: "Wire the sources", sub: "ledger, TMS, mail — read-only", value: "Day 1" },
-            { label: "Compile the brain", sub: "92k passages, every claim cited", value: "Day 2" },
-            { label: "Ship the first screen", sub: "against live data, behind auth", value: "Day 4" },
-            { label: "First run held", sub: "blockers named, nothing sent", value: "Day 5" },
+            { label: "Claude Code", sub: "3 sessions against live data", value: "Live" },
+            { label: "Slack + Teams", sub: "the build thread, wired in", value: "Synced" },
+            { label: "Projects", sub: "12 repos, one deploy path", value: "Green" },
+            { label: "AI subscriptions", sub: "every seat, pooled in one place", value: "Ready" },
           ],
         }}
       />

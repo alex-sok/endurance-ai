@@ -15,7 +15,7 @@ export function LandingHero({ onOpenChat }: Props) {
           it was missing.
         </p>
         <p className="lp-hero-verticals">
-          Brain OS · Foundations · Micro SaaS · IDE
+          Brain OS · Foundations · IDE · Micro SaaS
         </p>
         <div className="lp-hero-actions">
           <button type="button" className="lp-btn-quiet" onClick={onOpenChat}>
