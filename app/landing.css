@@ -3192,3 +3192,125 @@ ol.lp-team {
 .theme-paper .bpos-locked b { font-size: 12.5px; display: block; margin: 0 0 3px; }
 .theme-paper .bpos-locked p { font-size: 12px; color: var(--lp-muted); margin: 0 0 10px; }
 .theme-paper .bpos-locked .bpos-btn { display: block; text-align: center; }
+
+/* â”€â”€ BPOS: connector strip, command band, board rows, wide grid â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   The claim is that nothing is typed in by hand, so the systems of record and
+   the agent tool surfaces are named on the chrome itself. */
+.theme-paper .bpos-wire {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 8px 16px; background: var(--lp-paper);
+  border-bottom: 1px solid var(--lp-line);
+}
+.theme-paper .bpos-live {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--lp-mono); font-size: 10.5px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--lp-muted); white-space: nowrap;
+}
+.theme-paper .bpos-pulse {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--lp-ink);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--lp-ink) 40%, transparent);
+  animation: bpos-pulse 2.4s var(--lp-ease) infinite;
+}
+@media (prefers-reduced-motion: reduce) { .theme-paper .bpos-pulse { animation: none; } }
+@keyframes bpos-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--lp-ink) 38%, transparent); }
+  70% { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.theme-paper .bpos-srcs { display: flex; gap: 6px; flex-wrap: wrap; }
+.theme-paper .bpos-src {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--lp-muted);
+  border: 1px solid var(--lp-line); border-radius: 999px; padding: 3px 9px;
+}
+.theme-paper .bpos-src b {
+  font-family: var(--lp-mono); font-size: 8.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--lp-paper);
+  background: var(--lp-ink); border-radius: 3px; padding: 2px 4px; font-weight: 500;
+}
+.theme-paper .bpos-src em {
+  font-style: normal; font-family: var(--lp-mono); font-size: 10px;
+  color: var(--lp-muted); opacity: 0.75;
+}
+
+/* command band â€” the dark operating header */
+.theme-paper .bpos-band {
+  background: var(--lp-night); color: var(--lp-snow);
+  border-radius: var(--lp-radius); padding: 20px; margin: 0 0 14px;
+}
+.theme-paper .bpos-band-kick {
+  font-family: var(--lp-mono); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(247, 246, 251, 0.55); margin: 0 0 10px;
+}
+.theme-paper .bpos-band-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 14px; flex-wrap: wrap;
+}
+.theme-paper .bpos-band-head h3 {
+  font-family: var(--lp-display); font-weight: 700;
+  font-size: clamp(21px, 2.6vw, 29px); letter-spacing: -0.025em; margin: 0;
+  color: var(--lp-snow);
+}
+.theme-paper .bpos-band-meta {
+  font-family: var(--lp-mono); font-size: 9.5px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(247, 246, 251, 0.72);
+  border: 1px solid rgba(247, 246, 251, 0.22); border-radius: 999px; padding: 4px 10px;
+}
+.theme-paper .bpos-band-sub {
+  font-size: 12.5px; line-height: 1.5; color: rgba(247, 246, 251, 0.68);
+  margin: 10px 0 16px; max-width: 74ch;
+}
+.theme-paper .bpos-band-grid {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+}
+@media (min-width: 700px) { .theme-paper .bpos-band-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1000px) { .theme-paper .bpos-band-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.theme-paper .bpos-bcard {
+  background: var(--lp-paper); color: var(--lp-ink);
+  border-radius: 5px; padding: 11px 12px 8px; display: flex; flex-direction: column;
+}
+.theme-paper .bpos-bk {
+  font-family: var(--lp-mono); font-size: 9px; letter-spacing: 0.11em;
+  text-transform: uppercase; color: var(--lp-muted); margin: 0 0 6px;
+}
+.theme-paper .bpos-bv {
+  font-family: var(--lp-display); font-weight: 700; font-size: 21px;
+  letter-spacing: -0.03em; margin: 0 0 4px; font-variant-numeric: tabular-nums;
+}
+.theme-paper .bpos-bd { font-size: 10.5px; margin: 0 0 2px; color: var(--lp-ink); }
+.theme-paper .bpos-bs { font-size: 10px; color: var(--lp-muted); margin: 0 0 6px; }
+.theme-paper .bpos-spark { width: 100%; height: 22px; margin-top: auto; color: var(--lp-ink); opacity: 0.32; }
+
+/* board â€” progress rows */
+.theme-paper .bpos-bars { margin: 0 0 14px; }
+.theme-paper .bpos-brow {
+  display: grid; grid-template-columns: 1fr; gap: 6px;
+  padding: 10px 0; border-top: 1px solid var(--lp-line);
+}
+@media (min-width: 720px) {
+  .theme-paper .bpos-brow { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr) auto; align-items: center; gap: 16px; }
+}
+.theme-paper .bpos-bname { font-size: 13px; margin: 0 0 2px; }
+.theme-paper .bpos-track {
+  height: 7px; background: var(--lp-snow); border-radius: 999px; overflow: hidden;
+  border: 1px solid var(--lp-line);
+}
+.theme-paper .bpos-fill { display: block; height: 100%; background: var(--lp-ink); }
+.theme-paper .bpos-fill.flag { background: var(--lp-flare); }
+.theme-paper .bpos-bright {
+  font-family: var(--lp-mono); font-size: 11px; color: var(--lp-muted);
+  white-space: nowrap; text-align: right;
+}
+
+/* wide data grid */
+.theme-paper .bpos-gridcard { padding-bottom: 10px; }
+.theme-paper .bpos-scroll { overflow-x: auto; }
+.theme-paper .bpos-wide { min-width: 720px; }
+.theme-paper .bpos-wide th { white-space: nowrap; }
+.theme-paper .bpos-wide td { white-space: nowrap; }
+.theme-paper .bpos-first { font-weight: 500; }
+.theme-paper .bpos-num-cell { font-family: var(--lp-mono); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.theme-paper .bpos-trace {
+  font-size: 11.5px; color: var(--lp-muted); margin: 12px 0 0;
+}
+
