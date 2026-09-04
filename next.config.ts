@@ -88,9 +88,19 @@ const nextConfig: NextConfig = {
       { source: "/remi", destination: "https://endurance-ai-labs.github.io/ella-demo/index.html" },
       { source: "/remi/:path*", destination: "https://endurance-ai-labs.github.io/ella-demo/:path*" },
       // Margins marketing landing is app/margins/page.tsx — exact /margins
-      // must never proxy. The live commissions demo stays under /margins/app.
+      // must never proxy. The live commissions demo is entered at /margins/app.
+      //
+      // The demo is built with basePath "/margins", so every asset and internal
+      // link it emits resolves to /margins/_next/..., /margins/commissions and
+      // so on. Proxying only /margins/app therefore served the HTML and 404'd
+      // every stylesheet and script, which rendered as a bare page. The third
+      // rule forwards those. It uses :path+ so bare /margins can never match,
+      // and our own pages (/margins, /margins/pricing, /margins/opengraph-image)
+      // are real routes that win over it because an array return is matched
+      // afterFiles.
       { source: "/margins/app", destination: "https://payline-commissions-demo-sigma.vercel.app/margins" },
       { source: "/margins/app/:path*", destination: "https://payline-commissions-demo-sigma.vercel.app/margins/:path*" },
+      { source: "/margins/:path+", destination: "https://payline-commissions-demo-sigma.vercel.app/margins/:path+" },
       // Endurance Logistics marketing site (GitHub Pages) at endurancelabs.ai/logistics/new
       // via a reverse-proxy rewrite, same pattern as /1100 and /remi. Public — proxy.ts
       // exempts /logistics/new from the /logistics investor-page gate. The page hops

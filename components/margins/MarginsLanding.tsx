@@ -5,6 +5,7 @@ import { ChatOverlay } from "@/components/landing/ChatOverlay";
 import { Exhibit } from "@/components/landing/Exhibit";
 import { LandingClose } from "@/components/landing/LandingClose";
 import { LandingNav } from "@/components/landing/LandingNav";
+import { CALENDLY_URL } from "@/lib/conversation-flows";
 import { MorphHero } from "./MorphHero";
 import { ProductFrame } from "@/components/landing/ProductFrames";
 import { RunDiagram } from "@/components/landing/RunDiagram";
@@ -38,6 +39,11 @@ function Chapter({ chapter }: { chapter: MarginsChapter }) {
             ))}
           </p>
         )}
+        {chapter.demoHref && chapter.demoLabel ? (
+          <a className="lp-feature-cta" href={chapter.demoHref}>
+            {chapter.demoLabel}
+          </a>
+        ) : null}
       </div>
       {chapter.note ? (
         <div className="lp-margin-note">
@@ -94,6 +100,9 @@ function Ledger() {
         ))}
       </ul>
       <p className="lp-colophon">{LEDGER.colophon}</p>
+      <a className="lp-feature-cta" href="/margins/app/commissions">
+        See a week like this one running
+      </a>
     </section>
   );
 }
@@ -141,10 +150,20 @@ function Pilot() {
           </div>
         ))}
       </div>
+      <div className="lp-hero-actions lp-block-actions">
+        <a
+          className="lp-btn lp-btn-fill"
+          href={CALENDLY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Book the pilot
+        </a>
+        <a className="lp-btn-quiet" href="/margins/pricing">
+          See what it costs
+        </a>
+      </div>
       <p className="lp-note">{PILOT.note}</p>
-      <a className="lp-feature-cta" href="/margins/pricing">
-        See what it costs
-      </a>
     </section>
   );
 }
@@ -203,6 +222,9 @@ export function MarginsLanding() {
           <Method />
           <section className="lp-interstitial" data-section="closer">
             <p className="lp-closer">{LEDGER.closer}</p>
+            <a className="lp-feature-cta" href="/margins/app/audit">
+              Open the audit board
+            </a>
           </section>
           <Pilot />
         </div>

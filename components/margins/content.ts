@@ -36,6 +36,8 @@ export type MarginsChapter = {
   body: string[];
   exhibit?: Exhibit;
   diagram?: boolean;
+  demoHref?: string;
+  demoLabel?: string;
   frame?: "paid" | "held" | "statement";
   frameCaption?: string;
   receipts: MarginsFigure[];
@@ -62,7 +64,7 @@ export const HERO = {
   h1Em: "not the load.",
   lede: "Your TMS produces a commission number. Someone still finishes it by hand: overrides, pools, splits, reserves. Margins closes that gap and proves every dollar before payday.",
   fillLabel: "Open the live demo",
-  fillHref: "/margins/app",
+  fillHref: "/margins/app/commissions",
   lineLabel: "Book a call",
   lineHref: CALENDLY_URL,
 };
@@ -70,6 +72,8 @@ export const HERO = {
 export const CHAPTERS: MarginsChapter[] = [
   {
     slug: "deals",
+    demoHref: "/margins/app/loads",
+    demoLabel: "Walk a load's precedence ladder",
     kicker: "02 · The deals",
     statement: "Thirteen ways to get paid, one spreadsheet that knows them all, and one person who knows the spreadsheet.",
     title: "Every deal, in one governed place.",
@@ -97,6 +101,8 @@ export const CHAPTERS: MarginsChapter[] = [
   },
   {
     slug: "catches",
+    demoHref: "/margins/app/exceptions",
+    demoLabel: "Open the exceptions worklist",
     kicker: "03 · The catches",
     statement: "A spreadsheet cannot notice the same load billed in two different weeks. And it cannot show why a number is the number.",
     title: "The run stops before it pays wrong.",
@@ -118,6 +124,8 @@ export const CHAPTERS: MarginsChapter[] = [
   },
   {
     slug: "portal",
+    demoHref: "/margins/app/people",
+    demoLabel: "See how each person is paid",
     kicker: "04 · The portal",
     statement: "Disputes are the tax a brokerage pays for a spreadsheet.",
     title: "Every earner signs into their own numbers.",
