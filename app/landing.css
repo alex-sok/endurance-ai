@@ -3588,3 +3588,32 @@ ol.lp-team {
   .theme-paper .bpos-full .bpos-tab { text-align: left; justify-content: flex-start; }
 }
 .theme-paper .bpos-full .bpos-app { box-shadow: none; }
+
+/* Blocks whose copy only filled the left half: same two-column rhythm as the
+   chapters — the argument on the left, the evidence down the right. */
+.lp-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 40px 56px;
+}
+@media (min-width: 900px) {
+  .lp-split { grid-template-columns: minmax(0, 30rem) minmax(0, 1fr); }
+}
+.lp-split-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-self: start;
+}
+@media (min-width: 900px) {
+  .lp-split-list { margin-top: 8px; }
+}
+.lp-split-list li {
+  padding: 20px 0;
+  border-top: 1px solid var(--lp-line);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--lp-muted);
+}
+.lp-split-list li:first-child { border-top: 0; padding-top: 0; }
+.lp-split-list li b { color: var(--lp-ink); font-weight: 600; }
