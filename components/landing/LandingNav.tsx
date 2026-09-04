@@ -19,11 +19,14 @@ const LINKS = [
   { id: "team", label: "Team" },
 ];
 
-const PRICING_HREF = "/margins/pricing";
+const MARGINS_PRICING = "/margins/pricing";
+const BRAIN_PRICING = "/brain/pricing";
 
 export function LandingNav({ onOpenChat, onNavigate }: Props) {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  // Pricing follows the product you are on; Margins is the default elsewhere.
+  const pricingHref = pathname.startsWith("/brain") ? BRAIN_PRICING : MARGINS_PRICING;
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -68,8 +71,8 @@ export function LandingNav({ onOpenChat, onNavigate }: Props) {
           ))}
           <Link
             className="lp-nav-page"
-            href={PRICING_HREF}
-            aria-current={pathname === PRICING_HREF ? "page" : undefined}
+            href={pricingHref}
+            aria-current={pathname === pricingHref ? "page" : undefined}
           >
             Pricing
           </Link>
