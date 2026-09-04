@@ -1,7 +1,7 @@
 /* Endurance landing — one canvas, sheets land on it.
    Pace's structure (field, product evidence, dark close),
    our material (white field, violet and desert rose, serif).
-   The Public-minimal pairing: Source Serif 4 on claims,
+   The pairing: Archivo on claims,
    IBM Plex Sans on body and nav, IBM Plex Mono on kickers. */
 
 body:has(.theme-paper) {
@@ -21,7 +21,7 @@ body:has(.theme-paper) {
   --lp-snow: #f7f6fb;
   --lp-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --lp-sans: var(--font-plex-sans), "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --lp-display: var(--font-display), "Source Serif 4", Georgia, serif;
+  --lp-display: var(--font-display), "Archivo", "Helvetica Neue", Arial, sans-serif;
   --lp-mono: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
   --lp-space: clamp(24px, 4vw, 48px);
   --lp-max: 1040px;
@@ -325,16 +325,17 @@ body:has(.theme-paper) {
 .lp-hero-copy h1 {
   font-family: var(--lp-display);
   font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+  font-weight: 600;
   line-height: 1.0;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
   max-width: 13.5em;
 }
 
 .lp-hero-copy h1 em {
   display: block;
   max-width: none;
-  font-style: italic;
-  /* Air around the second line, tuned for Source Serif 4's mass: the two
+  font-style: normal;
+  /* Air around the second line, tuned for Archivo's mass: the two
      lines are one claim and must read as a couple, not two headlines. */
   margin-top: 0.3em;
   max-width: 10.5em;
@@ -465,7 +466,7 @@ body:has(.theme-paper) {
 
 .lp-morph-copy h1 em {
   display: block;
-  font-style: italic;
+  font-style: normal;
   margin-top: 0.08em;
 }
 
@@ -1023,6 +1024,7 @@ body:has(.theme-paper) {
 
 .lp-chapter-copy h2 {
   font-family: var(--lp-display);
+  font-weight: 600;
   font-size: clamp(1.625rem, 2.4vw, 2.25rem);
   line-height: 1.14;
   letter-spacing: -0.025em;
@@ -1085,6 +1087,7 @@ body:has(.theme-paper) {
 .lp-exhibit-head {
   margin-top: 12px;
   font-family: var(--lp-display);
+  font-weight: 600;
   font-size: 1.3125rem;
   letter-spacing: -0.02em;
   color: var(--lp-ink);
@@ -1154,6 +1157,7 @@ body:has(.theme-paper) {
 .lp-headfigure {
   margin-top: 48px;
   font-family: var(--lp-display);
+  font-weight: 600;
   font-variant-numeric: tabular-nums lining-nums;
   font-size: clamp(2.25rem, 4.4vw, 3.5rem);
   line-height: 0.94;
@@ -1203,6 +1207,7 @@ body:has(.theme-paper) {
 
 .lp-outcomes h3 {
   font-family: var(--lp-display);
+  font-weight: 600;
   font-size: 1.3125rem;
   letter-spacing: -0.02em;
 }
@@ -2011,6 +2016,7 @@ body:has(.theme-paper) {
 
 .lp-h2 {
   font-family: var(--lp-display);
+  font-weight: 600;
   font-size: clamp(1.75rem, 2.6vw, 2.25rem);
   letter-spacing: -0.025em;
   line-height: 1.14;
@@ -2019,6 +2025,7 @@ body:has(.theme-paper) {
 
 .lp-h3 {
   font-family: var(--lp-display);
+  font-weight: 600;
   font-size: 1.3125rem;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -2194,7 +2201,7 @@ body:has(.theme-paper) {
 
 .lp-proof-after {
   font-family: var(--lp-display);
-  font-style: italic;
+  font-weight: 600;
   font-size: clamp(2rem, 3vw, 2.5rem);
   letter-spacing: -0.02em;
   color: var(--lp-flare);
@@ -2243,6 +2250,7 @@ ol.lp-team {
 
 .lp-team-row h3 {
   font-family: var(--lp-display);
+  font-weight: 600;
   font-size: 1.3125rem;
   letter-spacing: -0.02em;
 }
@@ -2334,7 +2342,7 @@ ol.lp-team {
 /* ---------- pull lines ---------- */
 .lp-pain {
   font-family: var(--lp-display);
-  font-style: italic;
+  font-weight: 500;
   font-size: clamp(1.375rem, 2.4vw, 1.75rem);
   line-height: 1.3;
   letter-spacing: -0.015em;
@@ -2349,6 +2357,7 @@ ol.lp-team {
 .lp-closer {
   margin-top: 56px;
   font-family: var(--lp-display);
+  font-weight: 500;
   font-size: clamp(1.625rem, 2.4vw, 2.25rem);
   line-height: 1.2;
   letter-spacing: -0.02em;

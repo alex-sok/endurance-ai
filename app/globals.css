@@ -60,16 +60,16 @@
 /* ── Landing (dark expedition theme) ──────────────────────────────────────── */
 
 /* Legacy font aliases: admin, portal, and chat surfaces still reference the
-   old variable names inline; they resolve to the Public-minimal faces now. */
+   old variable names inline; they resolve to the current faces now. */
 :root {
   --font-figtree: var(--font-plex-sans);
   --font-jetbrains: var(--font-plex-mono);
 }
 
-/* Source Serif 4 display type */
+/* Archivo display type */
 .font-display {
-  font-family: var(--font-display), "Source Serif 4", Georgia, serif;
-  font-weight: 400;
+  font-family: var(--font-display), "Archivo", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
 }
 
 /* ── Lenis smooth scroll ──────────────────────────────────────────────────── */

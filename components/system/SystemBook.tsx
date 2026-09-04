@@ -184,10 +184,11 @@ export function SystemBook() {
               Two faces, seven sizes.
             </h2>
             <p className="lp-block-lede">
-              Source Serif 4 on claims, headings, the closing statement, and every figure, in its tabular
-              lining set so a column of numbers stacks. IBM Plex Sans on everything else, including labels.
-              Mono is not a voice of the site; it appears once, as the spreadsheet&rsquo;s formula inside the
-              hero scene.
+              Archivo on claims, headings, the closing statement, and every figure, in its tabular lining
+              set so a column of numbers stacks. An American grotesque drawn for print, not a literary
+              serif: a serif claim over a mono eyebrow is what every lab site converged on, and this is a
+              freight ledger. IBM Plex Sans on everything else, including labels. Mono is not a voice of
+              the site; it appears once, as the spreadsheet&rsquo;s formula inside the hero scene.
             </p>
             <ul className="lp-ledger sb-scale">
               {SCALE.map((s) => (
@@ -203,7 +204,7 @@ export function SystemBook() {
             <div className="sb-specimen">
               <p className="lp-eyebrow">The claim, then its deck</p>
               <h2 className="lp-h2">One language, every page.</h2>
-              <p className="lp-lead">Regular, then italic, happens once per page: in the hero, never below it.</p>
+              <p className="lp-lead">Roman everywhere. Weight and size carry the hierarchy, so nothing is set in italic.</p>
               <p className="lp-body">
                 Body runs at seventeen on a 34rem measure. Headings balance their own line breaks. Widows are
                 the browser&rsquo;s problem, and it handles them.
@@ -442,7 +443,7 @@ export function SystemBook() {
                 <p className="lp-body">
                   No gradients or washes. No floating frames, no tilt, no shadows under evidence. No bitmap
                   screenshots. No generated illustration; the scene&rsquo;s backdrop is the only photograph.
-                  No mono labels. No cards in grids. No accent word in the claim. No italic below the hero. No
+                  No mono labels. No cards in grids. No accent word in the claim. No italic, and no serif. No
                   second Talk on paper. No product-app tokens.
                 </p>
               </div>
