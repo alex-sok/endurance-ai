@@ -70,8 +70,18 @@ export const BRAIN_ANSWERS = [
     value: "3",
   },
   {
-    label: "Why did last month miss plan?",
-    sub: "Labor +$212K · price and mix +$88K · volume flat",
-    value: "7",
+    label: "Revenue was down 3.5% last quarter. Why?",
+    sub: "Volume −6.1% · price +2.4% · two accounts, one lost rep",
+    value: "16",
+  },
+  {
+    label: "Where is our best growth over the last few quarters?",
+    sub: "Three segments compounding above 18% · two worth the capital",
+    value: "14",
+  },
+  {
+    label: "Invite every account executive to the new product demo.",
+    sub: "18 reps found · drafted, times held, waiting on your send",
+    value: "5",
   },
 ];
