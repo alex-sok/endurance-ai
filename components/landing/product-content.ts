@@ -54,8 +54,24 @@ export const BRAIN: ProductContent = {
 
 // Brain's own answers, typeset for the page. Real rows from the console.
 export const BRAIN_ANSWERS = [
-  { label: "JV terms on Magnolia Crossing?", sub: "8% pref · 70/30 · LP 88% / GP 12%", value: "4" },
-  { label: "Year-3 NOI vs projection?", sub: "$4.6M vs $4.4M, up 4.5%", value: "2" },
-  { label: "Debt stack on Cedar Ridge?", sub: "$18.4M · SOFR+165 · matures 2031", value: "3" },
-  { label: "Remaining capital commitment?", sub: "$2.1M undrawn across 3 deals", value: "2" },
+  {
+    label: "Help me find the leakage in our invoicing.",
+    sub: "$68,400 unbilled across 318 invoices · four causes, ranked",
+    value: "12",
+  },
+  {
+    label: "Which customers cost us money after everything?",
+    sub: "11 accounts below 6% margin on $2.1M of revenue",
+    value: "9",
+  },
+  {
+    label: "What did we actually agree to in this contract?",
+    sub: "30-day notice · cap at 110% of budget · auto-renews Mar 1",
+    value: "3",
+  },
+  {
+    label: "Why did last month miss plan?",
+    sub: "Labor +$212K · price and mix +$88K · volume flat",
+    value: "7",
+  },
 ];

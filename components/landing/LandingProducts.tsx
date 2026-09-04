@@ -62,9 +62,9 @@ export function LandingProducts() {
         </div>
         <Exhibit
           exhibit={{
-            caption: "Recent answers",
+            caption: "Example use cases",
             head: "Ask Brain",
-            meta: "Last 24 hours · documents behind each answer",
+            meta: "Ask in plain language · documents behind each answer",
             rows: BRAIN_ANSWERS,
           }}
         />
