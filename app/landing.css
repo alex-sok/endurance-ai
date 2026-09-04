@@ -3363,3 +3363,48 @@ ol.lp-team {
 
 /* a worklist with no checklist beside it takes the full width */
 .theme-paper .bpos-low-wide { grid-template-columns: minmax(0, 1fr); }
+
+/* The console reads as the continuation of chapter 02, not a new movement,
+   so it does not carry the full sheet gap above it. */
+#work > .lp-chapter:last-of-type { padding-bottom: 40px; }
+.lp-sheet#bpos { margin-top: 32px; }
+
+/* ── BPOS: the shipped tool on a working screen ───────────────────────────
+   Every other block on these screens is a table. This one is the thing the
+   product actually does: inputs it gathered on the left, what it computed on
+   the right, and the line underneath saying what the answer rests on. */
+.theme-paper .bpos-calc { margin: 14px 0 0; }
+.theme-paper .bpos-calc-body {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; margin-top: 14px;
+}
+@media (min-width: 780px) {
+  .theme-paper .bpos-calc-body {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 26px;
+  }
+}
+.theme-paper .bpos-calc-in { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.theme-paper .bpos-field {
+  display: grid; grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+  gap: 12px; align-items: baseline;
+  padding: 8px 11px; border: 1px solid var(--lp-line); border-radius: 4px;
+  background: var(--lp-snow);
+}
+.theme-paper .bpos-field dt {
+  font-family: var(--lp-mono); font-size: 9.5px; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--lp-muted); margin: 0;
+}
+.theme-paper .bpos-field dd {
+  margin: 0; font-size: 12.5px; line-height: 1.4; color: var(--lp-ink);
+}
+.theme-paper .bpos-calc-out { display: flex; flex-direction: column; gap: 12px; }
+.theme-paper .bpos-out {
+  padding: 11px 13px; border: 1px solid var(--lp-line); border-radius: 4px;
+}
+.theme-paper .bpos-out.lead { background: var(--lp-night); border-color: var(--lp-night); }
+.theme-paper .bpos-out.lead .bpos-lab { color: rgba(247, 246, 251, 0.6); }
+.theme-paper .bpos-out.lead .bpos-big { color: var(--lp-snow); }
+.theme-paper .bpos-out.lead .bpos-sm { color: rgba(247, 246, 251, 0.62); }
+.theme-paper .bpos-calc-note {
+  margin: 14px 0 0; padding-top: 11px; border-top: 1px solid var(--lp-line);
+  font-size: 11.5px; color: var(--lp-muted);
+}

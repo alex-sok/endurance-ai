@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { BPOS_INDUSTRIES } from "./bpos-content";
-import { BPOS_VIEWS, BPOS_SOURCES, BPOS_WORKLIST } from "./bpos-views";
+import { BPOS_VIEWS, BPOS_SOURCES, BPOS_WORKLIST, BPOS_FEATURES } from "./bpos-views";
 
 /**
  * The BPOS console, shown rather than described.
@@ -11,13 +11,14 @@ import { BPOS_VIEWS, BPOS_SOURCES, BPOS_WORKLIST } from "./bpos-views";
  * it. Two things had to be true for this to read as seven real products
  * rather than one template:
  *
- * 1. The first tab of every industry is the flagship view and nothing else
- *    looks like it — the command centre for the portfolio businesses, the
- *    contract board for the book-of-jobs ones. It appears once.
- * 2. The other four tabs are working screens: a headline figure, stat cards
- *    and the worklist for that module, with its own header. The run checklist
- *    only appears on the module the run actually belongs to, since "run the
- *    prebills" is not what a capacity screen does.
+ * 1. The first tab of every industry is its command centre — a market strip
+ *    feeding it from outside, six figures over the book itself — and it
+ *    appears once, on that tab only.
+ * 2. The other four tabs are working screens: a headline figure, stat cards,
+ *    the one shipped tool that belongs on that screen (the BOV calculator,
+ *    the return solver, the commission run) and the worklist under its own
+ *    header. The run checklist only appears on the module the run actually
+ *    belongs to, since "run the prebills" is not what a capacity screen does.
  */
 function Spark({ points }: { points: number[] }) {
   const w = 120;
@@ -51,9 +52,10 @@ export function LandingBPOS() {
   /** The flagship view — shown on the first tab only, never repeated. */
   const flagship = mod === 0;
   /** The run checklist belongs to one module, not to all five. */
-  const showChecklist = view.layout === "run" && mod === view.runModule;
+  const showChecklist = mod === view.runModule;
   /** Every non-flagship tab is a working screen with its own worklist. */
-  const showWorklist = view.layout === "run" || !flagship;
+  const showWorklist = !flagship;
+  const feature = BPOS_FEATURES[`${d.id}.${m.nav}`];
   const worklistTitle = BPOS_WORKLIST[`${d.id}.${m.nav}`] ?? "Needs a look";
 
   function pickIndustry(i: number) {
@@ -74,8 +76,8 @@ export function LandingBPOS() {
     document.getElementById(`bpos-tab-${n}`)?.focus();
   }
 
-  const showBand = view.layout === "command" && flagship;
-  const showBars = view.layout === "board" && flagship && view.bars;
+  const showBand = flagship;
+  const showBars = flagship && view.bars;
   const showGrid = view.grid && flagship;
 
   return (
@@ -279,6 +281,35 @@ export function LandingBPOS() {
                   </tbody>
                 </table>
               </div>
+            </div>
+          ) : null}
+
+          {feature ? (
+            <div className="bpos-card bpos-calc">
+              <div className="bpos-crow">
+                <p className="bpos-ct">{feature.title}</p>
+                <span className="bpos-sm">{feature.meta}</span>
+              </div>
+              <div className="bpos-calc-body">
+                <dl className="bpos-calc-in">
+                  {feature.inputs.map((f) => (
+                    <div className="bpos-field" key={f[0]}>
+                      <dt>{f[0]}</dt>
+                      <dd>{f[1]}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <div className="bpos-calc-out">
+                  {feature.outputs.map((o, i) => (
+                    <div className={`bpos-out${i === 0 ? " lead" : ""}`} key={o[0]}>
+                      <p className="bpos-lab">{o[0]}</p>
+                      <p className={i === 0 ? "bpos-big" : "bpos-mid"}>{o[1]}</p>
+                      <p className="bpos-sm">{o[2]}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <p className="bpos-calc-note">{feature.note}</p>
             </div>
           ) : null}
 
