@@ -6,15 +6,17 @@ import { LandingClose } from "@/components/landing/LandingClose";
 import { LandingNav } from "@/components/landing/LandingNav";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
 import { CALENDLY_URL } from "@/lib/conversation-flows";
+import { ProductFrame } from "@/components/landing/ProductFrames";
+import { PricePlan } from "./PricePlan";
 import {
   BANDS,
+  BUYS_BLOCK,
   FAQ,
   LINE_BLOCK,
-  PILOT_BLOCK,
   PRICE_BLOCK,
   PRICING_HERO,
-  START_BLOCK,
-  WARRANTY_BLOCK,
+  TRUST_BLOCK,
+  YEAR_BLOCK,
 } from "./pricing-content";
 
 export function MarginsPricing() {
@@ -78,7 +80,6 @@ export function MarginsPricing() {
             <h2 className="lp-h2" id="price-title">
               {PRICE_BLOCK.title}
             </h2>
-            <p className="lp-block-lede">{PRICE_BLOCK.lede}</p>
             <table className="lp-rate">
               <thead>
                 <tr>
@@ -97,66 +98,63 @@ export function MarginsPricing() {
                 ))}
               </tbody>
             </table>
-            <p className="lp-body">{PRICE_BLOCK.fixed}</p>
             <p className="lp-note">{PRICE_BLOCK.note}</p>
             <p className="lp-colophon">{PRICE_BLOCK.colophon}</p>
           </section>
 
-          <section className="lp-block" id="start" aria-labelledby="start-title">
-            <p className="lp-eyebrow">{START_BLOCK.kicker}</p>
-            <h2 className="lp-h2" id="start-title">
-              {START_BLOCK.title}
+          <section className="lp-block" id="year" aria-labelledby="year-title">
+            <p className="lp-eyebrow">{YEAR_BLOCK.kicker}</p>
+            <h2 className="lp-h2" id="year-title">
+              {YEAR_BLOCK.title}
             </h2>
-            <p className="lp-block-lede">{START_BLOCK.lede}</p>
-            {START_BLOCK.body.map((paragraph) => (
-              <p className="lp-body" key={paragraph}>
-                {paragraph}
-              </p>
-            ))}
+            <PricePlan />
+            <p className="lp-note">{YEAR_BLOCK.note}</p>
+          </section>
+
+          <section className="lp-block" id="buys" aria-labelledby="buys-title">
+            <p className="lp-eyebrow">{BUYS_BLOCK.kicker}</p>
+            <h2 className="lp-h2" id="buys-title">
+              {BUYS_BLOCK.title}
+            </h2>
+            <div className="lp-buys">
+              {BUYS_BLOCK.frames.map((frame) => (
+                <figure key={frame.kind}>
+                  <ProductFrame kind={frame.kind} />
+                  <figcaption>{frame.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+            <p className="lp-note">{BUYS_BLOCK.note}</p>
+          </section>
+
+          <section className="lp-block" id="trust" aria-labelledby="trust-title">
+            <p className="lp-eyebrow">{TRUST_BLOCK.kicker}</p>
+            <h2 className="lp-h2" id="trust-title">
+              {TRUST_BLOCK.title}
+            </h2>
             <ul className="lp-ledger lp-ledger-prose">
-              {START_BLOCK.rows.map((row) => (
-                <li key={row.label}>
+              {TRUST_BLOCK.points.map((point) => (
+                <li key={point.label}>
                   <div>
-                    <p>{row.label}</p>
+                    <p>{point.label}</p>
                   </div>
-                  <p className="lp-included-body">{row.body}</p>
+                  <p className="lp-included-body">{point.body}</p>
                 </li>
               ))}
             </ul>
-          </section>
-
-          <section className="lp-block" id="pilot" aria-labelledby="pilot-title">
-            <p className="lp-eyebrow">{PILOT_BLOCK.kicker}</p>
-            <h2 className="lp-h2" id="pilot-title">
-              {PILOT_BLOCK.title}
-            </h2>
-            <p className="lp-block-lede">{PILOT_BLOCK.lede}</p>
-            <ol className="lp-outcomes">
-              {PILOT_BLOCK.outcomes.map((outcome, i) => (
-                <li key={outcome.title}>
-                  <h3>
-                    <span className="lp-outcome-n">{String(i + 1).padStart(2, "0")}</span>
-                    {outcome.title}
-                  </h3>
-                  <p>{outcome.body}</p>
-                </li>
-              ))}
-            </ol>
-            <p className="lp-note">{PILOT_BLOCK.note}</p>
-            <p className="lp-note">{PILOT_BLOCK.scarcity}</p>
-          </section>
-
-          <section className="lp-block" id="warranty" aria-labelledby="warranty-title">
-            <p className="lp-eyebrow">{WARRANTY_BLOCK.kicker}</p>
-            <h2 className="lp-h2" id="warranty-title">
-              {WARRANTY_BLOCK.title}
-            </h2>
-            <p className="lp-block-lede">{WARRANTY_BLOCK.lede}</p>
-            {WARRANTY_BLOCK.body.map((paragraph) => (
-              <p className="lp-body" key={paragraph}>
-                {paragraph}
-              </p>
-            ))}
+            <div className="lp-hero-actions lp-block-actions">
+              <a
+                className="lp-btn lp-btn-fill"
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book the pilot
+              </a>
+              <a className="lp-btn-quiet" href="/margins">
+                See how it works
+              </a>
+            </div>
           </section>
 
           <section className="lp-block" id="line" aria-labelledby="line-title">
@@ -164,11 +162,7 @@ export function MarginsPricing() {
             <h2 className="lp-h2" id="line-title">
               {LINE_BLOCK.title}
             </h2>
-            {LINE_BLOCK.body.map((paragraph) => (
-              <p className="lp-body" key={paragraph}>
-                {paragraph}
-              </p>
-            ))}
+            <p className="lp-body">{LINE_BLOCK.body}</p>
           </section>
 
           <section className="lp-block" id="faq" aria-labelledby="faq-title">

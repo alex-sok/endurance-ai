@@ -1609,6 +1609,86 @@ body:has(.theme-paper) {
   margin-top: 6px;
 }
 
+/* ---------- a year, drawn ---------- */
+.lp-plan {
+  margin: 44px 0 0;
+}
+
+.lp-plan svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 28px;
+}
+
+.lp-plan .p-rule line {
+  stroke: var(--lp-line);
+  stroke-width: 1;
+}
+
+.lp-plan .p-solid {
+  fill: var(--lp-ink);
+}
+
+.lp-plan .p-hollow {
+  fill: none;
+  stroke: rgba(27, 26, 34, 0.32);
+  stroke-width: 1;
+}
+
+.lp-plan .p-side,
+.lp-plan .p-key {
+  font-family: var(--lp-sans);
+  fill: var(--lp-muted);
+}
+
+.lp-plan .p-side {
+  font-size: 15px;
+  text-anchor: end;
+}
+
+.lp-plan .p-key {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.lp-plan .p-in,
+.lp-plan .p-on,
+.lp-plan .p-total {
+  font-family: var(--lp-display);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size: 20px;
+}
+
+.lp-plan .p-in {
+  fill: var(--lp-snow);
+}
+
+.lp-plan .p-on,
+.lp-plan .p-total {
+  fill: var(--lp-ink);
+}
+
+/* Two product frames side by side: what the money buys. */
+.lp-buys {
+  display: grid;
+  gap: 40px;
+  margin-top: 44px;
+}
+
+.lp-buys figure {
+  margin: 0;
+}
+
+.lp-buys figcaption {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--lp-muted);
+  max-width: 54ch;
+}
+
 /* ---------- the run, drawn ----------
    The mechanism the page describes, in the page's own hairlines and numerals.
    One figure, full column, the only drawing on the site. */
@@ -2765,6 +2845,12 @@ ol.lp-team {
   .lp-diagram {
     grid-column: 1;
     grid-row: 3;
+  }
+  .lp-plan {
+    overflow-x: auto;
+  }
+  .lp-plan svg {
+    min-width: 660px;
   }
   .lp-diagram {
     overflow-x: auto;
