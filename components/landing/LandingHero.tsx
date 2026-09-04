@@ -14,6 +14,9 @@ export function LandingHero({ onOpenChat }: Props) {
           Endurance is a lab. We sit in the operation, then we ship the system
           it was missing.
         </p>
+        <p className="lp-hero-verticals">
+          Brain OS · Foundations · Micro SaaS · IDE
+        </p>
         <div className="lp-hero-actions">
           <button type="button" className="lp-btn-quiet" onClick={onOpenChat}>
             Invitation to Learn More

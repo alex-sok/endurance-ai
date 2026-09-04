@@ -14,8 +14,10 @@ interface Props {
 // own. Pricing keeps its place on a phone, where the anchors are hidden: the
 // page is what gets handed out, and it is handed out to people holding phones.
 const LINKS = [
-  { id: "research", label: "Lab" },
   { id: "work", label: "Work" },
+  { id: "builds", label: "Builds" },
+  { id: "ide", label: "IDE" },
+  { id: "research", label: "Lab" },
   { id: "team", label: "Team" },
 ];
 

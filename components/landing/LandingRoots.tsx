@@ -2,7 +2,7 @@ export function LandingRoots() {
   return (
     <section className="lp-block lp-split" id="research" data-section="research" aria-label="The lab">
       <div className="lp-split-copy">
-        <p className="lp-eyebrow">03 · The lab</p>
+        <p className="lp-eyebrow">05 · The lab</p>
         <h2 className="lp-h2">How we are built.</h2>
         <p className="lp-lead">
           Three disciplines, held in one small team. Research without a product

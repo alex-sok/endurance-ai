@@ -6,6 +6,7 @@ import { LandingNav } from "./LandingNav";
 import { LandingHero } from "./LandingHero";
 import { LandingRoots } from "./LandingRoots";
 import { LandingBuilds } from "./LandingBuilds";
+import { LandingIDE } from "./LandingIDE";
 import { LandingProducts } from "./LandingProducts";
 import { LandingTeam } from "./LandingTeam";
 import { LandingClose } from "./LandingClose";
@@ -99,8 +100,9 @@ export function LandingShell() {
 
         <div className="lp-seq">
           <LandingProducts />
-          <LandingRoots />
           <LandingBuilds />
+          <LandingIDE />
+          <LandingRoots />
           <section className="lp-interstitial" data-section="method">
             <p className="lp-closer">
               That is the method. Sit in the operation. Ship the system.
