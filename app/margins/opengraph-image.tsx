@@ -3,10 +3,12 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 /**
- * Link-preview card for Margins. Field, wordmark, the approved hero lines.
+ * Link-preview card for Margins. Field, wordmark, the hero lines as they ship.
+ * Kept in step with HERO in components/margins/content.ts: a share card that
+ * quotes a retired headline is worse than no share card.
  * File convention so Next emits an absolute og:image URL per deployment.
  */
-export const alt = "Pay for the margin, not the load.";
+export const alt = "One person knows the spreadsheet. Everyone is paid from it.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -65,9 +67,9 @@ export default async function Image() {
               letterSpacing: "-0.02em",
             }}
           >
-            <div>Pay for the margin,</div>
+            <div>One person knows the spreadsheet.</div>
             <div style={{ fontStyle: "italic", marginTop: 16 }}>
-              not the load.
+              Everyone is paid from it.
             </div>
           </div>
         </div>

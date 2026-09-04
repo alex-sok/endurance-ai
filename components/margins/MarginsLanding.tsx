@@ -2,128 +2,99 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ChatOverlay } from "@/components/landing/ChatOverlay";
-import { Exhibit } from "@/components/landing/Exhibit";
 import { LandingClose } from "@/components/landing/LandingClose";
 import { LandingNav } from "@/components/landing/LandingNav";
-import { CALENDLY_URL } from "@/lib/conversation-flows";
 import { MorphHero } from "./MorphHero";
-import { ProductFrame } from "@/components/landing/ProductFrames";
-import { RunDiagram } from "@/components/landing/RunDiagram";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
-import { CHAPTERS, HERO, LEDGER, PILOT, type MarginsChapter } from "./content";
+import {
+  BAND,
+  BEATS,
+  CHAMPION,
+  CLOSER,
+  PILOT,
+  REFUSALS,
+  type MarginsBeat,
+  type MarginsFigure,
+} from "./content";
 
-function Chapter({ chapter }: { chapter: MarginsChapter }) {
-  const titleId = `${chapter.slug}-title`;
+function Receipts({ figures }: { figures: MarginsFigure[] }) {
   return (
-    <section
-      className="lp-chapter"
-      data-section={chapter.slug}
-      aria-labelledby={titleId}
-    >
+    <ul className="lp-receipt">
+      {figures.map((figure) => (
+        <li key={figure.label}>
+          <p className="lp-figure">{figure.value}</p>
+          <p className="lp-fine">{figure.label}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// One beat of the Friday. The claim in the reading column, a door into the
+// demo view that shows this beat running, the figures that back it, and the
+// champion's note hanging in the margin of the first beat, where it is read
+// before anyone reaches the pilot.
+function Beat({
+  beat,
+  onCtaClick,
+  aside,
+}: {
+  beat: MarginsBeat;
+  onCtaClick: (label: string) => void;
+  aside?: { title: string; body: string };
+}) {
+  const titleId = `${beat.slug}-title`;
+  return (
+    <section className="lp-chapter" data-section={beat.slug} aria-labelledby={titleId}>
       <div className="lp-chapter-copy">
-        <p className="lp-eyebrow">{chapter.kicker}</p>
-        <h2 id={titleId}>{chapter.title}</h2>
-        <p className="lp-lead">{chapter.statement}</p>
-        {chapter.body.map((paragraph) => (
+        <p className="lp-eyebrow">{beat.kicker}</p>
+        <h2 id={titleId}>{beat.title}</h2>
+        {beat.body.map((paragraph) => (
           <p className="lp-body" key={paragraph}>
             {paragraph}
           </p>
         ))}
-        {chapter.exhibit ? null : (
-          <p className="lp-proofline">
-            {chapter.receipts.map((figure, i) => (
-              <span key={figure.label}>
-                {i > 0 ? " · " : ""}
-                <b>{figure.value}</b> {figure.label}
-              </span>
-            ))}
-          </p>
-        )}
-        {chapter.demoHref && chapter.demoLabel ? (
-          <a className="lp-feature-cta" href={chapter.demoHref}>
-            {chapter.demoLabel}
+        {beat.demo ? (
+          <a
+            className="lp-feature-cta"
+            href={beat.demo.href}
+            onClick={() => onCtaClick(beat.demo!.label)}
+          >
+            {beat.demo.label}
           </a>
         ) : null}
+        {beat.receipts ? <Receipts figures={beat.receipts} /> : null}
       </div>
-      {chapter.note ? (
+      {aside ? (
         <div className="lp-margin-note">
           <p className="lp-note">
-            <strong>{chapter.note.title}</strong> {chapter.note.body}
+            <strong>{aside.title}</strong> {aside.body}
           </p>
         </div>
-      ) : null}
-      {chapter.exhibit ? (
-        <div className="lp-aside">
-          <Exhibit exhibit={chapter.exhibit} />
-          <p className="lp-proofline">
-            {chapter.receipts.map((figure, i) => (
-              <span key={figure.label}>
-                {i > 0 ? " · " : ""}
-                <b>{figure.value}</b> {figure.label}
-              </span>
-            ))}
-          </p>
-        </div>
-      ) : null}
-      {chapter.frame ? (
-        <figure className="lp-realframe">
-          <ProductFrame kind={chapter.frame} />
-          <figcaption>{chapter.frameCaption}</figcaption>
-        </figure>
       ) : null}
     </section>
   );
 }
 
-// The ledger leads: the money, the count, and where the figures came from,
-// before anything else is claimed.
-function Ledger() {
-  const [head, ...rest] = LEDGER.rows;
+// The honesty, gathered and placed high. Four refusals in a row read as
+// confidence; the same four scattered through the page read as caveats.
+function Refusals() {
   return (
-    <section className="lp-block" data-section={LEDGER.slug} aria-labelledby="ledger-title">
-      <p className="lp-eyebrow">{LEDGER.kicker}</p>
-      <h2 className="lp-h2" id="ledger-title">
-        {LEDGER.title}
+    <section className="lp-block" data-section={REFUSALS.slug} aria-labelledby="refusals-title">
+      <p className="lp-eyebrow">{REFUSALS.kicker}</p>
+      <h2 className="lp-h2" id="refusals-title">
+        {REFUSALS.title}
       </h2>
-      <p className="lp-block-lede">{LEDGER.lede}</p>
-      <p className="lp-headfigure">{head.figure}</p>
-      <p className="lp-headfigure-label">{head.label}</p>
-      <ul className="lp-ledger">
-        {rest.map((row) => (
-          <li key={row.label}>
-            <div>
-              <p>{row.label}</p>
-              {row.qualifier ? <p className="lp-fine">{row.qualifier}</p> : null}
-            </div>
-            <p className="lp-figure">{row.figure}</p>
-          </li>
+      <ul className="lp-refusals">
+        {REFUSALS.items.map((item) => (
+          <li key={item}>{item}</li>
         ))}
       </ul>
-      <p className="lp-colophon">{LEDGER.colophon}</p>
-      <a className="lp-feature-cta" href="/margins/app/commissions">
-        See a week like this one running
-      </a>
     </section>
   );
 }
 
-function Method() {
-  return (
-    <section className="lp-block" data-section="method" aria-labelledby="method-title">
-      <p className="lp-eyebrow">{LEDGER.methodKicker}</p>
-      <h2 className="lp-h2" id="method-title">
-        {LEDGER.methodTitle}
-      </h2>
-      {LEDGER.methodBody.map((paragraph) => (
-        <p className="lp-body" key={paragraph}>
-          {paragraph}
-        </p>
-      ))}
-    </section>
-  );
-}
-
-function Pilot() {
+function Pilot({ onCtaClick }: { onCtaClick: (label: string) => void }) {
   return (
     <section className="lp-block" data-section={PILOT.slug} aria-labelledby="pilot-title">
       <p className="lp-eyebrow">{PILOT.kicker}</p>
@@ -142,28 +113,49 @@ function Pilot() {
           </li>
         ))}
       </ol>
-      <div className="lp-unlocks">
-        {PILOT.buyers.map((buyer) => (
-          <div key={buyer.role}>
-            <p className="lp-eyebrow">{buyer.role}</p>
-            <p className="lp-body">{buyer.unlock}</p>
-          </div>
-        ))}
-      </div>
+      <p className="lp-note">{PILOT.note}</p>
       <div className="lp-hero-actions lp-block-actions">
         <a
           className="lp-btn lp-btn-fill"
-          href={CALENDLY_URL}
+          href={PILOT.primary.href}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => onCtaClick(PILOT.primary.label)}
         >
-          Book the pilot
+          {PILOT.primary.label}
         </a>
-        <a className="lp-btn-quiet" href="/margins/pricing">
-          See what it costs
+        <a
+          className="lp-btn-quiet"
+          href={PILOT.secondary.href}
+          onClick={() => onCtaClick(PILOT.secondary.label)}
+        >
+          {PILOT.secondary.label}
         </a>
       </div>
-      <p className="lp-note">{PILOT.note}</p>
+    </section>
+  );
+}
+
+// The factual footer: what the page rests on, and the door to the long version.
+function Band({ onCtaClick }: { onCtaClick: (label: string) => void }) {
+  return (
+    <section className="lp-block" data-section={BAND.slug} aria-label="The record">
+      <ul className="lp-band-figures">
+        {BAND.figures.map((figure) => (
+          <li key={figure.label}>
+            <p className="lp-figure">{figure.value}</p>
+            <p className="lp-fine">{figure.label}</p>
+          </li>
+        ))}
+      </ul>
+      <p className="lp-band-note lp-colophon">{BAND.note}</p>
+      <a
+        className="lp-feature-cta"
+        href={BAND.cta.href}
+        onClick={() => onCtaClick(BAND.cta.label)}
+      >
+        {BAND.cta.label}
+      </a>
     </section>
   );
 }
@@ -212,21 +204,20 @@ export function MarginsLanding() {
         <MorphHero onCtaClick={onCtaClick} />
 
         <div className="lp-seq">
-          <Ledger />
-          {CHAPTERS.map((chapter) => (
-            <Chapter key={chapter.slug} chapter={chapter} />
+          {BEATS.map((beat) => (
+            <Beat
+              key={beat.slug}
+              beat={beat}
+              onCtaClick={onCtaClick}
+              aside={beat.slug === "sheet" ? CHAMPION : undefined}
+            />
           ))}
-          <section className="lp-block" data-section="run" aria-label="The run, end to end">
-            <RunDiagram />
-          </section>
-          <Method />
+          <Refusals />
           <section className="lp-interstitial" data-section="closer">
-            <p className="lp-closer">{LEDGER.closer}</p>
-            <a className="lp-feature-cta" href="/margins/app/audit">
-              Open the audit board
-            </a>
+            <p className="lp-closer">{CLOSER}</p>
           </section>
-          <Pilot />
+          <Pilot onCtaClick={onCtaClick} />
+          <Band onCtaClick={onCtaClick} />
         </div>
 
         <LandingClose onOpenChat={openChat} />

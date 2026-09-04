@@ -7,7 +7,7 @@ import { EmailCapture } from "@/components/landing/EmailCapture";
 import { Exhibit } from "@/components/landing/Exhibit";
 import { ProductFrame } from "@/components/landing/ProductFrames";
 import { RunDiagram } from "@/components/landing/RunDiagram";
-import { CHAPTERS, LEDGER } from "@/components/margins/content";
+import { CHAPTERS, LEDGER } from "@/components/margins/proof-content";
 import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/conversation-flows";
 
 // The book shows the system by being written in it: a document, numbered,

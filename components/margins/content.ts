@@ -1,214 +1,186 @@
 import { CALENDLY_URL } from "@/lib/conversation-flows";
 
-// Margins marketing page copy. Single source of truth.
+// Margins marketing page copy. Single source of truth for /margins.
 //
 // Every figure is drawn from the source brokerage's production system as of
-// August 24, 2026 (see the Margins case study in the platform repo), except
-// the finance hours, which are the team's estimate and must
-// stay labeled as such. Claims discipline: Margins calculates, proves, and
-// locks pay; it does not move money. Caught dollars were caught before
-// payment, never recovered losses. Do not alter strings without sign-off.
+// August 24, 2026 (see the Margins case study in the platform repo). No
+// estimate appears on this page. Claims discipline: Margins calculates,
+// proves, and locks pay; it does not move money, and the page says so out
+// loud in REFUSALS. Caught dollars were caught before payment, never
+// recovered losses. The source brokerage is never named.
+//
+// Structure: the page walks one Friday. Sheet, run, catch, statement, and the
+// dispute that arrives six months later. Do not alter strings without sign-off.
+
+// The demo is entered at /margins/app/commissions, not /margins/app: the bare
+// path renders without its stylesheets. Every deep link below points at the
+// view that shows the beat it sits under.
+export const DEMO_HREF = "/margins/app/commissions";
+export const PRICING_HREF = "/margins/pricing";
+export const PROOF_HREF = "/margins/proof";
 
 export type MarginsFigure = {
   value: string;
   label: string;
 };
 
-export type ExhibitRow = {
+export type MarginsCta = {
   label: string;
-  sub: string;
-  value: string;
+  href: string;
 };
 
-export type Exhibit = {
-  caption: string;
-  head: string;
-  meta: string;
-  rows: ExhibitRow[];
-  foot?: { label: string; value: string };
-};
-
-export type MarginsChapter = {
+export type MarginsBeat = {
   slug: string;
   kicker: string;
-  statement: string;
   title: string;
   body: string[];
-  exhibit?: Exhibit;
-  diagram?: boolean;
-  demoHref?: string;
-  demoLabel?: string;
-  frame?: "paid" | "held" | "statement";
-  frameCaption?: string;
-  receipts: MarginsFigure[];
-  note?: { title: string; body: string };
-};
-
-export type LedgerRow = {
-  label: string;
-  qualifier?: string;
-  figure: string;
+  receipts?: MarginsFigure[];
+  demo?: MarginsCta;
 };
 
 export const MARGINS_META = {
   title: "Margins — Endurance AI Labs",
   description:
-    "Commission settlement for freight brokerages. Every deal governed, every exception caught before payday, every dollar proved to the person it belongs to.",
+    "Commission settlement for freight brokerages. Every split computed off your TMS, every load that would pay wrong held before payday, every broker handed a statement that traces to the load.",
   canonical: "https://endurancelabs.ai/margins",
 };
 
 export const HERO = {
   kicker: "Product · Margins",
-  h1: "Pay for the margin,",
-  h1Accent: "margin",
-  h1Em: "not the load.",
-  lede: "Your TMS produces a commission number. Someone still finishes it by hand: overrides, pools, splits, reserves. Margins closes that gap and proves every dollar before payday.",
-  fillLabel: "Open the live demo",
-  fillHref: "/margins/app/commissions",
-  lineLabel: "Book a call",
+  h1: "One person knows the spreadsheet.",
+  h1Em: "Everyone is paid from it.",
+  lede: "It decides what every broker gets paid, and the only test it has ever had is the person who built it. Margins computes every split off your TMS, holds the loads that would pay wrong, and hands each broker a statement that traces to the load.",
+  ledeTwo: "Add agents without adding another person who knows the sheet.",
+  fillLabel: "Open the live demo, no login",
+  fillHref: DEMO_HREF,
+  lineLabel: "Fifteen minutes",
   lineHref: CALENDLY_URL,
 };
 
-export const CHAPTERS: MarginsChapter[] = [
+// Spoken to the champion, early and by role. The person who owns the sheet
+// reads this page afraid it replaces them, and they are the objection that
+// decides the deal.
+export const CHAMPION = {
+  title: "If you are the one who knows the sheet.",
+  body: "Margins does not replace you. It makes sure the run happens the week you are out, and that the next person can read what you built. The pilot needs you in the room.",
+};
+
+export const BEATS: MarginsBeat[] = [
   {
-    slug: "deals",
-    demoHref: "/margins/app/loads",
-    demoLabel: "Walk a load's precedence ladder",
-    kicker: "02 · The deals",
-    statement: "Thirteen ways to get paid, one spreadsheet that knows them all, and one person who knows the spreadsheet.",
-    title: "Every deal, in one governed place.",
+    slug: "sheet",
+    kicker: "01 · The sheet",
+    title: "Thirteen ways to get paid. One file knows them all.",
     body: [
-      "Customer deals, team splits, extra shares, dispatcher pay, draws, escrow, loans, floors. At the brokerage where Margins was built, thirteen distinct pay mechanisms are in force, and before Margins none of them lived in one place. Now each one is configuration, not a formula in a cell.",
-      "Every rate and split edit is filed with its dollar impact previewed, approved by a second administrator, and recorded on the audit board. Deals are effective-dated, so re-running an old week uses that week's rates, not today's.",
+      "Customer deals, team splits, extra shares, dispatcher pay, draws, escrow, loans, floors. At the brokerage where Margins was built, thirteen distinct pay mechanisms are in force. In the sheet each one is a formula in a cell. In Margins each one is a rule with a date on it.",
+      "Changing a rule takes a filed request, its dollar impact previewed, and a second administrator's approval. Nothing behind that date moves.",
     ],
-    exhibit: {
-      caption: "One load, distributed",
-      head: "Load L284100",
-      meta: "Harbor Logistics Co · $413 profit",
-      rows: [
-        { label: "Hutchins reserve", sub: "Office reserve · 5%", value: "$21.00" },
-        { label: "Hutchins team", sub: "Team pool · 70%", value: "$274.00" },
-        { label: "Theo York", sub: "Dispatch share · 7%", value: "$29.00" },
-        { label: "Margins keeps", sub: "Remainder after payouts", value: "$89.00" },
-      ],
-    },
-    frame: "paid",
-    frameCaption: "The same load in the product. Every share names its rule.",
     receipts: [
       { value: "13", label: "pay mechanisms in force" },
       { value: "343", label: "changes filed and reviewed: 311 approved, 29 rejected" },
     ],
+    demo: { label: "Walk a load's precedence ladder", href: "/margins/app/loads" },
   },
   {
-    slug: "catches",
-    demoHref: "/margins/app/exceptions",
-    demoLabel: "Open the exceptions worklist",
-    kicker: "03 · The catches",
-    statement: "A spreadsheet cannot notice the same load billed in two different weeks. And it cannot show why a number is the number.",
-    title: "The run stops before it pays wrong.",
+    slug: "run",
+    kicker: "02 · The run",
+    title: "The same load, billed in two different weeks.",
     body: [
-      "The same load billed twice is a duplicate, and it blocks the run. Re-billed loads with changed financials go to review. Loads whose agent code maps to nobody, loads that lost money, and margins high enough to suggest a missing carrier cost all wait for a person before payday. Warnings ask for a look. Blockers lock the pay step until someone acts.",
-      "The same run protects the house. A load below the minimum margin pays zero and says so in words. No deal can distribute more than 100 percent of a load's profit. Margins above a set review threshold, currently just under 60 percent, get a second pair of eyes, and the what-if simulator prices a proposed rate change against the real engine before anyone approves it.",
+      "The sheet pays it twice. Margins stops the run and says why. Same for a re-billed load whose financials moved, an agent code that maps to nobody, a load that lost money, and a margin too good to be true.",
+      "Warnings ask for a look. Blockers lock the pay step until a person clears them.",
     ],
-    diagram: true,
-    frame: "held",
-    frameCaption: "The same week in the product. One blocker holds the pay step; the run will not release until a person clears it.",
     receipts: [
       { value: "605", label: "exceptions raised and worked in twenty weeks" },
       { value: "$5,491", label: "that would have paid twice, stopped across 20 duplicate loads" },
     ],
-    note: {
-      title: "Caught before it paid.",
-      body: "During configuration, an audit found two people sharing one agent code. A broker's entire book, about $3,961 a week, was crediting to the wrong person. Every run was still a draft, so nothing had been disbursed, and roughly $39,400 went back to the broker who earned it. A system you can audit surfaces that error. A spreadsheet just pays it.",
-    },
+    demo: { label: "Open the exceptions worklist", href: "/margins/app/exceptions" },
   },
   {
-    slug: "portal",
-    demoHref: "/margins/app/people",
-    demoLabel: "See how each person is paid",
-    kicker: "04 · The portal",
-    statement: "Disputes are the tax a brokerage pays for a spreadsheet.",
-    title: "Every earner signs into their own numbers.",
+    slug: "catch",
+    kicker: "03 · The catch",
+    title: "$39,400 was going to the wrong broker.",
     body: [
-      "Each broker, dispatcher, and salaried person gets their own portal. Locked statements only: a week appears once the office finalizes it, and every line traces to the load behind it. Their live board, their book by customer, and a scorecard benchmarked against anonymized peers.",
-      "Statement emails carry a sign-in link, never financial data. Archive a payee and their sessions end that instant. Nobody waits for accounting to assemble a statement, and nobody argues with a number they can walk back to the load.",
+      "Two people, one agent code. A whole book, about $3,961 a week, landing on the wrong statement. Every run was still a draft, so not a dollar had moved, and it went back to the broker who earned it.",
+      "A system you can audit finds that. A spreadsheet just pays it.",
     ],
-    exhibit: {
-      caption: "One statement",
-      head: "Beck Zimmer",
-      meta: "BECKZFL · Broker · paid as flat rate",
-      rows: [
-        { label: "L284233", sub: "Meridian Lumber · 22.1% margin", value: "$396.00" },
-        { label: "L284492", sub: "Halcyon Glass · 19.9% margin", value: "$148.00" },
-      ],
-      foot: { label: "Net pay · week ending Jun 20", value: "$544.00" },
-    },
-    frame: "statement",
-    frameCaption: "A statement as the earner sees it. The gate is explained in words, not a code.",
+    demo: { label: "Open the audit board", href: "/margins/app/audit" },
+  },
+  {
+    slug: "statement",
+    kicker: "04 · The statement",
+    title: "Every broker signs into their own numbers.",
+    body: [
+      "No figures in an email. A sign-in link, a locked statement, and every line opens to the load behind it. Their live board, their book by customer, and a scorecard ranked against anonymized peers.",
+      "Nobody argues with a number they can walk back to the load.",
+    ],
     receipts: [
       { value: "270", label: "statements delivered since the end of July" },
       { value: "89", label: "people they reached" },
     ],
+    demo: { label: "See how each person is paid", href: "/margins/app/people" },
+  },
+  {
+    slug: "later",
+    kicker: "05 · Six months later",
+    title: "A broker disputes a check from April. His deal changed in June.",
+    body: [
+      "Re-run April. Margins uses April's rates, because every deal carries a date. Corrections post forward as their own lines instead of rewriting what was paid, so what actually went out stays queryable years later, next to the reason it changed and the person who approved it.",
+      "It is also the record a buyer asks for in diligence.",
+    ],
+    receipts: [
+      { value: "38,015", label: "audit lines behind twenty weeks of pay" },
+    ],
   },
 ];
 
-export const LEDGER = {
-  slug: "ledger",
-  kicker: "01 · The ledger",
-  title: "Twenty weeks in one brokerage.",
-  lede: "One brokerage, 20 closed weekly runs, March 29 through August 16, 2026.",
-  rows: [
-    { label: "Commission settled through Margins", figure: "$4,015,094" },
-    { label: "Average weekly payroll", qualifier: "across the closed weeks", figure: "$200,755" },
-    { label: "Loads priced", figure: "24,299" },
-    { label: "Audit lines behind those payouts", qualifier: "one per load, per earner", figure: "38,015" },
-    { label: "Earners on the roster", qualifier: "about 63 paid in a typical week", figure: "94" },
-    { label: "Distinct pay mechanisms in force", figure: "13" },
-    { label: "Exceptions raised and worked", figure: "605" },
-    { label: "Duplicate loads stopped before payment", qualifier: "about $5,491 that would have paid twice", figure: "20" },
-    { label: "Configuration changes filed and reviewed", figure: "343" },
-    { label: "Finance hours returned each week", qualifier: "the team's estimate rather than a queried figure", figure: "30 to 40" },
-  ] as LedgerRow[],
-  methodKicker: "05 · Why it holds",
-  methodTitle: "Built to be questioned.",
-  methodBody: [
-    "The calculation lives in one place, covered by 39 test suites that run on every pull request. A week can be re-run at any time and gives the same answer from the same inputs.",
-    "Corrections never rewrite history. They post forward as their own lines, so what was actually paid stays queryable years later, alongside the reason it changed and the person who approved it.",
+// The honesty, gathered in one place and placed high. Four refusals read as
+// confidence; the same four spread through the page read as caveats.
+export const REFUSALS = {
+  slug: "refusals",
+  kicker: "06 · The limits",
+  title: "What Margins will not do.",
+  items: [
+    "It will not move your money. It computes, proves, and locks what every person earned, then works with how you already pay.",
+    "It will not replace your TMS. It sits on top of it.",
+    "It will not earn its keep under about fifteen payees. Keep the sheet. We mean it. Come back when it hurts.",
+    "It will not run two brokerages on one deployment today. A second one is integration work, not a signup form.",
   ],
-  closer:
-    "Margins was not designed and then sold. It was built inside a brokerage's Monday, against real loads and real disputes, until the spreadsheet had nothing left to do.",
-  colophon:
-    "Every figure except the finance hours is drawn from the brokerage's production system on August 24, 2026. The hours are the finance team's own estimate.",
 };
 
 export const PILOT = {
   slug: "pilot",
-  kicker: "06 · The pilot",
-  title: "One pay run, next to your spreadsheet.",
+  kicker: "07 · The pilot",
+  title: "One pay run, next to your sheet.",
   lede: "Two to three days, on your own loads. Nothing changes and nobody has to trust us. You compare two numbers.",
   outcomes: [
     {
-      title: "The numbers match.",
-      body: "Margins is proven correct, and the spreadsheet is now redundant.",
+      title: "They match.",
+      body: "Margins is proven correct, and the sheet is now redundant.",
     },
     {
-      title: "Margins finds a difference.",
-      body: "That difference is the return on investment conversation, in your own dollars.",
+      title: "They differ.",
+      body: "That gap is the return on investment conversation, in your own dollars.",
     },
     {
-      title: "Margins is wrong.",
+      title: "We are wrong.",
       body: "We learn a comp rule we had not encoded, fix it, and rerun. Cheap.",
     },
   ],
-  buyers: [
-    {
-      role: "For the owner",
-      unlock: "Add agents without adding back office headcount, and a commission book clean enough to survive diligence.",
-    },
-    {
-      role: "For the controller",
-      unlock: "Payday runs without you. You are not the single point of failure any more.",
-    },
-  ],
-  note: "Under about fifteen people getting paid, a spreadsheet genuinely still works, and we will say so. Margins runs one brokerage per deployment today. Fitting a second one is integration work, not a signup form, and we would rather say that here than discover it together in week three.",
+  note: "The person who owns the sheet should be in the room. They are your best reviewer, and the objection that matters most.",
+  primary: { label: "Start a parallel run", href: CALENDLY_URL },
+  secondary: { label: "See what it costs", href: PRICING_HREF },
+};
+
+export const CLOSER =
+  "Margins was not designed and then sold. It was built inside a brokerage's Friday, against real loads and real disputes, until the spreadsheet had nothing left to do.";
+
+export const BAND = {
+  slug: "band",
+  figures: [
+    { value: "$4,015,094", label: "commission settled through Margins" },
+    { value: "24,299", label: "loads priced" },
+    { value: "94", label: "earners on the roster, about 63 paid in a typical week" },
+    { value: "20", label: "closed weekly runs, March 29 to August 16, 2026" },
+  ] as MarginsFigure[],
+  note: "Every figure on this page is drawn from the production system of the brokerage where Margins was built, queried August 24, 2026. One brokerage, twenty closed weekly runs.",
+  cta: { label: "Twenty weeks, line by line", href: PROOF_HREF },
 };
