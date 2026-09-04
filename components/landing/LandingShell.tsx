@@ -9,6 +9,7 @@ import { LandingBuilds } from "./LandingBuilds";
 import { LandingIDE } from "./LandingIDE";
 import { LandingProducts } from "./LandingProducts";
 import { LandingTeam } from "./LandingTeam";
+import { LandingManifesto } from "./LandingManifesto";
 import { LandingClose } from "./LandingClose";
 import { ChatOverlay } from "./ChatOverlay";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
@@ -105,10 +106,12 @@ export function LandingShell() {
           <LandingRoots />
           <section className="lp-interstitial" data-section="method">
             <p className="lp-closer">
-              That is the method. Sit in the operation. Ship the system.
+              Better questions create better outcomes. That is the method:
+              sit in the operation, ship the system.
             </p>
           </section>
           <LandingTeam />
+          <LandingManifesto />
         </div>
 
         <LandingClose onOpenChat={openChat} />
