@@ -15,7 +15,7 @@ export function LandingHero({ onOpenChat }: Props) {
           it was missing.
         </p>
         <div className="lp-hero-actions">
-          <button type="button" className="lp-btn lp-btn-fill" onClick={onOpenChat}>
+          <button type="button" className="lp-btn-quiet" onClick={onOpenChat}>
             Invitation to Learn More
           </button>
         </div>
