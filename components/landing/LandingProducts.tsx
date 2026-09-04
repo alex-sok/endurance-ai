@@ -43,7 +43,7 @@ export function LandingProducts() {
 
       <section className="lp-chapter" aria-labelledby="work-brain">
         <div className="lp-chapter-copy">
-          <p className="lp-eyebrow">02 · Brain powered operating systems (BPOS)</p>
+          <p className="lp-eyebrow">02 · Brain OS</p>
           <h2 id="work-brain">
             Your whole company&rsquo;s operations - automated before anybody
             asks.
@@ -56,8 +56,8 @@ export function LandingProducts() {
             Deterministic by design: ask twice, get the same answer. Every
             output traces back to a source of truth. Nothing is invented.
           </p>
-          <a className="lp-feature-cta" href="/brain">
-            Open Brain
+          <a className="lp-feature-cta" href="/brain-os">
+            Open Brain OS
           </a>
         </div>
         <Exhibit

@@ -3546,3 +3546,45 @@ ol.lp-team {
 .theme-paper .bpos-sens-tab td.is-base {
   background: var(--lp-night); color: var(--lp-snow); font-weight: 600;
 }
+
+/* ── Brain OS, full screen ────────────────────────────────────────────────
+   The same console the landing page carries, given the whole window: the
+   industry rail stays visible down the side instead of collapsing to chips,
+   and the console loses its card so the app is the page. */
+.bos-page {
+  min-height: 100svh; background: var(--lp-paper); color: var(--lp-ink);
+  display: flex; flex-direction: column;
+}
+.bos-top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  padding: 14px 24px; border-bottom: 1px solid var(--lp-line);
+  position: sticky; top: 0; z-index: 5; background: var(--lp-paper);
+}
+.bos-back { font-size: 13.5px; color: var(--lp-muted); text-decoration: none; }
+.bos-back:hover { color: var(--lp-ink); }
+.bos-title { display: inline-flex; align-items: center; gap: 10px; }
+.bos-title b { font-family: var(--lp-display); font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+.bos-sub {
+  font-family: var(--lp-mono); font-size: 9.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--lp-muted);
+}
+@media (max-width: 720px) { .bos-sub { display: none; } }
+.bos-cta {
+  font-size: 13px; text-decoration: none; color: var(--lp-paper);
+  background: var(--lp-ink); border-radius: var(--lp-radius); padding: 9px 16px;
+}
+.bos-cta:hover { background: #000; }
+.bos-main { flex: 1; padding: 20px 24px 40px; }
+
+/* full-screen layout: industries down the side, console filling the rest */
+.theme-paper .bpos-full { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
+@media (min-width: 1000px) {
+  .theme-paper .bpos-full { grid-template-columns: 200px minmax(0, 1fr); gap: 26px; align-items: start; }
+  .theme-paper .bpos-full .bpos-tabs {
+    flex-direction: column; align-items: stretch; gap: 4px;
+    position: sticky; top: 78px;
+  }
+  .theme-paper .bpos-full .bpos-tab { text-align: left; justify-content: flex-start; }
+}
+.theme-paper .bpos-full .bpos-app { box-shadow: none; }
