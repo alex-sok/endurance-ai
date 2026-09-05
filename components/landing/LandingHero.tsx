@@ -19,7 +19,7 @@ export function LandingHero({ onOpenChat }: Props) {
           are measured against.
         </p>
         <p className="lp-hero-verticals">
-          Brain OS · Foundations · IDE · Micro SaaS
+          Brain OS · Foundations · Multiplayer Developer Tool · Micro SaaS
         </p>
         <div className="lp-hero-actions">
           <button type="button" className="lp-btn-quiet" onClick={onOpenChat}>

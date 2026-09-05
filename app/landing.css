@@ -3902,3 +3902,27 @@ ol.lp-team {
 @media (max-width: 900px) {
   .lp-chapter .lp-exhibit { justify-self: stretch; max-width: none; }
 }
+
+/* ── the pink comes back, the purple stays gone ───────────────────────────
+   The washes warm up with the rose and peach from the reference page; the
+   ink, buttons and accents stay neutral. Color lives in the atmosphere,
+   never in the type. */
+.lp-hero.is-center.is-tall {
+  background:
+    radial-gradient(56% 44% at 28% 20%, rgba(232, 178, 186, 0.2), transparent 68%),
+    radial-gradient(50% 42% at 76% 14%, rgba(242, 205, 186, 0.22), transparent 70%),
+    linear-gradient(180deg, #fbfaf8 0%, #f4eeec 52%, #f6f1ee 74%, #fbfaf8 100%);
+}
+#work .lp-chapter:first-of-type,
+.lp-seq > #ide.lp-chapter,
+.lp-seq > #believe.lp-block,
+.vals-seq > .vals-card {
+  background: linear-gradient(135deg, #f8f1f3 0%, #fbf4f1 55%, #fcf8f4 100%);
+}
+#work .lp-chapter:last-of-type,
+.lp-seq > #builds.lp-block,
+.lp-seq > #research.lp-block,
+.lp-seq > #team.lp-block,
+.vals-seq > .vals-card.vals-alt {
+  background: linear-gradient(135deg, #fbf5ef 0%, #faf2f3 60%, #f6f3f3 100%);
+}

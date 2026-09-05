@@ -6,7 +6,7 @@ export function LandingIDE() {
   return (
     <section className="lp-chapter" aria-labelledby="work-ide" id="ide" data-section="ide">
       <div className="lp-chapter-copy">
-        <p className="lp-eyebrow">03 · IDE</p>
+        <p className="lp-eyebrow">03 · Multiplayer Developer Tool</p>
         <p className="lp-pain">
           &ldquo;Every build waits on a vendor, and nobody inside can see it
           happening.&rdquo;
