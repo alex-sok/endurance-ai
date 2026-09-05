@@ -23,10 +23,6 @@ export function LandingHero({ onOpenChat }: Props) {
             See what we&rsquo;d build for you
           </button>
         </div>
-        <p className="lp-hero-proof">
-          <b>$4.02M</b> settled · <b>200,000</b> loads of data ·
-          systems live in <b>7</b> industries · first screen by <b>day 4</b>
-        </p>
       </div>
     </header>
   );

@@ -53,8 +53,8 @@ export function LandingProducts() {
             and real outcomes the marketplace prices against from day one.
           </p>
           <p className="lp-proofline">
-            <b>$4.02M</b> settled in 20 closed weeks · <b>20</b> duplicate loads
-            stopped before they paid twice
+            <b>$4.02M</b> settled · <b>200,000</b> loads of data · <b>20</b>{" "}
+            duplicate loads stopped before they paid twice
           </p>
           <a className="lp-feature-cta" href="/margins">
             Open Margins
