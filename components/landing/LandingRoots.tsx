@@ -11,7 +11,9 @@ export function LandingRoots() {
       </div>
       <ul className="lp-split-list">
         <li>
-          <b>Research.</b> We start in the operation, not the model catalog.
+          <b>Research.</b> It runs in both directions: deep into the
+          operation, and deep into the models, pushing them past their limits
+          with harnesses we build ourselves.
         </li>
         <li>
           <b>Engineering.</b> We write production software.
