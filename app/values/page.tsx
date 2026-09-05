@@ -24,7 +24,7 @@ const mono = IBM_Plex_Mono({
 
 const TITLE = "Core Values — Endurance AI Labs";
 const DESCRIPTION =
-  "Be less dumb every day. Be of service. Do your job. The three rules Endurance AI Labs actually runs on.";
+  "Always learning. Be of service. Finish the job. The three rules Endurance AI Labs actually runs on.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -49,30 +49,32 @@ type Value = {
 
 const VALUES: Value[] = [
   {
-    id: "less-dumb",
+    id: "always-learning",
     num: "01",
-    short: "Be less dumb every day",
+    short: "Always learning",
     name: (
       <>
-        Be <span className="v-accent">less dumb</span> every day.
+        Always <span className="v-accent">learning</span>.
       </>
     ),
-    creed: "Humility and curiosity, first and foremost.",
+    creed: "Humility and curiosity, every day.",
     body: (
       <p>
-        Nobody here has it all figured out — if we did, there would be a
-        billion dollars in the bank account. Trying to act smart shuts down
-        listening, and listening is where the work starts.{" "}
+        We build inside other people&apos;s industries — freight desks, law
+        firms, kitchens, capital markets — so learning fast isn&apos;t a
+        virtue here, it&apos;s the job. Nobody has it all figured out, and
+        trying to act smart shuts down the listening the work depends on.{" "}
         <strong>
-          Stay humble, stay curious, and get a little less dumb every day.
+          Stay humble, ask more questions, and end every day a little less
+          dumb than you started it.
         </strong>{" "}
-        This is where empathy lives too: ask more questions, listen harder,
-        and let what you hear shape what you build.
+        The systems we ship work the same way: every document, every
+        correction, every operator conversation makes them smarter.
       </p>
     ),
     practices: [
       "Ask more questions than you answer — a great second meeting is earned by the questions asked in the first.",
-      "Don't act smart. Say \"I don't know yet\" and then go find out.",
+      "\"I don't know yet\" is a complete sentence — followed by going and finding out.",
       "Listen before you build — what the operator says shapes the system.",
     ],
   },
@@ -85,46 +87,49 @@ const VALUES: Value[] = [
         Be of <span className="v-accent">service</span>.
       </>
     ),
-    creed: "To each other, and to the people we build for.",
+    creed: "Jump in. Make it happen.",
     body: (
       <p>
-        Inside the team, everyone has direct access to everyone — when you
-        need someone, you get them, not a gatekeeper. Everyone has the
-        autonomy to take on what they want and pull in who they need. Outside
-        the team, everyone is busy; the question is whether our partners are a
-        priority.{" "}
-        <strong>They are, and they can tell by how fast we answer.</strong>
+        Service here means motion: see the problem, take the problem —
+        don&apos;t wait to be asked and don&apos;t route it through a layer.
+        Inside the team, everyone has direct access to everyone; when you
+        need someone, you get them. Outside the team, everyone is busy — the
+        question is whether our partners can tell they&apos;re a priority.{" "}
+        <strong>They can, by how fast we move.</strong>
       </p>
     ),
     practices: [
+      "See it, own it — jump in without waiting to be asked.",
       "Direct access, no layers — when a teammate needs you, they get you.",
-      "When a partner or client calls, they get a fast, real response.",
-      "Take on what you want to own, and pull each other in freely.",
+      "When a partner or client calls, they get a fast, real answer — busy is never the excuse.",
     ],
   },
   {
-    id: "do-your-job",
+    id: "finish-the-job",
     num: "03",
-    short: "Do your job",
+    short: "Finish the job",
     name: (
       <>
-        Do your <span className="v-accent">job</span>.
+        Finish the <span className="v-accent">job</span>.
       </>
     ),
-    creed: "Done well, and never alone.",
+    creed: "Shipped isn't finished. Used is.",
     body: (
       <p>
-        If everyone does their job and does it well, we have the makings of a
-        great team. And doing your job here means being collaborative —{" "}
-        <strong>nobody works a deal or a project in isolation.</strong> Lean
-        on whoever knows the system best, share what you learn, and challenge
-        each other to raise the level.
+        In our business the demo is the easy part — two exciting weeks, then
+        the long middle: messy data, changed requirements, the third revision
+        of the thing everyone thought was done. The job was never the code;
+        it&apos;s a system the operator runs their morning on without us in
+        the room. <strong>We stay until it&apos;s that, and we finish it
+        properly</strong> — numbers reconciled to zero, edge cases handled,
+        root causes fixed instead of patched. We&apos;re named after a ship
+        whose crew finished the expedition. Every man came home.
       </p>
     ),
     practices: [
-      "No solo projects — every deal gets more than one set of eyes.",
-      "Lean on the person who knows it best, whoever built it.",
-      "Share more: what you learned, what broke, what worked.",
+      "Launch is the midpoint — we stay until the system runs the client's day without us.",
+      "The last 5% — edge cases, empty states, the awkward export — is the job, not extra credit.",
+      "Reconcile to zero and fix the root cause — a patch that hides a problem is a debt, not a fix.",
     ],
   },
 ];
@@ -162,7 +167,7 @@ export default function ValuesPage() {
             loud.
           </p>
           <div className="v-cta-row">
-            <a className="v-btn v-btn-fill" href="#less-dumb">
+            <a className="v-btn v-btn-fill" href="#always-learning">
               Read the values
             </a>
             <a className="v-btn v-btn-line" href="https://endurancelabs.ai/">
@@ -182,8 +187,7 @@ export default function ValuesPage() {
           ))}
         </nav>
         <p className="v-band-note">
-          Set by the founding team on the August 31 call. Nothing here was
-          written by a committee.
+          Set by the founders. Nothing here was written by a committee.
         </p>
 
         {VALUES.map((v) => (
