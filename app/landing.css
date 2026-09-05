@@ -3926,3 +3926,35 @@ ol.lp-team {
 .vals-seq > .vals-card.vals-alt {
   background: linear-gradient(135deg, #fbf5ef 0%, #faf2f3 60%, #f6f3f3 100%);
 }
+
+/* ── containers off, everything else stays ────────────────────────────────
+   The boxes go: no border, no radius, no shadow, no floating card. The
+   washes stay, running full-bleed as bands; the content keeps exactly the
+   width it had inside the card, held by padding instead of a box. */
+.lp-seq > #work .lp-chapter,
+.lp-seq > .lp-chapter,
+.lp-seq > .lp-block,
+.vals-seq > .vals-card,
+.lp-close {
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.lp-seq > #work .lp-chapter,
+.lp-seq > .lp-chapter { padding: 84px max(24px, calc((100% - 1200px) / 2)); }
+.lp-seq > #builds.lp-block { padding: 84px max(24px, calc((100% - 1000px) / 2)); }
+.lp-seq > #research.lp-block { padding: 84px max(24px, calc((100% - 940px) / 2)); }
+.lp-seq > #team.lp-block { padding: 84px max(24px, calc((100% - 1120px) / 2)); }
+.lp-seq > #believe.lp-block { padding: 84px max(24px, calc((100% - 1020px) / 2)); }
+.vals-seq > .vals-card { padding: 72px max(24px, calc((100% - 1080px) / 2)); }
+.lp-close { padding: 112px max(24px, calc((100% - 1080px) / 2)) 56px; }
+
+@media (max-width: 900px) {
+  .lp-seq > #work .lp-chapter,
+  .lp-seq > .lp-chapter,
+  .lp-seq > .lp-block,
+  .vals-seq > .vals-card { padding: 56px 20px; }
+  .lp-close { padding: 72px 20px 48px; }
+}

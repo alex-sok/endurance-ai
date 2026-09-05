@@ -119,7 +119,7 @@ export default function ValuesPage() {
 
         <footer className="vals-coda">
           <p className="vals-coda-line">
-            We research. We build. We work. <em>We ship.</em>
+            We research. We build. <em>We ship.</em>
           </p>
           <p className="vals-coda-sig">Endurance AI Labs · endurancelabs.ai</p>
         </footer>

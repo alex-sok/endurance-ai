@@ -10,7 +10,7 @@ export function LandingHero({ onOpenChat }: Props) {
       <div className="lp-hero-copy">
         <p className="lp-kicker">Research · Engineering · Vertical software</p>
         <h1>
-          We research. We build. We work. <em>We ship.</em>
+          We research. We build. <em>We ship.</em>
         </h1>
         <p className="lp-hero-lede">
           Endurance is an R&amp;D AI lab based in Silicon Valley. We sit in
