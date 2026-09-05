@@ -10,25 +10,13 @@ interface Props {
   onCtaClick?: (label: string) => void;
 }
 
-// Section anchors on the homepage, then the one link that is a page of its
-// own. Pricing keeps its place on a phone, where the anchors are hidden: the
-// page is what gets handed out, and it is handed out to people holding phones.
-const LINKS = [
-  { id: "work", label: "Work" },
-  { id: "ide", label: "IDE" },
-  { id: "builds", label: "Builds" },
-  { id: "research", label: "Lab" },
-  { id: "team", label: "Team" },
-];
-
-const MARGINS_PRICING = "/margins/pricing";
-const BRAIN_PRICING = "/brain/pricing";
+// One link. The page carries its own map; the nav carries the one thing
+// that is not on it.
+const LINKS: { id: string; label: string }[] = [];
 
 export function LandingNav({ onOpenChat, onNavigate }: Props) {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  // Pricing follows the product you are on; Margins is the default elsewhere.
-  const pricingHref = pathname.startsWith("/brain") ? BRAIN_PRICING : MARGINS_PRICING;
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -73,10 +61,10 @@ export function LandingNav({ onOpenChat, onNavigate }: Props) {
           ))}
           <Link
             className="lp-nav-page"
-            href={pricingHref}
-            aria-current={pathname === pricingHref ? "page" : undefined}
+            href="/values"
+            aria-current={pathname === "/values" ? "page" : undefined}
           >
-            Pricing
+            Core Values
           </Link>
           <button type="button" className="lp-nav-talk" onClick={onOpenChat}>
             Talk

@@ -3753,13 +3753,15 @@ ol.lp-team {
   max-width: 30rem;
 }
 .lp-solve {
-  margin: 18px 0 -8px;
+  margin: 26px 0 14px;
   font-family: var(--lp-mono);
   font-size: 10.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--lp-muted);
 }
+.lp-solve + h2,
+.lp-solve + .lp-h2 { margin-top: 0; }
 
 /* ruled lists inside washes rule in white, not grey */
 .lp-split-list li { border-top-color: rgba(255, 255, 255, 0.9); }
@@ -3769,4 +3771,87 @@ ol.lp-team {
   max-width: var(--lp-max);
   margin: 28px auto 40px;
   border-radius: 24px;
+}
+
+/* ── /values — the homepage skin, one level quieter ─────────────────────── */
+.vals-page { min-height: 100svh; background: var(--lp-paper); }
+.vals-top {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 14px 24px;
+  position: sticky; top: 0; z-index: 5;
+  background: color-mix(in srgb, var(--lp-paper) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--lp-line);
+}
+.vals-hero .lp-hero-copy { padding-top: 96px; padding-bottom: 84px; text-align: center; }
+.vals-hero h1 { margin-inline: auto; }
+.vals-hero .lp-hero-lede { margin-inline: auto; }
+.vals-hero .lp-kicker { color: var(--lp-accent); }
+.theme-paper .vals-hero h1 em { font-style: normal; color: var(--lp-accent); }
+.vals-seq > .vals-card {
+  max-width: var(--lp-max);
+  margin: 28px auto;
+  padding: clamp(32px, 5vw, 56px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 24px;
+  box-shadow: 0 2px 6px rgba(50, 43, 61, 0.04), 0 24px 60px rgba(50, 43, 61, 0.07);
+  background: linear-gradient(135deg, #f3eff9 0%, #f9f0f2 55%, #fdf6f0 100%);
+}
+.vals-seq > .vals-card.vals-alt {
+  background: linear-gradient(135deg, #fbf3ec 0%, #f9eff0 60%, #f3eff9 100%);
+}
+.vals-practice-label {
+  font-family: var(--lp-mono); font-size: 10.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--lp-muted);
+}
+.vals-coda { padding: 72px 24px 96px; text-align: center; }
+.vals-coda-line {
+  font-family: var(--lp-display); font-weight: 600;
+  font-size: clamp(24px, 3.2vw, 34px); letter-spacing: -0.02em;
+  margin: 0 0 18px; color: var(--lp-ink);
+}
+.vals-coda-line em { font-style: normal; color: var(--lp-accent); }
+.vals-coda-sig {
+  font-family: var(--lp-mono); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--lp-muted); margin: 0;
+}
+
+/* ── un-squish the wash cards ─────────────────────────────────────────────
+   The card padding ate the exhibit column: the panel was rendering ~350px
+   wide with four-line subs. Wider card, saner column split, breathing room
+   above the pain quote, and a full one-column collapse on mobile where the
+   exhibit follows the copy instead of fighting it. */
+.lp-seq > #work .lp-chapter,
+.lp-seq > .lp-chapter,
+.lp-seq > .lp-block {
+  max-width: 1120px;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+  gap: 32px 48px;
+  align-items: start;
+}
+.lp-seq > .lp-block.lp-split {
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
+}
+.lp-pain { margin-top: 22px; font-size: 16.5px; }
+.lp-chapter .lp-exhibit { align-self: center; width: 100%; }
+.lp-exhibit-rows li { padding-block: 12px; }
+
+@media (max-width: 900px) {
+  .lp-seq > #work .lp-chapter,
+  .lp-seq > .lp-chapter,
+  .lp-seq > .lp-block {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin: 18px auto;
+    padding: 28px 22px;
+    border-radius: 18px;
+  }
+  .lp-pain { font-size: 15.5px; }
+  .lp-solve { margin-top: 20px; }
+  .vals-seq > .vals-card {
+    margin: 18px auto;
+    padding: 28px 22px;
+    border-radius: 18px;
+  }
+  .vals-hero .lp-hero-copy { padding-top: 72px; padding-bottom: 56px; }
 }
