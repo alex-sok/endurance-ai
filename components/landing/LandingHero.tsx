@@ -9,7 +9,9 @@ export function LandingHero({ onOpenChat }: Props) {
     <header className="lp-hero is-center is-tall" id="top" data-section="hero">
       <div className="lp-hero-copy">
         <p className="lp-kicker">Research · Engineering · Vertical software</p>
-        <h1>We research the work. Then we write the software.</h1>
+        <h1>
+          We research the work. <em>Then we write the software.</em>
+        </h1>
         <p className="lp-hero-lede">
           Endurance is a lab. We sit in your operation and ship the system it
           was missing: built for operators, not categories, so you set the

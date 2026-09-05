@@ -5,20 +5,21 @@
    IBM Plex Sans on body and nav, IBM Plex Mono on kickers. */
 
 body:has(.theme-paper) {
-  background: #ffffff;
-  color: #1b1a22;
+  background: #fbfaf8;
+  color: #322b3d;
   color-scheme: light;
 }
 
 .theme-paper {
-  --lp-field: #fcfbff;
-  --lp-paper: #ffffff;
-  --lp-ink: #1b1a22;
-  --lp-muted: #4d4b57;
-  --lp-line: rgba(27, 26, 34, 0.12);
+  --lp-field: #f7f4fb;
+  --lp-paper: #fbfaf8;
+  --lp-ink: #322b3d;
+  --lp-muted: #6d6580;
+  --lp-line: rgba(50, 43, 61, 0.13);
   --lp-flare: #b03a5e;
-  --lp-night: #141319;
-  --lp-snow: #f7f6fb;
+  --lp-accent: #6e56cf;
+  --lp-night: #262033;
+  --lp-snow: #f4f1f8;
   --lp-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --lp-sans: var(--font-plex-sans), "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --lp-display: var(--font-display), "Archivo", "Helvetica Neue", Arial, sans-serif;
@@ -28,7 +29,7 @@ body:has(.theme-paper) {
   --lp-sheet: 920px;
   --lp-radius: 6px;
   --lp-nav-h: 64px;
-  --lp-lift: 0 1px 2px rgba(27, 26, 34, 0.04), 0 16px 40px rgba(27, 26, 34, 0.1);
+  --lp-lift: 0 1px 2px rgba(50, 43, 61, 0.04), 0 16px 40px rgba(50, 43, 61, 0.1);
 
   min-height: 100vh;
   background: var(--lp-paper);
@@ -179,7 +180,7 @@ body:has(.theme-paper) {
 .lp-nav-page[aria-current="page"] {
   opacity: 1;
   text-decoration: underline;
-  text-decoration-color: rgba(27, 26, 34, 0.35);
+  text-decoration-color: rgba(50, 43, 61, 0.35);
   text-decoration-thickness: 1px;
   text-underline-offset: 5px;
 }
@@ -217,7 +218,7 @@ body:has(.theme-paper) {
 }
 
 .lp-hero .lp-btn-line {
-  border-color: rgba(27, 26, 34, 0.32);
+  border-color: rgba(50, 43, 61, 0.32);
 }
 
 .lp-btn-line:hover {
@@ -377,7 +378,7 @@ body:has(.theme-paper) {
   font-size: 16px;
   text-decoration: none;
   text-decoration: underline;
-  text-decoration-color: rgba(27, 26, 34, 0.35);
+  text-decoration-color: rgba(50, 43, 61, 0.35);
   text-decoration-thickness: 1px;
   text-underline-offset: 5px;
   transition: border-color 160ms var(--lp-ease);
@@ -958,7 +959,7 @@ body:has(.theme-paper) {
   grid-template-columns: minmax(0, 30rem) minmax(0, 1fr);
   gap: 0 56px;
   padding: 96px 0;
-  border-top: 1px solid var(--lp-line-2, rgba(27, 26, 34, 0.22));
+  border-top: 1px solid var(--lp-line-2, rgba(50, 43, 61, 0.2));
 }
 
 .lp-seq > *:first-child {
@@ -974,7 +975,7 @@ body:has(.theme-paper) {
    measure: the one change of tempo on the page. */
 .lp-interstitial {
   padding: 88px 0;
-  border-top: 1px solid rgba(27, 26, 34, 0.22);
+  border-top: 1px solid rgba(50, 43, 61, 0.2);
 }
 
 .lp-interstitial .lp-closer {
@@ -1008,7 +1009,7 @@ body:has(.theme-paper) {
   grid-template-columns: minmax(0, 30rem) minmax(0, 1fr);
   gap: 0 56px;
   padding: 96px 0;
-  border-top: 1px solid rgba(27, 26, 34, 0.22);
+  border-top: 1px solid rgba(50, 43, 61, 0.2);
 }
 
 .lp-block-grid > *:not(.lp-margin-note) {
@@ -1073,7 +1074,7 @@ body:has(.theme-paper) {
   align-self: start;
   margin: 36px 0 0;
   padding-top: 20px;
-  border-top: 1px solid rgba(27, 26, 34, 0.22);
+  border-top: 1px solid rgba(50, 43, 61, 0.2);
 }
 
 .lp-exhibit-cap {
@@ -1143,7 +1144,7 @@ body:has(.theme-paper) {
   gap: 16px;
   margin-top: 4px;
   padding-top: 14px;
-  border-top: 1px solid rgba(27, 26, 34, 0.28);
+  border-top: 1px solid rgba(50, 43, 61, 0.28);
   font-size: 14px;
   color: var(--lp-muted);
 }
@@ -1637,7 +1638,7 @@ body:has(.theme-paper) {
 
 .lp-plan .p-hollow {
   fill: none;
-  stroke: rgba(27, 26, 34, 0.32);
+  stroke: rgba(50, 43, 61, 0.32);
   stroke-width: 1;
 }
 
@@ -1748,13 +1749,13 @@ body:has(.theme-paper) {
 }
 
 .lp-diagram .d-loads line {
-  stroke: rgba(27, 26, 34, 0.42);
+  stroke: rgba(50, 43, 61, 0.42);
   stroke-width: 1;
 }
 
 .lp-diagram .d-arrow line,
 .lp-diagram .d-arrow polyline {
-  stroke: rgba(27, 26, 34, 0.4);
+  stroke: rgba(50, 43, 61, 0.4);
   stroke-width: 1;
   fill: none;
 }
@@ -1945,7 +1946,7 @@ body:has(.theme-paper) {
 /* ---------- a block of running type in the sequence ---------- */
 .lp-block {
   padding: 96px 0;
-  border-top: 1px solid rgba(27, 26, 34, 0.22);
+  border-top: 1px solid rgba(50, 43, 61, 0.2);
 }
 
 .lp-block-lede {
@@ -2144,7 +2145,7 @@ body:has(.theme-paper) {
   border-radius: var(--lp-radius);
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 1px 2px rgba(27, 26, 34, 0.05), 0 12px 32px rgba(27, 26, 34, 0.08);
+  box-shadow: 0 1px 2px rgba(50, 43, 61, 0.05), 0 12px 32px rgba(50, 43, 61, 0.08);
   outline: 1px solid var(--lp-line);
   outline-offset: -1px;
   text-decoration: none;
@@ -2496,7 +2497,7 @@ ol.lp-team {
 }
 
 .lp-form input:hover {
-  border-bottom-color: rgba(27, 26, 34, 0.28);
+  border-bottom-color: rgba(50, 43, 61, 0.28);
 }
 
 .lp-form input:focus {
@@ -3651,3 +3652,45 @@ ol.lp-team {
   letter-spacing: -0.01em;
   color: var(--lp-ink);
 }
+
+
+/* ── Sundial-inspired skin ────────────────────────────────────────────────
+   Warm white ground, deep plum ink, one violet. The hero gets the pastel
+   wash; the violet lands on the kickers, the highlighted half of the
+   headline, and the links. Everything else keeps its shape. */
+.lp-hero.is-center.is-tall {
+  background:
+    radial-gradient(52% 44% at 24% 18%, rgba(110, 86, 207, 0.13), transparent 70%),
+    radial-gradient(46% 40% at 78% 12%, rgba(236, 168, 145, 0.16), transparent 72%),
+    radial-gradient(60% 48% at 55% 42%, rgba(214, 188, 240, 0.12), transparent 75%);
+}
+.theme-paper .lp-hero h1 em {
+  font-style: normal;
+  color: var(--lp-accent);
+}
+.theme-paper .lp-kicker,
+.theme-paper .lp-eyebrow {
+  color: var(--lp-accent);
+}
+.theme-paper .lp-feature-cta {
+  background: var(--lp-accent);
+  border-color: var(--lp-accent);
+}
+.theme-paper .lp-feature-cta:hover {
+  background: #5b45b5;
+}
+.theme-paper .lp-btn-fill {
+  background: var(--lp-accent);
+  border-color: var(--lp-accent);
+}
+.theme-paper .lp-btn-fill:hover {
+  background: #5b45b5;
+}
+.theme-paper .lp-proofline b,
+.theme-paper .lp-hero-proof b {
+  color: var(--lp-accent);
+}
+.theme-paper .lp-quote { border-left-color: var(--lp-accent); }
+.theme-paper .bpos-pulse { background: var(--lp-accent); }
+.theme-paper .bos-cta { background: var(--lp-accent); }
+.theme-paper .bos-cta:hover { background: #5b45b5; }
