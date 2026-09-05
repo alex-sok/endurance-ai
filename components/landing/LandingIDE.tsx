@@ -14,17 +14,20 @@ export function LandingIDE() {
         <p className="lp-solve">How Endurance solves it —</p>
         <h2 id="work-ide">Where your whole company builds together.</h2>
         <p className="lp-lead">
-          A multiplayer development platform: every AI subscription, every
-          project, every Slack and Teams thread your business runs, wired into
-          one live environment.
+          Every model you use — Claude, Gemini, Grok, whatever ships next —
+          and every tool you run, built into one harness. Your whole
+          organization, building together in real time.
         </p>
         <p className="lp-body">
-          It is a harness for the whole operation. Your repos, your data, your
-          conversations and your Claude Code sessions in one place, so anyone
-          on the team can sit down and build against the real thing, together,
-          in real time. What used to take a vendor and a quarter takes an
-          afternoon and the people who already know the work. It is the bench
-          our own lab works at; select clients run it with us.
+          Not a copilot in a corner. A multiplayer environment where your
+          repos, your data, your Slack and Teams, your subscriptions and your
+          people share one live surface: sales builds with ops, ops with
+          engineering, anyone opens a session and shapes the same system at
+          the same moment, and everyone watches it happen. Whatever you can
+          describe, your team can build, together. What used to take a vendor
+          and a quarter takes an afternoon and the people who already know
+          the work. It is the bench our own lab works at; select clients run
+          it with us.
         </p>
         <a className="lp-feature-cta" href="#close">
           Ask about early access
@@ -34,12 +37,12 @@ export function LandingIDE() {
         exhibit={{
           caption: "One environment",
           head: "Live session",
-          meta: "4 people building · one harness",
+          meta: "7 people · 3 teams · building live",
           rows: [
+            { label: "Models", sub: "Claude, Gemini, Grok — every seat, one harness", value: "Pooled" },
             { label: "Claude Code", sub: "3 sessions against live data", value: "Live" },
             { label: "Slack + Teams", sub: "the build thread, wired in", value: "Synced" },
             { label: "Projects", sub: "12 repos, one deploy path", value: "Green" },
-            { label: "AI subscriptions", sub: "every seat, pooled in one place", value: "Ready" },
           ],
         }}
       />
