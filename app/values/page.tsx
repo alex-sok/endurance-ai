@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./values.css";
 
-const serif = Source_Serif_4({
+const display = Archivo({
   subsets: ["latin"],
-  variable: "--vf-serif",
-  weight: ["400"],
-  style: ["normal", "italic"],
+  variable: "--vf-display",
+  weight: ["500", "600"],
 });
 
 const sans = IBM_Plex_Sans({
@@ -36,6 +35,14 @@ export const metadata: Metadata = {
     url: "https://endurancelabs.ai/values",
   },
 };
+
+const NAV_LINKS = [
+  { href: "/#work", label: "Work" },
+  { href: "/#ide", label: "IDE" },
+  { href: "/#builds", label: "Builds" },
+  { href: "/#research", label: "Lab" },
+  { href: "/#team", label: "Team" },
+];
 
 type Value = {
   id: string;
@@ -137,28 +144,34 @@ const VALUES: Value[] = [
 export default function ValuesPage() {
   return (
     <main
-      className={`values-page ${serif.variable} ${sans.variable} ${mono.variable}`}
+      className={`values-page ${display.variable} ${sans.variable} ${mono.variable}`}
     >
-      <div className="v-wrap">
-        <nav className="v-nav" aria-label="Site">
-          <Link href="/">
-            <img src="/logo-endurance.svg" alt="Endurance AI Labs" />
+      <nav className="v-nav" aria-label="Primary">
+        <div className="v-nav-inner">
+          <Link className="v-wordmark" href="/" aria-label="Endurance AI Labs">
+            <img src="/logo-endurance.svg" alt="" />
           </Link>
-          <div className="v-nav-right">
-            <span className="v-nav-label">Core Values</span>
-            <a className="v-btn v-btn-fill" href="mailto:hello@endurancelabs.ai">
+          <div className="v-nav-links">
+            {NAV_LINKS.map((l) => (
+              <a key={l.label} href={l.href}>
+                {l.label}
+              </a>
+            ))}
+            <Link className="v-nav-page" href="/values" aria-current="page">
+              Core Values
+            </Link>
+            <a className="v-nav-talk" href="mailto:hello@endurancelabs.ai">
               Talk
             </a>
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
 
       <header className="v-hero">
         <div className="v-wrap">
-          <p className="v-eyebrow">Endurance · Core Values</p>
+          <p className="v-kicker">Endurance · Core Values</p>
           <h1>
-            Three <span className="v-accent">values</span>,<br />
-            <em>said plainly.</em>
+            Three values, <em>said plainly.</em>
           </h1>
           <p className="v-lede">
             We don&apos;t do poster values — no &quot;heart,&quot; no
@@ -170,8 +183,8 @@ export default function ValuesPage() {
             <a className="v-btn v-btn-fill" href="#always-learning">
               Read the values
             </a>
-            <a className="v-btn v-btn-line" href="https://endurancelabs.ai/">
-              endurancelabs.ai
+            <a className="v-btn v-btn-line" href="mailto:hello@endurancelabs.ai">
+              Talk to us
             </a>
           </div>
         </div>
