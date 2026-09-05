@@ -52,6 +52,10 @@ export function LandingProducts() {
             That history is the edge: real rates, real lanes, real carriers
             and real outcomes the marketplace prices against from day one.
           </p>
+          <blockquote className="lp-quote">
+            &ldquo;Foundations is fundamentally killing deadhead: the empty
+            mile.&rdquo;
+          </blockquote>
           <p className="lp-proofline">
             <b>$4.02M</b> settled · <b>200,000</b> loads of data · <b>20</b>{" "}
             duplicate loads stopped before they paid twice

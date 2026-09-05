@@ -3639,3 +3639,15 @@ ol.lp-team {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
+
+/* the one spoken line on the page */
+.lp-quote {
+  margin: 26px 0 0;
+  padding-left: 18px;
+  border-left: 2px solid var(--lp-ink);
+  font-family: var(--lp-display);
+  font-size: 19px;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--lp-ink);
+}
