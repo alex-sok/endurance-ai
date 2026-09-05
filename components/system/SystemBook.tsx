@@ -458,7 +458,7 @@ export function SystemBook() {
             <p className="lp-lede">If there is a system worth building, we will say so.</p>
             <div className="lp-cta-actions">
               <button type="button" className="lp-btn lp-btn-fill" onClick={() => setChatOpen(true)}>
-                Invitation to Learn More
+                See what we’d build for you
               </button>
             </div>
             <EmailCapture />

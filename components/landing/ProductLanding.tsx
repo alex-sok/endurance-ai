@@ -63,7 +63,7 @@ export function ProductLanding(product: ProductContent) {
             <p className="lp-hero-lede">{product.lede}</p>
             <div className="lp-hero-actions">
               <button type="button" className="lp-btn lp-btn-fill" onClick={openChat}>
-                Invitation to Learn More
+                See what we’d build for you
               </button>
               <a
                 className="lp-btn lp-btn-line"

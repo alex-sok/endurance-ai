@@ -15,12 +15,14 @@ export function LandingProducts() {
             asks.
           </h2>
           <p className="lp-lead">
-            A brain is where it starts. The operating system is what we ship,
-            wired into the systems you already run.
+            Ask your business a question, get the answer with the receipt. The
+            operating system is what we ship, wired into what you already run.
           </p>
           <p className="lp-body">
             Deterministic by design: ask twice, get the same answer. Every
-            output traces back to a source of truth. Nothing is invented.
+            output traces back to a source of truth. Nothing is invented. And
+            your best people stop doing admin and start doing the work you
+            hired them for.
           </p>
           <a className="lp-feature-cta" href="/brain-os">
             Open Brain OS

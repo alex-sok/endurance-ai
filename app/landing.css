@@ -3627,3 +3627,15 @@ ol.lp-team {
   text-transform: uppercase;
   color: var(--lp-muted);
 }
+
+/* the scoreboard under the hero — proof before anyone scrolls */
+.lp-hero-proof {
+  margin-top: 26px;
+  font-size: 13.5px;
+  color: var(--lp-muted);
+}
+.lp-hero-proof b {
+  color: var(--lp-ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}

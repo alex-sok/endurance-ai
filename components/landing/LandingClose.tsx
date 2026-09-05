@@ -23,7 +23,7 @@ export function LandingClose({ onOpenChat }: Props) {
         </p>
         <div className="lp-cta-actions">
           <button type="button" className="lp-btn lp-btn-fill" onClick={onOpenChat}>
-            Invitation to Learn More
+            See what we’d build for you
           </button>
         </div>
         <EmailCapture />

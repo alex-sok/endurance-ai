@@ -22,7 +22,7 @@ export default function BrainOSPage() {
           <span className="bos-sub">Brain powered operating systems</span>
         </div>
         <Link className="bos-cta" href="/#close">
-          Invitation to Learn More
+          See what we’d build for you
         </Link>
       </header>
 
