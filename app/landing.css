@@ -4076,3 +4076,56 @@ ol.lp-team {
   margin: auto 0 0; padding-top: 6px;
   font-family: var(--lp-mono); font-size: 11px; color: var(--lp-accent);
 }
+
+/* ── the bands run edge to edge ───────────────────────────────────────────
+   .lp-seq was still capped at 1040px, so every wash rendered as an inset
+   blue box — the "border" feeling. The sequence now spans the viewport and
+   each band's own padding centers its content at the width it was given. */
+.lp-seq {
+  max-width: none;
+  padding-inline: 0;
+}
+
+/* ── the closing offer, row-card grammar ─────────────────────────────────− */
+.lp-ctaband { padding: 24px max(20px, calc((100% - 1160px) / 2)) 64px; }
+.lp-ctacard {
+  background: #ffffff;
+  border: 1px solid rgba(30, 29, 36, 0.08);
+  border-radius: 20px;
+  padding: clamp(32px, 4.5vw, 56px);
+  box-shadow: 0 1px 3px rgba(30, 29, 36, 0.04), 0 18px 48px rgba(30, 29, 36, 0.06);
+}
+.lp-ctakick {
+  font-family: var(--lp-mono); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--lp-accent); margin: 0 0 14px;
+}
+.lp-ctahead {
+  font-family: var(--lp-display); font-weight: 600;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -0.025em;
+  line-height: 1.12; margin: 0 0 12px; max-width: 24ch;
+}
+.lp-ctasub { margin: 0 0 30px; font-size: 16.5px; color: var(--lp-muted); max-width: 44rem; }
+.lp-ctarows { list-style: none; margin: 0; padding: 0; }
+.lp-ctarows li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 15rem) minmax(0, 1fr);
+  gap: 18px; align-items: baseline;
+  padding: 20px 0;
+  border-top: 1px solid rgba(30, 29, 36, 0.1);
+}
+.lp-ctanum {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 9px;
+  border: 1px solid rgba(30, 29, 36, 0.14);
+  font-family: var(--lp-mono); font-size: 11px; color: var(--lp-ink);
+  align-self: center;
+}
+.lp-ctaname { font-weight: 600; font-size: 15.5px; color: var(--lp-ink); }
+.lp-ctadesc { font-size: 14px; line-height: 1.6; color: var(--lp-muted); }
+.lp-ctafoot { margin-top: 28px; }
+.lp-ctafoot .lp-feature-cta { margin-top: 0; border: 0; cursor: pointer; font-family: inherit; }
+
+@media (max-width: 720px) {
+  .lp-ctarows li { grid-template-columns: auto minmax(0, 1fr); }
+  .lp-ctadesc { grid-column: 2; }
+}

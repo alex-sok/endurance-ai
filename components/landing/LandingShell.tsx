@@ -10,6 +10,7 @@ import { LandingIDE } from "./LandingIDE";
 import { LandingProducts } from "./LandingProducts";
 import { LandingTeam } from "./LandingTeam";
 import { LandingManifesto } from "./LandingManifesto";
+import { LandingCTA } from "./LandingCTA";
 import { LandingClose } from "./LandingClose";
 import { ChatOverlay } from "./ChatOverlay";
 import { useSiteAnalytics } from "@/hooks/useSiteAnalytics";
@@ -113,6 +114,8 @@ export function LandingShell() {
           <LandingTeam />
           <LandingManifesto />
         </div>
+
+        <LandingCTA onOpenChat={openChat} />
 
         <LandingClose onOpenChat={openChat} />
       </main>
