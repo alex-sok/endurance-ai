@@ -1,10 +1,32 @@
-import { Exhibit } from "./Exhibit";
+/* Section 03 — the multiplayer development platform. Copy at full measure,
+   then the live session spanning the band as tiles. */
 
-/* Section 03 — the multiplayer development platform. Hybrid framing: the
-   internal advantage first, early access for select clients second. */
+const SESSION = [
+  {
+    name: "Models",
+    value: "Pooled",
+    sub: "Claude, Gemini, Grok — every seat, one harness.",
+  },
+  {
+    name: "Claude Code",
+    value: "Live",
+    sub: "3 sessions running against live data.",
+  },
+  {
+    name: "Slack + Teams",
+    value: "Synced",
+    sub: "The build thread, wired into the session.",
+  },
+  {
+    name: "Projects",
+    value: "Green",
+    sub: "12 repos on one deploy path.",
+  },
+];
+
 export function LandingIDE() {
   return (
-    <section className="lp-chapter" aria-labelledby="work-ide" id="ide" data-section="ide">
+    <section className="lp-chapter is-showcase" aria-labelledby="work-ide" id="ide" data-section="ide">
       <div className="lp-chapter-copy">
         <p className="lp-eyebrow">03 · Multiplayer Developer Tool</p>
         <p className="lp-pain">
@@ -33,19 +55,22 @@ export function LandingIDE() {
           Ask about early access
         </a>
       </div>
-      <Exhibit
-        exhibit={{
-          caption: "One environment",
-          head: "Live session",
-          meta: "7 people · 3 teams · building live",
-          rows: [
-            { label: "Models", sub: "Claude, Gemini, Grok — every seat, one harness", value: "Pooled" },
-            { label: "Claude Code", sub: "3 sessions against live data", value: "Live" },
-            { label: "Slack + Teams", sub: "the build thread, wired in", value: "Synced" },
-            { label: "Projects", sub: "12 repos, one deploy path", value: "Green" },
-          ],
-        }}
-      />
+
+      <div className="lp-showcase-head">
+        <p className="lp-showcase-title">Live session</p>
+        <p className="lp-showcase-meta">7 people · 3 teams · building live</p>
+      </div>
+      <div className="lp-showcase lp-showcase-4">
+        {SESSION.map((m) => (
+          <div className="lp-tile" key={m.name}>
+            <div className="lp-tile-row">
+              <p className="lp-tile-q">{m.name}</p>
+              <p className="lp-tile-v">{m.value}</p>
+            </div>
+            <p className="lp-tile-a">{m.sub}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

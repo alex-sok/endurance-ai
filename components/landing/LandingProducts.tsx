@@ -1,13 +1,37 @@
-import { Exhibit } from "./Exhibit";
 import { BRAIN_ANSWERS } from "./product-content";
 
-/* The first two verticals. Brain OS leads because it is the claim the
-   company makes; Foundations follows as the vertical where that claim has
-   been running in production since March. */
+/* The first two verticals. The side-panel modules are gone: each chapter
+   runs its copy at full measure, then opens into a showcase that spans the
+   band — the use cases as tiles for Brain OS, the autonomized stack as
+   tiles for Foundations. */
+
+const FREIGHT_STACK = [
+  {
+    name: "Margins",
+    value: "$4.02M",
+    sub: "Every commission computed off the TMS, penny-accurate, exceptions held.",
+  },
+  {
+    name: "Carrier invoicing",
+    value: "318/wk",
+    sub: "Every invoice matched to its rate confirmation, carrier side and shipper side.",
+  },
+  {
+    name: "CRM",
+    value: "2,627",
+    sub: "Prospecting embedded: the next best carrier and shipper, surfaced with the reason.",
+  },
+  {
+    name: "Nova",
+    value: "24/7",
+    sub: "A live dispatcher, texting drivers and shippers in real time from tender to delivery.",
+  },
+];
+
 export function LandingProducts() {
   return (
     <div id="work" data-section="work">
-      <section className="lp-chapter" aria-labelledby="work-brain">
+      <section className="lp-chapter is-showcase" aria-labelledby="work-brain">
         <div className="lp-chapter-copy">
           <p className="lp-eyebrow">01 · Brain OS</p>
           <p className="lp-pain">
@@ -33,17 +57,25 @@ export function LandingProducts() {
             Open Brain OS
           </a>
         </div>
-        <Exhibit
-          exhibit={{
-            caption: "Example use cases",
-            head: "Ask Brain",
-            meta: "Ask in plain language · documents behind each answer",
-            rows: BRAIN_ANSWERS,
-          }}
-        />
+
+        <div className="lp-showcase-head">
+          <p className="lp-showcase-title">Ask Brain</p>
+          <p className="lp-showcase-meta">
+            Example use cases · documents behind each answer
+          </p>
+        </div>
+        <div className="lp-showcase">
+          {BRAIN_ANSWERS.map((a) => (
+            <div className="lp-tile" key={a.label}>
+              <p className="lp-tile-q">{a.label}</p>
+              <p className="lp-tile-a">{a.sub}</p>
+              <p className="lp-tile-n">{a.value} documents</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section className="lp-chapter" aria-labelledby="work-foundations">
+      <section className="lp-chapter is-showcase" aria-labelledby="work-foundations">
         <div className="lp-chapter-copy">
           <p className="lp-eyebrow">02 · Foundations</p>
           <p className="lp-pain">
@@ -74,35 +106,24 @@ export function LandingProducts() {
             Open Margins
           </a>
         </div>
-        <Exhibit
-          exhibit={{
-            caption: "Autonomized, end to end",
-            head: "The freight stack",
-            meta: "Every aspect of the business, running itself",
-            rows: [
-              {
-                label: "Margins",
-                sub: "every commission computed off the TMS, penny-accurate, exceptions held",
-                value: "$4.02M",
-              },
-              {
-                label: "Carrier invoicing",
-                sub: "every invoice matched to its rate confirmation, carrier side and shipper side",
-                value: "318/wk",
-              },
-              {
-                label: "CRM",
-                sub: "prospecting embedded: the next best carrier and shipper, surfaced with the reason",
-                value: "2,627",
-              },
-              {
-                label: "Nova",
-                sub: "a live dispatcher, texting drivers and shippers in real time from tender to delivery",
-                value: "24/7",
-              },
-            ],
-          }}
-        />
+
+        <div className="lp-showcase-head">
+          <p className="lp-showcase-title">The freight stack</p>
+          <p className="lp-showcase-meta">
+            Autonomized, end to end · every aspect running itself
+          </p>
+        </div>
+        <div className="lp-showcase lp-showcase-4">
+          {FREIGHT_STACK.map((m) => (
+            <div className="lp-tile" key={m.name}>
+              <div className="lp-tile-row">
+                <p className="lp-tile-q">{m.name}</p>
+                <p className="lp-tile-v">{m.value}</p>
+              </div>
+              <p className="lp-tile-a">{m.sub}</p>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );

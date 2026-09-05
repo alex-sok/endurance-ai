@@ -4027,3 +4027,52 @@ ol.lp-team {
   .lp-seq > .lp-block,
   .vals-seq > .vals-card { margin-block: 24px; padding: 48px 20px; }
 }
+
+
+/* ── the modules go; the showcases span the band ─────────────────────────
+   The narrow side panels compressed the evidence into a 30rem card. Each
+   chapter now runs its copy at a full reading measure and then opens into
+   a tile grid across the whole band: six use cases for Brain OS, the
+   four-module stack for Foundations, the live session for the developer
+   tool. */
+.lp-chapter.is-showcase { display: block; }
+.lp-chapter.is-showcase .lp-chapter-copy { max-width: 46rem; }
+.lp-showcase-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  margin: 52px 0 16px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(30, 29, 36, 0.14);
+}
+.lp-showcase-title {
+  font-family: var(--lp-display); font-weight: 600;
+  font-size: 19px; letter-spacing: -0.015em; margin: 0;
+}
+.lp-showcase-meta {
+  font-family: var(--lp-mono); font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--lp-muted); margin: 0;
+}
+.lp-showcase {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+.lp-showcase-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.lp-tile {
+  display: flex; flex-direction: column; gap: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(30, 29, 36, 0.07);
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 1px 2px rgba(30, 29, 36, 0.04), 0 10px 28px rgba(30, 29, 36, 0.05);
+}
+.lp-tile-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.lp-tile-q { margin: 0; font-weight: 600; font-size: 15.5px; line-height: 1.4; color: var(--lp-ink); }
+.lp-tile-v {
+  margin: 0; font-family: var(--lp-mono); font-size: 12px;
+  color: var(--lp-accent); white-space: nowrap;
+}
+.lp-tile-a { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--lp-muted); }
+.lp-tile-n {
+  margin: auto 0 0; padding-top: 6px;
+  font-family: var(--lp-mono); font-size: 11px; color: var(--lp-accent);
+}
