@@ -211,8 +211,7 @@ export default function ValuesPage() {
 
         <footer className="v-coda">
           <p className="v-coda-line">
-            The name comes from the ship — a crew that stayed.{" "}
-            <em>The values come from the crew.</em>
+            We research. We build. We grind. <em>We ship.</em>
           </p>
           <div className="v-cta-row">
             <a className="v-btn v-btn-fill" href="mailto:hello@endurancelabs.ai">
