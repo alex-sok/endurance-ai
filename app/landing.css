@@ -3972,3 +3972,58 @@ ol.lp-team {
     font-size: clamp(2.2rem, 4.4vw, 3.8rem);
   }
 }
+
+/* ── baby blue, wider stance, air between the pillars ─────────────────────
+   The pink goes. The washes cool to baby blue, alternating as temperature,
+   and the flavor lives in small doses: the shipped beat of the headline,
+   the quote rule, the live pulse. Each section band now stands off its
+   neighbors with white space, and the content walks closer to the page
+   edges. */
+.theme-paper { --lp-accent: #3672c4; }
+
+.lp-hero.is-center.is-tall {
+  background:
+    radial-gradient(56% 44% at 28% 20%, rgba(120, 168, 220, 0.2), transparent 68%),
+    radial-gradient(50% 42% at 76% 14%, rgba(164, 198, 234, 0.18), transparent 70%),
+    linear-gradient(180deg, #fbfaf8 0%, #edf3f9 52%, #f1f5f9 74%, #fbfaf8 100%);
+}
+#work .lp-chapter:first-of-type,
+.lp-seq > #ide.lp-chapter,
+.lp-seq > #believe.lp-block,
+.vals-seq > .vals-card {
+  background: linear-gradient(135deg, #eef4fa 0%, #f3f7fb 55%, #f8fafc 100%);
+}
+#work .lp-chapter:last-of-type,
+.lp-seq > #builds.lp-block,
+.lp-seq > #research.lp-block,
+.lp-seq > #team.lp-block,
+.vals-seq > .vals-card.vals-alt {
+  background: linear-gradient(135deg, #f6f9fc 0%, #eff5fa 60%, #f2f6f9 100%);
+}
+
+/* small doses of the blue */
+.theme-paper .lp-hero h1 em { color: var(--lp-accent); }
+.theme-paper .vals-hero h1 em { color: var(--lp-accent); }
+.vals-coda-line em { color: var(--lp-accent); }
+.theme-paper .lp-quote { border-left-color: var(--lp-accent); }
+.theme-paper .bpos-pulse { background: var(--lp-accent); }
+
+/* air between the pillars, content closer to the edges */
+.lp-seq > #work .lp-chapter,
+.lp-seq > .lp-chapter,
+.lp-seq > .lp-block { margin-block: 48px; }
+#work .lp-chapter + .lp-chapter { margin-top: 48px; }
+.lp-seq > #work .lp-chapter,
+.lp-seq > .lp-chapter { padding: 72px max(28px, calc((100% - 1360px) / 2)); }
+.lp-seq > #builds.lp-block { padding: 72px max(28px, calc((100% - 1240px) / 2)); }
+.lp-seq > #research.lp-block { padding: 72px max(28px, calc((100% - 1160px) / 2)); }
+.lp-seq > #team.lp-block { padding: 72px max(28px, calc((100% - 1280px) / 2)); }
+.lp-seq > #believe.lp-block { padding: 72px max(28px, calc((100% - 1200px) / 2)); }
+.vals-seq > .vals-card { padding: 64px max(28px, calc((100% - 1240px) / 2)); margin-block: 40px; }
+
+@media (max-width: 900px) {
+  .lp-seq > #work .lp-chapter,
+  .lp-seq > .lp-chapter,
+  .lp-seq > .lp-block,
+  .vals-seq > .vals-card { margin-block: 24px; padding: 48px 20px; }
+}
