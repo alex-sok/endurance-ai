@@ -3958,3 +3958,17 @@ ol.lp-team {
   .vals-seq > .vals-card { padding: 56px 20px; }
   .lp-close { padding: 72px 20px 48px; }
 }
+
+/* one line, one claim */
+.lp-hero-copy h1 { max-width: none; }
+.lp-hero-copy h1 em {
+  display: inline;
+  margin-top: 0;
+  max-width: none;
+}
+@media (min-width: 700px) {
+  .lp-hero-copy h1 {
+    white-space: nowrap;
+    font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+  }
+}
