@@ -10,7 +10,7 @@ export function LandingHero({ onOpenChat }: Props) {
       <div className="lp-hero-copy">
         <p className="lp-kicker">Research · Engineering · Vertical software</p>
         <h1>
-          We research the work. <em>Then we write the software.</em>
+          We research. We build. We work. <em>We ship.</em>
         </h1>
         <p className="lp-hero-lede">
           Endurance is a lab. We sit in your operation and ship the system it

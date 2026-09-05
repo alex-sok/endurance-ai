@@ -7,6 +7,11 @@ export function LandingIDE() {
     <section className="lp-chapter" aria-labelledby="work-ide" id="ide" data-section="ide">
       <div className="lp-chapter-copy">
         <p className="lp-eyebrow">03 · IDE</p>
+        <p className="lp-pain">
+          &ldquo;Every build waits on a vendor, and nobody inside can see it
+          happening.&rdquo;
+        </p>
+        <p className="lp-solve">How Endurance solves it —</p>
         <h2 id="work-ide">Where your whole company builds together.</h2>
         <p className="lp-lead">
           A multiplayer development platform: every AI subscription, every

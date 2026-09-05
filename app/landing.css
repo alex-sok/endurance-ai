@@ -3694,3 +3694,79 @@ ol.lp-team {
 .theme-paper .bpos-pulse { background: var(--lp-accent); }
 .theme-paper .bos-cta { background: var(--lp-accent); }
 .theme-paper .bos-cta:hover { background: #5b45b5; }
+
+/* ══ Sundial pass, done properly ══════════════════════════════════════════
+   Not a tint this time. The three moves their page is actually made of:
+   a gradient sky behind the hero, every feature as a rounded card with a
+   pastel wash and the product panel floating white inside it, and the
+   pain-point grammar (the quote, then "how it's solved", then the claim).
+   Alternating washes: lilac-rose for odd chapters, peach for even. */
+
+/* the sky */
+.lp-hero.is-center.is-tall {
+  background:
+    radial-gradient(58% 46% at 30% 22%, rgba(110, 86, 207, 0.16), transparent 68%),
+    radial-gradient(52% 42% at 74% 16%, rgba(240, 176, 150, 0.2), transparent 70%),
+    linear-gradient(180deg, #faf9fc 0%, #ece8f4 52%, #efe9f2 74%, #fbfaf8 100%);
+}
+
+/* chapters become wash cards */
+.lp-seq > #work .lp-chapter,
+.lp-seq > .lp-chapter,
+.lp-seq > .lp-block {
+  max-width: var(--lp-max);
+  margin: 28px auto;
+  padding: clamp(32px, 5vw, 56px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 24px;
+  box-shadow: 0 2px 6px rgba(50, 43, 61, 0.04), 0 24px 60px rgba(50, 43, 61, 0.07);
+}
+#work .lp-chapter:first-of-type,
+.lp-seq > #ide.lp-chapter,
+.lp-seq > #believe.lp-block {
+  background: linear-gradient(135deg, #f3eff9 0%, #f9f0f2 55%, #fdf6f0 100%);
+}
+#work .lp-chapter:last-of-type,
+.lp-seq > #builds.lp-block,
+.lp-seq > #research.lp-block,
+.lp-seq > #team.lp-block {
+  background: linear-gradient(135deg, #fbf3ec 0%, #f9eff0 60%, #f3eff9 100%);
+}
+.lp-seq > .lp-interstitial { border: 0; box-shadow: none; background: transparent; }
+
+/* the product panel floats white inside the wash */
+.lp-exhibit {
+  background: #ffffff;
+  border: 1px solid rgba(50, 43, 61, 0.08);
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 1px 3px rgba(50, 43, 61, 0.05), 0 14px 36px rgba(50, 43, 61, 0.08);
+}
+
+/* the pain-point grammar */
+.lp-pain {
+  margin: 18px 0 0;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--lp-ink);
+  max-width: 30rem;
+}
+.lp-solve {
+  margin: 18px 0 -8px;
+  font-family: var(--lp-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lp-muted);
+}
+
+/* ruled lists inside washes rule in white, not grey */
+.lp-split-list li { border-top-color: rgba(255, 255, 255, 0.9); }
+
+/* the close keeps its dark plum, rounded to match the cards */
+.lp-close {
+  max-width: var(--lp-max);
+  margin: 28px auto 40px;
+  border-radius: 24px;
+}

@@ -10,6 +10,11 @@ export function LandingProducts() {
       <section className="lp-chapter" aria-labelledby="work-brain">
         <div className="lp-chapter-copy">
           <p className="lp-eyebrow">01 · Brain OS</p>
+          <p className="lp-pain">
+            &ldquo;We have the data somewhere, but every answer takes three
+            people and a day.&rdquo;
+          </p>
+          <p className="lp-solve">How Endurance solves it —</p>
           <h2 id="work-brain">
             Your whole company&rsquo;s operations - automated before anybody
             asks.
@@ -41,6 +46,11 @@ export function LandingProducts() {
       <section className="lp-chapter" aria-labelledby="work-foundations">
         <div className="lp-chapter-copy">
           <p className="lp-eyebrow">02 · Foundations</p>
+          <p className="lp-pain">
+            &ldquo;A third of our miles run empty, and the back office runs on
+            spreadsheets.&rdquo;
+          </p>
+          <p className="lp-solve">How Endurance solves it —</p>
           <h2 id="work-foundations">Revolutionizing the freight marketplace.</h2>
           <p className="lp-lead">
             We are building the Uber for freight: a marketplace where the
