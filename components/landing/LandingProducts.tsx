@@ -39,16 +39,16 @@ export function LandingProducts() {
       <section className="lp-chapter" aria-labelledby="work-foundations">
         <div className="lp-chapter-copy">
           <p className="lp-eyebrow">02 · Foundations</p>
-          <h2 id="work-foundations">The freight back office, tender to cash.</h2>
+          <h2 id="work-foundations">Revolutionizing the freight marketplace.</h2>
           <p className="lp-lead">
-            One platform where the money moves: commission settlement, carrier
-            invoice audit, and the handoff from delivered to billed.
+            We are building the Uber for freight: a marketplace where the
+            load, the truck and the money clear without a phone call.
           </p>
           <p className="lp-body">
-            Margins computes every split off the TMS and holds the loads that
-            would pay wrong. The carrier audit matches every invoice to its
-            rate confirmation before it pays. It has run a brokerage&rsquo;s
-            weekly pay since March.
+            It starts from a key strategic partnership already in place,
+            seeded with ten-plus years and 200,000 loads of operating data.
+            That history is the edge: real rates, real lanes, real carriers
+            and real outcomes the marketplace prices against from day one.
           </p>
           <p className="lp-proofline">
             <b>$4.02M</b> settled in 20 closed weeks · <b>20</b> duplicate loads
@@ -60,14 +60,30 @@ export function LandingProducts() {
         </div>
         <Exhibit
           exhibit={{
-            caption: "One week, held",
-            head: "Week ending Jun 20",
-            meta: "Step 3 · Run pay for the week — locked",
+            caption: "Autonomized, end to end",
+            head: "The freight stack",
+            meta: "Every aspect of the business, running itself",
             rows: [
-              { label: "Blockers", sub: "must fix to run", value: "1" },
-              { label: "Warnings", sub: "worth a look", value: "15" },
-              { label: "At stake", sub: "across 16 exceptions", value: "$3,442.33" },
-              { label: "Resolved", sub: "this session", value: "0 / 16" },
+              {
+                label: "Margins",
+                sub: "every commission computed off the TMS, penny-accurate, exceptions held",
+                value: "$4.02M",
+              },
+              {
+                label: "Carrier invoicing",
+                sub: "every invoice matched to its rate confirmation, carrier side and shipper side",
+                value: "318/wk",
+              },
+              {
+                label: "CRM",
+                sub: "prospecting embedded: the next best carrier and shipper, surfaced with the reason",
+                value: "2,627",
+              },
+              {
+                label: "Nova",
+                sub: "a live dispatcher, texting drivers and shippers in real time from tender to delivery",
+                value: "24/7",
+              },
             ],
           }}
         />
