@@ -3866,3 +3866,39 @@ ol.lp-team {
 .lp-close {
   max-width: min(1080px, calc(100% - 40px));
 }
+
+/* ── the old proportions, beefed ──────────────────────────────────────────
+   Back to the copy-dominant split the chapters had before the card pass,
+   with more meat on it: a larger claim, a fuller measure, the panel filling
+   its column instead of floating in dead space. And the widths genuinely
+   vary now — each section takes the width its content earns, so the page
+   reads as a rhythm rather than a stack of equal boxes. */
+.lp-seq > #work .lp-chapter,
+.lp-seq > .lp-chapter {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 32px clamp(36px, 4vw, 56px);
+  align-items: center;
+}
+.lp-chapter-copy h2 {
+  font-size: clamp(1.8rem, 2.9vw, 2.6rem);
+}
+.lp-chapter .lp-lead { max-width: 38rem; }
+.lp-chapter .lp-body { max-width: 40rem; }
+.lp-pain { max-width: 38rem; }
+.lp-chapter .lp-exhibit {
+  width: 100%;
+  max-width: 30rem;
+  justify-self: end;
+}
+
+/* each card takes the width its content earns */
+.lp-seq > #work .lp-chapter { max-width: min(1200px, calc(100% - 40px)); }
+.lp-seq > #ide.lp-chapter { max-width: min(1200px, calc(100% - 40px)); }
+.lp-seq > #builds.lp-block { max-width: min(1000px, calc(100% - 40px)); }
+.lp-seq > #research.lp-block { max-width: min(940px, calc(100% - 40px)); }
+.lp-seq > #team.lp-block { max-width: min(1120px, calc(100% - 40px)); }
+.lp-seq > #believe.lp-block { max-width: min(1020px, calc(100% - 40px)); }
+
+@media (max-width: 900px) {
+  .lp-chapter .lp-exhibit { justify-self: stretch; max-width: none; }
+}
