@@ -4301,12 +4301,12 @@ ol.lp-team {
   width: clamp(280px, 30vw, 460px);
   height: auto;
   color: var(--lp-ink);
-  opacity: 0.035;
+  opacity: 0.055;
   pointer-events: none;
   user-select: none;
 }
 @media (max-width: 900px) {
-  .lp-hero-ring { width: 240px; right: -60px; top: 64px; opacity: 0.03; }
+  .lp-hero-ring { width: 240px; right: -60px; top: 64px; opacity: 0.045; }
 }
 
 /* ── quiet nods to the reference page ────────────────────────────────────
