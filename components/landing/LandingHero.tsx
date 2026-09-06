@@ -60,34 +60,104 @@ export function LandingHero({ onOpenChat }: Props) {
             <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.5 -0.6" result="c" />
             <feComposite in="c" in2="SourceGraphic" operator="in" />
           </filter>
+          <radialGradient id="eh-flare" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+            <stop offset="30%" stopColor="#e6f0fc" stopOpacity="0.5" />
+            <stop offset="62%" stopColor="#bcd7f2" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#bcd7f2" stopOpacity="0" />
+          </radialGradient>
           <filter id="eh-soft"><feGaussianBlur stdDeviation="1.4" /></filter>
           <filter id="eh-glow"><feGaussianBlur stdDeviation="10" /></filter>
           <filter id="eh-line"><feGaussianBlur stdDeviation="2.2" /></filter>
         </defs>
-        {/* atmosphere */}
-        <circle cx="600" cy="1520" r="1332" fill="none" stroke="#cfe4fa" strokeWidth="34" filter="url(#eh-glow)" opacity="0.85" />
-        <circle cx="600" cy="1520" r="1318" fill="none" stroke="#eef6ff" strokeWidth="7" filter="url(#eh-line)" opacity="0.95" />
-        {/* ocean */}
-        <circle cx="600" cy="1520" r="1310" fill="url(#eh-ocean)" />
-        {/* landmasses — low, soft, under the weather */}
-        <g fill="#39688f" opacity="0.42" filter="url(#eh-soft)">
-          <path d="M 205 262 q 38 -18 84 -10 q 52 8 60 26 q -30 14 -86 10 q -52 -4 -58 -26 Z" />
-          <path d="M 442 236 q 46 -14 96 -4 q 44 8 38 22 q -36 16 -92 12 q -48 -4 -42 -30 Z" />
-          <path d="M 690 250 q 58 -20 118 -8 q 40 8 28 24 q -44 18 -104 12 q -48 -6 -42 -28 Z" />
-          <path d="M 928 276 q 40 -14 84 -6 q 34 6 26 18 q -32 12 -78 8 q -38 -4 -32 -20 Z" />
-          <path d="M 84 300 q 44 -16 96 -8 q 40 6 34 18 l -130 0 Z" />
-          <path d="M 1078 300 q 36 -12 76 -6 q 28 4 24 12 l -100 0 Z" />
+        {/* the planet, tilted as in the photograph */}
+        <g transform="rotate(-8 600 250)">
+          <circle cx="600" cy="1520" r="1332" fill="none" stroke="#cfe4fa" strokeWidth="34" filter="url(#eh-glow)" opacity="0.85" />
+          <circle cx="600" cy="1520" r="1318" fill="none" stroke="#eef6ff" strokeWidth="7" filter="url(#eh-line)" opacity="0.95" />
+          <circle cx="600" cy="1520" r="1310" fill="url(#eh-ocean)" />
+          <g fill="#39688f" opacity="0.42" filter="url(#eh-soft)">
+            <path d="M 205 262 q 38 -18 84 -10 q 52 8 60 26 q -30 14 -86 10 q -52 -4 -58 -26 Z" />
+            <path d="M 442 236 q 46 -14 96 -4 q 44 8 38 22 q -36 16 -92 12 q -48 -4 -42 -30 Z" />
+            <path d="M 690 250 q 58 -20 118 -8 q 40 8 28 24 q -44 18 -104 12 q -48 -6 -42 -28 Z" />
+            <path d="M 928 276 q 40 -14 84 -6 q 34 6 26 18 q -32 12 -78 8 q -38 -4 -32 -20 Z" />
+            <path d="M 84 300 q 44 -16 96 -8 q 40 6 34 18 l -130 0 Z" />
+            <path d="M 1078 300 q 36 -12 76 -6 q 28 4 24 12 l -100 0 Z" />
+          </g>
+          {/* city lights along the land */}
+          <g fill="#e6c17e">
+            <circle cx="270" cy="260" r="1.4" opacity="0.35" />
+            <circle cx="211" cy="274" r="0.9" opacity="0.65" />
+            <circle cx="239" cy="260" r="1.1" opacity="0.35" />
+            <circle cx="251" cy="260" r="1.1" opacity="0.65" />
+            <circle cx="271" cy="270" r="1.1" opacity="0.5" />
+            <circle cx="262" cy="276" r="0.9" opacity="0.35" />
+            <circle cx="278" cy="266" r="1.1" opacity="0.35" />
+            <circle cx="314" cy="266" r="0.9" opacity="0.5" />
+            <circle cx="194" cy="277" r="1.4" opacity="0.35" />
+            <circle cx="282" cy="270" r="1.8" opacity="0.35" />
+            <circle cx="257" cy="276" r="1.4" opacity="0.65" />
+            <circle cx="207" cy="260" r="1.1" opacity="0.5" />
+            <circle cx="318" cy="277" r="0.9" opacity="0.5" />
+            <circle cx="219" cy="272" r="1.4" opacity="0.35" />
+            <circle cx="471" cy="241" r="1.4" opacity="0.65" />
+            <circle cx="555" cy="251" r="1.1" opacity="0.65" />
+            <circle cx="524" cy="240" r="1.8" opacity="0.5" />
+            <circle cx="562" cy="250" r="1.1" opacity="0.65" />
+            <circle cx="464" cy="253" r="0.9" opacity="0.35" />
+            <circle cx="538" cy="254" r="1.8" opacity="0.5" />
+            <circle cx="426" cy="256" r="1.4" opacity="0.35" />
+            <circle cx="513" cy="245" r="1.8" opacity="0.35" />
+            <circle cx="455" cy="242" r="1.4" opacity="0.65" />
+            <circle cx="503" cy="256" r="1.8" opacity="0.5" />
+            <circle cx="448" cy="258" r="1.8" opacity="0.35" />
+            <circle cx="528" cy="255" r="1.1" opacity="0.65" />
+            <circle cx="696" cy="265" r="0.9" opacity="0.5" />
+            <circle cx="731" cy="272" r="1.4" opacity="0.65" />
+            <circle cx="808" cy="251" r="0.9" opacity="0.65" />
+            <circle cx="812" cy="267" r="1.4" opacity="0.35" />
+            <circle cx="717" cy="254" r="0.9" opacity="0.65" />
+            <circle cx="810" cy="257" r="1.1" opacity="0.65" />
+            <circle cx="816" cy="269" r="1.4" opacity="0.65" />
+            <circle cx="751" cy="255" r="1.4" opacity="0.35" />
+            <circle cx="756" cy="267" r="0.9" opacity="0.65" />
+            <circle cx="722" cy="251" r="1.4" opacity="0.5" />
+            <circle cx="708" cy="256" r="0.9" opacity="0.35" />
+            <circle cx="787" cy="268" r="1.1" opacity="0.35" />
+            <circle cx="776" cy="271" r="1.1" opacity="0.5" />
+            <circle cx="971" cy="288" r="1.1" opacity="0.65" />
+            <circle cx="998" cy="289" r="1.4" opacity="0.5" />
+            <circle cx="1025" cy="289" r="1.8" opacity="0.65" />
+            <circle cx="962" cy="280" r="0.9" opacity="0.5" />
+            <circle cx="912" cy="287" r="1.1" opacity="0.35" />
+            <circle cx="918" cy="288" r="1.1" opacity="0.35" />
+            <circle cx="1015" cy="293" r="0.9" opacity="0.65" />
+            <circle cx="938" cy="289" r="1.1" opacity="0.65" />
+            <circle cx="925" cy="295" r="1.8" opacity="0.35" />
+            <circle cx="164" cy="302" r="1.1" opacity="0.35" />
+            <circle cx="82" cy="294" r="1.8" opacity="0.5" />
+            <circle cx="126" cy="300" r="0.9" opacity="0.35" />
+            <circle cx="118" cy="292" r="0.9" opacity="0.35" />
+            <circle cx="93" cy="296" r="1.1" opacity="0.5" />
+            <circle cx="92" cy="295" r="0.9" opacity="0.5" />
+            <circle cx="167" cy="303" r="0.9" opacity="0.35" />
+            <circle cx="1127" cy="298" r="0.9" opacity="0.35" />
+            <circle cx="1153" cy="305" r="1.1" opacity="0.5" />
+            <circle cx="1111" cy="291" r="1.8" opacity="0.35" />
+            <circle cx="1080" cy="287" r="1.8" opacity="0.5" />
+            <circle cx="1153" cy="303" r="1.4" opacity="0.5" />
+            <circle cx="1131" cy="302" r="1.8" opacity="0.35" />
+          </g>
+          <g fill="none" stroke="#ffffff" opacity="0.12">
+            <circle cx="600" cy="1520" r="1262" strokeWidth="1.6" />
+            <circle cx="600" cy="1520" r="1208" strokeWidth="1.3" />
+            <circle cx="600" cy="1520" r="1148" strokeWidth="1" />
+          </g>
+          <circle cx="600" cy="1520" r="1310" fill="#ffffff" filter="url(#eh-streaks)" opacity="0.4" />
+          <circle cx="600" cy="1520" r="1310" fill="#ffffff" filter="url(#eh-clouds)" opacity="0.55" />
+          {/* the sun cresting the limb */}
+          <circle cx="418" cy="208" r="130" fill="url(#eh-flare)" />
+          <circle cx="418" cy="209" r="12" fill="#ffffff" filter="url(#eh-line)" opacity="0.9" />
         </g>
-        {/* latitude lines, curving with the limb */}
-        <g fill="none" stroke="#ffffff" opacity="0.12">
-          <circle cx="600" cy="1520" r="1262" strokeWidth="1.6" />
-          <circle cx="600" cy="1520" r="1208" strokeWidth="1.3" />
-          <circle cx="600" cy="1520" r="1148" strokeWidth="1" />
-        </g>
-        {/* streaked cloud bands */}
-        <circle cx="600" cy="1520" r="1310" fill="#ffffff" filter="url(#eh-streaks)" opacity="0.4" />
-        {/* clouds, clipped to the disc */}
-        <circle cx="600" cy="1520" r="1310" fill="#ffffff" filter="url(#eh-clouds)" opacity="0.55" />
         {/* fade the top of the limb into the page */}
         <rect x="0" y="0" width="1200" height="300" fill="url(#eh-fade)" />
       </svg>
