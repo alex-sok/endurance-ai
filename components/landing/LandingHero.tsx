@@ -37,7 +37,6 @@ export function LandingHero({ onOpenChat }: Props) {
           <g transform="translate(228.5 282.5) rotate(166.0)"><rect x="-23.0" y="-15.0" width="46.0" height="30.0" rx="3" /><line x1="-23.0" y1="-5.0" x2="23.0" y2="-5.0" /><line x1="-7.7" y1="-15.0" x2="-7.7" y2="15.0" /><rect x="-17.0" y="2.5" width="9.0" height="6.0" rx="1" /></g>
         </g>
       </svg>
-      <div className="lp-hero-horizon" aria-hidden="true" />
       <div className="lp-hero-copy">
         <p className="lp-kicker">Research · Engineering · Vertical software</p>
         <h1>

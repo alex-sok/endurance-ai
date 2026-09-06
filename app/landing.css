@@ -4420,32 +4420,7 @@ ol.lp-team {
 @media (max-width: 900px) {
   .lp-hero-ring { width: 170px; right: auto; left: 50%; top: 16px; opacity: 0.14; }
 }
-.lp-hero-horizon {
-  position: absolute;
-  left: 50%;
-  bottom: -1220px;
-  transform: translateX(-50%);
-  width: 2600px;
-  height: 1400px;
-  border-radius: 50% 50% 0 0;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(120, 168, 220, 0.28) 0%,
-    rgba(164, 198, 234, 0.14) 18%,
-    rgba(238, 244, 250, 0.6) 46%,
-    rgba(251, 250, 248, 0.9) 70%
-  );
-}
-.lp-hero-horizon::before {
-  content: "";
-  position: absolute;
-  inset: -3px 0 auto 0;
-  height: 3px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, transparent 8%, rgba(54, 114, 196, 0.35) 50%, transparent 92%);
-  filter: blur(1px);
-}
+
 /* the copy centers under the ship */
 .lp-hero.is-center.is-tall .lp-hero-copy { text-align: center; }
 .lp-hero.is-center.is-tall .lp-hero-copy h1 { margin-inline: auto; }
