@@ -4357,3 +4357,51 @@ ol.lp-team {
 
 /* the ring must not widen the page on any window */
 .lp-hero.is-center.is-tall { overflow: hidden; }
+
+/* ── Brain OS console: the accent threaded through, and poppier type ─────
+   The kicker blue from the homepage, in small professional doses: deltas,
+   the active module, the source badges, the row actions, the sparklines.
+   Values and titles step up to the display face at heavier weights so the
+   console reads like a product, not a printout. */
+
+/* type — poppy but clean */
+.theme-paper .bpos-ct {
+  font-family: var(--lp-display); font-weight: 700;
+  font-size: 15px; letter-spacing: -0.015em;
+}
+.theme-paper .bpos-head h3 {
+  font-family: var(--lp-display); font-weight: 700; letter-spacing: -0.025em;
+}
+.theme-paper .bpos-band-head h3 { font-weight: 800; }
+.theme-paper .bpos-bv { font-weight: 800; }
+.theme-paper .bpos-big, .theme-paper .bpos-mid {
+  font-family: var(--lp-display); font-weight: 800; letter-spacing: -0.03em;
+}
+.theme-paper .bpos-mod { font-weight: 600; }
+.theme-paper .bpos-brand b {
+  font-family: var(--lp-display); font-weight: 800; letter-spacing: -0.02em;
+}
+.bos-title b { font-weight: 800; }
+
+/* the blue, in small doses */
+.theme-paper .bpos-mod[aria-current="page"] {
+  color: var(--lp-accent);
+  box-shadow: inset 0 -2px 0 var(--lp-accent);
+}
+.theme-paper .bpos-src b { background: var(--lp-accent); }
+.theme-paper .bpos-bd { color: var(--lp-accent); }
+.theme-paper .bpos-band .bpos-bd { color: var(--lp-accent); }
+.theme-paper .bpos-act { color: var(--lp-accent); text-decoration-color: color-mix(in srgb, var(--lp-accent) 45%, transparent); }
+.theme-paper .bpos-spark { color: var(--lp-accent); opacity: 0.55; }
+.theme-paper .bpos-band .bpos-spark { color: var(--lp-accent); opacity: 0.5; }
+.theme-paper .bpos-trend-line { stroke: var(--lp-accent); }
+.theme-paper .bpos-trend-fill { fill: color-mix(in srgb, var(--lp-accent) 10%, transparent); }
+.theme-paper .bpos-trend-end { fill: var(--lp-accent); }
+.theme-paper .bpos-tick b { color: #a8c4ec; }
+.theme-paper .bpos-band-kick { color: #8fb3e8; }
+.theme-paper .bpos-btn { background: var(--lp-accent); border-color: var(--lp-accent); }
+.theme-paper .bpos-btn:hover { background: #2c5da3; }
+.theme-paper .bpos-btn-ghost { background: transparent; color: var(--lp-ink); }
+.theme-paper .bpos-book-rail button[aria-current="page"] { background: var(--lp-accent); }
+.theme-paper .bpos-out.lead { background: var(--lp-accent); border-color: var(--lp-accent); }
+.theme-paper .bpos-sens-tab td.is-base { background: var(--lp-accent); }
