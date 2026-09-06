@@ -4129,3 +4129,31 @@ ol.lp-team {
   .lp-ctarows li { grid-template-columns: auto minmax(0, 1fr); }
   .lp-ctadesc { grid-column: 2; }
 }
+
+/* ── one left edge for the whole page ─────────────────────────────────────
+   The hero was centering on a 1040px column while the bands inset 28px
+   from the viewport, so the headline and the chapters started at two
+   different x positions. Everything now shares one content line, 1200px,
+   splitting the difference. Mobile keeps its own tighter insets. */
+@media (min-width: 901px) {
+  .lp-hero-copy {
+    max-width: none;
+    padding-inline: max(32px, calc((100% - 1200px) / 2));
+  }
+  .lp-seq > #work .lp-chapter,
+  .lp-seq > .lp-chapter,
+  .lp-seq > .lp-block,
+  .lp-seq > #builds.lp-block,
+  .lp-seq > #research.lp-block,
+  .lp-seq > #team.lp-block,
+  .lp-seq > #believe.lp-block {
+    padding-inline: max(32px, calc((100% - 1200px) / 2));
+  }
+  .lp-seq > .lp-interstitial {
+    padding-inline: max(32px, calc((100% - 1200px) / 2));
+  }
+  .lp-ctaband { padding-inline: max(32px, calc((100% - 1200px) / 2)); }
+  .lp-close { padding-inline: max(32px, calc((100% - 1200px) / 2)); }
+  .lp-close-inner { max-width: none; padding-inline: 0; }
+  .vals-seq > .vals-card { padding-inline: max(32px, calc((100% - 1200px) / 2)); }
+}
