@@ -84,4 +84,14 @@ export const BRAIN_ANSWERS = [
     sub: "18 reps found · drafted, times held, waiting on your send",
     value: "5",
   },
+  {
+    label: "Model next year at +20% growth. What breaks first?",
+    sub: "Dispatch capacity in month 7 · working capital $2.8M short · two hires, named",
+    value: "21",
+  },
+  {
+    label: "Which five customers are most at risk this quarter?",
+    sub: "Signals across email, tickets and order flow · save plans drafted for two",
+    value: "11",
+  },
 ];

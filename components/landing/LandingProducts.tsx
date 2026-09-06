@@ -94,10 +94,6 @@ export function LandingProducts() {
             That history is the edge: real rates, real lanes, real carriers
             and real outcomes the marketplace prices against from day one.
           </p>
-          <blockquote className="lp-quote">
-            &ldquo;Foundations is fundamentally killing deadhead: the empty
-            mile.&rdquo;
-          </blockquote>
           <p className="lp-proofline">
             <b>$4.02M</b> settled · <b>200,000</b> loads of data · <b>20</b>{" "}
             duplicate loads stopped before they paid twice
@@ -106,6 +102,15 @@ export function LandingProducts() {
             Open Margins
           </a>
         </div>
+
+        <blockquote className="lp-quote-band">
+          &ldquo;Foundations is fundamentally killing deadhead: the empty
+          mile. Paid from A to B and paid from B to A, a driver earns close
+          to <em>1.8x more per mile driven</em> than hauling out and driving
+          home empty. On the live lanes we measured, the carrier&rsquo;s win
+          runs about <em>twelve times our fee</em>. Everybody wins, so
+          everybody stays.&rdquo;
+        </blockquote>
 
         <div className="lp-showcase-head">
           <p className="lp-showcase-title">The freight stack</p>
