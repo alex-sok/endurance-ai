@@ -51,7 +51,7 @@ export function LandingIDE() {
           the work. It is the bench our own lab works at; select clients run
           it with us.
         </p>
-        <a className="lp-feature-cta" href="#close">
+        <a className="lp-feature-cta" href="/waitlist">
           Ask about early access
         </a>
       </div>

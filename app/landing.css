@@ -4157,3 +4157,49 @@ ol.lp-team {
   .lp-close-inner { max-width: none; padding-inline: 0; }
   .vals-seq > .vals-card { padding-inline: max(32px, calc((100% - 1200px) / 2)); }
 }
+
+/* ── the nav joins the page's one left edge ──────────────────────────────
+   Last holdout of the old 1040 column: the wordmark started at a different
+   x than everything under it. */
+@media (min-width: 901px) {
+  .lp-nav-inner {
+    max-width: none;
+    padding-inline: max(32px, calc((100% - 1200px) / 2));
+  }
+}
+
+/* ── /waitlist ───────────────────────────────────────────────────────────− */
+.wl-page { min-height: 100svh; background: var(--lp-paper); display: flex; flex-direction: column; }
+.wl-hero { flex: 1; }
+.wl-copy { max-width: 620px; margin-inline: auto; padding-top: 96px; text-align: left; }
+.wl-h1 { max-width: none; }
+.theme-paper .wl-h1 em { font-style: normal; color: var(--lp-accent); }
+.wl-form { margin-top: 36px; display: flex; flex-direction: column; gap: 14px; }
+.wl-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 560px) { .wl-row { grid-template-columns: 1fr; } }
+.wl-field { display: flex; flex-direction: column; gap: 6px; }
+.wl-field span {
+  font-family: var(--lp-mono); font-size: 10.5px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--lp-muted);
+}
+.wl-field input {
+  font: inherit; color: var(--lp-ink);
+  background: #ffffff;
+  border: 1px solid rgba(30, 29, 36, 0.16);
+  border-radius: 10px;
+  padding: 13px 14px;
+  transition: border-color 140ms var(--lp-ease);
+}
+.wl-field input:focus { outline: none; border-color: var(--lp-accent); }
+.wl-field input::placeholder { color: rgba(30, 29, 36, 0.35); }
+.wl-submit { margin-top: 6px; border: 0; cursor: pointer; font-family: inherit; align-self: flex-start; }
+.wl-submit:disabled { opacity: 0.6; cursor: default; }
+.wl-error { margin: 0; font-size: 13.5px; color: var(--lp-flare); }
+.wl-note { margin: 4px 0 0; font-size: 12.5px; color: var(--lp-muted); }
+.wl-done {
+  margin-top: 36px; padding: 26px 28px;
+  background: #ffffff; border: 1px solid rgba(30, 29, 36, 0.1); border-radius: 14px;
+  box-shadow: 0 1px 3px rgba(30, 29, 36, 0.04), 0 14px 36px rgba(30, 29, 36, 0.06);
+}
+.wl-done-head { margin: 0 0 8px; font-family: var(--lp-display); font-weight: 600; font-size: 21px; }
+.wl-done-sub { margin: 0; color: var(--lp-muted); font-size: 15px; line-height: 1.6; }
