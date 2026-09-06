@@ -4410,23 +4410,19 @@ ol.lp-team {
    Preview strength on the ship so it can be judged; dial the opacity when
    the composition is approved. */
 .lp-hero-ring {
-  top: 22px;
-  right: auto;
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(180px, 17vw, 240px);
+  top: 90px;
+  left: auto;
+  transform: none;
+  right: max(5vw, calc((100% - 1200px) / 2 - 40px));
+  width: clamp(220px, 22vw, 320px);
   opacity: 0.16;
 }
 @media (max-width: 900px) {
-  .lp-hero-ring { width: 170px; right: auto; left: 50%; top: 16px; opacity: 0.14; }
+  .lp-hero-ring { width: 180px; left: auto; transform: none; right: -40px; top: 56px; opacity: 0.12; }
 }
 
-/* the copy centers under the ship */
-.lp-hero.is-center.is-tall .lp-hero-copy { text-align: center; }
-.lp-hero.is-center.is-tall .lp-hero-copy h1 { margin-inline: auto; }
-.lp-hero.is-center.is-tall .lp-hero-lede { margin-inline: auto; }
-.lp-hero.is-center.is-tall .lp-hero-actions { justify-content: center; }
-.lp-hero.is-center.is-tall .lp-hero-copy { padding-top: calc(var(--lp-nav-h) + 210px); padding-bottom: 200px; }
+/* copy left, ship right */
+.lp-hero.is-center.is-tall .lp-hero-copy { text-align: left; }
 
 /* ── the UW Desk strip ───────────────────────────────────────────────────
    Ten steps, intake to due diligence, across the top of the bench. Done
