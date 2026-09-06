@@ -4291,23 +4291,7 @@ ol.lp-team {
 .theme-paper .bpos-book-defs { margin-bottom: 16px; }
 .theme-paper .bpos-book-pane > .bpos-scroll { border-top: 1px solid var(--lp-line); }
 
-/* ── the ship ─────────────────────────────────────────────────────────────
-   The Endurance's twelve-module ring, at the edge of visibility in the hero
-   sky. Same geometry as the brand mark; only opacity changes. */
-.lp-hero-ring {
-  position: absolute;
-  top: 96px;
-  right: max(4vw, calc((100% - 1200px) / 2 - 120px));
-  width: clamp(280px, 30vw, 460px);
-  height: auto;
-  color: var(--lp-ink);
-  opacity: 0.055;
-  pointer-events: none;
-  user-select: none;
-}
-@media (max-width: 900px) {
-  .lp-hero-ring { width: 240px; right: -60px; top: 64px; opacity: 0.045; }
-}
+
 
 /* ── quiet nods to the reference page ────────────────────────────────────
    The eyebrow takes a small square in the accent, and the Foundations proof
@@ -4355,7 +4339,6 @@ ol.lp-team {
   color: var(--lp-muted);
 }
 
-/* the ring must not widen the page on any window */
 .lp-hero.is-center.is-tall { overflow: hidden; }
 
 /* ── Brain OS console: the accent threaded through, and poppier type ─────
@@ -4405,3 +4388,42 @@ ol.lp-team {
 .theme-paper .bpos-book-rail button[aria-current="page"] { background: var(--lp-accent); }
 .theme-paper .bpos-out.lead { background: var(--lp-accent); border-color: var(--lp-accent); }
 .theme-paper .bpos-sens-tab td.is-base { background: var(--lp-accent); }
+
+/* ── transitional breaks ─────────────────────────────────────────────────
+   The bands stop ending in hard edges: each wash dissolves into the page
+   over its first and last 72px, and a short vertical hairline stitches one
+   section to the next through the white. */
+#work .lp-chapter:first-of-type,
+.lp-seq > #ide.lp-chapter,
+.lp-seq > #believe.lp-block,
+.vals-seq > .vals-card {
+  background:
+    linear-gradient(180deg, var(--lp-paper) 0, rgba(251, 250, 248, 0) 72px, rgba(251, 250, 248, 0) calc(100% - 72px), var(--lp-paper) 100%),
+    linear-gradient(135deg, #eef4fa 0%, #f3f7fb 55%, #f8fafc 100%);
+}
+#work .lp-chapter:last-of-type,
+.lp-seq > #builds.lp-block,
+.lp-seq > #research.lp-block,
+.lp-seq > #team.lp-block,
+.vals-seq > .vals-card.vals-alt {
+  background:
+    linear-gradient(180deg, var(--lp-paper) 0, rgba(251, 250, 248, 0) 72px, rgba(251, 250, 248, 0) calc(100% - 72px), var(--lp-paper) 100%),
+    linear-gradient(135deg, #f6f9fc 0%, #eff5fa 60%, #f2f6f9 100%);
+}
+.lp-seq > .lp-chapter,
+.lp-seq > .lp-block { position: relative; }
+.lp-seq > .lp-chapter::before,
+.lp-seq > .lp-block::before {
+  content: "";
+  position: absolute;
+  top: -38px;
+  left: 50%;
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(180deg, transparent, rgba(30, 29, 36, 0.28), transparent);
+}
+.lp-seq > *:first-child::before { display: none; }
+@media (max-width: 900px) {
+  .lp-seq > .lp-chapter::before,
+  .lp-seq > .lp-block::before { top: -26px; height: 18px; }
+}
