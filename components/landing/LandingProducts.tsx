@@ -115,9 +115,9 @@ export function LandingProducts() {
 
         <blockquote className="lp-quote-band">
           &ldquo;Foundations is fundamentally killing deadhead: the empty
-          mile. A driver paid from A to B, and paid from B to A, earns on
-          average <em>~1.8x more per mile driven</em>. Everybody wins, so
-          everybody stays.&rdquo;
+          mile. A driver paid in both directions earns on average{" "}
+          <em>~1.8x more per mile driven</em>. Everybody wins, so everybody
+          stays.&rdquo;
         </blockquote>
 
         <div className="lp-showcase-head">
