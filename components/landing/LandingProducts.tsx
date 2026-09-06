@@ -115,10 +115,9 @@ export function LandingProducts() {
 
         <blockquote className="lp-quote-band">
           &ldquo;Foundations is fundamentally killing deadhead: the empty
-          mile. A driver paid from A to B, and paid from B to A, earns close
-          to <em>1.8x more per mile driven</em>. On the lanes we measured,
-          the carrier&rsquo;s win runs about <em>twelve times our fee</em>.
-          Everybody wins, so everybody stays.&rdquo;
+          mile. A driver paid from A to B, and paid from B to A, earns on
+          average <em>~1.8x more per mile driven</em>. Everybody wins, so
+          everybody stays.&rdquo;
         </blockquote>
 
         <div className="lp-showcase-head">
