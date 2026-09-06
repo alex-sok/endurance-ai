@@ -6,6 +6,7 @@ import { BPOS_VIEWS, BPOS_SOURCES, BPOS_WORKLIST, BPOS_FEATURES } from "./bpos-v
 import { AssetBook, UnderwritingBench } from "./BposPanels";
 import { BposMap } from "./BposMap";
 import { COMP_DOTS, LOAD_LANES, LOAD_HUBS } from "./bpos-panels";
+import { BPOS_TABS } from "./bpos-tabs";
 
 /**
  * Brain OS, shown rather than described.
@@ -66,6 +67,8 @@ export function BrainOSConsole({ variant = "embedded" }: { variant?: "embedded" 
   const feature = BPOS_FEATURES[`${d.id}.${m.nav}`];
   /** Screens that are a product rather than a table. */
   const screen = `${d.id}.${m.nav}`;
+  /** The demo-lifted table for this screen, if it has one. */
+  const tab = BPOS_TABS[screen];
   const worklistTitle = BPOS_WORKLIST[`${d.id}.${m.nav}`] ?? "Needs a look";
 
   function pickIndustry(i: number) {
@@ -333,6 +336,69 @@ export function BrainOSConsole({ variant = "embedded" }: { variant?: "embedded" 
                 </div>
               </div>
               <p className="bpos-calc-note">{feature.note}</p>
+            </div>
+          ) : null}
+
+          {tab?.grid ? (
+            <div className="bpos-card bpos-gridcard">
+              <div className="bpos-crow">
+                <p className="bpos-ct">{tab.grid.title}</p>
+                <span className="bpos-sm">{tab.grid.meta}</span>
+              </div>
+              <div className="bpos-scroll">
+                <table className="bpos-tab-list bpos-wide">
+                  <thead>
+                    <tr>
+                      {tab.grid.cols.map((c, i) => (
+                        <th key={c} className={i > 1 ? "r" : undefined}>
+                          {c}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tab.grid.rows.map((r, ri) => (
+                      <tr key={`${r[0]}-${ri}`}>
+                        {r.map((cell, i) => (
+                          <td
+                            key={`${r[0]}-${i}`}
+                            className={i > 1 ? "r bpos-num-cell" : i === 0 ? "bpos-first" : undefined}
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : null}
+
+          {tab?.bars ? (
+            <div className="bpos-card bpos-bars">
+              <div className="bpos-crow">
+                <p className="bpos-ct">{tab.barsTitle}</p>
+                <span className="bpos-sm">{tab.barsMeta}</span>
+              </div>
+              {tab.bars.map((b) => (
+                <div className="bpos-brow" key={b.name}>
+                  <div className="bpos-bmeta">
+                    <p className="bpos-bname">
+                      {b.flag ? <i className="bpos-bar-flag" /> : null}
+                      {b.name}
+                    </p>
+                    <p className="bpos-sm">{b.meta}</p>
+                  </div>
+                  <div className="bpos-track">
+                    <span
+                      className={`bpos-fill${b.flag ? " flag" : ""}`}
+                      style={{ width: `${b.pct}%` }}
+                    />
+                  </div>
+                  <span className="bpos-bright">{b.right}</span>
+                </div>
+              ))}
             </div>
           ) : null}
 
