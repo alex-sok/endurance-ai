@@ -4561,3 +4561,9 @@ ol.lp-team {
 @media (min-width: 980px) {
   .lp-chapter.is-showcase .lp-showcase .lp-tile { min-height: 148px; }
 }
+
+/* the method line fills the section's own measure */
+.lp-interstitial .lp-closer {
+  max-width: none;
+  text-wrap: pretty;
+}
