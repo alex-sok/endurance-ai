@@ -7,6 +7,27 @@ interface Props {
 export function LandingHero({ onOpenChat }: Props) {
   return (
     <header className="lp-hero is-center is-tall" id="top" data-section="hero">
+      {/* The ship. The 12-segment ring of the Endurance, drawn at the edge of
+          visibility — the same geometry as the brand mark, unmodified, held
+          at a whisper. You only see it if you look. */}
+      <svg
+        className="lp-hero-ring"
+        viewBox="0 0 64 64"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <circle
+          cx="32"
+          cy="32"
+          r="21"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="10"
+          strokeDasharray="8.4 2.5956"
+          strokeDashoffset="4.2"
+          transform="rotate(-90 32 32)"
+        />
+      </svg>
       <div className="lp-hero-copy">
         <p className="lp-kicker">Research · Engineering · Vertical software</p>
         <h1>

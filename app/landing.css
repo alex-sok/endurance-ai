@@ -4290,3 +4290,70 @@ ol.lp-team {
 .theme-paper .bpos-book-stats { margin: 0 0 14px; }
 .theme-paper .bpos-book-defs { margin-bottom: 16px; }
 .theme-paper .bpos-book-pane > .bpos-scroll { border-top: 1px solid var(--lp-line); }
+
+/* ── the ship ─────────────────────────────────────────────────────────────
+   The Endurance's twelve-module ring, at the edge of visibility in the hero
+   sky. Same geometry as the brand mark; only opacity changes. */
+.lp-hero-ring {
+  position: absolute;
+  top: 96px;
+  right: max(4vw, calc((100% - 1200px) / 2 - 120px));
+  width: clamp(280px, 30vw, 460px);
+  height: auto;
+  color: var(--lp-ink);
+  opacity: 0.035;
+  pointer-events: none;
+  user-select: none;
+}
+@media (max-width: 900px) {
+  .lp-hero-ring { width: 240px; right: -60px; top: 64px; opacity: 0.03; }
+}
+
+/* ── quiet nods to the reference page ────────────────────────────────────
+   The eyebrow takes a small square in the accent, and the Foundations proof
+   line becomes a stat band: big figures, tiny mono captions, hairlines. */
+.lp-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 9px;
+  background: var(--lp-accent);
+  vertical-align: baseline;
+}
+.lp-statband {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  border-top: 1px solid rgba(30, 29, 36, 0.14);
+  border-bottom: 1px solid rgba(30, 29, 36, 0.14);
+}
+.lp-statband > div {
+  flex: 1 1 140px;
+  padding: 18px 22px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lp-statband > div + div {
+  border-left: 1px solid rgba(30, 29, 36, 0.1);
+  padding-left: 22px;
+}
+.lp-statband b {
+  font-family: var(--lp-display);
+  font-weight: 600;
+  font-size: clamp(24px, 2.6vw, 32px);
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+  color: var(--lp-ink);
+}
+.lp-statband span {
+  font-family: var(--lp-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lp-muted);
+}
+
+/* the ring must not widen the page on any window */
+.lp-hero.is-center.is-tall { overflow: hidden; }

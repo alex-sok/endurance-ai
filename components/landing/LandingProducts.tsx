@@ -94,10 +94,20 @@ export function LandingProducts() {
             That history is the edge: real rates, real lanes, real carriers
             and real outcomes the marketplace prices against from day one.
           </p>
-          <p className="lp-proofline">
-            <b>$4.02M</b> settled · <b>200,000</b> loads of data · <b>20</b>{" "}
-            duplicate loads stopped before they paid twice
-          </p>
+          <div className="lp-statband">
+            <div>
+              <b>$4.02M</b>
+              <span>Settled through Margins</span>
+            </div>
+            <div>
+              <b>200,000</b>
+              <span>Loads of operating data</span>
+            </div>
+            <div>
+              <b>20</b>
+              <span>Duplicate pays stopped</span>
+            </div>
+          </div>
           <a className="lp-feature-cta" href="/margins">
             Open Margins
           </a>
