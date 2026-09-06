@@ -6,7 +6,7 @@
    — which is the entire argument for the bench existing. */
 
 import { useState } from "react";
-import { ASSET_BOOK, UW_BENCH, BOOK_SECTIONS } from "./bpos-panels";
+import { ASSET_BOOK, UW_BENCH, BOOK_SECTIONS, UW_STEPS } from "./bpos-panels";
 
 function Trend({ points, label }: { points: number[]; label: string }) {
   const w = 260;
@@ -186,6 +186,19 @@ export function UnderwritingBench() {
           <p className="bpos-sm">{u.stage}</p>
         </div>
         <span className="bpos-btn bpos-btn-ghost">Open the model &rarr;</span>
+      </div>
+
+      <div className="bpos-uwdesk">
+        <p className="bpos-lab">UW Desk &middot; the ten steps</p>
+        <ol className="bpos-uwsteps">
+          {UW_STEPS.map((st) => (
+            <li key={st.n} className={st.state}>
+              <span className="bpos-uwnum">{st.state === "done" ? "✓" : st.n}</span>
+              <span className="bpos-uwtitle">{st.title}</span>
+              <span className="bpos-uwsub">{st.sub}</span>
+            </li>
+          ))}
+        </ol>
       </div>
 
       <div className="bpos-bench-grid">

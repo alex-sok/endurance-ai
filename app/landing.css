@@ -4405,3 +4405,88 @@ ol.lp-team {
 .theme-paper .bpos-book-rail button[aria-current="page"] { background: var(--lp-accent); }
 .theme-paper .bpos-out.lead { background: var(--lp-accent); border-color: var(--lp-accent); }
 .theme-paper .bpos-sens-tab td.is-base { background: var(--lp-accent); }
+
+/* ── the movie still: ship overhead, planet below, copy centered ─────────
+   Preview strength on the ship so it can be judged; dial the opacity when
+   the composition is approved. */
+.lp-hero-ring {
+  top: 22px;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(180px, 17vw, 240px);
+  opacity: 0.16;
+}
+@media (max-width: 900px) {
+  .lp-hero-ring { width: 170px; right: auto; left: 50%; top: 16px; opacity: 0.14; }
+}
+.lp-hero-horizon {
+  position: absolute;
+  left: 50%;
+  bottom: -1220px;
+  transform: translateX(-50%);
+  width: 2600px;
+  height: 1400px;
+  border-radius: 50% 50% 0 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(120, 168, 220, 0.28) 0%,
+    rgba(164, 198, 234, 0.14) 18%,
+    rgba(238, 244, 250, 0.6) 46%,
+    rgba(251, 250, 248, 0.9) 70%
+  );
+}
+.lp-hero-horizon::before {
+  content: "";
+  position: absolute;
+  inset: -3px 0 auto 0;
+  height: 3px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, transparent 8%, rgba(54, 114, 196, 0.35) 50%, transparent 92%);
+  filter: blur(1px);
+}
+/* the copy centers under the ship */
+.lp-hero.is-center.is-tall .lp-hero-copy { text-align: center; }
+.lp-hero.is-center.is-tall .lp-hero-copy h1 { margin-inline: auto; }
+.lp-hero.is-center.is-tall .lp-hero-lede { margin-inline: auto; }
+.lp-hero.is-center.is-tall .lp-hero-actions { justify-content: center; }
+.lp-hero.is-center.is-tall .lp-hero-copy { padding-top: calc(var(--lp-nav-h) + 210px); padding-bottom: 200px; }
+
+/* ── the UW Desk strip ───────────────────────────────────────────────────
+   Ten steps, intake to due diligence, across the top of the bench. Done
+   steps check off, the active step carries the blue. */
+.theme-paper .bpos-uwdesk {
+  margin: 0 0 22px; padding-bottom: 18px;
+  border-bottom: 1px solid var(--lp-line);
+}
+.theme-paper .bpos-uwdesk > .bpos-lab { margin-bottom: 12px; }
+.theme-paper .bpos-uwsteps {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.theme-paper .bpos-uwsteps li {
+  display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 2px 8px;
+  align-items: baseline;
+  padding: 9px 11px;
+  border: 1px solid var(--lp-line); border-radius: 6px;
+  background: var(--lp-paper);
+}
+.theme-paper .bpos-uwsteps li.now {
+  border-color: var(--lp-accent);
+  box-shadow: inset 0 0 0 1px var(--lp-accent);
+}
+.theme-paper .bpos-uwsteps li.queued { opacity: 0.62; }
+.theme-paper .bpos-uwnum {
+  font-family: var(--lp-mono); font-size: 10px; color: var(--lp-muted);
+}
+.theme-paper .bpos-uwsteps li.done .bpos-uwnum { color: var(--lp-accent); }
+.theme-paper .bpos-uwsteps li.now .bpos-uwnum { color: var(--lp-accent); font-weight: 700; }
+.theme-paper .bpos-uwtitle {
+  font-family: var(--lp-display); font-weight: 700; font-size: 12.5px;
+  letter-spacing: -0.01em; color: var(--lp-ink);
+}
+.theme-paper .bpos-uwsub {
+  grid-column: 2; font-size: 10.5px; line-height: 1.45; color: var(--lp-muted);
+}

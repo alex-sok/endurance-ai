@@ -360,3 +360,20 @@ export const BOOK_SECTIONS: BookSection[] = [
     note: "The book cites these; the answers in Ask Brain point back at them. One set of documents, no copies.",
   },
 ];
+
+
+/* ── the UW Desk — the ten steps of an underwrite ─────────────────────────
+   The A-to-Z pipeline the desk actually runs, intake to due diligence.
+   Status is per-deal; Willow Bend is mid-model. */
+export const UW_STEPS: { n: string; title: string; sub: string; state: "done" | "now" | "queued" }[] = [
+  { n: "01", title: "Intake", sub: "OM + data room ingested · 6,412 docs", state: "done" },
+  { n: "02", title: "Financials", sub: "T-12 and rent roll normalized", state: "done" },
+  { n: "03", title: "MSA ranking", sub: "Boise scored 4 of 29 tracked", state: "done" },
+  { n: "04", title: "Demographics", sub: "jobs, permits, migration, drivers", state: "done" },
+  { n: "05", title: "Comps", sub: "9 sale · 46 rent, within band", state: "done" },
+  { n: "06", title: "Tax", sub: "reassessment at sale price modelled", state: "done" },
+  { n: "07", title: "Model", sub: "assumptions locked · returns solving", state: "now" },
+  { n: "08", title: "Sensitivity", sub: "exit cap × hold, base case marked", state: "queued" },
+  { n: "09", title: "IC memo", sub: "memo + IC site drafted from the model", state: "queued" },
+  { n: "10", title: "Due diligence", sub: "DD tracker seeded from the checklist", state: "queued" },
+];
