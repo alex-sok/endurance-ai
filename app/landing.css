@@ -4406,7 +4406,36 @@ ol.lp-team {
 .theme-paper .bpos-out.lead { background: var(--lp-accent); border-color: var(--lp-accent); }
 .theme-paper .bpos-sens-tab td.is-base { background: var(--lp-accent); }
 
+/* ── the movie still: ship overhead, planet below, copy centered ─────────
+   Preview strength on the ship so it can be judged; dial the opacity when
+   the composition is approved. */
+.lp-hero-ring {
+  top: 34px;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(360px, 38vw, 560px);
+  opacity: 0.09;
+  z-index: 0;
+}
+@media (max-width: 900px) {
+  .lp-hero-ring { width: 300px; top: 30px; opacity: 0.08; }
+}
+.lp-hero-earth {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  width: max(1600px, 130%);
+  height: auto;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+}
+.lp-hero-copy { position: relative; z-index: 2; }
 
+/* copy left, ship right */
+.lp-hero.is-center.is-tall .lp-hero-copy { text-align: left; }
 
 /* ── the UW Desk strip ───────────────────────────────────────────────────
    Ten steps, intake to due diligence, across the top of the bench. Done
