@@ -4553,3 +4553,11 @@ ol.lp-team {
   .lp-seq > .lp-chapter::before,
   .lp-seq > .lp-block::before { top: -26px; height: 18px; }
 }
+
+/* ── one tile, one shape ─────────────────────────────────────────────────
+   The showcase boxes sized themselves by their copy, so the Live session
+   tiles ran shorter than the freight stack's and Ask Brain's. Beside the
+   copy they now share one height, page-wide. */
+@media (min-width: 980px) {
+  .lp-chapter.is-showcase .lp-showcase .lp-tile { min-height: 148px; }
+}
