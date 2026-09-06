@@ -4203,3 +4203,17 @@ ol.lp-team {
 }
 .wl-done-head { margin: 0 0 8px; font-family: var(--lp-display); font-weight: 600; font-size: 21px; }
 .wl-done-sub { margin: 0; color: var(--lp-muted); font-size: 15px; line-height: 1.6; }
+
+/* ── fix: the id-addressed sections escaped the containers-off reset ──────
+   .lp-seq > #ide.lp-chapter (id specificity) kept its old card max-width
+   after the reset stripped the centering margin, so those bands hugged the
+   left edge with dead space on the right at wide viewports. Same-strength
+   selectors put them back to full-bleed. */
+.lp-seq > #ide.lp-chapter,
+.lp-seq > #builds.lp-block,
+.lp-seq > #research.lp-block,
+.lp-seq > #team.lp-block,
+.lp-seq > #believe.lp-block {
+  max-width: none;
+  margin-inline: 0;
+}
