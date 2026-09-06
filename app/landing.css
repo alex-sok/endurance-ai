@@ -4410,16 +4410,29 @@ ol.lp-team {
    Preview strength on the ship so it can be judged; dial the opacity when
    the composition is approved. */
 .lp-hero-ring {
-  top: 90px;
-  left: auto;
-  transform: none;
-  right: max(5vw, calc((100% - 1200px) / 2 - 40px));
-  width: clamp(220px, 22vw, 320px);
-  opacity: 0.16;
+  top: 34px;
+  right: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(360px, 38vw, 560px);
+  opacity: 0.09;
+  z-index: 0;
 }
 @media (max-width: 900px) {
-  .lp-hero-ring { width: 180px; left: auto; transform: none; right: -40px; top: 56px; opacity: 0.12; }
+  .lp-hero-ring { width: 300px; top: 30px; opacity: 0.08; }
 }
+.lp-hero-earth {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  width: max(1600px, 130%);
+  height: auto;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
+}
+.lp-hero-copy { position: relative; z-index: 2; }
 
 /* copy left, ship right */
 .lp-hero.is-center.is-tall .lp-hero-copy { text-align: left; }
@@ -4460,4 +4473,39 @@ ol.lp-team {
 }
 .theme-paper .bpos-uwsub {
   grid-column: 2; font-size: 10.5px; line-height: 1.45; color: var(--lp-muted);
+}
+
+/* ── showcases move beside the copy ──────────────────────────────────────
+   The tile rows were running full-width under the chapter; they now sit to
+   the right of the copy as a two-across stack, with the quote band still
+   spanning the full chapter below both. */
+@media (min-width: 980px) {
+  .lp-chapter.is-showcase {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 8px clamp(40px, 4.5vw, 64px);
+    align-items: start;
+  }
+  .lp-chapter.is-showcase .lp-chapter-copy {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+  .lp-chapter.is-showcase .lp-showcase-head {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 6px 0 10px;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .lp-chapter.is-showcase .lp-showcase {
+    grid-column: 2;
+    grid-row: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+  }
+  .lp-chapter.is-showcase .lp-quote-band {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    margin-top: 36px;
+  }
 }

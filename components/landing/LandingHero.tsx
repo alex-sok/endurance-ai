@@ -37,6 +37,37 @@ export function LandingHero({ onOpenChat }: Props) {
           <g transform="translate(228.5 282.5) rotate(166.0)"><rect x="-23.0" y="-15.0" width="46.0" height="30.0" rx="3" /><line x1="-23.0" y1="-5.0" x2="23.0" y2="-5.0" /><line x1="-7.7" y1="-15.0" x2="-7.7" y2="15.0" /><rect x="-17.0" y="2.5" width="9.0" height="6.0" rx="1" /></g>
         </g>
       </svg>
+      {/* The planet. Ocean, clouds and the atmosphere line, drawn in SVG —
+          no image, just gradients and turbulence — faded into the page. */}
+      <svg className="lp-hero-earth" viewBox="0 0 1200 300" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <radialGradient id="eh-ocean" cx="50%" cy="0%" r="120%">
+            <stop offset="0%" stopColor="#9dc2e8" />
+            <stop offset="38%" stopColor="#6ea3d8" />
+            <stop offset="100%" stopColor="#2b5d9e" />
+          </radialGradient>
+          <linearGradient id="eh-fade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#fbfaf8" stopOpacity="1" />
+            <stop offset="55%" stopColor="#fbfaf8" stopOpacity="0" />
+          </linearGradient>
+          <filter id="eh-clouds" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.011 0.028" numOctaves="3" seed="11" result="n" />
+            <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -0.55" result="c" />
+            <feComposite in="c" in2="SourceGraphic" operator="in" />
+          </filter>
+          <filter id="eh-glow"><feGaussianBlur stdDeviation="10" /></filter>
+          <filter id="eh-line"><feGaussianBlur stdDeviation="2.2" /></filter>
+        </defs>
+        {/* atmosphere */}
+        <circle cx="600" cy="1520" r="1332" fill="none" stroke="#cfe4fa" strokeWidth="34" filter="url(#eh-glow)" opacity="0.85" />
+        <circle cx="600" cy="1520" r="1318" fill="none" stroke="#eef6ff" strokeWidth="7" filter="url(#eh-line)" opacity="0.95" />
+        {/* ocean */}
+        <circle cx="600" cy="1520" r="1310" fill="url(#eh-ocean)" />
+        {/* clouds, clipped to the disc */}
+        <circle cx="600" cy="1520" r="1310" fill="#ffffff" filter="url(#eh-clouds)" opacity="0.55" />
+        {/* fade the top of the limb into the page */}
+        <rect x="0" y="0" width="1200" height="300" fill="url(#eh-fade)" />
+      </svg>
       <div className="lp-hero-copy">
         <p className="lp-kicker">Research · Engineering · Vertical software</p>
         <h1>
