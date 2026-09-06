@@ -55,6 +55,12 @@ export function LandingHero({ onOpenChat }: Props) {
             <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -0.55" result="c" />
             <feComposite in="c" in2="SourceGraphic" operator="in" />
           </filter>
+          <filter id="eh-streaks" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.0045 0.05" numOctaves="2" seed="4" result="n" />
+            <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.5 -0.6" result="c" />
+            <feComposite in="c" in2="SourceGraphic" operator="in" />
+          </filter>
+          <filter id="eh-soft"><feGaussianBlur stdDeviation="1.4" /></filter>
           <filter id="eh-glow"><feGaussianBlur stdDeviation="10" /></filter>
           <filter id="eh-line"><feGaussianBlur stdDeviation="2.2" /></filter>
         </defs>
@@ -63,6 +69,23 @@ export function LandingHero({ onOpenChat }: Props) {
         <circle cx="600" cy="1520" r="1318" fill="none" stroke="#eef6ff" strokeWidth="7" filter="url(#eh-line)" opacity="0.95" />
         {/* ocean */}
         <circle cx="600" cy="1520" r="1310" fill="url(#eh-ocean)" />
+        {/* landmasses — low, soft, under the weather */}
+        <g fill="#39688f" opacity="0.42" filter="url(#eh-soft)">
+          <path d="M 205 262 q 38 -18 84 -10 q 52 8 60 26 q -30 14 -86 10 q -52 -4 -58 -26 Z" />
+          <path d="M 442 236 q 46 -14 96 -4 q 44 8 38 22 q -36 16 -92 12 q -48 -4 -42 -30 Z" />
+          <path d="M 690 250 q 58 -20 118 -8 q 40 8 28 24 q -44 18 -104 12 q -48 -6 -42 -28 Z" />
+          <path d="M 928 276 q 40 -14 84 -6 q 34 6 26 18 q -32 12 -78 8 q -38 -4 -32 -20 Z" />
+          <path d="M 84 300 q 44 -16 96 -8 q 40 6 34 18 l -130 0 Z" />
+          <path d="M 1078 300 q 36 -12 76 -6 q 28 4 24 12 l -100 0 Z" />
+        </g>
+        {/* latitude lines, curving with the limb */}
+        <g fill="none" stroke="#ffffff" opacity="0.12">
+          <circle cx="600" cy="1520" r="1262" strokeWidth="1.6" />
+          <circle cx="600" cy="1520" r="1208" strokeWidth="1.3" />
+          <circle cx="600" cy="1520" r="1148" strokeWidth="1" />
+        </g>
+        {/* streaked cloud bands */}
+        <circle cx="600" cy="1520" r="1310" fill="#ffffff" filter="url(#eh-streaks)" opacity="0.4" />
         {/* clouds, clipped to the disc */}
         <circle cx="600" cy="1520" r="1310" fill="#ffffff" filter="url(#eh-clouds)" opacity="0.55" />
         {/* fade the top of the limb into the page */}
