@@ -4254,3 +4254,39 @@ ol.lp-team {
   border-top: 1px solid rgba(30, 29, 36, 0.14);
   border-bottom: 1px solid rgba(30, 29, 36, 0.14);
 }
+
+/* ── the asset book grows its section rail ───────────────────────────────
+   Nine sections down the left, lifted from the portfolio book's own nav:
+   every aspect of the property, one click deep, inside the same card. */
+.theme-paper .bpos-book-shell {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px;
+}
+@media (min-width: 860px) {
+  .theme-paper .bpos-book-shell {
+    grid-template-columns: 176px minmax(0, 1fr); gap: 24px; align-items: start;
+  }
+}
+.theme-paper .bpos-book-rail {
+  display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none;
+}
+.theme-paper .bpos-book-rail::-webkit-scrollbar { display: none; }
+@media (min-width: 860px) {
+  .theme-paper .bpos-book-rail {
+    flex-direction: column; overflow: visible;
+    position: sticky; top: 84px;
+    border-right: 1px solid var(--lp-line); padding-right: 12px;
+  }
+}
+.theme-paper .bpos-book-rail button {
+  font: inherit; font-size: 12.5px; text-align: left; white-space: nowrap;
+  color: var(--lp-muted); background: none; border: 0; cursor: pointer;
+  padding: 8px 10px; border-radius: 6px;
+  transition: color 140ms var(--lp-ease), background 140ms var(--lp-ease);
+}
+.theme-paper .bpos-book-rail button:hover { color: var(--lp-ink); }
+.theme-paper .bpos-book-rail button[aria-current="page"] {
+  color: var(--lp-paper); background: var(--lp-ink); font-weight: 500;
+}
+.theme-paper .bpos-book-stats { margin: 0 0 14px; }
+.theme-paper .bpos-book-defs { margin-bottom: 16px; }
+.theme-paper .bpos-book-pane > .bpos-scroll { border-top: 1px solid var(--lp-line); }

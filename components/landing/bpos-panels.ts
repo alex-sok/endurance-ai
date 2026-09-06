@@ -184,3 +184,179 @@ export const LOAD_HUBS: MapDot[] = [
   { name: "Huntsville, AL", lat: 34.73, lng: -86.59, n: 42, meta: "42 loads in flight · 14 carriers · deadhead watch" },
   { name: "Portland, OR", lat: 45.52, lng: -122.68, n: 24, meta: "24 loads in flight · 11 carriers · on plan" },
 ];
+
+/* ── the asset book's section rail ────────────────────────────────────────
+   Nine sections, lifted from the portfolio book's own nav: every aspect of
+   the property, one click deep. Data is synthetic, consistent with Cadence
+   Station's operating statement. */
+
+export interface BookSection {
+  id: string;
+  label: string;
+  /** small stat row across the top of the section */
+  stats?: [label: string, value: string][];
+  /** definition rows (label → value) */
+  defs?: [string, string][];
+  /** a table */
+  cols?: string[];
+  rows?: string[][];
+  note?: string;
+}
+
+export const BOOK_SECTIONS: BookSection[] = [
+  {
+    id: "overview",
+    label: "Overview",
+    stats: [
+      ["NOI margin", "79.9%"],
+      ["Occupancy", "95.9%"],
+      ["Avg in-place rent", "$2,226"],
+      ["DSCR", "2.54x"],
+      ["LTV", "62.4%"],
+      ["Delinquency", "2.2%"],
+    ],
+    defs: [
+      ["Asset", "Cadence Station · 252 units · built 2020"],
+      ["Manager", "Greystar · PM financials synced nightly"],
+      ["Basis", "T-12 · Jul 2025 — Jun 2026"],
+      ["Business plan", "Loss-to-lease capture on turns · year 3 of 5"],
+      ["Last site visit", "Jun 4 · punch list 6 items, 4 closed"],
+    ],
+    note: "Every figure on this page traces to the property-management system, the rent roll or the loan file behind it.",
+  },
+  {
+    id: "performance",
+    label: "Performance",
+    note: "The operating statement, actual against budget, rebuilt every night. Any line opens to the general-ledger detail behind it.",
+  },
+  {
+    id: "leasing",
+    label: "Rent & Leasing",
+    stats: [
+      ["Renewal trade", "+3.1%"],
+      ["New-lease trade", "+5.8%"],
+      ["Renewals", "62%"],
+      ["Expiring 90d", "38 units"],
+    ],
+    cols: ["Unit type", "Units", "Avg SF", "In-place", "Market", "Loss to lease"],
+    rows: [
+      ["S1 — Studio", "24", "588", "$1,748", "$1,795", "2.6%"],
+      ["A1 — 1x1", "96", "742", "$1,984", "$2,050", "3.2%"],
+      ["A2 — 1x1 den", "36", "818", "$2,141", "$2,195", "2.5%"],
+      ["B1 — 2x2", "72", "1,104", "$2,586", "$2,675", "3.3%"],
+      ["B2 — 2x2 corner", "18", "1,186", "$2,742", "$2,830", "3.1%"],
+      ["C1 — 3x2", "6", "1,342", "$3,104", "$3,195", "2.8%"],
+    ],
+    note: "Rent roll synced nightly. Loss to lease is the gap the turn plan captures.",
+  },
+  {
+    id: "distributions",
+    label: "Distributions",
+    stats: [
+      ["Lifetime", "$4,182,000"],
+      ["Latest quarter", "$318,500"],
+      ["Annualized rate", "7.4%"],
+      ["Next declare", "Jul 15"],
+    ],
+    cols: ["Quarter", "Declared", "Per $100K invested", "Rate", "Status"],
+    rows: [
+      ["Q2 2026", "$318,500", "$1,850", "7.4%", "Declared — pays Jul 15"],
+      ["Q1 2026", "$318,500", "$1,850", "7.4%", "Paid Apr 15"],
+      ["Q4 2025", "$301,200", "$1,750", "7.0%", "Paid Jan 15"],
+      ["Q3 2025", "$301,200", "$1,750", "7.0%", "Paid Oct 15"],
+      ["Q2 2025", "$284,000", "$1,650", "6.6%", "Paid Jul 15"],
+      ["Q1 2025", "$284,000", "$1,650", "6.6%", "Paid Apr 15"],
+    ],
+    note: "Sources reconcile to zero before anything sends — distributable cash less distributions, both checks clear.",
+  },
+  {
+    id: "debt",
+    label: "Debt & Financing",
+    defs: [
+      ["Lender", "Fannie Mae · servicer Walker & Dunlop"],
+      ["Balance", "$31,240,000 · 62.4% LTV"],
+      ["Rate", "5.18% fixed · matures Aug 2031"],
+      ["Debt service", "$2,041,608 / yr · DSCR 2.54x"],
+      ["Escrows", "$412,800 held · taxes and insurance"],
+      ["Prepayment", "Yield maintenance through Aug 2030"],
+    ],
+    cols: ["Covenant", "Required", "Actual", "Status"],
+    rows: [
+      ["Minimum DSCR", "≥ 1.25x", "2.54x", "Pass"],
+      ["Maximum LTV", "≤ 65.0%", "62.4%", "Pass"],
+      ["Minimum occupancy", "≥ 85.0%", "95.9%", "Pass"],
+      ["Insurance in force", "Required", "Current — exp Mar 2027", "Pass"],
+      ["Tax escrow funded", "Required", "$298,400 held", "Pass"],
+    ],
+    note: "Tested Jun 30 · all clear. The refinance calculator prices today's takeout against the yield-maintenance cost.",
+  },
+  {
+    id: "capital",
+    label: "Capital",
+    stats: [
+      ["Budget", "$1,860,000"],
+      ["Spent to date", "$1,214,300"],
+      ["Committed", "$402,000"],
+      ["Uncommitted", "$243,700"],
+    ],
+    cols: ["Project", "Scope", "Budget", "Spent", "%", "Status"],
+    rows: [
+      ["Unit interiors — phase 2", "84 units · counters, LVP, fixtures", "$924,000", "$681,400", "74%", "On schedule"],
+      ["Roof recoat — bldgs 3–5", "Elastomeric recoat, 10-yr warranty", "$286,000", "$286,000", "100%", "Complete"],
+      ["Pool deck & cabanas", "Resurface, shade structures", "$204,000", "$118,900", "58%", "On schedule"],
+      ["EV charging — 12 stalls", "Level 2, submetered", "$146,000", "$42,000", "29%", "Utility approval"],
+      ["Monument signage & paint", "Exterior refresh, wayfinding", "$188,000", "$86,000", "46%", "On schedule"],
+      ["Contingency", "Unallocated", "$112,000", "$0", "—", "Held"],
+    ],
+    note: "Draws reconcile against invoices before funding. Interior premiums are tracking +$212/unit against the plan's +$185.",
+  },
+  {
+    id: "insurance",
+    label: "Insurance",
+    stats: [
+      ["Annual premium", "$118,240"],
+      ["Premium / unit", "$469"],
+      ["Next expiration", "Mar 2027"],
+    ],
+    cols: ["Policy", "Carrier", "Limit", "Premium", "Expires"],
+    rows: [
+      ["Property — all risk", "Westfield Specialty", "$62,400,000 TIV", "$74,800", "Mar 2027"],
+      ["General liability", "Ironshore National", "$1M / $2M agg", "$21,600", "Mar 2027"],
+      ["Umbrella", "Ironshore National", "$25,000,000", "$14,200", "Mar 2027"],
+      ["Flood — Zone X", "NFIP", "$500,000", "$4,100", "Mar 2027"],
+      ["Equipment breakdown", "Westfield Specialty", "$5,000,000", "$3,540", "Mar 2027"],
+    ],
+    note: "Certificates on file with the lender. Renewal marketing starts 120 days out, automatically.",
+  },
+  {
+    id: "compliance",
+    label: "Compliance & Risk",
+    cols: ["Item", "Status", "Next date"],
+    rows: [
+      ["Entity good standing — AZ", "Current", "Annual report Jan 2027"],
+      ["Franchise tax", "Filed", "Apr 2027"],
+      ["Lender insurance certificate", "On file", "Mar 2027"],
+      ["Fire inspection — all buildings", "Passed May 2026", "May 2027"],
+      ["Elevator certificates (2)", "Current", "Nov 2026"],
+      ["Property tax appeal", "Open — hearing set", "Sep 12, 2026"],
+      ["Fair housing training — site staff", "Complete", "Feb 2027"],
+    ],
+    note: "Every expiration carries an owner and a lead time. Nothing on this list waits for someone to remember it.",
+  },
+  {
+    id: "documents",
+    label: "Reports & Documents",
+    cols: ["Document", "Period", "Source", "Updated"],
+    rows: [
+      ["T-12 operating statement", "Jul 2025 — Jun 2026", "Yardi Voyager", "Tonight 02:00"],
+      ["Rent roll", "As of Jun 20", "Yardi Voyager", "Tonight 02:00"],
+      ["General ledger detail", "Jun 2026", "Yardi Voyager", "Tonight 02:00"],
+      ["Loan agreement + riders", "Aug 2021", "Loan file", "Static"],
+      ["Insurance certificates", "2026–27 term", "Broker portal", "Mar 14"],
+      ["Property tax bills", "2025 final · 2026 estimate", "County portal", "Aug 2"],
+      ["Quarterly investor letter", "Q2 2026", "Drafted from this book", "Jul 8"],
+      ["Site visit report", "Jun 4", "Asset management", "Jun 6"],
+    ],
+    note: "The book cites these; the answers in Ask Brain point back at them. One set of documents, no copies.",
+  },
+];

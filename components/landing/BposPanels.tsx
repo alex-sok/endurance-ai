@@ -5,7 +5,8 @@
    with the assumptions, the model, the waterfall and the returns on one page
    — which is the entire argument for the bench existing. */
 
-import { ASSET_BOOK, UW_BENCH } from "./bpos-panels";
+import { useState } from "react";
+import { ASSET_BOOK, UW_BENCH, BOOK_SECTIONS } from "./bpos-panels";
 
 function Trend({ points, label }: { points: number[]; label: string }) {
   const w = 260;
@@ -30,6 +31,9 @@ function Trend({ points, label }: { points: number[]; label: string }) {
 
 export function AssetBook() {
   const b = ASSET_BOOK;
+  const [sec, setSec] = useState("overview");
+  const section = BOOK_SECTIONS.find((x) => x.id === sec) ?? BOOK_SECTIONS[0];
+
   return (
     <div className="bpos-card bpos-book">
       <div className="bpos-book-head">
@@ -49,54 +53,124 @@ export function AssetBook() {
         ))}
       </div>
 
-      <div className="bpos-book-body">
-        <div className="bpos-scroll">
-          <table className="bpos-tab-list bpos-book-tab">
-            <thead>
-              <tr>
-                <th>Operating statement</th>
-                <th className="r">Actual</th>
-                <th className="r">Budget</th>
-                <th className="r">Variance</th>
-              </tr>
-            </thead>
-            <tbody>
-              {b.lines.map((l) => (
-                <tr key={l.label} className={l.total ? "is-total" : undefined}>
-                  <td>{l.label}</td>
-                  <td className="r bpos-num-cell">{l.actual}</td>
-                  <td className="r bpos-num-cell">{l.budget}</td>
-                  <td className={`r bpos-num-cell${l.bad ? " is-bad" : " is-good"}`}>{l.variance}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+      <div className="bpos-book-shell">
+        <nav className="bpos-book-rail" aria-label="Asset book sections">
+          {BOOK_SECTIONS.map((x) => (
+            <button
+              key={x.id}
+              type="button"
+              aria-current={x.id === sec ? "page" : undefined}
+              onClick={() => setSec(x.id)}
+            >
+              {x.label}
+            </button>
+          ))}
+        </nav>
 
-        <div className="bpos-book-side">
-          <div className="bpos-side-block">
-            <p className="bpos-lab">{b.trend.label}</p>
-            <Trend points={b.trend.occ} label="Occupancy, trailing twelve months" />
-            <p className="bpos-sm">
-              Occupancy 94.1% &rarr; 95.9% &middot; in-place rent $2,118 &rarr; $2,226
-            </p>
-            <Trend points={b.trend.rent} label="In-place rent, trailing twelve months" />
-          </div>
-          <div className="bpos-side-block">
-            <p className="bpos-lab">Debt</p>
-            <dl className="bpos-defs">
-              {b.debt.map((r) => (
+        <div className="bpos-book-pane" aria-live="polite">
+          {section.stats ? (
+            <div className="bpos-chips bpos-book-stats">
+              {section.stats.map((st) => (
+                <span className="bpos-chip" key={st[0]}>
+                  <em>{st[0]}</em>
+                  <b>{st[1]}</b>
+                </span>
+              ))}
+            </div>
+          ) : null}
+
+          {sec === "overview" ? (
+            <div className="bpos-book-body">
+              <dl className="bpos-defs">
+                {section.defs?.map((r) => (
+                  <div key={r[0]}>
+                    <dt>{r[0]}</dt>
+                    <dd>{r[1]}</dd>
+                  </div>
+                ))}
+              </dl>
+              <div className="bpos-side-block">
+                <p className="bpos-lab">{b.trend.label}</p>
+                <Trend points={b.trend.occ} label="Occupancy, trailing twelve months" />
+                <p className="bpos-sm">
+                  Occupancy 94.1% &rarr; 95.9% &middot; in-place rent $2,118 &rarr; $2,226
+                </p>
+                <Trend points={b.trend.rent} label="In-place rent, trailing twelve months" />
+              </div>
+            </div>
+          ) : null}
+
+          {sec === "performance" ? (
+            <div className="bpos-scroll">
+              <table className="bpos-tab-list bpos-book-tab">
+                <thead>
+                  <tr>
+                    <th>Operating statement</th>
+                    <th className="r">Actual</th>
+                    <th className="r">Budget</th>
+                    <th className="r">Variance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {b.lines.map((l) => (
+                    <tr key={l.label} className={l.total ? "is-total" : undefined}>
+                      <td>{l.label}</td>
+                      <td className="r bpos-num-cell">{l.actual}</td>
+                      <td className="r bpos-num-cell">{l.budget}</td>
+                      <td className={`r bpos-num-cell${l.bad ? " is-bad" : " is-good"}`}>{l.variance}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
+
+          {sec !== "overview" && sec !== "performance" && section.defs ? (
+            <dl className="bpos-defs bpos-book-defs">
+              {section.defs.map((r) => (
                 <div key={r[0]}>
                   <dt>{r[0]}</dt>
                   <dd>{r[1]}</dd>
                 </div>
               ))}
             </dl>
-          </div>
+          ) : null}
+
+          {sec !== "performance" && section.cols && section.rows ? (
+            <div className="bpos-scroll">
+              <table className="bpos-tab-list bpos-book-tab">
+                <thead>
+                  <tr>
+                    {section.cols.map((c, i) => (
+                      <th key={c} className={i > 1 ? "r" : undefined}>
+                        {c}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {section.rows.map((r, ri) => (
+                    <tr key={`${r[0]}-${ri}`}>
+                      {r.map((cell, i) => (
+                        <td
+                          key={`${r[0]}-${i}`}
+                          className={i > 1 ? "r bpos-num-cell" : i === 0 ? "bpos-first" : undefined}
+                        >
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
+
+          {section.note || sec === "performance" ? (
+            <p className="bpos-calc-note">{sec === "performance" ? b.note : section.note}</p>
+          ) : null}
         </div>
       </div>
-
-      <p className="bpos-calc-note">{b.note}</p>
     </div>
   );
 }
