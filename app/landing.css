@@ -3693,10 +3693,7 @@ ol.lp-team {
 
 /* the sky */
 .lp-hero.is-center.is-tall {
-  background:
-    radial-gradient(58% 46% at 30% 22%, rgba(30, 29, 36, 0.045), transparent 68%),
-    radial-gradient(52% 42% at 74% 16%, rgba(30, 29, 36, 0.035), transparent 70%),
-    linear-gradient(180deg, #fbfaf8 0%, #f0eeea 52%, #f3f1ed 74%, #fbfaf8 100%);
+  background: var(--lp-paper);
 }
 
 /* chapters become wash cards */
@@ -3908,10 +3905,7 @@ ol.lp-team {
    ink, buttons and accents stay neutral. Color lives in the atmosphere,
    never in the type. */
 .lp-hero.is-center.is-tall {
-  background:
-    radial-gradient(56% 44% at 28% 20%, rgba(232, 178, 186, 0.2), transparent 68%),
-    radial-gradient(50% 42% at 76% 14%, rgba(242, 205, 186, 0.22), transparent 70%),
-    linear-gradient(180deg, #fbfaf8 0%, #f4eeec 52%, #f6f1ee 74%, #fbfaf8 100%);
+  background: var(--lp-paper);
 }
 #work .lp-chapter:first-of-type,
 .lp-seq > #ide.lp-chapter,
@@ -3982,10 +3976,7 @@ ol.lp-team {
 .theme-paper { --lp-accent: #3672c4; }
 
 .lp-hero.is-center.is-tall {
-  background:
-    radial-gradient(56% 44% at 28% 20%, rgba(120, 168, 220, 0.2), transparent 68%),
-    radial-gradient(50% 42% at 76% 14%, rgba(164, 198, 234, 0.18), transparent 70%),
-    linear-gradient(180deg, #fbfaf8 0%, #edf3f9 52%, #f1f5f9 74%, #fbfaf8 100%);
+  background: var(--lp-paper);
 }
 #work .lp-chapter:first-of-type,
 .lp-seq > #ide.lp-chapter,
