@@ -85,7 +85,7 @@ export default async function Image() {
               fontSize: 26,
               lineHeight: 1.45,
               color: "#55535c",
-              maxWidth: 900,
+              maxWidth: 1010,
             }}
           >
             Endurance is an AI engineering group based in San Francisco, CA.
