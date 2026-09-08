@@ -3967,9 +3967,9 @@ ol.lp-team {
   }
 }
 
-/* ── baby blue, wider stance, air between the pillars ─────────────────────
-   The pink goes. The washes cool to baby blue, alternating as temperature,
-   and the flavor lives in small doses: the shipped beat of the headline,
+/* ── paper bands, wider stance, air between the pillars ───────────────────
+   The colored washes go. Section bands sit on the same snow/paper as the
+   page. Flavor stays in small doses: the shipped beat of the headline,
    the quote rule, the live pulse. Each section band now stands off its
    neighbors with white space, and the content walks closer to the page
    edges. */
@@ -3982,14 +3982,14 @@ ol.lp-team {
 .lp-seq > #ide.lp-chapter,
 .lp-seq > #believe.lp-block,
 .vals-seq > .vals-card {
-  background: linear-gradient(135deg, #eef4fa 0%, #f3f7fb 55%, #f8fafc 100%);
+  background: var(--lp-paper);
 }
 #work .lp-chapter:last-of-type,
 .lp-seq > #builds.lp-block,
 .lp-seq > #research.lp-block,
 .lp-seq > #team.lp-block,
 .vals-seq > .vals-card.vals-alt {
-  background: linear-gradient(135deg, #f6f9fc 0%, #eff5fa 60%, #f2f6f9 100%);
+  background: var(--lp-paper);
 }
 
 /* small doses of the blue */
@@ -4386,25 +4386,20 @@ ol.lp-team {
 .theme-paper .bpos-sens-tab td.is-base { background: var(--lp-accent); }
 
 /* ── transitional breaks ─────────────────────────────────────────────────
-   The bands stop ending in hard edges: each wash dissolves into the page
-   over its first and last 72px, and a short vertical hairline stitches one
-   section to the next through the white. */
+   Bands sit on paper with the page. A short vertical hairline stitches
+   one section to the next through the white. */
 #work .lp-chapter:first-of-type,
 .lp-seq > #ide.lp-chapter,
 .lp-seq > #believe.lp-block,
 .vals-seq > .vals-card {
-  background:
-    linear-gradient(180deg, var(--lp-paper) 0, rgba(251, 250, 248, 0) 72px, rgba(251, 250, 248, 0) calc(100% - 72px), var(--lp-paper) 100%),
-    linear-gradient(135deg, #eef4fa 0%, #f3f7fb 55%, #f8fafc 100%);
+  background: var(--lp-paper);
 }
 #work .lp-chapter:last-of-type,
 .lp-seq > #builds.lp-block,
 .lp-seq > #research.lp-block,
 .lp-seq > #team.lp-block,
 .vals-seq > .vals-card.vals-alt {
-  background:
-    linear-gradient(180deg, var(--lp-paper) 0, rgba(251, 250, 248, 0) 72px, rgba(251, 250, 248, 0) calc(100% - 72px), var(--lp-paper) 100%),
-    linear-gradient(135deg, #f6f9fc 0%, #eff5fa 60%, #f2f6f9 100%);
+  background: var(--lp-paper);
 }
 .lp-seq > .lp-chapter,
 .lp-seq > .lp-block { position: relative; }
