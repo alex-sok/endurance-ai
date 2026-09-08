@@ -65,7 +65,8 @@ export default async function Image() {
               letterSpacing: "-0.02em",
             }}
           >
-            We research. We build. We ship.
+            <span>We research. We build.&nbsp;</span>
+            <span style={{ color: "#3672c4" }}>We ship.</span>
           </div>
           <div
             style={{
