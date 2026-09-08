@@ -46,12 +46,22 @@ export default async function Image() {
           <div
             style={{
               display: "flex",
+              alignItems: "center",
               marginTop: 56,
               fontSize: 22,
               letterSpacing: "0.16em",
               color: "#55535c",
             }}
           >
+            <div
+              style={{
+                display: "flex",
+                width: 14,
+                height: 14,
+                background: "#3672c4",
+                marginRight: 18,
+              }}
+            />
             RESEARCH · ENGINEERING · VERTICAL SOFTWARE
           </div>
           <div
@@ -78,8 +88,9 @@ export default async function Image() {
               maxWidth: 900,
             }}
           >
-            An AI engineering group based in San Francisco, CA. Fortune
-            500-grade AI research and engineering, available to every business.
+            Endurance is an AI engineering group based in San Francisco, CA.
+            We make Fortune 500-grade AI research and engineering available to
+            every business.
           </div>
         </div>
       </div>
