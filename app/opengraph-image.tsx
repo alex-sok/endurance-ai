@@ -3,10 +3,11 @@ import { readFileSync } from "fs";
 import { join } from "path";
 
 /**
- * Link-preview card. Field, wordmark, the approved hero lines.
+ * Link-preview card. The page's own ground, the wordmark, the eyebrow, the
+ * three-beat claim on one line, and the positioning line under it.
  * File convention so Next emits an absolute og:image URL per deployment.
  */
-export const alt = "We research the work. Then we write the software.";
+export const alt = "We research. We build. We ship.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -24,7 +25,7 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          background: "#fcfbff",
+          background: "#fbfaf8",
           position: "relative",
         }}
       >
@@ -45,18 +46,39 @@ export default async function Image() {
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              marginTop: 48,
-              fontSize: 44,
-              lineHeight: 1.15,
-              color: "#1b1a22",
+              marginTop: 56,
+              fontSize: 22,
+              letterSpacing: "0.16em",
+              color: "#55535c",
+            }}
+          >
+            RESEARCH · ENGINEERING · VERTICAL SOFTWARE
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 24,
+              fontSize: 64,
+              fontWeight: 700,
+              lineHeight: 1.1,
+              color: "#1e1d24",
               letterSpacing: "-0.02em",
             }}
           >
-            <div>We research the work.</div>
-            <div style={{ fontStyle: "italic", marginTop: 16 }}>
-              Then we write the software.
-            </div>
+            We research. We build. We ship.
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 28,
+              fontSize: 26,
+              lineHeight: 1.45,
+              color: "#55535c",
+              maxWidth: 900,
+            }}
+          >
+            An AI engineering group based in San Francisco, CA. Fortune
+            500-grade AI research and engineering, available to every business.
           </div>
         </div>
       </div>

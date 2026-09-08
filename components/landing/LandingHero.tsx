@@ -13,7 +13,7 @@ export function LandingHero({ onOpenChat }: Props) {
           We research. We build. <em>We ship.</em>
         </h1>
         <p className="lp-hero-lede">
-          Endurance is an R&amp;D AI lab based in Silicon Valley. We sit in
+          Endurance is an R&amp;D AI lab based in San Francisco, CA. We sit in
           your operation and ship the system it was missing: built for
           operators, not categories, so you set the standard your competitors
           are measured against.

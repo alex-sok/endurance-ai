@@ -31,9 +31,9 @@ const archivo = Archivo({
 });
 
 const SITE_URL = "https://endurancelabs.ai";
-const TITLE = "Endurance AI Labs — We research the work.";
+const TITLE = "Endurance AI Labs — We research. We build. We ship.";
 const DESCRIPTION =
-  "Endurance is a lab. We sit in the operation, then we ship the system it was missing.";
+  "Endurance is an AI engineering group based in San Francisco, CA. We make Fortune 500-grade AI research and engineering available to every business.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
