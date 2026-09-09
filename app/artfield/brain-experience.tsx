@@ -5,6 +5,7 @@
 
 import { ArrowUpRight, Check, CircleDot, FileText, MessageSquare, MoveUpRight, ScanLine, ShieldCheck } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
+import { LivingArtwork } from './living-artwork';
 
 export function DayStory() {
   return (
@@ -39,7 +40,7 @@ export function WorldSelect() {
   return <Tabs defaultValue="company" className="world-tabs wrap">
     <TabsList className="world-nav" aria-label="Explore the ways Brain OS takes shape">{worlds.map(world=><TabsTrigger key={world.id} value={world.id}><span>{world.number}</span>{world.label}</TabsTrigger>)}</TabsList>
     {worlds.map(world=><TabsContent key={world.id} value={world.id} className="world-panel"><div className="world-stage">
-      <img className="world-art" src="/artfield/assets/pixel-world.png" alt="An isometric pixel-art world connecting a freight harbor, a city, a workshop campus, and a hillside village" width="1659" height="948" loading="lazy" />
+      <LivingArtwork kind="world" className="world-art" src="/artfield/assets/pixel-world.png" alt="An isometric pixel-art world connecting a freight harbor, a city, a workshop campus, and a hillside village" width="1659" height="948" loading="lazy" />
       <div className="world-detail"><span className="small-label">BRAIN OS / {world.label.toUpperCase()}</span><h3>{world.title}</h3><p>{world.copy}</p><a href={world.href} target={world.href.startsWith('https')?'_blank':undefined} rel={world.href.startsWith('https')?'noreferrer':undefined}>{world.cta}<ArrowUpRight size={17}/></a></div>
       <span className="map-coordinate">ONE PURPOSE. MANY FORMS.</span>
     </div></TabsContent>)}

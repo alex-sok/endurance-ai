@@ -4,12 +4,13 @@ import { CALENDLY_URL, CONTACT_EMAIL } from '@/lib/conversation-flows';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { BrainExperience, DayStory, WorldSelect } from './brain-experience';
 import { BusinessArchitecture, SecurityArchitecture } from './architecture-sections';
+import { LivingArtwork, SceneryMotionProvider } from './living-artwork';
 
 const callUrl = CALENDLY_URL;
 
 export default function Home() {
   return (
-    <>
+    <SceneryMotionProvider>
       <a className="skip-link" href="#main">Skip to content</a>
       <header id="top" className="site-header">
         <div className="header-inner wrap">
@@ -20,7 +21,7 @@ export default function Home() {
       </header>
       <main id="main">
         <section className="hero scene" aria-labelledby="hero-title">
-          <img className="scene-art hero-art" src="/artfield/assets/hopeful-sunrise.png" alt="An expansive sunrise sky above a calm coast, with warm light reaching a small community" width="1659" height="948" fetchPriority="high" />
+          <LivingArtwork kind="sunrise" className="scene-art hero-art" src="/artfield/assets/hopeful-sunrise.png" alt="An expansive sunrise sky above a calm coast, with warm light reaching a small community" width="1659" height="948" fetchPriority="high" />
           <div className="hero-shade" />
           <div className="hero-content wrap">
             <p className="eyebrow"><span className="status-light" /> A BETTER WORKING LIFE IS POSSIBLE</p>
@@ -46,7 +47,7 @@ export default function Home() {
           </div>
         </section>
         <section id="brain" className="brain-section scene" aria-labelledby="brain-title">
-          <img className="scene-art lab-art" src="/artfield/assets/hopeful-atelier.png" alt="A sunlit garden workspace where people collaborate in an open glass pavilion" width="1659" height="948" loading="lazy" />
+          <LivingArtwork kind="atelier" className="scene-art lab-art" src="/artfield/assets/hopeful-atelier.png" alt="A sunlit garden workspace where people collaborate in an open glass pavilion" width="1659" height="948" loading="lazy" />
           <div className="lab-shade" />
           <div className="brain-layout wrap">
             <div className="brain-copy">
@@ -65,7 +66,7 @@ export default function Home() {
         </section>
         <SecurityArchitecture />
         <section id="contact" className="contact scene" aria-labelledby="contact-title">
-          <img className="scene-art contact-art" src="/artfield/assets/hopeful-sunrise.png" alt="" width="1659" height="948" loading="lazy" />
+          <LivingArtwork kind="sunrise" className="scene-art contact-art" src="/artfield/assets/hopeful-sunrise.png" alt="" width="1659" height="948" loading="lazy" />
           <div className="contact-shade" />
           <div className="contact-content wrap">
             <p className="eyebrow">YOUR NEXT CHAPTER</p>
@@ -81,6 +82,6 @@ export default function Home() {
         <div className="footer-top wrap"><a className="wordmark" href="#top" aria-label="Endurance AI Labs home"><img src="/artfield/assets/endurance-logo-white.png" alt="Endurance" width="1370" height="238" /></a><p>A research and engineering team in San Francisco.<br />We sit in the operation, find the burden, and build in steps.</p><a href={`mailto:${CONTACT_EMAIL}`}>Say hello <ArrowUpRight size={16} /></a></div>
         <div className="footer-bottom wrap"><span>© 2026 ENDURANCE AI LABS</span><span>BUILT FOR THE PEOPLE DOING THE WORK.</span><a href="#top">Back to top ↑</a></div>
       </footer>
-    </>
+    </SceneryMotionProvider>
   );
 }
