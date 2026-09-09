@@ -6,6 +6,8 @@ import { join } from "path";
  * Link-preview card. The page's own ground, the wordmark, the eyebrow, the
  * live claim on one line, and the positioning line under it.
  * File convention so Next emits an absolute og:image URL per deployment.
+ * Claim and lede are word spans with gap — Satori collapses regular
+ * spaces in the default OG font (the live card has the same defect).
  */
 export const alt = "Give people their time back.";
 export const size = { width: 1200, height: 630 };
@@ -67,6 +69,9 @@ export default async function Image() {
           <div
             style={{
               display: "flex",
+              flexWrap: "wrap",
+              alignItems: "baseline",
+              gap: 18,
               marginTop: 24,
               fontSize: 64,
               fontWeight: 700,
@@ -75,12 +80,17 @@ export default async function Image() {
               letterSpacing: "-0.02em",
             }}
           >
-            <span>Give people their time&nbsp;</span>
+            <span>Give</span>
+            <span>people</span>
+            <span>their</span>
+            <span>time</span>
             <span style={{ color: "#315f8d" }}>back.</span>
           </div>
           <div
             style={{
               display: "flex",
+              flexWrap: "wrap",
+              gap: 8,
               marginTop: 28,
               fontSize: 26,
               lineHeight: 1.45,
@@ -88,8 +98,27 @@ export default async function Image() {
               maxWidth: 1010,
             }}
           >
-            Brain OS connects what your business knows with the work it needs
-            to do. A better business. A better working life.
+            <span>Brain</span>
+            <span>OS</span>
+            <span>connects</span>
+            <span>what</span>
+            <span>your</span>
+            <span>business</span>
+            <span>knows</span>
+            <span>with</span>
+            <span>the</span>
+            <span>work</span>
+            <span>it</span>
+            <span>needs</span>
+            <span>to</span>
+            <span>do.</span>
+            <span>A</span>
+            <span>better</span>
+            <span>business.</span>
+            <span>A</span>
+            <span>better</span>
+            <span>working</span>
+            <span>life.</span>
           </div>
         </div>
       </div>
