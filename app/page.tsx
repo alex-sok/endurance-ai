@@ -1,6 +1,8 @@
-import { LandingShell } from "@/components/landing/LandingShell";
-import "./landing.css";
+import ArtfieldHome from "./artfield/home";
+import HomeFrame, { homepageMetadata } from "./artfield/home-frame";
+
+export const metadata = homepageMetadata;
 
 export default function Home() {
-  return <LandingShell />;
+  return <HomeFrame><ArtfieldHome /></HomeFrame>;
 }

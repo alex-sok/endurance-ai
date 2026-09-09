@@ -12,20 +12,22 @@ const title = "Endurance AI Labs | Give people their time back.";
 const description =
   "Brain OS connects what your business knows with the work it needs to do. A better business. A better working life.";
 
-export const metadata: Metadata = {
+export const homepageMetadata: Metadata = {
   title,
   description,
-  alternates: { canonical: "https://endurancelabs.ai/artfield" },
+  alternates: { canonical: "https://endurancelabs.ai" },
   openGraph: {
     title,
     description,
-    url: "https://endurancelabs.ai/artfield",
+    url: "https://endurancelabs.ai",
+    siteName: "Endurance AI Labs",
+    type: "website",
+    locale: "en_US",
   },
-  twitter: { title, description },
-  // Keep the alternate concept out of search while the main homepage remains canonical.
-  robots: { index: false, follow: false },
+  twitter: { card: "summary_large_image", title, description },
+  robots: { index: true, follow: true },
 };
 
-export default function ArtfieldLayout({ children }: { children: React.ReactNode }) {
+export default function HomeFrame({ children }: { children: React.ReactNode }) {
   return <div className={`${styles.artfield} ${geist.variable}`}>{children}</div>;
 }
