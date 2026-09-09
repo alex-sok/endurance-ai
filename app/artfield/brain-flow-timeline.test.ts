@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { advancePlayback, playbackFrame, PHASE_DURATION, SEQUENCE_DURATION } from './brain-flow-timeline.ts';
+import { advancePlayback, bubbleTiming, phasePreviewTime, playbackFrame, PHASE_DURATION, SEQUENCE_DURATION, ticketTiming } from './brain-flow-timeline.ts';
 
 test('each phase starts at its exact boundary', () => {
   assert.deepEqual(playbackFrame(0), { phase: 0, progress: 0, complete: false });
@@ -27,4 +27,23 @@ test('seeking and replaying start a phase without inheriting old progress', () =
   assert.equal(playbackFrame(-20).progress, 0);
   assert.equal(playbackFrame(PHASE_DURATION / 2).progress, 0.5);
   assert.equal(playbackFrame(PHASE_DURATION * 2).complete, false);
+});
+
+test('every ticket merges before the first chat bubble emerges', () => {
+  const lastTicket = ticketTiming(7);
+  const firstBubble = bubbleTiming(0);
+  assert.ok(lastTicket.delay + lastTicket.duration < firstBubble.delay);
+  assert.ok(lastTicket.delay + lastTicket.duration < phasePreviewTime(1));
+});
+
+test('all chat bubbles finish before the final hold', () => {
+  const lastBubble = bubbleTiming(2);
+  assert.ok(lastBubble.delay + lastBubble.duration < SEQUENCE_DURATION);
+  assert.equal(phasePreviewTime(2), SEQUENCE_DURATION);
+});
+
+test('manual step previews show distinct meaningful moments', () => {
+  for (let phase = 0; phase < 3; phase++) {
+    assert.equal(playbackFrame(phasePreviewTime(phase)).phase, phase);
+  }
 });
