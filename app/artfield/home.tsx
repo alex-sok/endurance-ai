@@ -47,7 +47,7 @@ export default function ArtfieldHome() {
           </div>
         </section>
         <section id="brain" className="brain-section scene" aria-labelledby="brain-title">
-          <img className="scene-art lab-art" src="/artfield/assets/hopeful-atelier.png" alt="A sunlit garden workspace where people collaborate in an open glass pavilion" width="1659" height="948" loading="lazy" />
+          <img className="scene-art lab-art" src="/artfield/assets/hopeful-atelier-refined.png" alt="A sunlit garden workspace where people collaborate in an open glass pavilion" width="1660" height="948" loading="lazy" />
           <div className="lab-shade" />
           <div className="brain-layout wrap">
             <div className="brain-copy">
