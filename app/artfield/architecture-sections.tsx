@@ -1,20 +1,9 @@
 import { CALENDLY_URL } from '@/lib/conversation-flows';
-import { ArrowRight, ArrowUpRight, Database, FileText, GitBranch, Layers3, ListChecks, MessageSquare, Users } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { BrainFlow } from './brain-flow';
 
 // Product grounding: endurancelabs.ai/brain and endurancelabs.ai/brain-os.
 // Security copy describes design commitments, not unverified infrastructure guarantees.
-const sources = [
-  { icon: Database, title: 'Business systems', detail: 'Customers, operations, finance' },
-  { icon: FileText, title: 'Company knowledge', detail: 'Documents, email, conversations' },
-  { icon: GitBranch, title: 'Ways of working', detail: 'Processes, policies, agreements' },
-];
-
-const outcomes = [
-  { icon: MessageSquare, title: 'Answers with evidence', detail: 'See the record behind the answer.' },
-  { icon: ListChecks, title: 'Work prepared', detail: 'Drafts, reconciliations, follow-ups.' },
-  { icon: Users, title: 'People in control', detail: 'Judgment where it matters.' },
-];
-
 export function BusinessArchitecture() {
   return (
     <section id="how-it-works" className="architecture-section" aria-labelledby="architecture-title">
@@ -26,48 +15,7 @@ export function BusinessArchitecture() {
           </div>
           <p>Brain OS connects the tools, knowledge, and routines your business already runs—then turns that context into useful work.</p>
         </div>
-        <figure className="business-diagram" aria-label="Business systems, knowledge, and processes connect to Brain OS, which prepares source-linked answers and work for people.">
-          <div className="diagram-column">
-            <h3 className="diagram-stage-label">Connect what you know</h3>
-            <div className="diagram-node-list">
-              {sources.map(({ icon: Icon, title, detail }) => (
-                <div className="diagram-node" key={title}>
-                  <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
-                  <div><h4>{title}</h4><p>{detail}</p></div>
-                </div>
-              ))}
-            </div>
-            <p className="diagram-channel">APIs · MCP · Source documents</p>
-          </div>
-          <div className="diagram-connector" aria-hidden="true"><span /><ArrowRight size={19} /></div>
-          <div className="diagram-core-column">
-            <h3 className="diagram-stage-label">Build shared context</h3>
-            <div className="diagram-core">
-              <div className="diagram-core-heading"><Layers3 size={26} strokeWidth={1.4} aria-hidden="true" /><span>Brain OS</span></div>
-              <p>The knowledge behind<br />the next step.</p>
-              <ul>
-                <li>Understand the context</li>
-                <li>Find the source</li>
-                <li>Prepare the work</li>
-              </ul>
-            </div>
-            <p className="diagram-channel">Connected to your operation</p>
-          </div>
-          <div className="diagram-connector" aria-hidden="true"><span /><ArrowRight size={19} /></div>
-          <div className="diagram-column">
-            <h3 className="diagram-stage-label">Put it to work</h3>
-            <div className="diagram-node-list">
-              {outcomes.map(({ icon: Icon, title, detail }) => (
-                <div className="diagram-node outcome-node" key={title}>
-                  <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
-                  <div><h4>{title}</h4><p>{detail}</p></div>
-                </div>
-              ))}
-            </div>
-            <p className="diagram-channel">Useful to the people doing the work</p>
-          </div>
-          <figcaption>A simplified view: connect sources, build context, prepare work.</figcaption>
-        </figure>
+        <BrainFlow />
       </div>
     </section>
   );
