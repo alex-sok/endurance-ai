@@ -4,10 +4,10 @@ import { join } from "path";
 
 /**
  * Link-preview card. The page's own ground, the wordmark, the eyebrow, the
- * three-beat claim on one line, and the positioning line under it.
+ * live claim on one line, and the positioning line under it.
  * File convention so Next emits an absolute og:image URL per deployment.
  */
-export const alt = "We research. We build. We ship.";
+export const alt = "Give people their time back.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -25,7 +25,7 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          background: "#fbfaf8",
+          background: "#f7fafc",
           position: "relative",
         }}
       >
@@ -50,7 +50,7 @@ export default async function Image() {
               marginTop: 56,
               fontSize: 22,
               letterSpacing: "0.16em",
-              color: "#55535c",
+              color: "#526d80",
             }}
           >
             <div
@@ -58,11 +58,11 @@ export default async function Image() {
                 display: "flex",
                 width: 14,
                 height: 14,
-                background: "#3672c4",
+                background: "#3b66ce",
                 marginRight: 18,
               }}
             />
-            RESEARCH · ENGINEERING · VERTICAL SOFTWARE
+            A BETTER WORKING LIFE IS POSSIBLE
           </div>
           <div
             style={{
@@ -71,12 +71,12 @@ export default async function Image() {
               fontSize: 64,
               fontWeight: 700,
               lineHeight: 1.1,
-              color: "#1e1d24",
+              color: "#193b51",
               letterSpacing: "-0.02em",
             }}
           >
-            <span>We research. We build.&nbsp;</span>
-            <span style={{ color: "#3672c4" }}>We ship.</span>
+            <span>Give people their time&nbsp;</span>
+            <span style={{ color: "#315f8d" }}>back.</span>
           </div>
           <div
             style={{
@@ -84,13 +84,12 @@ export default async function Image() {
               marginTop: 28,
               fontSize: 26,
               lineHeight: 1.45,
-              color: "#55535c",
+              color: "#526d80",
               maxWidth: 1010,
             }}
           >
-            Endurance is an AI engineering group based in San Francisco, CA.
-            We make Fortune 500-grade AI research and engineering available to
-            every business.
+            Brain OS connects what your business knows with the work it needs
+            to do. A better business. A better working life.
           </div>
         </div>
       </div>
