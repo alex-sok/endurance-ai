@@ -4,10 +4,12 @@ import { join } from "path";
 
 /**
  * Link-preview card. The page's own ground, the wordmark, the eyebrow, the
- * three-beat claim on one line, and the positioning line under it.
+ * live claim on one line, and the positioning line under it.
  * File convention so Next emits an absolute og:image URL per deployment.
+ * Claim and lede are word spans with gap — Satori collapses regular
+ * spaces in the default OG font (the live card has the same defect).
  */
-export const alt = "We research. We build. We ship.";
+export const alt = "Give people their time back.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -25,7 +27,7 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          background: "#fbfaf8",
+          background: "#f7fafc",
           position: "relative",
         }}
       >
@@ -50,7 +52,7 @@ export default async function Image() {
               marginTop: 56,
               fontSize: 22,
               letterSpacing: "0.16em",
-              color: "#55535c",
+              color: "#526d80",
             }}
           >
             <div
@@ -58,39 +60,65 @@ export default async function Image() {
                 display: "flex",
                 width: 14,
                 height: 14,
-                background: "#3672c4",
+                background: "#3b66ce",
                 marginRight: 18,
               }}
             />
-            RESEARCH · ENGINEERING · VERTICAL SOFTWARE
+            A BETTER WORKING LIFE IS POSSIBLE
           </div>
           <div
             style={{
               display: "flex",
+              flexWrap: "wrap",
+              alignItems: "baseline",
+              gap: 18,
               marginTop: 24,
               fontSize: 64,
               fontWeight: 700,
               lineHeight: 1.1,
-              color: "#1e1d24",
+              color: "#193b51",
               letterSpacing: "-0.02em",
             }}
           >
-            <span>We research. We build.&nbsp;</span>
-            <span style={{ color: "#3672c4" }}>We ship.</span>
+            <span>Give</span>
+            <span>people</span>
+            <span>their</span>
+            <span>time</span>
+            <span style={{ color: "#315f8d" }}>back.</span>
           </div>
           <div
             style={{
               display: "flex",
+              flexWrap: "wrap",
+              gap: 8,
               marginTop: 28,
               fontSize: 26,
               lineHeight: 1.45,
-              color: "#55535c",
+              color: "#526d80",
               maxWidth: 1010,
             }}
           >
-            Endurance is an AI engineering group based in San Francisco, CA.
-            We make Fortune 500-grade AI research and engineering available to
-            every business.
+            <span>Brain</span>
+            <span>OS</span>
+            <span>connects</span>
+            <span>what</span>
+            <span>your</span>
+            <span>business</span>
+            <span>knows</span>
+            <span>with</span>
+            <span>the</span>
+            <span>work</span>
+            <span>it</span>
+            <span>needs</span>
+            <span>to</span>
+            <span>do.</span>
+            <span>A</span>
+            <span>better</span>
+            <span>business.</span>
+            <span>A</span>
+            <span>better</span>
+            <span>working</span>
+            <span>life.</span>
           </div>
         </div>
       </div>

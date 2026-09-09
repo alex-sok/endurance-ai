@@ -31,9 +31,9 @@ const archivo = Archivo({
 });
 
 const SITE_URL = "https://endurancelabs.ai";
-const TITLE = "Endurance AI Labs — We research. We build. We ship.";
+const TITLE = "Endurance AI Labs | Give people their time back.";
 const DESCRIPTION =
-  "Endurance is an AI engineering group based in San Francisco, CA. We make Fortune 500-grade AI research and engineering available to every business.";
+  "Brain OS connects what your business knows with the work it needs to do. A better business. A better working life.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -85,7 +85,7 @@ export default function RootLayout({
     url: "https://endurancelabs.ai",
     logo: "https://endurancelabs.ai/logo-endurance.svg",
     description:
-      "Endurance is a lab. We sit in the operation, then we ship the system it was missing.",
+      "Brain OS connects what your business knows with the work it needs to do. A better business. A better working life.",
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@endurancelabs.ai",
