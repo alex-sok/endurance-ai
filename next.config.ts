@@ -169,6 +169,9 @@ const nextConfig: NextConfig = {
   // under a subpath proxy. Lowercase variants included for typed URLs.
   async redirects() {
     return [
+      // Artfield is now the homepage. Exact paths leave its image assets intact.
+      { source: "/artfield", destination: "/", permanent: true },
+      { source: "/artfield/", destination: "/", permanent: true },
       { source: "/CFPportal", destination: "https://cfp-portal-endurance.pages.dev/", permanent: false },
       { source: "/CFPportal/:path*", destination: "https://cfp-portal-endurance.pages.dev/:path*", permanent: false },
       { source: "/cfpportal", destination: "https://cfp-portal-endurance.pages.dev/", permanent: false },

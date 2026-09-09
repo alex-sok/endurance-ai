@@ -4,10 +4,11 @@ import { CALENDLY_URL, CONTACT_EMAIL } from '@/lib/conversation-flows';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { BrainExperience, DayStory, WorldSelect } from './brain-experience';
 import { BusinessArchitecture, SecurityArchitecture } from './architecture-sections';
+import { GraceChat } from './grace-chat';
 
 const callUrl = CALENDLY_URL;
 
-export default function Home() {
+export default function ArtfieldHome() {
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
@@ -72,7 +73,7 @@ export default function Home() {
             <h2 id="contact-title">More time.<br /><span className="text-accent">More life.</span></h2>
             <p>Tell us where the hours go.<br />We’ll find the burden worth lifting.</p>
             <a className="primary-button" href={callUrl} target="_blank" rel="noreferrer"><span>Tell us about your work</span><ArrowUpRight size={20} /></a>
-            <a className="grace-link" href="https://endurancelabs.ai/" target="_blank" rel="noreferrer">Or meet Grace, our AI advisor <ArrowUpRight size={14} /></a>
+            <GraceChat />
           </div>
           <div className="outro-note"><span>THE STANDARD WE BUILD TOWARD</span><p>A better business.<br />A better working life.</p></div>
         </section>
