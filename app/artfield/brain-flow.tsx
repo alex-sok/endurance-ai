@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import { CheckCheck, ClipboardCheck, CreditCard, Database, FileText, Landmark, MessageCircle, MessagesSquare, Pause, Play, RotateCcw, Route, Workflow } from 'lucide-react';
+import { CheckCheck, ClipboardCheck, CreditCard, Database, FileText, Landmark, MessageCircle, MessagesSquare, Pause, Play, Route, Workflow } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { advancePlayback, phasePreviewTime, playbackFrame, SEQUENCE_DURATION } from './brain-flow-timeline';
 import type { BrainScene } from './brain-flow-scene';
@@ -141,11 +141,11 @@ function useWorkSequence() {
     if (frame.complete) replay();
     else setPlaying((current) => !current);
   }
-  return { figure, frame, playing, ready, reducedMotion, seek, replay, toggle };
+  return { figure, frame, playing, ready, reducedMotion, seek, toggle };
 }
 
 export function BrainFlow() {
-  const { figure, frame, playing, ready, reducedMotion, seek, replay, toggle } = useWorkSequence();
+  const { figure, frame, playing, ready, reducedMotion, seek, toggle } = useWorkSequence();
   const current = phases[frame.phase];
 
   return (
@@ -158,7 +158,6 @@ export function BrainFlow() {
               {playing ? <Pause size={15} aria-hidden="true" /> : <Play size={15} aria-hidden="true" />}
               {playing ? 'Pause' : frame.complete ? 'Replay' : 'Play'}
             </Button>
-            <Button variant="ghost" size="icon" className={styles.resetButton} onClick={replay} aria-label="Restart animation"><RotateCcw size={16} aria-hidden="true" /></Button>
           </div>
         ) : <span className={styles.motionNote}>Explore each step below</span>}
       </div>
