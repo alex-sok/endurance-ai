@@ -28,7 +28,7 @@ export default function ArtfieldHome() {
           <div className="hero-shade" />
           <div className="hero-content wrap">
             <p className="eyebrow"><span className="status-light" /> A BETTER WORKING LIFE IS POSSIBLE</p>
-            <h1 id="hero-title">Give people<br /><span className="hero-line">their time <span className="text-accent">back.</span></span></h1>
+            <h1 id="hero-title">Give people<br /><span className="hero-line"><span className="text-accent">back</span> their time.</span></h1>
             <p className="hero-description">We build Brain OS into the systems your business already runs—connecting knowledge, answering questions, and taking repetitive work off people’s hands.</p>
             <a className="primary-button" href="#brain"><span>Meet Brain OS</span><ArrowUpRight size={20} /></a>
             <a className="hero-secondary" href="#belief">Discover why we build <ArrowDown size={14} /></a>
