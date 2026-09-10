@@ -5,6 +5,8 @@ import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { BrainExperience, DayStory, WorldSelect } from './brain-experience';
 import { BusinessArchitecture, SecurityArchitecture } from './architecture-sections';
 import { GraceChat } from './grace-chat';
+import { MobileNav } from './mobile-nav';
+import { CustomerProof, TeamSection } from './proof-and-team';
 
 const callUrl = CALENDLY_URL;
 
@@ -17,6 +19,7 @@ export default function ArtfieldHome() {
           <a className="wordmark" href="#top" aria-label="Endurance AI Labs home"><img src="/artfield/assets/endurance-logo-white.png" alt="Endurance" width="1370" height="238" /></a>
           <nav aria-label="Main navigation"><a href="#brain">Brain OS</a><a href="#work">What we build</a><a href="#belief">Our mission</a><a href="#trust">Trust</a></nav>
           <a className="nav-cta" href={callUrl} target="_blank" rel="noreferrer">Let’s talk <ArrowUpRight size={15} /></a>
+          <MobileNav />
         </div>
       </header>
       <main id="main">
@@ -25,8 +28,8 @@ export default function ArtfieldHome() {
           <div className="hero-shade" />
           <div className="hero-content wrap">
             <p className="eyebrow"><span className="status-light" /> A BETTER WORKING LIFE IS POSSIBLE</p>
-            <h1 id="hero-title">Give people<br /><span className="hero-line">their time <span className="text-accent">back.</span></span></h1>
-            <p className="hero-description">Brain OS takes repetitive work off people’s hands. So there’s more room for the work, and the life, that matters.</p>
+            <h1 id="hero-title">Give people<br /><span className="hero-line"><span className="text-accent">back</span> their time.</span></h1>
+            <p className="hero-description">We build Brain OS into the systems your business already runs—connecting knowledge, answering questions, and taking repetitive work off people’s hands.</p>
             <a className="primary-button" href="#brain"><span>Meet Brain OS</span><ArrowUpRight size={20} /></a>
             <a className="hero-secondary" href="#belief">Discover why we build <ArrowDown size={14} /></a>
           </div>
@@ -59,12 +62,14 @@ export default function ArtfieldHome() {
           </div>
           <div className="engine-footer wrap"><span>Sources connected</span><i /><span>People in control</span><i /><span>Work moving forward</span></div>
         </section>
+        <CustomerProof />
         <BusinessArchitecture />
         <section id="work" className="world-section" aria-labelledby="world-title">
           <div className="world-heading wrap"><div><p className="eyebrow">ONE PURPOSE, MANY WORLDS</p><h2 id="world-title">Built into <span className="text-accent">your world.</span></h2></div><p>The form changes.<br />The purpose holds: give people their time back.</p></div>
           <WorldSelect />
         </section>
         <SecurityArchitecture />
+        <TeamSection />
         <section id="contact" className="contact scene" aria-labelledby="contact-title">
           <img className="scene-art contact-art" src="/artfield/assets/hopeful-sunrise.png" alt="" width="1659" height="948" loading="lazy" />
           <div className="contact-shade" />
@@ -73,6 +78,7 @@ export default function ArtfieldHome() {
             <h2 id="contact-title">More time.<br /><span className="text-accent">More life.</span></h2>
             <p>Tell us where the hours go.<br />We’ll find the burden worth lifting.</p>
             <a className="primary-button" href={callUrl} target="_blank" rel="noreferrer"><span>Tell us about your work</span><ArrowUpRight size={20} /></a>
+            <p className="contact-next">We’ll start with one workflow, the systems involved, and where your team wants its time back.</p>
             <GraceChat />
           </div>
           <div className="outro-note"><span>THE STANDARD WE BUILD TOWARD</span><p>A better business.<br />A better working life.</p></div>
@@ -80,6 +86,7 @@ export default function ArtfieldHome() {
       </main>
       <footer className="site-footer">
         <div className="footer-top wrap"><a className="wordmark" href="#top" aria-label="Endurance AI Labs home"><img src="/artfield/assets/endurance-logo-white.png" alt="Endurance" width="1370" height="238" /></a><p>A research and engineering team in San Francisco.<br />We sit in the operation, find the burden, and build in steps.</p><a href={`mailto:${CONTACT_EMAIL}`}>Say hello <ArrowUpRight size={16} /></a></div>
+        <nav className="footer-links wrap" aria-label="Footer navigation"><a href="/brain-os">Brain OS</a><a href="/margins">Margins</a><a href="#team">Our team</a><a href="/values">Our values</a><a href="#trust">Security &amp; trust</a><a href={`mailto:${CONTACT_EMAIL}?subject=Privacy%20question`}>Privacy questions</a></nav>
         <div className="footer-bottom wrap"><span>© 2026 ENDURANCE AI LABS</span><span>BUILT FOR THE PEOPLE DOING THE WORK.</span><a href="#top">Back to top ↑</a></div>
       </footer>
     </>

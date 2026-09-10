@@ -415,6 +415,112 @@
   .artfield :global(.security-design-footer a){margin-top:14px}
 }
 
+/* Real outcomes and the people behind the work: quiet, typography-led pauses. */
+.artfield :global(.customer-proof){padding-block:94px;background:#fff;border-bottom:1px solid #dfeaf1}
+.artfield :global(.proof-grid){display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:8%;align-items:center}
+.artfield :global(.proof-voice blockquote){margin:24px 0}
+.artfield :global(.proof-voice h2){font-size:clamp(2.375rem,4vw,3.75rem);line-height:1.13;letter-spacing:-.045em;max-width:550px}
+.artfield :global(.proof-attribution){font-size:.875rem;line-height:1.75;color:#5b778b}
+.artfield :global(.proof-result){border-left:1px solid #d8e5ef;padding-left:36px}
+.artfield :global(.proof-timing){display:grid;grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr);gap:14px;align-items:center;margin-top:24px}
+.artfield :global(.proof-timing dl){margin:0;min-width:0}
+.artfield :global(.proof-timing dt){font-size:.875rem;line-height:1.6;color:#526f83}
+.artfield :global(.proof-timing dd){font-size:clamp(3.5rem,5.3vw,5rem);line-height:1;letter-spacing:-.055em;font-weight:450;margin:12px 0 0;color:#577489;font-variant-numeric:tabular-nums}
+.artfield :global(.proof-timing dl:last-child dd){color:#3565c8}
+.artfield :global(.proof-timing dd span){display:block;font-size:1rem;line-height:1.5;letter-spacing:0;font-weight:400;margin-top:8px}
+.artfield :global(.proof-arrow){font-size:1.75rem;color:#7998af}
+.artfield :global(.proof-description){font-size:1rem;line-height:1.8;color:#476a83;margin-top:25px;max-width:450px}
+.artfield :global(.proof-footnote){font-size:.75rem;line-height:1.75;color:#607c90;margin-top:16px}
+.artfield :global(.team-section){padding-block:96px 100px;background:#fbfcfc}
+.artfield :global(.team-heading){display:grid;grid-template-columns:1.15fr 1fr;gap:10%;align-items:end;margin-bottom:44px}
+.artfield :global(.team-heading h2){margin-top:23px}
+.artfield :global(.team-heading>p){max-width:430px;font-size:1rem;line-height:1.85;color:#526f83}
+.artfield :global(.team-directory){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.artfield :global(.team-person){border-top:1px solid #cfdee8;padding-top:24px;min-width:0}
+.artfield :global(.team-person h3){font-size:1.1875rem;font-weight:500;line-height:1.5;letter-spacing:-.02em}
+.artfield :global(.team-role){font-size:.875rem;line-height:1.65;color:#37639a;margin-top:4px}
+.artfield :global(.team-bio){font-size:.9375rem;line-height:1.8;color:#567286;margin-top:17px}
+
+/* Concrete questions, rather than unverified security guarantees. */
+.artfield :global(.security-review){margin:0;padding:0 30px}
+.artfield :global(.security-review>div){display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.5fr);gap:35px;padding-block:23px}
+.artfield :global(.security-review>div+div){border-top:1px solid #d7e4ed}
+.artfield :global(.security-review dt){font-size:1rem;font-weight:500;line-height:1.7;color:#365d7e}
+.artfield :global(.security-review dd){margin:0;font-size:1rem;line-height:1.75;color:#56758b;max-width:650px}
+
+/* Product names and demo labels remain legible at every breakpoint. */
+.artfield :global(.hero-description){max-width:460px}
+.artfield :global(.day-heading>span),.artfield :global(.small-label),.artfield :global(.handled-tag),.artfield :global(.day-caption),.artfield :global(.hour){font-size:.75rem}
+.artfield :global(.day-tabs [data-slot="tabs-trigger"]),.artfield :global(.experience-nav [data-slot="tabs-trigger"]){font-size:.875rem;min-height:44px}
+.artfield :global(.day-grid){min-height:470px;background:repeating-linear-gradient(to bottom,transparent 0,transparent 119px,#dbe5ed 119px,#dbe5ed 120px)}
+.artfield :global(.h10){top:120px}.artfield :global(.h11){top:240px}.artfield :global(.h12){top:360px}
+.artfield :global(.handled-title){font-size:1rem;flex-wrap:wrap}
+.artfield :global(.handled-tasks),.artfield :global(.human-task),.artfield :global(.usual-task small),.artfield :global(.usual-end){font-size:.875rem;line-height:1.6}
+.artfield :global(.handled-tasks svg){flex-shrink:0}
+.artfield :global(.usual-task p),.artfield :global(.query p),.artfield :global(.answer p),.artfield :global(.world-detail>p){font-size:1rem}
+.artfield :global(.usual-task){min-height:105px}
+.artfield :global(.connected),.artfield :global(.source-files>span),.artfield :global(.window-bottom),.artfield :global(.example-caption){font-size:.75rem;line-height:1.6}
+.artfield :global(.world-nav [data-slot="tabs-trigger"]){min-width:0;min-height:92px;align-items:center}
+.artfield :global(.world-nav [data-slot="tabs-trigger"]>.world-tab-copy){display:flex;flex-direction:column;gap:5px;text-align:left;color:inherit;white-space:normal;min-width:0}
+.artfield :global(.world-tab-copy strong){font-size:.9375rem;font-weight:500;line-height:1.4;letter-spacing:-.015em}
+.artfield :global(.world-tab-copy>span){font-size:.75rem;line-height:1.5;color:#5c778b}
+.artfield :global(.world-detail .small-label){display:block;line-height:1.65}
+.artfield :global(.world-detail>a){font-size:.9375rem;min-height:44px}
+.artfield :global(.contact-content>.contact-next){font-size:.875rem;line-height:1.75;max-width:380px;margin-top:16px}
+.artfield :global(.grace-link){font-size:.875rem;min-height:44px;margin-top:12px}
+.artfield :global(.footer-top>p){font-size:.875rem}
+.artfield :global(.footer-links){display:flex;flex-wrap:wrap;gap:6px 28px;padding-bottom:24px;color:#ccdfed;font-size:.875rem}
+.artfield :global(.footer-links a){display:inline-flex;align-items:center;min-height:44px}
+.artfield :global(.footer-links a:hover){color:#fff;text-decoration:underline;text-underline-offset:5px}
+
+/* A native disclosure retains keyboard navigation even before hydration. */
+.artfield :global(.mobile-menu){display:none;position:relative;flex-shrink:0}
+.artfield :global(.mobile-menu summary){list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border:1px solid #7894ab66;border-radius:6px;background:#ffffff4d;touch-action:manipulation}
+.artfield :global(.mobile-menu summary::-webkit-details-marker){display:none}
+.artfield :global(.mobile-menu summary:focus-visible){outline:2px solid var(--primary);outline-offset:4px}
+.artfield :global(.menu-close-icon),.artfield :global(.mobile-menu[open] .menu-open-icon){display:none}
+.artfield :global(.mobile-menu[open] .menu-close-icon){display:block}
+.artfield :global(.mobile-menu nav){position:absolute;right:0;top:calc(100% + 14px);display:grid;gap:2px;width:min(290px,calc(100vw - 40px));padding:12px;border:1px solid #d6e3ed;border-radius:10px;background:#fffffff5;box-shadow:0 12px 40px #244d7326;backdrop-filter:blur(20px)}
+.artfield :global(.mobile-menu nav a){padding:11px 13px;min-height:44px;font-size:.9375rem;line-height:1.5;border-radius:5px}
+.artfield :global(.mobile-menu nav a:hover){background:#eaf2fb}
+@media(max-width:1100px){
+  .artfield :global(.proof-grid){gap:5%}
+  .artfield :global(.proof-result){padding-left:28px}
+  .artfield :global(.team-directory){grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px}
+  .artfield :global(.team-heading){gap:7%}
+}
+@media(max-width:760px){
+  .artfield :global(.mobile-menu){display:block}
+  .artfield :global(.nav-cta){margin-left:auto;min-height:44px}
+  .artfield :global(.customer-proof),.artfield :global(.team-section){padding-block:65px}
+  .artfield :global(.proof-grid),.artfield :global(.team-heading){grid-template-columns:1fr;gap:34px}
+  .artfield :global(.proof-voice h2){font-size:clamp(2.375rem,8vw,3.5rem)}
+  .artfield :global(.proof-result){border-left:0;border-top:1px solid #d8e5ef;padding:28px 0 0}
+  .artfield :global(.proof-timing){max-width:390px;margin-top:20px}
+  .artfield :global(.proof-timing dd){font-size:4rem}
+  .artfield :global(.team-heading){margin-bottom:32px;gap:23px}
+  .artfield :global(.team-heading h2){font-size:2.75rem;line-height:1.13}
+  .artfield :global(.team-directory){gap:26px}
+  .artfield :global(.security-review){padding-inline:21px}
+  .artfield :global(.security-review>div){grid-template-columns:1fr;gap:8px;padding-block:22px}
+  .artfield :global(.hero-description){max-width:375px}
+  .artfield :global(.day-grid){padding-left:43px;min-height:485px}
+  .artfield :global(.returned-time p){font-size:clamp(1.5625rem,7.2vw,1.875rem)}
+  .artfield :global(.returned-time){min-height:196px}
+  .artfield :global(.world-nav [data-slot="tabs-trigger"]){min-height:94px}
+  .artfield :global(.world-tab-copy strong){font-size:.875rem}
+}
+@media(max-width:480px){
+  .artfield :global(.team-directory){grid-template-columns:1fr}
+  .artfield :global(.team-person){padding-top:20px}
+  .artfield :global(.team-bio){margin-top:10px}
+}
+@media(max-width:400px){
+  .artfield :global(.header-inner){gap:10px}
+  .artfield :global(.site-header .wordmark img){width:120px}
+  .artfield :global(.nav-cta svg){display:none}
+}
+
 @media(prefers-reduced-motion:reduce){
   .artfield :global(*),.artfield :global(*::before),.artfield :global(*::after){animation:none!important;transition:none!important}
 }

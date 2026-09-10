@@ -21,7 +21,7 @@ export default function BrainOSPage() {
           <b>Brain OS</b>
           <span className="bos-sub">Brain powered operating systems</span>
         </div>
-        <Link className="bos-cta" href="/#close">
+        <Link className="bos-cta" href="/#contact">
           See what we’d build for you
         </Link>
       </header>

@@ -8,7 +8,7 @@ const geist = Geist({
   display: "swap",
 });
 
-const title = "Endurance AI Labs | Give people their time back.";
+const title = "Endurance AI Labs | Give people back their time.";
 const description =
   "Brain OS connects what your business knows with the work it needs to do. A better business. A better working life.";
 

@@ -13,10 +13,9 @@
 .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 65px; padding: 25px 30px 0; }
 .kicker { font-size: .75rem; letter-spacing: .095em; line-height: 1.7; color: var(--flow-muted); max-width: 350px; }
 .controls { display: flex; align-items: center; gap: 4px; }
-.flow .playButton, .flow .resetButton { height: 40px; color: #395e8d; background: #ffffffb3; border: 1px solid #cddded; border-radius: 7px; font-size: .875rem; box-shadow: none; }
+.flow .playButton { height: 44px; color: #395e8d; background: #ffffffb3; border: 1px solid #cddded; border-radius: 7px; font-size: .875rem; box-shadow: none; }
 .flow .playButton { min-width: 92px; padding: 9px 13px; gap: 8px; }
-.flow .resetButton { width: 40px; border-color: transparent; }
-.flow .playButton:hover, .flow .resetButton:hover { background: #edf4fc; }
+.flow .playButton:hover { background: #edf4fc; }
 .motionNote { font-size: .75rem; line-height: 1.5; color: var(--flow-muted); text-align: right; }
 
 .stage {
@@ -134,7 +133,6 @@
   .toolbar { padding: 20px 18px 0; gap: 14px; align-items: flex-start; }
   .kicker { max-width: 185px; }
   .controls { gap: 0; }
-  .flow .resetButton { display: none; }
   .flow .playButton { min-width: 74px; padding-inline: 9px; }
   .motionNote { max-width: 90px; }
   .stage { --blob-size: 172px; }

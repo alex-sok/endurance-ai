@@ -29,18 +29,18 @@ export function DayStory() {
 function Hours() { return <><div className="hour h9">09:00</div><div className="hour h10">10:00</div><div className="hour h11">11:00</div><div className="hour h12">12:00</div></>; }
 
 const worlds = [
-  { id: 'company', number: '01', label: 'Your company', title: 'Your whole operation, connected.', copy: 'Answers and actions, connected to the systems you already run. Less chasing across the business.', cta: 'Explore Brain OS', href: 'https://endurancelabs.ai/brain-os' },
-  { id: 'freight', number: '02', label: 'Freight', title: 'Keep the world moving.', copy: 'Foundations brings Brain OS to dispatch, invoices, and payments. More freight moving. Fewer hours chasing it.', cta: 'Explore Margins', href: 'https://endurancelabs.ai/margins' },
-  { id: 'team', number: '03', label: 'Your team', title: 'Build it, together.', copy: 'A shared development environment where operators and engineers shape the software, side by side.', cta: 'Ask about early access', href: 'https://endurancelabs.ai/waitlist' },
-  { id: 'rules', number: '04', label: 'Your rules', title: 'Made for the way you work.', copy: 'The club’s rules. The builder’s process. The details that make an operation yours, built into its software.', cta: 'Tell us about your work', href: '#contact' },
+  { id: 'company', name: 'Brain OS', label: 'Your business, connected', title: 'Your whole operation, connected.', copy: 'Answers and actions, connected to the systems you already run. Less chasing across the business.', cta: 'Explore Brain OS', href: '/brain-os' },
+  { id: 'freight', name: 'Foundations', label: 'Built for freight', title: 'Keep the world moving.', copy: 'Our freight software family, built around the people moving goods. Explore Margins, our commission platform for freight operations.', cta: 'Explore Margins', href: '/margins' },
+  { id: 'team', name: 'Multiplayer Developer Tool', label: 'Early access', title: 'Build it, together.', copy: 'The shared development environment our own lab works in. Operators and engineers shape the software side by side. Select clients work with us in early access.', cta: 'Ask about early access', href: '/waitlist' },
+  { id: 'rules', name: 'Micro SaaS', label: 'Built to order', title: 'Made for the way you work.', copy: 'Focused software for a specific operation. The club’s rules. The builder’s process. The details that make your work yours, built into its software.', cta: 'Tell us about your work', href: '#contact' },
 ];
 
 export function WorldSelect() {
   return <Tabs defaultValue="company" className="world-tabs wrap">
-    <TabsList className="world-nav" aria-label="Explore the ways Brain OS takes shape">{worlds.map(world=><TabsTrigger key={world.id} value={world.id}><span>{world.number}</span>{world.label}</TabsTrigger>)}</TabsList>
+    <TabsList className="world-nav" aria-label="Explore the ways Brain OS takes shape">{worlds.map(world=><TabsTrigger key={world.id} value={world.id}><span className="world-tab-copy"><strong>{world.name}</strong><span>{world.label}</span></span></TabsTrigger>)}</TabsList>
     {worlds.map(world=><TabsContent key={world.id} value={world.id} className="world-panel"><div className="world-stage">
       <img className="world-art" src="/artfield/assets/pixel-world.png" alt="An isometric pixel-art world connecting a freight harbor, a city, a workshop campus, and a hillside village" width="1659" height="948" loading="lazy" />
-      <div className="world-detail"><span className="small-label">BRAIN OS / {world.label.toUpperCase()}</span><h3>{world.title}</h3><p>{world.copy}</p><a href={world.href} target={world.href.startsWith('https')?'_blank':undefined} rel={world.href.startsWith('https')?'noreferrer':undefined}>{world.cta}<ArrowUpRight size={17}/></a></div>
+      <div className="world-detail"><span className="small-label">{world.name.toUpperCase()} / {world.label.toUpperCase()}</span><h3>{world.title}</h3><p>{world.copy}</p><a href={world.href}>{world.cta}<ArrowUpRight size={17}/></a></div>
       <span className="map-coordinate">ONE PURPOSE. MANY FORMS.</span>
     </div></TabsContent>)}
   </Tabs>;
