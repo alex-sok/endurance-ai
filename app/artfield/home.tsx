@@ -1,11 +1,11 @@
 /* Static pixel artwork is intentionally served unchanged; dimensions and loading priority are explicit. */
 /* eslint-disable @next/next/no-img-element */
-import { CALENDLY_URL, CONTACT_EMAIL } from '@/lib/conversation-flows';
+import { CALENDLY_URL } from '@/lib/conversation-flows';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { BrainExperience, DayStory, WorldSelect } from './brain-experience';
 import { BusinessArchitecture, SecurityArchitecture } from './architecture-sections';
 import { GraceChat } from './grace-chat';
-import { MobileNav } from './mobile-nav';
+import { SiteHeader, SiteFooter } from './site-chrome';
 import { CustomerProof, TeamSection } from './proof-and-team';
 
 const callUrl = CALENDLY_URL;
@@ -13,15 +13,7 @@ const callUrl = CALENDLY_URL;
 export default function ArtfieldHome() {
   return (
     <>
-      <a className="skip-link" href="#main">Skip to content</a>
-      <header id="top" className="site-header">
-        <div className="header-inner wrap">
-          <a className="wordmark" href="#top" aria-label="Endurance AI Labs home"><img src="/artfield/assets/endurance-logo-white.png" alt="Endurance" width="1370" height="238" /></a>
-          <nav aria-label="Main navigation"><a href="#brain">Brain OS</a><a href="#work">What we build</a><a href="#belief">Our mission</a><a href="#trust">Trust</a></nav>
-          <a className="nav-cta" href={callUrl} target="_blank" rel="noreferrer">Let’s talk <ArrowUpRight size={15} /></a>
-          <MobileNav />
-        </div>
-      </header>
+      <SiteHeader />
       <main id="main">
         <section className="hero scene" aria-labelledby="hero-title">
           <img className="scene-art hero-art" src="/artfield/assets/hopeful-sunrise.png" alt="An expansive sunrise sky above a calm coast, with warm light reaching a small community" width="1659" height="948" fetchPriority="high" />
@@ -84,11 +76,7 @@ export default function ArtfieldHome() {
           <div className="outro-note"><span>THE STANDARD WE BUILD TOWARD</span><p>A better business.<br />A better working life.</p></div>
         </section>
       </main>
-      <footer className="site-footer">
-        <div className="footer-top wrap"><a className="wordmark" href="#top" aria-label="Endurance AI Labs home"><img src="/artfield/assets/endurance-logo-white.png" alt="Endurance" width="1370" height="238" /></a><p>A research and engineering team in San Francisco.<br />We sit in the operation, find the burden, and build in steps.</p><a href={`mailto:${CONTACT_EMAIL}`}>Say hello <ArrowUpRight size={16} /></a></div>
-        <nav className="footer-links wrap" aria-label="Footer navigation"><a href="/brain-os">Brain OS</a><a href="/margins">Margins</a><a href="#team">Our team</a><a href="/values">Our values</a><a href="#trust">Security &amp; trust</a><a href={`mailto:${CONTACT_EMAIL}?subject=Privacy%20question`}>Privacy questions</a></nav>
-        <div className="footer-bottom wrap"><span>© 2026 ENDURANCE AI LABS</span><span>BUILT FOR THE PEOPLE DOING THE WORK.</span><a href="#top">Back to top ↑</a></div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }

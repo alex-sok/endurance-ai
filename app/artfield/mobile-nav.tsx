@@ -10,9 +10,10 @@ const links = [
   ['#belief', 'Our mission'],
   ['#trust', 'Security & trust'],
   ['#team', 'Our team'],
+  ['/about', 'About us'],
 ] as const;
 
-export function MobileNav() {
+export function MobileNav({ about = false }: { about?: boolean }) {
   const disclosure = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
@@ -46,8 +47,9 @@ export function MobileNav() {
       </summary>
       <nav aria-label="Mobile navigation">
         {links.map(([href, label]) => (
-          <a key={href} href={href} onClick={() => {
+          <a key={href} href={about && href.startsWith('#') ? `/${href}` : href} aria-current={about && href === '/about' ? 'page' : undefined} onClick={() => {
             if (disclosure.current) disclosure.current.open = false;
+            if (about || !href.startsWith('#')) return;
             // Keep keyboard focus at the destination, not in a collapsed menu.
             const destination = document.querySelector<HTMLElement>(`${href} h2`);
             if (destination) {

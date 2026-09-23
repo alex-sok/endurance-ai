@@ -9,6 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: "https://endurancelabs.ai/about",
+      lastModified: new Date("2026-09-23"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: "https://endurancelabs.ai/brain",
       lastModified: new Date(),
       changeFrequency: "weekly",
