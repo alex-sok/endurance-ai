@@ -32,7 +32,6 @@ export default function UseCasesPage() {
   const weekdayRows = ADOPTION.weekdays.labels.map((d, i) => [d, ADOPTION.weekdays.lastWeek[i], ADOPTION.weekdays.thisWeek[i]]);
   return (
     <HomeFrame className={pages.pages}>
-      <a className="skip-link" href="#main">Skip to content</a>
       <SiteHeader current="use-cases" />
       <main id="main">
         <section className="bp-hero scene" aria-labelledby="hero-title">
@@ -293,7 +292,7 @@ export default function UseCasesPage() {
           </div>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter current="use-cases" />
     </HomeFrame>
   );
 }

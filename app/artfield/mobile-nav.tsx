@@ -2,10 +2,9 @@
 
 import { useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
+import { PAGE_HREF, type SitePage } from './site-pages';
 
-type NavLink = readonly [href: string, label: string];
-
-const homeLinks: readonly NavLink[] = [
+const links = [
   ['#brain', 'Brain OS'],
   ['/brain-os/use-cases', 'Use cases'],
   ['/brain-os/technical', 'Technical'],
@@ -14,9 +13,11 @@ const homeLinks: readonly NavLink[] = [
   ['#belief', 'Our mission'],
   ['#trust', 'Security & trust'],
   ['#team', 'Our team'],
-];
+  ['/about', 'About us'],
+] as const;
 
-export function MobileNav({ links = homeLinks }: { links?: readonly NavLink[] }) {
+export function MobileNav({ current = 'home' }: { current?: SitePage }) {
+  const onHome = current === 'home';
   const disclosure = useRef<HTMLDetailsElement>(null);
 
   useEffect(() => {
@@ -50,9 +51,9 @@ export function MobileNav({ links = homeLinks }: { links?: readonly NavLink[] })
       </summary>
       <nav aria-label="Mobile navigation">
         {links.map(([href, label]) => (
-          <a key={href} href={href} onClick={() => {
+          <a key={href} href={!onHome && href.startsWith('#') ? `/${href}` : href} aria-current={href === PAGE_HREF[current] ? 'page' : undefined} onClick={() => {
             if (disclosure.current) disclosure.current.open = false;
-            if (!href.startsWith('#')) return;
+            if (!onHome || !href.startsWith('#')) return;
             // Keep keyboard focus at the destination, not in a collapsed menu.
             const destination = document.querySelector<HTMLElement>(`${href} h2`);
             if (destination) {

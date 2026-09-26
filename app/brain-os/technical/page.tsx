@@ -30,7 +30,6 @@ const jobIcons = { eye: Eye, clock: Clock, file: FileText, inbox: Inbox, receipt
 export default function TechnicalPage() {
   return (
     <HomeFrame className={pages.pages}>
-      <a className="skip-link" href="#main">Skip to content</a>
       <SiteHeader current="technical" />
       <main id="main">
         <section className="bp-hero scene" aria-labelledby="hero-title">
@@ -240,7 +239,7 @@ export default function TechnicalPage() {
           </div>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter current="technical" />
     </HomeFrame>
   );
 }
