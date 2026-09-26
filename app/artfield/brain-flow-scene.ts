@@ -12,12 +12,10 @@ export function createBrainScene(root: HTMLElement): BrainScene {
   const label = root.querySelector<HTMLElement>('[data-blob-label]')!;
   const tickets = Array.from(root.querySelectorAll<HTMLElement>('[data-ticket]'));
   const bubbles = Array.from(root.querySelectorAll<HTMLElement>('[data-bubble]'));
-  const orbit = root.querySelector<HTMLElement>('[data-orbit]')!;
-  const connections = root.querySelector<SVGSVGElement>('[data-connections]')!;
   const motion = { growth: 1, wobble: .012, squash: 0 };
   type Point = { x: number; y: number };
-  type Thread = { progress: number; start: Point; control: Point; end: Point; path: SVGPathElement; dot: SVGCircleElement; ticket?: HTMLElement; turn: number };
-  let threads: Thread[] = [];
+  type Flight = { progress: number; start: Point; control: Point; end: Point; ticket: HTMLElement; turn: number };
+  let flights: Flight[] = [];
   let time = SEQUENCE_DURATION;
   let renderer: WebGLRenderer | null = null;
   let context: gsap.Context | undefined;
@@ -63,20 +61,12 @@ export function createBrainScene(root: HTMLElement): BrainScene {
   pmrem?.dispose();
 
   function draw() {
-    threads.forEach(({ progress: t, start, control, end, path, dot, ticket, turn }) => {
+    flights.forEach(({ progress: t, start, control, end, ticket, turn }) => {
       const u = 1 - t;
       const x = u * u * start.x + 2 * u * t * control.x + t * t * end.x;
       const y = u * u * start.y + 2 * u * t * control.y + t * t * end.y;
-      const trail = ticket ? Math.max(0, Math.min(1, (10200 - time) / 1800)) : 1;
-      path.style.strokeDashoffset = String(1 - t);
-      path.style.opacity = String((ticket ? .38 : .7) * Math.min(1, t * 5) * trail);
-      dot.setAttribute('cx', String(x));
-      dot.setAttribute('cy', String(y));
-      dot.style.opacity = String(Math.sin(t * Math.PI) * .9 * trail);
-      if (ticket) {
-        ticket.style.transform = `translate(-50%, -50%) translate3d(${x - start.x}px, ${y - start.y}px, 0) rotate(${turn * u}deg) scale(${1 - .78 * t})`;
-        ticket.style.opacity = String(1 - t * t);
-      }
+      ticket.style.transform = `translate(-50%, -50%) translate3d(${x - start.x}px, ${y - start.y}px, 0) rotate(${turn * u}deg) scale(${1 - .78 * t})`;
+      ticket.style.opacity = String(1 - t * t);
     });
     const squash = motion.squash;
     fallback.style.transform = 'scale(' + motion.growth * (1 + squash) + ',' + motion.growth * (1 - squash) + ')';
@@ -104,18 +94,14 @@ export function createBrainScene(root: HTMLElement): BrainScene {
     const ticketWidth = compact ? Math.min(rem * 10.5, stage.clientWidth * .42)
       : rem * (window.matchMedia('(max-width: 1100px)').matches ? 9.5 : 10.5);
     context?.revert();
-    threads = [];
+    flights = [];
     const width = stage.clientWidth, height = stage.clientHeight;
     const center = { x: width / 2, y: height * centerY / 100 };
-    connections.setAttribute('viewBox', `0 0 ${width} ${height}`);
-    function thread(group: SVGGElement, start: Point, end: Point, bend: number, ticket?: HTMLElement, turn = 0) {
+    function makeFlight(start: Point, end: Point, bend: number, ticket: HTMLElement, turn: number) {
       const dx = end.x - start.x, dy = end.y - start.y;
       const control = { x: (start.x + end.x) / 2 - dy * bend, y: (start.y + end.y) / 2 + dx * bend };
-      const path = group.querySelector('path')!;
-      const dot = group.querySelector('circle')!;
-      path.setAttribute('d', `M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`);
-      const state = { progress: 0, start, control, end, path, dot, ticket, turn };
-      threads.push(state);
+      const state = { progress: 0, start, control, end, ticket, turn };
+      flights.push(state);
       return state;
     }
     context = gsap.context(() => {
@@ -126,14 +112,12 @@ export function createBrainScene(root: HTMLElement): BrainScene {
       timeline.to(motion, { wobble: .012, duration: 3.5, ease: 'sine.out' }, 7.5);
       timeline.fromTo(label, { opacity: 0, y: 7 }, { opacity: 1, y: 0, duration: .9, ease: 'power2.out' }, 6.1);
 
-      timeline.fromTo(orbit, { opacity: .35, scale: .82, rotation: -16 }, { opacity: 1, scale: 1, rotation: 0, duration: 8.5, ease: 'sine.inOut' }, 0);
-
       tickets.forEach((node, index) => {
         const x = compact ? (index % 2 ? 75 : 25) : Number(node.dataset.x);
         const y = compact ? [14, 14, 32, 32, 68, 68, 86, 86][index] : Number(node.dataset.y);
         const ink = node.querySelector<HTMLElement>('[data-ticket-ink]')!;
         const begin = ticketTiming(index).delay / 1000;
-        const flight = thread(root.querySelector<SVGGElement>(`[data-incoming="${index}"]`)!, { x: width * x / 100, y: height * y / 100 }, center, index % 2 ? .16 : -.16, node, Number(node.dataset.turn) * .5);
+        const flight = makeFlight({ x: width * x / 100, y: height * y / 100 }, center, index % 2 ? .16 : -.16, node, Number(node.dataset.turn) * .5);
         timeline.set(node, { left: x + '%', top: y + '%', width: ticketWidth, height: rem * 4.4 }, 0);
         timeline.fromTo(flight, { progress: 0 }, { progress: 1, duration: ticketTiming(index).duration / 1000, ease: 'power2.inOut' }, begin);
         timeline.fromTo(ink, { opacity: 1 }, { opacity: 0, duration: .9, ease: 'sine.in' }, begin + .7);
@@ -145,8 +129,6 @@ export function createBrainScene(root: HTMLElement): BrainScene {
         const timing = bubbleTiming(index);
         const begin = timing.delay / 1000;
         const target = { x: width * x / 100, y: height * y / 100 };
-        const output = thread(root.querySelector<SVGGElement>(`[data-outgoing="${index}"]`)!, center, target, compact ? (index % 2 ? .23 : -.23) : .12);
-        timeline.fromTo(output, { progress: 0 }, { progress: 1, duration: timing.duration / 1000, ease: 'sine.inOut' }, begin);
         timeline.fromTo(node,
           { left: x + '%', top: y + '%', xPercent: -50, yPercent: -50, x: (center.x - target.x) * .08, y: (center.y - target.y) * .08, scale: .96, opacity: 0 },
           { x: 0, y: 0, scale: 1, opacity: 1, duration: 1.1, ease: 'power2.out' }, begin + .35);

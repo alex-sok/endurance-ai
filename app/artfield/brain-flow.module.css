@@ -33,18 +33,6 @@
   background-size: 24px 24px;
   mask-image: radial-gradient(ellipse at center, #0006, transparent 68%);
 }
-.orbit { position: absolute; left: 50%; top: var(--center-y); width: 350px; height: 350px; border: 1px solid #b6cfe33d; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; }
-.orbit::before, .orbit::after { content: ''; position: absolute; border-radius: 50%; }
-.orbit::before { inset: 30px; border: 1px solid #afc9e136; }
-.orbit::after { inset: -24px; border: 1px solid #afc9e11f; }
-.orbit > span { position: absolute; inset: 0; border: 1px solid transparent; border-top-color: #7e9fbe7a; border-radius: 50%; transform: rotate(25deg); }
-.orbit > span:last-child { inset: 30px; transform: rotate(205deg); border-top-color: #bdab8a66; }
-.connections { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.connections path { fill: none; stroke: #87a9c6; stroke-width: 1; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; }
-.connections circle { fill: #739abf; stroke: #fff; stroke-width: 1.5; opacity: 0; }
-.connections [data-outgoing] path { stroke: #7198bb; }
-
-
 .ticket {
   --ticket-x: var(--wide-x);
   --ticket-y: var(--wide-y);
@@ -137,7 +125,6 @@
   .bubble { --bubble-x: 50%; --bubble-y: var(--small-y); width: min(300px, 83%); padding: 17px 20px; }
   .bubble[data-bubble="0"] { border-radius: 15px; }
   .bubble[data-bubble="1"], .bubble[data-bubble="2"] { border-radius: 15px; }
-  .orbit { width: 260px; height: 260px; }
   .caption { align-items: flex-start; }
 }
 @media (max-width: 600px) {
