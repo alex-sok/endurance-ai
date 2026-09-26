@@ -14,14 +14,14 @@ import { CALENDLY_URL } from "@/lib/conversation-flows";
 export const USE_CASES_META = {
   title: "Brain OS use cases and impact — Endurance AI Labs",
   description:
-    "What people ask Brain OS, what it does with the ask, and what changed inside one operation running it in production since June 2026. Every figure names its source.",
+    "See how one freight operation uses Brain OS: the questions people ask, the actions they approve, and the usage recorded since June 2026.",
   canonical: "https://endurancelabs.ai/brain-os/use-cases",
 };
 
 export const HERO = {
   eyebrow: "BRAIN OS / USE CASES AND IMPACT",
   h1: ["The work it takes.", "The time it gives back."],
-  lede: "What people ask Brain OS, what it does with the ask, and what changed inside one operation that has run it in production since June 2026. Every figure on this page names where it came from.",
+  lede: "At one freight operation, people use Brain OS to find a load, prepare an order, or check an invoice. Here is what they asked, what the system did, and what the records show. The deployment has been in production since June 2026.",
   primary: { label: "Tell us about your work", href: CALENDLY_URL },
   secondary: { label: "How it is built", href: "/brain-os/technical" },
 };
@@ -51,7 +51,7 @@ export type BeforeAfter = {
 export const BEFORE_AFTER = {
   kicker: "01 · BEFORE AND AFTER",
   title: ["The same ask.", "A different day."],
-  lede: "Six things people ask every day. How each one went before. How it goes with Brain OS. The receipts are from one operation in September 2026.",
+  lede: "Six familiar requests, with the steps they used to involve and how Brain OS handles them. The figures come from one operation in September 2026.",
   rows: [
     {
       ask: "“Where is my load?”",
@@ -60,7 +60,7 @@ export const BEFORE_AFTER = {
       who: "Dispatch, all day",
       before: "Open the system of record. Find the order. Check the last driver text. Search the inbox for the carrier’s email. Call someone if none of it agrees.",
       beforeMeta: ["Several systems", "A few people", "Minutes, if nothing is wrong"],
-      after: "One question. One record: the order, its stops, the estimated arrival, the last text and the last email, merged, with each fact naming where it came from.",
+      after: "Brain OS brings the order, stops, estimated arrival, latest driver text, and latest email into one answer. Each fact names its source, so the dispatcher can check how the records fit together.",
       afterMeta: ["Read live at the moment of the question", "Sources attached"],
       receipt: { figure: "522", label: "distinct orders read in one week, week to 18 September" },
     },
@@ -72,7 +72,7 @@ export const BEFORE_AFTER = {
       who: "Open deck planners",
       before: "Print the packing list. Work every piece against legal length, width, height and weight, and against deck heights by trailer type, by hand.",
       beforeMeta: ["About two hours", "One person who knows the rules"],
-      after: "Paste the packing list. Legal truckloads by trailer type, with anything oversize or overweight flagged, in thirty seconds. The planner’s own rules, captured from his messages, are the rules it follows.",
+      after: "Paste the packing list to get a plan by trailer type, with oversize and overweight items flagged. The system follows rules captured from the planner’s messages; this customer reported a planning time of thirty seconds.",
       afterMeta: ["Flatbed, stepdeck, double drop, lowboy"],
       receipt: { figure: "2 hrs to 30 sec", label: "customer reported. Nobody specified this feature; planners started pasting packing lists." },
     },
@@ -83,7 +83,7 @@ export const BEFORE_AFTER = {
       who: "Dispatch, from a load sheet",
       before: "Retype the load sheet into the system of record, field by field. Look up the customer’s rules in a spreadsheet or a memory. Hope nothing was missed.",
       beforeMeta: ["One order at a time", "Rules in someone’s head"],
-      after: "Paste the load sheet. A full draft, cloned from the last order on that lane with the changes swapped in, the customer’s rules applied and every discrepancy flagged. Created on a yes.",
+      after: "Paste the load sheet to prepare a draft from the last order on that lane. Brain OS applies the customer’s rules and flags discrepancies for review before the dispatcher confirms creation.",
       afterMeta: ["Draft first, then confirm", "Standing defaults per lane"],
       receipt: { figure: "94", label: "orders created in one week, 21 to 25 September, by five people" },
     },
@@ -94,7 +94,7 @@ export const BEFORE_AFTER = {
       who: "Carrier sales",
       before: "Ask the room. Search old emails for the last carrier who ran it. Scroll the carrier list and start dialling.",
       beforeMeta: ["Memory and luck", "The newest person knows nobody"],
-      after: "Carriers ranked by runs on the lane, with last run, equipment and a contact. A call list, not a search result, from nearly ten years of lane history.",
+      after: "Nearly ten years of lane history becomes a ranked carrier list, with the last run, equipment, and a contact for each. The broker has enough context to choose whom to call.",
       afterMeta: ["Identity screened from an email address", "Backhaul matching across books"],
       receipt: { figure: "Nearly ten years", label: "of lane history behind every carrier answer, read live" },
     },
@@ -125,7 +125,7 @@ export const BEFORE_AFTER = {
 
 export const ADOPTION = {
   kicker: "02 · ADOPTION",
-  title: ["Adopted by the floor.", "Not pushed from above."],
+  title: ["More people.", "More questions."],
   lede: "Brain OS opened to the whole company on 12 August 2026, with access tiers in place. Nobody was told to use it. This is what happened next.",
   people: {
     title: "People who asked Brain OS something, each week",
@@ -164,7 +164,7 @@ export const ADOPTION = {
 export const TOPICS = {
   kicker: "03 · WHAT THEY ASK",
   title: ["Where the", "questions go."],
-  lede: "Nine hundred and ninety five questions in one week, sorted by what they asked for. Building orders and posting loads are nearly half. The rest is the long tail of a working day.",
+  lede: "Of 995 questions in the recorded week, nearly half concerned building orders or posting loads. The rest ranged from paperwork and billing to driver updates and carrier outreach.",
   chart: {
     title: "What 995 questions asked for, Monday 21 to Friday 25 September 2026",
     note: "Share of the week’s questions by topic, classified by keyword rules, accurate to a few points.",
@@ -184,7 +184,7 @@ export const TOPICS = {
     ],
     source: "The operation’s usage database, 25 September 2026, 11:09 Eastern. Percent of 995 questions.",
   },
-  callout: "The use case that proves the pattern came from the users, not the roadmap. Nobody specified truckload planning. Planners started pasting packing lists, and their rules were captured from their own messages into a page Brain OS follows. In the week of 21 September it was 6% of questions, from five people, for a feature nobody asked us to build. That is the whole argument in one story: the system learns the work from the people doing it.",
+  callout: "Truckload planning began with planners pasting packing lists into chat. Their explanations became a page of rules for Brain OS to follow. In the week of 21 September, that work accounted for 6% of questions from five people. A useful capability took shape as the people doing the work taught the system what mattered.",
 };
 
 export const ACTIONS = {
@@ -220,7 +220,7 @@ export const ACTIONS = {
 export const ROLES = {
   kicker: "05 · BY ROLE",
   title: ["What each desk asks,", "in its own words."],
-  lede: "Everything here is in production. Where a step is still unproven, it says so. “My loads” is scoped to the asker’s own book, and money questions follow the access tiers. Pick a desk.",
+  lede: "These examples come from a production deployment; steps still awaiting verification are identified. For a configured user, “my loads” refers to their own book, and financial questions follow their access tier. Choose a role to see the work in context.",
   caption: "AN OPERATION IN PRODUCTION SINCE JUNE 2026",
 };
 
@@ -296,8 +296,8 @@ export const CALC = {
 
 export const REVENUE = {
   kicker: "07 · WHERE REVENUE ENTERS",
-  title: ["Revenue is a use case.", "Not a claim."],
-  lede: "We do not have a revenue figure to show you. The operation running Brain OS does not attribute revenue to a tool. Neither will we. What we can show is where the revenue work moved, from quote to cash.",
+  title: ["From a quote", "to a customer served."],
+  lede: "We have not measured revenue attributable to Brain OS. What we can show is how it supports the work around a sale: pricing a lane, finding a carrier, and keeping a customer informed.",
   flow: [
     { n: "QUOTE", title: "Price from history", body: "Seasonality, who hauls it, backhaul potential. Nearly ten years of lane history in the time it takes to ask.", ask: "“What does this lane usually do?”" },
     { n: "COVER", title: "Call the right carrier", body: "A ranked call list for the lane. Identity for the carrier on the phone. A buy above the sell refused in the draft.", ask: "“Who is this MC number?”" },
@@ -307,9 +307,9 @@ export const REVENUE = {
     { n: "SERVE", title: "Show the customer", body: "A public tracking link for one load, no login, instead of a promise to call back.", ask: "“Give me an update for the customer.”" },
   ],
   aside: {
-    kicker: "MONEY THAT DID NOT LEAK",
+    kicker: "A SEPARATE PRODUCT, A MEASURED RESULT",
     title: "The dollars we can show are in Margins.",
-    body: "Margins is not Brain OS. It is the deterministic commission engine that runs at the same operation. Its production ledger is the money proof we have. Read it as evidence of how we build, not of what the brain did.",
+    body: "Margins calculates commissions from defined rules at the same operation. Its production ledger records the amounts below. These are Margins results and should be assessed separately from Brain OS.",
     rows: [
       { label: "Commission settled through Margins", sub: "20 closed weekly runs, 29 March to 16 August 2026", figure: "$4,015,094" },
       { label: "Duplicate payments stopped", sub: "about, across 20 loads that would have paid twice, caught before payday", figure: "$5,491" },
@@ -325,9 +325,9 @@ export const FIT = {
   title: ["A system of record.", "And a few people’s heads."],
   lede: "Closest fit: freight brokerages, third party logistics firms and asset carriers of 25 to 140 people, working in Microsoft Teams. Next: any operation where the answers live in a system of record and the rules live in inboxes and spreadsheets.",
   buyers: [
-    { who: "The owner or president", why: "Leverage without headcount. Growth that does not add a back office." },
+    { who: "The owner or president", why: "A way to handle more work with the team already in place." },
     { who: "The head of operations", why: "Fewer chases, faster answers, and a team that stops asking “where is it?”" },
-    { who: "The finance lead", why: "Correct figures with their sources, and a wall around the money that is enforced, not promised." },
+    { who: "The finance lead", why: "Figures that can be checked against their sources, with access controls around financial information." },
     { who: "A senior operator", why: "The champion who uses it on live work every day and says bluntly what is wrong. Their corrections are the fastest way the brain grows." },
   ],
   triggers: [
@@ -339,15 +339,15 @@ export const FIT = {
   ],
   notFor: [
     "Your knowledge already lives in one system everyone trusts. Brain OS solves a problem you do not have.",
-    "What you produce is thin. Compiling it will not make it thicker.",
-    "No system of record with an interface we can connect. You get answers, not actions.",
+    "Important knowledge has not been recorded. It needs to be captured before Brain OS can use it.",
+    "Your system of record has no interface we can connect. Knowledge-based answers may still be possible, but actions need an integration.",
   ],
 };
 
 export const ROLLOUT = {
   kicker: "09 · THE ROLLOUT",
-  title: ["Company wide", "in nine weeks."],
-  lede: "How the reference deployment rolled out in 2026. Read only first. Actions turned on one at a time, each behind its own switch.",
+  title: ["One deployment.", "Nine weeks to company access."],
+  lede: "The reference deployment began with read access in June 2026 and opened to the company in August. Actions were enabled one at a time, each with its own control. This is the record of that rollout.",
   timeline: [
     { iso: "2026-06-09", date: "9 June", short: "First version, read only", what: "First version: the Teams bot, live reads from the system of record, and the knowledge base." },
     { iso: "2026-07-15", dateTime: "2026-07", date: "July", short: "One dispatcher, daily, on live freight", what: "Daily use by one senior dispatcher on live freight, who became the product owner." },
@@ -381,7 +381,7 @@ export const ROLLOUT = {
 export const CLOSE = {
   kicker: "NEXT",
   title: ["One workflow.", "Your systems.", "Your people in control."],
-  body: "Tell us where the hours go. We start with one workflow, the systems involved, and where your team wants its time back.",
+  body: "Bring one workflow and the people who know it. We’ll look at the systems involved, the decisions that take time, and a useful first step.",
   primary: { label: "Tell us about your work", href: CALENDLY_URL },
   links: [
     { label: "How it is built", href: "/brain-os/technical" },

@@ -18,8 +18,8 @@ const VALUES = [
     name: "Always learning.",
     creed: "Humility and curiosity, every day.",
     body: [
-      "We build inside other people's industries — freight desks, law firms, kitchens, capital markets — so learning fast isn't a virtue here, it's the job. Nobody has it all figured out, and trying to act smart shuts down the listening the work depends on.",
-      "Stay humble, ask more questions, and end every day a little less dumb than you started it. The systems we ship work the same way: every document, every correction, every operator conversation makes them smarter.",
+      "A freight desk, a law firm, and a kitchen each have rules that are easy to miss from the outside. We begin by listening to the people who work there. Their explanations, and especially their corrections, tell us what the software needs to do.",
+      "We want to leave each conversation understanding something we did not understand before. The systems we build should make that learning useful: a documented rule or a corrected answer can help the next person who encounters the same problem.",
     ],
     practice: [
       "Ask more questions than you answer — a great second meeting is earned by the questions asked in the first.",
@@ -33,13 +33,13 @@ const VALUES = [
     name: "Be of service.",
     creed: "Jump in. Make it happen.",
     body: [
-      "Service here means motion: see the problem, take the problem — don't wait to be asked and don't route it through a layer. Inside the team, everyone has direct access to everyone; when you need someone, you get them.",
-      "Outside the team, everyone is busy — the question is whether our partners can tell they're a priority. They can, by how fast we move.",
+      "Service begins with noticing what someone needs and taking responsibility for helping. Within the team, that means direct access to one another and a clear owner for the work.",
+      "For a customer, it means knowing who is working on the problem, what happens next, and when they will hear from us. We aim to make those things clear, even while the answer is still taking shape.",
     ],
     practice: [
       "See it, own it — jump in without waiting to be asked.",
       "Direct access, no layers — when a teammate needs you, they get you.",
-      "When a partner or client calls, they get a fast, real answer — busy is never the excuse.",
+      "Acknowledge a partner’s question promptly, take ownership, and agree on the next update.",
     ],
   },
   {
@@ -48,8 +48,8 @@ const VALUES = [
     name: "Finish the job.",
     creed: "Shipped isn't finished. Used is.",
     body: [
-      "In our business the demo is the easy part — two exciting weeks, then the long middle: messy data, changed requirements, the third revision of the thing everyone thought was done. The job was never the code; it's a system the operator runs their morning on without us in the room.",
-      "We stay until it's that, and we finish it properly — numbers reconciled to zero, edge cases handled, root causes fixed instead of patched. We're named after a ship whose crew finished the expedition. Every man came home.",
+      "A demo shows what is possible. Daily use reveals what still needs work: messy data, an exception nobody mentioned, a report that almost fits. We keep working toward a system the operator can run their morning on without us in the room.",
+      "That means reconciling the numbers, handling the exceptions, and finding the cause of a recurring problem. Our name recalls the Endurance expedition and the effort to bring its crew home. It is a reminder to keep responsibility for the people who depend on the work.",
     ],
     practice: [
       "Launch is the midpoint — we stay until the system runs the client's day without us.",
@@ -66,7 +66,7 @@ export default function ValuesPage() {
         <Link className="bos-back" href="/">
           <span aria-hidden="true">&larr;</span> Endurance AI Labs
         </Link>
-        <Link className="bos-cta" href="/#close">
+        <Link className="bos-cta" href="/#contact">
           See what we&rsquo;d build for you
         </Link>
       </header>
@@ -79,10 +79,8 @@ export default function ValuesPage() {
               Three values, <em>said plainly.</em>
             </h1>
             <p className="lp-hero-lede">
-              We don&rsquo;t do poster values: no &ldquo;heart,&rdquo; no
-              &ldquo;resilience,&rdquo; no &ldquo;be a lion.&rdquo; These are
-              the three rules we actually run on, written the way we say them
-              out loud.
+              These values guide how we learn a business, work with its people,
+              and see a project through to daily use.
             </p>
           </div>
         </section>

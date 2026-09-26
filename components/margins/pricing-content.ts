@@ -27,7 +27,7 @@ export const PRICING_META = {
 export const PRICING_HERO = {
   kicker: "Margins · Pricing",
   h1: "One number a month,",
-  h1Em: "and it does not move.",
+  h1Em: "fixed for twelve months.",
   lede: "Set once from your own pay runs, fixed for the year, and priced on the people your run pays.",
   fillLabel: "Open the live demo",
   fillHref: "/margins/app/commissions",
@@ -44,7 +44,7 @@ export const PRICE_BLOCK = {
 export const YEAR_BLOCK = {
   kicker: "02 · What a year costs",
   title: "Implementation, credited back in full.",
-  note: "Implementation is $9,500 at signature. We credit $792 a month across your first twelve months, starting the month your third live run closes. The credit starts on a run closing rather than on a date, so a slow integration costs us, not you.",
+  note: "Implementation is $9,500 at signature. Beginning in the month your third live run closes, we apply a $792 monthly credit for twelve months. That milestone determines when the credits start.",
 };
 
 export const BUYS_BLOCK = {
@@ -65,14 +65,14 @@ export const BUYS_BLOCK = {
 
 export const TRUST_BLOCK = {
   kicker: "04 · What we take on",
-  title: "The risk sits with us.",
+  title: "The pilot and implementation credit.",
   points: [
     {
       label: "The pilot is free",
       body: "Two to three days on your own loads. If it finds less than a year of Margins costs, we say so and we do not sell you the year.",
     },
     {
-      label: "So is a year that catches nothing",
+      label: "A credit tied to mispayments caught",
       body: "If Margins does not catch $12,000 of mispayment in your first twelve months, we credit the $9,500 back.",
     },
   ],
@@ -80,8 +80,8 @@ export const TRUST_BLOCK = {
 
 export const LINE_BLOCK = {
   kicker: "05 · When not to buy",
-  title: "Two ways this is wrong for you.",
-  body: "Under about fifteen people getting paid, a spreadsheet genuinely still works, and we will say so. And Margins runs one brokerage per deployment today, so fitting a second one is integration work rather than a signup form.",
+  title: "When Margins may not be a fit.",
+  body: "Under about fifteen payees, a spreadsheet may still be the right fit. Margins supports one brokerage per deployment today; adding a second requires integration work.",
 };
 
 export const FAQ = {
@@ -94,15 +94,15 @@ export const FAQ = {
     },
     {
       q: "What happens if we add twenty brokers in March?",
-      a: "Nothing until renewal. A bill that jumped every time you hired would argue against the product.",
+      a: "Your pricing band stays the same until renewal. It is set at signature and fixed for twelve months, including when you add people.",
     },
     {
       q: "Why is there no free trial?",
-      a: "Standing Margins up means connecting your TMS and encoding your comp plan, which cannot be undone in thirty days. The free pilot is the honest version.",
+      a: "A useful evaluation needs your TMS data and your compensation rules. The free pilot puts those into a parallel pay run, so you can compare the result with your current process.",
     },
     {
       q: "Our TMS already reports commissions.",
-      a: "A report tells you what it believes you owe today. It cannot tell you what it told you last week, and it cannot stop a run. When two people shared one agent code here, roughly $39,400 went back to the broker who earned it because nothing had been disbursed yet.",
+      a: "Compare how it handles effective dates, approvals, duplicate loads, and locked statements. Margins connects those controls to the pay run; in the published case study, that helped identify roughly $39,400 assigned to the wrong broker before payment.",
     },
     {
       q: "Can it handle our comp plan?",

@@ -19,10 +19,13 @@ Added September 23, 2026 at https://endurancelabs.ai/about. The page uses crawla
 - https://n8n.io/pricing/ — workflow-execution billing.
 - https://n8n.io/expert-partners/ — implementation partner program.
 
+- https://endurancelabs.ai/brain/pricing — Brain starts at $1,250/month for up to 25 people, with no setup fee and a pricing band fixed for twelve months.
+- https://endurancelabs.ai/brain-os/use-cases — published closest fit: freight brokerages, third-party logistics firms, and asset carriers with 25–140 people using Microsoft Teams. Brain pricing covers questions and answers; write integrations and specialist desks are scoped separately. These pages informed the September 26, 2026 editorial update.
+
 ## Details still requiring company confirmation
 
-- A precise company-wide ICP size range beyond the published Margins payee bands.
-- Brain OS/custom engineering pricing and contract terms, including cancellation and renewal.
+- A precise company-wide ICP size range beyond the published Brain OS fit and Margins payee bands.
+- Brain OS action integrations/custom engineering pricing and contract terms, including cancellation and renewal.
 - Day-to-day customer delivery lead, channels, update cadence, service coverage, response commitments, and non-Margins delivery times.
 - Approved client names, total customers served, and projects delivered.
 

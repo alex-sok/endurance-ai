@@ -6,7 +6,7 @@ import "../landing.css";
 export const metadata: Metadata = {
   title: "Brain OS — Endurance AI Labs",
   description:
-    "Seven operations, seven systems. A command centre, the working screens behind it, and the tools each one shipped with.",
+    "Explore illustrative Brain OS screens for seven industries, from freight operations to real estate. See how records, decisions, and tasks fit together.",
 };
 
 export default function BrainOSPage() {

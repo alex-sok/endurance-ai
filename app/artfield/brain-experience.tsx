@@ -29,10 +29,10 @@ export function DayStory() {
 function Hours() { return <><div className="hour h9">09:00</div><div className="hour h10">10:00</div><div className="hour h11">11:00</div><div className="hour h12">12:00</div></>; }
 
 const worlds = [
-  { id: 'company', name: 'Brain OS', label: 'Your business, connected', title: 'Your whole operation, connected.', copy: 'Answers and actions, connected to the systems you already run. Less chasing across the business.', cta: 'Explore Brain OS', href: '/brain-os' },
+  { id: 'company', name: 'Brain OS', label: 'Your business, connected', title: 'Your whole operation, connected.', copy: 'Ask a question, find the records behind the answer, and prepare the next step in the systems your team already uses.', cta: 'Explore Brain OS', href: '/brain-os' },
   { id: 'freight', name: 'Foundations', label: 'Built for freight', title: 'Keep the world moving.', copy: 'Our freight software family, built around the people moving goods. Explore Margins, our commission platform for freight operations.', cta: 'Explore Margins', href: '/margins' },
   { id: 'team', name: 'Multiplayer Developer Tool', label: 'Early access', title: 'Build it, together.', copy: 'The shared development environment our own lab works in. Operators and engineers shape the software side by side. Select clients work with us in early access.', cta: 'Ask about early access', href: '/waitlist' },
-  { id: 'rules', name: 'Micro SaaS', label: 'Built to order', title: 'Made for the way you work.', copy: 'Focused software for a specific operation. The club’s rules. The builder’s process. The details that make your work yours, built into its software.', cta: 'Tell us about your work', href: '#contact' },
+  { id: 'rules', name: 'Micro SaaS', label: 'Built to order', title: 'Made for the way you work.', copy: 'Focused software for a particular job, shaped around your rules and routines. The details that make your work yours belong in the software too.', cta: 'Tell us about your work', href: '#contact' },
 ];
 
 export function WorldSelect() {

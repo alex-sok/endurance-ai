@@ -41,7 +41,7 @@ export type MarginsBeat = {
 export const MARGINS_META = {
   title: "Margins — Endurance AI Labs",
   description:
-    "Commission settlement for freight brokerages. Every split computed off your TMS, every load that would pay wrong held before payday, every broker handed a statement that traces to the load.",
+    "Commission settlement for freight brokerages. Calculate splits from your TMS, review exceptions before payday, and trace each statement back to its loads.",
   canonical: "https://endurancelabs.ai/margins",
 };
 
@@ -49,11 +49,11 @@ export const HERO = {
   kicker: "Product · Margins",
   h1: "One person knows the spreadsheet.",
   h1Em: "Everyone is paid from it.",
-  lede: "It decides what every broker gets paid. The only test it has ever had is the person who built it. Margins computes every split off your TMS, holds the loads that would pay wrong, and hands each broker a statement that traces to the load.",
-  ledeTwo: "Add agents without adding another person who knows the sheet.",
+  lede: "A commission spreadsheet carries years of decisions: who shares a load, which rate applies, what changed last month. Margins turns those rules into calculations your team can inspect, flags exceptions before payday, and traces each statement back to the load.",
+  ledeTwo: "Make the rules available to the team, including the person covering a week away.",
   fillLabel: "Open the live demo, no login",
   fillHref: DEMO_HREF,
-  lineLabel: "Fifteen minutes",
+  lineLabel: "Book a 15-minute call",
   lineHref: CALENDLY_URL,
 };
 
@@ -62,7 +62,7 @@ export const HERO = {
 // decides the deal.
 export const CHAMPION = {
   title: "If you are the one who knows the sheet.",
-  body: "Margins does not replace you. The run happens the week you are out. The next person can read what you built. The pilot needs you in the room.",
+  body: "You know why the rules are there and where the exceptions hide. The pilot starts with that knowledge, then makes it easier for someone else to understand and run the process when you are away.",
 };
 
 export const BEATS: MarginsBeat[] = [
@@ -72,7 +72,7 @@ export const BEATS: MarginsBeat[] = [
     title: "Thirteen ways to get paid. One file knows them all.",
     body: [
       "Customer deals, team splits, extra shares, dispatcher pay, draws, escrow, loans, floors. At the brokerage where Margins was built, thirteen distinct pay mechanisms are in force. In the sheet each one is a formula in a cell. In Margins each one is a rule with a date on it.",
-      "Changing a rule takes a filed request, a priced dollar impact, and a second signature. Nothing behind that date moves.",
+      "A proposed rule change shows its dollar impact and needs a second approval. Its effective date determines which runs it applies to, preserving the rules used for earlier weeks.",
     ],
     receipts: [
       { value: "13", label: "pay mechanisms in force" },
@@ -85,7 +85,7 @@ export const BEATS: MarginsBeat[] = [
     kicker: "02 · The run",
     title: "The same load, billed in two different weeks.",
     body: [
-      "The sheet pays it twice. Margins stops the run and says why. Same for a re-billed load whose financials moved, an agent code that maps to nobody, a load that lost money, and a margin too good to be true.",
+      "A duplicate load can be easy to miss when the entries fall in different weeks. Margins blocks the run and identifies it. Re-billed loads with changed financials, unmatched agent codes, losses, and unusually high margins also go to review.",
       "Warnings ask for a look. Blockers lock the pay step until a person clears them.",
     ],
     receipts: [
@@ -100,7 +100,7 @@ export const BEATS: MarginsBeat[] = [
     title: "$39,400 was going to the wrong broker.",
     body: [
       "Two people, one agent code. A whole book, about $3,961 a week, landing on the wrong statement. Every run was still a draft. Not a dollar had moved. It went back to the broker who earned it.",
-      "A system you can audit finds that. A spreadsheet just pays it.",
+      "The audit made the shared agent code visible while there was still time to correct the statements.",
     ],
     demo: { label: "Open the audit board", href: "/margins/app/audit" },
   },
@@ -110,7 +110,7 @@ export const BEATS: MarginsBeat[] = [
     title: "Every broker signs into their own numbers.",
     body: [
       "No figures in an email. A sign-in link, a locked statement, and every line opens to the load behind it. Their live board, their book by customer, and a scorecard ranked against anonymized peers.",
-      "Nobody argues with a number they can walk back to the load.",
+      "When a broker questions a number, both sides can start from the same load and the same rule.",
     ],
     receipts: [
       { value: "270", label: "statements delivered since the end of July" },
@@ -141,7 +141,7 @@ export const REFUSALS = {
   items: [
     "It will not move your money. It computes, proves, and locks what every person earned. Then it works with how you already pay.",
     "It will not replace your TMS. It sits on top of it.",
-    "It will not earn its keep under about fifteen payees. Keep the sheet. We mean it. Come back when it hurts.",
+    "Under about fifteen payees, a spreadsheet may still be the right fit. We will help you assess whether the added system is worth it.",
     "It will not run two brokerages on one deployment today. A second one is integration work, not a signup form.",
   ],
 };
@@ -150,28 +150,28 @@ export const PILOT = {
   slug: "pilot",
   kicker: "07 · The pilot",
   title: "One pay run, next to your sheet.",
-  lede: "Two to three days, on your own loads. Nothing changes and nobody has to trust us. You compare two numbers.",
+  lede: "For two to three days, we calculate pay from your own loads alongside your existing process. Compare the results and examine the rules behind any difference.",
   outcomes: [
     {
       title: "They match.",
-      body: "Margins is proven correct, and the sheet is now redundant.",
+      body: "The two calculations agree for that run. Together, we check the rules and exceptions before deciding what to move into daily use.",
     },
     {
       title: "They differ.",
-      body: "That gap is the return on investment conversation, in your own dollars.",
+      body: "We trace the difference to its source: a rule, an input, or an error. Then you can judge what correcting it is worth.",
     },
     {
       title: "We are wrong.",
-      body: "We learn a comp rule we had not encoded, fix it, and rerun. Cheap.",
+      body: "We correct the rule or calculation and rerun the comparison. Your current pay process continues while we work through it.",
     },
   ],
-  note: "The person who owns the sheet should be in the room. They are your best reviewer, and the objection that matters most.",
+  note: "Bring the person who owns the spreadsheet. They know the history behind the rules and can tell us when a calculation misses it.",
   primary: { label: "Start a parallel run", href: CALENDLY_URL },
   secondary: { label: "See what it costs", href: PRICING_HREF },
 };
 
 export const CLOSER =
-  "Margins was not designed and then sold. It was built inside a brokerage's Friday, against real loads and real disputes, until the spreadsheet had nothing left to do.";
+  "Margins grew out of a brokerage’s weekly pay run. Real loads, disputed statements, and the people responsible for resolving them shaped the system.";
 
 export const BAND = {
   slug: "band",

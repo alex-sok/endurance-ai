@@ -139,7 +139,7 @@ export function BrainOSConsole({ variant = "embedded" }: { variant?: "embedded" 
           <div className="bpos-wire">
             <span className="bpos-live">
               <i className="bpos-pulse" />
-              Live · synced {conn.synced}
+              Demo · synced {conn.synced}
             </span>
             <span className="bpos-srcs">
               {conn.sources.map((s) => (
@@ -475,8 +475,7 @@ export function BrainOSConsole({ variant = "embedded" }: { variant?: "embedded" 
           ) : null}
 
           <p className="bpos-trace">
-            Every figure links to the record behind it — no exports, no
-            spreadsheet rebuilds.
+            Illustrative screens and sample figures. Choose an industry to explore its workflows.
           </p>
         </div>
       </div>

@@ -5,7 +5,7 @@ import "../landing.css";
 
 const TITLE = "Brain — Endurance AI Labs";
 const DESCRIPTION =
-  "Institutional memory that cites its sources. Everything the firm already produces, compiled. Every claim cites a source. Nothing is invented.";
+  "Brain organizes company documents, messages, meetings, and code into a living knowledge base. Ask questions and follow answers back to their sources.";
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -6,7 +6,7 @@ import "../landing.css";
 export const metadata: Metadata = {
   title: "Early Access — Endurance AI Labs",
   description:
-    "Join the waitlist for the Multiplayer Developer Tool: every model, every tool, your whole organization building together in real time.",
+    "Join the early-access waitlist for the Multiplayer Developer Tool, a shared environment where operators and engineers build software together.",
 };
 
 export default function WaitlistPage() {
@@ -16,7 +16,7 @@ export default function WaitlistPage() {
         <Link className="bos-back" href="/">
           <span aria-hidden="true">&larr;</span> Endurance AI Labs
         </Link>
-        <Link className="bos-cta" href="/#close">
+        <Link className="bos-cta" href="/#contact">
           See what we&rsquo;d build for you
         </Link>
       </header>
@@ -28,9 +28,9 @@ export default function WaitlistPage() {
             Get on the list. <em>Build together.</em>
           </h1>
           <p className="lp-hero-lede">
-            Every model you use and every tool you run, built into one
-            harness — your whole organization building in real time. We open
-            seats in small groups; the waitlist is the door.
+            Bring operators and engineers into the same development environment,
+            with the models and tools they use to build. We open early access
+            in small groups so we can learn from the teams using it.
           </p>
           <WaitlistForm />
         </div>

@@ -23,9 +23,9 @@ const bubbles = [
   { title: 'Reconciliations', copy: 'Records matched. Differences flagged.', icon: CheckCheck, x: 62, y: 84, mobileY: 89 },
 ];
 const phases = [
-  { title: 'Connect', caption: 'All the bits of your business.', copy: 'The records, requests, and everyday work that live across your systems.' },
-  { title: 'Understand', caption: 'One Brain OS. A shared understanding.', copy: 'Connected knowledge becomes context for the work ahead.' },
-  { title: 'Put to work', caption: 'Useful work comes out.', copy: 'Answers, solutions, and reconciliations—with your people in control.' },
+  { title: 'Connect', caption: 'The records behind the work.', copy: 'The records, requests, and everyday work that live across your systems.' },
+  { title: 'Understand', caption: 'See how the records connect.', copy: 'Bring related information together and trace each answer to its source.' },
+  { title: 'Put to work', caption: 'An answer. A next step.', copy: 'Match records, flag differences, and prepare actions for your team to review.' },
 ];
 
 function useWorkSequence() {

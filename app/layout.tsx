@@ -33,7 +33,7 @@ const archivo = Archivo({
 const SITE_URL = "https://endurancelabs.ai";
 const TITLE = "Endurance AI Labs | Give people their time back.";
 const DESCRIPTION =
-  "Brain OS connects what your business knows with the work it needs to do. A better business. A better working life.";
+  "Brain OS connects your company’s knowledge with its everyday work. Find answers, prepare actions, and give people back their time.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -85,7 +85,7 @@ export default function RootLayout({
     url: "https://endurancelabs.ai",
     logo: "https://endurancelabs.ai/logo-endurance.svg",
     description:
-      "Brain OS connects what your business knows with the work it needs to do. A better business. A better working life.",
+      "Brain OS connects your company’s knowledge with its everyday work. Find answers, prepare actions, and give people back their time.",
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@endurancelabs.ai",

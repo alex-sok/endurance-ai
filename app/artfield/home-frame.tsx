@@ -10,7 +10,7 @@ const geist = Geist({
 
 const title = "Endurance AI Labs | Give people back their time.";
 const description =
-  "Brain OS connects what your business knows with the work it needs to do. A better business. A better working life.";
+  "Brain OS connects your company’s knowledge with its everyday work. Find answers, prepare actions, and give people back their time.";
 
 export const homepageMetadata: Metadata = {
   title,

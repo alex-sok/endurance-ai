@@ -23,7 +23,7 @@ export const BRAIN_PRICING_HERO = {
   kicker: "Brain · Pricing",
   h1: "Priced on the people",
   h1Em: "who can ask.",
-  lede: "One monthly number, fixed for the year. No setup fee, because the compiling is the product.",
+  lede: "A monthly price based on the people who can use Brain, fixed for twelve months. Compiling your company’s knowledge is included, with no setup fee.",
   fillLabel: "Open the console",
   fillHref: "/brain/console",
   lineLabel: "Book a call",
@@ -32,7 +32,7 @@ export const BRAIN_PRICING_HERO = {
 export const BRAIN_PRICE_BLOCK = {
   kicker: "01 · The price",
   title: "One number, and it holds for the year.",
-  note: "Counted on the people who can ask, set at signature and fixed for twelve months. There is no implementation fee: ingesting what you already produce is the work Brain does, not a project you pay for first.",
+  note: "Your band is based on the people who can use Brain, set at signature and fixed for twelve months. Bringing in and compiling your existing material is included; there is no implementation fee.",
 };
 
 export const BRAIN_LEDGER = {
@@ -52,13 +52,13 @@ export const BRAIN_LEDGER = {
 export const BRAIN_ANSWERS_BLOCK = {
   kicker: "03 · What you get",
   title: "Answers that name their sources.",
-  caption: "Every answer carries the count of documents it was drawn from. A claim without a source does not ship.",
+  caption: "The answers below show the supporting document count. Follow the sources to examine the evidence and check the interpretation.",
 };
 
 export const BRAIN_LINE_BLOCK = {
   kicker: "04 · When not to buy",
-  title: "Two ways this is wrong for you.",
-  body: "If your firm's knowledge already lives in one system that everyone trusts, Brain is solving a problem you do not have. And Brain reads what you already produce: if that is thin, compiling it will not make it thicker.",
+  title: "When Brain may not be a fit.",
+  body: "Brain is most useful when knowledge is scattered across several places. If your team already finds reliable answers in one system, the benefit may be small. If important knowledge has never been recorded, it will need to be captured before Brain can use it.",
 };
 
 export const BRAIN_FAQ = {
@@ -67,11 +67,11 @@ export const BRAIN_FAQ = {
   items: [
     {
       q: "What does it read?",
-      a: "What the firm already produces, kept verbatim. Mail, threads, decks, meetings, code. Nothing is rewritten into a summary you cannot check.",
+      a: "Brain reads the material your company already produces, including documents, messages, meetings, and code. It preserves the source material alongside the compiled knowledge so your team can check it.",
     },
     {
       q: "Can it invent an answer?",
-      a: "A claim without a source does not ship. Every figure points at the document it came from, and the count of sources sits next to the answer.",
+      a: "Yes. AI can make mistakes, including misreading a source. Brain links answers to supporting material so your team can check the evidence and the interpretation.",
     },
     {
       q: "Do you train models on our data?",

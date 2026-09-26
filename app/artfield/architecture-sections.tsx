@@ -13,7 +13,7 @@ export function BusinessArchitecture() {
             <p className="eyebrow">HOW BRAIN OS WORKS</p>
             <h2 id="architecture-title">Your systems.<br /><span className="text-accent">Working together.</span></h2>
           </div>
-          <p>Brain OS connects the tools, knowledge, and routines your business already runs—then turns that context into useful work.</p>
+          <p>An invoice, a contract, and a payment record may describe the same job from different angles. Brain OS connects them so your team can see how the pieces fit.</p>
         </div>
         <BrainFlow />
       </div>
@@ -43,7 +43,7 @@ export function SecurityArchitecture() {
           <div className="trust-copy">
             <p className="eyebrow">SECURITY &amp; TRUST</p>
             <h2 id="trust-title">Trust is part of<br /><span className="text-accent">the architecture.</span></h2>
-            <p>Trust needs clear answers—about your data, access, and authority. We work through those details with your team.</p>
+            <p>Before a system can act for your business, you need to know what it can see and what it is allowed to do. We work through those decisions with your team.</p>
           </div>
           <dl className="trust-commitments">
             {commitments.map(({ title, copy }) => (
@@ -54,7 +54,7 @@ export function SecurityArchitecture() {
         <div className="security-design" aria-labelledby="security-design-title">
           <div className="security-design-heading">
             <h3 id="security-design-title">The architecture conversation.</h3>
-            <p>Defined for your implementation, not left to assumption.</p>
+            <p>Decisions to make before connecting your systems.</p>
           </div>
           <dl className="security-review">
             {boundaries.map(({ title, copy }) => (

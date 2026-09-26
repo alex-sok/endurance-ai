@@ -40,7 +40,7 @@ export function TeamSection() {
       <div className="wrap">
         <div className="team-heading">
           <div><p className="eyebrow">THE PEOPLE BEHIND THE WORK</p><h2 id="team-title">A small team.<br /><span className="text-accent">Close to the work.</span></h2></div>
-          <p>Research, engineering, and the operating reality of the industries we build for. We work alongside your team, from the first workflow to the next.</p>
+          <p>We bring research and engineering into the working day. Your team brings the details: the rules, exceptions, and decisions that the software needs to understand.</p>
         </div>
         <div className="team-directory">
           {team.map(person => (

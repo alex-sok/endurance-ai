@@ -121,7 +121,7 @@ export default function UseCasesPage() {
                     { name: 'Week of 14 September', color: '#8fb0e8', values: ADOPTION.weekdays.lastWeek },
                     { name: 'Week of 21 September', color: '#3b66ce', values: ADOPTION.weekdays.thisWeek, partialLast: true },
                   ]}
-                  label="Questions per weekday for two consecutive weeks; the second week is higher every day, peaking at 335 on Thursday"
+                  label="Questions per weekday for two consecutive weeks; Monday through Thursday are higher in the second week, peaking at 335 on Thursday. The second Friday is partial."
                 />
               </ChartCard>
               <ChartCard
@@ -162,7 +162,7 @@ export default function UseCasesPage() {
               </ChartCard>
             </div>
             <div className="bp-callout">
-              <span className="small-label">THE SINGLE BEST PROOF POINT</span>
+              <span className="small-label">A CAPABILITY SHAPED BY DAILY USE</span>
               <p>{TOPICS.callout}</p>
             </div>
           </div>

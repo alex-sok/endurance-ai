@@ -11,14 +11,14 @@ import { CALENDLY_URL } from "@/lib/conversation-flows";
 export const TECH_META = {
   title: "How Brain OS is built — Endurance AI Labs",
   description:
-    "Compiled knowledge, live tools, and a guard in front of every action. The architecture of Brain OS, for the people who ask how before they ask how much.",
+    "How Brain OS connects company knowledge, live systems, chat, and access controls. Explore a production deployment, its architecture, and its limits.",
   canonical: "https://endurancelabs.ai/brain-os/technical",
 };
 
 export const HERO = {
   eyebrow: "BRAIN OS / TECHNICAL",
-  h1: ["The parts.", "How they hold."],
-  lede: "Brain OS is four parts. A brain compiled from what the business already produces. Live tools into the systems it runs. The places people already work. And a guard in the tool layer, in front of every action. This is the architecture, for the people who ask how before they ask how much.",
+  h1: ["Four parts.", "One working system."],
+  lede: "Brain OS combines a knowledge base, tools that connect to live systems, a familiar chat interface, and access controls. Each has a distinct job. Here is how they work together in one freight deployment, including the controls and their limits.",
   primary: { label: "Talk architecture with us", href: CALENDLY_URL },
   secondary: { label: "See the use cases", href: "/brain-os/use-cases" },
 };
@@ -26,14 +26,14 @@ export const HERO = {
 export const SHAPE = {
   kicker: "01 · THE SHAPE",
   title: ["Four parts.", "One loop per message."],
-  lede: "Knowledge the business already produces is compiled into the brain. Live systems are reached through tools. For every message, Brain OS reads the brain and calls the tools inside the asker’s access tier, and every write passes draft, confirm and a pause switch.",
-  caption: "The guard sits in the tool layer, not in the prompt. What a person may see and do is enforced by which tools and pages their session is given, so no wording can talk Brain OS past it.",
+  lede: "When a message arrives, Brain OS identifies the user’s access tier, reads the relevant knowledge, and calls the tools available to that session. The tools handle live records. Changes follow draft and confirmation steps, with the scope of each control described below.",
+  caption: "Access is restricted through the tools and pages made available to a session. Some controls are enforced in code; others, including checking for a person’s approval, also depend on model instructions. The limits section explains the distinction.",
 };
 
 export const BRAIN = {
   kicker: "02 · THE BRAIN",
-  title: ["A wiki the model reads.", "Not a vector index."],
-  lede: "The knowledge base is plain files in a git repository, three layers deep. Sources go in immutable. Synthesis pages are written over them by the model, under a schema people own. The model reads the schema first, every time.",
+  title: ["A knowledge base", "people can inspect."],
+  lede: "The knowledge base consists of plain files in a Git repository, organized into three layers. Original sources are preserved. The model compiles pages from them using a schema that people define, giving each answer a path back to the material behind it.",
   layers: [
     {
       code: "raw/",
@@ -46,8 +46,8 @@ export const BRAIN = {
       code: "wiki/",
       owner: "THE MODEL WRITES. PEOPLE DIRECT.",
       title: "Synthesis pages",
-      body: "One page per real thing: a person, a customer, a carrier, a system, an office. One page per compiled thing: a process, a rule set, a project. Every claim on a synthesis page links to the raw source or entity page it came from.",
-      points: ["157 pages: 66 people, 27 processes, 15 systems, and the rest", "Every claim cites a source. A claim without one does not ship", "When a page disagrees with the system of record, the record wins and the page is flagged"],
+      body: "Pages organize knowledge around people, customers, carriers, systems, offices, processes, rules, and projects. Claims link back to a source or related page, so someone reviewing the knowledge can follow how it was assembled.",
+      points: ["157 pages: 66 people, 27 processes, 15 systems, and the rest", "The schema requires source links for claims on compiled pages", "When a page disagrees with the system of record, the record wins and the page is flagged"],
     },
     {
       code: "CLAUDE.md",
@@ -59,7 +59,7 @@ export const BRAIN = {
   ],
   pageCaption: "An illustrative entity page, with invented names. The frontmatter is what the runtime reads: who this is, whether the page is current, and what the asker may see. The body is the compiled knowledge, each claim carrying the link it came from.",
   cadence: {
-    title: "How the brain grows: one week of writers",
+    title: "How the knowledge base stays current",
     note: "Sync jobs are the only writers to the raw layer. Rules taught in chat are committed the moment they are given.",
     rows: [
       { what: "Mail and attachments into raw", every: "minutes", note: "Every two minutes, around the clock" },
@@ -96,7 +96,7 @@ export const BRAIN = {
 export const TOOLS = {
   kicker: "03 · THE TOOLS",
   title: ["One tool per action.", "Reads live. Writes draft first."],
-  lede: "Anything transactional or time sensitive is read from the live system at the moment of the question, never from a copy. Writes are two calls: the first returns a preview, and only a second, explicit confirm call writes.",
+  lede: "In the freight deployment, transactional records are read from the live system when a question arrives. Write tools first return a preview; a second confirmation call makes the change. Email follows a draft-first instruction rather than the same code-level gate.",
   body: [
     "Each system of record gets its own Model Context Protocol server. It is a small program that exposes that system’s reads and writes as named tools, with the request and response shapes fixed in code. The model does not compose queries. It picks a tool, and the tool does one thing.",
     "The reference deployment’s server for the transportation management system reuses the client logic already proven in the operation’s own portal software. The integration was tested by payroll before it was trusted by chat.",
@@ -128,12 +128,12 @@ export const TOOLS = {
 
 export const GUARD = {
   kicker: "04 · THE GUARD",
-  title: ["Trust in the tool layer.", "Not in the prompt."],
-  lede: "Every serious buyer in an operation that holds commission, payroll and customer margin data asks the same question. What stops it showing the wrong person the wrong thing, or doing something nobody asked for? This is the answer. It is enforced, not promised.",
+  title: ["Access controls", "at the tool boundary."],
+  lede: "Commission, payroll, and customer margins need defined access. Actions need defined authority. Brain OS uses session permissions, tool checks, confirmation steps, and a pause control, each with a specific scope.",
   path: [
     { n: "01", title: "Ask", body: "A person asks for a change in plain language, in the chat they already use." },
     { n: "02", title: "Draft", body: "The first tool call returns a preview only: old and new values, the exact times, the margin, whatever the change touches." },
-    { n: "03", title: "Yes", body: "The person reads the draft and says so. Specialist desks cannot reach this step; they hand back a draft." },
+    { n: "03", title: "Yes", body: "The person reviews the draft and approves it. The model is instructed to wait for that approval; the tool checks for a confirmation call. Specialist desks return drafts and cannot confirm them." },
     { n: "04", title: "Write", body: "A second, explicit confirm call writes to the live system. The tool refuses to write without it.", write: true },
     { n: "05", title: "Audit", body: "One line per action in the audit log, credited to the person who asked. Scheduled writes stamp a comment on the record." },
   ],
@@ -157,11 +157,11 @@ export const GUARD = {
       { what: "Commission pages and company wide totals", cells: ["no", "Set per operation", "yes"] },
       { what: "Money digests, in leadership and billing channels only", cells: ["no", "yes", "yes"] },
     ] as { what: string; cells: [string, string, string] }[],
-    note: "For dispatch, the money tools and pages are not hidden; they are absent from the session, and the shell is disabled, so there is no way to read around them.",
+    note: "Dispatch sessions receive no financial tools or pages, and shell access is disabled. These restrictions reduce the information and actions available to that session.",
   },
   also: [
     { what: "A spending cap on every message", how: "Each message runs under a cost ceiling. It cannot loop away." },
-    { what: "A financial guard on outbound answers", how: "A warn only scan for commission, payroll and identifier patterns before an answer leaves." },
+    { what: "A financial guard on outbound answers", how: "A scan flags commission, payroll, and identifier patterns before an answer leaves. It warns; it does not block the answer." },
     { what: "Honest about its own state", how: "Whether a capability is on, off or paused is read from the live server at the moment of the question, never recited from a page that may have aged." },
     { what: "Says so when it cannot", how: "When it does not know, it says so. When it cannot do something, it logs the request instead of claiming to have passed it on." },
   ],
@@ -169,12 +169,12 @@ export const GUARD = {
 
 export const DESKS = {
   kicker: "05 · SPECIALIST DESKS",
-  title: ["Specialists that advise.", "A ladder they climb on evidence."],
+  title: ["Specialists that advise.", "Authority earned through testing."],
   lede: "Since 21 September 2026 the reference deployment delegates to three read only specialists: a finance desk, a load manager and a carrier desk. Each returns a sourced brief with at most one drafted action. Brain OS answers from the brief. The confirm step stays with Brain OS.",
   ladder: [
     { n: "LEVEL 1", title: "Advise", body: "Read only. Returns a sourced brief and at most one drafted action for Brain OS to confirm with the operator.", status: "All three desks, today", now: true },
     { n: "LEVEL 2", title: "Act with confirmation", body: "Holds specific write tools and runs draft and confirm itself, each write behind its switch and the pause.", status: "Two of six gates done" },
-    { n: "LEVEL 3", title: "Own a task end to end", body: "Runs a bounded task, a book, a lane, a night shift, within a scope a person set. Every action logged, pausable and reversible.", status: "Destination, not a date" },
+    { n: "LEVEL 3", title: "Own a task end to end", body: "Runs a bounded task, a book, a lane, a night shift, within a scope a person set. Every action logged, pausable and reversible.", status: "Planned; no release date" },
   ],
   testing: {
     title: "Tested like software",
@@ -244,7 +244,7 @@ export const RUNS = {
   ],
   conversation: {
     title: "The architecture conversation",
-    lede: "Defined for your implementation, not left to assumption. We work through these with your team before anything connects.",
+    lede: "Before connecting systems, we work through these decisions with your team and record the requirements for your implementation.",
     rows: [
       { title: "Deployment and data location", body: "Which systems connect? Where will the service run, and where will your data reside?" },
       { title: "Access and permissions", body: "Which people and tools can read information, change records, or initiate work?" },
@@ -252,14 +252,14 @@ export const RUNS = {
       { title: "Retention and deletion", body: "What is stored, for how long, and who is responsible for deletion?" },
       { title: "Actions and accountability", body: "What can run automatically? Where is approval required, and what activity records does your team need?" },
     ],
-    story: "The load board declined to certify the first integration, because every post went out under one shared account. We rebuilt it so each broker links their own login and posts as themselves, with no silent fallback, and the load board certified it for production. Before the first real load went up, the operator asked what exactly was being sent, read the preview, and had shipper contact details stripped by default. Build the thing that lets people check you, and they will.",
+    story: "The load board declined to certify the first integration, because every post went out under one shared account. We rebuilt it so each broker links their own login and posts as themselves, with no silent fallback, and the load board certified it for production. Before the first real load went up, the operator asked what exactly was being sent, read the preview, and had shipper contact details stripped by default. The preview gave the operator a chance to inspect the data and change what would be shared before the first post.",
   },
 };
 
 export const TRAVELS = {
   kicker: "08 · THE PATTERN TRAVELS",
-  title: ["One chassis.", "Three operations."],
-  lede: "The chassis is shared: the brain’s three layers, the tool layer, the guard, the chat runtime. The industry layer is built for each operation and never transfers, because a freight desk and a construction office do not share a single rule.",
+  title: ["A shared architecture.", "Different working lives."],
+  lede: "The knowledge structure, tool interfaces, access controls, and chat runtime form a shared architecture. Connectors and operating rules are built for each business. A freight desk and a construction office need different information to make their next decision.",
   deployments: [
     {
       name: "A freight brokerage and its asset carrier",
@@ -276,7 +276,7 @@ export const TRAVELS = {
     {
       name: "A construction company",
       status: "In build, autumn 2026",
-      body: "Microsoft Teams, a field service platform, and an on premise accounting ledger with no cloud interface. The brain reads a synced copy of the ledger and states its age with every figure. A number without its date is a guess.",
+      body: "Microsoft Teams, a field service platform, and an on premise accounting ledger with no cloud interface. The brain reads a synced copy of the ledger and states its age with every figure. The date lets a reader judge whether the figure is current enough for the decision.",
       facts: [["Interface", "Teams"], ["Systems", "Field service, accounting"], ["Brain", "27 pages at kickoff"]],
     },
   ],
@@ -285,7 +285,7 @@ export const TRAVELS = {
 export const NOT = {
   kicker: "09 · WHAT IT IS NOT",
   title: ["Honest limits.", "Dated, on purpose."],
-  lede: "Things a prospect will assume Brain OS does, and the truth as of 22 September 2026. Status is checked on the server, never recited from a page, and this page is dated for the same reason.",
+  lede: "The controls and capabilities below describe this deployment as of 22 September 2026, with later findings dated in the relevant entries. During use, Brain OS checks capability status on the server. This page records what was verified at the stated dates.",
   rows: [
     { assume: "“The yes is checked by code.”", truth: "The write tools refuse to write without a second, explicit confirm call. The tool cannot itself prove a person typed yes. The model makes that call under a standing rule. For email, draft first is a standing rule rather than a code gate." },
     { assume: "“The pause covers everything.”", truth: "It covers the system of record, driver texts, load board posts and the scheduled jobs. It does not cover email." },
@@ -297,7 +297,7 @@ export const NOT = {
     { assume: "“It clears carriers to haul.”", truth: "Never. It screens identity and history. Authority and insurance are checked in the vetting tool." },
     { assume: "“It reads any file.”", truth: "PDFs, images, text and short video in a direct message. Not Word or Excel files, yet." },
     { assume: "“The desks run on their own.”", truth: "Not yet. All three advise only. Level two needs four more gates, including per person write scopes that are designed but not built." },
-    { assume: "“Orders it builds are flawless.”", truth: "Orders it built have had visibility problems in the system of record’s own search. A stop time defect for stops outside Eastern time was found on 25 September. Each incident produced a control. Said plainly, that is more credible than a clean record." },
+    { assume: "“Orders it builds are flawless.”", truth: "Orders it built have had visibility problems in the system of record’s own search. A stop time defect for stops outside Eastern time was found on 25 September. Each incident produced a control. These examples show why a draft still needs review." },
     { assume: "“It works for everyone on day one.”", truth: "Only for people with a page carrying their book, role and tier. Without one, “my loads” means the whole company’s." },
   ],
 };
@@ -305,7 +305,7 @@ export const NOT = {
 export const CLOSE = {
   kicker: "NEXT",
   title: ["Walk the architecture", "with your team."],
-  body: "Bring your security lead, and the person who knows where the bodies are buried in the spreadsheet. One conversation maps your systems, your tiers and your yes line.",
+  body: "Bring your security lead and someone who knows the daily work. We’ll map the systems involved, the access each role needs, and the points where a person must approve an action.",
   primary: { label: "Talk architecture with us", href: CALENDLY_URL },
   links: [
     { label: "See the use cases and impact", href: "/brain-os/use-cases" },
@@ -313,5 +313,5 @@ export const CLOSE = {
     { label: "Pricing", href: "/brain/pricing" },
   ],
   colophon:
-    "Counts on this page come from the reference deployment’s knowledge base and code on 22 September 2026 and its session logs to 25 September 2026. The operation is not named at their request. Capability status is read from the live server at the time of a question, never from a page. This page will age the way any page does.",
+    "Counts on this page come from the reference deployment’s knowledge base and code on 22 September 2026 and its session logs to 25 September 2026. The operation is not named at their request. Capability status is read from the live server at the time of a question, never from a page. Confirm current capabilities and controls when planning your deployment.",
 };
