@@ -17,7 +17,7 @@ export default function ArtfieldHome() {
       <header id="top" className="site-header">
         <div className="header-inner wrap">
           <a className="wordmark" href="#top" aria-label="Endurance AI Labs home"><img src="/artfield/assets/endurance-logo-white.png" alt="Endurance" width="1370" height="238" /></a>
-          <nav aria-label="Main navigation"><a href="#brain">Brain OS</a><a href="#work">What we build</a><a href="#belief">Our mission</a><a href="#trust">Trust</a></nav>
+          <nav aria-label="Main navigation"><a href="#brain">Brain OS</a><a className="nav-more" href="/brain-os/use-cases">Use cases</a><a className="nav-more" href="/brain-os/technical">Technical</a><a href="#work">What we build</a><a href="#belief">Our mission</a><a href="#trust">Trust</a></nav>
           <a className="nav-cta" href={callUrl} target="_blank" rel="noreferrer">Let’s talk <ArrowUpRight size={15} /></a>
           <MobileNav />
         </div>
@@ -58,6 +58,7 @@ export default function ArtfieldHome() {
               <h2 id="brain-title">Your business knows.<br /><span className="text-accent">Brain OS acts.</span></h2>
               <p>Connect your knowledge, systems, and routines. Find the answer. Move the work. Bring people in where their judgment matters.</p>
               <BrainExperience />
+              <p className="brain-more"><a href="/brain-os/use-cases">Use cases and impact <ArrowUpRight size={15} /></a><a href="/brain-os/technical">How it is built <ArrowUpRight size={15} /></a></p>
             </div>
           </div>
           <div className="engine-footer wrap"><span>Sources connected</span><i /><span>People in control</span><i /><span>Work moving forward</span></div>
@@ -86,7 +87,7 @@ export default function ArtfieldHome() {
       </main>
       <footer className="site-footer">
         <div className="footer-top wrap"><a className="wordmark" href="#top" aria-label="Endurance AI Labs home"><img src="/artfield/assets/endurance-logo-white.png" alt="Endurance" width="1370" height="238" /></a><p>A research and engineering team in San Francisco.<br />We sit in the operation, find the burden, and build in steps.</p><a href={`mailto:${CONTACT_EMAIL}`}>Say hello <ArrowUpRight size={16} /></a></div>
-        <nav className="footer-links wrap" aria-label="Footer navigation"><a href="/brain-os">Brain OS</a><a href="/margins">Margins</a><a href="#team">Our team</a><a href="/values">Our values</a><a href="#trust">Security &amp; trust</a><a href={`mailto:${CONTACT_EMAIL}?subject=Privacy%20question`}>Privacy questions</a></nav>
+        <nav className="footer-links wrap" aria-label="Footer navigation"><a href="/brain-os">Brain OS</a><a href="/brain-os/use-cases">Use cases</a><a href="/brain-os/technical">Technical</a><a href="/margins">Margins</a><a href="#team">Our team</a><a href="/values">Our values</a><a href="#trust">Security &amp; trust</a><a href={`mailto:${CONTACT_EMAIL}?subject=Privacy%20question`}>Privacy questions</a></nav>
         <div className="footer-bottom wrap"><span>© 2026 ENDURANCE AI LABS</span><span>BUILT FOR THE PEOPLE DOING THE WORK.</span><a href="#top">Back to top ↑</a></div>
       </footer>
     </>

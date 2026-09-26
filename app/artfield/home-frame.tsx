@@ -28,6 +28,6 @@ export const homepageMetadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function HomeFrame({ children }: { children: React.ReactNode }) {
-  return <div className={`${styles.artfield} ${geist.variable}`}>{children}</div>;
+export default function HomeFrame({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <div className={`${styles.artfield} ${geist.variable}${className ? ` ${className}` : ''}`}>{children}</div>;
 }

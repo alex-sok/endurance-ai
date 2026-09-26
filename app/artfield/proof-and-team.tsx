@@ -1,4 +1,6 @@
 // Customer quote, workflow, and timing supplied directly by Endurance.
+import { ArrowUpRight } from 'lucide-react';
+
 export function CustomerProof() {
   return (
     <section id="customer-story" className="customer-proof" aria-labelledby="customer-quote">
@@ -17,6 +19,7 @@ export function CustomerProof() {
           </div>
           <p className="proof-description">Plan how packages fit on a truck to make the most of the space, while accounting for legal load limits.</p>
           <p className="proof-footnote">Customer-reported result for this workflow.</p>
+          <a className="proof-more" href="/brain-os/use-cases">More results, with the numbers behind them <ArrowUpRight size={15} aria-hidden="true" /></a>
         </div>
       </div>
     </section>
