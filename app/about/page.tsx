@@ -71,7 +71,7 @@ const structuredData = {
 
 export default function AboutPage() {
   return <HomeFrame>
-    <SiteHeader about />
+    <SiteHeader current="about" />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
     <main id="main" className="about-page">
       <section className="about-hero wrap" aria-labelledby="about-title">
@@ -147,6 +147,6 @@ export default function AboutPage() {
         </section>
       </div>
     </main>
-    <SiteFooter about />
+    <SiteFooter current="about" />
   </HomeFrame>;
 }

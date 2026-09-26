@@ -50,6 +50,7 @@ export default function ArtfieldHome() {
               <h2 id="brain-title">Your business knows.<br /><span className="text-accent">Brain OS acts.</span></h2>
               <p>Connect your knowledge, systems, and routines. Find the answer. Move the work. Bring people in where their judgment matters.</p>
               <BrainExperience />
+              <p className="brain-more"><a href="/brain-os/use-cases">Use cases and impact <ArrowUpRight size={15} /></a><a href="/brain-os/technical">How it is built <ArrowUpRight size={15} /></a></p>
             </div>
           </div>
           <div className="engine-footer wrap"><span>Sources connected</span><i /><span>People in control</span><i /><span>Work moving forward</span></div>

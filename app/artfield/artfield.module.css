@@ -473,6 +473,17 @@
 .artfield :global(.footer-links a){display:inline-flex;align-items:center;min-height:44px}
 .artfield :global(.footer-links a:hover){color:#fff;text-decoration:underline;text-underline-offset:5px}
 
+/* Links out of the Brain OS section and the proof to the two Brain OS pages. */
+.artfield :global(.brain-more){display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:22px}
+.artfield :global(.brain-more a),.artfield :global(.proof-more){display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:.875rem;color:#345f9c;border-bottom:1px solid #b7cce4;padding-bottom:2px;line-height:1.4}
+.artfield :global(.proof-more){margin-top:18px;min-height:0;padding-bottom:4px}
+.artfield :global(.brain-more a:hover),.artfield :global(.proof-more:hover){color:#244baa}
+
+/* Between the tablet and the wide header, the two page links live in the Brain OS section and the footer only. */
+@media(max-width:900px){
+  .artfield :global(nav .nav-more){display:none}
+}
+
 /* A native disclosure retains keyboard navigation even before hydration. */
 .artfield :global(.mobile-menu){display:none;position:relative;flex-shrink:0}
 .artfield :global(.mobile-menu summary){list-style:none;cursor:pointer;width:44px;height:44px;display:grid;place-items:center;border:1px solid #7894ab66;border-radius:6px;background:#ffffff4d;touch-action:manipulation}
