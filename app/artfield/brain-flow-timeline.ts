@@ -24,5 +24,5 @@ export function ticketTiming(index: number) {
 }
 
 export function bubbleTiming(index: number) {
-  return { delay: 10200 + index * 950, duration: 1150 };
+  return { delay: 10200 + index * 950, duration: 1450 };
 }

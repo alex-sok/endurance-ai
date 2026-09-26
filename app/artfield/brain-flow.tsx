@@ -163,7 +163,11 @@ export function BrainFlow() {
       </div>
 
       <div className={styles.stage} data-flow-stage aria-hidden="true">
-        <div className={styles.orbit} />
+        <div className={styles.orbit} data-orbit><span /><span /></div>
+        <svg className={styles.connections} data-connections focusable="false">
+          {tickets.map(({ label }, index) => <g key={label} data-incoming={index}><path pathLength="1" /><circle r="2.5" /></g>)}
+          {bubbles.map(({ title }, index) => <g key={title} data-outgoing={index}><path pathLength="1" /><circle r="2.5" /></g>)}
+        </svg>
         {tickets.map(({ label, icon: Icon, x, y, turn }, index) => (
           <div key={label} className={styles.ticket} data-ticket data-x={x} data-y={y} data-turn={turn} data-tone={index % 3}
             style={{ '--wide-x': String(x) + '%', '--wide-y': String(y) + '%', '--small-x': String(index % 2 ? 75 : 25) + '%', '--small-y': String([14, 14, 32, 32, 68, 68, 86, 86][index]) + '%', '--ticket-turn': String(turn) + 'deg' } as CSSProperties}>

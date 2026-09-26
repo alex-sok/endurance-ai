@@ -12,7 +12,12 @@ export function createBrainScene(root: HTMLElement): BrainScene {
   const label = root.querySelector<HTMLElement>('[data-blob-label]')!;
   const tickets = Array.from(root.querySelectorAll<HTMLElement>('[data-ticket]'));
   const bubbles = Array.from(root.querySelectorAll<HTMLElement>('[data-bubble]'));
-  const motion = { growth: 1, wobble: .018, squash: 0 };
+  const orbit = root.querySelector<HTMLElement>('[data-orbit]')!;
+  const connections = root.querySelector<SVGSVGElement>('[data-connections]')!;
+  const motion = { growth: 1, wobble: .012, squash: 0 };
+  type Point = { x: number; y: number };
+  type Thread = { progress: number; start: Point; control: Point; end: Point; path: SVGPathElement; dot: SVGCircleElement; ticket?: HTMLElement; turn: number };
+  let threads: Thread[] = [];
   let time = SEQUENCE_DURATION;
   let renderer: WebGLRenderer | null = null;
   let context: gsap.Context | undefined;
@@ -25,7 +30,7 @@ export function createBrainScene(root: HTMLElement): BrainScene {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
     renderer.outputColorSpace = SRGBColorSpace;
     renderer.toneMapping = ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.12;
+    renderer.toneMappingExposure = .98;
     renderer.setClearColor(0x000000, 0);
     canvasHost.appendChild(renderer.domElement);
   } catch {
@@ -38,16 +43,16 @@ export function createBrainScene(root: HTMLElement): BrainScene {
   const geometry = new SphereGeometry(1, 56, 40);
   const original = Float32Array.from(geometry.attributes.position.array);
   const material = new MeshPhysicalMaterial({
-    color: 0x91c2ee, roughness: .29, metalness: .025,
+    color: 0x8bb8df, roughness: .34, metalness: .08,
     clearcoat: 1, clearcoatRoughness: .2,
-    iridescence: .12, iridescenceIOR: 1.22, envMapIntensity: .7,
+    iridescence: .18, iridescenceIOR: 1.22, envMapIntensity: .55,
   });
   const blob = new Mesh(geometry, material);
   world.add(blob);
-  world.add(new HemisphereLight(0xf4faff, 0xa9c3de, 2.1));
-  const key = new DirectionalLight(0xffffff, 3.2);
+  world.add(new HemisphereLight(0xf4faff, 0xa9c3de, 1.7));
+  const key = new DirectionalLight(0xffffff, 2.4);
   key.position.set(-3, 4, 5);
-  const warm = new DirectionalLight(0xffe5c8, 1.4);
+  const warm = new DirectionalLight(0xffe5c8, 1.1);
   warm.position.set(4, -1, 3);
   world.add(key, warm);
   const room = new RoomEnvironment();
@@ -58,6 +63,21 @@ export function createBrainScene(root: HTMLElement): BrainScene {
   pmrem?.dispose();
 
   function draw() {
+    threads.forEach(({ progress: t, start, control, end, path, dot, ticket, turn }) => {
+      const u = 1 - t;
+      const x = u * u * start.x + 2 * u * t * control.x + t * t * end.x;
+      const y = u * u * start.y + 2 * u * t * control.y + t * t * end.y;
+      const trail = ticket ? Math.max(0, Math.min(1, (10200 - time) / 1800)) : 1;
+      path.style.strokeDashoffset = String(1 - t);
+      path.style.opacity = String((ticket ? .38 : .7) * Math.min(1, t * 5) * trail);
+      dot.setAttribute('cx', String(x));
+      dot.setAttribute('cy', String(y));
+      dot.style.opacity = String(Math.sin(t * Math.PI) * .9 * trail);
+      if (ticket) {
+        ticket.style.transform = `translate(-50%, -50%) translate3d(${x - start.x}px, ${y - start.y}px, 0) rotate(${turn * u}deg) scale(${1 - .78 * t})`;
+        ticket.style.opacity = String(1 - t * t);
+      }
+    });
     const squash = motion.squash;
     fallback.style.transform = 'scale(' + motion.growth * (1 + squash) + ',' + motion.growth * (1 - squash) + ')';
     if (!renderer || contextLost) return;
@@ -65,15 +85,15 @@ export function createBrainScene(root: HTMLElement): BrainScene {
     const seconds = time / 1000;
     for (let i = 0; i < position.count; i++) {
       const x = original[i * 3], y = original[i * 3 + 1], z = original[i * 3 + 2];
-      const ripple = Math.sin(x * 3.2 + seconds * 1.8) * Math.sin(y * 3.1 - seconds * 1.3)
-        + .45 * Math.sin(z * 3.5 + seconds * 1.2);
+      const ripple = Math.sin(x * 3.2 + seconds * .65) * Math.sin(y * 3.1 - seconds * .5)
+        + .45 * Math.sin(z * 3.5 + seconds * .4);
       const radius = 1 + motion.wobble * ripple;
       position.setXYZ(i, x * radius, y * radius, z * radius);
     }
     position.needsUpdate = true;
     geometry.computeVertexNormals();
     blob.scale.set(motion.growth * (1 + squash), motion.growth * (1 - squash), motion.growth);
-    blob.rotation.z = Math.sin(seconds * 1.1) * .045;
+    blob.rotation.z = Math.sin(seconds * .45) * .025;
     renderer.render(world, camera);
   }
 
@@ -84,25 +104,39 @@ export function createBrainScene(root: HTMLElement): BrainScene {
     const ticketWidth = compact ? Math.min(rem * 10.5, stage.clientWidth * .42)
       : rem * (window.matchMedia('(max-width: 1100px)').matches ? 9.5 : 10.5);
     context?.revert();
+    threads = [];
+    const width = stage.clientWidth, height = stage.clientHeight;
+    const center = { x: width / 2, y: height * centerY / 100 };
+    connections.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    function thread(group: SVGGElement, start: Point, end: Point, bend: number, ticket?: HTMLElement, turn = 0) {
+      const dx = end.x - start.x, dy = end.y - start.y;
+      const control = { x: (start.x + end.x) / 2 - dy * bend, y: (start.y + end.y) / 2 + dx * bend };
+      const path = group.querySelector('path')!;
+      const dot = group.querySelector('circle')!;
+      path.setAttribute('d', `M ${start.x} ${start.y} Q ${control.x} ${control.y} ${end.x} ${end.y}`);
+      const state = { progress: 0, start, control, end, path, dot, ticket, turn };
+      threads.push(state);
+      return state;
+    }
     context = gsap.context(() => {
       timeline = gsap.timeline({ paused: true });
       timeline.to({}, { duration: SEQUENCE_DURATION / 1000 }, 0);
-      timeline.set(motion, { growth: .16, wobble: .06, squash: 0 }, 0);
-      timeline.to(motion, { growth: 1, duration: 6.4, ease: 'power1.inOut' }, 1.1);
-      timeline.to(motion, { wobble: .018, duration: 3.5, ease: 'sine.out' }, 7.5);
+      timeline.set(motion, { growth: .36, wobble: .024, squash: 0 }, 0);
+      timeline.to(motion, { growth: 1, duration: 6.4, ease: 'sine.inOut' }, 1.1);
+      timeline.to(motion, { wobble: .012, duration: 3.5, ease: 'sine.out' }, 7.5);
       timeline.fromTo(label, { opacity: 0, y: 7 }, { opacity: 1, y: 0, duration: .9, ease: 'power2.out' }, 6.1);
+
+      timeline.fromTo(orbit, { opacity: .35, scale: .82, rotation: -16 }, { opacity: 1, scale: 1, rotation: 0, duration: 8.5, ease: 'sine.inOut' }, 0);
 
       tickets.forEach((node, index) => {
         const x = compact ? (index % 2 ? 75 : 25) : Number(node.dataset.x);
         const y = compact ? [14, 14, 32, 32, 68, 68, 86, 86][index] : Number(node.dataset.y);
         const ink = node.querySelector<HTMLElement>('[data-ticket-ink]')!;
         const begin = ticketTiming(index).delay / 1000;
-        timeline.set(node, { left: x + '%', top: y + '%', width: ticketWidth, height: rem * 4.4, xPercent: -50, yPercent: -50, x: 0, y: 0, rotation: Number(node.dataset.turn), scale: 1, opacity: 1, borderRadius: 10 }, 0);
-        timeline.set(ink, { opacity: 1, scale: 1 }, 0);
-        timeline.to(node, { left: x * .9 + 5 + '%', top: y * .9 + centerY * .1 - 3 + '%', rotation: 0, scale: 1.03, duration: .45, ease: 'sine.inOut' }, begin);
-        timeline.to(node, { left: '50%', top: centerY + '%', width: 44, height: 44, borderRadius: '50%', scale: 1, duration: 1.55, ease: 'power3.inOut' }, begin + .45);
-        timeline.to(node, { opacity: 0, scale: .35, duration: .25, ease: 'power2.in' }, begin + 2);
-        timeline.to(ink, { opacity: 0, scale: .7, duration: .55, ease: 'power1.out' }, begin + .35);
+        const flight = thread(root.querySelector<SVGGElement>(`[data-incoming="${index}"]`)!, { x: width * x / 100, y: height * y / 100 }, center, index % 2 ? .16 : -.16, node, Number(node.dataset.turn) * .5);
+        timeline.set(node, { left: x + '%', top: y + '%', width: ticketWidth, height: rem * 4.4 }, 0);
+        timeline.fromTo(flight, { progress: 0 }, { progress: 1, duration: ticketTiming(index).duration / 1000, ease: 'power2.inOut' }, begin);
+        timeline.fromTo(ink, { opacity: 1 }, { opacity: 0, duration: .9, ease: 'sine.in' }, begin + .7);
       });
 
       bubbles.forEach((node, index) => {
@@ -110,11 +144,14 @@ export function createBrainScene(root: HTMLElement): BrainScene {
         const y = compact ? Number(node.dataset.mobileY) : Number(node.dataset.y);
         const timing = bubbleTiming(index);
         const begin = timing.delay / 1000;
+        const target = { x: width * x / 100, y: height * y / 100 };
+        const output = thread(root.querySelector<SVGGElement>(`[data-outgoing="${index}"]`)!, center, target, compact ? (index % 2 ? .23 : -.23) : .12);
+        timeline.fromTo(output, { progress: 0 }, { progress: 1, duration: timing.duration / 1000, ease: 'sine.inOut' }, begin);
         timeline.fromTo(node,
-          { left: '50%', top: centerY + '%', xPercent: -50, yPercent: -50, scale: .15, opacity: 0 },
-          { left: x + '%', top: y + '%', scale: 1, opacity: 1, duration: timing.duration / 1000, ease: 'back.out(1.25)' }, begin);
-        timeline.to(motion, { squash: .11, duration: .18, ease: 'power2.out' }, begin);
-        timeline.to(motion, { squash: 0, duration: .7, ease: 'elastic.out(1, .4)' }, begin + .18);
+          { left: x + '%', top: y + '%', xPercent: -50, yPercent: -50, x: (center.x - target.x) * .08, y: (center.y - target.y) * .08, scale: .96, opacity: 0 },
+          { x: 0, y: 0, scale: 1, opacity: 1, duration: 1.1, ease: 'power2.out' }, begin + .35);
+        timeline.to(motion, { squash: .018, duration: .4, ease: 'sine.inOut' }, begin);
+        timeline.to(motion, { squash: 0, duration: .85, ease: 'sine.inOut' }, begin + .4);
       });
       timeline.time(time / 1000, true);
     }, root);
@@ -159,6 +196,7 @@ export function createBrainScene(root: HTMLElement): BrainScene {
       renderer?.domElement.remove();
       delete root.dataset.webgl;
       fallback.style.removeProperty('transform');
+      tickets.forEach(node => { node.style.removeProperty('transform'); node.style.removeProperty('opacity'); });
     },
   };
 }
