@@ -8,10 +8,10 @@ export function CustomerProof() {
         <div className="proof-voice">
           <p className="eyebrow">A MOMENT FROM THE REAL WORLD</p>
           <blockquote><h2 id="customer-quote">“Where have you been all my life?”</h2></blockquote>
-          <p className="proof-attribution">A Brain OS customer, after planning a truck load.</p>
+          <p className="proof-attribution">A Brain OS customer in logistics, after planning a truck load.</p>
         </div>
         <div className="proof-result">
-          <p className="eyebrow">TRUCK-LOAD PLANNING</p>
+          <p className="eyebrow">TRUCK-LOAD PLANNING / LOGISTICS</p>
           <div className="proof-timing">
             <dl><dt>Manual process</dt><dd>2 <span>hours</span></dd></dl>
             <span className="proof-arrow" aria-hidden="true">→</span>

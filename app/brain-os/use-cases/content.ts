@@ -14,14 +14,14 @@ import { CALENDLY_URL } from "@/lib/conversation-flows";
 export const USE_CASES_META = {
   title: "Brain OS use cases and impact — Endurance AI Labs",
   description:
-    "See how one freight operation uses Brain OS: the questions people ask, the actions they approve, and the usage recorded since June 2026.",
+    "See how one logistics operation uses Brain OS on its own system of record: the questions people ask, the actions they approve, and the usage recorded since June 2026. The same pattern fits construction, manufacturing and energy.",
   canonical: "https://endurancelabs.ai/brain-os/use-cases",
 };
 
 export const HERO = {
   eyebrow: "BRAIN OS / USE CASES AND IMPACT",
   h1: ["The work it takes.", "The time it gives back."],
-  lede: "At one freight operation, people use Brain OS to find a load, prepare an order, or check an invoice. Here is what they asked, what the system did, and what the records show. The deployment has been in production since June 2026.",
+  lede: "At one logistics operation, people use Brain OS to find a load, prepare an order, or check an invoice, all against the system of record they already ran. Here is what they asked, what the system did, and what the records show. The deployment has been in production since June 2026. A construction, manufacturing or energy business connects its own ERP the same way: one connector, the rest of Brain OS unchanged.",
   primary: { label: "Tell us about your work", href: CALENDLY_URL },
   secondary: { label: "How it is built", href: "/brain-os/technical" },
 };
@@ -323,7 +323,16 @@ export const REVENUE = {
 export const FIT = {
   kicker: "08 · WHO IT IS FOR",
   title: ["A system of record.", "And a few people’s heads."],
-  lede: "Closest fit: freight brokerages, third party logistics firms and asset carriers of 25 to 140 people, working in Microsoft Teams. Next: any operation where the answers live in a system of record and the rules live in inboxes and spreadsheets.",
+  lede: "Built for construction, manufacturing, logistics and energy: any operation where the answers live in an ERP or system of record and the rules live in inboxes, spreadsheets and memory. Brain OS connects to the system you already run.",
+  systems: {
+    note: "Brain OS reads the system of record live and writes to it as drafts, whichever system it is. Each one gets its own connector. The brain, the access controls and the chat interface carry over unchanged. Deployment status as of 26 September 2026.",
+    rows: [
+      { industry: "Construction", systems: "Job costing and project management, field service and scheduling, and the accounting ledger, cloud or on premise.", status: "In build, autumn 2026" },
+      { industry: "Manufacturing", systems: "The ERP for orders, inventory and purchasing, with production, quality and maintenance records alongside.", status: "New connector" },
+      { industry: "Logistics", systems: "The transportation management system, the load board, carrier vetting, billing and settlement.", status: "Live since June 2026" },
+      { industry: "Energy", systems: "The ERP or asset ledger, work orders and field tickets, and maintenance and inspection records.", status: "New connector" },
+    ],
+  },
   buyers: [
     { who: "The owner or president", why: "A way to handle more work with the team already in place." },
     { who: "The head of operations", why: "Fewer chases, faster answers, and a team that stops asking “where is it?”" },
