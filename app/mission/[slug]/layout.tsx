@@ -1,3 +1,4 @@
+import { findPublishedProposal } from "@/lib/mission-proposals/server";
 import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
@@ -11,6 +12,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
+  if (await findPublishedProposal(slug)) return { title: "Private mission briefing | Endurance", robots: { index: false, follow: false } };
   const supabase = await createClient();
 
   const { data: portal } = await supabase
@@ -33,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function MissionLayout({ params, children }: Props) {
   const { slug } = await params;
+  if (await findPublishedProposal(slug)) return <>{children}</>;
   const supabase = await createClient();
 
   const { data: portal } = await supabase
