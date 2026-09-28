@@ -1,3 +1,6 @@
+import { findPublishedProposal, canReadProposal } from "@/lib/mission-proposals/server";
+import { ProposalDocument } from "@/components/mission-proposals/document";
+import { ProposalAccess } from "@/components/mission-proposals/access";
 import { cookies } from "next/headers";
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
@@ -14,6 +17,12 @@ interface Props {
 
 export default async function MissionPage({ params }: Props) {
   const { slug } = await params;
+
+  const proposal = await findPublishedProposal(slug);
+  if (proposal) {
+    if (!await canReadProposal(proposal)) return <ProposalAccess slug={slug}/>;
+    return <ProposalDocument content={proposal.content} revision={proposal.revision} pdfUrl={`/api/proposals/${slug}/pdf`}/>;
+  }
 
   // Use service role to read password_hash (never exposed to client)
   const supabase = await createClient(true);
