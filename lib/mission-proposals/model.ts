@@ -129,21 +129,6 @@ export const sectionKeys = [
   "nextStep",
 ] as const;
 export type ProposalSection = (typeof sectionKeys)[number];
-export const publishSchema = z
-  .object({
-    id: z.string().uuid(),
-    orgId: z.string().uuid(),
-    revision: z.number().int().positive(),
-    operation: z.number().int().positive(),
-    slug: z.string().regex(/^[a-z0-9-]{1,100}$/),
-    active: z.boolean(),
-    content: proposalSchema,
-    pdf: z.string().max(3000000),
-    code: z.string().min(8).max(100).optional(),
-    issuedAt: z.string().datetime(),
-  })
-  .strict();
-export type Publication = z.infer<typeof publishSchema>;
 export type ProposalDTO = {
   id: string;
   slug: string;

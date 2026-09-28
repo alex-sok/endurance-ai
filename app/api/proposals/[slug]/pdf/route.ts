@@ -1,8 +1,8 @@
 import {
   findPublishedProposal,
   canReadProposal,
+  readPublishedPdf,
 } from "@/lib/mission-proposals/server";
-import { createClient } from "@/lib/supabase/server";
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ slug: string }> },
@@ -15,20 +15,12 @@ export async function GET(
       "Enter your access code in the mission briefing first.",
       { status: 401 },
     );
-  const db = await createClient(true);
-  const { data, error } = await db
-    .from("proposal_publications")
-    .select("pdf")
-    .eq("id", p.id)
-    .eq("revision", p.revision)
-    .eq("password_hash", p.password_hash)
-    .eq("is_published", true)
-    .single();
-  if (error || !data)
+  const pdf = await readPublishedPdf(p);
+  if (!pdf)
     return new Response("The briefing changed. Reload and try again.", {
       status: 409,
     });
-  return new Response(new Uint8Array(Buffer.from(data.pdf, "base64")), {
+  return new Response(new Uint8Array(Buffer.from(pdf, "base64")), {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="${slug}-v${p.revision}.pdf"`,
