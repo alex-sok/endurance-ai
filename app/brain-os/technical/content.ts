@@ -11,14 +11,14 @@ import { CALENDLY_URL } from "@/lib/conversation-flows";
 export const TECH_META = {
   title: "How Brain OS is built — Endurance AI Labs",
   description:
-    "How Brain OS connects company knowledge, live systems, chat, and access controls. Explore a production deployment, its architecture, and its limits.",
+    "How Brain OS connects company knowledge, the ERP or system of record you already run, chat, and access controls. Explore a production deployment, its architecture, and its limits.",
   canonical: "https://endurancelabs.ai/brain-os/technical",
 };
 
 export const HERO = {
   eyebrow: "BRAIN OS / TECHNICAL",
   h1: ["Four parts.", "One working system."],
-  lede: "Brain OS combines a knowledge base, tools that connect to live systems, a familiar chat interface, and access controls. Each has a distinct job. Here is how they work together in one freight deployment, including the controls and their limits.",
+  lede: "Brain OS combines a knowledge base, tools that connect to live systems, a familiar chat interface, and access controls. Each has a distinct job. Here is how they work together in one logistics deployment, on that business’s own system of record, including the controls and their limits. Any ERP or system of record connects through its own connector. The other three parts carry over.",
   primary: { label: "Talk architecture with us", href: CALENDLY_URL },
   secondary: { label: "See the use cases", href: "/brain-os/use-cases" },
 };
@@ -96,10 +96,11 @@ export const BRAIN = {
 export const TOOLS = {
   kicker: "03 · THE TOOLS",
   title: ["One tool per action.", "Reads live. Writes draft first."],
-  lede: "In the freight deployment, transactional records are read from the live system when a question arrives. Write tools first return a preview; a second confirmation call makes the change. Email follows a draft-first instruction rather than the same code-level gate.",
+  lede: "In the logistics deployment, transactional records are read from the live system of record when a question arrives. Write tools first return a preview; a second confirmation call makes the change. Email follows a draft-first instruction rather than the same code-level gate.",
   body: [
     "Each system of record gets its own Model Context Protocol server. It is a small program that exposes that system’s reads and writes as named tools, with the request and response shapes fixed in code. The model does not compose queries. It picks a tool, and the tool does one thing.",
     "The reference deployment’s server for the transportation management system reuses the client logic already proven in the operation’s own portal software. The integration was tested by payroll before it was trusted by chat.",
+    "The connector is the only part of Brain OS that is specific to the system of record. An ERP, a job costing ledger, a maintenance system or a transportation management system each gets its own. The brain, the guard and the chat interface carry over unchanged. Where a system has no interface at all, the brain reads a synced copy and states its age with every figure, as at the construction deployment below.",
   ],
   integrations: [
     { system: "McLeod, the transportation management system", what: "Orders, movements, stops, carriers, customers, lane history, credit and receivables, driver texts. Creates and updates orders, stops, rates, carriers and drivers.", access: "Read and write" },
@@ -123,7 +124,7 @@ export const TOOLS = {
     { name: "OpenStreetMap", access: "read", note: "read" },
     { name: "Microsoft Entra", access: "signin", note: "sign in only" },
   ] as { name: string; access: "rw" | "read" | "write" | "signin"; note: string }[],
-  notConnected: "Not connected at the reference deployment as of 22 September 2026: DAT (in development, not shipped), Samsara, QuickBooks, and documents stored inside the transportation management system. McLeod is one connector. A different system of record needs a different connector; the brain, the guard and the interface carry over.",
+  notConnected: "Not connected at the reference deployment as of 22 September 2026: DAT (in development, not shipped), Samsara, QuickBooks, and documents stored inside the transportation management system.",
 };
 
 export const GUARD = {
@@ -235,7 +236,7 @@ export const RUNS = {
     {
       label: "OUTSIDE, THROUGH TOOLS",
       nodes: [
-        { title: "System of record", body: "McLeod, read live and written as drafts." },
+        { title: "System of record", body: "McLeod at this deployment. Any ERP or ledger, through its own connector, read live and written as drafts." },
         { title: "Load board and text number", body: "Truckstop under each broker’s login. Twilio for driver texts." },
         { title: "Carrier vetting", body: "Highway and the federal carrier register, read only." },
         { title: "Model provider", body: "Anthropic’s Claude. No training on your data." },
@@ -259,7 +260,7 @@ export const RUNS = {
 export const TRAVELS = {
   kicker: "08 · THE PATTERN TRAVELS",
   title: ["A shared architecture.", "Different working lives."],
-  lede: "The knowledge structure, tool interfaces, access controls, and chat runtime form a shared architecture. Connectors and operating rules are built for each business. A freight desk and a construction office need different information to make their next decision.",
+  lede: "The knowledge structure, tool interfaces, access controls, and chat runtime form a shared architecture. Connectors and operating rules are built for each business and its system of record. A logistics desk, a construction office, a plant floor and a field crew each need different information to make their next decision.",
   deployments: [
     {
       name: "A freight brokerage and its asset carrier",

@@ -37,7 +37,7 @@ const faqs = [
   { question: 'How is Endurance different from Zapier or n8n?', answer: 'Zapier and n8n provide platforms for building automations, and both offer access to implementation partners. Endurance combines its own products with a research and engineering team that works alongside operators to build the system around their workflows.', source: { href: 'https://n8n.io/expert-partners/', label: 'n8n partner program' } },
   { question: 'How much does Endurance cost?', answer: 'Brain starts at $1,250 per month for up to 25 people, with no setup fee; Brain OS actions and custom engineering are scoped separately. Margins starts at $1,950 per month for 25–40 weekly payees, plus a $9,500 implementation fee with credits under the published offer.', source: { href: brainPricingUrl, label: 'Brain pricing and scope' } },
   { question: 'How long does it take to get started?', answer: 'The published Margins pilot runs for two to three days using your own load data, alongside the existing pay process. That is a product-specific pilot window; Brain OS and custom project delivery dates depend on the agreed scope.', source: { href: `${companyUrl}/margins`, label: 'How the Margins pilot works' } },
-  { question: 'Do we need to replace our existing systems?', answer: 'Brain OS is designed to connect the systems your business already uses. Margins works with your transportation management system and existing payment process, while the integrations for other projects are defined with your team.' },
+  { question: 'Do we need to replace our existing systems?', answer: 'No. Brain OS connects to the ERP or system of record your business already runs. Each system gets its own connector, and the rest of Brain OS carries over. Margins works with your transportation management system and existing payment process. The integrations for other projects are defined with your team.' },
   { question: 'How are data access and AI decisions controlled?', answer: 'We define which systems connect, what information each person can access, and which actions require approval. We also agree on data location, model providers, retention, and the responsibilities of your team and ours.' },
   { question: 'How do we contact the team?', answer: 'Email hello@endurancelabs.ai or book an introductory call with our team. A standard response-time guarantee is not publicly listed, so confirm support coverage and escalation arrangements when discussing your project.' },
 ];
@@ -49,7 +49,7 @@ const facts: { label: string; value: ReactNode }[] = [
   { label: 'Founder', value: 'Alex Sok and Nick Maxwell' },
   { label: 'Headquarters', value: 'San Francisco, California, United States' },
   { label: 'Website', value: <a href={companyUrl}>endurancelabs.ai</a> },
-  { label: 'Core Offering', value: 'Brain OS: connected company knowledge and operational workflows' },
+  { label: 'Core Offering', value: 'Brain OS: company knowledge and operational workflows, connected on any ERP or system of record' },
   { label: 'Pricing', value: <><a href={brainPricingUrl}>Brain: from $1,250/month</a> for up to 25 people, with no setup fee. <a href={pricingUrl}>Margins: from $1,950/month</a> for 25–40 weekly payees; $9,500 implementation with credits. Brain OS actions and custom engineering are scoped separately.</> },
   { label: 'Contract Terms', value: <>Brain and Margins pricing bands are fixed for 12 months. See <a href={brainPricingUrl}>Brain pricing</a> and <a href={pricingUrl}>Margins pricing</a>; confirm other engagement terms with the team.</> },
   { label: 'Services', value: 'Brain OS implementation; institutional memory; freight commission operations; custom AI engineering; process mapping, workshops, and training' },
@@ -64,7 +64,7 @@ const facts: { label: string; value: ReactNode }[] = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'Organization', '@id': `${companyUrl}/#organization`, name: 'Endurance AI Labs', url: companyUrl, foundingDate: '2025', description: 'AI research and engineering company that connects knowledge and automates work for operations teams.', email: CONTACT_EMAIL, founder: [{ '@type': 'Person', name: 'Alex Sok', sameAs: alexLinkedIn }, { '@type': 'Person', name: 'Nick Maxwell' }], address: { '@type': 'PostalAddress', addressLocality: 'San Francisco', addressRegion: 'CA', addressCountry: 'US' }, sameAs: [linkedIn] },
+    { '@type': 'Organization', '@id': `${companyUrl}/#organization`, name: 'Endurance AI Labs', url: companyUrl, foundingDate: '2025', description: 'AI research and engineering company that connects knowledge and automates work for operations teams in construction, manufacturing, logistics and energy.', email: CONTACT_EMAIL, founder: [{ '@type': 'Person', name: 'Alex Sok', sameAs: alexLinkedIn }, { '@type': 'Person', name: 'Nick Maxwell' }], address: { '@type': 'PostalAddress', addressLocality: 'San Francisco', addressRegion: 'CA', addressCountry: 'US' }, sameAs: [linkedIn] },
     { '@type': 'AboutPage', '@id': `${siteUrl}/about#page`, url: `${siteUrl}/about`, name: 'About us | Endurance AI Labs', description, about: { '@id': `${companyUrl}/#organization` } },
     { '@type': 'FAQPage', '@id': `${siteUrl}/about#faq`, mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) },
   ],
@@ -78,8 +78,8 @@ export default function AboutPage() {
       <section className="about-hero wrap" aria-labelledby="about-title">
         <div className="about-hero-copy">
           <p className="eyebrow">ABOUT ENDURANCE</p>
-          <h1 id="about-title">Endurance AI Labs is an AI research and engineering company that <span className="text-accent">connects knowledge and automates work</span> for operations teams.</h1>
-          <p className="about-intro">A business knows more than any one person can keep in mind. We build Brain OS to make that knowledge easier to find and use, giving people more time for the work that needs their judgment.</p>
+          <h1 id="about-title">Endurance AI Labs is an AI research and engineering company that <span className="text-accent">connects knowledge and automates work</span> for operations teams in construction, manufacturing, logistics and energy.</h1>
+          <p className="about-intro">A business knows more than any one person can keep in mind. We build Brain OS to make that knowledge easier to find and use. It connects to the ERP or system of record you already run, and gives people more time for the work that needs their judgment.</p>
           <a className="about-text-link" href="#team">Meet the people behind the work ↓</a>
         </div>
         <figure className="about-hero-image"><img src="/artfield/assets/hopeful-atelier-refined.png" alt="An illustrated garden workspace, with people collaborating in a sunlit glass pavilion" width="1660" height="948" fetchPriority="high" /><figcaption>A better business. A better working life.</figcaption></figure>
@@ -89,7 +89,7 @@ export default function AboutPage() {
         <section id="services" className="about-section" aria-labelledby="services-title">
           <div className="about-section-heading"><span className="about-chapter">01 / THE WORK</span><h2 id="services-title">What Endurance does</h2></div>
           <div className="about-section-body about-service-list">
-            <article><h3>Brain OS: connected knowledge and workflows</h3><p>Brain OS connects company knowledge with the systems where work happens. Your team can ask a question, examine the supporting records, and prepare an action in the same conversation.</p></article>
+            <article><h3>Brain OS: connected knowledge and workflows</h3><p>Brain OS connects company knowledge with the ERP or system of record where work happens. Your team can ask a question, examine the supporting records, and prepare an action in the same conversation.</p></article>
             <article><h3>Brain: institutional memory</h3><p>Brain organizes company documents, messages, meetings, and code into a living knowledge base. A team member can ask in plain language and follow the answer back to its sources, making the knowledge easier to share and check.</p><a className="about-text-link" href="https://endurancelabs.ai/brain">Explore Brain ↗</a></article>
             <article><h3>Margins: freight commission operations</h3><p>Margins calculates broker commissions from transportation management system records, checks exceptions, and produces statements that trace back to each load. It helps freight teams review a pay run without depending on one person’s spreadsheet.</p><a className="about-text-link" href="https://endurancelabs.ai/margins">Explore Margins ↗</a></article>
             <article><h3>Custom AI engineering and adoption</h3><p>We learn how a process works from the people who run it, then build and test the software with them. Workshops and training help the system become part of daily work.</p></article>
@@ -108,15 +108,14 @@ export default function AboutPage() {
         <section id="customers" className="about-section" aria-labelledby="customers-title">
           <div className="about-section-heading"><span className="about-chapter">03 / WHO WE BUILD FOR</span><h2 id="customers-title">Who uses Endurance</h2></div>
           <div className="about-section-body">
-            <p className="about-body-intro">We build for teams whose work crosses documents, systems, and people. The strongest current Brain OS fit is freight operations using Microsoft Teams; the other segments below reflect the industry workflows we design for.</p>
+            <p className="about-body-intro">We build for operations teams in construction, manufacturing, logistics and energy: businesses whose work crosses a system of record, documents and people. Logistics is where Brain OS has run longest in production. A construction deployment is in build.</p>
             <ul className="about-segments">
-              <li><strong>Freight brokerages, third-party logistics firms, and asset carriers</strong> with 25–140 people working in Microsoft Teams, the closest fit described in our <a href={`${companyUrl}/brain-os/use-cases`}>Brain OS use cases</a>.</li>
+              <li><strong>Construction contractors and project teams</strong> working across job costing, project records, field service and contracts, with one Brain OS deployment in build for autumn 2026.</li>
+              <li><strong>Manufacturers</strong> whose orders, inventory, purchasing and maintenance live in an ERP and whose operating rules live in a few people’s heads.</li>
+              <li><strong>Logistics operations: freight brokerages, third-party logistics firms and asset carriers</strong> with 25–140 people working in Microsoft Teams, the deployment described in our <a href={`${companyUrl}/brain-os/use-cases`}>Brain OS use cases</a>.</li>
               <li><strong>Freight brokerage owners and finance teams</strong> managing complex commissions, including brokerages paying 25–275 people per week in Margins’ published pricing bands.</li>
-              <li><strong>Logistics operations and dispatch teams</strong> coordinating loads, carrier invoices, and reconciliation across their existing systems.</li>
-              <li><strong>Construction and real estate operations teams</strong> working across project records, contracts, and business workflows.</li>
-              <li><strong>Law firm partners and operations teams</strong> who need company knowledge connected to its source documents.</li>
-              <li><strong>Hospitality operators</strong> connecting the knowledge and routines their teams use every day.</li>
-              <li><strong>Wealth management and investment teams</strong> organizing knowledge, research, and underwriting work.</li>
+              <li><strong>Energy operators and service companies</strong> coordinating field crews, work orders, assets and inspections across the systems they already run.</li>
+              <li><strong>Professional services, hospitality, real estate and wealth management teams</strong>, where the <a href={`${companyUrl}/brain-os`}>Brain OS console</a> shows the same pattern applied to matters, units, listings and portfolios.</li>
             </ul>
             <p className="about-source-note">Explore the <a href={`${companyUrl}/brain-os`}>Brain OS industry workflows</a> and <a href={pricingUrl}>Margins fit and pricing</a>. These segments describe product fit, not a named client roster.</p>
           </div>

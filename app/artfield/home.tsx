@@ -21,7 +21,7 @@ export default function ArtfieldHome() {
           <div className="hero-content wrap">
             <p className="eyebrow"><span className="status-light" /> A BETTER WORKING LIFE IS POSSIBLE</p>
             <h1 id="hero-title">Give people<br /><span className="hero-line"><span className="text-accent">back</span> their time.</span></h1>
-            <p className="hero-description">Brain OS connects the knowledge and systems your business already uses, so your team can find an answer, check its source, and act on it.</p>
+            <p className="hero-description">Brain OS connects the knowledge and systems your business already runs, on any ERP or system of record. Built for construction, manufacturing, logistics and energy. Your team can find an answer, check its source, and act on it.</p>
             <a className="primary-button" href="#brain"><span>Meet Brain OS</span><ArrowUpRight size={20} /></a>
             <a className="hero-secondary" href="#belief">Discover why we build <ArrowDown size={14} /></a>
           </div>
@@ -58,7 +58,7 @@ export default function ArtfieldHome() {
         <CustomerProof />
         <BusinessArchitecture />
         <section id="work" className="world-section" aria-labelledby="world-title">
-          <div className="world-heading wrap"><div><p className="eyebrow">ONE PURPOSE, MANY WORLDS</p><h2 id="world-title">Built into <span className="text-accent">your world.</span></h2></div><p>Different industries, different routines.<br />Software built around the people doing the work.</p></div>
+          <div className="world-heading wrap"><div><p className="eyebrow">ONE PURPOSE, MANY WORLDS</p><h2 id="world-title">Built into <span className="text-accent">your world.</span></h2></div><p>Construction, manufacturing, logistics, energy.<br />Different routines. Software built around the people doing the work.</p></div>
           <WorldSelect />
         </section>
         <SecurityArchitecture />

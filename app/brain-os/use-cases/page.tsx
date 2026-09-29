@@ -244,7 +244,16 @@ export default function UseCasesPage() {
         <section id="fit" className="bp-section is-deep" aria-labelledby="fit-title">
           <div className="wrap">
             <Heading kicker={FIT.kicker} title={FIT.title} lede={FIT.lede} id="fit-title" />
-            <div className="bp-cols">
+            <table className="bp-spec">
+              <thead><tr><th scope="col">Industry</th><th scope="col">Where the answers live</th><th scope="col">Brain OS</th></tr></thead>
+              <tbody>
+                {FIT.systems.rows.map(r => (
+                  <tr key={r.industry}><th scope="row">{r.industry}</th><td>{r.systems}</td><td>{r.status}</td></tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="bp-source">{FIT.systems.note}</p>
+            <div className="bp-cols bp-split-gap">
               <div>
                 <h3>WHO BUYS IT</h3>
                 <dl>{FIT.buyers.map(b => <div key={b.who}><dt>{b.who}</dt><dd>{b.why}</dd></div>)}</dl>

@@ -11,9 +11,9 @@ export function BusinessArchitecture() {
         <div className="architecture-heading">
           <div>
             <p className="eyebrow">HOW BRAIN OS WORKS</p>
-            <h2 id="architecture-title">Your systems.<br /><span className="text-accent">Working together.</span></h2>
+            <h2 id="architecture-title">Any ERP.<br /><span className="text-accent">Any system of record.</span></h2>
           </div>
-          <p>An invoice, a contract, and a payment record may describe the same job from different angles. Brain OS connects them so your team can see how the pieces fit.</p>
+          <p>Brain OS connects to the software your business already runs, and to the mail, chat and spreadsheets around it. One connector per system. An invoice, a contract and a payment record describe one job from three angles. Brain OS shows how they fit.</p>
         </div>
         <BrainFlow />
       </div>

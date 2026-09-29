@@ -29,7 +29,7 @@ export function DayStory() {
 function Hours() { return <><div className="hour h9">09:00</div><div className="hour h10">10:00</div><div className="hour h11">11:00</div><div className="hour h12">12:00</div></>; }
 
 const worlds = [
-  { id: 'company', name: 'Brain OS', label: 'Your business, connected', title: 'Your whole operation, connected.', copy: 'Ask a question, find the records behind the answer, and prepare the next step in the systems your team already uses.', cta: 'Explore Brain OS', href: '/brain-os' },
+  { id: 'company', name: 'Brain OS', label: 'Your business, connected', title: 'Your whole operation, connected.', copy: 'Ask a question, find the records behind the answer, and prepare the next step in the ERP or system of record your team already uses.', cta: 'Explore Brain OS', href: '/brain-os' },
   { id: 'freight', name: 'Foundations', label: 'Built for freight', title: 'Keep the world moving.', copy: 'Our freight software family, built around the people moving goods. Explore Margins, our commission platform for freight operations.', cta: 'Explore Margins', href: '/margins' },
   { id: 'team', name: 'Multiplayer Developer Tool', label: 'Early access', title: 'Build it, together.', copy: 'The shared development environment our own lab works in. Operators and engineers shape the software side by side. Select clients work with us in early access.', cta: 'Ask about early access', href: '/waitlist' },
   { id: 'rules', name: 'Micro SaaS', label: 'Built to order', title: 'Made for the way you work.', copy: 'Focused software for a particular job, shaped around your rules and routines. The details that make your work yours belong in the software too.', cta: 'Tell us about your work', href: '#contact' },
@@ -48,7 +48,7 @@ export function WorldSelect() {
 
 const workflowContent = [
   { id:'answer', icon:MessageSquare, label:'Find the answer', question:'What did we agree to in this contract?', headline:'The terms, without the search.', description:'The agreement renews in March. Written notice is due 30 days before renewal.', sources:['Signed agreement.pdf', 'Renewal terms · §4.2'] },
-  { id:'action', icon:ScanLine, label:'Move the work', question:'Get this week’s invoices ready.', headline:'The routine work is ready.', description:'Invoices matched. Rate confirmations checked. An unmatched charge is held for your review.', sources:['Carrier invoices', 'Rate confirmations'] },
+  { id:'action', icon:ScanLine, label:'Move the work', question:'Get this week’s invoices ready.', headline:'The routine work is ready.', description:'Invoices matched to purchase orders. Amounts checked against the system of record. An unmatched charge is held for your review.', sources:['Supplier invoices', 'Purchase orders'] },
   { id:'control', icon:ShieldCheck, label:'Keep control', question:'Let the team know about the renewal.', headline:'Prepared. Waiting on your judgment.', description:'The relevant people are identified and the follow-up is drafted. You decide when it goes out.', sources:['Account team', 'Draft follow-up'] },
 ];
 

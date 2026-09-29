@@ -33,7 +33,7 @@ const archivo = Archivo({
 const SITE_URL = "https://endurancelabs.ai";
 const TITLE = "Endurance AI Labs | Give people their time back.";
 const DESCRIPTION =
-  "Brain OS connects your company’s knowledge with its everyday work. Find answers, prepare actions, and give people back their time.";
+  "Brain OS connects your company’s knowledge and everyday work on any ERP or system of record. Built for construction, manufacturing, logistics and energy. Find answers, prepare actions, and give people back their time.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -85,7 +85,7 @@ export default function RootLayout({
     url: "https://endurancelabs.ai",
     logo: "https://endurancelabs.ai/logo-endurance.svg",
     description:
-      "Brain OS connects your company’s knowledge with its everyday work. Find answers, prepare actions, and give people back their time.",
+      "Brain OS connects your company’s knowledge and everyday work on any ERP or system of record. Built for construction, manufacturing, logistics and energy. Find answers, prepare actions, and give people back their time.",
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@endurancelabs.ai",
@@ -104,7 +104,11 @@ export default function RootLayout({
       "AI research",
       "Software engineering",
       "Institutional knowledge systems",
+      "Construction software",
+      "Manufacturing software",
       "Logistics software",
+      "Energy operations software",
+      "ERP and system of record integration",
       "Commission settlement",
       "Industry operating systems",
     ],

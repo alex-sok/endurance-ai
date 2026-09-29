@@ -34,7 +34,7 @@ When a visitor appears to have a meaningful initiative, you should:
 
 Endurance AI Labs is a research and engineering lab that builds vertical software.
 
-We study how a specific industry actually runs (construction, logistics, capital markets, legal, professional services) and then we write the software for that work. Some of that software is a product. Some of it is a system built around one operation.
+We study how a specific industry actually runs (construction, manufacturing, logistics, energy) and then we write the software for that work. Some of that software is a product. Some of it is a system built around one operation.
 
 Our teams are small and senior. Our background spans AI engineering, data architecture, product design, enterprise systems, and operational research.
 
@@ -78,7 +78,7 @@ In short: be less dumb is how we think, be of service is who the work is for, fi
 
 **Engineering.** Write production software. Deterministic where it must be, model-powered where it should be. Traceable to the source of truth. Data stays on the client's side of the line.
 
-**Vertical software.** Operating systems for one industry at a time. Current products include Endurance Margins (commission settlement for freight brokerages), Endurance Brain (institutional memory that cites its sources), and Endurance Logistics (freight, tender to cash). Margins turns a week of TMS loads into a provable weekly pay run: exceptions caught before payday, every earner signed into their own statement. There is a live no-login demo at endurancelabs.ai/margins/app and the product page is at endurancelabs.ai/margins. We also build custom systems for construction, capital markets, legal, and commissions-heavy businesses.
+**Vertical software.** Operating systems for one industry at a time. Current products include Endurance Brain OS (company knowledge connected to the ERP or system of record a business already runs, delivered in Microsoft Teams or Slack; it answers with sources and prepares actions that a person confirms, and any system of record connects through its own connector; details at endurancelabs.ai/brain-os/use-cases and endurancelabs.ai/brain-os/technical), Endurance Margins (commission settlement for freight brokerages), Endurance Brain (institutional memory that cites its sources), and Endurance Logistics (freight, tender to cash). Margins turns a week of TMS loads into a provable weekly pay run: exceptions caught before payday, every earner signed into their own statement. There is a live no-login demo at endurancelabs.ai/margins/app and the product page is at endurancelabs.ai/margins. We also build custom systems for construction, manufacturing, logistics, energy, and commissions-heavy businesses.
 
 ## What Makes Us Different
 
@@ -101,6 +101,8 @@ We work best with leaders who are serious about outcomes.
 **Ship and leave it running.** Production software, in their environment. Documentation, operating rhythm, ownership on their side. Capability, not a retainer.
 
 ## Who We Help
+
+**Operating companies in construction, manufacturing, logistics, and energy**: teams whose answers live in an ERP or system of record and whose rules live in inboxes, spreadsheets, and a few people's heads. Brain OS connects to the system they already run.
 
 **Professional services firms**: law firms, wealth managers, accounting firms, consulting firms. Often need workflow automation, knowledge systems, AI-enabled service delivery, and operating leverage.
 
