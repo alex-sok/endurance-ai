@@ -1,22 +1,26 @@
 import { ImageResponse } from "next/og";
-import { readFileSync } from "fs";
-import { join } from "path";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 /**
- * Link-preview card. The page's own ground, the wordmark, the eyebrow, the
- * live claim on one line, and the positioning line under it.
- * File convention so Next emits an absolute og:image URL per deployment.
- * Claim and lede are word spans with gap — Satori collapses regular
- * spaces in the default OG font (the live card has the same defect).
+ * Homepage sharing card: Artfield's sunrise, wordmark, Geist typography,
+ * and exact headline. The small local assets keep rendering self-contained.
+ * Next's file convention supplies both OG and Twitter image metadata.
  */
-export const alt = "Give people their time back.";
+export const alt = "Endurance AI Labs — Give people back their time.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const logo = readFileSync(
-    join(process.cwd(), "public", "logo-endurance.svg")
+  const sunrise = readFileSync(
+    join(process.cwd(), "public/social/homepage-sunrise.jpg")
   ).toString("base64");
+  const logo = readFileSync(
+    join(process.cwd(), "public/social/endurance-wordmark-ink.png")
+  ).toString("base64");
+  const geist = readFileSync(
+    join(process.cwd(), "public/fonts/Geist-Regular.ttf")
+  );
 
   return new ImageResponse(
     (
@@ -25,24 +29,45 @@ export default async function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          background: "#f7fafc",
           position: "relative",
+          overflow: "hidden",
+          background: "#b8daf1",
+          color: "#193b51",
+          fontFamily: "Geist",
         }}
       >
+        <img
+          src={`data:image/jpeg;base64,${sunrise}`}
+          width={1200}
+          height={630}
+          alt=""
+          style={{ position: "absolute", inset: 0 }}
+        />
+        <div
+          style={{
+            display: "flex",
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage:
+              "linear-gradient(90deg, rgba(238,248,255,0.96) 0%, rgba(239,248,255,0.90) 28%, rgba(237,247,255,0.50) 53%, rgba(237,247,255,0) 78%), linear-gradient(0deg, rgba(234,245,250,0.92) 0%, rgba(234,245,250,0) 24%)",
+          }}
+        />
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            padding: "0 96px",
-            position: "relative",
+            position: "absolute",
+            left: 64,
+            top: 46,
           }}
         >
           <img
-            src={`data:image/svg+xml;base64,${logo}`}
-            width={420}
-            height={60}
+            src={`data:image/png;base64,${logo}`}
+            width={230}
+            height={40}
             alt=""
           />
           <div
@@ -50,18 +75,18 @@ export default async function Image() {
               display: "flex",
               alignItems: "center",
               marginTop: 56,
-              fontSize: 22,
-              letterSpacing: "0.16em",
-              color: "#526d80",
+              fontSize: 14,
+              letterSpacing: "0.12em",
+              color: "#42647b",
             }}
           >
             <div
               style={{
-                display: "flex",
-                width: 14,
-                height: 14,
-                background: "#3b66ce",
-                marginRight: 18,
+                width: 6,
+                height: 6,
+                borderRadius: 3,
+                background: "#3f6ba9",
+                marginRight: 12,
               }}
             />
             A BETTER WORKING LIFE IS POSSIBLE
@@ -69,60 +94,55 @@ export default async function Image() {
           <div
             style={{
               display: "flex",
-              flexWrap: "wrap",
-              alignItems: "baseline",
-              gap: 18,
-              marginTop: 24,
-              fontSize: 64,
-              fontWeight: 700,
-              lineHeight: 1.1,
-              color: "#193b51",
-              letterSpacing: "-0.02em",
+              flexDirection: "column",
+              marginTop: 26,
+              fontSize: 88,
+              fontWeight: 400,
+              lineHeight: 1.02,
+              letterSpacing: "-0.055em",
             }}
           >
-            <span>Give</span>
-            <span>people</span>
-            <span>their</span>
-            <span>time</span>
-            <span style={{ color: "#315f8d" }}>back.</span>
+            <div style={{ display: "flex" }}>Give people</div>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 18 }}>
+              <span style={{ color: "#315f8d" }}>back</span>
+              <span>their time.</span>
+            </div>
           </div>
           <div
             style={{
               display: "flex",
-              flexWrap: "wrap",
-              gap: 8,
-              marginTop: 28,
-              fontSize: 26,
-              lineHeight: 1.45,
-              color: "#526d80",
-              maxWidth: 1010,
+              marginTop: 30,
+              maxWidth: 554,
+              fontSize: 23,
+              lineHeight: 1.5,
+              color: "#35566d",
             }}
           >
-            <span>Brain</span>
-            <span>OS</span>
-            <span>connects</span>
-            <span>what</span>
-            <span>your</span>
-            <span>business</span>
-            <span>knows</span>
-            <span>with</span>
-            <span>the</span>
-            <span>work</span>
-            <span>it</span>
-            <span>needs</span>
-            <span>to</span>
-            <span>do.</span>
-            <span>A</span>
-            <span>better</span>
-            <span>business.</span>
-            <span>A</span>
-            <span>better</span>
-            <span>working</span>
-            <span>life.</span>
+            Brain OS connects the knowledge and systems your business already
+            runs, on any ERP or system of record.
           </div>
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            left: 64,
+            right: 64,
+            bottom: 38,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            fontSize: 13,
+            color: "#35576d",
+          }}
+        >
+          <span style={{ letterSpacing: "0.06em" }}>BRAIN OS / BUILT BY ENDURANCE</span>
+          <span>endurancelabs.ai</span>
         </div>
       </div>
     ),
-    size
+    {
+      ...size,
+      fonts: [{ name: "Geist", data: geist, weight: 400, style: "normal" }],
+    }
   );
 }
