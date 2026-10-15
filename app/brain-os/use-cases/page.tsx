@@ -1,10 +1,9 @@
-/* Static pixel artwork is intentionally served unchanged; dimensions and loading priority are explicit. */
-/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import { ArrowUpRight } from 'lucide-react';
-import HomeFrame from '@/app/artfield/home-frame';
-import pages from '@/app/artfield/brain-pages.module.css';
-import { SiteFooter, SiteHeader } from '@/app/artfield/site-chrome';
+import LandingFrame from '@/app/landing/landing-frame';
+import pages from '../brain-pages.module.css';
+import { SiteFooter, SiteHeader } from '@/app/landing/site-chrome';
+import { BrainPageHero } from '../page-hero';
 import { BarList, ChartCard, ColumnChart, PairedColumnChart, RatioBar, StepsStrip, TimelineChart } from '../charts';
 import { Heading } from '../heading';
 import { ImpactCalculator } from './calculator';
@@ -31,29 +30,20 @@ export const metadata: Metadata = {
 export default function UseCasesPage() {
   const weekdayRows = ADOPTION.weekdays.labels.map((d, i) => [d, ADOPTION.weekdays.lastWeek[i], ADOPTION.weekdays.thisWeek[i]]);
   return (
-    <HomeFrame className={pages.pages}>
+    <LandingFrame className={pages.pages}>
       <SiteHeader current="use-cases" />
       <main id="main">
-        <section className="bp-hero scene" aria-labelledby="hero-title">
-          <img className="scene-art bp-hero-art" src="/artfield/assets/hopeful-sunrise.png" alt="" width="1659" height="948" loading="lazy" decoding="async" />
-          <div className="bp-hero-shade" />
-          <div className="wrap">
-            <p className="eyebrow"><span className="status-light" /> {HERO.eyebrow}</p>
-            <h1 id="hero-title">{HERO.h1[0]}<br /><span className="text-accent">{HERO.h1[1]}</span></h1>
-            <p className="bp-hero-lede">{HERO.lede}</p>
-            <div className="bp-hero-actions">
-              <a className="primary-button" href={HERO.primary.href} target="_blank" rel="noreferrer"><span>{HERO.primary.label}</span><ArrowUpRight size={20} /></a>
-              <a className="bp-quiet-link" href={HERO.secondary.href}>{HERO.secondary.label} <ArrowUpRight size={14} /></a>
-            </div>
-          </div>
-        </section>
+        <BrainPageHero hero={HERO}
+          image={{ src: '/city-districts/logistics.webp', alt: 'A modern logistics district with warehouses, trucks, and rail in a thriving desert city.', caption: 'A WORLD IN MOTION / CITY CONCEPT' }}
+          sections={[{ href: '#before-after', label: 'Workflows' }, { href: '#adoption', label: 'Adoption' }, { href: '#roles', label: 'By role' }, { href: '#calculator', label: 'Impact calculator' }, { href: '#rollout', label: 'Rollout' }]}
+        />
 
         <section className="bp-section is-white" aria-label="The headline figures">
           <div className="wrap">
             <div className="bp-tiles">
               {HEADLINE.map(t => (
                 <div className="bp-tile" key={t.label}>
-                  <p className={`bp-tile-value${t.blue ? ' is-blue' : ''}`}>
+                  <p className={`bp-tile-value${t.blue ? ' is-accent' : ''}`}>
                     {t.before ? <><span className="bp-was">{t.before}</span><span className="sr-only">to</span><span className="bp-arrow" aria-hidden="true">→</span></> : null}
                     {t.value}{t.unit ? <small>{t.unit}</small> : null}
                   </p>
@@ -118,8 +108,8 @@ export default function UseCasesPage() {
                 <PairedColumnChart
                   labels={ADOPTION.weekdays.labels}
                   series={[
-                    { name: 'Week of 14 September', color: '#8fb0e8', values: ADOPTION.weekdays.lastWeek },
-                    { name: 'Week of 21 September', color: '#3b66ce', values: ADOPTION.weekdays.thisWeek, partialLast: true },
+                    { name: 'Week of 14 September', color: 'var(--bp-accent-light)', values: ADOPTION.weekdays.lastWeek },
+                    { name: 'Week of 21 September', color: 'var(--bp-accent)', values: ADOPTION.weekdays.thisWeek, partialLast: true },
                   ]}
                   label="Questions per weekday for two consecutive weeks; Monday through Thursday are higher in the second week, peaking at 335 on Thursday. The second Friday is partial."
                 />
@@ -286,9 +276,7 @@ export default function UseCasesPage() {
           </div>
         </section>
 
-        <section id="contact" className="bp-close scene" aria-labelledby="close-title">
-          <img className="scene-art bp-close-art" src="/artfield/assets/hopeful-sunrise.png" alt="" width="1659" height="948" loading="lazy" />
-          <div className="bp-close-shade" />
+        <section id="contact" className="bp-close" aria-labelledby="close-title">
           <div className="wrap">
             <p className="eyebrow">{CLOSE.kicker}</p>
             <h2 id="close-title">{CLOSE.title[0]}<br />{CLOSE.title[1]}<br /><span className="text-accent">{CLOSE.title[2]}</span></h2>
@@ -302,6 +290,6 @@ export default function UseCasesPage() {
         </section>
       </main>
       <SiteFooter current="use-cases" />
-    </HomeFrame>
+    </LandingFrame>
   );
 }

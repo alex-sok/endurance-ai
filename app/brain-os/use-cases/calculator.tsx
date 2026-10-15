@@ -104,8 +104,8 @@ export function ImpactCalculator() {
             <span style={{ width: `${(weeklyFromPlans / (weekly || 1)) * 100}%` }} />
           </div>
           <div className="bp-legend" aria-hidden="true">
-            <span><i style={{ background: '#3b66ce' }} />Answers, {whole(weeklyFromQuestions)} hrs a week</span>
-            <span><i style={{ background: '#8fb0e8' }} />Truckload plans, {whole(weeklyFromPlans)} hrs a week</span>
+            <span><i style={{ background: 'var(--bp-accent)' }} />Answers, {whole(weeklyFromQuestions)} hrs a week</span>
+            <span><i style={{ background: 'var(--bp-accent-light)' }} />Truckload plans, {whole(weeklyFromPlans)} hrs a week</span>
           </div>
         </div>
         <p className="bp-calc-note">

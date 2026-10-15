@@ -85,7 +85,7 @@ export function ColumnChart({ points, unit, label }: { points: Point[]; unit?: s
         return (
           <g key={p.label}>
             <title>{`${p.label}${p.sub ? `, ${p.sub}` : ''}: ${fmt(p.value)}${unit ? ` ${unit}` : ''}`}</title>
-            <path d={column(x, yTop, bw, T + plotH - yTop, 4)} fill={p.partial ? '#8fb0e8' : '#3b66ce'} />
+            <path d={column(x, yTop, bw, T + plotH - yTop, 4)} fill={p.partial ? 'var(--bp-accent-light)' : 'var(--bp-accent)'} />
             {labelled ? <text className="bp-value" x={x + bw / 2} y={yTop - 9} textAnchor="middle">{fmt(p.value)}</text> : null}
             <text x={x + bw / 2} y={T + plotH + 19} textAnchor="middle">{p.label}</text>
             {p.sub ? <text x={x + bw / 2} y={T + plotH + 35} textAnchor="middle" fontSize="11">{p.sub}</text> : null}
@@ -191,7 +191,7 @@ export function RatioBar({ beforeLabel, afterLabel, ratio }: { beforeLabel: stri
   return (
     <div className="bp-ratio" role="img" aria-label={`${afterLabel} is one part in ${Math.round(1 / ratio)} of ${beforeLabel}`}>
       <div className="bp-ratio-track"><span className="bp-ratio-fill" style={{ width: `${Math.max(0.3, ratio * 100)}%` }} /></div>
-      <p className="bp-ratio-legend"><span>{afterLabel}, the blue sliver</span><span>{beforeLabel}, the whole bar</span></p>
+      <p className="bp-ratio-legend"><span>{afterLabel}, the dark sliver</span><span>{beforeLabel}, the whole bar</span></p>
     </div>
   );
 }
@@ -237,8 +237,8 @@ export function TimelineChart({ events, start, end, months, label }: { events: M
         return (
           <g key={e.iso + e.short}>
             <title>{`${e.date}: ${e.short}`}</title>
-            <line x1={cx} x2={cx} y1={AXIS} y2={side === 'above' ? ly + 6 : ly - 12} stroke="#b0c5d7" strokeWidth="1" />
-            <circle cx={cx} cy={AXIS} r={5} fill="#3b66ce" stroke="#ffffff" strokeWidth="2" />
+            <line x1={cx} x2={cx} y1={AXIS} y2={side === 'above' ? ly + 6 : ly - 12} stroke="var(--bp-border)" strokeWidth="1" />
+            <circle cx={cx} cy={AXIS} r={5} fill="var(--bp-accent)" stroke="#ffffff" strokeWidth="2" />
             <text x={endAnchor ? cx - 6 : cx + 6} y={ly} textAnchor={endAnchor ? 'end' : 'start'}>
               <tspan className="bp-value">{e.date}</tspan>
               <tspan> · {e.short}</tspan>
@@ -273,10 +273,10 @@ export function CadenceChart({ rows, label }: { rows: CadenceRow[]; label: strin
         const y = TOP + i * ROW;
         const mid = y + ROW / 2;
         let marks: React.ReactNode = null;
-        if (r.every === 'minutes') marks = <rect x={dayX(0)} y={mid - 5} width={plotW} height={10} fill="#3b66ce" rx={2} />;
-        if (r.every === 'hourly') marks = <>{Array.from({ length: 168 }, (_, h) => <line key={h} x1={dayX(h / 24)} x2={dayX(h / 24)} y1={mid - 5} y2={mid + 5} stroke="#3b66ce" strokeWidth="1" />)}</>;
-        if (r.every === 'daily') marks = <>{Array.from({ length: 7 }, (_, d) => <line key={d} x1={dayX(d + 5 / 24)} x2={dayX(d + 5 / 24)} y1={mid - 7} y2={mid + 7} stroke="#3b66ce" strokeWidth="2" />)}</>;
-        if (r.every === 'weekly') marks = <line x1={dayX(6.25 / 24)} x2={dayX(6.25 / 24)} y1={mid - 8} y2={mid + 8} stroke="#3b66ce" strokeWidth="3" />;
+        if (r.every === 'minutes') marks = <rect x={dayX(0)} y={mid - 5} width={plotW} height={10} fill="var(--bp-accent)" rx={2} />;
+        if (r.every === 'hourly') marks = <>{Array.from({ length: 168 }, (_, h) => <line key={h} x1={dayX(h / 24)} x2={dayX(h / 24)} y1={mid - 5} y2={mid + 5} stroke="var(--bp-accent)" strokeWidth="1" />)}</>;
+        if (r.every === 'daily') marks = <>{Array.from({ length: 7 }, (_, d) => <line key={d} x1={dayX(d + 5 / 24)} x2={dayX(d + 5 / 24)} y1={mid - 7} y2={mid + 7} stroke="var(--bp-accent)" strokeWidth="2" />)}</>;
+        if (r.every === 'weekly') marks = <line x1={dayX(6.25 / 24)} x2={dayX(6.25 / 24)} y1={mid - 8} y2={mid + 8} stroke="var(--bp-accent)" strokeWidth="3" />;
         if (r.every === 'event') {
           const n = r.count ?? 0;
           marks = <>{Array.from({ length: n }, (_, k) => {
@@ -284,7 +284,7 @@ export function CadenceChart({ rows, label }: { rows: CadenceRow[]; label: strin
             const day = Math.floor(t);
             const hour = 8 + (t - day) * 10;
             const xx = dayX(day + hour / 24);
-            return <line key={k} x1={xx} x2={xx} y1={mid - 6} y2={mid + 6} stroke="#3b66ce" strokeWidth="1.5" />;
+            return <line key={k} x1={xx} x2={xx} y1={mid - 6} y2={mid + 6} stroke="var(--bp-accent)" strokeWidth="1.5" />;
           })}</>;
         }
         return (
@@ -314,7 +314,7 @@ export function IntegrationMap({ spokes, label }: { spokes: Spoke[]; label: stri
       <svg className="bp-svg is-wide" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={label}>
         <defs>
           <marker id="bp-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-            <path d="M0,1 L9,5 L0,9 Z" fill="#3b66ce" />
+            <path d="M0,1 L9,5 L0,9 Z" fill="var(--bp-accent)" />
           </marker>
         </defs>
         {spokes.map((s, i) => {
@@ -329,22 +329,22 @@ export function IntegrationMap({ spokes, label }: { spokes: Spoke[]; label: stri
           return (
             <g key={s.name}>
               <title>{`${s.name}: ${s.note}`}</title>
-              <line x1={hx} y1={hy} x2={ex} y2={ey} stroke={s.access === 'signin' ? '#9db6cb' : '#3b66ce'} strokeWidth="1.5" markerStart={toHub ? 'url(#bp-arrow)' : undefined} markerEnd={toSystem ? 'url(#bp-arrow)' : undefined} />
-              <rect x={nx - NW / 2} y={ny - NH / 2} width={NW} height={NH} rx={8} fill="#ffffff" stroke="#c9dce9" />
+              <line x1={hx} y1={hy} x2={ex} y2={ey} stroke={s.access === 'signin' ? 'var(--bp-muted)' : 'var(--bp-accent)'} strokeWidth="1.5" markerStart={toHub ? 'url(#bp-arrow)' : undefined} markerEnd={toSystem ? 'url(#bp-arrow)' : undefined} />
+              <rect x={nx - NW / 2} y={ny - NH / 2} width={NW} height={NH} rx={8} fill="#ffffff" stroke="var(--bp-border)" />
               <text x={nx} y={ny + 4} textAnchor="middle" className="bp-value" fontSize="13">{s.name}</text>
               <text x={nx} y={ny + NH / 2 + 16} textAnchor="middle" fontSize="11">{s.note}</text>
             </g>
           );
         })}
-        <circle cx={cx} cy={cy} r={HUB} fill="#e3effb" stroke="#a7c0dc" />
+        <circle cx={cx} cy={cy} r={HUB} fill="var(--bp-surface)" stroke="var(--bp-border)" />
         <text x={cx} y={cy - 4} textAnchor="middle" className="bp-value" fontSize="17">Brain OS</text>
         <text x={cx} y={cy + 16} textAnchor="middle" fontSize="11">one tool per action</text>
       </svg>
       </div>
       <div className="bp-legend" aria-hidden="true">
-        <span><i style={{ background: '#3b66ce', width: 18, height: 2, borderRadius: 1 }} />Arrow into Brain OS: a read, live at the moment of the question</span>
-        <span><i style={{ background: '#3b66ce', width: 18, height: 2, borderRadius: 1 }} />Arrow out: a write, drafted first and confirmed second</span>
-        <span><i style={{ background: '#9db6cb', width: 18, height: 2, borderRadius: 1 }} />Grey: sign in only</span>
+        <span><i style={{ background: 'var(--bp-accent)', width: 18, height: 2, borderRadius: 1 }} />Arrow into Brain OS: a read, live at the moment of the question</span>
+        <span><i style={{ background: 'var(--bp-accent)', width: 18, height: 2, borderRadius: 1 }} />Arrow out: a write, drafted first and confirmed second</span>
+        <span><i style={{ background: 'var(--bp-muted)', width: 18, height: 2, borderRadius: 1 }} />Grey: sign in only</span>
       </div>
     </>
   );

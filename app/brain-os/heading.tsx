@@ -1,5 +1,4 @@
-// A section heading in the homepage's grammar: eyebrow, two-line title with
-// the second line in the accent, and the lede alongside.
+// Match the landing page: eyebrow, heading, and supporting copy beneath it.
 export function Heading({ kicker, title, lede, id }: { kicker: string; title: string[]; lede: string; id: string }) {
   return (
     <div className="bp-heading">

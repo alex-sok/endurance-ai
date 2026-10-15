@@ -1,10 +1,9 @@
-/* Static pixel artwork is intentionally served unchanged; dimensions and loading priority are explicit. */
-/* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import { ArrowUpRight, ChartColumn, Clock, Eye, FileText, Inbox, Receipt } from 'lucide-react';
-import HomeFrame from '@/app/artfield/home-frame';
-import pages from '@/app/artfield/brain-pages.module.css';
-import { SiteFooter, SiteHeader } from '@/app/artfield/site-chrome';
+import LandingFrame from '@/app/landing/landing-frame';
+import pages from '../brain-pages.module.css';
+import { SiteFooter, SiteHeader } from '@/app/landing/site-chrome';
+import { BrainPageHero } from '../page-hero';
 import { BarList, CadenceChart, ChartCard, IntegrationMap } from '../charts';
 import { Heading } from '../heading';
 import { Architecture, DeployDiagram, PageAnatomy, TierMatrix, WritePath } from './diagrams';
@@ -29,22 +28,13 @@ const jobIcons = { eye: Eye, clock: Clock, file: FileText, inbox: Inbox, receipt
 
 export default function TechnicalPage() {
   return (
-    <HomeFrame className={pages.pages}>
+    <LandingFrame className={pages.pages}>
       <SiteHeader current="technical" />
       <main id="main">
-        <section className="bp-hero scene" aria-labelledby="hero-title">
-          <img className="scene-art bp-hero-art" src="/artfield/assets/hopeful-atelier-refined.png" alt="" width="1660" height="948" loading="lazy" decoding="async" />
-          <div className="bp-hero-shade" />
-          <div className="wrap">
-            <p className="eyebrow"><span className="status-light" /> {HERO.eyebrow}</p>
-            <h1 id="hero-title">{HERO.h1[0]}<br /><span className="text-accent">{HERO.h1[1]}</span></h1>
-            <p className="bp-hero-lede">{HERO.lede}</p>
-            <div className="bp-hero-actions">
-              <a className="primary-button" href={HERO.primary.href} target="_blank" rel="noreferrer"><span>{HERO.primary.label}</span><ArrowUpRight size={20} /></a>
-              <a className="bp-quiet-link" href={HERO.secondary.href}>{HERO.secondary.label} <ArrowUpRight size={14} /></a>
-            </div>
-          </div>
-        </section>
+        <BrainPageHero hero={HERO}
+          image={{ src: '/trust-architecture.webp', alt: 'Concrete and bronze structural frames opening onto a sunlit desert courtyard.', caption: 'STRUCTURE. CLARITY. CONTROL. / ARCHITECTURAL CONCEPT' }}
+          sections={[{ href: '#shape', label: 'Architecture' }, { href: '#brain', label: 'Knowledge' }, { href: '#tools', label: 'Integrations' }, { href: '#guard', label: 'Controls' }, { href: '#runs', label: 'Deployment' }, { href: '#limits', label: 'Limits' }]}
+        />
 
         <section id="shape" className="bp-section is-sky" aria-labelledby="shape-title">
           <div className="wrap">
@@ -224,9 +214,7 @@ export default function TechnicalPage() {
           </div>
         </section>
 
-        <section id="contact" className="bp-close scene" aria-labelledby="close-title">
-          <img className="scene-art bp-close-art" src="/artfield/assets/hopeful-sunrise.png" alt="" width="1659" height="948" loading="lazy" />
-          <div className="bp-close-shade" />
+        <section id="contact" className="bp-close" aria-labelledby="close-title">
           <div className="wrap">
             <p className="eyebrow">{CLOSE.kicker}</p>
             <h2 id="close-title">{CLOSE.title[0]}<br /><span className="text-accent">{CLOSE.title[1]}</span></h2>
@@ -240,6 +228,6 @@ export default function TechnicalPage() {
         </section>
       </main>
       <SiteFooter current="technical" />
-    </HomeFrame>
+    </LandingFrame>
   );
 }
