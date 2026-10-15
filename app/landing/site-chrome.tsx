@@ -7,6 +7,8 @@ export function SiteHeader({ about = false }: { about?: boolean }) {
   const home = about ? '/' : '';
   const links = [
     { href: `${home}#brain`, label: 'Brain OS' },
+    { href: '/brain-os/use-cases', label: 'Case studies' },
+    { href: '/brain-os/technical', label: 'Technical' },
     { href: `${home}#work`, label: 'Who we serve' },
     { href: `${home}#belief`, label: 'Our mission' },
     { href: `${home}#trust`, label: 'Trust' },
@@ -30,6 +32,6 @@ export function SiteHeader({ about = false }: { about?: boolean }) {
 export function SiteFooter({ about = false }: { about?: boolean }) {
   return <footer className="site-footer">
     <div className="footer-top wrap"><a className="wordmark" href={about ? '/' : '#top'} aria-label="Endurance AI Labs home"><img src="/endurance-logo-white.png" alt="Endurance" width="1370" height="238" /></a><p>A research and engineering team in San Francisco.<br />We sit in the operation, find the burden, and build in steps.</p><a href="mailto:hello@endurancelabs.ai">Say hello <ArrowUpRight size={16} /></a></div>
-    <div className="footer-bottom wrap"><span>© 2026 ENDURANCE AI LABS</span><div className="footer-page-links"><a href="/about" aria-current={about ? 'page' : undefined}>About us</a><a href="https://www.linkedin.com/company/endurance-ai-labs" target="_blank" rel="noreferrer">LinkedIn</a></div><a href="#top">Back to top ↑</a></div>
+    <div className="footer-bottom wrap"><span>© 2026 ENDURANCE AI LABS</span><div className="footer-page-links"><a href="/brain-os/use-cases">Case studies</a><a href="/brain-os/technical">Technical</a><a href="/about" aria-current={about ? 'page' : undefined}>About us</a><a href="https://www.linkedin.com/company/endurance-ai-labs" target="_blank" rel="noreferrer">LinkedIn</a></div><a href="#top">Back to top ↑</a></div>
   </footer>;
 }
