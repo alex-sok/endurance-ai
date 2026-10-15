@@ -1,7 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Geist } from "next/font/google";
 import { BrainOSConsole } from "@/components/landing/BrainOSConsole";
 import "../landing.css";
+import styles from "./console.module.css";
+
+const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "Brain OS — Endurance AI Labs",
@@ -11,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function BrainOSPage() {
   return (
-    <div className="theme-paper bos-page">
+    <div className={`theme-paper bos-page ${styles.console} ${geist.variable}`}>
       <header className="bos-top">
         <Link className="bos-back" href="/">
           <span aria-hidden="true">&larr;</span> Endurance AI Labs

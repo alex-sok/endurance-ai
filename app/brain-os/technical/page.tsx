@@ -4,6 +4,7 @@ import LandingFrame from '@/app/landing/landing-frame';
 import pages from '../brain-pages.module.css';
 import { SiteFooter, SiteHeader } from '@/app/landing/site-chrome';
 import { BrainPageHero } from '../page-hero';
+import { ContextImage, ProductImage } from '../product-image';
 import { BarList, CadenceChart, ChartCard, IntegrationMap } from '../charts';
 import { Heading } from '../heading';
 import { Architecture, DeployDiagram, PageAnatomy, TierMatrix, WritePath } from './diagrams';
@@ -33,7 +34,7 @@ export default function TechnicalPage() {
       <main id="main">
         <BrainPageHero hero={HERO}
           image={{ src: '/trust-architecture.webp', alt: 'Concrete and bronze structural frames opening onto a sunlit desert courtyard.', caption: 'STRUCTURE. CLARITY. CONTROL. / ARCHITECTURAL CONCEPT' }}
-          sections={[{ href: '#shape', label: 'Architecture' }, { href: '#brain', label: 'Knowledge' }, { href: '#tools', label: 'Integrations' }, { href: '#guard', label: 'Controls' }, { href: '#runs', label: 'Deployment' }, { href: '#limits', label: 'Limits' }]}
+          sections={[{ href: '#shape', label: 'Architecture' }, { href: '#brain', label: 'Knowledge' }, { href: '#tools', label: 'Integrations' }, { href: '#product-review', label: 'Product view' }, { href: '#guard', label: 'Controls' }, { href: '#runs', label: 'Deployment' }, { href: '#limits', label: 'Limits' }]}
         />
 
         <section id="shape" className="bp-section is-sky" aria-labelledby="shape-title">
@@ -107,6 +108,15 @@ export default function TechnicalPage() {
               </tbody>
             </table>
             <p className="bp-source">{TOOLS.notConnected}</p>
+            <div id="product-review" className="bp-product-detail">
+              <div>
+                <p className="eyebrow">FROM RECORDS TO REVIEW</p>
+                <h3>The evidence,<br />beside the decision.</h3>
+                <p className="bp-prose">This sample carrier audit screen puts the invoice, agreed rate, supporting records, and proposed amount side by side.</p>
+                <p className="bp-source">An illustrative product view. The integration table above describes what is connected at the reference deployment.</p>
+              </div>
+              <ProductImage src="/product/brain-os-invoice-review.jpg" width={968} height={476} label="INVOICE REVIEW" alt="Illustrative invoice review comparing a carrier invoice, rate confirmation, accessorials, supporting evidence, and contract terms with proposed approved and disputed amounts." />
+            </div>
           </div>
         </section>
 
@@ -191,7 +201,10 @@ export default function TechnicalPage() {
 
         <section id="travels" className="bp-section is-white" aria-labelledby="travels-title">
           <div className="wrap">
-            <Heading kicker={TRAVELS.kicker} title={TRAVELS.title} lede={TRAVELS.lede} id="travels-title" />
+            <div className="bp-context-heading">
+              <Heading kicker={TRAVELS.kicker} title={TRAVELS.title} lede={TRAVELS.lede} id="travels-title" />
+              <ContextImage src="/city-districts/construction.webp" alt="Cranes and construction teams building a modern district in a desert city." caption="DIFFERENT SITES. SHARED KNOWLEDGE." />
+            </div>
             <ul className="bp-deploys">
               {TRAVELS.deployments.map(d => (
                 <li key={d.name}>

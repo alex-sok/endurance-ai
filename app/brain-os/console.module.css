@@ -1,0 +1,38 @@
+.console:global(.theme-paper.bos-page) {
+  --lp-ink: #20201e;
+  --lp-muted: #62625b;
+  --lp-line: #deded7;
+  --lp-accent: #20201e;
+  --lp-night: #20201e;
+  --lp-paper: #ffffff;
+  --lp-snow: #f3f2ee;
+  --lp-flare: #995b36;
+  --lp-radius: 2px;
+  --lp-lift: none;
+  --lp-sans: var(--font-geist-sans), Arial, sans-serif;
+  --lp-display: var(--font-geist-sans), Arial, sans-serif;
+}
+
+.console:global(.theme-paper) :global(.bpos-tab),
+.console:global(.theme-paper) :global(.bpos-sq),
+.console:global(.theme-paper) :global(.bpos-card),
+.console:global(.theme-paper) :global(.bpos-band),
+.console:global(.theme-paper) :global(.bpos-stat) {
+  border-radius: 2px;
+  box-shadow: none;
+  transition: none;
+}
+
+.console:global(.theme-paper) :global(.bpos-tick b),
+.console:global(.theme-paper) :global(.bpos-band-kick) {
+  color: #d3c0a7;
+}
+
+.console:global(.theme-paper) :global(.bos-cta),
+.console:global(.theme-paper) :global(.bpos-btn:hover) {
+  background: #20201e;
+}
+
+.console:global(.theme-paper) :global(.bpos-btn-ghost:hover) {
+  color: #ffffff;
+}

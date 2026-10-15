@@ -4,6 +4,7 @@ import LandingFrame from '@/app/landing/landing-frame';
 import pages from '../brain-pages.module.css';
 import { SiteFooter, SiteHeader } from '@/app/landing/site-chrome';
 import { BrainPageHero } from '../page-hero';
+import { ContextImage, ProductImage } from '../product-image';
 import { BarList, ChartCard, ColumnChart, PairedColumnChart, RatioBar, StepsStrip, TimelineChart } from '../charts';
 import { Heading } from '../heading';
 import { ImpactCalculator } from './calculator';
@@ -35,7 +36,7 @@ export default function UseCasesPage() {
       <main id="main">
         <BrainPageHero hero={HERO}
           image={{ src: '/city-districts/logistics.webp', alt: 'A modern logistics district with warehouses, trucks, and rail in a thriving desert city.', caption: 'A WORLD IN MOTION / CITY CONCEPT' }}
-          sections={[{ href: '#before-after', label: 'Workflows' }, { href: '#adoption', label: 'Adoption' }, { href: '#roles', label: 'By role' }, { href: '#calculator', label: 'Impact calculator' }, { href: '#rollout', label: 'Rollout' }]}
+          sections={[{ href: '#product', label: 'Product view' }, { href: '#before-after', label: 'Workflows' }, { href: '#adoption', label: 'Adoption' }, { href: '#roles', label: 'By role' }, { href: '#calculator', label: 'Impact calculator' }, { href: '#rollout', label: 'Rollout' }]}
         />
 
         <section className="bp-section is-white" aria-label="The headline figures">
@@ -55,7 +56,22 @@ export default function UseCasesPage() {
           </div>
         </section>
 
-        <section id="before-after" className="bp-section is-mist" aria-labelledby="ba-title">
+        <section id="product" className="bp-section is-mist" aria-labelledby="product-title">
+          <div className="wrap bp-product-story">
+            <div className="bp-product-copy">
+              <Heading kicker="A LOOK INSIDE BRAIN OS" title={['The whole operation.', 'A clearer view.']} lede="Loads, invoices, and exceptions in one working view. Explore how Brain OS could bring the pieces of a logistics business together." id="product-title" />
+              <ol className="bp-image-notes">
+                <li><span>01</span><div><h3>See the day at a glance.</h3><p>An operating picture of the work in flight, from loads to billing.</p></div></li>
+                <li><span>02</span><div><h3>Keep the details in reach.</h3><p>Each load carries its lane, carrier, costs, and current status.</p></div></li>
+                <li><span>03</span><div><h3>Know what needs a look.</h3><p>Exceptions stay visible alongside the records that explain them.</p></div></li>
+              </ol>
+              <a className="bp-quiet-link" href="/brain-os">Explore Brain OS <ArrowUpRight size={14} /></a>
+            </div>
+            <ProductImage src="/product/brain-os-logistics.jpg" width={1006} height={632} label="OPERATIONS" alt="Illustrative Brain OS logistics dashboard: operating totals above a load book with lanes, carriers, revenue, costs, margins, and delivery status." />
+          </div>
+        </section>
+
+        <section id="before-after" className="bp-section is-white" aria-labelledby="ba-title">
           <div className="wrap">
             <Heading kicker={BEFORE_AFTER.kicker} title={BEFORE_AFTER.title} lede={BEFORE_AFTER.lede} id="ba-title" />
             <ul className="bp-ba">
@@ -233,7 +249,10 @@ export default function UseCasesPage() {
 
         <section id="fit" className="bp-section is-deep" aria-labelledby="fit-title">
           <div className="wrap">
-            <Heading kicker={FIT.kicker} title={FIT.title} lede={FIT.lede} id="fit-title" />
+            <div className="bp-context-heading">
+              <Heading kicker={FIT.kicker} title={FIT.title} lede={FIT.lede} id="fit-title" />
+              <ContextImage src="/city-districts/manufacturing-production.webp" alt="A modern manufacturing floor with production machinery, technicians, and material moving through the plant." caption="THE WORK BEHIND THE RECORDS" />
+            </div>
             <table className="bp-spec">
               <thead><tr><th scope="col">Industry</th><th scope="col">Where the answers live</th><th scope="col">Brain OS</th></tr></thead>
               <tbody>
