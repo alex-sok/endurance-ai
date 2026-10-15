@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { ArrowRight, ArrowUpRight, Database, FileText, GitBranch, Layers3, ListChecks, MessageSquare, Users } from 'lucide-react';
+import { ReviewVisual } from './home-visuals';
 
 // Product grounding: endurancelabs.ai/brain and endurancelabs.ai/brain-os.
 // Security copy describes design commitments, not unverified infrastructure guarantees.
@@ -69,6 +70,7 @@ export function BusinessArchitecture() {
           </div>
           <figcaption>A simplified view: connect sources, build context, prepare work.</figcaption>
         </figure>
+        <ReviewVisual />
       </div>
     </section>
   );

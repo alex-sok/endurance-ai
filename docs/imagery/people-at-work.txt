@@ -1,0 +1,14 @@
+Asset: public/landing/people-at-work.png
+Created: 2026-10-15
+Mode: built-in imagegen tool
+Use: Main landing page mission section. Label as an illustrative image.
+Source: /Users/alexsok/.codex/generated_images/01a122ad-373e-7c51-846d-ca57be878bcd/exec-ed152239-2b49-44a7-b72d-41242845a146.png
+
+Final generation prompt:
+Use case: photorealistic-natural.
+Asset type: supporting editorial image for Endurance's main landing page, in the section "More room for what people do best." The website pairs crisp black typography and warm stone backgrounds with a cinematic modern desert city.
+Primary request: show the skilled people behind the businesses that build our future, with a sense of expertise, cooperation and useful work.
+Scene: a contemporary industrial workshop at the edge of a sunlit desert city. Two experienced manufacturing technicians, one woman and one man, work together at a waist-high bench examining a precision metal turbine component and a simple engineering drawing. Their attention is on the work, naturally discussing a detail, not posing for the camera. Sensible charcoal work clothes, subtle sand-colored workwear, clear safety glasses. Their hands and tools must be anatomically and mechanically plausible.
+Background: a spacious well-kept production hall with warm concrete, brushed metal and amber-toned overhead structure. Through high windows we glimpse dry mountains and distant modern buildings. The environment feels credible, prosperous and human.
+Style: premium cinematic architectural/editorial photography, natural skin texture and materials, restrained warm golden afternoon light, crisp focus on both people and their work. Camera at eye level, medium-wide 35mm perspective.
+Composition: wide landscape, approximately 1536 by 1024. Both people and the workbench are within the central two thirds and middle half of the frame so a wide 21:9 website crop retains their heads, hands and work. Generous industrial context across the edges. No text overlay, no logos, no watermark, no legible writing, no fabricated UI, no blue color cast, no exaggerated orange grading, no neon, no holograms, no soft fade at edges.

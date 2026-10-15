@@ -5,6 +5,7 @@ import { BusinessArchitecture, SecurityArchitecture } from './architecture-secti
 import { HeroFilm } from './hero-film';
 import { SiteHeader, SiteFooter, callUrl } from './site-chrome';
 import { GraceChat } from '../artfield/grace-chat';
+import { MissionImage, ProductOverview } from './home-visuals';
 
 export default function Home() {
   return (
@@ -36,6 +37,7 @@ export default function Home() {
             </div>
             <BrainExperience />
           </div>
+          <ProductOverview />
           <div className="engine-footer wrap"><span>Sources connected</span><i /><span>People in control</span><i /><span>Work moving forward</span></div>
         </section>
         <BusinessArchitecture />
@@ -56,6 +58,7 @@ export default function Home() {
               <div className="mission-foot"><span>A better business.<br />A better working life.</span></div>
             </div>
             <DayStory />
+            <MissionImage />
           </div>
         </section>
         <SecurityArchitecture />
