@@ -52,8 +52,11 @@
 /* One film, with the approved narrow copy and lower actions. */
 .landing :global(.hero){position:relative;min-height:680px;isolation:isolate;color:#191917;background:#d2af8b}
 .landing :global(.hero-film){position:absolute;inset:0;z-index:0;overflow:hidden}
-.landing :global(.hero-film video),.landing :global(.hero-still){display:block;width:100%;height:100%;object-fit:cover}
-.landing :global(.hero-still){display:none}
+/* Keep both media layers in the same frame. Separate display rules avoid a
+   combined :is() selector giving the poster a higher production specificity. */
+.landing :global(.hero-film > *){position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.landing :global(.hero-film > video){display:block}
+.landing :global(.hero-film > .hero-still){display:none}
 .landing :global(.hero-content){position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;min-height:inherit;padding:32px 4.3% 36px;text-align:center}
 .landing :global(.hero h1){max-width:560px;font-size:34px;font-weight:600;line-height:1.12;letter-spacing:-.035em;text-wrap:balance}
 .landing :global(.hero h1 span){display:block}
@@ -321,7 +324,7 @@
 }
 @media(prefers-reduced-motion:reduce){
   .landing :global(*),.landing :global(*::before),.landing :global(*::after){animation:none!important;transition:none!important}
-  .landing :global(.hero-film video){display:none}.landing :global(.hero-still){display:block}
+  .landing :global(.hero-film > video){display:none}.landing :global(.hero-film > .hero-still){display:block}
 }
 .landing :global(.about-page){background:var(--background)}
 .landing :global(.about-hero){padding-top:78px;padding-bottom:0;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);column-gap:7%;align-items:stretch}
