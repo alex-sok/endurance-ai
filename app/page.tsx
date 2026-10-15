@@ -1,8 +1,8 @@
-import ArtfieldHome from "./artfield/home";
-import HomeFrame, { homepageMetadata } from "./artfield/home-frame";
+import Home from "./landing/home";
+import LandingFrame, { homepageMetadata } from "./landing/landing-frame";
 
 export const metadata = homepageMetadata;
 
-export default function Home() {
-  return <HomeFrame><ArtfieldHome /></HomeFrame>;
+export default function Page() {
+  return <LandingFrame><Home /></LandingFrame>;
 }

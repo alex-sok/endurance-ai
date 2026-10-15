@@ -2,10 +2,9 @@
 /* eslint-disable @next/next/no-img-element */
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import { SiteHeader, SiteFooter } from '../artfield/site-chrome';
-import HomeFrame from '../artfield/home-frame';
+import { SiteHeader, SiteFooter } from '../landing/site-chrome';
+import LandingFrame from '../landing/landing-frame';
 import { CALENDLY_URL as callUrl, CONTACT_EMAIL } from '@/lib/conversation-flows';
-import './about.css';
 
 const siteUrl = 'https://endurancelabs.ai';
 const companyUrl = 'https://endurancelabs.ai';
@@ -71,8 +70,8 @@ const structuredData = {
 };
 
 export default function AboutPage() {
-  return <HomeFrame>
-    <SiteHeader current="about" />
+  return <LandingFrame>
+    <SiteHeader about />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
     <main id="main" className="about-page">
       <section className="about-hero wrap" aria-labelledby="about-title">
@@ -82,7 +81,7 @@ export default function AboutPage() {
           <p className="about-intro">A business knows more than any one person can keep in mind. We build Brain OS to make that knowledge easier to find and use. It connects to the ERP or system of record you already run, and gives people more time for the work that needs their judgment.</p>
           <a className="about-text-link" href="#team">Meet the people behind the work ↓</a>
         </div>
-        <figure className="about-hero-image"><img src="/artfield/assets/hopeful-atelier-refined.png" alt="An illustrated garden workspace, with people collaborating in a sunlit glass pavilion" width="1660" height="948" fetchPriority="high" /><figcaption>A better business. A better working life.</figcaption></figure>
+        <figure className="about-hero-image"><img src="/modern-city.png" alt="A concept of a modern city with industry, renewable energy, and green neighborhoods" width="1672" height="941" fetchPriority="high" /><figcaption>A better business. A better working life.</figcaption></figure>
         <dl className="about-at-a-glance"><div><dt>Founded</dt><dd>2025</dd></div><div><dt>Based in</dt><dd>San Francisco</dd></div><div><dt>Built around</dt><dd>People’s time</dd></div></dl>
       </section>
       <div className="about-sections wrap">
@@ -126,7 +125,7 @@ export default function AboutPage() {
             <div className="about-origin"><h3>Why we started</h3><p>Founded in 2025, Endurance works on a practical question: how much of a working day could people reclaim if their tools helped them find and use what the business already knows? We pursue that question through research, engineering, and close work with the people who use the systems.</p><a className="about-text-link" href={linkedIn}>Our company story on LinkedIn ↗</a></div>
             <div className="about-team-list">{people.map(person => <article key={person.name}><div className="about-person-heading"><h3>{person.name}</h3><span>{person.role}</span></div><p>{person.bio}</p>{person.social && <a className="about-text-link" href={person.social}>Connect with Alex on LinkedIn ↗</a>}</article>)}</div>
             <div className="about-origin about-values"><h3>How we work as a team</h3><p>Our team brings together engineering, product, AI strategy, finance, and client partnerships. We keep learning from the work, take responsibility for helping, and see a project through to daily use.</p><a className="about-text-link" href={`${companyUrl}/values`}>Read our values ↗</a></div>
-            <p className="about-source-note">Backgrounds and roles: <a href={`${companyUrl}/#team`}>Endurance’s published team profiles</a>.</p>
+            <p className="about-source-note">Backgrounds and roles: <a href="#team">Endurance’s published team profiles</a>.</p>
           </div>
         </section>
         <section id="process" className="about-section" aria-labelledby="process-title">
@@ -148,6 +147,6 @@ export default function AboutPage() {
         </section>
       </div>
     </main>
-    <SiteFooter current="about" />
-  </HomeFrame>;
+    <SiteFooter about />
+  </LandingFrame>;
 }
