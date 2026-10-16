@@ -1,0 +1,35 @@
+Homepage Brain OS product concepts — 15 October 2026
+
+These are responsive HTML/CSS/SVG mockups, not captured screenshots from Nova
+or a live customer environment. All chart values, customer labels, records,
+conversations, drafts, and operational totals inside the mockup are synthetic.
+The mockup has no backend, sends no messages, and makes no operational changes.
+
+Workflow evidence already documented in this repository:
+- app/brain-os/use-cases/content.ts: BEFORE_AFTER (load lookup, order drafts,
+  carrier history, morning unbilled-load digest), ROLE_TABS (billing, leadership,
+  questions in chat, quiet customers), REVENUE (lane history).
+- app/brain-os/technical/content.ts: JOBS (scheduled operational and leadership
+  digests), TOOLS / RUNS (systems of record, Teams and Slack, source-backed reads).
+These describe the reference logistics deployment in September 2026. This
+change does not assert a new audit of its current production state.
+
+The separate “Part of the working day” block uses existing published figures:
+- 35 people who asked in the seven days to 24 September 2026: ADOPTION.people.
+- 94 orders created 21–25 September 2026, closing at 11:09 Eastern on Friday;
+  9 later voided: ACTIONS.chart.
+- 153 operating rules kept from 24 July, counted 21 September 2026: HEADLINE.
+These are labeled as one deployment, dated, and linked to /brain-os/use-cases.
+
+Mockup data consistency:
+- Billing example: latest sample week 126 delivered, 108 billed, 18 unbilled.
+  12 need proof of delivery and 6 need invoice review; 12/18 = two-thirds.
+- Delivery example: latest sample week 1,000 deliveries, 960 on time, 40 late.
+  26 appointment delays + 10 transit delays + 4 other = 40; 26/40 = 65%.
+  The 8-week on-time series ends at 96% and starts at 92% (+4 percentage points).
+- Customer example: 94, 108, and 126 days since last shipment. Prior 90-day
+  volume 24 + 17 + 12 = 53 loads; no shipments in the latest 90 days.
+
+Visual direction: warm white, charcoal, muted olive; precise typography and
+vector graphs. No fades, gradients, or autoplay. Tabs, period switches, source
+tables, and example draft previews are interactive and keyboard accessible.

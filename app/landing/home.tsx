@@ -1,11 +1,12 @@
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
-import { BrainExperience, DayStory, WorldSelect } from './brain-experience';
+import { DayStory, WorldSelect } from './brain-experience';
 import { industries } from './industries';
 import { BusinessArchitecture, SecurityArchitecture } from './architecture-sections';
 import { HeroFilm } from './hero-film';
 import { SiteHeader, SiteFooter, callUrl } from './site-chrome';
 import { GraceChat } from '../artfield/grace-chat';
-import { MissionImage, ProductOverview } from './home-visuals';
+import { MissionImage, UsageEvidence } from './home-visuals';
+import { ProductShowcase } from './product-showcase';
 
 export default function Home() {
   return (
@@ -32,12 +33,12 @@ export default function Home() {
             <div className="brain-copy">
               <p className="eyebrow">01 / BRAIN OS AT WORK</p>
               <h2 id="brain-title">Your business knows.<br />Brain OS acts.</h2>
-              <p>Connect your knowledge, systems, and routines. Find the answer. Move the work. Bring people in where their judgment matters.</p>
-              <a className="text-link" href="#how-it-works">See how it comes together <ArrowDown size={15} /></a>
+              <p>Know what’s moving. See what’s changing. Ask why. Brain OS brings your records, conversations, and operating knowledge together—so the next step is clearer.</p>
+              <a className="text-link" href="#product">Explore Brain OS at work <ArrowDown size={15} /></a>
             </div>
-            <BrainExperience />
+            <UsageEvidence />
           </div>
-          <ProductOverview />
+          <ProductShowcase />
           <div className="engine-footer wrap"><span>Sources connected</span><i /><span>People in control</span><i /><span>Work moving forward</span></div>
         </section>
         <BusinessArchitecture />
