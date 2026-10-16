@@ -1,22 +1,6 @@
 import Image from 'next/image';
-import { ArrowUpRight, Expand } from 'lucide-react';
-
-function ProductScreen({ src, alt, label, width, height }: {
-  src: string;
-  alt: string;
-  label: string;
-  width: number;
-  height: number;
-}) {
-  return <figure className="home-product-figure">
-    <div className="home-product-label"><span>BRAIN OS / {label}</span><span>ILLUSTRATIVE SCREEN</span></div>
-    <a className="home-product-image" href={src} target="_blank" rel="noreferrer" aria-label={`View ${label.toLowerCase()} image at full size (opens in a new tab)`}>
-      <Image src={src} alt={alt} width={width} height={height} unoptimized />
-      <span className="home-product-expand"><Expand size={13} aria-hidden="true" /> View full size</span>
-    </a>
-    <figcaption>Product demo with sample data. Figures and connections shown are illustrative.</figcaption>
-  </figure>;
-}
+import { ArrowUpRight } from 'lucide-react';
+import { RateVarianceMockup } from './rate-variance-mockup';
 
 export function UsageEvidence() {
   return <aside className="home-usage" aria-labelledby="home-usage-title">
@@ -37,7 +21,7 @@ export function ReviewVisual() {
       <p>In this sample invoice review, the agreed rate, supporting records, and proposed amount sit side by side. The context stays close to the work.</p>
       <a className="text-link" href="/brain-os/technical#product-review">See how it works <ArrowUpRight size={15} aria-hidden="true" /></a>
     </div>
-    <ProductScreen src="/product/brain-os-invoice-review.jpg" width={968} height={476} label="INVOICE REVIEW" alt="Brain OS sample invoice review comparing an invoice, rate confirmation, supporting records, and contract terms with proposed approved and disputed amounts." />
+    <RateVarianceMockup />
   </div>;
 }
 

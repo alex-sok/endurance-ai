@@ -4,7 +4,8 @@ import LandingFrame from '@/app/landing/landing-frame';
 import pages from '../brain-pages.module.css';
 import { SiteFooter, SiteHeader } from '@/app/landing/site-chrome';
 import { BrainPageHero } from '../page-hero';
-import { ContextImage, ProductImage } from '../product-image';
+import { ContextImage } from '../product-image';
+import { RateVarianceMockup } from '@/app/landing/rate-variance-mockup';
 import { BarList, CadenceChart, ChartCard, IntegrationMap } from '../charts';
 import { Heading } from '../heading';
 import { Architecture, DeployDiagram, PageAnatomy, TierMatrix, WritePath } from './diagrams';
@@ -115,7 +116,7 @@ export default function TechnicalPage() {
                 <p className="bp-prose">This sample carrier audit screen puts the invoice, agreed rate, supporting records, and proposed amount side by side.</p>
                 <p className="bp-source">An illustrative product view. The integration table above describes what is connected at the reference deployment.</p>
               </div>
-              <ProductImage src="/product/brain-os-invoice-review.jpg" width={968} height={476} label="INVOICE REVIEW" alt="Illustrative invoice review comparing a carrier invoice, rate confirmation, accessorials, supporting evidence, and contract terms with proposed approved and disputed amounts." />
+              <RateVarianceMockup />
             </div>
           </div>
         </section>
