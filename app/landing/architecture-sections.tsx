@@ -30,7 +30,7 @@ export function BusinessArchitecture() {
         </div>
         <figure className="business-diagram" aria-label="Business systems, knowledge, and processes connect to Brain OS, which prepares source-linked answers and work for people.">
           <div className="diagram-column">
-            <h3 className="diagram-stage-label">Connect what you know</h3>
+            <h3 className="diagram-stage-label"><span>01</span> Connect what you know</h3>
             <div className="diagram-node-list">
               {sources.map(({ icon: Icon, title, detail }) => (
                 <div className="diagram-node" key={title}>
@@ -43,7 +43,7 @@ export function BusinessArchitecture() {
           </div>
           <div className="diagram-connector" aria-hidden="true"><span /><ArrowRight size={19} /></div>
           <div className="diagram-core-column">
-            <h3 className="diagram-stage-label">Build shared context</h3>
+            <h3 className="diagram-stage-label"><span>02</span> Build shared context</h3>
             <div className="diagram-core">
               <div className="diagram-core-heading"><Layers3 size={26} strokeWidth={1.4} aria-hidden="true" /><span>Brain OS</span></div>
               <p>The knowledge behind<br />the next step.</p>
@@ -57,7 +57,7 @@ export function BusinessArchitecture() {
           </div>
           <div className="diagram-connector" aria-hidden="true"><span /><ArrowRight size={19} /></div>
           <div className="diagram-column">
-            <h3 className="diagram-stage-label">Put it to work</h3>
+            <h3 className="diagram-stage-label"><span>03</span> Put it to work</h3>
             <div className="diagram-node-list">
               {outcomes.map(({ icon: Icon, title, detail }) => (
                 <div className="diagram-node outcome-node" key={title}>

@@ -14,19 +14,24 @@ export default function Home() {
       <SiteHeader />
       <main id="main">
         <section className="hero" aria-labelledby="hero-title">
-          <HeroFilm />
-          <div className="hero-content">
-            <h1 id="hero-title"><span>A company brain for the</span> <span>businesses building our future.</span></h1>
-            <p className="hero-description">Brain OS organizes your company’s knowledge, learns from every task, and helps everyone do more.</p>
-            <div className="hero-actions">
-              <a className="primary-button" href="#brain">Meet Brain OS</a>
-              <a className="secondary-button" href="#work">Built for your world <ArrowDown size={14} /></a>
+          <div className="hero-content wrap">
+            <div className="hero-heading">
+              <p className="eyebrow"><span className="status-dot" /> ENDURANCE / BRAIN OS</p>
+              <h1 id="hero-title"><span>A company brain.</span> <span>For the businesses</span> <span>building our future.</span></h1>
+            </div>
+            <div className="hero-intro">
+              <p className="hero-description">Brain OS organizes your company’s knowledge, learns from every task, and helps everyone do more.</p>
+              <div className="hero-actions">
+                <a className="primary-button" href="#brain">Meet Brain OS <ArrowUpRight size={16} /></a>
+                <a className="hero-world-link" href="#work">Built for your world <ArrowDown size={14} /></a>
+              </div>
             </div>
           </div>
+          <div className="hero-media wrap"><HeroFilm /></div>
+          <div className="hero-caption wrap"><span>THE WORLD WE’RE BUILDING / CITY CONCEPT</span><a href="#brain">SCROLL TO EXPLORE <ArrowDown size={13} /></a></div>
         </section>
         <div className="markets-strip" aria-label="Industries we serve">
-          <strong>Built for:</strong>
-          <div>{industries.map(industry => <a key={industry.id} href="#work">{industry.label}</a>)}</div>
+          <div className="markets-inner wrap"><strong>Built for the real world</strong><div>{industries.map(industry => <a key={industry.id} href="#work">{industry.label}</a>)}</div></div>
         </div>
         <section id="brain" className="brain-section" aria-labelledby="brain-title">
           <div className="brain-layout wrap">
@@ -65,11 +70,12 @@ export default function Home() {
         <SecurityArchitecture />
         <section id="contact" className="contact" aria-labelledby="contact-title">
           <div className="contact-content wrap">
-            <p className="eyebrow">LET’S BUILD WHAT’S NEXT</p>
-            <h2 id="contact-title">Your knowledge.<br />More possibility.</h2>
-            <p>Tell us where the work gets stuck.<br />Let’s make more room for what comes next.</p>
-            <a className="primary-button" href={callUrl} target="_blank" rel="noreferrer"><span>Tell us about your work</span><ArrowUpRight size={17} /></a>
-            <GraceChat />
+            <div className="contact-heading"><p className="eyebrow">LET’S BUILD WHAT’S NEXT</p><h2 id="contact-title">Your knowledge.<br />More possibility.</h2></div>
+            <div className="contact-actions">
+              <p>Tell us where the work gets stuck.<br />Let’s make more room for what comes next.</p>
+              <a className="primary-button" href={callUrl} target="_blank" rel="noreferrer"><span>Tell us about your work</span><ArrowUpRight size={17} /></a>
+              <GraceChat />
+            </div>
           </div>
         </section>
       </main>

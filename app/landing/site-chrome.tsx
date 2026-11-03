@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { ArrowUpRight, Menu } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { MobileNavigation } from './mobile-navigation';
 
 export const callUrl = 'https://calendar.notion.so/meet/alexsok/endurance-intro';
 
@@ -23,10 +24,10 @@ export function SiteHeader({ about = false, current = about ? 'about' : 'home' }
     <header id="top" className="site-header">
       <div className="header-inner wrap">
         <a className="wordmark" href={current === 'home' ? '#top' : '/'} aria-label="Endurance AI Labs home"><img src="/endurance-logo-white.png" alt="Endurance" width="1370" height="238" /></a>
-        <nav aria-label="Main navigation">
+        <nav className="header-nav" aria-label="Main navigation">
           {links.map(link => <a key={link.label} href={link.href} aria-current={link.href === pagePaths[current] ? 'page' : undefined}>{link.label}</a>)}
         </nav>
-        <details className="mobile-menu"><summary aria-label="Navigation menu"><Menu aria-hidden="true" /></summary><div className="mobile-menu-links">{links.map(link => <a key={link.label} href={link.href} aria-current={link.href === pagePaths[current] ? 'page' : undefined}>{link.label}</a>)}</div></details>
+        <MobileNavigation links={links} currentPath={pagePaths[current]} />
         <a className="nav-cta" href={callUrl} target="_blank" rel="noreferrer">Let’s talk <ArrowUpRight size={15} /></a>
       </div>
     </header>
