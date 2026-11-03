@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { rateLimit, getIP } from "@/lib/rate-limit";
 import { createClient } from "@/lib/supabase/server";
-import { computeAuthToken } from "@/app/api/portal/[slug]/auth/route";
+import { computeAuthToken } from "@/lib/portal-auth";
 import { embedText } from "@/lib/embed";
 
 export const dynamic = "force-dynamic";

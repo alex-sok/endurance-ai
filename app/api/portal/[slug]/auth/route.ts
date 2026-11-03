@@ -2,15 +2,9 @@ import { createHmac } from "crypto";
 import bcrypt from "bcryptjs";
 import { createClient } from "@/lib/supabase/server";
 import { rateLimit, getIP } from "@/lib/rate-limit";
+import { computeAuthToken } from "@/lib/portal-auth";
 
 export const dynamic = "force-dynamic";
-
-// Compute the HMAC token stored in the auth cookie.
-// Includes the password_hash so changing the password invalidates all sessions.
-export function computeAuthToken(slug: string, passwordHash: string): string {
-  const secret = process.env.PORTAL_SESSION_SECRET ?? "dev-secret-change-in-prod";
-  return createHmac("sha256", secret).update(`${slug}:${passwordHash}`).digest("hex");
-}
 
 export async function POST(
   request: Request,

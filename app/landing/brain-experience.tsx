@@ -32,11 +32,20 @@ function Hours() { return <><div className="hour h9">09:00</div><div className="
 
 export function WorldSelect() {
   const [selected, setSelected] = useState<string>('manufacturing');
+  const [orientation, setOrientation] = useState<'horizontal' | 'vertical'>('horizontal');
   const [displayed, setDisplayed] = useState<string>('manufacturing');
   const [entered, setEntered] = useState(false);
   const [loadedDetails, setLoadedDetails] = useState<string[]>([]);
   const imageViewport = useRef<HTMLDivElement>(null);
   const displayedWorld = industries.find(world => world.id === displayed) ?? industries[0];
+
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 901px)');
+    const syncOrientation = () => setOrientation(desktop.matches ? 'vertical' : 'horizontal');
+    syncOrientation();
+    desktop.addEventListener('change', syncOrientation);
+    return () => desktop.removeEventListener('change', syncOrientation);
+  }, []);
 
   useEffect(() => {
     const viewport = imageViewport.current;
@@ -76,10 +85,10 @@ export function WorldSelect() {
     if (loadedDetails.includes(selected)) setDisplayed(selected);
   }, [selected, loadedDetails]);
 
-  return <Tabs value={selected} onValueChange={value => {
+  return <Tabs orientation={orientation} value={selected} onValueChange={value => {
     if (typeof value === 'string') setSelected(value);
   }} className="world-tabs wrap">
-    <TabsList className="world-nav" aria-label="Explore industries">{industries.map(world => <TabsTrigger key={world.id} value={world.id}>{world.label}</TabsTrigger>)}</TabsList>
+    <TabsList className="world-nav" aria-label="Explore industries">{industries.map((world, index) => <TabsTrigger key={world.id} value={world.id}><span className="world-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><span>{world.label}</span><ArrowUpRight size={18} aria-hidden="true" /></TabsTrigger>)}</TabsList>
     <div className="world-stage">
       <div ref={imageViewport} className="world-image" data-entered={entered || undefined} aria-busy={selected !== displayed || !loadedDetails.includes(displayed)}>
         {industries.map(world => <img key={world.id} className="world-art" src={world.imageSrc} data-industry={world.id} data-active={world.id === displayed && loadedDetails.includes(world.id) || undefined} alt={world.id === displayed ? `City concept, detail: ${world.imageLabel.toLowerCase()}` : ''} aria-hidden={world.id !== displayed} width="1536" height="1024" loading="lazy" decoding="async" />)}

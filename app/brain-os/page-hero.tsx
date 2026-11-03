@@ -14,7 +14,7 @@ export function BrainPageHero({ hero, image, sections }: {
       <div className="wrap bp-hero-grid">
         <div className="bp-hero-copy">
           <p className="eyebrow">{hero.eyebrow}</p>
-          <h1 id="hero-title">{hero.h1[0]}<br />{hero.h1[1]}</h1>
+          <h1 id="hero-title"><span>{hero.h1[0]}</span><br /><span>{hero.h1[1]}</span></h1>
           <p className="bp-hero-lede">{hero.lede}</p>
           <div className="bp-hero-actions">
             <a className="primary-button" href={hero.primary.href} target="_blank" rel="noreferrer">{hero.primary.label}<ArrowUpRight size={16} /></a>

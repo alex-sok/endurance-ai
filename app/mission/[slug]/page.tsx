@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { PortalShell } from "@/components/portal/PortalShell";
 import { PortalPasswordGate } from "@/components/portal/PortalPasswordGate";
-import { computeAuthToken } from "@/app/api/portal/[slug]/auth/route";
+import { computeAuthToken } from "@/lib/portal-auth";
 import type { Portal, PortalSection } from "@/types/portal";
 
 export const dynamic = "force-dynamic";
