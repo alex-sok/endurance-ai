@@ -84,13 +84,13 @@ export default function UseCasesPage() {
                     <p className="bp-ba-receipt"><b>{row.receipt.figure}</b> {row.receipt.label}</p>
                   </div>
                   <div className="bp-before">
-                    <p className="bp-ba-tag"><i aria-hidden="true" />THE USUAL</p>
+                    <p className="bp-ba-tag">THE USUAL</p>
                     <p>{row.before}</p>
                     <StepsStrip steps={row.beforeSteps} unit="steps" />
                     <p className="bp-ba-meta">{row.beforeMeta.map(m => <span key={m}>{m}</span>)}</p>
                   </div>
                   <div className="bp-after">
-                    <p className="bp-ba-tag"><i aria-hidden="true" />WITH BRAIN OS</p>
+                    <p className="bp-ba-tag">WITH BRAIN OS</p>
                     <p>{row.after}</p>
                     <StepsStrip steps={row.afterSteps} unit="asks" />
                     <p className="bp-ba-meta">{row.afterMeta.map(m => <span key={m}>{m}</span>)}</p>
