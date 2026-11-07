@@ -4,9 +4,9 @@ import { MobileNavigation } from './mobile-navigation';
 
 export const callUrl = 'https://calendar.notion.so/meet/alexsok/endurance-intro';
 
-type SitePage = 'home' | 'about' | 'use-cases' | 'technical';
+type SitePage = 'home' | 'about' | 'use-cases' | 'technical' | 'values';
 type ChromeProps = { about?: boolean; current?: SitePage };
-const pagePaths = { home: '/', about: '/about', 'use-cases': '/brain-os/use-cases', technical: '/brain-os/technical' };
+const pagePaths = { home: '/', about: '/about', 'use-cases': '/brain-os/use-cases', technical: '/brain-os/technical', values: '/values' };
 
 export function SiteHeader({ about = false, current = about ? 'about' : 'home' }: ChromeProps) {
   const home = current === 'home' ? '' : '/';

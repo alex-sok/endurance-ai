@@ -26,8 +26,7 @@ export const metadata: Metadata = {
 const people = [
   { name: 'Alex Sok', role: 'Co-founder & CEO', bio: 'Alex is a three-time founder and angel investor with AI experience at Tetration and Cisco. He also held product leadership roles at Prospera.', social: alexLinkedIn },
   { name: 'Nick Maxwell', role: 'Co-founder & CTO', bio: 'Nick studied computer science at Cornell and is a three-time founder. His background includes an exit of Tala to Intuit.' },
-  { name: 'Ramzy Azar', role: 'Chief AI Strategy & Ops', bio: 'Ramzy brings a UC Berkeley background and experience in finance and investment. He leads operations, finance, and AI strategy.' },
-  { name: 'Brennan Burks', role: 'Chief GTM Engineer', bio: 'Brennan brings an Indiana University background and experience in B2B technology and manufacturing. He leads marketing, go-to-market work, and client partnerships.' },
+  { name: 'Ramzy Azar', role: 'Co-founder & COO', bio: 'Ramzy brings a UC Berkeley background and experience in finance and investment. He leads operations, finance, and AI strategy.' },
 ];
 
 const faqs = [
@@ -45,7 +44,7 @@ const facts: { label: string; value: ReactNode }[] = [
   { label: 'Company Name', value: 'Endurance AI Labs' },
   { label: 'Type', value: 'Privately held AI research and engineering company' },
   { label: 'Founded', value: <a href={linkedIn}>2025 · company LinkedIn profile</a> },
-  { label: 'Founder', value: 'Alex Sok and Nick Maxwell' },
+  { label: 'Founders', value: 'Alex Sok, Nick Maxwell, and Ramzy Azar' },
   { label: 'Headquarters', value: 'San Francisco, California, United States' },
   { label: 'Website', value: <a href={companyUrl}>endurancelabs.ai</a> },
   { label: 'Core Offering', value: 'Brain OS: company knowledge and operational workflows, connected on any ERP or system of record' },
@@ -63,7 +62,7 @@ const facts: { label: string; value: ReactNode }[] = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'Organization', '@id': `${companyUrl}/#organization`, name: 'Endurance AI Labs', url: companyUrl, foundingDate: '2025', description: 'AI research and engineering company that connects knowledge and automates work for operations teams in construction, manufacturing, logistics and energy.', email: CONTACT_EMAIL, founder: [{ '@type': 'Person', name: 'Alex Sok', sameAs: alexLinkedIn }, { '@type': 'Person', name: 'Nick Maxwell' }], address: { '@type': 'PostalAddress', addressLocality: 'San Francisco', addressRegion: 'CA', addressCountry: 'US' }, sameAs: [linkedIn] },
+    { '@type': 'Organization', '@id': `${companyUrl}/#organization`, name: 'Endurance AI Labs', url: companyUrl, foundingDate: '2025', description: 'AI research and engineering company that connects knowledge and automates work for operations teams in construction, manufacturing, logistics and energy.', email: CONTACT_EMAIL, founder: [{ '@type': 'Person', name: 'Alex Sok', sameAs: alexLinkedIn }, { '@type': 'Person', name: 'Nick Maxwell' }, { '@type': 'Person', name: 'Ramzy Azar' }], address: { '@type': 'PostalAddress', addressLocality: 'San Francisco', addressRegion: 'CA', addressCountry: 'US' }, sameAs: [linkedIn] },
     { '@type': 'AboutPage', '@id': `${siteUrl}/about#page`, url: `${siteUrl}/about`, name: 'About us | Endurance AI Labs', description, about: { '@id': `${companyUrl}/#organization` } },
     { '@type': 'FAQPage', '@id': `${siteUrl}/about#faq`, mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) },
   ],

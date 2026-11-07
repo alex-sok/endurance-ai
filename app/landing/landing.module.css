@@ -510,6 +510,19 @@
 @media(max-width:900px){.landing :global(.about-hero){column-gap:5%;grid-template-columns:1.5fr 1fr}.landing :global(.about-hero h1){font-size:2.4rem}.landing :global(.about-section){gap:6%;grid-template-columns:1fr 1.5fr}}
 @media(max-width:760px){.landing :global(.about-hero){padding-top:42px;grid-template-columns:1fr;gap:0}.landing :global(.about-hero h1){font-size:clamp(2rem,6.8vw,2.875rem)}.landing :global(.about-hero-copy){padding-bottom:30px}.landing :global(.about-intro){font-size:1rem;margin-top:22px}.landing :global(.about-hero-image){min-height:300px}.landing :global(.about-hero-image img){object-position:70% 60%}.landing :global(.about-at-a-glance){margin-top:28px;gap:14px;padding-block:22px}.landing :global(.about-at-a-glance dd){font-size:1rem}.landing :global(.about-section){grid-template-columns:1fr;gap:30px;padding-block:48px}.landing :global(.about-section-heading h2){max-width:none;font-size:2rem;margin-top:12px}}
 @media(max-width:360px){.landing :global(.about-at-a-glance){grid-template-columns:1fr;gap:14px}.landing :global(.about-at-a-glance>div){display:flex;align-items:baseline;justify-content:space-between;gap:12px}.landing :global(.about-at-a-glance dd){margin:0}}
+/* Values page: the About page's frame, with the homepage hero's two-tone headline. */
+.landing :global(.values-hero){grid-template-columns:minmax(0,1fr)}
+.landing :global(.values-hero h1){max-width:none;font-size:clamp(2.75rem,4.8vw,4.375rem);font-weight:550;line-height:1.04;letter-spacing:-.055em}
+.landing :global(.values-hero h1 span){display:block}
+.landing :global(.values-hero h1 span:last-child){color:var(--warm-accent)}
+.landing :global(.values-index){grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:8px;padding:26px 0;border-block:1px solid var(--border)}
+.landing :global(.values-index a){display:flex;flex-direction:column;gap:4px;min-width:0}
+.landing :global(.values-index span){font-size:.875rem;line-height:1.6;color:var(--muted-foreground);font-variant-numeric:tabular-nums}
+.landing :global(.values-index strong){font-size:1.125rem;font-weight:550;line-height:1.5}
+.landing :global(.values-index a:hover strong){text-decoration:underline;text-underline-offset:5px}
+.landing :global(.values-practice){margin-top:32px}
+.landing :global(.values-practice .about-segments){margin-top:14px;gap:12px}
+@media(max-width:760px){.landing :global(.values-hero h1){font-size:clamp(2.5rem,10vw,3.25rem)}.landing :global(.values-index){grid-template-columns:1fr;gap:18px;margin-top:0;padding-block:22px}}
 @media(max-width:760px){.landing :global(.about-heading-note){max-width:none;margin-top:18px}.landing :global(.about-differentiators article){grid-template-columns:24px minmax(0,1fr);gap:12px}.landing :global(.about-person-heading){align-items:flex-start;flex-direction:column;gap:4px}.landing :global(.about-person-heading>span){text-align:left}.landing :global(.about-origin){padding:22px 20px}.landing :global(.about-facts-table th){width:34%}.landing :global(.about-facts-table th),.landing :global(.about-facts-table td){padding:14px 12px}.landing :global(.about-faq-section){padding-bottom:60px}}
 .landing{--ring:#20201e;--input:var(--border)}
 .landing :global(main section[id]){scroll-margin-top:32px}
