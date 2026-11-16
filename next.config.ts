@@ -16,15 +16,15 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      // Next.js requires unsafe-inline for its runtime scripts; Apollo tracker CDN
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.apollo.io",
+      // Next.js requires unsafe-inline for its runtime scripts; Apollo tracker CDN; LinkedIn Insight Tag
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.apollo.io https://snap.licdn.com",
       // Inline styles used by Tailwind + Google Fonts
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
-      // OpenStreetMap raster tiles for the Margins demo's live shipment map (/margins)
-      "img-src 'self' data: blob: https://*.tile.openstreetmap.org",
-      // Allow calls to our own API, xAI (streaming), OpenAI (embeddings), and Apollo tracking
-      "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io https://aplo-evnt.com",
+      // OpenStreetMap raster tiles for the Margins demo's live shipment map (/margins); LinkedIn Insight pixel
+      "img-src 'self' data: blob: https://*.tile.openstreetmap.org https://px.ads.linkedin.com https://www.linkedin.com",
+      // Allow calls to our own API, xAI (streaming), OpenAI (embeddings), Apollo tracking, and LinkedIn Insight
+      "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io https://aplo-evnt.com https://px.ads.linkedin.com https://www.linkedin.com",
       // Draco/GLTF decoders (proxied /logistics/new WebGL hero) run in blob-URL workers
       "worker-src 'self' blob:",
       // No iframes anywhere

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import Script from "next/script";
 import { ApolloTracker } from "@/components/ApolloTracker";
 import "./globals.css";
 
@@ -119,6 +120,32 @@ export default function RootLayout({
     <html lang="en" className={`${plexSans.variable} ${plexMono.variable} ${archivo.variable} h-full`}>
       <body className="h-full antialiased">
         <ApolloTracker />
+        <Script id="linkedin-insight-init" strategy="afterInteractive">
+          {`
+            window._linkedin_partner_id = '10431876';
+            window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+            window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+            if (!window.lintrk) {
+              window.lintrk = function (a, b) { window.lintrk.q.push([a, b]); };
+              window.lintrk.q = [];
+            }
+          `}
+        </Script>
+        <Script
+          id="linkedin-insight"
+          strategy="afterInteractive"
+          src="https://snap.licdn.com/li.lms-analytics/insight.min.js"
+        />
+        <noscript>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            alt=""
+            src="https://px.ads.linkedin.com/collect/?pid=10431876&fmt=gif"
+          />
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
