@@ -33,7 +33,7 @@ export const conversations: Record<QuestionId, {
   billing: {
     label: 'Find unbilled work',
     question: 'What’s delivered but not billed?',
-    answer: '18 delivered loads are still unbilled. 12 are missing proof of delivery, and 6 need an invoice review. Start with the missing documents—the carrier contacts are already on the load records.',
+    answer: '18 delivered loads are still unbilled. 12 are missing proof of delivery, and 6 need an invoice review. Start with the missing documents. The carrier contacts are already on the load records.',
     chartTitle: 'What is holding up billing',
     unit: 'loads',
     bars: [{ label: 'Missing proof of delivery', value: 12 }, { label: 'Invoice review', value: 6 }],

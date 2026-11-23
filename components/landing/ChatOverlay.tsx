@@ -41,7 +41,7 @@ export function ChatOverlay({ open, onClose, getSessionId }: Props) {
             className="flex-shrink-0 flex items-center justify-between px-6 h-14"
             style={{ borderBottom: "1px solid rgba(28,27,22,0.12)" }}
           >
-            <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="h-3.5 w-auto" />
+            <img src="/logo-endurance.svg" alt="endurance" className="h-3.5 w-auto" />
             <button
               type="button"
               onClick={onClose}

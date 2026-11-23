@@ -1,11 +1,11 @@
-/* Section 03 — the multiplayer development platform. Copy at full measure,
+/* Section 03: the multiplayer development platform. Copy at full measure,
    then the live session spanning the band as tiles. */
 
 const SESSION = [
   {
     name: "Models",
     value: "Pooled",
-    sub: "Claude, Gemini, Grok — every seat, one harness.",
+    sub: "Claude, Gemini, Grok. Every seat, one harness.",
   },
   {
     name: "Claude Code",
@@ -33,10 +33,10 @@ export function LandingIDE() {
           &ldquo;Every build waits on a vendor, and nobody inside can see it
           happening.&rdquo;
         </p>
-        <p className="lp-solve">How Endurance solves it —</p>
+        <p className="lp-solve">How endurance solves it</p>
         <h2 id="work-ide">Where your whole company builds together.</h2>
         <p className="lp-lead">
-          Every model you use — Claude, Gemini, Grok, whatever ships next —
+          Every model you use, including Claude, Gemini, Grok, and whatever ships next,
           and every tool you run, built into one harness. Your whole
           organization, building together in real time.
         </p>

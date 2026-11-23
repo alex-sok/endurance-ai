@@ -3565,7 +3565,8 @@ ol.lp-team {
 .bos-back { font-size: 13.5px; color: var(--lp-muted); text-decoration: none; }
 .bos-back:hover { color: var(--lp-ink); }
 .bos-title { display: inline-flex; align-items: center; gap: 10px; }
-.bos-title b { font-family: var(--lp-display); font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+.bos-title b,
+.bos-title h1 { font-family: var(--lp-display); font-weight: 700; font-size: 17px; letter-spacing: -0.02em; margin: 0; line-height: 1; }
 .bos-sub {
   font-family: var(--lp-mono); font-size: 9.5px; letter-spacing: 0.12em;
   text-transform: uppercase; color: var(--lp-muted);
@@ -4360,7 +4361,8 @@ ol.lp-team {
 .theme-paper .bpos-brand b {
   font-family: var(--lp-display); font-weight: 800; letter-spacing: -0.02em;
 }
-.bos-title b { font-weight: 800; }
+.bos-title b,
+.bos-title h1 { font-weight: 800; }
 
 /* the blue, in small doses */
 .theme-paper .bpos-mod[aria-current="page"] {

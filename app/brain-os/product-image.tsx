@@ -11,9 +11,9 @@ export function ProductImage({ src, alt, width, height, label }: {
   label: string;
 }) {
   return <figure className="bp-product-image">
-    <div className="bp-product-image-top"><span>BRAIN OS / {label}</span><span>ILLUSTRATIVE SCREEN</span></div>
+    <div className="bp-product-image-top"><span>BrainOS / {label}</span><span>ILLUSTRATIVE SCREEN</span></div>
     <a className="bp-product-image-link" href={src} target="_blank" rel="noreferrer" aria-label={`View ${label.toLowerCase()} image at full size (opens in a new tab)`}>
-      <Image src={src} alt={alt} width={width} height={height} unoptimized />
+      <Image src={src} alt={alt} width={width} height={height} sizes="(max-width: 760px) 92vw, 720px" />
       <span className="bp-image-expand"><Expand size={13} aria-hidden="true" /> View full size</span>
     </a>
     <figcaption><span>Product demo with sample data. Figures and connections shown are illustrative.</span><a href="/brain-os">Explore the demo <ArrowUpRight size={13} aria-hidden="true" /></a></figcaption>

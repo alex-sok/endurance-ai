@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: USE_CASES_META.title,
     description: USE_CASES_META.description,
     url: USE_CASES_META.canonical,
-    siteName: 'Endurance AI Labs',
+    siteName: 'endurance',
     type: 'website',
     locale: 'en_US',
   },
@@ -59,15 +59,15 @@ export default function UseCasesPage() {
         <section id="product" className="bp-section is-mist" aria-labelledby="product-title">
           <div className="wrap bp-product-story">
             <div className="bp-product-copy">
-              <Heading kicker="A LOOK INSIDE BRAIN OS" title={['The whole operation.', 'A clearer view.']} lede="Loads, invoices, and exceptions in one working view. Explore how Brain OS could bring the pieces of a logistics business together." id="product-title" />
+              <Heading kicker="A LOOK INSIDE BrainOS" title={['The whole operation.', 'A clearer view.']} lede="Loads, invoices, and exceptions in one working view. Explore how BrainOS could bring the pieces of a logistics business together." id="product-title" />
               <ol className="bp-image-notes">
                 <li><span>01</span><div><h3>See the day at a glance.</h3><p>An operating picture of the work in flight, from loads to billing.</p></div></li>
                 <li><span>02</span><div><h3>Keep the details in reach.</h3><p>Each load carries its lane, carrier, costs, and current status.</p></div></li>
                 <li><span>03</span><div><h3>Know what needs a look.</h3><p>Exceptions stay visible alongside the records that explain them.</p></div></li>
               </ol>
-              <a className="bp-quiet-link" href="/brain-os">Explore Brain OS <ArrowUpRight size={14} /></a>
+              <a className="bp-quiet-link" href="/brain-os">Explore BrainOS <ArrowUpRight size={14} /></a>
             </div>
-            <ProductImage src="/product/brain-os-logistics.jpg" width={1006} height={632} label="OPERATIONS" alt="Illustrative Brain OS logistics dashboard: operating totals above a load book with lanes, carriers, revenue, costs, margins, and delivery status." />
+            <ProductImage src="/product/brain-os-logistics.jpg" width={1006} height={632} label="OPERATIONS" alt="Illustrative BrainOS logistics dashboard: operating totals above a load book with lanes, carriers, revenue, costs, margins, and delivery status." />
           </div>
         </section>
 
@@ -90,7 +90,7 @@ export default function UseCasesPage() {
                     <p className="bp-ba-meta">{row.beforeMeta.map(m => <span key={m}>{m}</span>)}</p>
                   </div>
                   <div className="bp-after">
-                    <p className="bp-ba-tag">WITH BRAIN OS</p>
+                    <p className="bp-ba-tag">WITH BrainOS</p>
                     <p>{row.after}</p>
                     <StepsStrip steps={row.afterSteps} unit="asks" />
                     <p className="bp-ba-meta">{row.afterMeta.map(m => <span key={m}>{m}</span>)}</p>
@@ -112,7 +112,7 @@ export default function UseCasesPage() {
                 columns={['Week to', 'People']}
                 rows={ADOPTION.people.points.map(p => [p.label, p.value])}
               >
-                <ColumnChart points={ADOPTION.people.points} unit="people" label="People who asked Brain OS something each week, rising from 12 to 35 over six weeks" />
+                <ColumnChart points={ADOPTION.people.points} unit="people" label="People who asked BrainOS something each week, rising from 12 to 35 over six weeks" />
               </ChartCard>
               <ChartCard
                 title={ADOPTION.weekdays.title}
@@ -254,7 +254,7 @@ export default function UseCasesPage() {
               <ContextImage src="/city-districts/manufacturing-production.webp" alt="A modern manufacturing floor with production machinery, technicians, and material moving through the plant." caption="THE WORK BEHIND THE RECORDS" />
             </div>
             <table className="bp-spec">
-              <thead><tr><th scope="col">Industry</th><th scope="col">Where the answers live</th><th scope="col">Brain OS</th></tr></thead>
+              <thead><tr><th scope="col">Industry</th><th scope="col">Where the answers live</th><th scope="col">BrainOS</th></tr></thead>
               <tbody>
                 {FIT.systems.rows.map(r => (
                   <tr key={r.industry}><th scope="row">{r.industry}</th><td>{r.systems}</td><td>{r.status}</td></tr>

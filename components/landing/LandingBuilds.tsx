@@ -1,4 +1,4 @@
-/* Section 04 — the work that does not fit an industry.
+/* Section 04: the work that does not fit an industry.
    Clients are described by what they run, not by name. */
 export function LandingBuilds() {
   return (
@@ -8,7 +8,7 @@ export function LandingBuilds() {
         <p className="lp-pain">
           &ldquo;Nothing on the market fits the way we actually run.&rdquo;
         </p>
-        <p className="lp-solve">How Endurance solves it —</p>
+        <p className="lp-solve">How endurance solves it</p>
         <h2 className="lp-h2">Not every operation is an industry.</h2>
         <p className="lp-lead">
           Some of what we ship exists once, for one operator, because nothing

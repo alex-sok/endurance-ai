@@ -27,7 +27,7 @@ export interface MapDot {
   name: string;
   lat: number;
   lng: number;
-  /** drives the radius — comps in the set, loads on the lane */
+  /** drives the radius: comps in the set, loads on the lane */
   n: number;
   meta: string;
   flag?: boolean;

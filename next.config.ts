@@ -17,14 +17,15 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // Next.js requires unsafe-inline for its runtime scripts; Apollo tracker CDN
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.apollo.io",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.apollo.io https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://snap.licdn.com https://static.ads-twitter.com",
       // Inline styles used by Tailwind + Google Fonts
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' https://fonts.gstatic.com data:",
       // OpenStreetMap raster tiles for the Margins demo's live shipment map (/margins)
-      "img-src 'self' data: blob: https://*.tile.openstreetmap.org",
-      // Allow calls to our own API, xAI (streaming), OpenAI (embeddings), and Apollo tracking
-      "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io https://aplo-evnt.com",
+      "img-src 'self' data: blob: https://*.tile.openstreetmap.org https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://googleads.g.doubleclick.net https://px.ads.linkedin.com https://t.co https://analytics.twitter.com",
+      // Allow calls to our own API, xAI (streaming), OpenAI (embeddings), Apollo, and the gated ad/analytics tags
+      "connect-src 'self' https://api.x.ai https://hooks.slack.com https://api.openai.com https://*.apollo.io https://aplo-evnt.com https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://px.ads.linkedin.com https://analytics.twitter.com",
+      "frame-src 'self' https://www.googletagmanager.com",
       // Draco/GLTF decoders (proxied /logistics/new WebGL hero) run in blob-URL workers
       "worker-src 'self' blob:",
       // No iframes anywhere
@@ -54,11 +55,20 @@ const nextConfig: NextConfig = {
   // modules with file-system side effects that break when bundled
   serverExternalPackages: ["pdf-parse", "mammoth"],
   async headers() {
+    const noindex = [{ key: "X-Robots-Tag", value: "noindex, nofollow" }];
     return [
       {
         source: "/(.*)",
         headers: securityHeaders,
       },
+      { source: "/system", headers: noindex },
+      { source: "/system/:path*", headers: noindex },
+      { source: "/logistics", headers: noindex },
+      { source: "/logistics/:path*", headers: noindex },
+      { source: "/investments", headers: noindex },
+      { source: "/investments/:path*", headers: noindex },
+      { source: "/copperline", headers: noindex },
+      { source: "/copperline/:path*", headers: noindex },
     ];
   },
   // Serve the 1100 Group landing page (hosted on GitHub Pages) at endurancelabs.ai/1100

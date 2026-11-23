@@ -14,7 +14,7 @@ import "./styles/v2/index.css";
  * script) only for first-visit + motion-OK sessions. The overlay is
  * display:none without the attribute, so repeat visitors never see a
  * flash. The attribute lives on the preloader's own div (which sets
- * suppressHydrationWarning) — NOT on <html>, which React owns and
+ * suppressHydrationWarning): NOT on <html>, which React owns and
  * would flag as a hydration mismatch. See components/Preloader.tsx.
  */
 const INTRO_SNIPPET = `try{var p=document.querySelector(".v2-preloader");if(p&&!sessionStorage.getItem("logi-intro-seen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){p.setAttribute("data-run","");sessionStorage.setItem("logi-intro-seen","1")}}catch(e){}`;
@@ -50,19 +50,20 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const PAGE_URL = "https://endurancelabs.ai/logistics";
-const TITLE = "Endurance Logistics — the first AI-native freight network";
+const TITLE = "endurance logistics, an AI-native freight network";
 const DESCRIPTION =
-  "Endurance Logistics is the first end-to-end AI-native freight network. Investor brief: the problem, the product, the traction, the ask.";
+  "endurance logistics is the first end-to-end AI-native freight network. Investor brief: the problem, the product, the traction, the ask.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
+  robots: { index: false, follow: false },
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
     url: PAGE_URL,
-    siteName: "Endurance AI Labs",
+    siteName: "endurance",
     type: "website",
     locale: "en_US",
     // TODO(alex): publish a static og-logistics.png (1200×630) showing
@@ -73,7 +74,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Endurance Logistics",
+        alt: "endurance logistics",
       },
     ],
   },

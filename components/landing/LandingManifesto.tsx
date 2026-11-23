@@ -1,5 +1,5 @@
-/* Section 07 — the belief the page has been arguing for.
-   Condensed from the Endurance manifesto: the full text is the argument,
+/* Section 07: the belief the page has been arguing for.
+   Condensed from the endurance manifesto: the full text is the argument,
    this is the close. Three commitments, right column, ruled like 03. */
 export function LandingManifesto() {
   return (

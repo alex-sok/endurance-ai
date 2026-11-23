@@ -86,7 +86,7 @@ export function SystemBook() {
 
       <nav className={scrolled ? "lp-nav is-scrolled" : "lp-nav"} aria-label="Marketing system">
         <div className="lp-nav-inner">
-          <Link className="lp-wordmark" href="/" aria-label="Endurance AI Labs">
+          <Link className="lp-wordmark" href="/" aria-label="endurance">
             <img src="/logo-endurance.svg" alt="" />
           </Link>
           <div className="lp-nav-links">
@@ -118,7 +118,7 @@ export function SystemBook() {
               <em>Every page.</em>
             </h1>
             <p className="lp-hero-lede">
-              The system for all Endurance marketing, written in itself. Product UI is a different file.
+              The system for all endurance marketing, written in itself. Product UI is a different file.
               Client demos keep the client identity.
             </p>
             <div className="lp-hero-actions">
@@ -453,7 +453,7 @@ export function SystemBook() {
 
         <footer className="lp-close" id="close">
           <div className="lp-close-inner">
-            <img className="lp-close-logo" src="/logo-endurance-white.svg" alt="Endurance AI Labs" />
+            <img className="lp-close-logo" src="/logo-endurance-white.svg" alt="endurance" />
             <h2 className="lp-h2">The work, then the software.</h2>
             <p className="lp-lede">If there is a system worth building, we will say so.</p>
             <div className="lp-cta-actions">

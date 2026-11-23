@@ -9,16 +9,16 @@ import { CALENDLY_URL } from "@/lib/conversation-flows";
 // page, so this page is dated and says so.
 
 export const TECH_META = {
-  title: "How Brain OS is built — Endurance AI Labs",
+  title: "How BrainOS is built | endurance",
   description:
-    "How Brain OS connects company knowledge, the ERP or system of record you already run, chat, and access controls. Explore a production deployment, its architecture, and its limits.",
+    "How BrainOS connects company knowledge, the ERP or system of record you already run, chat, and access controls. Explore a production deployment, its architecture, and its limits.",
   canonical: "https://endurancelabs.ai/brain-os/technical",
 };
 
 export const HERO = {
-  eyebrow: "BRAIN OS / TECHNICAL",
+  eyebrow: "BrainOS / TECHNICAL",
   h1: ["Four parts.", "One working system."],
-  lede: "Brain OS combines a knowledge base, tools that connect to live systems, a familiar chat interface, and access controls. Each has a distinct job. Here is how they work together in one logistics deployment, on that business’s own system of record, including the controls and their limits. Any ERP or system of record connects through its own connector. The other three parts carry over.",
+  lede: "BrainOS combines a knowledge base, tools that connect to live systems, a familiar chat interface, and access controls. Each has a distinct job. Here is how they work together in one logistics deployment, on that business’s own system of record, including the controls and their limits. Any ERP or system of record connects through its own connector. The other three parts carry over.",
   primary: { label: "Talk architecture with us", href: CALENDLY_URL },
   secondary: { label: "See the use cases", href: "/brain-os/use-cases" },
 };
@@ -26,7 +26,7 @@ export const HERO = {
 export const SHAPE = {
   kicker: "01 · THE SHAPE",
   title: ["Four parts.", "One loop per message."],
-  lede: "When a message arrives, Brain OS identifies the user’s access tier, reads the relevant knowledge, and calls the tools available to that session. The tools handle live records. Changes follow draft and confirmation steps, with the scope of each control described below.",
+  lede: "When a message arrives, BrainOS identifies the user’s access tier, reads the relevant knowledge, and calls the tools available to that session. The tools handle live records. Changes follow draft and confirmation steps, with the scope of each control described below.",
   caption: "Access is restricted through the tools and pages made available to a session. Some controls are enforced in code; others, including checking for a person’s approval, also depend on model instructions. The limits section explains the distinction.",
 };
 
@@ -72,7 +72,7 @@ export const BRAIN = {
   },
   taught: {
     title: "Rules taught in chat, kept in the brain",
-    note: "When an operator corrects Brain OS, the rule is committed to the brain in the same reply and applies to everyone from the next question. Wrong captures are visible and removed by a person.",
+    note: "When an operator corrects BrainOS, the rule is committed to the brain in the same reply and applies to everyone from the next question. Wrong captures are visible and removed by a person.",
     rows: [
       { label: "Rules kept, 24 July to 21 September", value: 153 },
       { label: "Kept in the week of 21 September alone", value: 71 },
@@ -100,12 +100,12 @@ export const TOOLS = {
   body: [
     "Each system of record gets its own Model Context Protocol server. It is a small program that exposes that system’s reads and writes as named tools, with the request and response shapes fixed in code. The model does not compose queries. It picks a tool, and the tool does one thing.",
     "The reference deployment’s server for the transportation management system reuses the client logic already proven in the operation’s own portal software. The integration was tested by payroll before it was trusted by chat.",
-    "The connector is the only part of Brain OS that is specific to the system of record. An ERP, a job costing ledger, a maintenance system or a transportation management system each gets its own. The brain, the guard and the chat interface carry over unchanged. Where a system has no interface at all, the brain reads a synced copy and states its age with every figure, as at the construction deployment below.",
+    "The connector is the only part of BrainOS that is specific to the system of record. An ERP, a job costing ledger, a maintenance system or a transportation management system each gets its own. The brain, the guard and the chat interface carry over unchanged. Where a system has no interface at all, the brain reads a synced copy and states its age with every figure, as at the construction deployment below.",
   ],
   integrations: [
-    { system: "McLeod, the transportation management system", what: "Orders, movements, stops, carriers, customers, lane history, credit and receivables, driver texts. Creates and updates orders, stops, rates, carriers and drivers.", access: "Read and write" },
+    { system: "The transportation management system", what: "Orders, movements, stops, carriers, customers, lane history, credit and receivables, driver texts. Creates and updates orders, stops, rates, carriers and drivers.", access: "Read and write" },
     { system: "Microsoft Teams", what: "The interface: direct messages, group chats, proactive posts and mentions.", access: "Read and write" },
-    { system: "Microsoft 365 mail", what: "Brain OS’s own mailbox, synced every two minutes and sent from. Personal mailboxes synced with consent, readable only by their owner.", access: "Read and write" },
+    { system: "Microsoft 365 mail", what: "BrainOS’s own mailbox, synced every two minutes and sent from. Personal mailboxes synced with consent, readable only by their owner.", access: "Read and write" },
     { system: "Twilio", what: "A registered text number: outbound driver texts, inbound replies, photos of signed paperwork.", access: "Read and write" },
     { system: "Truckstop", what: "Load board posting, updates and removal, each under the broker’s own login. Certified by Truckstop for production.", access: "Write, per user" },
     { system: "Highway", what: "Carrier identity screening from an email address, and ranked call lists from lane exports.", access: "Read" },
@@ -114,7 +114,7 @@ export const TOOLS = {
     { system: "Microsoft Entra", what: "Sign in for the web screens, limited to the company domain.", access: "Sign in" },
   ],
   spokes: [
-    { name: "McLeod, the TMS", access: "rw", note: "read and write" },
+    { name: "The TMS", access: "rw", note: "read and write" },
     { name: "Microsoft Teams", access: "rw", note: "read and write" },
     { name: "Microsoft 365 mail", access: "rw", note: "read and write" },
     { name: "Twilio", access: "rw", note: "texts, read and write" },
@@ -130,7 +130,7 @@ export const TOOLS = {
 export const GUARD = {
   kicker: "04 · THE GUARD",
   title: ["Access controls", "at the tool boundary."],
-  lede: "Commission, payroll, and customer margins need defined access. Actions need defined authority. Brain OS uses session permissions, tool checks, confirmation steps, and a pause control, each with a specific scope.",
+  lede: "Commission, payroll, and customer margins need defined access. Actions need defined authority. BrainOS uses session permissions, tool checks, confirmation steps, and a pause control, each with a specific scope.",
   path: [
     { n: "01", title: "Ask", body: "A person asks for a change in plain language, in the chat they already use." },
     { n: "02", title: "Draft", body: "The first tool call returns a preview only: old and new values, the exact times, the margin, whatever the change touches." },
@@ -148,7 +148,7 @@ export const GUARD = {
     { ask: "“Post it at $2,400.”", rule: "Shipper contact details stripped; stop notes flagged for review before the post." },
   ],
   tiers: {
-    lede: "Every message is resolved to a person and a tier. Being allowed to talk to Brain OS is not a tier; everyone lands at dispatch unless their page says otherwise. The web screens enforce the same tiers.",
+    lede: "Every message is resolved to a person and a tier. Being allowed to talk to BrainOS is not a tier; everyone lands at dispatch unless their page says otherwise. The web screens enforce the same tiers.",
     columns: ["Dispatch", "Billing", "Leadership"],
     rows: [
       { what: "Loads, carriers, lanes and customers, read live", cells: ["yes", "yes", "yes"] },
@@ -171,9 +171,9 @@ export const GUARD = {
 export const DESKS = {
   kicker: "05 · SPECIALIST DESKS",
   title: ["Specialists that advise.", "Authority earned through testing."],
-  lede: "Since 21 September 2026 the reference deployment delegates to three read only specialists: a finance desk, a load manager and a carrier desk. Each returns a sourced brief with at most one drafted action. Brain OS answers from the brief. The confirm step stays with Brain OS.",
+  lede: "Since 21 September 2026 the reference deployment delegates to three read only specialists: a finance desk, a load manager and a carrier desk. Each returns a sourced brief with at most one drafted action. BrainOS answers from the brief. The confirm step stays with BrainOS.",
   ladder: [
-    { n: "LEVEL 1", title: "Advise", body: "Read only. Returns a sourced brief and at most one drafted action for Brain OS to confirm with the operator.", status: "All three desks, today", now: true },
+    { n: "LEVEL 1", title: "Advise", body: "Read only. Returns a sourced brief and at most one drafted action for BrainOS to confirm with the operator.", status: "All three desks, today", now: true },
     { n: "LEVEL 2", title: "Act with confirmation", body: "Holds specific write tools and runs draft and confirm itself, each write behind its switch and the pause.", status: "Two of six gates done" },
     { n: "LEVEL 3", title: "Own a task end to end", body: "Runs a bounded task, a book, a lane, a night shift, within a scope a person set. Every action logged, pausable and reversible.", status: "Planned; no release date" },
   ],
@@ -203,7 +203,7 @@ export const JOBS = {
 export const RUNS = {
   kicker: "07 · WHERE IT RUNS",
   title: ["Your tenant.", "A dedicated server."],
-  lede: "The bot is registered in the customer’s own Microsoft tenant. Credentials are held only on the server, never in the knowledge base. The reasoning model is Anthropic’s Claude, run with a spending cap on every message, and Brain OS does not train models on customer data.",
+  lede: "The bot is registered in the customer’s own Microsoft tenant. Credentials are held only on the server, never in the knowledge base. The reasoning model is Anthropic’s Claude, run with a spending cap on every message, and BrainOS does not train models on customer data.",
   spec: [
     { part: "Reasoning", what: "Anthropic’s Claude, run through the Claude Code agent runtime, with the session started inside the brain so the schema and the tools are discovered on every message.", note: "Spending cap per message" },
     { part: "Knowledge", what: "Markdown pages in a private git repository: raw sources, synthesis pages, and the schema. Every change is a commit, so the brain has a history.", note: "Git, plain files" },
@@ -218,7 +218,7 @@ export const RUNS = {
       label: "YOUR MICROSOFT TENANT",
       nodes: [
         { title: "Teams", body: "The bot, registered in your tenant. Direct messages and group chats." },
-        { title: "Mailboxes", body: "Brain OS’s own mailbox. Personal mailboxes only with consent, readable only by their owner." },
+        { title: "Mailboxes", body: "BrainOS’s own mailbox. Personal mailboxes only with consent, readable only by their owner." },
         { title: "Entra sign in", body: "The web screens, limited to your company domain." },
       ],
     },
@@ -236,7 +236,7 @@ export const RUNS = {
     {
       label: "OUTSIDE, THROUGH TOOLS",
       nodes: [
-        { title: "System of record", body: "McLeod at this deployment. Any ERP or ledger, through its own connector, read live and written as drafts." },
+        { title: "System of record", body: "The transportation management system at this deployment. Any ERP or ledger, through its own connector, read live and written as drafts." },
         { title: "Load board and text number", body: "Truckstop under each broker’s login. Twilio for driver texts." },
         { title: "Carrier vetting", body: "Highway and the federal carrier register, read only." },
         { title: "Model provider", body: "Anthropic’s Claude. No training on your data." },
@@ -266,7 +266,7 @@ export const TRAVELS = {
       name: "A freight brokerage and its asset carrier",
       status: "In production since June 2026",
       body: "Microsoft Teams, a transportation management system read and written live, a mailbox, a text number, the load board and carrier vetting. Thirty three people in one week, about forty scheduled jobs, three specialist desks.",
-      facts: [["Interface", "Teams, mail, text, web"], ["System of record", "McLeod"], ["Brain", "157 pages"]],
+      facts: [["Interface", "Teams, mail, text, web"], ["System of record", "The TMS"], ["Brain", "157 pages"]],
     },
     {
       name: "Our own lab",
@@ -286,14 +286,14 @@ export const TRAVELS = {
 export const NOT = {
   kicker: "09 · WHAT IT IS NOT",
   title: ["Honest limits.", "Dated, on purpose."],
-  lede: "The controls and capabilities below describe this deployment as of 22 September 2026, with later findings dated in the relevant entries. During use, Brain OS checks capability status on the server. This page records what was verified at the stated dates.",
+  lede: "The controls and capabilities below describe this deployment as of 22 September 2026, with later findings dated in the relevant entries. During use, BrainOS checks capability status on the server. This page records what was verified at the stated dates.",
   rows: [
     { assume: "“The yes is checked by code.”", truth: "The write tools refuse to write without a second, explicit confirm call. The tool cannot itself prove a person typed yes. The model makes that call under a standing rule. For email, draft first is a standing rule rather than a code gate." },
     { assume: "“The pause covers everything.”", truth: "It covers the system of record, driver texts, load board posts and the scheduled jobs. It does not cover email." },
     { assume: "“Every action needs a yes.”", truth: "Every action a person asks for does. A few scheduled jobs write on a standing authorization for a book, each behind its own switch and the pause." },
     { assume: "“It covers loads.”", truth: "It drafts the carrier and buy rate and refuses a buy above the sell. The write step was repaired on 24 September 2026 and had not been proven on a live load when this page was written." },
     { assume: "“It posts to every load board.”", truth: "Truckstop only. A DAT connection is in development and has not shipped." },
-    { assume: "“It sends rate confirmations.”", truth: "No. The system of record still sends them, and Brain OS refuses to email anything titled a rate confirmation." },
+    { assume: "“It sends rate confirmations.”", truth: "No. The system of record still sends them, and BrainOS refuses to email anything titled a rate confirmation." },
     { assume: "“It tracks drivers.”", truth: "No. It reads electronic logging device pings already in the system of record, and a driver can share one location fix per tap." },
     { assume: "“It clears carriers to haul.”", truth: "Never. It screens identity and history. Authority and insurance are checked in the vetting tool." },
     { assume: "“It reads any file.”", truth: "PDFs, images, text and short video in a direct message. Not Word or Excel files, yet." },

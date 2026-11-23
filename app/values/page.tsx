@@ -7,11 +7,11 @@ const siteUrl = 'https://endurancelabs.ai';
 const description = 'Three values, said plainly: always learning, be of service, finish the job.';
 
 export const metadata: Metadata = {
-  title: 'Core values | Endurance AI Labs',
+  title: 'Core values | endurance',
   description,
   alternates: { canonical: `${siteUrl}/values` },
-  openGraph: { title: 'Core values | Endurance AI Labs', description, url: `${siteUrl}/values`, type: 'website' },
-  twitter: { card: 'summary_large_image', title: 'Core values | Endurance AI Labs', description },
+  openGraph: { title: 'Core values | endurance', description, url: `${siteUrl}/values`, type: 'website' },
+  twitter: { card: 'summary_large_image', title: 'Core values | endurance', description },
 };
 
 /* The three values, in the About page's editorial frame: one section per
@@ -28,9 +28,9 @@ const VALUES = [
       'We want to leave each conversation understanding something we did not understand before. The systems we build should make that learning useful: a documented rule or a corrected answer can help the next person who encounters the same problem.',
     ],
     practice: [
-      'Ask more questions than you answer — a great second meeting is earned by the questions asked in the first.',
-      '“I don’t know yet” is a complete sentence — followed by going and finding out.',
-      'Listen before you build — what the operator says shapes the system.',
+      'Ask more questions than you answer. A great second meeting is earned by the questions asked in the first.',
+      '“I don’t know yet” is a complete sentence, followed by going and finding out.',
+      'Listen before you build. What the operator says shapes the system.',
     ],
   },
   {
@@ -43,8 +43,8 @@ const VALUES = [
       'For a customer, it means knowing who is working on the problem, what happens next, and when they will hear from us. We aim to make those things clear, even while the answer is still taking shape.',
     ],
     practice: [
-      'See it, own it — jump in without waiting to be asked.',
-      'Direct access, no layers — when a teammate needs you, they get you.',
+      'See it, own it. Jump in without waiting to be asked.',
+      'Direct access, no layers. When a teammate needs you, they get you.',
       'Acknowledge a partner’s question promptly, take ownership, and agree on the next update.',
     ],
   },
@@ -55,12 +55,12 @@ const VALUES = [
     creed: 'Shipped isn’t finished. Used is.',
     body: [
       'A demo shows what is possible. Daily use reveals what still needs work: messy data, an exception nobody mentioned, a report that almost fits. We keep working toward a system the operator can run their morning on without us in the room.',
-      'That means reconciling the numbers, handling the exceptions, and finding the cause of a recurring problem. Our name recalls the Endurance expedition and the effort to bring its crew home. It is a reminder to keep responsibility for the people who depend on the work.',
+      'That means reconciling the numbers, handling the exceptions, and finding the cause of a recurring problem. Our name recalls the endurance expedition and the effort to bring its crew home. It is a reminder to keep responsibility for the people who depend on the work.',
     ],
     practice: [
-      'Launch is the midpoint — we stay until the system runs the client’s day without us.',
-      'The last 5% — edge cases, empty states, the awkward export — is the job, not extra credit.',
-      'Reconcile to zero and fix the root cause — a patch that hides a problem is a debt, not a fix.',
+      'Launch is the midpoint. We stay until the system runs the client’s day without us.',
+      'The last 5%, covering edge cases, empty states, and the awkward export, is the job, not extra credit.',
+      'Reconcile to zero and fix the root cause. A patch that hides a problem is a debt, not a fix.',
     ],
   },
 ];

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { HOME_DESCRIPTION, HOME_TITLE } from "@/lib/site-schema";
 import styles from "./landing.module.css";
 
 const geist = Geist({
@@ -8,9 +9,8 @@ const geist = Geist({
   display: "swap",
 });
 
-const title = "Endurance | A company brain for the businesses building our future.";
-const description =
-  "Brain OS organizes your company’s knowledge, learns from every task, and helps everyone do more. Built for manufacturing, construction, logistics, energy, facilities management, and real estate.";
+const title = HOME_TITLE;
+const description = HOME_DESCRIPTION;
 
 export const homepageMetadata: Metadata = {
   title,
@@ -20,7 +20,7 @@ export const homepageMetadata: Metadata = {
     title,
     description,
     url: "https://endurancelabs.ai",
-    siteName: "Endurance AI Labs",
+    siteName: "endurance",
     type: "website",
     locale: "en_US",
   },

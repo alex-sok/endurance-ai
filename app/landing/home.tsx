@@ -16,13 +16,13 @@ export default function Home() {
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-content wrap">
             <div className="hero-heading">
-              <p className="eyebrow"><span className="status-dot" /> ENDURANCE / BRAIN OS</p>
-              <h1 id="hero-title"><span>A company brain.</span> <span>For the businesses</span> <span>building our future.</span></h1>
+              <p className="eyebrow"><span className="status-dot" /> endurance / BrainOS</p>
+              <h1 id="hero-title"><span>BrainOS.</span> <span>A company brain</span> <span>for operators.</span></h1>
             </div>
             <div className="hero-intro">
-              <p className="hero-description">Brain OS organizes your company’s knowledge, learns from every task, and helps everyone do more.</p>
+              <p className="hero-description">BrainOS organizes your company’s knowledge, learns from every task, and helps everyone do more.</p>
               <div className="hero-actions">
-                <a className="primary-button" href="#brain">Meet Brain OS <ArrowUpRight size={16} /></a>
+                <a className="primary-button" href="#brain">Meet BrainOS <ArrowUpRight size={16} /></a>
                 <a className="hero-world-link" href="#work">Built for your world <ArrowDown size={14} /></a>
               </div>
             </div>
@@ -36,10 +36,10 @@ export default function Home() {
         <section id="brain" className="brain-section" aria-labelledby="brain-title">
           <div className="brain-layout wrap">
             <div className="brain-copy">
-              <p className="eyebrow">01 / BRAIN OS AT WORK</p>
-              <h2 id="brain-title">Your business knows.<br />Brain OS acts.</h2>
-              <p>Know what’s moving. See what’s changing. Ask why. Brain OS brings your records, conversations, and operating knowledge together—so the next step is clearer.</p>
-              <a className="text-link" href="#product">Explore Brain OS at work <ArrowDown size={15} /></a>
+              <p className="eyebrow">01 / BrainOS AT WORK</p>
+              <h2 id="brain-title">Your business knows.<br />BrainOS acts.</h2>
+              <p>Know what’s moving. See what’s changing. Ask why. BrainOS brings your records, conversations, and operating knowledge together, so the next step is clearer.</p>
+              <a className="text-link" href="#product">Explore BrainOS at work <ArrowDown size={15} /></a>
             </div>
             <UsageEvidence />
           </div>

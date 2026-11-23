@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: TECH_META.title,
     description: TECH_META.description,
     url: TECH_META.canonical,
-    siteName: 'Endurance AI Labs',
+    siteName: 'endurance',
     type: 'website',
     locale: 'en_US',
   },
@@ -97,11 +97,11 @@ export default function TechnicalPage() {
             <Heading kicker={TOOLS.kicker} title={TOOLS.title} lede={TOOLS.lede} id="tools-title" />
             {TOOLS.body.map(p => <p className="bp-prose" key={p}>{p}</p>)}
             <figure className="bp-chart is-wide bp-split-gap">
-              <figcaption className="bp-chart-head"><div><p className="bp-chart-title">Every system Brain OS touches, and which way the data moves</p><p className="bp-chart-note">Tools read live records and preview changes before a confirmation call. Email uses a draft-first instruction; its limits are described below.</p></div></figcaption>
-              <IntegrationMap spokes={TOOLS.spokes} label="Brain OS at the centre with nine systems on spokes: the TMS, Teams, mail and Twilio read and write; Truckstop writes; Highway, the federal carrier register and OpenStreetMap read; Entra signs in" />
+              <figcaption className="bp-chart-head"><div><p className="bp-chart-title">Every system BrainOS touches, and which way the data moves</p><p className="bp-chart-note">Tools read live records and preview changes before a confirmation call. Email uses a draft-first instruction; its limits are described below.</p></div></figcaption>
+              <IntegrationMap spokes={TOOLS.spokes} label="BrainOS at the centre with nine systems on spokes: the TMS, Teams, mail and Twilio read and write; Truckstop writes; Highway, the federal carrier register and OpenStreetMap read; Entra signs in" />
             </figure>
             <table className="bp-spec">
-              <thead><tr><th scope="col">System</th><th scope="col">What Brain OS does with it</th><th scope="col">Access</th></tr></thead>
+              <thead><tr><th scope="col">System</th><th scope="col">What BrainOS does with it</th><th scope="col">Access</th></tr></thead>
               <tbody>
                 {TOOLS.integrations.map(i => (
                   <tr key={i.system}><th scope="row">{i.system}</th><td>{i.what}</td><td>{i.access}</td></tr>
@@ -177,7 +177,7 @@ export default function TechnicalPage() {
           <div className="wrap">
             <Heading kicker={RUNS.kicker} title={RUNS.title} lede={RUNS.lede} id="runs-title" />
             <DeployDiagram columns={RUNS.deploy} />
-            <p className="bp-diagram-cap">Credentials are kept on the server, outside the knowledge base. Brain OS does not train models on customer data; provider handling and retention are part of the architecture review.</p>
+            <p className="bp-diagram-cap">Credentials are kept on the server, outside the knowledge base. BrainOS does not train models on customer data; provider handling and retention are part of the architecture review.</p>
             <table className="bp-spec">
               <thead><tr><th scope="col">Part</th><th scope="col">What it is</th><th scope="col">Note</th></tr></thead>
               <tbody>

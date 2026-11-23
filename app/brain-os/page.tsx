@@ -7,10 +7,25 @@ import styles from "./console.module.css";
 
 const geist = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
 
+const TITLE = "BrainOS sample screens | endurance";
+const DESCRIPTION =
+  "Illustrative BrainOS screens with fictional sample figures. Load IDs, revenue, and margins on this page are not a customer's results.";
+const PAGE_URL = "https://endurancelabs.ai/brain-os";
+
 export const metadata: Metadata = {
-  title: "Brain OS — Endurance AI Labs",
-  description:
-    "Explore illustrative Brain OS screens for seven industries, from freight operations to real estate. See how records, decisions, and tasks fit together.",
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: PAGE_URL,
+    siteName: "endurance",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+  robots: { index: true, follow: true },
 };
 
 export default function BrainOSPage() {
@@ -18,12 +33,12 @@ export default function BrainOSPage() {
     <div className={`theme-paper bos-page ${styles.console} ${geist.variable}`}>
       <header className="bos-top">
         <Link className="bos-back" href="/">
-          <span aria-hidden="true">&larr;</span> Endurance AI Labs
+          <span aria-hidden="true">&larr;</span> endurance
         </Link>
         <div className="bos-title">
           <span className="bpos-sq">B</span>
-          <b>Brain OS</b>
-          <span className="bos-sub">Brain powered operating systems</span>
+          <h1>BrainOS</h1>
+          <span className="bos-sub">Sample screens. Figures are fictional.</span>
         </div>
         <Link className="bos-cta" href="/#contact">
           See what we’d build for you

@@ -13,7 +13,7 @@ export const BRAIN_BANDS = [
 ];
 
 export const BRAIN_PRICING_META = {
-  title: "Pricing — Brain",
+  title: "Brain pricing",
   description:
     "One monthly number, priced on the people who can ask. No setup fee. Running in production inside a freight brokerage since June 2026.",
   canonical: "https://endurancelabs.ai/brain/pricing",

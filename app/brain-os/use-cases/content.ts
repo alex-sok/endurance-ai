@@ -12,16 +12,16 @@ import { CALENDLY_URL } from "@/lib/conversation-flows";
 // reported and already on the homepage.
 
 export const USE_CASES_META = {
-  title: "Brain OS use cases and impact — Endurance AI Labs",
+  title: "BrainOS use cases and impact | endurance",
   description:
-    "See how one logistics operation uses Brain OS on its own system of record: the questions people ask, the actions they approve, and the usage recorded since June 2026. The same pattern fits construction, manufacturing and energy.",
+    "See how one logistics operation uses BrainOS on its own system of record: the questions people ask, the actions they approve, and the usage recorded since June 2026. The same pattern fits construction, manufacturing and energy.",
   canonical: "https://endurancelabs.ai/brain-os/use-cases",
 };
 
 export const HERO = {
-  eyebrow: "BRAIN OS / USE CASES AND IMPACT",
+  eyebrow: "BrainOS / USE CASES AND IMPACT",
   h1: ["The work it takes.", "The time it gives back."],
-  lede: "At one logistics operation, people use Brain OS to find a load, prepare an order, or check an invoice, all against the system of record they already ran. Here is what they asked, what the system did, and what the records show. The deployment has been in production since June 2026. A construction, manufacturing or energy business connects its own ERP the same way: one connector, the rest of Brain OS unchanged.",
+  lede: "At one logistics operation, people use BrainOS to find a load, prepare an order, or check an invoice, all against the system of record they already ran. Here is what they asked, what the system did, and what the records show. The deployment has been in production since June 2026. A construction, manufacturing or energy business connects its own ERP the same way: one connector, the rest of BrainOS unchanged.",
   primary: { label: "Tell us about your work", href: CALENDLY_URL },
   secondary: { label: "How it is built", href: "/brain-os/technical" },
 };
@@ -30,7 +30,7 @@ export type Tile = { value: string; unit?: string; before?: string; label: strin
 
 export const HEADLINE: Tile[] = [
   { before: "2 hrs", value: "30", unit: "sec", label: "To plan a truckload from a packing list", source: "Customer reported, for this workflow.", blue: true },
-  { value: "33", label: "People who asked Brain OS something in one week", source: "Week to 18 September 2026." },
+  { value: "33", label: "People who asked BrainOS something in one week", source: "Week to 18 September 2026." },
   { value: "375", label: "Changes written to the system of record in one week, each a draft first", source: "Monday 21 September to 11:09 Eastern on Friday 25 September 2026, from session logs." },
   { value: "153", label: "Operating rules taught in chat and kept", source: "Since 24 July 2026, counted 21 September." },
 ];
@@ -51,7 +51,7 @@ export type BeforeAfter = {
 export const BEFORE_AFTER = {
   kicker: "01 · BEFORE AND AFTER",
   title: ["The same ask.", "A different day."],
-  lede: "Six familiar requests, with the steps they used to involve and how Brain OS handles them. The figures come from one operation in September 2026.",
+  lede: "Six familiar requests, with the steps they used to involve and how BrainOS handles them. The figures come from one operation in September 2026.",
   rows: [
     {
       ask: "“Where is my load?”",
@@ -60,7 +60,7 @@ export const BEFORE_AFTER = {
       who: "Dispatch, all day",
       before: "Open the system of record. Find the order. Check the last driver text. Search the inbox for the carrier’s email. Call someone if none of it agrees.",
       beforeMeta: ["Several systems", "A few people", "Minutes, if nothing is wrong"],
-      after: "Brain OS brings the order, stops, estimated arrival, latest driver text, and latest email into one answer. Each fact names its source, so the dispatcher can check how the records fit together.",
+      after: "BrainOS brings the order, stops, estimated arrival, latest driver text, and latest email into one answer. Each fact names its source, so the dispatcher can check how the records fit together.",
       afterMeta: ["Read live at the moment of the question", "Sources attached"],
       receipt: { figure: "522", label: "distinct orders read in one week, week to 18 September" },
     },
@@ -68,7 +68,7 @@ export const BEFORE_AFTER = {
       ask: "“How many trucks does this shipment need?”",
       beforeSteps: ["Print the packing list", "Measure every piece", "Check legal limits", "Check deck heights", "Assign to trailers"],
       afterSteps: ["Paste the list"],
-      ratio: { before: "Two hours by hand", after: "Thirty seconds with Brain OS", value: 30 / 7200 },
+      ratio: { before: "Two hours by hand", after: "Thirty seconds with BrainOS", value: 30 / 7200 },
       who: "Open deck planners",
       before: "Print the packing list. Work every piece against legal length, width, height and weight, and against deck heights by trailer type, by hand.",
       beforeMeta: ["About two hours", "One person who knows the rules"],
@@ -83,7 +83,7 @@ export const BEFORE_AFTER = {
       who: "Dispatch, from a load sheet",
       before: "Retype the load sheet into the system of record, field by field. Look up the customer’s rules in a spreadsheet or a memory. Hope nothing was missed.",
       beforeMeta: ["One order at a time", "Rules in someone’s head"],
-      after: "Paste the load sheet to prepare a draft from the last order on that lane. Brain OS applies the customer’s rules and flags discrepancies for review before the dispatcher confirms creation.",
+      after: "Paste the load sheet to prepare a draft from the last order on that lane. BrainOS applies the customer’s rules and flags discrepancies for review before the dispatcher confirms creation.",
       afterMeta: ["Draft first, then confirm", "Standing defaults per lane"],
       receipt: { figure: "94", label: "orders created in one week, 21 to 25 September, by five people" },
     },
@@ -126,9 +126,9 @@ export const BEFORE_AFTER = {
 export const ADOPTION = {
   kicker: "02 · ADOPTION",
   title: ["More people.", "More questions."],
-  lede: "Brain OS opened to the whole company on 12 August 2026, with access tiers in place. Nobody was told to use it. This is what happened next.",
+  lede: "BrainOS opened to the whole company on 12 August 2026, with access tiers in place. Nobody was told to use it. This is what happened next.",
   people: {
-    title: "People who asked Brain OS something, each week",
+    title: "People who asked BrainOS something, each week",
     note: "One operation, from the week the whole company was admitted. The last bar is the seven days to 24 September.",
     points: [
       { label: "21 Aug", value: 12 },
@@ -146,7 +146,7 @@ export const ADOPTION = {
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
     lastWeek: [48, 113, 180, 259, 188],
     thisWeek: [198, 225, 209, 335, 28],
-    source: "Messages sent to Brain OS in Teams, credited to the sender, Endurance’s own messages excluded. From the operation’s usage database, 25 September 2026.",
+    source: "Messages sent to BrainOS in Teams, credited to the sender, endurance’s own messages excluded. From the operation’s usage database, 25 September 2026.",
   },
   ranked: {
     title: "Questions per person, ranked, Monday 21 to Friday 25 September 2026",
@@ -177,14 +177,14 @@ export const TOPICS = {
       { label: "Load status, check calls and drivers", value: 6, sub: "11 people" },
       { label: "Packing lists and trailer planning", value: 6, sub: "5 people" },
       { label: "Rates, quotes, lane history and prospecting", value: 4, sub: "11 people" },
-      { label: "Questions about Brain OS itself", value: 4, sub: "5 people" },
+      { label: "Questions about BrainOS itself", value: 4, sub: "5 people" },
       { label: "Looking up a customer, carrier or agent", value: 4, sub: "9 people" },
       { label: "Billing, receivables and customer credit", value: 2, sub: "5 people" },
       { label: "Other, greetings and thanks", value: 3, sub: "12 people" },
     ],
     source: "The operation’s usage database, 25 September 2026, 11:09 Eastern. Percent of 995 questions.",
   },
-  callout: "Truckload planning began with planners pasting packing lists into chat. Their explanations became a page of rules for Brain OS to follow. In the week of 21 September, that work accounted for 6% of questions from five people. A useful capability took shape as the people doing the work taught the system what mattered.",
+  callout: "Truckload planning began with planners pasting packing lists into chat. Their explanations became a page of rules for BrainOS to follow. In the week of 21 September, that work accounted for 6% of questions from five people. A useful capability took shape as the people doing the work taught the system what mattered.",
 };
 
 export const ACTIONS = {
@@ -196,7 +196,7 @@ export const ACTIONS = {
     note: "Counted from session logs, one per successful action, credited to the person whose question triggered it. The window closes at 11:09 Eastern on the Friday.",
     rows: [
       { group: "System of record, 375 changes for 9 people", label: "Stop comments added", value: 116 },
-      { group: "System of record, 375 changes for 9 people", label: "Orders created", value: 94, sub: "9 later voided through Brain OS" },
+      { group: "System of record, 375 changes for 9 people", label: "Orders created", value: 94, sub: "9 later voided through BrainOS" },
       { group: "System of record, 375 changes for 9 people", label: "Order fields edited", value: 70 },
       { group: "System of record, 375 changes for 9 people", label: "Stops cleared as arrived and departed", value: 32 },
       { group: "System of record, 375 changes for 9 people", label: "Stops rescheduled", value: 30 },
@@ -260,7 +260,7 @@ export const ROLE_TABS: Role[] = [
       { they: "Unbilled loads, every morning", does: "A digest of delivered, ready to bill loads with no bill date. Nobody asks; it arrives." },
       { they: "Missing paperwork, every morning", does: "Delivered loads more than three days old with no proof of delivery, and the carrier to chase for each." },
       { they: "“Does this carrier invoice match what we agreed?”", does: "Compares the invoice with the agreed pay on the load and quotes the source line. A biller can check it without opening anything." },
-      { they: "“Ask the carrier for the POD on this load.”", does: "Drafts the request from Brain OS’s own mailbox, shows it first, sends on a yes, and files the reply against the load." },
+      { they: "“Ask the carrier for the POD on this load.”", does: "Drafts the request from BrainOS’s own mailbox, shows it first, sends on a yes, and files the reply against the load." },
     ],
   },
   {
@@ -271,7 +271,7 @@ export const ROLE_TABS: Role[] = [
       { they: "“How many bills did each biller invoice last week?”", does: "Answered live from the system of record, per person, with the query it ran. Finance questions have been answered this way since 16 September." },
       { they: "Monday, daily and monthly digests", does: "Quiet customers, dormant lanes, hot areas, margin by agent. Anything touching money goes only to leadership and billing channels." },
       { they: "“Which customers have we not worked with in three months?”", does: "The list, from the system of record, with last load and last contact. Asked for the first time in the week of 21 September." },
-      { they: "“Who is using Brain OS, and for what?”", does: "The Friday usage report: questions, people, actions, and what fell short, counted from the audit log." },
+      { they: "“Who is using BrainOS, and for what?”", does: "The Friday usage report: questions, people, actions, and what fell short, counted from the audit log." },
     ],
   },
   {
@@ -297,7 +297,7 @@ export const CALC = {
 export const REVENUE = {
   kicker: "07 · WHERE REVENUE ENTERS",
   title: ["From a quote", "to a customer served."],
-  lede: "We have not measured revenue attributable to Brain OS. What we can show is how it supports the work around a sale: pricing a lane, finding a carrier, and keeping a customer informed.",
+  lede: "We have not measured revenue attributable to BrainOS. What we can show is how it supports the work around a sale: pricing a lane, finding a carrier, and keeping a customer informed.",
   flow: [
     { n: "QUOTE", title: "Price from history", body: "Seasonality, who hauls it, backhaul potential. Nearly ten years of lane history in the time it takes to ask.", ask: "“What does this lane usually do?”" },
     { n: "COVER", title: "Call the right carrier", body: "A ranked call list for the lane. Identity for the carrier on the phone. A buy above the sell refused in the draft.", ask: "“Who is this MC number?”" },
@@ -309,7 +309,7 @@ export const REVENUE = {
   aside: {
     kicker: "A SEPARATE PRODUCT, A MEASURED RESULT",
     title: "The dollars we can show are in Margins.",
-    body: "Margins calculates commissions from defined rules at the same operation. Its production ledger records the amounts below. These are Margins results and should be assessed separately from Brain OS.",
+    body: "Margins calculates commissions from defined rules at the same operation. Its production ledger records the amounts below. These are Margins results and should be assessed separately from BrainOS.",
     rows: [
       { label: "Commission settled through Margins", sub: "20 closed weekly runs, 29 March to 16 August 2026", figure: "$4,015,094" },
       { label: "Duplicate payments stopped", sub: "about, across 20 loads that would have paid twice, caught before payday", figure: "$5,491" },
@@ -323,9 +323,9 @@ export const REVENUE = {
 export const FIT = {
   kicker: "08 · WHO IT IS FOR",
   title: ["A system of record.", "And a few people’s heads."],
-  lede: "Built for construction, manufacturing, logistics and energy: any operation where the answers live in an ERP or system of record and the rules live in inboxes, spreadsheets and memory. Brain OS connects to the system you already run.",
+  lede: "Built for construction, manufacturing, logistics and energy: any operation where the answers live in an ERP or system of record and the rules live in inboxes, spreadsheets and memory. BrainOS connects to the system you already run.",
   systems: {
-    note: "Brain OS reads the system of record live and writes to it as drafts, whichever system it is. Each one gets its own connector. The brain, the access controls and the chat interface carry over unchanged. Deployment status as of 26 September 2026.",
+    note: "BrainOS reads the system of record live and writes to it as drafts, whichever system it is. Each one gets its own connector. The brain, the access controls and the chat interface carry over unchanged. Deployment status as of 26 September 2026.",
     rows: [
       { industry: "Construction", systems: "Job costing and project management, field service and scheduling, and the accounting ledger, cloud or on premise.", status: "In build, autumn 2026" },
       { industry: "Manufacturing", systems: "The ERP for orders, inventory and purchasing, with production, quality and maintenance records alongside.", status: "New connector" },
@@ -347,8 +347,8 @@ export const FIT = {
     "A security review that stalled an earlier AI attempt.",
   ],
   notFor: [
-    "Your knowledge already lives in one system everyone trusts. Brain OS solves a problem you do not have.",
-    "Important knowledge has not been recorded. It needs to be captured before Brain OS can use it.",
+    "Your knowledge already lives in one system everyone trusts. BrainOS solves a problem you do not have.",
+    "Important knowledge has not been recorded. It needs to be captured before BrainOS can use it.",
     "Your system of record has no interface we can connect. Knowledge-based answers may still be possible, but actions need an integration.",
   ],
 };
@@ -362,9 +362,9 @@ export const ROLLOUT = {
     { iso: "2026-07-15", dateTime: "2026-07", date: "July", short: "One dispatcher, daily, on live freight", what: "Daily use by one senior dispatcher on live freight, who became the product owner." },
     { iso: "2026-07-24", date: "24 July", short: "Rules taught in chat", what: "Rules taught in chat start saving themselves to the brain." },
     { iso: "2026-07-30", date: "30 July", short: "First orders built", what: "First orders built in the system of record from a conversation." },
-    { iso: "2026-08-05", date: "5 August", short: "Drivers text paperwork", what: "Drivers text photos of signed paperwork to Brain OS’s number; they land in the inbox." },
+    { iso: "2026-08-05", date: "5 August", short: "Drivers text paperwork", what: "Drivers text photos of signed paperwork to BrainOS’s number; they land in the inbox." },
     { iso: "2026-08-12", date: "12 August", short: "Opened to the company", what: "Opened to everyone with a company mailbox, access tiers unchanged." },
-    { iso: "2026-08-13", date: "13 August", short: "Driver texting live", what: "Outbound driver texting on Brain OS’s own registered number." },
+    { iso: "2026-08-13", date: "13 August", short: "Driver texting live", what: "Outbound driver texting on BrainOS’s own registered number." },
     { iso: "2026-08-18", date: "18 August", short: "Load board and tracking screens", what: "Load board screen, per load operations screen, and public customer tracking." },
     { iso: "2026-09-09", date: "9 September", short: "Load board posting certified", what: "Load board posting live on production, after the load board certified it." },
     { iso: "2026-09-16", date: "16 September", short: "Finance questions live", what: "Finance questions answered live from the system of record." },
@@ -379,7 +379,7 @@ export const ROLLOUT = {
   ],
   span: { start: "2026-06-01", end: "2026-09-30" },
   steps: [
-    { title: "Connect", body: "Register the bot in your Microsoft tenant, connect the system of record, and give Brain OS its mailbox. Read only first." },
+    { title: "Connect", body: "Register the bot in your Microsoft tenant, connect the system of record, and give BrainOS its mailbox. Read only first." },
     { title: "Compile", body: "Ingest what the business already produces. Give every user a page with their book, their tier and their role." },
     { title: "Pilot with a champion", body: "One operator who uses it on live work every day and says what is wrong." },
     { title: "Open the company", body: "Admit the whole domain with tiers in place. Here it went from 12 to 31 weekly users in four weeks." },

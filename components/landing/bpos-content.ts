@@ -1,6 +1,5 @@
-// Generated from the approved BPOS console mockup. Seven industries,
-// five modules each. Module names and KPI labels come from the real portals:
-// Yates, Preferred, Whitmore Vance, RJS, 1100 Group, Circa, Rosemont.
+// Sample BrainOS console. Seven industries, five modules each.
+// Names, load IDs, and figures are fictional sample data.
 export type Stat = [dot: string, label: string, value: string, sub: string];
 export type Row = [code: string, issue: string, n: number, action: string, blocker: number];
 export interface Mod { nav: string; crumb: string; title: string; sub: string; cta: string;
@@ -537,7 +536,7 @@ export const BPOS_INDUSTRIES: Industry[] = [
         "rows": [
           [
             "ALEXJCO",
-            "Nobody to pay — needs a payee",
+            "Nobody to pay. Needs a payee",
             2,
             "Resolve",
             1
@@ -572,7 +571,7 @@ export const BPOS_INDUSTRIES: Industry[] = [
           ],
           [
             "MAYABFL",
-            "Below min margin — pays $0",
+            "Below min margin. Pays $0.",
             1,
             "Review",
             0

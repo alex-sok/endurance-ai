@@ -18,7 +18,7 @@ export const BANDS = [
 ];
 
 export const PRICING_META = {
-  title: "Pricing — Margins",
+  title: "Margins pricing",
   description:
     "One monthly number, set from your own pay runs and fixed for the year. Implementation credited back in full. The pilot is free.",
   canonical: "https://endurancelabs.ai/margins/pricing",

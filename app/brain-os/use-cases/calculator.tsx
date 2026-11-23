@@ -64,10 +64,10 @@ export function ImpactCalculator() {
     <div className="bp-calc">
       <div className="bp-calc-in">
         <p className="bp-calc-kick">YOUR OPERATION</p>
-        <Field label="People who can ask" note="The band Brain OS is priced on. Default: the reference deployment, week to 18 September." value={people} display={`${people}`} min={5} max={160} step={1} onChange={setPeople} />
+        <Field label="People who can ask" note="The band BrainOS is priced on. Default: the reference deployment, week to 18 September." value={people} display={`${people}`} min={5} max={160} step={1} onChange={setPeople} />
         <Field label="Questions per person, per working day" note="Default: 791 questions by 33 people in one week, so 4.8 each per day." value={perDay} display={perDay.toFixed(1)} min={0.5} max={15} step={0.1} onChange={setPerDay} />
         <Field label="Minutes each answer saves" note="An assumption. A chase across the system of record, an inbox and a phone call is rarely under five." value={minutes} display={`${minutes} min`} min={1} max={20} step={1} onChange={setMinutes} />
-        <Field label="Truckload plans per week" note="An assumption. Each one is two hours by hand and thirty seconds with Brain OS, customer reported." value={plans} display={`${plans}`} min={0} max={100} step={1} onChange={setPlans} />
+        <Field label="Truckload plans per week" note="An assumption. Each one is two hours by hand and thirty seconds with BrainOS, customer reported." value={plans} display={`${plans}`} min={0} max={100} step={1} onChange={setPlans} />
         <Field label="Loaded cost per hour" note="An assumption. Salary, benefits and the desk, per working hour." value={rate} display={`$${rate}`} min={20} max={150} step={5} onChange={setRate} />
       </div>
       <div className="bp-calc-out">
@@ -79,7 +79,7 @@ export function ImpactCalculator() {
         <div className="bp-out-grid">
           <div><p>Hours returned each year, over {WORKING_WEEKS} working weeks</p><p>{whole(yearly)}</p></div>
           <div><p>Value of those hours at ${rate} an hour</p><p>{money(value)}</p></div>
-          <div><p>Brain OS for the year, published band “{band.range}”</p><p>{price ? money(price) : 'Quoted'}</p></div>
+          <div><p>BrainOS for the year, published band “{band.range}”</p><p>{price ? money(price) : 'Quoted'}</p></div>
           <div><p>Return on the year’s fee</p><p>{multiple ? `${multiple.toFixed(1)}×` : 'Ask us'}</p></div>
         </div>
         <div className="bp-out-bars">
@@ -90,8 +90,8 @@ export function ImpactCalculator() {
               <span className="bp-track"><span className="bp-fill" style={{ width: `${Math.max(0.5, (value / scale) * 100)}%` }} /></span>
               <span className="bp-bar-value">{money(value)}</span>
             </li>
-            <li title={`Brain OS for the year: ${price ? money(price) : 'quoted'}`}>
-              <span className="bp-bar-label">Brain OS, per year</span>
+            <li title={`BrainOS for the year: ${price ? money(price) : 'quoted'}`}>
+              <span className="bp-bar-label">BrainOS, per year</span>
               <span className="bp-track"><span className="bp-fill is-light" style={{ width: `${price ? Math.max(0.5, (price / scale) * 100) : 0.5}%` }} /></span>
               <span className="bp-bar-value">{price ? money(price) : 'Quoted'}</span>
             </li>

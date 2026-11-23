@@ -26,9 +26,9 @@ export function BusinessArchitecture() {
             <p className="eyebrow">02 / HOW IT WORKS</p>
             <h2 id="architecture-title">Your systems.<br /><span className="text-accent">Working together.</span></h2>
           </div>
-          <p>Brain OS connects the tools, knowledge, and routines your business already runs—then turns that context into useful work.</p>
+          <p>BrainOS connects the tools, knowledge, and routines your business already runs, then turns that context into useful work.</p>
         </div>
-        <figure className="business-diagram" aria-label="Business systems, knowledge, and processes connect to Brain OS, which prepares source-linked answers and work for people.">
+        <figure className="business-diagram" aria-label="Business systems, knowledge, and processes connect to BrainOS, which prepares source-linked answers and work for people.">
           <div className="diagram-column">
             <h3 className="diagram-stage-label"><span>01</span> Connect what you know</h3>
             <div className="diagram-node-list">
@@ -45,7 +45,7 @@ export function BusinessArchitecture() {
           <div className="diagram-core-column">
             <h3 className="diagram-stage-label"><span>02</span> Build shared context</h3>
             <div className="diagram-core">
-              <div className="diagram-core-heading"><Layers3 size={26} strokeWidth={1.4} aria-hidden="true" /><span>Brain OS</span></div>
+              <div className="diagram-core-heading"><Layers3 size={26} strokeWidth={1.4} aria-hidden="true" /><span>BrainOS</span></div>
               <p>The knowledge behind<br />the next step.</p>
               <ul>
                 <li>Understand the context</li>
@@ -85,7 +85,7 @@ const commitments = [
 const boundaries = [
   { label: 'DATA', title: 'What comes in. Where it lives.', copy: 'Agree the sources, data location, retention, and model-data policies.' },
   { label: 'ACCESS', title: 'Who can see and do what.', copy: 'Define access for people, connected tools, and automated workflows.' },
-  { label: 'ACTION', title: 'What needs a human decision.', copy: 'Set the authority to act—and the points where a person reviews.' },
+  { label: 'ACTION', title: 'What needs a human decision.', copy: 'Set the authority to act, and the points where a person reviews.' },
 ];
 
 export function SecurityArchitecture() {

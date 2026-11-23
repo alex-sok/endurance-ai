@@ -65,7 +65,7 @@ function Conversation({ question, onQuestionChange }: { question: QuestionId; on
     </aside>
     <div className={styles.chatThread} aria-live="polite">
       <div className={styles.userMessage}><span className={styles.micro}>YOU</span><p>{current.question}</p></div>
-      <div className={styles.brainMessage}><div className={styles.chatAuthor}><span className={styles.brainMark}>B</span><strong>Brain OS</strong><span>Answer with context</span></div><p>{current.answer}</p>
+      <div className={styles.brainMessage}><div className={styles.chatAuthor}><span className={styles.brainMark}>B</span><strong>BrainOS</strong><span>Answer with context</span></div><p>{current.answer}</p>
         <figure className={styles.answerChart}><figcaption>{current.chartTitle}</figcaption>{current.bars.map(bar => <div className={styles.answerBar} key={bar.label}><span>{bar.label}</span><div><i style={{ width: `${bar.value / max * 100}%` }} /></div><strong>{bar.value} <small>{current.unit}</small></strong></div>)}</figure>
         <SourceTags sources={current.sources} />
         <details className={styles.dataDetails} key={`records-${question}`}><summary>Inspect supporting records <ChevronDown size={12} aria-hidden="true" /></summary><table><caption>Sample records used for this answer</caption><tbody>{current.records.map(record => <tr key={record.label}><th scope="row">{record.label}</th><td>{record.value}</td></tr>)}</tbody></table></details>
@@ -87,15 +87,15 @@ export function ProductShowcase() {
     conversationTab.current?.focus();
   };
   return <div id="product" className={`${styles.showcase} wrap`}>
-    <div className={styles.showcaseHeading}><div><p className="eyebrow">A LOOK INSIDE BRAIN OS</p><h3>See the picture.<br />Understand what’s behind it.</h3></div><p>Reports that explain what changed. Insights that point to the next step. A conversation with the knowledge of your business.</p></div>
+    <div className={styles.showcaseHeading}><div><p className="eyebrow">A LOOK INSIDE BrainOS</p><h3>See the picture.<br />Understand what’s behind it.</h3></div><p>Reports that explain what changed. Insights that point to the next step. A conversation with the knowledge of your business.</p></div>
     <Tabs value={view} onValueChange={value => { if (value === 'intelligence' || value === 'trends' || value === 'conversations') setView(value); }} className={styles.app}>
-      <div className={styles.appHeader}><div className={styles.brand}><span className={styles.brainMark}>B</span><strong>Brain OS</strong><span className={styles.workspace}>Operations workspace</span></div><span className={styles.conceptLabel}>PRODUCT CONCEPT · SAMPLE DATA</span></div>
+      <div className={styles.appHeader}><div className={styles.brand}><span className={styles.brainMark}>B</span><strong>BrainOS</strong><span className={styles.workspace}>Operations workspace</span></div><span className={styles.conceptLabel}>PRODUCT CONCEPT · SAMPLE DATA</span></div>
       <div className={styles.navigation}><TabsList className={styles.nav} aria-label="Explore product concepts"><TabsTrigger value="intelligence"><Layers3 size={16} aria-hidden="true" />Intelligence</TabsTrigger><TabsTrigger value="trends"><ChartNoAxesCombined size={16} aria-hidden="true" />Trends</TabsTrigger><TabsTrigger value="conversations" ref={conversationTab}><MessageSquare size={16} aria-hidden="true" />Conversations</TabsTrigger></TabsList><span className={styles.sourceStatus}><Database size={13} aria-hidden="true" />Records → context → action</span></div>
       <TabsContent value="intelligence" className={styles.panel}>
         <div className={styles.panelHeading}><div><span className={styles.micro}>THE OPERATING PICTURE</span><h3>Your morning, in focus.</h3></div><span className={styles.periodLabel}>Weekly briefing</span></div>
         <div className={styles.stats}><div><span>Delivered this week</span><strong>126</strong><small>Completed loads</small></div><div><span>Billed</span><strong>108</strong><small>From this week’s deliveries</small></div><div><span>Ready for a closer look</span><strong>18</strong><small>Delivered, still unbilled</small></div></div>
-        <div className={styles.intelligenceGrid}><BillingChart /><aside className={styles.brief}><span className={styles.micro}>BRAIN OS / THE INSIGHT</span><h4>The work is delivered.<br />The paperwork is holding it up.</h4><p>12 missing proofs of delivery account for two-thirds of this week’s unbilled loads. The other 6 need an invoice review.</p><SourceTags sources={['Delivery records', 'Billing status']} /><button type="button" onClick={() => ask('billing')}>Ask about this<ArrowUpRight size={16} aria-hidden="true" /></button><span className={styles.briefFoot}>A useful next step, with the evidence attached.</span></aside></div>
-        <div className={styles.intelligenceFoot}><span><ScanLine size={16} aria-hidden="true" />Next step: prepare requests for the missing documents.</span><span>People review. Brain OS prepares.</span></div>
+        <div className={styles.intelligenceGrid}><BillingChart /><aside className={styles.brief}><span className={styles.micro}>BrainOS / THE INSIGHT</span><h4>The work is delivered.<br />The paperwork is holding it up.</h4><p>12 missing proofs of delivery account for two-thirds of this week’s unbilled loads. The other 6 need an invoice review.</p><SourceTags sources={['Delivery records', 'Billing status']} /><button type="button" onClick={() => ask('billing')}>Ask about this<ArrowUpRight size={16} aria-hidden="true" /></button><span className={styles.briefFoot}>A useful next step, with the evidence attached.</span></aside></div>
+        <div className={styles.intelligenceFoot}><span><ScanLine size={16} aria-hidden="true" />Next step: prepare requests for the missing documents.</span><span>People review. BrainOS prepares.</span></div>
       </TabsContent>
       <TabsContent value="trends" className={styles.panel}>
         <div className={styles.panelHeading}><div><span className={styles.micro}>PATTERNS WORTH YOUR ATTENTION</span><h3>Know what’s changing.</h3></div><span className={styles.periodLabel}>Performance & customer activity</span></div>
@@ -108,12 +108,12 @@ export function ProductShowcase() {
       </TabsContent>
       <div className={styles.appFoot}><span><Check size={12} aria-hidden="true" />Sources alongside answers</span><span><Check size={12} aria-hidden="true" />Drafts before action</span><span><Check size={12} aria-hidden="true" />People in control</span></div>
     </Tabs>
-    <p className={styles.caption}>Illustrative product concepts based on documented Brain OS workflows. Charts, figures, and conversations use sample data.</p>
+    <p className={styles.caption}>Illustrative product concepts based on documented BrainOS workflows. Charts, figures, and conversations use sample data.</p>
     <div className={styles.useCases}>
       <div><span className={styles.micro}>01 / THE OPERATIONS DESK</span><h4>“Where is my load?”</h4><p>Bring order status, driver updates, and email into an answer with its sources.</p></div>
       <div><span className={styles.micro}>02 / THE BACK OFFICE</span><h4>“What’s ready to bill?”</h4><p>Find delivered work, missing documents, and invoice exceptions in a morning digest.</p></div>
       <div><span className={styles.micro}>03 / THE LEADERSHIP TEAM</span><h4>“What needs our attention?”</h4><p>Explore customer activity, lane history, and operating reports through a conversation.</p></div>
     </div>
-    <a className="text-link" href="/brain-os/use-cases">See how one team uses Brain OS<ArrowUpRight size={15} aria-hidden="true" /></a>
+    <a className="text-link" href="/brain-os/use-cases">See how one team uses BrainOS<ArrowUpRight size={15} aria-hidden="true" /></a>
   </div>;
 }

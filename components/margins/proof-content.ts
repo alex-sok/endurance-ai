@@ -50,7 +50,7 @@ export type LedgerRow = {
 };
 
 export const PROOF_META = {
-  title: "Margins in production — Endurance AI Labs",
+  title: "Margins in production | endurance",
   description:
     "Twenty weeks of commission settlement at one freight brokerage. Examine the production figures, approval rules, exceptions, and audit trail.",
   canonical: "https://endurancelabs.ai/margins/proof",

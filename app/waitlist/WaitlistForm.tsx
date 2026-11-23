@@ -86,7 +86,7 @@ export function WaitlistForm() {
         </p>
       ) : null}
       <p className="wl-note">
-        Stored securely. Never shared, never sold — your data stays yours.
+        Stored securely. Never shared and never sold. Your data stays yours.
       </p>
     </form>
   );

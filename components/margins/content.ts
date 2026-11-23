@@ -39,7 +39,7 @@ export type MarginsBeat = {
 };
 
 export const MARGINS_META = {
-  title: "Margins — Endurance AI Labs",
+  title: "Margins by endurance",
   description:
     "Commission settlement for freight brokerages. Calculate splits from your TMS, review exceptions before payday, and trace each statement back to its loads.",
   canonical: "https://endurancelabs.ai/margins",
