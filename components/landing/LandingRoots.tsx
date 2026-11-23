@@ -5,7 +5,7 @@ export function LandingRoots() {
         <p className="lp-eyebrow">05 · The lab</p>
         <h2 className="lp-h2">One lab behind all four.</h2>
         <p className="lp-lead">
-          Brain OS, Foundations, the developer tool, the one-off builds:
+          BrainOS, Foundations, the developer tool, the one-off builds:
           everything above comes out of one small team running three
           disciplines. Research without a product is a paper. A product
           without research is a guess.

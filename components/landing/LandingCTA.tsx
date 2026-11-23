@@ -1,14 +1,14 @@
 "use client";
 
 /* The closing offer, in the row-card grammar: kicker, claim, one line, then
-   the three ways an engagement starts — each a numbered row with the name
+   the three ways an engagement starts: each a numbered row with the name
    left and what it gets you right. Straight from the manifesto's ladder. */
 
 const STEPS = [
   {
     n: "01",
     name: "AI Masterclass",
-    desc: "Your team starts using the public tools in a safe, compliant environment — value before we build anything.",
+    desc: "Your team starts using the public tools in a safe, compliant environment. You see value before we build anything.",
   },
   {
     n: "02",
@@ -24,9 +24,9 @@ const STEPS = [
 
 export function LandingCTA({ onOpenChat }: { onOpenChat: () => void }) {
   return (
-    <section className="lp-ctaband" aria-label="Working with Endurance">
+    <section className="lp-ctaband" aria-label="Working with endurance">
       <div className="lp-ctacard">
-        <p className="lp-ctakick">Working with Endurance</p>
+        <p className="lp-ctakick">Working with endurance</p>
         <h2 className="lp-ctahead">Your business can&rsquo;t shut down for a rebuild.</h2>
         <p className="lp-ctasub">
           So we build in parallel: small steps that deliver value every step

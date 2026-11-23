@@ -60,8 +60,8 @@ function Held() {
         <div className="pf-alert-text">
           <p className="pf-alert-title">1 blocker is holding the run</p>
           <p className="pf-fine">
-            Step 3 — <b>Run pay for the week</b>
-            {" — "}stays locked until every blocker is resolved. Warnings don&rsquo;t block.
+            Step 3: <b>Run pay for the week</b>
+            {": "}stays locked until every blocker is resolved. Warnings don&rsquo;t block.
           </p>
         </div>
         <span className="pf-pill">This week →</span>
@@ -124,10 +124,10 @@ function Statement() {
               <path d="M2 11l4-4 3 3 5-6" />
               <path d="M10 4h4v4" />
             </svg>
-            Margin cliff cleared — full rate on all loads
+            Margin cliff cleared: full rate on all loads
           </p>
           <p className="pf-fine">
-            Weekly average margin <b>21.5%</b> vs a <b>13%</b> full-rate threshold — the gate is OFF this
+            Weekly average margin <b>21.5%</b> vs a <b>13%</b> full-rate threshold: the gate is OFF this
             week: every load pays full rate, including those under the min margin.
           </p>
         </div>

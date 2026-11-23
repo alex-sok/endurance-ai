@@ -1,7 +1,7 @@
 import { AccessForm } from "./AccessForm";
 
 export const metadata = {
-  title: "Endurance Investments — access",
+  title: "endurance investments access",
   description: "Password protected.",
   robots: { index: false, follow: false },
 };
@@ -15,7 +15,7 @@ export default async function AccessPage({
   return (
     <main className="inv-access">
       <div className="inv-access__inner">
-        <div className="inv-tag">Endurance Investments</div>
+        <div className="inv-tag">endurance investments</div>
         <h1 className="inv-display-sm inv-access__title">
           This page is{" "}
           <span className="inv-access__accent">password protected</span>.

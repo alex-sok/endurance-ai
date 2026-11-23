@@ -13,13 +13,13 @@ export function LandingHero({ onOpenChat }: Props) {
           We research. We build. <em>We ship.</em>
         </h1>
         <p className="lp-hero-lede">
-          Endurance is an R&amp;D AI lab based in San Francisco, CA. We sit in
+          endurance is an R&amp;D AI lab based in San Francisco, CA. We sit in
           your operation and ship the system it was missing: built for
           operators, not categories, so you set the standard your competitors
           are measured against.
         </p>
         <p className="lp-hero-verticals">
-          Brain OS · Foundations · Multiplayer Developer Tool · Micro SaaS
+          BrainOS · Foundations · Multiplayer Developer Tool · Micro SaaS
         </p>
         <div className="lp-hero-actions">
           <button type="button" className="lp-btn-quiet" onClick={onOpenChat}>

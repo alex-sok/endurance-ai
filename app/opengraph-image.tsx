@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 // Keep the public sharing preview aligned with the cinematic homepage.
-export const alt = "Endurance — A company brain for the businesses building our future.";
+export const alt = "endurance: a company brain for the businesses building our future.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -22,11 +22,11 @@ export default async function Image() {
         <img src={`data:image/png;base64,${city}`} width={1200} height={558} alt="" style={{ position: "absolute", inset: 0, objectFit: "cover" }} />
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 28, textAlign: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: 40, lineHeight: 1.15, letterSpacing: "-0.035em" }}>
-            <span>A company brain for the</span>
-            <span>businesses building our future.</span>
+            <span>BrainOS.</span>
+            <span>A company brain for operators.</span>
           </div>
           <div style={{ maxWidth: 550, marginTop: 18, fontSize: 18, lineHeight: 1.5 }}>
-            Brain OS organizes your company’s knowledge, learns from every task, and helps everyone do more.
+            BrainOS organizes your company’s knowledge, learns from every task, and helps everyone do more.
           </div>
         </div>
       </div>

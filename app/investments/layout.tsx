@@ -21,19 +21,20 @@ const jetbrainsMono = JetBrains_Mono({
 
 const PAGE_URL = "https://endurancelabs.ai/investments";
 const TITLE =
-  "Endurance Investments — the operating system for multifamily real estate";
+  "endurance investments, the operating system for multifamily real estate";
 const DESCRIPTION =
-  "AI-powered investment platform for multifamily operators. From deal screening to LP distributions — one platform.";
+  "AI-powered investment platform for multifamily operators. From deal screening to LP distributions, on one platform.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
+  robots: { index: false, follow: false },
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
     url: PAGE_URL,
-    siteName: "Endurance AI Labs",
+    siteName: "endurance",
     type: "website",
     locale: "en_US",
     images: [
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Endurance Investments",
+        alt: "endurance investments",
       },
     ],
   },

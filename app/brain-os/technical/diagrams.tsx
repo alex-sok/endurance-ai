@@ -6,7 +6,7 @@ import { BookOpen, Check, Database, Layers, MessageSquare, Minus, Pause, ShieldC
 
 export function Architecture() {
   return (
-    <figure className="bp-arch-figure" aria-label="How Brain OS is put together">
+    <figure className="bp-arch-figure" aria-label="How BrainOS is put together">
       <div className="bp-arch">
         <div className="bp-arch-col">
           <p className="bp-arch-label">KNOWLEDGE, COMPILED</p>
@@ -21,7 +21,7 @@ export function Architecture() {
           </div>
         </div>
         <div className="bp-core">
-          <div className="bp-core-head"><Layers size={26} aria-hidden="true" /><span>Brain OS</span></div>
+          <div className="bp-core-head"><Layers size={26} aria-hidden="true" /><span>BrainOS</span></div>
           <p>For every message, inside the asker’s access tier:</p>
           <ol className="bp-loop">
             <li><span><b>Who is asking?</b> The sender resolves to a person page: book, role, tier.</span></li>
@@ -131,7 +131,7 @@ export function TierMatrix({ columns, rows, note }: { columns: string[]; rows: {
 
 export function DeployDiagram({ columns }: { columns: { label: string; core?: boolean; nodes: { title: string; body: string }[] }[] }) {
   return (
-    <figure className="bp-deploy" aria-label="Where Brain OS runs">
+    <figure className="bp-deploy" aria-label="Where BrainOS runs">
       {columns.map(col => (
         <div className={`bp-arch-col${col.core ? ' is-core' : ''}`} key={col.label}>
           <p className="bp-arch-label">{col.label}</p>

@@ -36,7 +36,7 @@ export function LandingNav({ onOpenChat, onNavigate }: Props) {
         <a
           className="lp-wordmark"
           href={isHome ? "#top" : "/"}
-          aria-label="Endurance AI Labs"
+          aria-label="endurance"
           onClick={(e) => {
             if (!isHome) return;
             e.preventDefault();

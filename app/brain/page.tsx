@@ -3,7 +3,7 @@ import { ProductLanding } from "@/components/landing/ProductLanding";
 import { BRAIN } from "@/components/landing/product-content";
 import "../landing.css";
 
-const TITLE = "Brain — Endurance AI Labs";
+const TITLE = "Brain by endurance";
 const DESCRIPTION =
   "Brain organizes company documents, messages, meetings, and code into a living knowledge base. Ask questions and follow answers back to their sources.";
 

@@ -2,13 +2,13 @@ import { AccessForm } from "./AccessForm";
 import "./access.css";
 
 export const metadata = {
-  title: "Copperline Logistics — access",
+  title: "Northline Freight access",
   description: "Password protected.",
   robots: { index: false, follow: false },
 };
 
 /**
- * /copperline/access — the password gate for the Copperline Logistics demo.
+ * /copperline/access: the password gate for the Northline Freight demo.
  *
  * Routed to by proxy.ts when the visitor doesn't carry a valid access cookie.
  * This is a real page in this app, so it wins over the /copperline/:path*
@@ -36,7 +36,7 @@ export default async function AccessPage({
             />
             <circle cx="12" cy="12" r="1.7" fill="#fff" />
           </svg>
-          <span>Copperline Logistics</span>
+          <span>Northline Freight</span>
         </div>
 
         <h1 className="cl-access__title">This demo is password protected.</h1>
@@ -47,7 +47,7 @@ export default async function AccessPage({
         <AccessForm from={params.from} configError={params.err === "config"} />
 
         <p className="cl-access__foot">
-          Copperline Logistics is a fictional freight brokerage used to demonstrate the Endurance
+          Northline Freight is a fictional freight brokerage used to demonstrate the endurance
           logistics operating platform. All data behind this gate is synthetic. Trouble getting in?
           Email <a href="mailto:hello@endurancelabs.ai">hello@endurancelabs.ai</a>.
         </p>

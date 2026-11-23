@@ -2,13 +2,13 @@
 // they should not look alike here. Three layouts, assigned by what the portal
 // actually is:
 //
-//   command — a dark operating band over a wide data grid. Real estate and
+//   command: a dark operating band over a wide data grid. Real estate and
 //             wealth run this way: one source of truth, drill-downs a click
 //             away. Modelled on the Blackwater Executive Command Center.
-//   board   — a KPI strip over contract-style progress rows and a rollup.
+//   board  : a KPI strip over contract-style progress rows and a rollup.
 //             Construction, hospitality and brokerage read as a book of jobs,
 //             units or listings, each with a number that is tracking or not.
-//   run     — a headline figure, blockers, worklist and a locked checklist.
+//   run    : a headline figure, blockers, worklist and a locked checklist.
 //             Legal and logistics are periodic runs: something has to clear
 //             before money moves.
 
@@ -76,8 +76,8 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     ],
     bandTitle: "Executive Command Center",
     bandSub:
-      "36 assets in scope — one source of truth: property-management financials, rent rolls, work orders and collections. No exports, no spreadsheet rebuilds, drill-downs one click away.",
-    bandMeta: "T-12 basis · Aug 2025 — Jul 2026",
+      "36 assets in scope. One source of truth: property-management financials, rent rolls, work orders and collections. No exports, no spreadsheet rebuilds, drill-downs one click away.",
+    bandMeta: "T-12 basis · Aug 2025 to Jul 2026",
     band: [
       { label: "Units", value: "8,312", delta: "36 assets", sub: "10 states · 100% PM-synced", spark: [38, 40, 41, 44, 46, 49, 52, 55, 58, 62, 66, 70] },
       { label: "Occupancy", value: "95.6%", delta: "0.1 pts vs T-3", sub: "unit-weighted, trailing 12", spark: [52, 48, 55, 60, 57, 63, 66, 62, 68, 72, 70, 74] },
@@ -118,7 +118,7 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     ],
     bandTitle: "Client Command Center",
     bandSub:
-      "1,204 households in scope — custodial positions, portfolio accounting, billing and the CRM reconciled nightly. Every figure on a client pack traces to a custodian record.",
+      "1,204 households in scope. Custodial positions, portfolio accounting, billing and the CRM reconciled nightly. Every figure on a client pack traces to a custodian record.",
     bandMeta: "Quarter to date · closes Jun 30",
     band: [
       { label: "Assets reported", value: "$8.4B", delta: "1,204 households", sub: "42,180 positions reconciled", spark: [40, 43, 45, 48, 51, 54, 56, 60, 63, 66, 70, 73] },
@@ -160,7 +160,7 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     ],
     bandTitle: "Project Command Center",
     bandSub:
-      "34 active jobs in scope \u2014 one source of truth: job costs, commitments, pay applications and timesheets. Earned value is computed from the cost ledger, not retyped from a schedule of values.",
+      "34 active jobs in scope. One source of truth: job costs, commitments, pay applications and timesheets. Earned value is computed from the cost ledger, not retyped from a schedule of values.",
     bandMeta: "Week ending Jun 20 \u00b7 costs synced nightly",
     band: [
       { label: "Contract backlog", value: "$1.24B", delta: "34 active jobs", sub: "14.2 months of coverage", spark: [36, 39, 41, 44, 43, 47, 51, 54, 58, 61, 65, 70] },
@@ -181,7 +181,7 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
       { name: "Northgate Refresh", meta: "$6.4M contract · $0.4M to complete", pct: 94, right: "94% earned" },
     ],
     grid: {
-      title: "All Jobs — CFO Rollup",
+      title: "All Jobs: CFO Rollup",
       meta: "34 active jobs · costs synced nightly",
       cols: ["Job", "PM", "Contract", "Earned", "Billed", "Cost to complete", "Margin", "Status"],
       rows: [
@@ -212,7 +212,7 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     ],
     bandTitle: "Group Command Center",
     bandSub:
-      "41 units in scope \u2014 point of sale, scheduling and invoices closed nightly. Prime cost is built from the actual tickets and the actual punches, so the number is the same one the GM sees.",
+      "41 units in scope. Point of sale, scheduling and invoices closed nightly. Prime cost is built from the actual tickets and the actual punches, so the number is the same one the GM sees.",
     bandMeta: "Week ending Jun 20 \u00b7 closed nightly",
     band: [
       { label: "Units reporting", value: "41", delta: "6 markets", sub: "41 of 41 closed on time", spark: [64, 66, 68, 67, 70, 72, 71, 74, 76, 75, 78, 80] },
@@ -225,26 +225,26 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     barsTitle: "Prime cost by unit",
     barsMeta: "Food plus labor as % of sales · target 58%",
     bars: [
-      { name: "Unit 07 — Riverwalk", meta: "$412K sales · labor 32.1%", pct: 63, right: "63.0% prime", flag: true },
-      { name: "Unit 22 — Grove St", meta: "$388K sales · food 33.4%", pct: 61, right: "61.2% prime" },
-      { name: "Unit 19 — Harbor", meta: "$455K sales · labor 29.8%", pct: 59, right: "59.4% prime" },
-      { name: "Unit 31 — Northside", meta: "$298K sales · food 30.1%", pct: 58, right: "57.8% prime" },
-      { name: "Unit 14 — Midtown", meta: "$501K sales · labor 27.4%", pct: 56, right: "55.9% prime" },
-      { name: "Unit 03 — Lakeside", meta: "$470K sales · food 29.2%", pct: 54, right: "54.3% prime" },
+      { name: "Unit 07: Riverwalk", meta: "$412K sales · labor 32.1%", pct: 63, right: "63.0% prime", flag: true },
+      { name: "Unit 22: Grove St", meta: "$388K sales · food 33.4%", pct: 61, right: "61.2% prime" },
+      { name: "Unit 19: Harbor", meta: "$455K sales · labor 29.8%", pct: 59, right: "59.4% prime" },
+      { name: "Unit 31: Northside", meta: "$298K sales · food 30.1%", pct: 58, right: "57.8% prime" },
+      { name: "Unit 14: Midtown", meta: "$501K sales · labor 27.4%", pct: 56, right: "55.9% prime" },
+      { name: "Unit 03: Lakeside", meta: "$470K sales · food 29.2%", pct: 54, right: "54.3% prime" },
     ],
     grid: {
-      title: "Units — Group Rollup",
+      title: "Units: Group Rollup",
       meta: "41 units · closed nightly · period to date",
       cols: ["Unit", "GM", "Sales", "Food%", "Labor%", "Prime", "Covers", "EBITDA", "Status"],
       rows: [
-        ["07 — Riverwalk", "T. Nakamura", "$412,400", "30.9%", "32.1%", "63.0%", "18,240", "$28,100", "Over target"],
-        ["22 — Grove St", "L. Okonjo", "$388,100", "33.4%", "27.8%", "61.2%", "16,980", "$31,400", "Watch"],
-        ["19 — Harbor", "S. Petrov", "$455,900", "29.6%", "29.8%", "59.4%", "20,110", "$44,200", "Blocked"],
-        ["31 — Northside", "T. Nakamura", "$298,300", "30.1%", "27.7%", "57.8%", "13,440", "$26,700", "On plan"],
-        ["14 — Midtown", "L. Okonjo", "$501,200", "28.5%", "27.4%", "55.9%", "22,870", "$58,300", "On plan"],
-        ["03 — Lakeside", "S. Petrov", "$470,600", "29.2%", "25.1%", "54.3%", "21,050", "$61,900", "On plan"],
-        ["11 — Old Town", "T. Nakamura", "$344,800", "29.9%", "26.6%", "56.5%", "15,320", "$38,400", "On plan"],
-        ["28 — Fairview", "L. Okonjo", "$389,700", "30.4%", "26.9%", "57.3%", "17,640", "$40,100", "On plan"],
+        ["07: Riverwalk", "T. Nakamura", "$412,400", "30.9%", "32.1%", "63.0%", "18,240", "$28,100", "Over target"],
+        ["22: Grove St", "L. Okonjo", "$388,100", "33.4%", "27.8%", "61.2%", "16,980", "$31,400", "Watch"],
+        ["19: Harbor", "S. Petrov", "$455,900", "29.6%", "29.8%", "59.4%", "20,110", "$44,200", "Blocked"],
+        ["31: Northside", "T. Nakamura", "$298,300", "30.1%", "27.7%", "57.8%", "13,440", "$26,700", "On plan"],
+        ["14: Midtown", "L. Okonjo", "$501,200", "28.5%", "27.4%", "55.9%", "22,870", "$58,300", "On plan"],
+        ["03: Lakeside", "S. Petrov", "$470,600", "29.2%", "25.1%", "54.3%", "21,050", "$61,900", "On plan"],
+        ["11: Old Town", "T. Nakamura", "$344,800", "29.9%", "26.6%", "56.5%", "15,320", "$38,400", "On plan"],
+        ["28: Fairview", "L. Okonjo", "$389,700", "30.4%", "26.9%", "57.3%", "17,640", "$40,100", "On plan"],
       ],
     },
   },
@@ -264,7 +264,7 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     ],
     bandTitle: "Desk Command Center",
     bandSub:
-      "74 live listings in scope \u2014 the CRM, the comp sets and the marketing record in one place. Every opinion of value is assembled from comps the desk can open, not from a broker's memory.",
+      "74 live listings in scope. The CRM, the comp sets and the marketing record in one place. Every opinion of value is assembled from comps the desk can open, not from a broker's memory.",
     bandMeta: "Week ending Jun 20 \u00b7 comps refreshed daily",
     band: [
       { label: "Live listings", value: "74", delta: "$612M asking", sub: "avg 63 days on market", spark: [42, 45, 44, 49, 52, 51, 56, 58, 57, 62, 65, 68] },
@@ -316,7 +316,7 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     ],
     bandTitle: "Firm Command Center",
     bandSub:
-      "1,842 open matters in scope \u2014 the document system, the practice-management ledger and the time entries in one place. Every figure on a prebill traces to a timekeeper record.",
+      "1,842 open matters in scope. The document system, the practice-management ledger and the time entries in one place. Every figure on a prebill traces to a timekeeper record.",
     bandMeta: "Month to date \u00b7 closes Jun 30",
     band: [
       { label: "Matters open", value: "1,842", delta: "214 clients", sub: "9 practice groups", spark: [50, 52, 51, 55, 57, 56, 60, 62, 61, 65, 67, 70] },
@@ -358,7 +358,7 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
     ],
     bandTitle: "Network Command Center",
     bandSub:
-      "1,077 loads in flight \u2014 the transportation system, the telematics feed and the carrier record in one place. Rate confirmations, invoices and settlements are matched against the load, not against a spreadsheet.",
+      "1,077 loads in flight. The transportation system, the telematics feed and the carrier record in one place. Rate confirmations, invoices and settlements are matched against the load, not against a spreadsheet.",
     bandMeta: "Month to date \u00b7 closes Jun 30",
     band: [
       { label: "Loads in flight", value: "1,077", delta: "412 carriers", sub: "38 states, 6 lanes over plan", spark: [46, 50, 48, 55, 58, 56, 62, 65, 63, 69, 72, 75] },
@@ -373,14 +373,14 @@ export const BPOS_VIEWS: Record<string, IndustryView> = {
       meta: "1,077 loads in flight \u00b7 positions updated every 15 minutes",
       cols: ["Load", "Lane", "Carrier", "Equip", "Miles", "Revenue", "Cost", "Margin", "Status"],
       rows: [
-        ["RJS-408122", "Huntsville, AL \u2192 Monroe, LA", "Bellmont Trucking", "Van", "412", "$1,184", "$960", "18.9%", "Delivered"],
-        ["RJS-408140", "Laredo, TX \u2192 Memphis, TN", "Cordova Freight", "Reefer", "918", "$2,742", "$2,410", "12.1%", "In transit"],
-        ["RJS-408155", "Joliet, IL \u2192 Columbus, OH", "Northway Carriers", "Van", "342", "$886", "$720", "18.7%", "In transit"],
-        ["RJS-408161", "Fontana, CA \u2192 Phoenix, AZ", "Sierra Line Haul", "Van", "358", "$942", "$838", "11.0%", "Detention"],
-        ["RJS-408177", "Savannah, GA \u2192 Charlotte, NC", "Ashcroft Logistics", "Flatbed", "266", "$1,020", "$860", "15.7%", "At shipper"],
-        ["RJS-408190", "Kansas City, MO \u2192 Denver, CO", "Bellmont Trucking", "Van", "604", "$1,588", "$1,412", "11.1%", "Rate variance"],
-        ["RJS-408204", "Fresno, CA \u2192 Salt Lake City, UT", "Cordova Freight", "Reefer", "742", "$2,264", "$1,910", "15.6%", "In transit"],
-        ["RJS-408218", "Allentown, PA \u2192 Boston, MA", "Northway Carriers", "Van", "312", "$1,104", "$998", "9.6%", "Margin flag"],
+        ["SMP-408122", "Huntsville, AL \u2192 Monroe, LA", "Bellmont Trucking", "Van", "412", "$1,184", "$960", "18.9%", "Delivered"],
+        ["SMP-408140", "Laredo, TX \u2192 Memphis, TN", "Cordova Freight", "Reefer", "918", "$2,742", "$2,410", "12.1%", "In transit"],
+        ["SMP-408155", "Joliet, IL \u2192 Columbus, OH", "Northway Carriers", "Van", "342", "$886", "$720", "18.7%", "In transit"],
+        ["SMP-408161", "Fontana, CA \u2192 Phoenix, AZ", "Sierra Line Haul", "Van", "358", "$942", "$838", "11.0%", "Detention"],
+        ["SMP-408177", "Savannah, GA \u2192 Charlotte, NC", "Ashcroft Logistics", "Flatbed", "266", "$1,020", "$860", "15.7%", "At shipper"],
+        ["SMP-408190", "Kansas City, MO \u2192 Denver, CO", "Bellmont Trucking", "Van", "604", "$1,588", "$1,412", "11.1%", "Rate variance"],
+        ["SMP-408204", "Fresno, CA \u2192 Salt Lake City, UT", "Cordova Freight", "Reefer", "742", "$2,264", "$1,910", "15.6%", "In transit"],
+        ["SMP-408218", "Allentown, PA \u2192 Boston, MA", "Northway Carriers", "Van", "312", "$1,104", "$998", "9.6%", "Margin flag"],
       ],
     },
   },
@@ -432,7 +432,7 @@ export const BPOS_SOURCES: Record<string, { synced: string; sources: Source[] }>
   logistics: {
     synced: "2 min ago",
     sources: [
-      { kind: "API", name: "McLeod", note: "×1,077 loads" },
+      { kind: "API", name: "Northstar TMS", note: "×1,077 loads" },
       { kind: "API", name: "Samsara" },
       { kind: "API", name: "Highway" },
       { kind: "API", name: "QuickBooks" },
@@ -711,7 +711,7 @@ export const BPOS_FEATURES: Record<string, Feature> = {
     title: "Theoretical vs actual",
     meta: "Recipe cost against what was actually used",
     inputs: [
-      ["Unit", "07 \u2014 Riverwalk \u00b7 week ending Jun 20"],
+      ["Unit", "07 Riverwalk, week ending Jun 20"],
       ["Net sales", "$412,400 \u00b7 18,240 covers"],
       ["Theoretical food", "$117,536 \u00b7 28.5% from recipes"],
       ["Actual food", "$127,432 \u00b7 30.9% from invoices"],
@@ -728,7 +728,7 @@ export const BPOS_FEATURES: Record<string, Feature> = {
     title: "Schedule cost check",
     meta: "The posted schedule priced before the week starts",
     inputs: [
-      ["Unit", "07 \u2014 Riverwalk \u00b7 week of Jun 23"],
+      ["Unit", "07 Riverwalk, week of Jun 23"],
       ["Scheduled hours", "1,842 \u00b7 46 employees"],
       ["Blended rate", "$18.42 \u00b7 plus 14.2% burden"],
       ["Forecast sales", "$418,000 \u00b7 from the same weeks last year"],

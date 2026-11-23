@@ -2,7 +2,7 @@ import { BRAIN_ANSWERS } from "./product-content";
 
 /* The first two verticals. The side-panel modules are gone: each chapter
    runs its copy at full measure, then opens into a showcase that spans the
-   band — the use cases as tiles for Brain OS, the autonomized stack as
+   band: the use cases as tiles for BrainOS, the autonomized stack as
    tiles for Foundations. */
 
 const FREIGHT_STACK = [
@@ -22,7 +22,7 @@ const FREIGHT_STACK = [
     sub: "Prospecting embedded: the next best carrier and shipper, surfaced with the reason.",
   },
   {
-    name: "Nova",
+    name: "Relay",
     value: "24/7",
     sub: "A live dispatcher, texting drivers and shippers in real time from tender to delivery.",
   },
@@ -33,12 +33,12 @@ export function LandingProducts() {
     <div id="work" data-section="work">
       <section className="lp-chapter is-showcase" aria-labelledby="work-brain">
         <div className="lp-chapter-copy">
-          <p className="lp-eyebrow">01 · Brain OS</p>
+          <p className="lp-eyebrow">01 · BrainOS</p>
           <p className="lp-pain">
             &ldquo;We have the data somewhere, but every answer takes three
             people and a day.&rdquo;
           </p>
-          <p className="lp-solve">How Endurance solves it —</p>
+          <p className="lp-solve">How endurance solves it</p>
           <h2 id="work-brain">
             Your whole company&rsquo;s operations - automated before anybody
             asks.
@@ -54,7 +54,7 @@ export function LandingProducts() {
             hired them for.
           </p>
           <a className="lp-feature-cta" href="/brain-os">
-            Open Brain OS
+            Open BrainOS
           </a>
         </div>
 
@@ -82,7 +82,7 @@ export function LandingProducts() {
             &ldquo;A third of our miles run empty, and the back office runs on
             spreadsheets.&rdquo;
           </p>
-          <p className="lp-solve">How Endurance solves it —</p>
+          <p className="lp-solve">How endurance solves it</p>
           <h2 id="work-foundations">Revolutionizing the freight marketplace.</h2>
           <p className="lp-lead">
             We are building the Uber for freight: a marketplace where the

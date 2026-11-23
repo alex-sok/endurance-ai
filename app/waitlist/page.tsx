@@ -4,9 +4,18 @@ import { WaitlistForm } from "./WaitlistForm";
 import "../landing.css";
 
 export const metadata: Metadata = {
-  title: "Early Access — Endurance AI Labs",
+  title: "Early access | endurance",
   description:
     "Join the early-access waitlist for the Multiplayer Developer Tool, a shared environment where operators and engineers build software together.",
+  alternates: { canonical: "https://endurancelabs.ai/waitlist" },
+  openGraph: {
+    title: "Early access | endurance",
+    description:
+      "Join the early-access waitlist for the Multiplayer Developer Tool, a shared environment where operators and engineers build software together.",
+    url: "https://endurancelabs.ai/waitlist",
+    siteName: "endurance",
+    type: "website",
+  },
 };
 
 export default function WaitlistPage() {
@@ -14,7 +23,7 @@ export default function WaitlistPage() {
     <div className="theme-paper wl-page">
       <header className="vals-top">
         <Link className="bos-back" href="/">
-          <span aria-hidden="true">&larr;</span> Endurance AI Labs
+          <span aria-hidden="true">&larr;</span> endurance
         </Link>
         <Link className="bos-cta" href="/#contact">
           See what we&rsquo;d build for you

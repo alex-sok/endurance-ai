@@ -2,7 +2,7 @@
  *
  * Asset Books is the operating statement out of the portfolio book: actual
  * against budget, line by line, with the debt and the occupancy beside it.
- * Underwriting is the workbench — assumptions, the five-year model, the
+ * Underwriting is the workbench: assumptions, the five-year model, the
  * waterfall and the returns in one place, which is the whole point of it.
  * Comps and the load board are maps, because a market and a lane are places. */
 
@@ -29,7 +29,7 @@ export const ASSET_BOOK = {
     ["Built", "2020"],
     ["Occupancy", "95.9%"],
     ["Avg rent", "$2,226"],
-    ["Basis", "T-12 · Jul 2025 — Jun 2026"],
+    ["Basis", "T-12 · Jul 2025 to Jun 2026"],
   ] as [string, string][],
   lines: [
     { label: "Gross potential rent", actual: "$6,730,560", budget: "$6,681,120", variance: "+$49,440" },
@@ -160,14 +160,14 @@ export const COMP_DOTS: MapDot[] = [
 /* ── logistics · Load board map ────────────────────────────────────────── */
 
 export const LOAD_LANES: MapLane[] = [
-  { id: "RJS-408122", from: [34.73, -86.59, "Huntsville, AL"], to: [32.51, -92.12, "Monroe, LA"], meta: "Bellmont Trucking · Van · 412 mi · $1,184 · 18.9% · Delivered" },
-  { id: "RJS-408140", from: [27.51, -99.51, "Laredo, TX"], to: [35.15, -90.05, "Memphis, TN"], meta: "Cordova Freight · Reefer · 918 mi · $2,742 · 12.1% · In transit" },
-  { id: "RJS-408155", from: [41.53, -88.08, "Joliet, IL"], to: [39.96, -82.99, "Columbus, OH"], meta: "Northway Carriers · Van · 342 mi · $886 · 18.7% · In transit" },
-  { id: "RJS-408161", from: [34.09, -117.44, "Fontana, CA"], to: [33.45, -112.07, "Phoenix, AZ"], meta: "Sierra Line Haul · Van · 358 mi · $942 · 11.0% · Detention", flag: true },
-  { id: "RJS-408177", from: [32.08, -81.09, "Savannah, GA"], to: [35.23, -80.84, "Charlotte, NC"], meta: "Ashcroft Logistics · Flatbed · 266 mi · $1,020 · 15.7% · At shipper" },
-  { id: "RJS-408190", from: [39.1, -94.58, "Kansas City, MO"], to: [39.74, -104.99, "Denver, CO"], meta: "Bellmont Trucking · Van · 604 mi · $1,588 · 11.1% · Rate variance", flag: true },
-  { id: "RJS-408204", from: [36.74, -119.78, "Fresno, CA"], to: [40.76, -111.89, "Salt Lake City, UT"], meta: "Cordova Freight · Reefer · 742 mi · $2,264 · 15.6% · In transit" },
-  { id: "RJS-408218", from: [40.6, -75.48, "Allentown, PA"], to: [42.36, -71.06, "Boston, MA"], meta: "Northway Carriers · Van · 312 mi · $1,104 · 9.6% · Margin flag", flag: true },
+  { id: "SMP-408122", from: [34.73, -86.59, "Huntsville, AL"], to: [32.51, -92.12, "Monroe, LA"], meta: "Bellmont Trucking · Van · 412 mi · $1,184 · 18.9% · Delivered" },
+  { id: "SMP-408140", from: [27.51, -99.51, "Laredo, TX"], to: [35.15, -90.05, "Memphis, TN"], meta: "Cordova Freight · Reefer · 918 mi · $2,742 · 12.1% · In transit" },
+  { id: "SMP-408155", from: [41.53, -88.08, "Joliet, IL"], to: [39.96, -82.99, "Columbus, OH"], meta: "Northway Carriers · Van · 342 mi · $886 · 18.7% · In transit" },
+  { id: "SMP-408161", from: [34.09, -117.44, "Fontana, CA"], to: [33.45, -112.07, "Phoenix, AZ"], meta: "Sierra Line Haul · Van · 358 mi · $942 · 11.0% · Detention", flag: true },
+  { id: "SMP-408177", from: [32.08, -81.09, "Savannah, GA"], to: [35.23, -80.84, "Charlotte, NC"], meta: "Ashcroft Logistics · Flatbed · 266 mi · $1,020 · 15.7% · At shipper" },
+  { id: "SMP-408190", from: [39.1, -94.58, "Kansas City, MO"], to: [39.74, -104.99, "Denver, CO"], meta: "Bellmont Trucking · Van · 604 mi · $1,588 · 11.1% · Rate variance", flag: true },
+  { id: "SMP-408204", from: [36.74, -119.78, "Fresno, CA"], to: [40.76, -111.89, "Salt Lake City, UT"], meta: "Cordova Freight · Reefer · 742 mi · $2,264 · 15.6% · In transit" },
+  { id: "SMP-408218", from: [40.6, -75.48, "Allentown, PA"], to: [42.36, -71.06, "Boston, MA"], meta: "Northway Carriers · Van · 312 mi · $1,104 · 9.6% · Margin flag", flag: true },
 ];
 
 export const LOAD_HUBS: MapDot[] = [
@@ -218,7 +218,7 @@ export const BOOK_SECTIONS: BookSection[] = [
     defs: [
       ["Asset", "Cadence Station · 252 units · built 2020"],
       ["Manager", "Greystar · PM financials synced nightly"],
-      ["Basis", "T-12 · Jul 2025 — Jun 2026"],
+      ["Basis", "T-12 · Jul 2025 to Jun 2026"],
       ["Business plan", "Loss-to-lease capture on turns · year 3 of 5"],
       ["Last site visit", "Jun 4 · punch list 6 items, 4 closed"],
     ],
@@ -240,12 +240,12 @@ export const BOOK_SECTIONS: BookSection[] = [
     ],
     cols: ["Unit type", "Units", "Avg SF", "In-place", "Market", "Loss to lease"],
     rows: [
-      ["S1 — Studio", "24", "588", "$1,748", "$1,795", "2.6%"],
-      ["A1 — 1x1", "96", "742", "$1,984", "$2,050", "3.2%"],
-      ["A2 — 1x1 den", "36", "818", "$2,141", "$2,195", "2.5%"],
-      ["B1 — 2x2", "72", "1,104", "$2,586", "$2,675", "3.3%"],
-      ["B2 — 2x2 corner", "18", "1,186", "$2,742", "$2,830", "3.1%"],
-      ["C1 — 3x2", "6", "1,342", "$3,104", "$3,195", "2.8%"],
+      ["S1: Studio", "24", "588", "$1,748", "$1,795", "2.6%"],
+      ["A1: 1x1", "96", "742", "$1,984", "$2,050", "3.2%"],
+      ["A2: 1x1 den", "36", "818", "$2,141", "$2,195", "2.5%"],
+      ["B1: 2x2", "72", "1,104", "$2,586", "$2,675", "3.3%"],
+      ["B2: 2x2 corner", "18", "1,186", "$2,742", "$2,830", "3.1%"],
+      ["C1: 3x2", "6", "1,342", "$3,104", "$3,195", "2.8%"],
     ],
     note: "Rent roll synced nightly. Loss to lease is the gap the turn plan captures.",
   },
@@ -260,14 +260,14 @@ export const BOOK_SECTIONS: BookSection[] = [
     ],
     cols: ["Quarter", "Declared", "Per $100K invested", "Rate", "Status"],
     rows: [
-      ["Q2 2026", "$318,500", "$1,850", "7.4%", "Declared — pays Jul 15"],
+      ["Q2 2026", "$318,500", "$1,850", "7.4%", "Declared: pays Jul 15"],
       ["Q1 2026", "$318,500", "$1,850", "7.4%", "Paid Apr 15"],
       ["Q4 2025", "$301,200", "$1,750", "7.0%", "Paid Jan 15"],
       ["Q3 2025", "$301,200", "$1,750", "7.0%", "Paid Oct 15"],
       ["Q2 2025", "$284,000", "$1,650", "6.6%", "Paid Jul 15"],
       ["Q1 2025", "$284,000", "$1,650", "6.6%", "Paid Apr 15"],
     ],
-    note: "Sources reconcile to zero before anything sends — distributable cash less distributions, both checks clear.",
+    note: "Sources reconcile to zero before anything sends: distributable cash less distributions, both checks clear.",
   },
   {
     id: "debt",
@@ -285,7 +285,7 @@ export const BOOK_SECTIONS: BookSection[] = [
       ["Minimum DSCR", "≥ 1.25x", "2.54x", "Pass"],
       ["Maximum LTV", "≤ 65.0%", "62.4%", "Pass"],
       ["Minimum occupancy", "≥ 85.0%", "95.9%", "Pass"],
-      ["Insurance in force", "Required", "Current — exp Mar 2027", "Pass"],
+      ["Insurance in force", "Required", "Current: exp Mar 2027", "Pass"],
       ["Tax escrow funded", "Required", "$298,400 held", "Pass"],
     ],
     note: "Tested Jun 30 · all clear. The refinance calculator prices today's takeout against the yield-maintenance cost.",
@@ -301,12 +301,12 @@ export const BOOK_SECTIONS: BookSection[] = [
     ],
     cols: ["Project", "Scope", "Budget", "Spent", "%", "Status"],
     rows: [
-      ["Unit interiors — phase 2", "84 units · counters, LVP, fixtures", "$924,000", "$681,400", "74%", "On schedule"],
-      ["Roof recoat — bldgs 3–5", "Elastomeric recoat, 10-yr warranty", "$286,000", "$286,000", "100%", "Complete"],
+      ["Unit interiors: phase 2", "84 units · counters, LVP, fixtures", "$924,000", "$681,400", "74%", "On schedule"],
+      ["Roof recoat: bldgs 3–5", "Elastomeric recoat, 10-yr warranty", "$286,000", "$286,000", "100%", "Complete"],
       ["Pool deck & cabanas", "Resurface, shade structures", "$204,000", "$118,900", "58%", "On schedule"],
-      ["EV charging — 12 stalls", "Level 2, submetered", "$146,000", "$42,000", "29%", "Utility approval"],
+      ["EV charging: 12 stalls", "Level 2, submetered", "$146,000", "$42,000", "29%", "Utility approval"],
       ["Monument signage & paint", "Exterior refresh, wayfinding", "$188,000", "$86,000", "46%", "On schedule"],
-      ["Contingency", "Unallocated", "$112,000", "$0", "—", "Held"],
+      ["Contingency", "Unallocated", "$112,000", "$0", "n/a", "Held"],
     ],
     note: "Draws reconcile against invoices before funding. Interior premiums are tracking +$212/unit against the plan's +$185.",
   },
@@ -320,10 +320,10 @@ export const BOOK_SECTIONS: BookSection[] = [
     ],
     cols: ["Policy", "Carrier", "Limit", "Premium", "Expires"],
     rows: [
-      ["Property — all risk", "Westfield Specialty", "$62,400,000 TIV", "$74,800", "Mar 2027"],
+      ["Property: all risk", "Westfield Specialty", "$62,400,000 TIV", "$74,800", "Mar 2027"],
       ["General liability", "Ironshore National", "$1M / $2M agg", "$21,600", "Mar 2027"],
       ["Umbrella", "Ironshore National", "$25,000,000", "$14,200", "Mar 2027"],
-      ["Flood — Zone X", "NFIP", "$500,000", "$4,100", "Mar 2027"],
+      ["Flood: Zone X", "NFIP", "$500,000", "$4,100", "Mar 2027"],
       ["Equipment breakdown", "Westfield Specialty", "$5,000,000", "$3,540", "Mar 2027"],
     ],
     note: "Certificates on file with the lender. Renewal marketing starts 120 days out, automatically.",
@@ -333,13 +333,13 @@ export const BOOK_SECTIONS: BookSection[] = [
     label: "Compliance & Risk",
     cols: ["Item", "Status", "Next date"],
     rows: [
-      ["Entity good standing — AZ", "Current", "Annual report Jan 2027"],
+      ["Entity good standing: AZ", "Current", "Annual report Jan 2027"],
       ["Franchise tax", "Filed", "Apr 2027"],
       ["Lender insurance certificate", "On file", "Mar 2027"],
-      ["Fire inspection — all buildings", "Passed May 2026", "May 2027"],
+      ["Fire inspection: all buildings", "Passed May 2026", "May 2027"],
       ["Elevator certificates (2)", "Current", "Nov 2026"],
-      ["Property tax appeal", "Open — hearing set", "Sep 12, 2026"],
-      ["Fair housing training — site staff", "Complete", "Feb 2027"],
+      ["Property tax appeal", "Open: hearing set", "Sep 12, 2026"],
+      ["Fair housing training: site staff", "Complete", "Feb 2027"],
     ],
     note: "Every expiration carries an owner and a lead time. Nothing on this list waits for someone to remember it.",
   },
@@ -348,7 +348,7 @@ export const BOOK_SECTIONS: BookSection[] = [
     label: "Reports & Documents",
     cols: ["Document", "Period", "Source", "Updated"],
     rows: [
-      ["T-12 operating statement", "Jul 2025 — Jun 2026", "Yardi Voyager", "Tonight 02:00"],
+      ["T-12 operating statement", "Jul 2025 to Jun 2026", "Yardi Voyager", "Tonight 02:00"],
       ["Rent roll", "As of Jun 20", "Yardi Voyager", "Tonight 02:00"],
       ["General ledger detail", "Jun 2026", "Yardi Voyager", "Tonight 02:00"],
       ["Loan agreement + riders", "Aug 2021", "Loan file", "Static"],

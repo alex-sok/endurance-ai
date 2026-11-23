@@ -11,9 +11,9 @@ const records = [
 // Keep this screen as native text, rather than a screenshot, at every display size.
 export function RateVarianceMockup() {
   return (
-    <figure id="rate-variance" className={styles.figure} aria-label="Illustrative Brain OS invoice review">
+    <figure id="rate-variance" className={styles.figure} aria-label="Illustrative BrainOS invoice review">
       <div className={styles.label}>
-        <span>BRAIN OS / INVOICE REVIEW</span>
+        <span>BrainOS / INVOICE REVIEW</span>
         <span>ILLUSTRATIVE SCREEN</span>
       </div>
       <div className={styles.screen}>

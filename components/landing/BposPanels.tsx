@@ -3,7 +3,7 @@
 /* The two screens that are the product rather than a summary of it: the asset
    book as it comes out of the portfolio system, and the underwriting bench
    with the assumptions, the model, the waterfall and the returns on one page
-   — which is the entire argument for the bench existing. */
+  : which is the entire argument for the bench existing. */
 
 import { useState } from "react";
 import { ASSET_BOOK, UW_BENCH, BOOK_SECTIONS } from "./bpos-panels";

@@ -1,7 +1,6 @@
 'use client';
 
-/* eslint-disable @next/next/no-img-element */
-
+import Image from 'next/image';
 import { ArrowUpRight, Check, CircleDot, FileText, MessageSquare, MoveUpRight, ScanLine, ShieldCheck } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../artfield/tabs';
@@ -11,11 +10,11 @@ import { callUrl } from './site-chrome';
 export function DayStory() {
   return (
     <Tabs defaultValue="brain" className="day-visual">
-      <div className="day-heading"><span><CircleDot size={17} /> A WORKING DAY</span><TabsList className="day-tabs" aria-label="Compare a working day"><TabsTrigger value="usual">The usual</TabsTrigger><TabsTrigger value="brain">With Brain OS</TabsTrigger></TabsList></div>
+      <div className="day-heading"><span><CircleDot size={17} /> A WORKING DAY</span><TabsList className="day-tabs" aria-label="Compare a working day"><TabsTrigger value="usual">The usual</TabsTrigger><TabsTrigger value="brain">With BrainOS</TabsTrigger></TabsList></div>
       <TabsContent value="brain" className="day-panel">
         <div className="day-grid">
           <Hours />
-          <div className="handled-block"><div className="handled-title">Brain OS <span className="handled-tag">HANDLED</span></div><div className="handled-tasks"><span><Check size={13} /> Payments reconciled</span><span><Check size={13} /> Updates gathered</span><span><Check size={13} /> Records connected</span></div></div>
+          <div className="handled-block"><div className="handled-title">BrainOS <span className="handled-tag">HANDLED</span></div><div className="handled-tasks"><span><Check size={13} /> Payments reconciled</span><span><Check size={13} /> Updates gathered</span><span><Check size={13} /> Records connected</span></div></div>
           <div className="returned-time"><span className="small-label">A LITTLE MORE ROOM</span><p>For the work<br />only you can do.</p><span className="return-arrow"><MoveUpRight size={30} strokeWidth={1.2} /></span></div>
           <div className="human-task"><span className="status-dot" /> A real conversation with a customer.</div>
         </div>
@@ -91,12 +90,12 @@ export function WorldSelect() {
     <TabsList className="world-nav" aria-label="Explore industries">{industries.map((world, index) => <TabsTrigger key={world.id} value={world.id}><span className="world-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><span>{world.label}</span><ArrowUpRight size={18} aria-hidden="true" /></TabsTrigger>)}</TabsList>
     <div className="world-stage">
       <div ref={imageViewport} className="world-image" data-entered={entered || undefined} aria-busy={selected !== displayed || !loadedDetails.includes(displayed)}>
-        {industries.map(world => <img key={world.id} className="world-art" src={world.imageSrc} data-industry={world.id} data-active={world.id === displayed && loadedDetails.includes(world.id) || undefined} alt={world.id === displayed ? `City concept, detail: ${world.imageLabel.toLowerCase()}` : ''} aria-hidden={world.id !== displayed} width="1536" height="1024" loading="lazy" decoding="async" />)}
+        {industries.map(world => <Image key={world.id} className="world-art" src={world.imageSrc} data-industry={world.id} data-active={world.id === displayed && loadedDetails.includes(world.id) || undefined} alt={world.id === displayed ? `City concept, detail: ${world.imageLabel.toLowerCase()}` : ''} aria-hidden={world.id !== displayed} width={1536} height={1024} sizes="(max-width: 900px) 100vw, 60vw" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", maxWidth: "none", objectFit: "cover" }} />)}
         <span className="image-caption">{displayedWorld.imageLabel} / CITY CONCEPT</span>
       </div>
       {industries.map(world => <TabsContent key={world.id} value={world.id} className="world-panel">
       <div className="world-detail">
-        <span className="small-label">BRAIN OS / {world.label.toUpperCase()}</span>
+        <span className="small-label">BrainOS / {world.label.toUpperCase()}</span>
         <h3>{world.title}</h3><p>{world.copy}</p>
         <div className="industry-examples"><span className="small-label">ILLUSTRATIVE WORKFLOWS</span><ul>{world.examples.map(example => <li key={example}>{example}</li>)}</ul></div>
         <a className="text-link" href={world.id === 'logistics' ? 'https://endurancelabs.ai/margins' : callUrl} target="_blank" rel="noreferrer">{world.id === 'logistics' ? 'Explore Margins' : 'Talk about your operation'}<ArrowUpRight size={16} /></a>
@@ -115,18 +114,18 @@ const workflowContent = [
 export function BrainExperience() {
   return (
     <Tabs defaultValue="answer" className="experience-tabs">
-      <TabsList className="experience-nav" aria-label="Explore Brain OS workflows">
+      <TabsList className="experience-nav" aria-label="Explore BrainOS workflows">
         {workflowContent.map(({id,label,icon:Icon})=><TabsTrigger key={id} value={id}><Icon size={17} />{label}</TabsTrigger>)}
       </TabsList>
       {workflowContent.map(flow=><TabsContent key={flow.id} value={flow.id} className="experience-panel">
         <div className="brain-window">
-          <div className="window-top"><span>Brain OS</span><span className="connected"><span /> Connected to your business</span></div>
+          <div className="window-top"><span>BrainOS</span><span className="connected"><span /> Connected to your business</span></div>
           <div className="query"><span className="person-initial">Y</span><p>{flow.question}</p></div>
           <div className="answer"><div><h3>{flow.headline}</h3><p>{flow.description}</p><div className="source-files">{flow.sources.map(source=><span key={source}><FileText size={13} />{source}</span>)}</div></div></div>
           <div className="window-bottom"><ShieldCheck size={15} /><span>Sources attached. Decisions visible.</span><ArrowUpRight size={17} /></div>
         </div>
       </TabsContent>)}
-      <p className="example-caption">AN ILLUSTRATIVE BRAIN OS WORKFLOW</p>
+      <p className="example-caption">AN ILLUSTRATIVE BrainOS WORKFLOW</p>
     </Tabs>
   );
 }

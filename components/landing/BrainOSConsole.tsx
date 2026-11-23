@@ -9,14 +9,14 @@ import { COMP_DOTS, LOAD_LANES, LOAD_HUBS } from "./bpos-panels";
 import { BPOS_TABS } from "./bpos-tabs";
 
 /**
- * Brain OS, shown rather than described.
+ * BrainOS, shown rather than described.
  *
  * Industry chips swap the whole product; the module bar swaps the page inside
  * it. Two things had to be true for this to read as seven real products
  * rather than one template:
  *
- * 1. The first tab of every industry is its command centre — a market strip
- *    feeding it from outside, six figures over the book itself — and it
+ * 1. The first tab of every industry is its command centre: a market strip
+ *    feeding it from outside, six figures over the book itself: and it
  *    appears once, on that tab only.
  * 2. The other four tabs are working screens: a headline figure, stat cards,
  *    the one shipped tool that belongs on that screen (the BOV calculator,
@@ -58,7 +58,7 @@ export function BrainOSConsole({ variant = "embedded" }: { variant?: "embedded" 
   const conn = BPOS_SOURCES[d.id];
   const full = variant === "full";
 
-  /** The flagship view — shown on the first tab only, never repeated. */
+  /** The flagship view: shown on the first tab only, never repeated. */
   const flagship = mod === 0;
   /** The run checklist belongs to one module, not to all five. */
   const showChecklist = mod === view.runModule;
@@ -117,7 +117,7 @@ export function BrainOSConsole({ variant = "embedded" }: { variant?: "embedded" 
         <div className="bpos-bar">
           <span className="bpos-brand">
             <span className="bpos-sq">B</span>
-            <b>Brain OS</b>
+            <b>BrainOS</b>
             <span className="bpos-plat">{d.name}</span>
           </span>
           <nav className="bpos-mods" aria-label="Modules">
@@ -176,7 +176,7 @@ export function BrainOSConsole({ variant = "embedded" }: { variant?: "embedded" 
               <div className="bpos-band-in">
                 <div className="bpos-band-head">
                   <div>
-                    <p className="bpos-band-kick">{d.name} — period operating report</p>
+                    <p className="bpos-band-kick">{d.name}: period operating report</p>
                     <h3>{view.bandTitle}</h3>
                   </div>
                   <span className="bpos-band-meta">{view.bandMeta}</span>

@@ -60,7 +60,15 @@ export async function proxy(req: NextRequest) {
   // /logistics/new — public Endurance Logistics marketing site, proxied to
   // GitHub Pages via next.config.ts rewrites. Deliberately ungated; the
   // gated investor pitch stays at /logistics.
-  if (pathname === "/logistics/new" || pathname.startsWith("/logistics/new/")) {
+  // The marketplace document is rewritten to GitHub Pages, which replaces
+  // response headers, so a robots tag set here never reaches Google. Serve
+  // the HTML from our own route, which adds noindex. Assets stay on the rewrite.
+  if (pathname === "/logistics/new" || pathname === "/logistics/new/") {
+    const url = req.nextUrl.clone();
+    url.pathname = "/api/logistics-new-document";
+    return NextResponse.rewrite(url);
+  }
+  if (pathname.startsWith("/logistics/new/")) {
     return NextResponse.next();
   }
 

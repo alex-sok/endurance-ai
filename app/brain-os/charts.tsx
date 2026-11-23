@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from 'react';
 
-/* Charts for the Brain OS pages, drawn in the page's own hand.
+/* Charts for the BrainOS pages, drawn in the page's own hand.
    Columns are SVG so they scale with the card; ranked lists are HTML so the
    labels stay crisp and wrap. Marks are thin, gridlines are hairlines, and
    only the extremes carry a direct label: the axis and the table under each
@@ -304,7 +304,7 @@ export function CadenceChart({ rows, label }: { rows: CadenceRow[]; label: strin
 
 export type Spoke = { name: string; access: 'rw' | 'read' | 'write' | 'signin'; note: string };
 
-// Brain OS in the middle, every system on a spoke, arrows for the direction data moves.
+// BrainOS in the middle, every system on a spoke, arrows for the direction data moves.
 export function IntegrationMap({ spokes, label }: { spokes: Spoke[]; label: string }) {
   const W = 1200, H = 560, cx = W / 2, cy = H / 2, HUB = 64, RX = 440, RY = 200, NW = 190, NH = 46;
   const edge = (dx: number, dy: number) => Math.min(Math.abs(dx) > 1e-6 ? (NW / 2) / Math.abs(dx) : Infinity, Math.abs(dy) > 1e-6 ? (NH / 2) / Math.abs(dy) : Infinity);
@@ -337,12 +337,12 @@ export function IntegrationMap({ spokes, label }: { spokes: Spoke[]; label: stri
           );
         })}
         <circle cx={cx} cy={cy} r={HUB} fill="var(--bp-surface)" stroke="var(--bp-border)" />
-        <text x={cx} y={cy - 4} textAnchor="middle" className="bp-value" fontSize="17">Brain OS</text>
+        <text x={cx} y={cy - 4} textAnchor="middle" className="bp-value" fontSize="17">BrainOS</text>
         <text x={cx} y={cy + 16} textAnchor="middle" fontSize="11">one tool per action</text>
       </svg>
       </div>
       <div className="bp-legend" aria-hidden="true">
-        <span><i style={{ background: 'var(--bp-accent)', width: 18, height: 2, borderRadius: 1 }} />Arrow into Brain OS: a read, live at the moment of the question</span>
+        <span><i style={{ background: 'var(--bp-accent)', width: 18, height: 2, borderRadius: 1 }} />Arrow into BrainOS: a read, live at the moment of the question</span>
         <span><i style={{ background: 'var(--bp-accent)', width: 18, height: 2, borderRadius: 1 }} />Arrow out: a write, drafted first and confirmed second</span>
         <span><i style={{ background: 'var(--bp-muted)', width: 18, height: 2, borderRadius: 1 }} />Grey: sign in only</span>
       </div>

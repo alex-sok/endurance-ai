@@ -15,7 +15,7 @@ export function LandingClose({ onOpenChat }: Props) {
         <img
           className="lp-close-logo"
           src="/logo-endurance-white.svg"
-          alt="Endurance AI Labs"
+          alt="endurance"
         />
         <h2 className="lp-h2">The work, then the software.</h2>
         <p className="lp-lede">

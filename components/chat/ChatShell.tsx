@@ -36,7 +36,7 @@ function StreamingBubble({ text }: { text: string }) {
 }
 
 interface ChatShellProps {
-  /** Pass true inside the landing-page overlay — the overlay renders its own header */
+  /** Pass true inside the landing-page overlay: the overlay renders its own header */
   hideHeader?: boolean;
   /** Returns the site analytics session ID so messages can be persisted */
   getSessionId?: () => string | null;
@@ -61,7 +61,7 @@ export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) 
   const hasStarted = state.messages.length > 1;
 
   // Show lead form after the 2nd assistant message (welcome + first real reply)
-  // — user is engaged at this point, not cold
+  //: user is engaged at this point, not cold
   const assistantMessageCount = state.messages.filter((m) => m.role === "assistant").length;
   useEffect(() => {
     if (!leadDismissed && assistantMessageCount >= 2) {
@@ -76,7 +76,7 @@ export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) 
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [state.messages, state.isTyping]);
 
-  // Instant scroll while streaming — avoids competing scroll animations
+  // Instant scroll while streaming: avoids competing scroll animations
   useEffect(() => {
     if (!isStreaming) return;
     const el = scrollContainerRef.current;
@@ -221,7 +221,7 @@ export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) 
       setLeadInfo(info);
       leadInfoRef.current = info;
       setLeadDismissed(true);
-      // Fire right away — don't wait for the 4th message trigger
+      // Fire right away: don't wait for the 4th message trigger
       if (!leadSentRef.current) {
         leadSentRef.current = true;
         setLeadSent(true);
@@ -260,7 +260,7 @@ export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) 
     []
   );
 
-  // Trigger 1: after 4th user message — enough context for a rich score
+  // Trigger 1: after 4th user message: enough context for a rich score
   const userMessageCount = state.messages.filter((m) => m.role === "user").length;
   useEffect(() => {
     if (userMessageCount >= 4 && leadInfo && !leadSent) {
@@ -268,7 +268,7 @@ export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) 
     }
   }, [userMessageCount, leadInfo, leadSent, fireLeadNotify, state.messages]);
 
-  // Trigger 2: page unload — sendBeacon as safety net for early leavers
+  // Trigger 2: page unload: sendBeacon as safety net for early leavers
   useEffect(() => {
     const handleUnload = () => {
       if (!leadInfoRef.current || leadSentRef.current) return;
@@ -297,7 +297,7 @@ export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) 
           className="flex items-center justify-between px-1 pt-6 pb-4 shrink-0 border-b border-[#e6e5e0]"
         >
           <div className="flex items-center">
-            <img src="/logo-endurance.svg" alt="Endurance AI Labs" className="h-5 w-auto" />
+            <img src="/logo-endurance.svg" alt="endurance" className="h-5 w-auto" />
           </div>
           <a
             href="mailto:hello@endurancelabs.ai"
@@ -417,7 +417,7 @@ export function ChatShell({ hideHeader = false, getSessionId }: ChatShellProps) 
         />
 
         <p className="text-center text-[11px] uppercase" style={{ fontFamily: "var(--font-jetbrains)", letterSpacing: "0.1em", color: "#7a7974" }}>
-          Endurance AI Labs · Research, engineering, vertical software
+          endurance · Research, engineering, vertical software
         </p>
       </div>
     </div>

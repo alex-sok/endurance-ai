@@ -61,10 +61,10 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "home",
     title: "Welcome",
     message:
-      "Hi, I'm Grace, AI advisor for Endurance AI Labs. Tell us about the work, ask what we ship, or talk to the team.",
+      "Hi, I'm Grace, AI advisor for endurance. Tell us about the work, ask what we ship, or talk to the team.",
     promptChips: [
       { id: "home-1", label: "Tell us about the work", nextNodeId: "mission-start" },
-      { id: "home-2", label: "What does Endurance do?", nextNodeId: "what-we-do" },
+      { id: "home-2", label: "What does endurance do?", nextNodeId: "what-we-do" },
       { id: "home-3", label: "Who are you?", nextNodeId: "who-we-are" },
       { id: "home-4", label: "How do you work?", nextNodeId: "how-we-work" },
       { id: "home-5", label: "What have you shipped?", nextNodeId: "who-we-help" },
@@ -175,7 +175,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     message:
       "Based on what you've shared, the next step is a close reading of the operation, then a decision: a product we already ship, or a vertical system built around how you run.",
     promptChips: [
-      { id: "msum-1", label: "How would Endurance approach this?", nextNodeId: "mission-approach" },
+      { id: "msum-1", label: "How would endurance approach this?", nextNodeId: "mission-approach" },
       { id: "msum-2", label: "Are we a fit?", nextNodeId: "mission-fit" },
       { id: "msum-3", label: "What would phase one look like?", nextNodeId: "mission-phase-one" },
       { id: "msum-4", label: "Talk to the team", nextNodeId: "contact" },
@@ -227,7 +227,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "what_we_do",
     title: "What We Do",
     message:
-      "Endurance is a research and engineering lab. We study how a specific industry actually runs, then we write the vertical software for that work. Some of that is a product. Some of it is a system built around one operation.",
+      "endurance is a research and engineering lab. We study how a specific industry actually runs, then we write the vertical software for that work. Some of that is a product. Some of it is a system built around one operation.",
     promptChips: [
       { id: "wwd-1", label: "Show capabilities", nextNodeId: "capabilities" },
       { id: "wwd-2", label: "How are you different?", nextNodeId: "difference" },
@@ -242,7 +242,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "what_we_do",
     title: "Capabilities",
     message:
-      "Three disciplines: research, engineering, and vertical software. Products include Endurance Brain (institutional memory that cites its sources) and Endurance Logistics (freight, tender to cash). We also build custom systems for construction, capital markets, legal, and commissions-heavy businesses.",
+      "Three disciplines: research, engineering, and vertical software. Products include Brain (institutional memory that cites its sources) and endurance logistics (freight, tender to cash). We also build custom systems for construction, capital markets, legal, and commissions-heavy businesses.",
     promptChips: [
       { id: "cap-1", label: "How are you different?", nextNodeId: "difference" },
       { id: "cap-2", label: "How do you work?", nextNodeId: "how-we-work" },
@@ -255,7 +255,7 @@ export const conversationFlows: Record<string, ChatNode> = {
     route: "who_we_are",
     title: "Who We Are",
     message:
-      "Endurance is a small research and engineering lab. Our background spans AI engineering, data architecture, product design, and the operating reality of the industries we build for. We are not a deck-first consulting firm.",
+      "endurance is a small research and engineering lab. Our background spans AI engineering, data architecture, product design, and the operating reality of the industries we build for. We are not a deck-first consulting firm.",
     promptChips: [
       { id: "wwa-1", label: "What makes you different?", nextNodeId: "difference" },
       { id: "wwa-2", label: "How do you work?", nextNodeId: "how-we-work" },

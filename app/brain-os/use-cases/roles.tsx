@@ -19,7 +19,7 @@ export function RoleTabs() {
       {ROLE_TABS.map(role => (
         <TabsContent key={role.id} value={role.id} className="bp-role-panel">
           <div className="bp-window">
-            <div className="bp-window-top"><span>Brain OS · {role.name}</span><span className="connected"><span /> {role.sub}</span></div>
+            <div className="bp-window-top"><span>BrainOS · {role.name}</span><span className="connected"><span /> {role.sub}</span></div>
             <ul className="bp-exchanges">
               {role.exchanges.map(x => (
                 <li key={x.they}>
