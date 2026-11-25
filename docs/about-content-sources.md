@@ -4,7 +4,7 @@ Added September 23, 2026 at https://endurancelabs.ai/about. The page uses crawla
 
 ## Sources used
 
-- `app/layout.tsx` — existing production Organization schema identifies Alex Sok and Nick Maxwell as founders. The About page aligns its visible founder information and schema with that existing company source.
+- `app/about/page.tsx` — company-approved team and founder listings identify Alex Sok and Ramzy Azar. Keep the visible facts and Organization metadata aligned with the approved website roster.
 
 - https://endurancelabs.ai/ — mission, team roles and backstories, email and booking link, and the customer-reported two-hour to 30-second truck-planning result. The timing is a single workflow result, not a guarantee or competitor benchmark.
 - https://www.linkedin.com/company/endurance-ai-labs — founded in 2025, privately held, San Francisco, founding rationale, workshops, process mapping, training, and investment work.

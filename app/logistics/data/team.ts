@@ -10,13 +10,6 @@ export const founders = [
     bio: "3x founder, angel investor (Spline, Superroot, Cairnspring), joined stealth AI/ML lab in 2018 and led product design, 0-$120M ARR in 24 months.",
   },
   {
-    name: "Nick Maxwell",
-    role: "Co-founder, CTO",
-    headshot: null, // TODO(alex): /public/logistics/team/nick.jpg
-    hook: "2x founder, founding engineer at Tala Security acquired by Intuit, Cornell CS.",
-    bio: "2x founder, founding engineer at Tala Security acquired by Intuit, Cornell CS.",
-  },
-  {
     name: "Anthony Haralson",
     role: "Founding Partner, VP of GTM",
     headshot: null, // TODO(alex): /public/logistics/team/anthony.jpg

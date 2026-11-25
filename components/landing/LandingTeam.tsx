@@ -1,10 +1,5 @@
 const FOUNDERS = [
   {
-    name: "Nick Maxwell",
-    role: "CTO",
-    bio: "Computer Science, Cornell. Three-time founder. Exited Tala to Intuit.",
-  },
-  {
     name: "Alex Sok",
     role: "CEO",
     bio: "Three-time founder and angel investor. Started in AI at Tetration and Cisco in 2018. Chief Product Officer at Prospera, an AI wealth-management startup.",

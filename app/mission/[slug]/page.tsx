@@ -57,10 +57,22 @@ export default async function MissionPage({ params }: Props) {
     .eq("is_visible", true)
     .order("sort_order", { ascending: true });
 
-  return (
-    <PortalShell
-      portal={safePortal as Portal}
-      sections={(sections ?? []) as PortalSection[]}
-    />
-  );
+  // Older portal records may still contain the previous team roster.
+  const visibleSections = ((sections ?? []) as PortalSection[]).map((section) => {
+    if (section.slug !== "team") return section;
+    const members = section.content?.members;
+    if (!Array.isArray(members)) return section;
+
+    return {
+      ...section,
+      content: {
+        ...section.content,
+        members: members.filter((member) =>
+          typeof member?.name !== "string" || !/^nick\s+maxwell$/i.test(member.name.trim())
+        ),
+      },
+    };
+  });
+
+  return <PortalShell portal={safePortal as Portal} sections={visibleSections} />;
 }

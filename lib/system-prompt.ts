@@ -44,9 +44,6 @@ Endurance was built to research the work, then write the software. Not to produc
 
 ## Team
 
-**Nick Maxwell, CTO**
-Computer Science, Cornell. Three-time founder. Exited Tala to Intuit.
-
 **Alex Sok, CEO**
 Three-time founder and angel investor. Started in AI at Tetration and Cisco in 2018. Was Chief Product Officer at Prospera, an AI wealth-management startup.
 

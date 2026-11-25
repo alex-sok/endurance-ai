@@ -12,6 +12,7 @@ const linkedIn = 'https://www.linkedin.com/company/endurance-ai-labs';
 const alexLinkedIn = 'https://www.linkedin.com/in/alexsok';
 const proofUrl = `${companyUrl}/margins/proof`;
 const description = 'Meet Endurance AI Labs: the San Francisco AI research and engineering company behind Brain OS. Our work, people, approach, and company facts.';
+const companyDescription = 'Endurance AI Labs connects knowledge and automates work for teams in construction, manufacturing, logistics, energy, auto dealerships, architecture firms, and golf courses.';
 
 export const metadata: Metadata = {
   title: 'About us | Endurance AI Labs',
@@ -23,7 +24,6 @@ export const metadata: Metadata = {
 
 const people = [
   { name: 'Alex Sok', role: 'Co-founder & CEO', bio: 'Alex is a three-time founder and angel investor with AI experience at Tetration and Cisco. He also held product leadership roles at Prospera.', social: alexLinkedIn },
-  { name: 'Nick Maxwell', role: 'Co-founder & CTO', bio: 'Nick studied computer science at Cornell and is a three-time founder. His background includes an exit of Tala to Intuit.' },
   { name: 'Ramzy Azar', role: 'Co-founder & COO', bio: 'Ramzy brings a UC Berkeley background and experience in finance and investment. He leads operations, finance, and AI strategy.' },
 ];
 
@@ -41,7 +41,7 @@ const facts: { label: string; value: ReactNode }[] = [
   { label: 'Company Name', value: 'Endurance AI Labs' },
   { label: 'Type', value: 'Privately held AI research and engineering company' },
   { label: 'Founded', value: <a href={linkedIn}>2025 · company LinkedIn profile</a> },
-  { label: 'Founders', value: 'Alex Sok, Nick Maxwell, and Ramzy Azar' },
+  { label: 'Founders', value: 'Alex Sok and Ramzy Azar' },
   { label: 'Headquarters', value: 'San Francisco, California, United States' },
   { label: 'Website', value: <a href={companyUrl}>endurancelabs.ai</a> },
   { label: 'Core Offering', value: 'Brain OS: company knowledge and operational workflows, connected on any ERP or system of record' },
@@ -57,7 +57,7 @@ const facts: { label: string; value: ReactNode }[] = [
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
-    { '@type': 'Organization', '@id': `${companyUrl}/#organization`, name: 'Endurance AI Labs', url: companyUrl, foundingDate: '2025', description: 'AI research and engineering company that connects knowledge and automates work for operations teams in construction, manufacturing, logistics and energy.', email: CONTACT_EMAIL, founder: [{ '@type': 'Person', name: 'Alex Sok', sameAs: alexLinkedIn }, { '@type': 'Person', name: 'Nick Maxwell' }, { '@type': 'Person', name: 'Ramzy Azar' }], address: { '@type': 'PostalAddress', addressLocality: 'San Francisco', addressRegion: 'CA', addressCountry: 'US' }, sameAs: [linkedIn] },
+    { '@type': 'Organization', '@id': `${companyUrl}/#organization`, name: 'Endurance AI Labs', url: companyUrl, foundingDate: '2025', description: companyDescription, email: CONTACT_EMAIL, founder: [{ '@type': 'Person', name: 'Alex Sok', sameAs: alexLinkedIn }, { '@type': 'Person', name: 'Ramzy Azar' }], address: { '@type': 'PostalAddress', addressLocality: 'San Francisco', addressRegion: 'CA', addressCountry: 'US' }, sameAs: [linkedIn] },
     { '@type': 'AboutPage', '@id': `${siteUrl}/about#page`, url: `${siteUrl}/about`, name: 'About us | Endurance AI Labs', description, about: { '@id': `${companyUrl}/#organization` } },
     { '@type': 'FAQPage', '@id': `${siteUrl}/about#faq`, mainEntity: faqs.map(faq => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) },
   ],
@@ -71,11 +71,11 @@ export default function AboutPage() {
       <section className="about-hero wrap" aria-labelledby="about-title">
         <div className="about-hero-copy">
           <p className="eyebrow">ABOUT ENDURANCE</p>
-          <h1 id="about-title">Endurance AI Labs is an AI research and engineering company that <span className="text-accent">connects knowledge and automates work</span> for operations teams in construction, manufacturing, logistics and energy.</h1>
+          <h1 id="about-title">Endurance AI Labs is an AI research and engineering company that <span className="text-accent">connects knowledge and automates work</span> for the teams that design, build, and keep businesses running.</h1>
           <p className="about-intro">A business knows more than any one person can keep in mind. We build Brain OS to make that knowledge easier to find and use. It connects to the ERP or system of record you already run, and gives people more time for the work that needs their judgment.</p>
           <a className="about-text-link" href="#team">Meet the people behind the work ↓</a>
         </div>
-        <figure className="about-hero-image"><img src="/modern-city.png" alt="A concept of a modern city with industry, renewable energy, and green neighborhoods" width="1672" height="941" fetchPriority="high" /><figcaption>A better business. A better working life.</figcaption></figure>
+        <figure className="about-hero-image"><img src="/modern-city-industry-concept.jpg" alt="A modern desert city with a golf course behind the solar fields, an architecture studio by the lake, and an auto dealership along the rail line." width="1659" height="948" fetchPriority="high" /><figcaption>A better business. A better working life.</figcaption></figure>
         <dl className="about-at-a-glance"><div><dt>Founded</dt><dd>2025</dd></div><div><dt>Based in</dt><dd>San Francisco</dd></div><div><dt>Built around</dt><dd>People’s time</dd></div></dl>
       </section>
       <div className="about-sections wrap">
@@ -100,13 +100,16 @@ export default function AboutPage() {
         <section id="customers" className="about-section" aria-labelledby="customers-title">
           <div className="about-section-heading"><span className="about-chapter">03 / WHO WE BUILD FOR</span><h2 id="customers-title">Who uses Endurance</h2></div>
           <div className="about-section-body">
-            <p className="about-body-intro">We build for operations teams in construction, manufacturing, logistics and energy: businesses whose work crosses a system of record, documents and people. Logistics is where Brain OS has run longest in production. A construction deployment is in build.</p>
+            <p className="about-body-intro">We build for teams whose work crosses systems of record, documents, and conversations. Logistics is where Brain OS has run longest in production. A construction deployment is in build.</p>
             <ul className="about-segments">
               <li><strong>Construction contractors and project teams</strong> working across job costing, project records, field service and contracts, with one Brain OS deployment in build for autumn 2026.</li>
               <li><strong>Manufacturers</strong> whose orders, inventory, purchasing and maintenance live in an ERP and whose operating rules live in a few people’s heads.</li>
               <li><strong>Logistics operations: freight brokerages, third-party logistics firms and asset carriers</strong> with 25–140 people working in Microsoft Teams, the deployment described in our <a href={`${companyUrl}/brain-os/use-cases`}>Brain OS use cases</a>.</li>
               <li><strong>Freight brokerage owners and finance teams</strong> managing complex commissions, including brokerages paying 25–275 people per week.</li>
               <li><strong>Energy operators and service companies</strong> coordinating field crews, work orders, assets and inspections across the systems they already run.</li>
+              <li><strong>Auto dealerships</strong> connecting vehicle inventory, lead follow-up, and handoffs between sales and service.</li>
+              <li><strong>Architecture firms</strong> keeping drawings, specifications, and decisions in sync across clients, consultants, and project teams.</li>
+              <li><strong>Golf courses and clubs</strong> across the United States that need <a href="/brain-os#golf-courses">specialized golf operations software</a> to coordinate tee times, caddie work, and member and guest service.</li>
               <li><strong>Professional services, hospitality, real estate and wealth management teams</strong>, where the <a href={`${companyUrl}/brain-os`}>Brain OS console</a> shows the same pattern applied to matters, units, listings and portfolios.</li>
             </ul>
             <p className="about-source-note">Explore the <a href={`${companyUrl}/brain-os`}>Brain OS industry workflows</a> and <a href={`${companyUrl}/margins`}>how Margins works</a>. These segments describe product fit, not a named client roster.</p>

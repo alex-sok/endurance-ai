@@ -98,8 +98,12 @@ export function WorldSelect() {
       <div className="world-detail">
         <span className="small-label">BRAIN OS / {world.label.toUpperCase()}</span>
         <h3>{world.title}</h3><p>{world.copy}</p>
-        <div className="industry-examples"><span className="small-label">ILLUSTRATIVE WORKFLOWS</span><ul>{world.examples.map(example => <li key={example}>{example}</li>)}</ul></div>
-        <a className="text-link" href={world.id === 'logistics' ? 'https://endurancelabs.ai/margins' : callUrl} target="_blank" rel="noreferrer">{world.id === 'logistics' ? 'Explore Margins' : 'Talk about your operation'}<ArrowUpRight size={16} /></a>
+        <div className="industry-examples"><span className="small-label">{world.id === 'golf-courses' ? 'GOLF OPERATIONS SOFTWARE' : 'ILLUSTRATIVE WORKFLOWS'}</span><ul>{world.examples.map(example => <li key={example}>{example}</li>)}</ul></div>
+        {world.id === 'golf-courses' ? (
+          <a className="text-link" href="/brain-os#golf-courses">Explore golf operations software<ArrowUpRight size={16} /></a>
+        ) : (
+          <a className="text-link" href={world.id === 'logistics' ? 'https://endurancelabs.ai/margins' : callUrl} target="_blank" rel="noreferrer">{world.id === 'logistics' ? 'Explore Margins' : 'Talk about your operation'}<ArrowUpRight size={16} /></a>
+        )}
       </div>
       </TabsContent>)}
     </div>

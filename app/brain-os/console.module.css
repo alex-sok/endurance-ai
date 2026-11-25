@@ -36,3 +36,64 @@
 .console:global(.theme-paper) :global(.bpos-btn-ghost:hover) {
   color: #ffffff;
 }
+
+.industryExamples {
+  margin-top: 4rem;
+}
+
+.industryExamples h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.industryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.industryGrid article {
+  background: var(--lp-snow);
+  padding: 1.25rem;
+  scroll-margin-top: 6rem;
+}
+
+.industryGrid img {
+  width: 100%;
+  height: auto;
+}
+
+.industryGrid h3 {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+.industryGrid p,
+.industryGrid ul {
+  color: var(--lp-muted);
+  margin-top: .5rem;
+  line-height: 1.6;
+}
+
+.industryGrid ul {
+  padding-inline-start: 1.25rem;
+  list-style: disc;
+}
+
+.industryExamples a {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+
+.industryGrid article > a {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+@media (max-width: 700px) {
+  .industryGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

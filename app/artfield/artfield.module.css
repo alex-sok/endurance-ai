@@ -435,7 +435,7 @@
 .artfield :global(.team-heading){display:grid;grid-template-columns:1.15fr 1fr;gap:10%;align-items:end;margin-bottom:44px}
 .artfield :global(.team-heading h2){margin-top:23px}
 .artfield :global(.team-heading>p){max-width:430px;font-size:1rem;line-height:1.85;color:#526f83}
-.artfield :global(.team-directory){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.artfield :global(.team-directory){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .artfield :global(.team-person){border-top:1px solid #cfdee8;padding-top:24px;min-width:0}
 .artfield :global(.team-person h3){font-size:1.1875rem;font-weight:500;line-height:1.5;letter-spacing:-.02em}
 .artfield :global(.team-role){font-size:.875rem;line-height:1.65;color:#37639a;margin-top:4px}

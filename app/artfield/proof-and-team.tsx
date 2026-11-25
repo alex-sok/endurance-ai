@@ -28,7 +28,6 @@ export function CustomerProof() {
 
 // Names, roles, and background come from the existing published team copy.
 const team = [
-  { name: 'Nick Maxwell', role: 'CTO', bio: 'Computer Science, Cornell. Three-time founder. Exited Tala to Intuit.' },
   { name: 'Alex Sok', role: 'CEO', bio: 'Three-time founder and angel investor. AI at Tetration and Cisco; product leadership at Prospera.' },
   { name: 'Ramzy Azar', role: 'Chief AI Strategy & Ops', bio: 'UC Berkeley. Finance and investment experience. Leads operations, finance, and AI strategy.' },
   { name: 'Brennan Burks', role: 'Chief GTM Engineer', bio: 'Indiana University. B2B technology and manufacturing. Leads marketing, GTM, and client partnerships.' },

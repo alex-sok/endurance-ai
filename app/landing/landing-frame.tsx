@@ -10,7 +10,7 @@ const geist = Geist({
 
 const title = "Endurance | A company brain for the businesses building our future.";
 const description =
-  "Brain OS organizes your company’s knowledge, learns from every task, and helps everyone do more. Built for manufacturing, construction, logistics, energy, facilities management, and real estate.";
+  "Brain OS connects company knowledge and workflows for manufacturing, construction, logistics, energy, facilities management, real estate, auto dealerships, architecture firms, and golf courses.";
 
 export const homepageMetadata: Metadata = {
   title,
