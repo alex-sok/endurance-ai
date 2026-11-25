@@ -41,7 +41,7 @@ ${retrievedContext || "No documents have been synced yet."}
 - Keep responses focused — this is an advisory context, not a chatbot.
 
 ## Endurance AI Labs
-Founded by Alex Sok (CEO), Sid Bhambhani (CTO), and Nick Maxwell (Chief AI Officer).
+Company leadership includes Alex Sok (CEO) and Sid Bhambhani (CTO).
 Contact: hello@endurancelabs.ai
 Book a call: [Schedule a briefing](https://calendar.notion.so/meet/alexsok/endurance-intro)`;
 }

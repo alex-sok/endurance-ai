@@ -260,7 +260,7 @@ export const RUNS = {
 export const TRAVELS = {
   kicker: "08 · THE PATTERN TRAVELS",
   title: ["A shared architecture.", "Different working lives."],
-  lede: "The knowledge structure, tool interfaces, access controls, and chat runtime form a shared architecture. Connectors and operating rules are built for each business and its system of record. A logistics desk, a construction office, a plant floor and a field crew each need different information to make their next decision.",
+  lede: "The knowledge structure, tool interfaces, access controls, and chat runtime form a shared architecture. Connectors and operating rules are built for each business and its system of record, from shipment records and vehicle inventory to drawing revisions and golf tee sheets.",
   deployments: [
     {
       name: "A freight brokerage and its asset carrier",

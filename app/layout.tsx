@@ -33,7 +33,7 @@ const archivo = Archivo({
 const SITE_URL = "https://endurancelabs.ai";
 const TITLE = "Endurance | A company brain for the businesses building our future.";
 const DESCRIPTION =
-  "Brain OS organizes your company’s knowledge, learns from every task, and helps everyone do more. Built for manufacturing, construction, logistics, energy, facilities management, and real estate.";
+  "Brain OS connects company knowledge and workflows for manufacturing, construction, logistics, energy, facilities management, real estate, auto dealerships, architecture firms, and golf courses.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -84,8 +84,7 @@ export default function RootLayout({
     name: "Endurance AI Labs",
     url: "https://endurancelabs.ai",
     logo: "https://endurancelabs.ai/logo-endurance.svg",
-    description:
-      "Brain OS organizes your company’s knowledge, learns from every task, and helps everyone do more. Built for manufacturing, construction, logistics, energy, facilities management, and real estate.",
+    description: DESCRIPTION,
     contactPoint: {
       "@type": "ContactPoint",
       email: "hello@endurancelabs.ai",
@@ -93,7 +92,6 @@ export default function RootLayout({
     },
     founder: [
       { "@type": "Person", name: "Alex Sok", jobTitle: "CEO" },
-      { "@type": "Person", name: "Nick Maxwell", jobTitle: "CTO" },
     ],
     employee: [
       { "@type": "Person", name: "Ramzy Azar", jobTitle: "Chief AI Strategy & Ops" },

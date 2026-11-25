@@ -1,10 +1,13 @@
 'use client';
 
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+const cityRendering = '/modern-city-industry-concept.jpg';
 
 export function HeroFilm() {
   const filmRef = useRef<HTMLVideoElement>(null);
+  const [showFinalFrame, setShowFinalFrame] = useState(false);
 
   useEffect(() => {
     const film = filmRef.current;
@@ -65,7 +68,7 @@ export function HeroFilm() {
   }, []);
 
   return <div className="hero-film">
-    <img className="hero-still" src="/modern-city-poster.webp" alt="A modern desert city with factories, solar fields, wind turbines, and green streets" width="960" height="540" />
-    <video ref={filmRef} src="/desert-to-city.mp4" autoPlay muted playsInline preload="auto" poster="/modern-city-poster.webp" aria-label="An empty desert becomes a thriving modern city, with construction, manufacturing, clean energy, and commerce." />
+    <img className="hero-still" src={cityRendering} alt="A modern desert city with a golf course behind the solar fields, an architecture studio by the lake, and an auto dealership along the rail line." width="1659" height="948" fetchPriority="high" />
+    <video ref={filmRef} src="/desert-to-city.mp4" autoPlay muted playsInline preload="auto" poster={cityRendering} data-finished={showFinalFrame || undefined} aria-hidden={showFinalFrame || undefined} aria-label="An empty desert becomes a thriving modern city, with construction, manufacturing, clean energy, and commerce." onPlaying={() => setShowFinalFrame(false)} onEnded={() => setShowFinalFrame(true)} onError={() => setShowFinalFrame(true)} />
   </div>;
 }

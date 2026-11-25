@@ -50,7 +50,7 @@ export default function Home() {
         <section id="work" className="world-section" aria-labelledby="world-title">
           <div className="world-heading wrap">
             <div><p className="eyebrow">03 / WHO WE SERVE</p><h2 id="world-title">Built into your world.</h2></div>
-            <p>For the companies that keep things built, moved, powered, and running.</p>
+            <p>For the companies that design, build, move, power, and serve the places we live.</p>
           </div>
           <WorldSelect />
         </section>

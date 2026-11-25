@@ -323,14 +323,17 @@ export const REVENUE = {
 export const FIT = {
   kicker: "08 · WHO IT IS FOR",
   title: ["A system of record.", "And a few people’s heads."],
-  lede: "Built for construction, manufacturing, logistics and energy: any operation where the answers live in an ERP or system of record and the rules live in inboxes, spreadsheets and memory. Brain OS connects to the system you already run.",
+  lede: "Brain OS is for teams whose answers live in a system of record and whose rules live in inboxes, spreadsheets, and memory. It connects to the system you already run, from a freight brokerage’s dispatch records to a dealership’s inventory or an architecture firm’s drawings.",
   systems: {
-    note: "Brain OS reads the system of record live and writes to it as drafts, whichever system it is. Each one gets its own connector. The brain, the access controls and the chat interface carry over unchanged. Deployment status as of 26 September 2026.",
+    note: "Brain OS reads the system of record live and prepares drafts through a connector built for that system. The brain, access controls, and chat interface carry over. Deployment statuses are as of 26 September 2026.",
     rows: [
       { industry: "Construction", systems: "Job costing and project management, field service and scheduling, and the accounting ledger, cloud or on premise.", status: "In build, autumn 2026" },
       { industry: "Manufacturing", systems: "The ERP for orders, inventory and purchasing, with production, quality and maintenance records alongside.", status: "New connector" },
       { industry: "Logistics", systems: "The transportation management system, the load board, carrier vetting, billing and settlement.", status: "Live since June 2026" },
       { industry: "Energy", systems: "The ERP or asset ledger, work orders and field tickets, and maintenance and inspection records.", status: "New connector" },
+      { industry: "Auto Dealerships", systems: "The dealership management system, CRM, vehicle inventory, service appointments, and repair orders.", status: "Illustrative workflow" },
+      { industry: "Architecture Firms", systems: "Project document systems, drawing sets, specifications, consultant correspondence, and submittal logs.", status: "Illustrative workflow" },
+      { industry: "Golf Courses", systems: "Tee sheets, caddie assignments, player yardage books, and membership and guest records.", status: "Specialized software" },
     ],
   },
   buyers: [
